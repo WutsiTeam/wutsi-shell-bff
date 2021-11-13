@@ -29,7 +29,7 @@
     <kotlin.version>1.5.31</kotlin.version>
     <kotlin-mockito.version>2.2.0</kotlin-mockito.version>
     <klint.version>0.43.0</klint.version>
-    <libphonenumber.version>8.12.36</libphonenumber.version>
+    <libphonenumber.version>8.12.37</libphonenumber.version>
     <maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
     <sdui-kotlin.version>0.0.18</sdui-kotlin.version>
     <wutsi-platform-core.version>0.0.72</wutsi-platform-core.version>
