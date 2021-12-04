@@ -26,7 +26,7 @@
     <junit.version>5.8.1</junit.version>
     <kotlin.version>1.6.0</kotlin.version>
     <kotlin-mockito.version>2.2.0</kotlin-mockito.version>
-    <klint.version>0.43.1</klint.version>
+    <klint.version>0.43.2</klint.version>
     <libphonenumber.version>8.12.38</libphonenumber.version>
     <maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
     <sdui-kotlin.version>0.0.33</sdui-kotlin.version>
