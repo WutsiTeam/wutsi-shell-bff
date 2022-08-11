@@ -53,7 +53,7 @@
                   "attributes": {
                     "name": "message",
                     "hideText": false,
-                    "required": false,
+                    "required": true,
                     "caption": "Feedback",
                     "enabled": true,
                     "readOnly": false,

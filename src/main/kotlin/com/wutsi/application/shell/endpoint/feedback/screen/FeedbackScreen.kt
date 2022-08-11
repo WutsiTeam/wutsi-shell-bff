@@ -53,6 +53,7 @@ class FeedbackScreen : AbstractQuery() {
                                 name = "message",
                                 maxLines = 10,
                                 caption = getText("page.feedback.input"),
+                                required = true
                             )
                         ),
                         Container(
