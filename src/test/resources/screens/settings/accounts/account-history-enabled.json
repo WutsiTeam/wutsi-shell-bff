@@ -56,7 +56,7 @@
                     {
                       "type": "Button",
                       "attributes": {
-                        "caption": "Cash Out",
+                        "caption": "Transactions",
                         "padding": 10.0,
                         "type": "Text",
                         "stretched": false
@@ -64,7 +64,7 @@
                       "children": [],
                       "action": {
                         "type": "Route",
-                        "url": "https://wutsi-gateway-test.herokuapp.com/cash/cashout"
+                        "url": "https://wutsi-gateway-test.herokuapp.com/cash/history"
                       }
                     }
                   ]

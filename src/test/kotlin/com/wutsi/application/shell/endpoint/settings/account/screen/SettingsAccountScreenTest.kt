@@ -77,6 +77,14 @@ internal class SettingsAccountScreenTest : AbstractEndpointTest() {
     }
 
     @Test
+    fun `transaction history enabled`() {
+        doReturn(true).whenever(toggleProvider).isToggleEnabled(ToggleName.TRANSACTION_HISTORY)
+
+        // THEN
+        assertEndpointEquals("/screens/settings/accounts/account-history-enabled.json", url)
+    }
+
+    @Test
     fun `business account`() {
         // GIVEN
         user = createAccount(false, Category(id = 100, title = "Foo"))

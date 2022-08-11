@@ -146,10 +146,8 @@ class SettingsAccountScreen(
         val buttons = mutableListOf<WidgetAware>()
         if (togglesProvider.isToggleEnabled(ToggleName.CASHIN))
             buttons.add(
-                Button(
-                    type = ButtonType.Text,
+                toToolbarButton(
                     caption = getText("page.settings.account.button.add-cash"),
-                    stretched = false,
                     action = Action(
                         type = Route,
                         url = urlBuilder.build(cashUrl, "cashin")
@@ -159,10 +157,8 @@ class SettingsAccountScreen(
 
         if (hasBalance && togglesProvider.isToggleEnabled(ToggleName.CASHOUT))
             buttons.add(
-                Button(
-                    type = ButtonType.Text,
+                toToolbarButton(
                     caption = getText("page.settings.account.button.cash-out"),
-                    stretched = false,
                     action = Action(
                         type = Route,
                         url = urlBuilder.build(cashUrl, "cashout")
@@ -172,10 +168,8 @@ class SettingsAccountScreen(
 
         if (togglesProvider.isToggleEnabled(ToggleName.TRANSACTION_HISTORY))
             buttons.add(
-                Button(
-                    type = ButtonType.Text,
+                toToolbarButton(
                     caption = getText("page.settings.account.button.history"),
-                    stretched = false,
                     action = Action(
                         type = Route,
                         url = urlBuilder.build(cashUrl, "history")
@@ -189,4 +183,13 @@ class SettingsAccountScreen(
             children = buttons
         )
     }
+
+    private fun toToolbarButton(caption: String, action: Action): WidgetAware =
+        Button(
+            type = ButtonType.Text,
+            caption = caption,
+            stretched = false,
+            padding = 10.0,
+            action = action
+        )
 }
