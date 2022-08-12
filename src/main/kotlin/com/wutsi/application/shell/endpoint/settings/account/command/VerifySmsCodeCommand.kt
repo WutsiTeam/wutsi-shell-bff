@@ -43,7 +43,7 @@ class VerifySmsCodeCommand(
             "&sub-title=" + encodeURLParam(getText("page.settings.account-pin.sub-title")) +
             "&auth=false" +
             "&return-to-route=false" +
-            "&dark-mode=true"
-        "&return-url=" + encodeURLParam(urlBuilder.build("commands/link-account"))
+            "&dark-mode=true" +
+            "&return-url=" + encodeURLParam(urlBuilder.build("commands/link-account"))
     }
 }
