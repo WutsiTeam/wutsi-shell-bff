@@ -10,6 +10,7 @@ import com.wutsi.platform.account.dto.Category
 import com.wutsi.platform.account.dto.GetAccountResponse
 import com.wutsi.platform.account.dto.ListPaymentMethodResponse
 import com.wutsi.platform.account.dto.Phone
+import com.wutsi.platform.tenant.entity.ToggleName
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
@@ -43,8 +44,37 @@ internal class SettingsProfileScreenTest : AbstractEndpointTest() {
     }
 
     @Test
+    fun `personal - business account enabled`() {
+        // GIVEN
+        doReturn(true).whenever(togglesProvider).isToggleEnabled(ToggleName.BUSINESS_ACCOUNT)
+        doReturn(ListPaymentMethodResponse()).whenever(accountApi).listPaymentMethods(any())
+
+        // THEN
+        assertEndpointEquals("/screens/settings/profile/profile-personal-business-enabled.json", url)
+    }
+
+    @Test
     fun business() {
+        // GIVEN
+        setUpBusinessAccount()
+        doReturn(ListPaymentMethodResponse()).whenever(accountApi).listPaymentMethods(any())
+
+        // THEN
+        assertEndpointEquals("/screens/settings/profile/profile-business.json", url)
+    }
+
+    @Test
+    fun `business - business account enabled`() {
         // WHEN
+        setUpBusinessAccount()
+        doReturn(ListPaymentMethodResponse()).whenever(accountApi).listPaymentMethods(any())
+        doReturn(true).whenever(togglesProvider).isToggleEnabled(ToggleName.BUSINESS_ACCOUNT)
+
+        // THEN
+        assertEndpointEquals("/screens/settings/profile/profile-business-business-enabled.json", url)
+    }
+
+    private fun setUpBusinessAccount() {
         val account = Account(
             id = ACCOUNT_ID,
             displayName = "Ray Sponsible",
@@ -70,11 +100,5 @@ internal class SettingsProfileScreenTest : AbstractEndpointTest() {
             pictureUrl = "https://www.img.com/1.png"
         )
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
-
-        // GIVEN
-        doReturn(ListPaymentMethodResponse()).whenever(accountApi).listPaymentMethods(any())
-
-        // THEN
-        assertEndpointEquals("/screens/settings/profile/profile-business.json", url)
     }
 }

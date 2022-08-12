@@ -140,6 +140,7 @@ internal class HomeScreenTest : AbstractEndpointTest() {
 
     @Test
     fun ordersEnabled() {
+        doReturn(true).whenever(togglesProvider).isToggleEnabled(ToggleName.BUSINESS_ACCOUNT)
         user = createAccount(business = true, hasStore = true)
         doReturn(GetAccountResponse(user)).whenever(accountApi).getAccount(any())
 

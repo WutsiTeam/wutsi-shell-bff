@@ -207,7 +207,7 @@ class HomeScreen(
                 )
             )
 
-        if (me.business && me.hasStore && togglesProvider.isOrderEnabled())
+        if (togglesProvider.isToggleEnabled(ToggleName.BUSINESS_ACCOUNT) && me.business && me.hasStore && togglesProvider.isOrderEnabled())
             buttons.add(
                 applicationButton(
                     caption = getText("page.home.button.orders"),

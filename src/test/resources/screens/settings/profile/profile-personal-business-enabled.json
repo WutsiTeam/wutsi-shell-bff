@@ -49,6 +49,7 @@
               "type": "ListItem",
               "attributes": {
                 "caption": "Email",
+                "subCaption": "foo@bar.com",
                 "trailing": {
                   "type": "Icon",
                   "attributes": {
@@ -90,7 +91,6 @@
               "type": "ListItem",
               "attributes": {
                 "caption": "Address",
-                "subCaption": "3030 Linton",
                 "trailing": {
                   "type": "Icon",
                   "attributes": {
@@ -111,7 +111,7 @@
               "type": "ListItem",
               "attributes": {
                 "caption": "Location",
-                "subCaption": "Dibombari, Cameroon",
+                "subCaption": "Mouanko, Cameroon",
                 "trailing": {
                   "type": "Icon",
                   "attributes": {
@@ -132,6 +132,7 @@
               "type": "ListItem",
               "attributes": {
                 "caption": "Timezone",
+                "subCaption": "Africa/Douala",
                 "trailing": {
                   "type": "Icon",
                   "attributes": {
@@ -146,6 +147,19 @@
               "action": {
                 "type": "Route",
                 "url": "http://localhost:0/settings/profile/timezone"
+              }
+            },
+            {
+              "type": "ListItemSwitch",
+              "attributes": {
+                "caption": "Business Account",
+                "name": "value",
+                "selected": false
+              },
+              "children": [],
+              "action": {
+                "type": "Route",
+                "url": "http://localhost:0/settings/business"
               }
             }
           ]

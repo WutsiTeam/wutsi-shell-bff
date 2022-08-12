@@ -148,19 +148,6 @@
                 "type": "Route",
                 "url": "http://localhost:0/settings/profile/timezone"
               }
-            },
-            {
-              "type": "ListItemSwitch",
-              "attributes": {
-                "caption": "Business Account",
-                "name": "value",
-                "selected": false
-              },
-              "children": [],
-              "action": {
-                "type": "Route",
-                "url": "http://localhost:0/settings/business"
-              }
             }
           ]
         }

@@ -16,6 +16,7 @@ import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.ActionType
+import com.wutsi.platform.tenant.entity.ToggleName
 import org.springframework.context.i18n.LocaleContextHolder
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -70,64 +71,66 @@ class SettingsProfileScreen(
             )
         )
 
-        if (account.business)
-            children.addAll(
-                listOf(
-                    listItem(
-                        "page.settings.profile.attribute.category-id",
-                        account.category?.let { it.title },
-                        "settings/profile/category"
-                    ),
-                    listItem(
-                        "page.settings.profile.attribute.biography",
-                        account.biography,
-                        "settings/profile/biography"
-                    ),
-                    listItem(
-                        "page.settings.profile.attribute.website",
-                        account.website,
-                        "settings/profile/website"
-                    ),
-                    listItem(
-                        "page.settings.profile.attribute.facebook-id",
-                        account.facebookId?.let { "https://www.facebook.com/${account.facebookId}" },
-                        "settings/profile/facebook"
-                    ),
-                    listItem(
-                        "page.settings.profile.attribute.instagram-id",
-                        account.instagramId?.let { "https://www.instagram.com/${account.instagramId}" },
-                        "settings/profile/instagram"
-                    ),
-                    listItem(
-                        "page.settings.profile.attribute.twitter-id",
-                        account.twitterId?.let { "https://www.twitter.com/${account.twitterId}" },
-                        "settings/profile/twitter"
-                    ),
-                    listItem(
-                        "page.settings.profile.attribute.whatsapp",
-                        account.whatsapp,
-                        "settings/profile/whatsapp"
-                    ),
+        if (togglesProvider.isToggleEnabled(ToggleName.BUSINESS_ACCOUNT)) {
+            if (account.business)
+                children.addAll(
+                    listOf(
+                        listItem(
+                            "page.settings.profile.attribute.category-id",
+                            account.category?.let { it.title },
+                            "settings/profile/category"
+                        ),
+                        listItem(
+                            "page.settings.profile.attribute.biography",
+                            account.biography,
+                            "settings/profile/biography"
+                        ),
+                        listItem(
+                            "page.settings.profile.attribute.website",
+                            account.website,
+                            "settings/profile/website"
+                        ),
+                        listItem(
+                            "page.settings.profile.attribute.facebook-id",
+                            account.facebookId?.let { "https://www.facebook.com/${account.facebookId}" },
+                            "settings/profile/facebook"
+                        ),
+                        listItem(
+                            "page.settings.profile.attribute.instagram-id",
+                            account.instagramId?.let { "https://www.instagram.com/${account.instagramId}" },
+                            "settings/profile/instagram"
+                        ),
+                        listItem(
+                            "page.settings.profile.attribute.twitter-id",
+                            account.twitterId?.let { "https://www.twitter.com/${account.twitterId}" },
+                            "settings/profile/twitter"
+                        ),
+                        listItem(
+                            "page.settings.profile.attribute.whatsapp",
+                            account.whatsapp,
+                            "settings/profile/whatsapp"
+                        ),
+                    )
+                )
+
+            children.add(
+                ListItemSwitch(
+                    caption = getText("page.settings.profile.attribute.business"),
+                    name = "value",
+                    selected = account.business,
+                    action = if (account.business)
+                        Action(
+                            type = ActionType.Command,
+                            url = urlBuilder.build("/commands/update-profile-attribute?name=business")
+                        )
+                    else
+                        Action(
+                            type = ActionType.Route,
+                            url = urlBuilder.build("/settings/business")
+                        )
                 )
             )
-
-        children.add(
-            ListItemSwitch(
-                caption = getText("page.settings.profile.attribute.business"),
-                name = "value",
-                selected = account.business,
-                action = if (account.business)
-                    Action(
-                        type = ActionType.Command,
-                        url = urlBuilder.build("/commands/update-profile-attribute?name=business")
-                    )
-                else
-                    Action(
-                        type = ActionType.Route,
-                        url = urlBuilder.build("/settings/business")
-                    )
-            )
-        )
+        }
 
         return Screen(
             id = Page.SETTINGS_PROFILE,
