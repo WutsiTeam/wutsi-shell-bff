@@ -1,184 +1,155 @@
 {
-  "type": "Screen",
-  "attributes": {
-    "id": "page.home",
-    "safe": true
+  "type" : "Screen",
+  "attributes" : {
+    "id" : "page.home",
+    "safe" : true
   },
-  "children": [
-    {
-      "type": "SingleChildScrollView",
-      "attributes": {},
-      "children": [
-        {
-          "type": "Column",
-          "attributes": {},
-          "children": [
-            {
-              "type": "Container",
-              "attributes": {
-                "alignment": "TopLeft",
-                "padding": 10.0,
-                "background": "#1D7EDF"
-              },
-              "children": [
-                {
-                  "type": "Row",
-                  "attributes": {
-                    "mainAxisAlignment": "start",
-                    "crossAxisAlignment": "start"
-                  },
-                  "children": [
-                    {
-                      "type": "Text",
-                      "attributes": {
-                        "caption": "Hi Ray Sponsible",
-                        "color": "#FFFFFF"
-                      },
-                      "children": []
-                    }
-                  ]
-                }
-              ]
+  "children" : [ {
+    "type" : "SingleChildScrollView",
+    "attributes" : { },
+    "children" : [ {
+      "type" : "Column",
+      "attributes" : { },
+      "children" : [ {
+        "type" : "Container",
+        "attributes" : {
+          "alignment" : "TopLeft",
+          "padding" : 10.0,
+          "background" : "#1D7EDF"
+        },
+        "children" : [ {
+          "type" : "Row",
+          "attributes" : {
+            "mainAxisAlignment" : "start",
+            "crossAxisAlignment" : "start"
+          },
+          "children" : [ {
+            "type" : "Text",
+            "attributes" : {
+              "caption" : "Hi Ray Sponsible",
+              "color" : "#FFFFFF"
             },
-            {
-              "type": "Container",
-              "attributes": {
-                "alignment": "Center",
-                "padding": 10.0,
-                "background": "#1D7EDF"
-              },
-              "children": [
-                {
-                  "type": "Center",
-                  "attributes": {},
-                  "children": [
-                    {
-                      "type": "MoneyText",
-                      "attributes": {
-                        "value": 10000.0,
-                        "color": "#FFFFFF",
-                        "currency": "CFA",
-                        "numberFormat": "#,###,##0"
-                      },
-                      "children": []
-                    }
-                  ]
-                }
-              ]
+            "children" : [ ]
+          } ]
+        } ]
+      }, {
+        "type" : "Container",
+        "attributes" : {
+          "alignment" : "Center",
+          "padding" : 10.0,
+          "background" : "#1D7EDF"
+        },
+        "children" : [ {
+          "type" : "Center",
+          "attributes" : { },
+          "children" : [ {
+            "type" : "MoneyText",
+            "attributes" : {
+              "value" : 10000.0,
+              "color" : "#FFFFFF",
+              "currency" : "CFA",
+              "numberFormat" : "#,###,##0"
             },
-            {
-              "type": "Container",
-              "attributes": {
-                "background": "#1D7EDF"
-              },
-              "children": [
-                {
-                  "type": "Row",
-                  "attributes": {
-                    "mainAxisAlignment": "spaceAround"
-                  },
-                  "children": [
-                    {
-                      "type": "Button",
-                      "attributes": {
-                        "caption": "Add cash",
-                        "padding": 1.0,
-                        "type": "Text",
-                        "stretched": false,
-                        "icon": "e3f8",
-                        "iconColor": "#FFFFFF",
-                        "color": "#FFFFFF"
-                      },
-                      "children": [],
-                      "action": {
-                        "type": "Route",
-                        "url": "https://wutsi-gateway-test.herokuapp.com/cash/cashin"
-                      }
-                    }
-                  ]
-                }
-              ]
+            "children" : [ ]
+          } ]
+        } ]
+      }, {
+        "type" : "Container",
+        "attributes" : {
+          "background" : "#1D7EDF"
+        },
+        "children" : [ {
+          "type" : "Row",
+          "attributes" : {
+            "mainAxisAlignment" : "spaceAround"
+          },
+          "children" : [ {
+            "type" : "Button",
+            "attributes" : {
+              "caption" : "Add Cash",
+              "padding" : 1.0,
+              "type" : "Text",
+              "stretched" : false,
+              "icon" : "f1e0",
+              "iconColor" : "#FFFFFF",
+              "color" : "#FFFFFF"
             },
-            {
-              "type": "Container",
-              "attributes": {},
-              "children": [
-                {
-                  "type": "Row",
-                  "attributes": {
-                    "mainAxisAlignment": "spaceAround"
-                  },
-                  "children": [
-                    {
-                      "type": "Button",
-                      "attributes": {
-                        "caption": "Feedback",
-                        "padding": 1.0,
-                        "type": "Text",
-                        "stretched": false,
-                        "icon": "f04f",
-                        "iconColor": "#1D7EDF",
-                        "color": "#1D7EDF"
-                      },
-                      "children": [],
-                      "action": {
-                        "type": "Route",
-                        "url": "http://localhost:0/feedback"
-                      }
-                    }
-                  ]
-                }
-              ]
+            "children" : [ ],
+            "action" : {
+              "type" : "Route",
+              "url" : "https://wutsi-gateway-test.herokuapp.com/cash/cashin"
             }
-          ]
-        }
-      ]
-    }
-  ],
-  "bottomNavigationBar": {
-    "type": "BottomNavigationBar",
-    "attributes": {
-      "background": "#1D7EDF",
-      "selectedItemColor": "#FFFFFF",
-      "unselectedItemColor": "#FFFFFF"
+          } ]
+        } ]
+      }, {
+        "type" : "Container",
+        "attributes" : { },
+        "children" : [ {
+          "type" : "Row",
+          "attributes" : {
+            "mainAxisAlignment" : "spaceAround"
+          },
+          "children" : [ {
+            "type" : "Button",
+            "attributes" : {
+              "caption" : "Feedback",
+              "padding" : 1.0,
+              "type" : "Text",
+              "stretched" : false,
+              "icon" : "f04f",
+              "iconColor" : "#1D7EDF",
+              "color" : "#1D7EDF"
+            },
+            "children" : [ ],
+            "action" : {
+              "type" : "Route",
+              "url" : "http://localhost:0/feedback"
+            }
+          } ]
+        } ]
+      } ]
+    } ]
+  } ],
+  "bottomNavigationBar" : {
+    "type" : "BottomNavigationBar",
+    "attributes" : {
+      "background" : "#1D7EDF",
+      "selectedItemColor" : "#FFFFFF",
+      "unselectedItemColor" : "#FFFFFF"
     },
-    "children": [
-      {
-        "type": "BottomNavigationBarItem",
-        "attributes": {
-          "icon": "f107",
-          "caption": "Home"
-        },
-        "children": [],
-        "action": {
-          "type": "Route",
-          "url": "route:/~"
-        }
+    "children" : [ {
+      "type" : "BottomNavigationBarItem",
+      "attributes" : {
+        "icon" : "f107",
+        "caption" : "Home"
       },
-      {
-        "type": "BottomNavigationBarItem",
-        "attributes": {
-          "icon": "f27b",
-          "caption": "Me"
-        },
-        "children": [],
-        "action": {
-          "type": "Route",
-          "url": "http://localhost:0/profile"
-        }
-      },
-      {
-        "type": "BottomNavigationBarItem",
-        "attributes": {
-          "icon": "f36e",
-          "caption": "Settings"
-        },
-        "children": [],
-        "action": {
-          "type": "Route",
-          "url": "http://localhost:0/settings"
-        }
+      "children" : [ ],
+      "action" : {
+        "type" : "Route",
+        "url" : "route:/~"
       }
-    ]
+    }, {
+      "type" : "BottomNavigationBarItem",
+      "attributes" : {
+        "icon" : "f27b",
+        "caption" : "Me"
+      },
+      "children" : [ ],
+      "action" : {
+        "type" : "Route",
+        "url" : "http://localhost:0/profile"
+      }
+    }, {
+      "type" : "BottomNavigationBarItem",
+      "attributes" : {
+        "icon" : "f36e",
+        "caption" : "Settings"
+      },
+      "children" : [ ],
+      "action" : {
+        "type" : "Route",
+        "url" : "http://localhost:0/settings"
+      }
+    } ]
   }
 }

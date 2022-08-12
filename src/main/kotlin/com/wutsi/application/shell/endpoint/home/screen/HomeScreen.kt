@@ -17,7 +17,7 @@ import com.wutsi.flutter.sdui.SingleChildScrollView
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
-import com.wutsi.flutter.sdui.enums.ActionType.Route
+import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.Alignment
 import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
@@ -133,7 +133,7 @@ class HomeScreen(
                     caption = getText("page.home.button.scan"),
                     icon = Theme.ICON_SCAN,
                     action = Action(
-                        type = Route,
+                        type = ActionType.Route,
                         url = urlBuilder.build("scan")
                     ),
                 ),
@@ -146,7 +146,7 @@ class HomeScreen(
                     caption = getText("page.home.button.cashin"),
                     icon = Theme.ICON_CASHIN,
                     action = Action(
-                        type = Route,
+                        type = ActionType.Route,
                         url = urlBuilder.build(cashUrl, "cashin")
                     )
                 ),
@@ -158,10 +158,22 @@ class HomeScreen(
                     caption = getText("page.home.button.send"),
                     icon = Theme.ICON_SEND,
                     action = Action(
-                        type = Route,
+                        type = ActionType.Route,
                         url = urlBuilder.build(cashUrl, "send")
                     )
                 )
+            )
+
+        if (togglesProvider.isAccountEnabled() && togglesProvider.isToggleEnabled(ToggleName.CASHOUT))
+            buttons.add(
+                primaryButton(
+                    caption = getText("page.home.button.cashout"),
+                    icon = Theme.ICON_CASHOUT,
+                    action = Action(
+                        type = ActionType.Route,
+                        url = urlBuilder.build(cashUrl, "cashout")
+                    )
+                ),
             )
 
         if (togglesProvider.isPaymentEnabled())
@@ -170,7 +182,7 @@ class HomeScreen(
                     caption = getText("page.home.button.payment"),
                     icon = Theme.ICON_MONEY,
                     action = Action(
-                        type = Route,
+                        type = ActionType.Route,
                         url = urlBuilder.build(cashUrl, "pay")
                     )
                 )
@@ -200,7 +212,7 @@ class HomeScreen(
                         caption = getText("page.home.button.marketplace"),
                         icon = Theme.ICON_CART,
                         action = Action(
-                            type = Route,
+                            type = ActionType.Route,
                             url = "$storeUrl/marketplace"
                         )
                     )
@@ -213,7 +225,7 @@ class HomeScreen(
                     caption = getText("page.home.button.orders"),
                     icon = Theme.ICON_ORDERS,
                     action = Action(
-                        type = Route,
+                        type = ActionType.Route,
                         url = urlBuilder.build(storeUrl, "orders?merchant=true")
                     )
                 )
@@ -225,7 +237,7 @@ class HomeScreen(
                     caption = getText("page.home.button.news"),
                     icon = Theme.ICON_NEWSPAPER,
                     action = Action(
-                        type = Route,
+                        type = ActionType.Route,
                         url = urlBuilder.build(newsUrl, "")
                     )
                 )
@@ -236,7 +248,7 @@ class HomeScreen(
                 caption = getText("page.home.button.feedback"),
                 icon = Theme.ICON_FEEDBACK,
                 action = Action(
-                    type = Route,
+                    type = ActionType.Route,
                     url = urlBuilder.build("feedback")
                 )
             )

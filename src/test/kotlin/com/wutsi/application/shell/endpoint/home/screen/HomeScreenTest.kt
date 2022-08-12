@@ -118,6 +118,14 @@ internal class HomeScreenTest : AbstractEndpointTest() {
     }
 
     @Test
+    fun cashoutEnabled() {
+        doReturn(true).whenever(togglesProvider).isAccountEnabled()
+        doReturn(true).whenever(togglesProvider).isToggleEnabled(ToggleName.CASHOUT)
+
+        assertEndpointEquals("/screens/home/home-cashout-enabled.json", url)
+    }
+
+    @Test
     fun storeEnabled() {
         doReturn(true).whenever(togglesProvider).isStoreEnabled()
 
