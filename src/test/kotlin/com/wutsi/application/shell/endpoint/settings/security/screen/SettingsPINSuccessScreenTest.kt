@@ -1,4 +1,4 @@
-package com.wutsi.application.shell.endpoint.settings.profile.screen
+package com.wutsi.application.shell.endpoint.settings.security.screen
 
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
 import org.junit.jupiter.api.BeforeEach
@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.server.LocalServerPort
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class SettingsProfileTimeZoneScreenTest : AbstractEndpointTest() {
+internal class SettingsPINSuccessScreenTest : AbstractEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 
@@ -17,12 +17,12 @@ internal class SettingsProfileTimeZoneScreenTest : AbstractEndpointTest() {
     override fun setUp() {
         super.setUp()
 
-        url = "http://localhost:$port/settings/profile/timezone"
+        url = "http://localhost:$port/settings/security/pin/success"
     }
 
     @Test
     fun index() {
         // THEN
-//        assertEndpointEquals("/screens/settings/profile/timezone.json", url)
+        assertEndpointEquals("/screens/settings/security/success.json", url)
     }
 }

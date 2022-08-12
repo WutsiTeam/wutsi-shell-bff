@@ -49,6 +49,7 @@ class SettingsConfirmPINScreen : AbstractQuery() {
                         name = "pin",
                         hideText = true,
                         maxLength = 6,
+                        pinSize = 20.0,
                         color = Theme.COLOR_WHITE,
                         action = Action(
                             type = ActionType.Command,

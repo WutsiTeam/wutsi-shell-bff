@@ -23,7 +23,8 @@ class ConfirmPinCommand(
         service.confirmPin(pin, request)
         return Action(
             type = ActionType.Route,
-            url = "route:/.."
+            url = urlBuilder.build("/settings/security/pin/success"),
+            replacement = true
         )
     }
 

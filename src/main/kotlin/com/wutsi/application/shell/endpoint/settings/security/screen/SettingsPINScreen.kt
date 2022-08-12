@@ -47,6 +47,7 @@ class SettingsPINScreen : AbstractQuery() {
                     PinWithKeyboard(
                         name = "pin",
                         hideText = true,
+                        pinSize = 20.0,
                         maxLength = 6,
                         color = Theme.COLOR_WHITE,
                         action = Action(

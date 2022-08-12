@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.web.server.LocalServerPort
+import org.springframework.boot.test.web.server.LocalServerPort
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 internal class ConfirmPinCommandTest : AbstractEndpointTest() {
@@ -45,7 +45,7 @@ internal class ConfirmPinCommandTest : AbstractEndpointTest() {
 
         val action = response.body!!
         assertEquals(ActionType.Route, action.type)
-        assertEquals("route:/..", action.url)
+        assertEquals("http://localhost:0/settings/security/pin/success", action.url)
     }
 
     @Test
@@ -65,6 +65,6 @@ internal class ConfirmPinCommandTest : AbstractEndpointTest() {
 
         val action = response.body!!
         assertEquals(ActionType.Route, action.type)
-        assertEquals("route:/..", action.url)
+        assertEquals("http://localhost:0/settings/security/pin/success", action.url)
     }
 }
