@@ -18,7 +18,7 @@ class LinkAccountCommand(
 ) : AbstractCommand() {
     @PostMapping
     fun index(): Action {
-        service.linkAccount(MOBILE)
+        service.linkMobileAccount(MOBILE)
         return Action(
             type = ActionType.Route,
             url = urlBuilder.build("settings/accounts/link/success")

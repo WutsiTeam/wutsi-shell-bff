@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping
 class SettingBusinessSuccessPage : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
-        val user = securityContext.currentAccount()
         return Container(
             padding = 10.0,
             child = Form(

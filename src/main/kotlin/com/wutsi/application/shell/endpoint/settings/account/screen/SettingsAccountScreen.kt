@@ -114,21 +114,17 @@ class SettingsAccountScreen(
 
         return Column(
             children = listOfNotNull(
-                if (balance != null)
-                    Container(
-                        alignment = Center,
-                        padding = 10.0,
-                        child = MoneyText(
-                            value = balance.value,
-                            currency = balance.currency,
-                            color = Theme.COLOR_PRIMARY,
-                            numberFormat = tenant.numberFormat
-                        )
+                Container(
+                    alignment = Center,
+                    padding = 10.0,
+                    child = MoneyText(
+                        value = balance.value,
+                        currency = balance.currency,
+                        color = Theme.COLOR_PRIMARY,
+                        numberFormat = tenant.numberFormat
                     )
-                else
-                    null,
-
-                toToolbarWidget(balance != null && balance.value > 0, paymentMethods)
+                ),
+                toToolbarWidget(balance.value > 0, paymentMethods)
             ),
             mainAxisAlignment = MainAxisAlignment.center,
             crossAxisAlignment = CrossAxisAlignment.center,

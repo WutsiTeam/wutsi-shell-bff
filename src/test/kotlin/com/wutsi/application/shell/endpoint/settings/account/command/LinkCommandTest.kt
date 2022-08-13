@@ -68,7 +68,7 @@ internal class LinkCommandTest : AbstractEndpointTest() {
 
         val entity = argumentCaptor<AddPaymentMethodRequest>()
         verify(accountApi).addPaymentMethod(eq(ACCOUNT_ID), entity.capture())
-        assertEquals(state.phoneNumber, entity.firstValue.phoneNumber)
+        assertEquals(state.phoneNumber, entity.firstValue.number)
         assertEquals(PaymentMethodType.MOBILE.name, entity.firstValue.type)
         assertEquals(PaymentMethodProvider.MTN.name, entity.firstValue.provider)
         assertEquals(ACCOUNT_NAME, entity.firstValue.ownerName)

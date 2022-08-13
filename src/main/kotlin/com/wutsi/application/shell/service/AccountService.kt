@@ -81,7 +81,7 @@ class AccountService(
         }
     }
 
-    fun linkAccount(type: PaymentMethodType) {
+    fun linkMobileAccount(type: PaymentMethodType) {
         try {
             val state = getSmsCodeEntity()
             log(state)
@@ -91,7 +91,7 @@ class AccountService(
                 principal.id.toLong(),
                 request = AddPaymentMethodRequest(
                     ownerName = principal.name,
-                    phoneNumber = state.phoneNumber,
+                    number = state.phoneNumber,
                     type = type.name,
                     provider = toPaymentProvider(state.carrier)!!.name
                 )
