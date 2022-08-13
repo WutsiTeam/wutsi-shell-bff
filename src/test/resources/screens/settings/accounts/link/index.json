@@ -1,0 +1,86 @@
+{
+  "type": "Screen",
+  "attributes": {
+    "id": "page.settings.account.link",
+    "safe": false
+  },
+  "children": [
+    {
+      "type": "Container",
+      "attributes": {},
+      "children": [
+        {
+          "type": "ListView",
+          "attributes": {
+            "separator": true,
+            "separatorColor": "#8c8c8c"
+          },
+          "children": [
+            {
+              "type": "ListItem",
+              "attributes": {
+                "caption": "Mobile Money Account",
+                "trailing": {
+                  "type": "Icon",
+                  "attributes": {
+                    "code": "e15f"
+                  },
+                  "children": []
+                },
+                "leading": {
+                  "type": "Icon",
+                  "attributes": {
+                    "code": "f28d",
+                    "color": "#1D7EDF"
+                  },
+                  "children": []
+                }
+              },
+              "children": [],
+              "action": {
+                "type": "Route",
+                "url": "http://localhost:0/settings/accounts/link/mobile"
+              }
+            },
+            {
+              "type": "ListItem",
+              "attributes": {
+                "caption": "Bank Account",
+                "trailing": {
+                  "type": "Icon",
+                  "attributes": {
+                    "code": "e15f"
+                  },
+                  "children": []
+                },
+                "leading": {
+                  "type": "Icon",
+                  "attributes": {
+                    "code": "ee32",
+                    "color": "#1D7EDF"
+                  },
+                  "children": []
+                }
+              },
+              "children": [],
+              "action": {
+                "type": "Route",
+                "url": "http://localhost:0/settings/accounts/link/bank"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "appBar": {
+    "type": "AppBar",
+    "attributes": {
+      "title": "Link Account",
+      "elevation": 0.0,
+      "backgroundColor": "#FFFFFF",
+      "foregroundColor": "#000000"
+    },
+    "children": []
+  }
+}

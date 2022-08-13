@@ -7,7 +7,6 @@ import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Container
-import com.wutsi.flutter.sdui.Flexible
 import com.wutsi.flutter.sdui.Icon
 import com.wutsi.flutter.sdui.ListItem
 import com.wutsi.flutter.sdui.ListView
@@ -26,7 +25,6 @@ class SettingsLinkAccountScreen(
     @PostMapping
     fun index(): Widget {
         val tenant = tenantProvider.get()
-        val user = securityContext.currentAccount()
         val financialInstitutions = tenant.financialInstitutions.sortedBy { it.name }
         return Screen(
             id = Page.SETTINGS_ACCOUNT_LINK,
@@ -37,33 +35,31 @@ class SettingsLinkAccountScreen(
                 title = getText("page.link-account.app-bar.title")
             ),
             child = Container(
-                child = Flexible(
-                    child = ListView(
-                        separator = true,
-                        separatorColor = Theme.COLOR_DIVIDER,
-                        children = listOfNotNull(
+                child = ListView(
+                    separator = true,
+                    separatorColor = Theme.COLOR_DIVIDER,
+                    children = listOfNotNull(
+                        ListItem(
+                            caption = getText("page.link-account.item.mobile"),
+                            leading = Icon(code = Theme.ICON_MOBILE, color = Theme.COLOR_PRIMARY),
+                            trailing = Icon(code = Theme.ICON_CHEVRON_RIGHT),
+                            action = Action(
+                                type = Route,
+                                url = urlBuilder.build("settings/accounts/link/mobile")
+                            )
+                        ),
+                        if (financialInstitutions.isNotEmpty())
                             ListItem(
-                                caption = getText("page.link-account.item.mobile"),
-                                leading = Icon(code = Theme.ICON_MOBILE, color = Theme.COLOR_PRIMARY),
+                                caption = getText("page.link-account.item.bank"),
+                                leading = Icon(code = Theme.ICON_BANK, color = Theme.COLOR_PRIMARY),
                                 trailing = Icon(code = Theme.ICON_CHEVRON_RIGHT),
                                 action = Action(
                                     type = Route,
-                                    url = urlBuilder.build("settings/accounts/link/mobile")
+                                    url = urlBuilder.build("settings/accounts/link/bank")
                                 )
-                            ),
-                            if (financialInstitutions.isNotEmpty())
-                                ListItem(
-                                    caption = getText("page.link-account.item.bank"),
-                                    leading = Icon(code = Theme.ICON_BANK, color = Theme.COLOR_PRIMARY),
-                                    trailing = Icon(code = Theme.ICON_CHEVRON_RIGHT),
-                                    action = Action(
-                                        type = Route,
-                                        url = urlBuilder.build("settings/accounts/link/bank")
-                                    )
-                                )
-                            else
-                                null,
-                        )
+                            )
+                        else
+                            null,
                     )
                 )
             )
