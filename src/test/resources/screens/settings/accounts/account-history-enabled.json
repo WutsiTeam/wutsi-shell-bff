@@ -119,6 +119,14 @@
                       "children": []
                     },
                     {
+                      "type": "ListItem",
+                      "attributes": {
+                        "caption": "123456",
+                        "padding": 10.0
+                      },
+                      "children": []
+                    },
+                    {
                       "type": "Container",
                       "attributes": {
                         "alignment": "Center",

@@ -10,7 +10,9 @@ import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.Dialog
 import com.wutsi.flutter.sdui.enums.ActionType.Prompt
 import com.wutsi.flutter.sdui.enums.DialogType.Error
+import com.wutsi.platform.account.dto.PaymentMethodSummary
 import com.wutsi.platform.core.logging.KVLogger
+import com.wutsi.platform.payment.PaymentMethodType
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -84,6 +86,13 @@ abstract class AbstractEndpoint {
 
     protected fun getText(key: String, args: Array<Any?> = emptyArray()) =
         messages.getMessage(key, args, LocaleContextHolder.getLocale()) ?: key
+
+    protected fun formattedAccountNumber(paymentMethod: PaymentMethodSummary): String? =
+        if (paymentMethod.type == PaymentMethodType.MOBILE.name)
+            formattedPhoneNumber(paymentMethod.phone?.number, paymentMethod.phone?.country)
+        else
+            paymentMethod.number
+
 
     protected fun formattedPhoneNumber(number: String?, country: String? = null): String? {
         if (number == null)

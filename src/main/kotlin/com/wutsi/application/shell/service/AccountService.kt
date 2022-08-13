@@ -25,6 +25,7 @@ import com.wutsi.platform.payment.PaymentMethodProvider
 import com.wutsi.platform.payment.PaymentMethodType
 import com.wutsi.platform.sms.WutsiSmsApi
 import com.wutsi.platform.sms.dto.SendVerificationRequest
+import com.wutsi.platform.tenant.dto.FinancialInstitution
 import com.wutsi.platform.tenant.dto.MobileCarrier
 import com.wutsi.platform.tenant.dto.Tenant
 import feign.FeignException
@@ -132,13 +133,19 @@ class AccountService(
     fun getPaymentMethods(tenant: Tenant): List<PaymentMethodSummary> {
         val userId = currentUserId()
         return accountApi.listPaymentMethods(userId).paymentMethods
-            .filter { findMobileCarrier(tenant, it) != null }
     }
 
     fun getLogoUrl(tenant: Tenant, paymentMethod: PaymentMethodSummary): String? {
-        val carrier = findMobileCarrier(tenant, paymentMethod)
-        if (carrier != null) {
-            return tenantProvider.logo(carrier)
+        if (paymentMethod.type == PaymentMethodType.MOBILE.name) {
+            val carrier = findMobileCarrier(tenant, paymentMethod)
+            if (carrier != null) {
+                return tenantProvider.logo(carrier)
+            }
+        } else if (paymentMethod.type == PaymentMethodType.BANK.name) {
+            val financialInstitution = findFinantialInstitution(tenant, paymentMethod)
+            if (financialInstitution != null) {
+                return tenantProvider.logo(financialInstitution)
+            }
         }
         return null
     }
@@ -163,6 +170,9 @@ class AccountService(
 
     private fun findMobileCarrier(tenant: Tenant, paymentMethod: PaymentMethodSummary): MobileCarrier? =
         tenant.mobileCarriers.find { it.code.equals(paymentMethod.provider, true) }
+
+    private fun findFinantialInstitution(tenant: Tenant, paymentMethod: PaymentMethodSummary): FinancialInstitution? =
+        tenant.financialInstitutions.find { it.code.equals(paymentMethod.provider, true) }
 
     fun getSmsCodeEntity(): SmsCodeEntity =
         cacheKey().let {
