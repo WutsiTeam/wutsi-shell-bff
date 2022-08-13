@@ -57,6 +57,7 @@ class LinkAccountMobileScreen(
                         ),
                         Container(
                             alignment = TopCenter,
+                            padding = 10.0,
                             child = Text(
                                 caption = getText("page.link-account-mobile.sub-title"),
                                 alignment = TextAlignment.Center,

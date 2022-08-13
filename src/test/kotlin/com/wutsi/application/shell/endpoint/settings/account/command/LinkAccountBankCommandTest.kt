@@ -9,7 +9,7 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
-import com.wutsi.application.shell.entity.SmsCodeEntity
+import com.wutsi.application.shell.endpoint.settings.account.dto.LinkBankAccountRequest
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.DialogType
@@ -19,19 +19,17 @@ import com.wutsi.platform.account.error.ErrorURN
 import com.wutsi.platform.payment.PaymentMethodProvider
 import com.wutsi.platform.payment.PaymentMethodType
 import feign.FeignException
-import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.server.LocalServerPort
 import org.springframework.context.MessageSource
-import org.springframework.test.context.ActiveProfiles
 import java.util.Locale
+import kotlin.test.assertEquals
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("qa")
-internal class LinkCommandTest : AbstractEndpointTest() {
+internal class LinkAccountBankCommandTest : AbstractEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 
@@ -40,16 +38,17 @@ internal class LinkCommandTest : AbstractEndpointTest() {
     @Autowired
     lateinit var messageSource: MessageSource
 
-    private lateinit var state: SmsCodeEntity
+    val request = LinkBankAccountRequest(
+        ownerName = "RAY SPONSIBLE",
+        bankCode = "WAF",
+        number = "120932093"
+    )
 
     @BeforeEach
     override fun setUp() {
         super.setUp()
 
-        url = "http://localhost:$port/commands/link-mobile-account"
-
-        state = SmsCodeEntity(phoneNumber = "+23799509999", verificationId = 777L, carrier = "mtn")
-        doReturn(state).whenever(cache).get(any(), eq(SmsCodeEntity::class.java))
+        url = "http://localhost:$port/commands/link-bank-account"
     }
 
     @Test
@@ -59,19 +58,21 @@ internal class LinkCommandTest : AbstractEndpointTest() {
         doReturn(AddPaymentMethodResponse(token)).whenever(accountApi).addPaymentMethod(any(), any())
 
         // WHEN
-        val response = rest.postForEntity(url, null, Action::class.java)
+        val response = rest.postForEntity(url, request, Action::class.java)
 
         assertEquals(200, response.statusCodeValue)
         val action = response.body!!
         assertEquals(ActionType.Route, action.type)
         assertEquals("http://localhost:0/settings/accounts/link/success", action.url)
+        assertEquals(true, action.replacement)
 
         val entity = argumentCaptor<AddPaymentMethodRequest>()
         verify(accountApi).addPaymentMethod(eq(ACCOUNT_ID), entity.capture())
-        assertEquals(state.phoneNumber, entity.firstValue.number)
-        assertEquals(PaymentMethodType.MOBILE.name, entity.firstValue.type)
-        assertEquals(PaymentMethodProvider.MTN.name, entity.firstValue.provider)
-        assertEquals(ACCOUNT_NAME, entity.firstValue.ownerName)
+        assertEquals(request.bankCode, entity.firstValue.bankCode)
+        assertEquals(request.number, entity.firstValue.number)
+        assertEquals(request.ownerName, entity.firstValue.ownerName)
+        assertEquals(PaymentMethodType.BANK.name, entity.firstValue.type)
+        assertEquals(PaymentMethodProvider.WAF.name, entity.firstValue.provider)
     }
 
     @Test
@@ -81,7 +82,7 @@ internal class LinkCommandTest : AbstractEndpointTest() {
         doThrow(ex).whenever(accountApi).addPaymentMethod(any(), any())
 
         // WHEN
-        val response = rest.postForEntity(url, null, Action::class.java)
+        val response = rest.postForEntity(url, request, Action::class.java)
 
         assertEquals(200, response.statusCodeValue)
         val action = response.body!!

@@ -25,7 +25,7 @@
                 {
                   "type": "Text",
                   "attributes": {
-                    "caption": "Link a Mobile Money account",
+                    "caption": "Link your Wallet with a Mobile Money account",
                     "bold": true,
                     "size": 16.0,
                     "alignment": "Center"
@@ -37,7 +37,8 @@
             {
               "type": "Container",
               "attributes": {
-                "alignment": "TopCenter"
+                "alignment": "TopCenter",
+                "padding": 10.0
               },
               "children": [
                 {
@@ -123,7 +124,7 @@
                         "name": "command",
                         "hideText": false,
                         "required": false,
-                        "caption": "Link an account",
+                        "caption": "Link the account",
                         "enabled": true,
                         "readOnly": false,
                         "type": "Submit",
@@ -147,7 +148,7 @@
   "appBar": {
     "type": "AppBar",
     "attributes": {
-      "title": "Link Account",
+      "title": "Link Mobile Account",
       "elevation": 0.0,
       "backgroundColor": "#FFFFFF",
       "foregroundColor": "#000000"

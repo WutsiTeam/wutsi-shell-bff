@@ -3,6 +3,7 @@ package com.wutsi.application.shell.service
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.wutsi.application.shared.service.SecurityContext
 import com.wutsi.application.shared.service.TenantProvider
+import com.wutsi.application.shell.endpoint.settings.account.dto.LinkBankAccountRequest
 import com.wutsi.application.shell.endpoint.settings.account.dto.SendSmsCodeRequest
 import com.wutsi.application.shell.endpoint.settings.account.dto.VerifySmsCodeRequest
 import com.wutsi.application.shell.endpoint.settings.security.dto.ChangePinRequest
@@ -81,7 +82,7 @@ class AccountService(
         }
     }
 
-    fun linkMobileAccount(type: PaymentMethodType) {
+    fun linkMobileAccount() {
         try {
             val state = getSmsCodeEntity()
             log(state)
@@ -92,8 +93,30 @@ class AccountService(
                 request = AddPaymentMethodRequest(
                     ownerName = principal.name,
                     number = state.phoneNumber,
-                    type = type.name,
+                    type = PaymentMethodType.MOBILE.name,
                     provider = toPaymentProvider(state.carrier)!!.name
+                )
+            )
+            logger.add("payment_method_token", response.token)
+        } catch (ex: FeignException) {
+            val code = ex.toErrorResponse(objectMapper)?.error?.code ?: throw ex
+            if (code == com.wutsi.platform.account.error.ErrorURN.PAYMENT_METHOD_OWNERSHIP.urn)
+                throw AccountAlreadyLinkedException(ex)
+            else
+                throw ex
+        }
+    }
+
+    fun linkBankAccount(request: LinkBankAccountRequest) {
+        try {
+            val response = accountApi.addPaymentMethod(
+                id = securityContext.currentAccountId(),
+                request = AddPaymentMethodRequest(
+                    type = PaymentMethodType.BANK.name,
+                    number = request.number,
+                    bankCode = request.bankCode,
+                    ownerName = request.ownerName,
+                    provider = toPaymentProvider(request.bankCode)!!.name
                 )
             )
             logger.add("payment_method_token", response.token)

@@ -1,12 +1,10 @@
 package com.wutsi.application.shell.endpoint.settings.about.command
 
 import com.wutsi.application.shell.endpoint.AbstractCommand
-import com.wutsi.application.shell.exception.AccountAlreadyLinkedException
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
 import org.springframework.http.HttpHeaders
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -31,8 +29,4 @@ class SwitchEnvironmntCommand : AbstractCommand() {
                 )
             )
     }
-
-    @ExceptionHandler(AccountAlreadyLinkedException::class)
-    fun onAccountAlreadyLinkedException(ex: AccountAlreadyLinkedException): Action =
-        createErrorAction(ex, "page.verify-account-mobile.error.already-linked")
 }
