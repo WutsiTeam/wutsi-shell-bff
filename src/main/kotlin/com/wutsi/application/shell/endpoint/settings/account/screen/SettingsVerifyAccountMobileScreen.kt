@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/settings/accounts/verify/mobile")
-class VerifyAccountMobileScreen(
+class SettingsVerifyAccountMobileScreen(
     private val service: AccountService,
 ) : AbstractQuery() {
     @PostMapping

@@ -93,7 +93,6 @@ abstract class AbstractEndpoint {
         else
             paymentMethod.number
 
-
     protected fun formattedPhoneNumber(number: String?, country: String? = null): String? {
         if (number == null)
             return null

@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/settings/accounts/link/success")
-class LinkAccountSuccessScreen : AbstractQuery() {
+class SettingsLinkAccountSuccessScreen : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
         return Screen(

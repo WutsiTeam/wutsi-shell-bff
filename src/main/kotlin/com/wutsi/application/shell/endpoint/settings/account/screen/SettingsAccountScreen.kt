@@ -94,7 +94,7 @@ class SettingsAccountScreen(
                     caption = getText("page.settings.account.button.add-account"),
                     action = Action(
                         type = Route,
-                        url = urlBuilder.build("settings/accounts/link/mobile")
+                        url = urlBuilder.build("settings/accounts/link")
                     )
                 )
             )

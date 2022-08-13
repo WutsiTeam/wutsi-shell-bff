@@ -124,7 +124,7 @@
                         "name": "command",
                         "hideText": false,
                         "required": false,
-                        "caption": "Link the account",
+                        "caption": "Link",
                         "enabled": true,
                         "readOnly": false,
                         "type": "Submit",
@@ -148,7 +148,7 @@
   "appBar": {
     "type": "AppBar",
     "attributes": {
-      "title": "Link Mobile Account",
+      "title": "Link Mobile Money Account",
       "elevation": 0.0,
       "backgroundColor": "#FFFFFF",
       "foregroundColor": "#000000"

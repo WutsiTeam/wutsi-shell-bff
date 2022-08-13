@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/settings/accounts/link/mobile")
-class LinkAccountMobileScreen(
+class SettingsLinkAccountMobileScreen(
     private val tenantProvider: TenantProvider
 ) : AbstractQuery() {
     @PostMapping

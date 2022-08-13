@@ -128,7 +128,7 @@
                           "children": [],
                           "action": {
                             "type": "Route",
-                            "url": "http://localhost:0/settings/accounts/link/mobile"
+                            "url": "http://localhost:0/settings/accounts/link"
                           }
                         }
                       ]

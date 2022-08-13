@@ -29,6 +29,6 @@ class ProfileStrengthPaymentMethod(
     override fun getActionTitle() = getText("profile-strength.payment-method.button")
     override fun getAction() = Action(
         type = ActionType.Route,
-        url = urlBuilder.build("/settings/accounts/link/mobile")
+        url = urlBuilder.build("/settings/accounts/link")
     )
 }

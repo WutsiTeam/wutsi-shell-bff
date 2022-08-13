@@ -135,7 +135,7 @@
                             "name": "command",
                             "hideText": false,
                             "required": false,
-                            "caption": "Link the account",
+                            "caption": "Link",
                             "enabled": true,
                             "readOnly": false,
                             "type": "Submit",

@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/settings/accounts/link/bank")
-class LinkAccountBankScreen(
+class SettingsLinkAccountBankScreen(
     private val tenantProvider: TenantProvider
 ) : AbstractQuery() {
     @PostMapping
