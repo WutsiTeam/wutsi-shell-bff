@@ -158,6 +158,11 @@ class SettingsScreen(
                     icon = Theme.ICON_LOCK
                 ),
                 listItem(
+                    "page.settings.listitem.feedback.caption",
+                    urlBuilder.build("feedback"),
+                    icon = Theme.ICON_FEEDBACK
+                ),
+                listItem(
                     "page.settings.listitem.about.caption",
                     urlBuilder.build("settings/about"),
                     icon = Theme.ICON_INFO

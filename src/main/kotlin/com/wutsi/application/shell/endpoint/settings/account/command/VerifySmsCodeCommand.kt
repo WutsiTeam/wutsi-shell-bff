@@ -44,6 +44,6 @@ class VerifySmsCodeCommand(
             "&auth=false" +
             "&return-to-route=false" +
             "&dark-mode=true" +
-            "&return-url=" + encodeURLParam(urlBuilder.build("commands/link-account"))
+            "&return-url=" + encodeURLParam(urlBuilder.build("commands/link-mobile-account"))
     }
 }

@@ -187,6 +187,35 @@
             {
               "type": "ListItem",
               "attributes": {
+                "caption": "Feedback",
+                "padding": 5.0,
+                "trailing": {
+                  "type": "Icon",
+                  "attributes": {
+                    "code": "e15f",
+                    "size": 24.0
+                  },
+                  "children": []
+                },
+                "leading": {
+                  "type": "Icon",
+                  "attributes": {
+                    "code": "f04f",
+                    "size": 24.0,
+                    "color": "#1D7EDF"
+                  },
+                  "children": []
+                }
+              },
+              "children": [],
+              "action": {
+                "type": "Route",
+                "url": "http://localhost:0/feedback"
+              }
+            },
+            {
+              "type": "ListItem",
+              "attributes": {
                 "caption": "About",
                 "padding": 5.0,
                 "trailing": {

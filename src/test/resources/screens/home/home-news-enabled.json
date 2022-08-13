@@ -66,23 +66,6 @@
                         "type": "Route",
                         "url": "https://wutsi-gateway-test.herokuapp.com/news"
                       }
-                    },
-                    {
-                      "type": "Button",
-                      "attributes": {
-                        "caption": "Feedback",
-                        "padding": 1.0,
-                        "type": "Text",
-                        "stretched": false,
-                        "icon": "f04f",
-                        "iconColor": "#1D7EDF",
-                        "color": "#1D7EDF"
-                      },
-                      "children": [],
-                      "action": {
-                        "type": "Route",
-                        "url": "http://localhost:0/feedback"
-                      }
                     }
                   ]
                 }

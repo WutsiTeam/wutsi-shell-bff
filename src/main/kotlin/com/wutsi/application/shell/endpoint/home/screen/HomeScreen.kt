@@ -243,17 +243,6 @@ class HomeScreen(
                 )
             )
 
-        buttons.add(
-            applicationButton(
-                caption = getText("page.home.button.feedback"),
-                icon = Theme.ICON_FEEDBACK,
-                action = Action(
-                    type = ActionType.Route,
-                    url = urlBuilder.build("feedback")
-                )
-            )
-        )
-
         return buttons
     }
 
