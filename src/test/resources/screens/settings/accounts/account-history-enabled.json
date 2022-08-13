@@ -122,6 +122,7 @@
                       "type": "ListItem",
                       "attributes": {
                         "caption": "123456",
+                        "iconLeft": "http://www.goole.com/images/waf.png",
                         "padding": 10.0
                       },
                       "children": []

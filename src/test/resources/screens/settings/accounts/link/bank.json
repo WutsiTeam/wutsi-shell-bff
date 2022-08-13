@@ -69,10 +69,22 @@
                           "type": "DropdownButton",
                           "attributes": {
                             "name": "bankCode",
+                            "value": "WAF",
                             "hint": "Select the Bank",
                             "required": true
                           },
-                          "children": []
+                          "children": [
+                            {
+                              "type": "DropdownMenuItem",
+                              "attributes": {
+                                "caption": "Women Access Finance",
+                                "icon": "http://www.goole.com/images/waf.png",
+                                "enabled": true,
+                                "value": "WAF"
+                              },
+                              "children": []
+                            }
+                          ]
                         }
                       ]
                     },
