@@ -15,6 +15,7 @@ import com.wutsi.application.shell.exception.SmsCodeMismatchException
 import com.wutsi.application.shell.exception.toErrorResponse
 import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.AddPaymentMethodRequest
+import com.wutsi.platform.account.dto.PaymentMethod
 import com.wutsi.platform.account.dto.PaymentMethodSummary
 import com.wutsi.platform.account.dto.SavePasswordRequest
 import com.wutsi.platform.core.error.Error
@@ -137,12 +138,27 @@ class AccountService(
 
     fun getLogoUrl(tenant: Tenant, paymentMethod: PaymentMethodSummary): String? {
         if (paymentMethod.type == PaymentMethodType.MOBILE.name) {
-            val carrier = findMobileCarrier(tenant, paymentMethod)
+            val carrier = findMobileCarrier(tenant, paymentMethod.provider)
             if (carrier != null) {
                 return tenantProvider.logo(carrier)
             }
         } else if (paymentMethod.type == PaymentMethodType.BANK.name) {
-            val financialInstitution = findFinantialInstitution(tenant, paymentMethod)
+            val financialInstitution = findFinantialInstitution(tenant, paymentMethod.provider)
+            if (financialInstitution != null) {
+                return tenantProvider.logo(financialInstitution)
+            }
+        }
+        return null
+    }
+
+    fun getLogoUrl(tenant: Tenant, paymentMethod: PaymentMethod): String? {
+        if (paymentMethod.type == PaymentMethodType.MOBILE.name) {
+            val carrier = findMobileCarrier(tenant, paymentMethod.provider)
+            if (carrier != null) {
+                return tenantProvider.logo(carrier)
+            }
+        } else if (paymentMethod.type == PaymentMethodType.BANK.name) {
+            val financialInstitution = findFinantialInstitution(tenant, paymentMethod.provider)
             if (financialInstitution != null) {
                 return tenantProvider.logo(financialInstitution)
             }
@@ -168,11 +184,11 @@ class AccountService(
         logger.add("verification_id", state.verificationId)
     }
 
-    private fun findMobileCarrier(tenant: Tenant, paymentMethod: PaymentMethodSummary): MobileCarrier? =
-        tenant.mobileCarriers.find { it.code.equals(paymentMethod.provider, true) }
+    private fun findMobileCarrier(tenant: Tenant, provider: String): MobileCarrier? =
+        tenant.mobileCarriers.find { it.code.equals(provider, true) }
 
-    private fun findFinantialInstitution(tenant: Tenant, paymentMethod: PaymentMethodSummary): FinancialInstitution? =
-        tenant.financialInstitutions.find { it.code.equals(paymentMethod.provider, true) }
+    private fun findFinantialInstitution(tenant: Tenant, provider: String): FinancialInstitution? =
+        tenant.financialInstitutions.find { it.code.equals(provider, true) }
 
     fun getSmsCodeEntity(): SmsCodeEntity =
         cacheKey().let {

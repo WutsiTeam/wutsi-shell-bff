@@ -36,7 +36,7 @@ class SettingsLinkAccountBankScreen(
         val user = securityContext.currentAccount()
         val financialInstitutions = tenant.financialInstitutions.sortedBy { it.name }
         return Screen(
-            id = Page.SETTINGS_ACCOUNT_LINK_MOBILE,
+            id = Page.SETTINGS_ACCOUNT_LINK_BANK,
             appBar = AppBar(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
