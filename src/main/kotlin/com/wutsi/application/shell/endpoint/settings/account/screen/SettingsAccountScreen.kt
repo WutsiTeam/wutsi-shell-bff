@@ -82,7 +82,12 @@ class SettingsAccountScreen(
                 ListItem(
                     caption = formattedAccountNumber(it) ?: it.maskedNumber,
                     iconLeft = accountService.getLogoUrl(tenant, it),
-                    padding = 10.0
+                    iconRight = Theme.ICON_CHEVRON_RIGHT,
+                    padding = 10.0,
+                    action = Action(
+                        type = Route,
+                        url = urlBuilder.build("settings/accounts/profile?token=${it.token}")
+                    )
                 )
             }
         )

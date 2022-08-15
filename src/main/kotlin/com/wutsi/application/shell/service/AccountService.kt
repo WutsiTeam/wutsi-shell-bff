@@ -143,7 +143,7 @@ class AccountService(
                 return tenantProvider.logo(carrier)
             }
         } else if (paymentMethod.type == PaymentMethodType.BANK.name) {
-            val financialInstitution = findFinantialInstitution(tenant, paymentMethod.provider)
+            val financialInstitution = findFinancialInstitution(tenant, paymentMethod.provider)
             if (financialInstitution != null) {
                 return tenantProvider.logo(financialInstitution)
             }
@@ -158,7 +158,7 @@ class AccountService(
                 return tenantProvider.logo(carrier)
             }
         } else if (paymentMethod.type == PaymentMethodType.BANK.name) {
-            val financialInstitution = findFinantialInstitution(tenant, paymentMethod.provider)
+            val financialInstitution = findFinancialInstitution(tenant, paymentMethod.provider)
             if (financialInstitution != null) {
                 return tenantProvider.logo(financialInstitution)
             }
@@ -184,10 +184,10 @@ class AccountService(
         logger.add("verification_id", state.verificationId)
     }
 
-    private fun findMobileCarrier(tenant: Tenant, provider: String): MobileCarrier? =
+    fun findMobileCarrier(tenant: Tenant, provider: String): MobileCarrier? =
         tenant.mobileCarriers.find { it.code.equals(provider, true) }
 
-    private fun findFinantialInstitution(tenant: Tenant, provider: String): FinancialInstitution? =
+    fun findFinancialInstitution(tenant: Tenant, provider: String): FinancialInstitution? =
         tenant.financialInstitutions.find { it.code.equals(provider, true) }
 
     fun getSmsCodeEntity(): SmsCodeEntity =

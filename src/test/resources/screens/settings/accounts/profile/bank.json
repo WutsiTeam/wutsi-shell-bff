@@ -1,0 +1,224 @@
+{
+  "type": "Screen",
+  "attributes": {
+    "id": "page.settings.account.profile",
+    "safe": false
+  },
+  "children": [
+    {
+      "type": "SingleChildScrollView",
+      "attributes": {},
+      "children": [
+        {
+          "type": "Column",
+          "attributes": {},
+          "children": [
+            {
+              "type": "Row",
+              "attributes": {},
+              "children": [
+                {
+                  "type": "Flexible",
+                  "attributes": {
+                    "flex": 1,
+                    "fit": "Tight"
+                  },
+                  "children": [
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "padding": 10.0
+                      },
+                      "children": [
+                        {
+                          "type": "Text",
+                          "attributes": {
+                            "caption": "Provider",
+                            "bold": true,
+                            "alignment": "Right"
+                          },
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "Flexible",
+                  "attributes": {
+                    "flex": 3,
+                    "fit": "Tight"
+                  },
+                  "children": [
+                    {
+                      "type": "Row",
+                      "attributes": {
+                        "mainAxisAlignment": "start",
+                        "crossAxisAlignment": "center"
+                      },
+                      "children": [
+                        {
+                          "type": "Image",
+                          "attributes": {
+                            "url": "http://www.goole.com/images/waf.png",
+                            "width": 32.0,
+                            "height": 32.0
+                          },
+                          "children": []
+                        },
+                        {
+                          "type": "Container",
+                          "attributes": {
+                            "padding": 5.0
+                          },
+                          "children": []
+                        },
+                        {
+                          "type": "Text",
+                          "attributes": {
+                            "caption": "Women Access Finance"
+                          },
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Divider",
+              "attributes": {
+                "height": 1.0,
+                "color": "#8c8c8c"
+              },
+              "children": []
+            },
+            {
+              "type": "Row",
+              "attributes": {},
+              "children": [
+                {
+                  "type": "Flexible",
+                  "attributes": {
+                    "flex": 1,
+                    "fit": "Tight"
+                  },
+                  "children": [
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "padding": 10.0
+                      },
+                      "children": [
+                        {
+                          "type": "Text",
+                          "attributes": {
+                            "caption": "Number",
+                            "bold": true,
+                            "alignment": "Right"
+                          },
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "Flexible",
+                  "attributes": {
+                    "flex": 3,
+                    "fit": "Tight"
+                  },
+                  "children": [
+                    {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "123456"
+                      },
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Divider",
+              "attributes": {
+                "height": 1.0,
+                "color": "#8c8c8c"
+              },
+              "children": []
+            },
+            {
+              "type": "Row",
+              "attributes": {},
+              "children": [
+                {
+                  "type": "Flexible",
+                  "attributes": {
+                    "flex": 1,
+                    "fit": "Tight"
+                  },
+                  "children": [
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "padding": 10.0
+                      },
+                      "children": [
+                        {
+                          "type": "Text",
+                          "attributes": {
+                            "caption": "Owner",
+                            "bold": true,
+                            "alignment": "Right"
+                          },
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "Flexible",
+                  "attributes": {
+                    "flex": 3,
+                    "fit": "Tight"
+                  },
+                  "children": [
+                    {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": ""
+                      },
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Divider",
+              "attributes": {
+                "height": 1.0,
+                "color": "#8c8c8c"
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "appBar": {
+    "type": "AppBar",
+    "attributes": {
+      "title": "Account",
+      "elevation": 0.0,
+      "backgroundColor": "#FFFFFF",
+      "foregroundColor": "#000000"
+    },
+    "children": []
+  }
+}

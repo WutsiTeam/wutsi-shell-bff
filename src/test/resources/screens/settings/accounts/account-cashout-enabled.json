@@ -105,27 +105,42 @@
                       "attributes": {
                         "caption": "+1 237665111111",
                         "iconLeft": "http://www.goole.com/images/mtn.png",
+                        "iconRight": "e15f",
                         "padding": 10.0
                       },
-                      "children": []
+                      "children": [],
+                      "action": {
+                        "type": "Route",
+                        "url": "http://localhost:0/settings/accounts/profile?token=123"
+                      }
                     },
                     {
                       "type": "ListItem",
                       "attributes": {
                         "caption": "+1 237665111122",
                         "iconLeft": "http://www.goole.com/images/orange.png",
+                        "iconRight": "e15f",
                         "padding": 10.0
                       },
-                      "children": []
+                      "children": [],
+                      "action": {
+                        "type": "Route",
+                        "url": "http://localhost:0/settings/accounts/profile?token=456"
+                      }
                     },
                     {
                       "type": "ListItem",
                       "attributes": {
                         "caption": "123456",
                         "iconLeft": "http://www.goole.com/images/waf.png",
+                        "iconRight": "e15f",
                         "padding": 10.0
                       },
-                      "children": []
+                      "children": [],
+                      "action": {
+                        "type": "Route",
+                        "url": "http://localhost:0/settings/accounts/profile?token=456"
+                      }
                     },
                     {
                       "type": "Container",

@@ -10,6 +10,7 @@ import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.Dialog
 import com.wutsi.flutter.sdui.enums.ActionType.Prompt
 import com.wutsi.flutter.sdui.enums.DialogType.Error
+import com.wutsi.platform.account.dto.PaymentMethod
 import com.wutsi.platform.account.dto.PaymentMethodSummary
 import com.wutsi.platform.core.logging.KVLogger
 import com.wutsi.platform.payment.PaymentMethodType
@@ -88,6 +89,12 @@ abstract class AbstractEndpoint {
         messages.getMessage(key, args, LocaleContextHolder.getLocale()) ?: key
 
     protected fun formattedAccountNumber(paymentMethod: PaymentMethodSummary): String? =
+        if (paymentMethod.type == PaymentMethodType.MOBILE.name)
+            formattedPhoneNumber(paymentMethod.phone?.number, paymentMethod.phone?.country)
+        else
+            paymentMethod.number
+
+    protected fun formattedAccountNumber(paymentMethod: PaymentMethod): String? =
         if (paymentMethod.type == PaymentMethodType.MOBILE.name)
             formattedPhoneNumber(paymentMethod.phone?.number, paymentMethod.phone?.country)
         else
