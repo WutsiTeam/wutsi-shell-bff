@@ -96,7 +96,7 @@
                       "children": [],
                       "action": {
                         "type": "Route",
-                        "url": "http://localhost:0/settings/accounts/profile?token=123"
+                        "url": "http://localhost:0/settings/account/profile?token=123"
                       }
                     },
                     {
@@ -110,7 +110,7 @@
                       "children": [],
                       "action": {
                         "type": "Route",
-                        "url": "http://localhost:0/settings/accounts/profile?token=456"
+                        "url": "http://localhost:0/settings/account/profile?token=456"
                       }
                     },
                     {
@@ -124,7 +124,7 @@
                       "children": [],
                       "action": {
                         "type": "Route",
-                        "url": "http://localhost:0/settings/accounts/profile?token=456"
+                        "url": "http://localhost:0/settings/account/profile?token=456"
                       }
                     },
                     {

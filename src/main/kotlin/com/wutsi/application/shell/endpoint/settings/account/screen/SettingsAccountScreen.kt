@@ -86,7 +86,7 @@ class SettingsAccountScreen(
                     padding = 10.0,
                     action = Action(
                         type = Route,
-                        url = urlBuilder.build("settings/accounts/profile?token=${it.token}")
+                        url = urlBuilder.build("settings/account/profile?token=${it.token}")
                     )
                 )
             }
