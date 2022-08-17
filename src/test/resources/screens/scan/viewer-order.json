@@ -81,7 +81,7 @@
             {
               "type": "Button",
               "attributes": {
-                "caption": "Continer: View Order",
+                "caption": "Continue: View Order",
                 "padding": 15.0,
                 "type": "Elevated"
               },

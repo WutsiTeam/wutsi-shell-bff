@@ -67,7 +67,7 @@ internal class VerifySmsCodeCommandTest : AbstractEndpointTest() {
         val action = response.body!!
         assertEquals(ActionType.Route, action.type)
         assertEquals(
-            "https://wutsi-gateway-test.herokuapp.com/login/?phone=%2B1237666666666&screen-id=page.settings.account.link.pin&title=Authorization&sub-title=Enter+your+Wutsi+PIN+to+link+the+account&auth=false&return-to-route=false&dark-mode=true&return-url=http%3A%2F%2Flocalhost%3A0%2Fcommands%2Flink-mobile-account",
+            "https://wutsi-gateway-test.herokuapp.com/login/?phone=%2B1237666666666&screen-id=page.settings.account.link.pin&title=Authorisation&sub-title=Enter+your+Wutsi+PIN+to+link+the+account+with+your+Wallet&auth=false&return-to-route=false&dark-mode=true&return-url=http%3A%2F%2Flocalhost%3A0%2Fcommands%2Flink-mobile-account",
             action.url
         )
 

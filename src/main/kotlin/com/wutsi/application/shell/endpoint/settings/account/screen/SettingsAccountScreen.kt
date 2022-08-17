@@ -124,7 +124,7 @@ class SettingsAccountScreen(
                     padding = 10.0,
                     child = MoneyText(
                         value = balance.value,
-                        currency = balance.currency,
+                        currency = tenant.currencySymbol,
                         color = Theme.COLOR_PRIMARY,
                         numberFormat = tenant.numberFormat
                     )

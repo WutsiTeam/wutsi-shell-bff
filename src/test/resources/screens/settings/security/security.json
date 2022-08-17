@@ -25,7 +25,7 @@
               "children": [],
               "action": {
                 "type": "Route",
-                "url": "https://wutsi-gateway-test.herokuapp.com/login/?phone=%2B1237666666666&screen-id=page.settings.security.pin.login&title=Authorization&sub-title=Enter+your+current+PIN&auth=false&return-to-route=true&return-url=http%3A%2F%2Flocalhost%3A0%2Fsettings%2Fsecurity%2Fpin"
+                "url": "https://wutsi-gateway-test.herokuapp.com/login/?phone=%2B1237666666666&screen-id=page.settings.security.pin.login&title=Authorisation&sub-title=Enter+your+current+PIN&auth=false&return-to-route=true&return-url=http%3A%2F%2Flocalhost%3A0%2Fsettings%2Fsecurity%2Fpin"
               }
             }
           ]
