@@ -281,8 +281,8 @@
                   },
                   "children": [],
                   "action": {
-                    "type": "Command",
-                    "url": "https://wutsi-gateway-test.herokuapp.com/login",
+                    "type": "Route",
+                    "url": "/login",
                     "parameters": {
                       "phone": "+1237666666666"
                     }
