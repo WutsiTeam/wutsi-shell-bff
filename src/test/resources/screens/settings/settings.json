@@ -229,9 +229,9 @@
                   "children": [],
                   "action": {
                     "type": "Command",
-                    "url": "https://wutsi-gateway-test.herokuapp.com/login/commands/logout",
+                    "url": "https://wutsi-gateway-test.herokuapp.com/login/login",
                     "parameters": {
-                      "access-token": "xxx"
+                      "phone": "+1237666666666"
                     }
                   }
                 }

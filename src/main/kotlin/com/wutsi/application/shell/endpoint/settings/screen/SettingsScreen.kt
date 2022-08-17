@@ -178,9 +178,9 @@ class SettingsScreen(
                     type = ButtonType.Outlined,
                     action = Action(
                         type = Command,
-                        url = urlBuilder.build(loginUrl, "/commands/logout"),
+                        url = urlBuilder.build(loginUrl, "/login"),
                         parameters = mapOf(
-                            "access-token" to (tokenProvider.getToken() ?: "")
+                            "phone" to user.phone!!.number
                         )
                     )
                 )
