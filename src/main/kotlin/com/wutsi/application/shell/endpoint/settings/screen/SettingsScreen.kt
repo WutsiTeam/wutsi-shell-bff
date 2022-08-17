@@ -19,7 +19,6 @@ import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
-import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.ActionType.Command
 import com.wutsi.flutter.sdui.enums.ActionType.Route
 import com.wutsi.flutter.sdui.enums.ButtonType
@@ -36,6 +35,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/settings")
 class SettingsScreen(
+    private val tokenProvider: TokenProviderWrapper,
     @Value("\${wutsi.application.login-url}") private val loginUrl: String,
 ) : AbstractQuery() {
     @PostMapping
@@ -177,8 +177,11 @@ class SettingsScreen(
                     caption = getText("page.settings.button.logout"),
                     type = ButtonType.Outlined,
                     action = Action(
-                        type = ActionType.Command,
-                        url = urlBuilder.build(loginUrl, "/commands/logout")
+                        type = Command,
+                        url = urlBuilder.build(loginUrl, "/commands/logout"),
+                        parameters = mapOf(
+                            "accessToken" to (tokenProvider.getToken() ?: "")
+                        )
                     )
                 )
             )
@@ -253,7 +256,7 @@ class SettingsScreen(
                     type = ButtonType.Text,
                     caption = getText("page.settings.button.change-picture"),
                     action = Action(
-                        type = ActionType.Route,
+                        type = Route,
                         url = urlBuilder.build("settings/picture")
                     ),
                     padding = 10.0,

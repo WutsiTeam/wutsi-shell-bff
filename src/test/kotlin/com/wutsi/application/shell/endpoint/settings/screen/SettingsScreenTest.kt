@@ -22,6 +22,9 @@ internal class SettingsScreenTest : AbstractEndpointTest() {
     @MockBean
     private lateinit var togglesProvider: TogglesProvider
 
+    @MockBean
+    private lateinit var tokenProvider: TokenProviderWrapper
+
     private lateinit var url: String
 
     @BeforeEach
@@ -29,6 +32,8 @@ internal class SettingsScreenTest : AbstractEndpointTest() {
         super.setUp()
 
         url = "http://localhost:$port/settings"
+
+        doReturn("xxx").whenever(tokenProvider).getToken()
     }
 
     @Test

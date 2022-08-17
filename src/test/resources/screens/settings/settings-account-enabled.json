@@ -258,7 +258,10 @@
                   "children": [],
                   "action": {
                     "type": "Command",
-                    "url": "https://wutsi-gateway-test.herokuapp.com/login/commands/logout"
+                    "url": "https://wutsi-gateway-test.herokuapp.com/login/commands/logout",
+                    "parameters": {
+                      "accessToken": "xxx"
+                    }
                   }
                 }
               ]
