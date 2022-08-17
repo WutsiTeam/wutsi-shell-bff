@@ -231,7 +231,7 @@
                     "type": "Command",
                     "url": "https://wutsi-gateway-test.herokuapp.com/login/commands/logout",
                     "parameters": {
-                      "accessToken": "xxx"
+                      "access-token": "xxx"
                     }
                   }
                 }

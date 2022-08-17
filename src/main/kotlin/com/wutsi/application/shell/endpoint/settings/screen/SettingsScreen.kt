@@ -180,7 +180,7 @@ class SettingsScreen(
                         type = Command,
                         url = urlBuilder.build(loginUrl, "/commands/logout"),
                         parameters = mapOf(
-                            "accessToken" to (tokenProvider.getToken() ?: "")
+                            "access-token" to (tokenProvider.getToken() ?: "")
                         )
                     )
                 )
