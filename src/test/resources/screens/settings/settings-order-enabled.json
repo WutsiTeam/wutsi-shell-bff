@@ -282,7 +282,7 @@
                   "children": [],
                   "action": {
                     "type": "Command",
-                    "url": "https://wutsi-gateway-test.herokuapp.com/login/login",
+                    "url": "https://wutsi-gateway-test.herokuapp.com/login",
                     "parameters": {
                       "phone": "+1237666666666"
                     }
