@@ -261,7 +261,8 @@
                     "url": "https://wutsi-gateway-test.herokuapp.com/login",
                     "parameters": {
                       "phone": "+1237666666666",
-                      "hide-back-button": "true"
+                      "hide-back-button": "true",
+                      "show-change-account-button": "true"
                     }
                   }
                 }

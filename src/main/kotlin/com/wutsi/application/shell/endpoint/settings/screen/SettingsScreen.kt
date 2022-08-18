@@ -181,7 +181,8 @@ class SettingsScreen(
                         url = urlBuilder.build(loginUrl, ""),
                         parameters = mapOf(
                             "phone" to user.phone!!.number,
-                            "hide-back-button" to "true"
+                            "hide-back-button" to "true",
+                            "show-change-account-button" to "true"
                         )
                     )
                 )
