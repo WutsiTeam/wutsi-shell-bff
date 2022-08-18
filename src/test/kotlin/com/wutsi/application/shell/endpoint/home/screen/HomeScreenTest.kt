@@ -169,15 +169,6 @@ internal class HomeScreenTest : AbstractEndpointTest() {
     }
 
     @Test
-    fun noWhatsapp() {
-        val account = user.copy(whatsapp = null, business = true)
-        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
-
-        assertEndpointEquals("/screens/home/home-no-whatsapp.json", url)
-        verify(cache).put(eq("$DEVICE_ID-profile-strength"), any())
-    }
-
-    @Test
     fun noPicture() {
         val account = user.copy(pictureUrl = null)
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
@@ -192,27 +183,6 @@ internal class HomeScreenTest : AbstractEndpointTest() {
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
 
         assertEndpointEquals("/screens/home/home-no-email.json", url)
-        verify(cache).put(eq("$DEVICE_ID-profile-strength"), any())
-    }
-
-    @Test
-    fun noCity() {
-        val account = user.copy(cityId = null)
-        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
-
-        assertEndpointEquals("/screens/home/home-no-city.json", url)
-        verify(cache).put(eq("$DEVICE_ID-profile-strength"), any())
-    }
-
-    @Test
-    fun noShipping() {
-        val account = user.copy(cityId = 111, business = true, hasStore = true)
-        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
-
-        doReturn(true).whenever(togglesProvider).isShippingEnabled()
-        doReturn(ListShippingResponse()).whenever(shippingApi).listShipping()
-
-        assertEndpointEquals("/screens/home/home-no-shipping.json", url)
         verify(cache).put(eq("$DEVICE_ID-profile-strength"), any())
     }
 

@@ -13,11 +13,8 @@ import org.springframework.stereotype.Service
 @Service
 class ProfileStrengthContainer(
     private val picture: ProfileStrengthPicture,
-    private val whatsapp: ProfileStrengthWhatsapp,
     private val paymentMethod: ProfileStrengthPaymentMethod,
     private val email: ProfileStrengthEmailWidget,
-    private val location: ProfileStrengthLocationWidget,
-    private val shipping: ProfileStrengthShipping,
     private val cache: Cache,
     private val tracingContext: TracingContext,
     private val logger: KVLogger,
@@ -61,11 +58,8 @@ class ProfileStrengthContainer(
     private fun createComponents(): List<ProfileStrengthWidget> =
         listOf(
             paymentMethod,
-            whatsapp,
-            location,
-            shipping,
-            email,
             picture,
+            email,
         )
 
     private fun canDisplay(): Boolean {
