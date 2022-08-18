@@ -233,8 +233,7 @@
                     "replacement": true,
                     "parameters": {
                       "phone": "+1237666666666",
-                      "hide-back-button": "true",
-                      "show-change-account-button": "true"
+                      "hide-back-button": "true"
                     }
                   }
                 }
