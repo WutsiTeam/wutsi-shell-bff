@@ -259,6 +259,7 @@
                   "action": {
                     "type": "Route",
                     "url": "https://wutsi-gateway-test.herokuapp.com/login",
+                    "replacement": true,
                     "parameters": {
                       "phone": "+1237666666666",
                       "hide-back-button": "true",

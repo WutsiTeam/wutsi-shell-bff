@@ -179,6 +179,7 @@ class SettingsScreen(
                     action = Action(
                         type = Route,
                         url = urlBuilder.build(loginUrl, ""),
+                        replacement = true,
                         parameters = mapOf(
                             "phone" to user.phone!!.number,
                             "hide-back-button" to "true",
