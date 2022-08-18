@@ -4,7 +4,6 @@ import com.wutsi.application.shared.Theme
 import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
-import com.wutsi.application.shell.endpoint.profile.strength.ProfileStrengthContainer
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.Center
@@ -37,7 +36,6 @@ import org.springframework.web.bind.annotation.RestController
 class HomeScreen(
     private val paymentApi: WutsiPaymentApi,
     private val tenantProvider: TenantProvider,
-    private val profileStrength: ProfileStrengthContainer,
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
@@ -108,10 +106,6 @@ class HomeScreen(
                     )
                 }
         )
-
-        val strength = profileStrength.toWidget(me)
-        if (strength != null)
-            children.add(strength)
 
         return Screen(
             id = Page.HOME,

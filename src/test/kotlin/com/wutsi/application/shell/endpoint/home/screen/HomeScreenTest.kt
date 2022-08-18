@@ -3,8 +3,6 @@ package com.wutsi.application.shell.endpoint.home.screen
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.eq
-import com.nhaarman.mockitokotlin2.never
-import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
@@ -18,7 +16,6 @@ import com.wutsi.platform.account.dto.SearchAccountResponse
 import com.wutsi.platform.payment.WutsiPaymentApi
 import com.wutsi.platform.payment.dto.Balance
 import com.wutsi.platform.payment.dto.GetBalanceResponse
-import com.wutsi.platform.payment.dto.SearchTransactionResponse
 import com.wutsi.platform.tenant.entity.ToggleName
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -70,19 +67,6 @@ internal class HomeScreenTest : AbstractEndpointTest() {
         doReturn(SearchAccountResponse(accounts)).whenever(accountApi).searchAccount(any())
 
         doReturn(null).whenever(cache).get(any(), eq(Long::class.java))
-    }
-
-    @Test
-    fun noAccount() {
-        doReturn(GetBalanceResponse(balance = Balance(amount = 0.0, currency = "XAF"))).whenever(paymentApi)
-            .getBalance(
-                any()
-            )
-
-        doReturn(SearchTransactionResponse()).whenever(paymentApi).searchTransaction(any())
-        doReturn(ListPaymentMethodResponse()).whenever(accountApi).listPaymentMethods(any())
-
-        assertEndpointEquals("/screens/home/home-no-account.json", url)
     }
 
     @Test
@@ -166,36 +150,6 @@ internal class HomeScreenTest : AbstractEndpointTest() {
         doReturn(ListShippingResponse()).whenever(shippingApi).listShipping()
 
         assertEndpointEquals("/screens/home/home-news-enabled.json", url)
-    }
-
-    @Test
-    fun noPicture() {
-        val account = user.copy(pictureUrl = null)
-        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
-
-        assertEndpointEquals("/screens/home/home-no-picture.json", url)
-        verify(cache).put(eq("$DEVICE_ID-profile-strength"), any())
-    }
-
-    @Test
-    fun noEmail() {
-        val account = user.copy(email = null)
-        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
-
-        assertEndpointEquals("/screens/home/home-no-email.json", url)
-        verify(cache).put(eq("$DEVICE_ID-profile-strength"), any())
-    }
-
-    @Test
-    fun alreadyDisplayed() {
-        val account =
-            user.copy(cityId = null, business = true, hasStore = true, whatsapp = null, email = null, pictureUrl = null)
-        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
-
-        doReturn(System.currentTimeMillis()).whenever(cache).get(any(), eq(Long::class.java))
-
-        assertEndpointEquals("/screens/home/home-already-displayed.json", url)
-        verify(cache, never()).put(eq("$DEVICE_ID-profile-strength"), any())
     }
 
     private fun createPaymentMethodSummary(token: String, maskedNumber: String) = PaymentMethodSummary(
