@@ -27,7 +27,9 @@ class ProfileStrengthContainer(
     }
 
     override fun toWidget(account: Account): WidgetAware? {
-        if (!canDisplay())
+        val display = canDisplay()
+        logger.add("display_profile_strength", display)
+        if (!display)
             return null
 
         val all = createComponents()
@@ -71,7 +73,6 @@ class ProfileStrengthContainer(
             val value = cache.get(cacheKey(), Long::class.java)
                 ?: return true
 
-            logger.add("profile_strength_last_displayed", value)
             return System.currentTimeMillis() - value > DISPLAY_DELAY_MILLIS
         } catch (ex: Exception) {
             return false
