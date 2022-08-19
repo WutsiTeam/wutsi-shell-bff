@@ -3,6 +3,7 @@ package com.wutsi.application.shell.endpoint.settings.account.command
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.argumentCaptor
 import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.eq
 import com.nhaarman.mockitokotlin2.never
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
@@ -58,7 +59,7 @@ internal class SendSmsCodeCommandTest : AbstractEndpointTest() {
         assertEquals("http://localhost:0/settings/accounts/verify/mobile", action.url)
 
         val entity = argumentCaptor<SmsCodeEntity>()
-        verify(cache).put(any(), entity.capture())
+        verify(cache).put(eq("verification-code-$DEVICE_ID"), entity.capture())
         assertEquals(request.phoneNumber, entity.firstValue.phoneNumber)
         assertEquals(verificationId, entity.firstValue.verificationId)
         assertEquals("mtn", entity.firstValue.carrier)
@@ -77,6 +78,6 @@ internal class SendSmsCodeCommandTest : AbstractEndpointTest() {
         assertEquals(ActionType.Prompt, action.type)
         assertEquals(DialogType.Error.name, action.prompt?.attributes?.get("type"))
 
-        verify(cache, never()).put(any(), any())
+        verify(cache, never()).put(eq("verification-code-$DEVICE_ID"), any())
     }
 }
