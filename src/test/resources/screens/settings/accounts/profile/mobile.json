@@ -20,7 +20,7 @@
                 {
                   "type": "Flexible",
                   "attributes": {
-                    "flex": 1,
+                    "flex": 2,
                     "fit": "Tight"
                   },
                   "children": [
@@ -101,7 +101,7 @@
                 {
                   "type": "Flexible",
                   "attributes": {
-                    "flex": 1,
+                    "flex": 2,
                     "fit": "Tight"
                   },
                   "children": [
@@ -157,7 +157,7 @@
                 {
                   "type": "Flexible",
                   "attributes": {
-                    "flex": 1,
+                    "flex": 2,
                     "fit": "Tight"
                   },
                   "children": [
