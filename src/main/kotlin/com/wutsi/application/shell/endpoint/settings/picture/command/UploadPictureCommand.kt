@@ -39,5 +39,8 @@ class UploadPictureCommand(
                 value = url.toString()
             )
         )
+
+        // Clean the cache
+        securityContext.evictFromCache()
     }
 }

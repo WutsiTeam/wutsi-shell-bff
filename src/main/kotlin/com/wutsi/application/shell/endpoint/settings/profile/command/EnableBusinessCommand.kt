@@ -33,6 +33,9 @@ class EnableBusinessCommand(
             )
         )
 
+        // Evict account from cache
+        securityContext.evictFromCache()
+
         // Next
         return Action(
             type = ActionType.Route,

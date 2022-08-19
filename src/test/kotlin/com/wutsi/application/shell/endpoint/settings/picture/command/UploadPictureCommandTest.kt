@@ -32,7 +32,7 @@ internal class UploadPictureCommandTest : AbstractEndpointTest() {
     lateinit var storageService: StorageService
 
     @LocalServerPort
-    public val port: Int = 0
+    val port: Int = 0
 
     private lateinit var url: String
 
@@ -61,6 +61,8 @@ internal class UploadPictureCommandTest : AbstractEndpointTest() {
         val req = argumentCaptor<UpdateAccountAttributeRequest>()
         verify(accountApi).updateAccountAttribute(eq(ACCOUNT_ID), eq("picture-url"), req.capture())
         assertEquals(fileUrl.toString(), req.firstValue.value)
+
+        verify(cache).evict(any())
     }
 
     private fun uploadTo(url: String, filename: String) {
@@ -88,5 +90,7 @@ internal class UploadPictureCommandTest : AbstractEndpointTest() {
             requestEntity,
             Any::class.java
         )
+
+        verify(cache).evict(any())
     }
 }

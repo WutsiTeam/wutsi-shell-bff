@@ -46,6 +46,9 @@ class UpdateProfileAttributeCommand(
                 )
         }
 
+        // Evict account from cache
+        securityContext.evictFromCache()
+
         return ResponseEntity
             .ok()
             .headers(headers)

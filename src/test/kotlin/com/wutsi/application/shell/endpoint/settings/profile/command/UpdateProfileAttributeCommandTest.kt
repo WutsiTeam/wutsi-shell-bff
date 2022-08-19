@@ -1,5 +1,6 @@
 package com.wutsi.application.shell.endpoint.settings.profile.command
 
+import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.verify
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
 import com.wutsi.flutter.sdui.Action
@@ -33,6 +34,7 @@ internal class UpdateProfileAttributeCommandTest : AbstractEndpointTest() {
         assertEquals(false, action.replacement)
 
         verify(accountApi).updateAccountAttribute(ACCOUNT_ID, name, UpdateAccountAttributeRequest(request.value))
+        verify(cache).evict(any())
     }
 
     @Test
@@ -50,6 +52,7 @@ internal class UpdateProfileAttributeCommandTest : AbstractEndpointTest() {
         assertEquals(true, action.replacement)
 
         verify(accountApi).updateAccountAttribute(ACCOUNT_ID, "business", UpdateAccountAttributeRequest(request.value))
+        verify(cache).evict(any())
     }
 
     @Test
@@ -69,6 +72,7 @@ internal class UpdateProfileAttributeCommandTest : AbstractEndpointTest() {
         assertEquals(true, response.headers["x-language"]?.contains("en"))
 
         verify(accountApi).updateAccountAttribute(ACCOUNT_ID, "language", UpdateAccountAttributeRequest(request.value))
+        verify(cache).evict(any())
     }
 
     @Test
@@ -86,5 +90,6 @@ internal class UpdateProfileAttributeCommandTest : AbstractEndpointTest() {
         assertEquals(false, action.replacement)
 
         verify(accountApi).updateAccountAttribute(ACCOUNT_ID, "has-store", UpdateAccountAttributeRequest(request.value))
+        verify(cache).evict(any())
     }
 }

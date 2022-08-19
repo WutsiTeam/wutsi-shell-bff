@@ -55,5 +55,7 @@ internal class EnableBusinessCommandTest : AbstractEndpointTest() {
                 biography = data.biography
             )
         )
+
+        verify(cache).evict(any())
     }
 }
