@@ -40,8 +40,8 @@ class HomeScreen(
     @PostMapping
     fun index(): Widget {
         val tenant = tenantProvider.get()
-        val balance = getBalance(tenant)
         val me = securityContext.currentAccount()
+        val balance = getBalance(me, tenant)
         val children = mutableListOf<WidgetAware>()
 
         // Greetings
@@ -251,10 +251,9 @@ class HomeScreen(
         action = action
     )
 
-    private fun getBalance(tenant: Tenant): Money {
+    private fun getBalance(user: Account, tenant: Tenant): Money {
         try {
-            val userId = securityContext.currentAccountId()
-            val balance = paymentApi.getBalance(userId).balance
+            val balance = paymentApi.getBalance(user.id).balance
             return Money(
                 value = balance.amount,
                 currency = balance.currency
