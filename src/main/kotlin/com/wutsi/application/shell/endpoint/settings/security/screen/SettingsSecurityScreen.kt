@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/settings/security")
 class SettingsSecurityScreen(
-    @Value("\${wutsi.application.login-url}") private val loginUrl: String,
+    @Value("\${wutsi.application.login-url}") private val loginUrl: String
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
@@ -46,7 +46,7 @@ class SettingsSecurityScreen(
                             )
                         )
                     ),
-                    Divider(color = Theme.COLOR_DIVIDER),
+                    Divider(color = Theme.COLOR_DIVIDER)
                 )
             )
         ).toWidget()

@@ -38,7 +38,7 @@ abstract class AbstractSettingsProfileAttributeScreen : AbstractQuery() {
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.settings.profile.attribute.$name"),
+                title = getText("page.settings.profile.attribute.$name")
             ),
             child = Form(
                 children = listOf(
@@ -52,7 +52,7 @@ abstract class AbstractSettingsProfileAttributeScreen : AbstractQuery() {
                     ),
                     Container(
                         padding = 10.0,
-                        child = getInputWidget(user),
+                        child = getInputWidget(user)
                     ),
                     Container(
                         padding = 10.0,
@@ -64,8 +64,8 @@ abstract class AbstractSettingsProfileAttributeScreen : AbstractQuery() {
                                 type = ActionType.Command,
                                 url = urlBuilder.build("commands/update-profile-attribute?name=$name")
                             )
-                        ),
-                    ),
+                        )
+                    )
                 )
             )
         ).toWidget()

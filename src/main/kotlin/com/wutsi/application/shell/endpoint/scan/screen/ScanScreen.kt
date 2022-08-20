@@ -23,13 +23,13 @@ class ScanScreen : AbstractQuery() {
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.scan.app-bar.title"),
+                title = getText("page.scan.app-bar.title")
             ),
             child = Container(
                 child = QrView(
                     submitUrl = urlBuilder.build("scan/viewer")
                 )
-            ),
+            )
         ).toWidget()
     }
 }

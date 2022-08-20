@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/settings/accounts/verify/mobile")
 class SettingsVerifyAccountMobileScreen(
-    private val service: AccountService,
+    private val service: AccountService
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
@@ -45,13 +45,13 @@ class SettingsVerifyAccountMobileScreen(
                         child = Text(
                             caption = getText("page.verify-account-mobile.sub-title"),
                             alignment = TextAlignment.Center,
-                            size = Theme.TEXT_SIZE_LARGE,
+                            size = Theme.TEXT_SIZE_LARGE
                         )
                     ),
                     Text(
                         caption = formattedPhoneNumber(state.phoneNumber)!!,
                         alignment = TextAlignment.Center,
-                        size = Theme.TEXT_SIZE_LARGE,
+                        size = Theme.TEXT_SIZE_LARGE
                     ),
                     Button(
                         caption = getText("page.verify-account-mobile.button.resend"),
@@ -71,10 +71,10 @@ class SettingsVerifyAccountMobileScreen(
                                 type = ActionType.Command,
                                 url = urlBuilder.build("commands/verify-sms-code")
                             )
-                        ),
+                        )
                     )
-                ),
-            ),
+                )
+            )
         ).toWidget()
     }
 }

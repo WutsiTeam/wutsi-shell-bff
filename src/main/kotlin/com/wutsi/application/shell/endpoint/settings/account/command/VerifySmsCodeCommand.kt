@@ -20,10 +20,13 @@ import javax.validation.Valid
 class VerifySmsCodeCommand(
     private val service: AccountService,
 
-    @Value("\${wutsi.application.login-url}") private val loginUrl: String,
+    @Value("\${wutsi.application.login-url}") private val loginUrl: String
 ) : AbstractCommand() {
     @PostMapping
-    fun index(@RequestBody @Valid request: VerifySmsCodeRequest): Action {
+    fun index(
+        @RequestBody @Valid
+        request: VerifySmsCodeRequest
+    ): Action {
         service.verifyCode(request)
         return Action(
             type = ActionType.Route,

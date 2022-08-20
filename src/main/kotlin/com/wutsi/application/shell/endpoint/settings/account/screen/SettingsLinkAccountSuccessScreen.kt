@@ -52,7 +52,7 @@ class SettingsLinkAccountSuccessScreen : AbstractQuery() {
                         child = Text(
                             caption = getText("page.link-account-success.sub-title"),
                             alignment = TextAlignment.Center,
-                            size = Theme.TEXT_SIZE_X_LARGE,
+                            size = Theme.TEXT_SIZE_X_LARGE
                         )
                     ),
                     Container(
@@ -67,7 +67,7 @@ class SettingsLinkAccountSuccessScreen : AbstractQuery() {
                         )
                     )
                 )
-            ),
+            )
         ).toWidget()
     }
 }

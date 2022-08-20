@@ -19,7 +19,10 @@ class SendSmsCodeCommand(
     private val service: AccountService
 ) : AbstractCommand() {
     @PostMapping
-    fun index(@Valid @RequestBody request: SendSmsCodeRequest): Action {
+    fun index(
+        @Valid @RequestBody
+        request: SendSmsCodeRequest
+    ): Action {
         service.sendVerificationCode(request)
         return Action(
             type = Route,

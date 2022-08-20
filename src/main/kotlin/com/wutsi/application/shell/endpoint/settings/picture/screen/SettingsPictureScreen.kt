@@ -36,7 +36,7 @@ class SettingsPictureScreen : AbstractQuery() {
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.settings.picture.app-bar.title"),
+                title = getText("page.settings.picture.app-bar.title")
             ),
             child = Column(
                 crossAxisAlignment = CrossAxisAlignment.center,
@@ -48,7 +48,7 @@ class SettingsPictureScreen : AbstractQuery() {
                             url = pictureUrl,
                             width = 256.0,
                             height = 256.0
-                        ),
+                        )
                     ),
                     Divider(color = Theme.COLOR_DIVIDER),
                     Input(
@@ -62,7 +62,7 @@ class SettingsPictureScreen : AbstractQuery() {
                         action = Action(
                             type = ActionType.Route,
                             url = "route:/.."
-                        ),
+                        )
                     ),
                     Input(
                         name = "file",
@@ -85,7 +85,7 @@ class SettingsPictureScreen : AbstractQuery() {
                             url = "route:/.."
                         )
                     ),
-                    Divider(color = Theme.COLOR_DIVIDER),
+                    Divider(color = Theme.COLOR_DIVIDER)
                 )
             )
         ).toWidget()

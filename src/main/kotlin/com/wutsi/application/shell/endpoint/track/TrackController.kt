@@ -21,7 +21,7 @@ class TrackController(
     private val tenantProvider: TenantProvider,
     private val tracingContext: TracingContext,
     private val httpRequest: HttpServletRequest,
-    private val trackingApi: WutsiTrackingApi,
+    private val trackingApi: WutsiTrackingApi
 ) : AbstractQuery() {
     @PostMapping("/load")
     fun load(
@@ -33,7 +33,7 @@ class TrackController(
     @PostMapping("/action")
     fun action(
         @RequestParam(name = "screen-id") screenId: String,
-        @RequestBody request: EventRequest,
+        @RequestBody request: EventRequest
     ) {
         onEvent(screenId, request.event, request.productId)
     }
@@ -51,7 +51,7 @@ class TrackController(
                     event = event,
                     ua = httpRequest.getHeader("User-Agent"),
                     referer = httpRequest.getHeader("Referer"),
-                    ip = httpRequest.getHeader("X-Forwarded-For") ?: httpRequest.remoteAddr,
+                    ip = httpRequest.getHeader("X-Forwarded-For") ?: httpRequest.remoteAddr
                 )
             )
         )

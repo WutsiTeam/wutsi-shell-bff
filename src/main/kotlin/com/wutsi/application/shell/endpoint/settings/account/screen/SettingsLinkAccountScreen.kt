@@ -59,7 +59,7 @@ class SettingsLinkAccountScreen(
                                 )
                             )
                         else
-                            null,
+                            null
                     )
                 )
             )

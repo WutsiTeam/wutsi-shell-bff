@@ -42,7 +42,7 @@ class FeedbackScreen : AbstractQuery() {
                         child = Text(
                             caption = getText("page.feedback.message")
                         )
-                    ),
+                    )
                 ),
                 Divider(color = Theme.COLOR_DIVIDER),
                 Form(
@@ -69,8 +69,8 @@ class FeedbackScreen : AbstractQuery() {
                             )
                         )
                     )
-                ),
-            ),
+                )
+            )
         )
     ).toWidget()
 }

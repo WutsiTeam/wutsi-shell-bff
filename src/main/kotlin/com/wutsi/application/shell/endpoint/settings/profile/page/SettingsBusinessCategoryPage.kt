@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/settings/business/pages/category")
 class SettingsBusinessCategoryPage(
-    private val accountApi: WutsiAccountApi,
+    private val accountApi: WutsiAccountApi
 ) : AbstractBusinessAttributePage() {
     override fun getAttributeName() = "category-id"
     override fun getPageIndex() = 3

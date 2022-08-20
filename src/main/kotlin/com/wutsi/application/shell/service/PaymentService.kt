@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service
 @Service
 class PaymentService(
     private val paymentApi: WutsiPaymentApi,
-    private val securityContext: SecurityContext,
+    private val securityContext: SecurityContext
 ) {
     companion object {
         private val LOGGER = LoggerFactory.getLogger(PaymentService::class.java)

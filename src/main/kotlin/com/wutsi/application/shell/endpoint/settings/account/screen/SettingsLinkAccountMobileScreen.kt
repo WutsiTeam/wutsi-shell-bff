@@ -60,7 +60,7 @@ class SettingsLinkAccountMobileScreen(
                             padding = 10.0,
                             child = Text(
                                 caption = getText("page.link-account-mobile.sub-title"),
-                                alignment = TextAlignment.Center,
+                                alignment = TextAlignment.Center
                             )
                         ),
                         Form(
@@ -72,7 +72,7 @@ class SettingsLinkAccountMobileScreen(
                                         type = Phone,
                                         required = true,
                                         countries = tenant.countries
-                                    ),
+                                    )
                                 ),
                                 Container(
                                     padding = 10.0,
@@ -86,7 +86,7 @@ class SettingsLinkAccountMobileScreen(
                                                     url = it
                                                 )
                                             }
-                                    ),
+                                    )
                                 ),
                                 Container(
                                     padding = 10.0,
@@ -104,7 +104,7 @@ class SettingsLinkAccountMobileScreen(
                         )
                     )
                 )
-            ),
+            )
         ).toWidget()
     }
 }

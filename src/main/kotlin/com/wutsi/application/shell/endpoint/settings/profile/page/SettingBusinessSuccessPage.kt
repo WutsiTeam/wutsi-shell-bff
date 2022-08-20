@@ -28,7 +28,7 @@ class SettingBusinessSuccessPage : AbstractQuery() {
                         child = Text(
                             caption = getText("page.settings.business.congratulations"),
                             alignment = TextAlignment.Center,
-                            size = Theme.TEXT_SIZE_X_LARGE,
+                            size = Theme.TEXT_SIZE_X_LARGE
                         )
                     ),
                     Container(
@@ -48,8 +48,8 @@ class SettingBusinessSuccessPage : AbstractQuery() {
                                 type = ActionType.Route,
                                 url = "route:/~"
                             )
-                        ),
-                    ),
+                        )
+                    )
                 )
             )
         ).toWidget()

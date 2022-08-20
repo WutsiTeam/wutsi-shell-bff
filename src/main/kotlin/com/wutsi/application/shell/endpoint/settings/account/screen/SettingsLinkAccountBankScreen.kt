@@ -68,7 +68,7 @@ class SettingsLinkAccountBankScreen(
                                 padding = 10.0,
                                 child = Text(
                                     caption = getText("page.link-account-bank.sub-title"),
-                                    alignment = TextAlignment.Center,
+                                    alignment = TextAlignment.Center
                                 )
                             ),
                             Form(
@@ -87,7 +87,7 @@ class SettingsLinkAccountBankScreen(
                                                     icon = tenantProvider.logo(it)
                                                 )
                                             }
-                                        ),
+                                        )
                                     ),
                                     Container(
                                         padding = 10.0,
@@ -105,7 +105,7 @@ class SettingsLinkAccountBankScreen(
                                                     ).displayCountry
                                                 )
                                             }
-                                        ),
+                                        )
                                     ),
                                     Container(
                                         padding = 10.0,
@@ -114,7 +114,7 @@ class SettingsLinkAccountBankScreen(
                                             required = true,
                                             caption = getText("page.link-account-bank.input.number"),
                                             maxLength = 30
-                                        ),
+                                        )
                                     ),
                                     Container(
                                         padding = 10.0,
@@ -124,7 +124,7 @@ class SettingsLinkAccountBankScreen(
                                             caption = getText("page.link-account-bank.input.owner-name"),
                                             maxLength = 100,
                                             value = user.displayName
-                                        ),
+                                        )
                                     ),
                                     Container(
                                         padding = 10.0,
@@ -142,7 +142,7 @@ class SettingsLinkAccountBankScreen(
                             )
                         )
                     )
-                ),
+                )
             )
         ).toWidget()
     }

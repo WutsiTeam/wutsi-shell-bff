@@ -42,7 +42,7 @@ class SettingsConfirmPINScreen : AbstractQuery() {
                             caption = getText("page.settings.pin-confirm.sub-title"),
                             alignment = TextAlignment.Center,
                             size = Theme.TEXT_SIZE_LARGE,
-                            color = Theme.COLOR_WHITE,
+                            color = Theme.COLOR_WHITE
                         )
                     ),
                     PinWithKeyboard(
@@ -57,8 +57,8 @@ class SettingsConfirmPINScreen : AbstractQuery() {
                             parameters = mapOf(
                                 "pin" to pin
                             )
-                        ),
-                    ),
+                        )
+                    )
                 )
             )
         )

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/commands/link-mobile-account")
 class LinkAccountMobileCommand(
-    private val service: AccountService,
+    private val service: AccountService
 ) : AbstractCommand() {
     @PostMapping
     fun index(): Action {

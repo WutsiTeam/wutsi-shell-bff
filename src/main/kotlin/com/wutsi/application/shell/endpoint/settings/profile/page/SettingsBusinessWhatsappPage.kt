@@ -17,6 +17,6 @@ class SettingsBusinessWhatsappPage : AbstractBusinessAttributePage() {
         name = "value",
         value = account.whatsapp,
         type = InputType.Phone,
-        maxLength = 30,
+        maxLength = 30
     )
 }

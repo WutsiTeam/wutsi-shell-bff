@@ -39,7 +39,7 @@ abstract class AbstractBusinessAttributePage : AbstractQuery() {
                     ),
                     Container(
                         padding = 10.0,
-                        child = getInputWidget(user),
+                        child = getInputWidget(user)
                     ),
                     Container(
                         padding = 10.0,
@@ -51,8 +51,8 @@ abstract class AbstractBusinessAttributePage : AbstractQuery() {
                                 type = ActionType.Command,
                                 url = urlBuilder.build("commands/update-business-attribute?name=${getAttributeName()}&page=${getPageIndex()}")
                             )
-                        ),
-                    ),
+                        )
+                    )
                 )
             )
         ).toWidget()

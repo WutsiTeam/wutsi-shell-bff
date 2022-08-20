@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/commands/enable-business")
 class EnableBusinessCommand(
-    private val accountApi: WutsiAccountApi,
+    private val accountApi: WutsiAccountApi
 ) : AbstractBusinessCommand() {
     @PostMapping
     fun index(): Action {

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/settings/profile/category")
 class SettingsProfileCategoryScreen(
-    private val accountApi: WutsiAccountApi,
+    private val accountApi: WutsiAccountApi
 ) : AbstractSettingsProfileAttributeScreen() {
     override fun getAttributeName() = "category-id"
 

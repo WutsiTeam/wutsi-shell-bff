@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/commands/add-contact")
 class AddContactCommand(
-    private val contactApi: WutsiContactApi,
+    private val contactApi: WutsiContactApi
 ) : AbstractCommand() {
     @PostMapping
     fun index(@RequestParam(name = "contact-id") contactId: Long): Action {

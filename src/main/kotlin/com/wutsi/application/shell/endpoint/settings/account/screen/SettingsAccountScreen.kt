@@ -39,7 +39,7 @@ import org.springframework.web.bind.annotation.RestController
 class SettingsAccountScreen(
     private val tenantProvider: TenantProvider,
     private val accountService: AccountService,
-    private val paymentService: PaymentService,
+    private val paymentService: PaymentService
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
@@ -53,7 +53,7 @@ class SettingsAccountScreen(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.settings.account.app-bar.title"),
+                title = getText("page.settings.account.app-bar.title")
             ),
             child = Column(
                 children = listOf(
@@ -66,12 +66,12 @@ class SettingsAccountScreen(
                     Flexible(
                         child = Container(
                             alignment = Alignment.TopCenter,
-                            child = accountListWidget(paymentMethods, tenant),
+                            child = accountListWidget(paymentMethods, tenant)
                         )
                     )
                 ),
-                crossAxisAlignment = CrossAxisAlignment.center,
-            ),
+                crossAxisAlignment = CrossAxisAlignment.center
+            )
         ).toWidget()
     }
 
@@ -107,13 +107,13 @@ class SettingsAccountScreen(
         return ListView(
             children = children,
             separatorColor = Theme.COLOR_DIVIDER,
-            separator = true,
+            separator = true
         )
     }
 
     private fun toBalanceWidget(
         paymentMethods: List<PaymentMethodSummary>,
-        tenant: Tenant,
+        tenant: Tenant
     ): WidgetAware {
         val balance = paymentService.getBalance(tenant)
 
@@ -139,7 +139,7 @@ class SettingsAccountScreen(
 
     private fun toToolbarWidget(
         hasBalance: Boolean,
-        paymentMethods: List<PaymentMethodSummary>,
+        paymentMethods: List<PaymentMethodSummary>
     ): WidgetAware {
         if (paymentMethods.isEmpty())
             return Container()
@@ -152,7 +152,7 @@ class SettingsAccountScreen(
                     action = Action(
                         type = Route,
                         url = urlBuilder.build(cashUrl, "cashin")
-                    ),
+                    )
                 )
             )
 
@@ -163,7 +163,7 @@ class SettingsAccountScreen(
                     action = Action(
                         type = Route,
                         url = urlBuilder.build(cashUrl, "cashout")
-                    ),
+                    )
                 )
             )
 

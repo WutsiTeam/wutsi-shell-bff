@@ -34,7 +34,7 @@ class SettingBusinessStartPage : AbstractQuery() {
                     child = Text(
                         caption = getText("page.settings.business.title"),
                         alignment = TextAlignment.Center,
-                        size = Theme.TEXT_SIZE_X_LARGE,
+                        size = Theme.TEXT_SIZE_X_LARGE
                     )
                 ),
                 Container(
@@ -63,8 +63,8 @@ class SettingBusinessStartPage : AbstractQuery() {
                             type = ActionType.Page,
                             url = "page:/1"
                         )
-                    ),
-                ),
+                    )
+                )
             )
         ).toWidget()
     }
@@ -83,7 +83,7 @@ class SettingBusinessStartPage : AbstractQuery() {
                 Container(
                     padding = 5.0,
                     child = Text(getText(text))
-                ),
+                )
             )
         )
 }

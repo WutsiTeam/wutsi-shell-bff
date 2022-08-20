@@ -17,6 +17,6 @@ class SettingsProfileTwitterIdScreen : AbstractSettingsProfileAttributeScreen() 
     override fun getInputWidget(account: Account): WidgetAware = Input(
         name = "value",
         value = account.twitterId,
-        maxLength = 30,
+        maxLength = 30
     )
 }

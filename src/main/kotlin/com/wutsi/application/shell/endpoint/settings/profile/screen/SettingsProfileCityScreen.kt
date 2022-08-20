@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/settings/profile/city")
 class SettingsProfileCityScreen(
     private val cityService: CityService,
-    private val tenantProvider: TenantProvider,
+    private val tenantProvider: TenantProvider
 ) : AbstractSettingsProfileAttributeScreen() {
     override fun getAttributeName() = "city-id"
 

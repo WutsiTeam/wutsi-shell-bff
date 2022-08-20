@@ -36,7 +36,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/settings")
 class SettingsScreen(
     private val tokenProvider: TokenProviderWrapper,
-    @Value("\${wutsi.application.login-url}") private val loginUrl: String,
+    @Value("\${wutsi.application.login-url}") private val loginUrl: String
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget = Screen(
@@ -45,14 +45,14 @@ class SettingsScreen(
             elevation = 0.0,
             backgroundColor = Theme.COLOR_WHITE,
             foregroundColor = Theme.COLOR_BLACK,
-            title = getText("page.settings.app-bar.title"),
+            title = getText("page.settings.app-bar.title")
         ),
         child = Container(
             child = ListView(
                 separator = true,
                 separatorColor = Theme.COLOR_DIVIDER,
                 children = listItems()
-            ),
+            )
         ),
         bottomNavigationBar = bottomNavigationBar()
     ).toWidget()
@@ -81,7 +81,7 @@ class SettingsScreen(
                                 child = Text(
                                     caption = getText("page.settings.business-account"),
                                     alignment = TextAlignment.Center,
-                                    color = Theme.COLOR_GRAY,
+                                    color = Theme.COLOR_GRAY
                                 )
                             )
                         else
@@ -89,11 +89,11 @@ class SettingsScreen(
 
                         Text(
                             caption = formattedPhoneNumber(user) ?: "",
-                            alignment = TextAlignment.Center,
-                        ),
-                    ),
-                ),
-            ),
+                            alignment = TextAlignment.Center
+                        )
+                    )
+                )
+            )
         )
 
         // General
@@ -101,8 +101,8 @@ class SettingsScreen(
             listItem(
                 "page.settings.listitem.personal.caption",
                 urlBuilder.build("settings/profile"),
-                icon = Theme.ICON_PERSON,
-            ),
+                icon = Theme.ICON_PERSON
+            )
         )
 
         if (togglesProvider.isAccountEnabled())
@@ -111,7 +111,7 @@ class SettingsScreen(
                     "page.settings.listitem.account.caption",
                     urlBuilder.build("settings/account"),
                     icon = Theme.ICON_PAYMENT
-                ),
+                )
             )
 
         if (togglesProvider.isOrderEnabled())
@@ -120,7 +120,7 @@ class SettingsScreen(
                     "page.settings.listitem.my-orders.caption",
                     urlBuilder.build(storeUrl, "orders"),
                     icon = Theme.ICON_ORDERS
-                ),
+                )
             )
 
         // Applications
@@ -135,7 +135,7 @@ class SettingsScreen(
                             "page.settings.listitem.store.caption",
                             urlBuilder.build(storeUrl, "settings/store"),
                             icon = Theme.ICON_STORE
-                        ),
+                        )
                     )
                 else
                     children.add(
@@ -144,7 +144,7 @@ class SettingsScreen(
                             urlBuilder.build("/commands/update-profile-attribute?name=has-store"),
                             icon = Theme.ICON_STORE,
                             subCaption = "page.settings.listitem.store.sub-caption"
-                        ),
+                        )
                     )
         }
 
@@ -166,7 +166,7 @@ class SettingsScreen(
                     "page.settings.listitem.about.caption",
                     urlBuilder.build("settings/about"),
                     icon = Theme.ICON_INFO
-                ),
+                )
             )
         )
 
@@ -182,7 +182,7 @@ class SettingsScreen(
                         replacement = true,
                         parameters = mapOf(
                             "phone" to user.phone!!.number,
-                            "hide-back-button" to "true",
+                            "hide-back-button" to "true"
                         )
                     )
                 )
@@ -198,7 +198,7 @@ class SettingsScreen(
         caption = getText(caption),
         trailing = Icon(
             code = Theme.ICON_CHEVRON_RIGHT,
-            size = 24.0,
+            size = 24.0
         ),
         action = Action(
             type = Route,
@@ -261,7 +261,7 @@ class SettingsScreen(
                         type = Route,
                         url = urlBuilder.build("settings/picture")
                     ),
-                    padding = 10.0,
+                    padding = 10.0
                 )
             )
         )

@@ -38,7 +38,7 @@ import org.springframework.web.bind.annotation.RestController
 class ScanViewerScreen(
     private val qrApi: WutsiQrApi,
     private val qrService: QrService,
-    private val mapper: ObjectMapper,
+    private val mapper: ObjectMapper
 ) : AbstractQuery() {
     @PostMapping
     fun index(@RequestBody request: ScanRequest): Widget {
@@ -82,7 +82,7 @@ class ScanViewerScreen(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.scan-viewer.app-bar.title"),
+                title = getText("page.scan-viewer.app-bar.title")
             ),
             child = Column(
                 children = listOf(
@@ -98,7 +98,7 @@ class ScanViewerScreen(
                                     url = it,
                                     width = 230.0,
                                     height = 230.0
-                                ),
+                                )
                             )
                         }
                     ),

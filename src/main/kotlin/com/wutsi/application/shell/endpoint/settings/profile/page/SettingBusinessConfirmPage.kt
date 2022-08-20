@@ -30,7 +30,7 @@ class SettingBusinessConfirmPage : AbstractQuery() {
                     child = Text(
                         caption = getText("page.settings.business.title"),
                         alignment = TextAlignment.Center,
-                        size = Theme.TEXT_SIZE_X_LARGE,
+                        size = Theme.TEXT_SIZE_X_LARGE
                     )
                 ),
                 Container(
@@ -38,7 +38,7 @@ class SettingBusinessConfirmPage : AbstractQuery() {
                     padding = 10.0,
                     child = Text(
                         caption = getText("page.settings.business.confirm"),
-                        alignment = TextAlignment.Center,
+                        alignment = TextAlignment.Center
                     )
                 ),
                 Container(padding = 10.0),
@@ -50,7 +50,7 @@ class SettingBusinessConfirmPage : AbstractQuery() {
                             type = ActionType.Command,
                             url = urlBuilder.build("commands/enable-business")
                         )
-                    ),
+                    )
                 ),
                 Container(
                     padding = 10.0,
@@ -61,8 +61,8 @@ class SettingBusinessConfirmPage : AbstractQuery() {
                             type = ActionType.Route,
                             url = "route:/~"
                         )
-                    ),
-                ),
+                    )
+                )
             )
         ).toWidget()
     }

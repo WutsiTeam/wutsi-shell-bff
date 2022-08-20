@@ -53,7 +53,7 @@ class SettingsPINSuccessScreen : AbstractQuery() {
                         child = Text(
                             caption = getText("page.settings.pin.success.sub-title"),
                             alignment = TextAlignment.Center,
-                            size = Theme.TEXT_SIZE_X_LARGE,
+                            size = Theme.TEXT_SIZE_X_LARGE
                         )
                     ),
                     Container(
@@ -67,8 +67,8 @@ class SettingsPINSuccessScreen : AbstractQuery() {
                             )
                         )
                     )
-                ),
-            ),
+                )
+            )
         ).toWidget()
     }
 }

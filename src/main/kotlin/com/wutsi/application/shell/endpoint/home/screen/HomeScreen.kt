@@ -35,7 +35,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/")
 class HomeScreen(
     private val paymentApi: WutsiPaymentApi,
-    private val tenantProvider: TenantProvider,
+    private val tenantProvider: TenantProvider
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
@@ -60,7 +60,7 @@ class HomeScreen(
                     mainAxisAlignment = start,
                     crossAxisAlignment = CrossAxisAlignment.start
                 )
-            ),
+            )
         )
 
         // Balance - for business account only
@@ -75,9 +75,9 @@ class HomeScreen(
                             color = Theme.COLOR_WHITE,
                             value = balance.value,
                             currency = tenant.currencySymbol,
-                            numberFormat = tenant.numberFormat,
+                            numberFormat = tenant.numberFormat
                         )
-                    ),
+                    )
                 )
             )
 
@@ -89,7 +89,7 @@ class HomeScreen(
                     background = Theme.COLOR_PRIMARY,
                     child = Row(
                         mainAxisAlignment = spaceAround,
-                        children = primary,
+                        children = primary
                     )
                 )
             )
@@ -129,8 +129,8 @@ class HomeScreen(
                     action = Action(
                         type = ActionType.Route,
                         url = urlBuilder.build("scan")
-                    ),
-                ),
+                    )
+                )
             )
         }
 
@@ -143,7 +143,7 @@ class HomeScreen(
                         type = ActionType.Route,
                         url = urlBuilder.build(cashUrl, "cashin")
                     )
-                ),
+                )
             )
 
         if (togglesProvider.isSendEnabled())
@@ -167,7 +167,7 @@ class HomeScreen(
                         type = ActionType.Route,
                         url = urlBuilder.build(cashUrl, "cashout")
                     )
-                ),
+                )
             )
 
         if (togglesProvider.isPaymentEnabled())

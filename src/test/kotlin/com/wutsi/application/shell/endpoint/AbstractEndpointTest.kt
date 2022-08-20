@@ -110,7 +110,7 @@ abstract class AbstractEndpointTest {
                         PhonePrefix(
                             country = "CM",
                             prefixes = listOf("+23795")
-                        ),
+                        )
                     ),
                     logos = listOf(
                         Logo(type = "PICTORIAL", url = "http://www.goole.com/images/mtn.png")
@@ -124,7 +124,7 @@ abstract class AbstractEndpointTest {
                         PhonePrefix(
                             country = "CM",
                             prefixes = listOf("+23722")
-                        ),
+                        )
                     ),
                     logos = listOf(
                         Logo(type = "PICTORIAL", url = "http://www.goole.com/images/orange.png")
@@ -148,7 +148,7 @@ abstract class AbstractEndpointTest {
 
         val category = Category(
             id = 1000,
-            title = "Marketing",
+            title = "Marketing"
         )
         user = createAccount(false, category)
         doReturn(GetAccountResponse(user)).whenever(accountApi).getAccount(any())
@@ -198,7 +198,7 @@ abstract class AbstractEndpointTest {
             "payment-method-read",
             "payment-manage",
             "payment-read",
-            "tenant-read",
+            "tenant-read"
         ),
         subjectId: Long = ACCOUNT_ID,
         subjectType: SubjectType = USER

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/commands/sync-contacts")
 class SyncContactCommand(
-    private val contactApi: WutsiContactApi,
+    private val contactApi: WutsiContactApi
 ) : AbstractCommand() {
     @PostMapping
     fun index(@RequestBody request: SyncContactRequest) {

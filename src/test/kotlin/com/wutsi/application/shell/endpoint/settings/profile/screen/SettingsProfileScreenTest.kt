@@ -91,7 +91,7 @@ internal class SettingsProfileScreenTest : AbstractEndpointTest() {
             biography = "Thsi is my bio",
             category = Category(
                 id = 1000,
-                title = "Marketing",
+                title = "Marketing"
             ),
             cityId = 2233100,
             whatsapp = "+1237666666666",

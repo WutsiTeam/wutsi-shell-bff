@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/settings/business/pages/city")
 class SettingsBusinessCityPage(
     private val cityService: CityService,
-    private val tenantProvider: TenantProvider,
+    private val tenantProvider: TenantProvider
 ) : AbstractBusinessAttributePage() {
     override fun getPageIndex() = 4
     override fun getAttributeName() = "city-id"

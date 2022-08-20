@@ -22,14 +22,14 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/contact")
 class ContactScreen(
     private val accountApi: WutsiAccountApi,
-    private val contactApi: WutsiContactApi,
+    private val contactApi: WutsiContactApi
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
         val contacts = contactApi.searchContact(
             SearchContactRequest(
                 limit = 1000,
-                offset = 0,
+                offset = 0
             )
         ).contacts
 
@@ -62,11 +62,11 @@ class ContactScreen(
                         action = Action(
                             type = ActionType.Route,
                             url = urlBuilder.build("profile?id=${it.id}")
-                        ),
+                        )
                     )
-                },
+                }
             ),
-            bottomNavigationBar = bottomNavigationBar(),
+            bottomNavigationBar = bottomNavigationBar()
         ).toWidget()
     }
 }

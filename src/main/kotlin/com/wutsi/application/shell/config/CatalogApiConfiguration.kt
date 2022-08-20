@@ -21,7 +21,7 @@ class CatalogApiConfiguration(
     private val tracingRequestInterceptor: FeignTracingRequestInterceptor,
     private val acceptLanguageInterceptor: FeignAcceptLanguageInterceptor,
     private val mapper: ObjectMapper,
-    private val env: Environment,
+    private val env: Environment
 ) {
     @Bean
     fun catalogApi(request: HttpServletRequest): WutsiCatalogApi =
@@ -31,7 +31,7 @@ class CatalogApiConfiguration(
             interceptors = listOf(
                 tracingRequestInterceptor,
                 authorizationRequestInterceptor,
-                acceptLanguageInterceptor,
+                acceptLanguageInterceptor
             ),
             errorDecoder = Custom5XXErrorDecoder()
         )

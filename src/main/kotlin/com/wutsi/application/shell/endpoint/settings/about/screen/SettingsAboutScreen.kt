@@ -33,7 +33,7 @@ import javax.servlet.http.HttpServletRequest
 class SettingsAboutScreen(
     private val tenantProvider: TenantProvider,
     private val tracingContext: TracingContext,
-    private val request: HttpServletRequest,
+    private val request: HttpServletRequest
 ) : AbstractQuery() {
     @PostMapping
     fun index(
@@ -68,7 +68,7 @@ class SettingsAboutScreen(
                 listItem("page.settings.about.app-os", osInfo),
                 listItem("page.settings.about.device-id", tracingContext.deviceId()),
                 listItem("page.settings.about.user-id", securityContext.currentAccountId().toString()),
-                listItem("page.settings.about.environment", env?.uppercase() ?: "TEST"),
+                listItem("page.settings.about.environment", env?.uppercase() ?: "TEST")
             )
         )
 
@@ -106,13 +106,13 @@ class SettingsAboutScreen(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.settings.about.app-bar.title"),
+                title = getText("page.settings.about.app-bar.title")
             ),
             child = Container(
                 child = ListView(
                     separator = true,
                     separatorColor = Theme.COLOR_DIVIDER,
-                    children = items,
+                    children = items
                 )
             )
         ).toWidget()
@@ -130,14 +130,14 @@ class SettingsAboutScreen(
                         alignment = TextAlignment.Right,
                         size = Theme.TEXT_SIZE_SMALL
                     )
-                ),
+                )
             ),
             Flexible(
                 flex = 3,
                 child = Container(
                     padding = 5.0,
                     child = Text(value ?: "", alignment = TextAlignment.Left, size = Theme.TEXT_SIZE_SMALL)
-                ),
+                )
             )
         )
     )

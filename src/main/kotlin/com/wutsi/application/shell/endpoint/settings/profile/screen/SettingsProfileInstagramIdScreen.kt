@@ -17,6 +17,6 @@ class SettingsProfileInstagramIdScreen : AbstractSettingsProfileAttributeScreen(
     override fun getInputWidget(account: Account): WidgetAware = Input(
         name = "value",
         value = account.instagramId,
-        maxLength = 30,
+        maxLength = 30
     )
 }

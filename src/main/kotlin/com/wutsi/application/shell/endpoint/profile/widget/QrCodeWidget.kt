@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController
 class QrCodeWidget(
     private val qrApi: WutsiQrApi,
     private val accountApi: WutsiAccountApi,
-    private val qrService: QrService,
+    private val qrService: QrService
 ) : AbstractQuery() {
     @PostMapping
     fun index(
@@ -34,7 +34,7 @@ class QrCodeWidget(
         val token = qrApi.encode(
             EncodeQRCodeRequest(
                 type = EntityType.ACCOUNT.name,
-                id = id.toString(),
+                id = id.toString()
             )
         ).token
         val imageUrl = qrService.imageUrl(token)
@@ -58,10 +58,10 @@ class QrCodeWidget(
                             url = imageUrl,
                             width = 230.0,
                             height = 230.0
-                        ),
+                        )
                     )
-                ),
-            ),
+                )
+            )
         ).toWidget()
     }
 }

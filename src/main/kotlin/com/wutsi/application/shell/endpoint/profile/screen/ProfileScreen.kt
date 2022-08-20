@@ -48,7 +48,7 @@ class ProfileScreen(
     private val cartApi: WutsiCartApi,
     private val tenantProvider: TenantProvider,
 
-    @Value("\${wutsi.application.asset-url}") private val assetUrl: String,
+    @Value("\${wutsi.application.asset-url}") private val assetUrl: String
 ) : AbstractQuery() {
     companion object {
         private val LOGGER = LoggerFactory.getLogger(ProfileScreen::class.java)
@@ -74,7 +74,7 @@ class ProfileScreen(
                 else
                     null,
 
-                Text(getText("page.profile.tab.qr-code").uppercase(), bold = true),
+                Text(getText("page.profile.tab.qr-code").uppercase(), bold = true)
             )
         )
         val tabViews = TabBarView(
@@ -116,10 +116,10 @@ class ProfileScreen(
                                             size = 20.0,
                                             action = Action(
                                                 type = ActionType.Navigate,
-                                                url = it,
+                                                url = it
                                             )
-                                        ),
-                                    ),
+                                        )
+                                    )
                                 )
                             }
                         else
@@ -144,10 +144,10 @@ class ProfileScreen(
                                                     "page.profile.confirm-add-contact",
                                                     arrayOf(user.displayName ?: "")
                                                 )
-                                            ).toWidget(),
+                                            ).toWidget()
                                         )
-                                    ),
-                                ),
+                                    )
+                                )
                             )
                         else
                             null,
@@ -162,9 +162,9 @@ class ProfileScreen(
                                     size = 20.0,
                                     action = Action(
                                         type = ActionType.Share,
-                                        url = "${tenant.webappUrl}/profile?id=${user.id}",
+                                        url = "${tenant.webappUrl}/profile?id=${user.id}"
                                     )
-                                ),
+                                )
                             )
                         ),
 
@@ -181,7 +181,7 @@ class ProfileScreen(
                                             type = ActionType.Route,
                                             url = urlBuilder.build(storeUrl, "cart?merchant-id=${user.id}")
                                         )
-                                    ),
+                                    )
                                 )
                             )
                         else
@@ -209,7 +209,7 @@ class ProfileScreen(
         return Column(
             children = children,
             mainAxisAlignment = MainAxisAlignment.start,
-            crossAxisAlignment = CrossAxisAlignment.start,
+            crossAxisAlignment = CrossAxisAlignment.start
         )
     }
 

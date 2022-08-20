@@ -41,7 +41,7 @@ class SettingsPINScreen : AbstractQuery() {
                             caption = getText("page.settings.pin.sub-title"),
                             alignment = TextAlignment.Center,
                             size = Theme.TEXT_SIZE_LARGE,
-                            color = Theme.COLOR_WHITE,
+                            color = Theme.COLOR_WHITE
                         )
                     ),
                     PinWithKeyboard(
@@ -53,8 +53,8 @@ class SettingsPINScreen : AbstractQuery() {
                         action = Action(
                             type = ActionType.Command,
                             url = urlBuilder.build("commands/change-pin")
-                        ),
-                    ),
+                        )
+                    )
                 )
             )
         )

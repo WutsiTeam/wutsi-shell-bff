@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service
  */
 @Service
 class TokenProviderWrapper(
-    private val tokenProvider: TokenProvider,
+    private val tokenProvider: TokenProvider
 ) {
     fun getToken(): String? =
         tokenProvider.getToken()

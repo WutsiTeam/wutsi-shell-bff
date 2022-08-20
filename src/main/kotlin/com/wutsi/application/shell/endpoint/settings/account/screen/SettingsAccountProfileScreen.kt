@@ -101,10 +101,10 @@ class SettingsAccountProfileScreen(
                             key = "page.settings.account.profile.owner",
                             value = paymentMethod.ownerName
                         ),
-                        Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
+                        Divider(color = Theme.COLOR_DIVIDER, height = 1.0)
                     )
-                ),
-            ),
+                )
+            )
         ).toWidget()
     }
 
@@ -121,13 +121,13 @@ class SettingsAccountProfileScreen(
                         child = Text(
                             getText(key),
                             bold = true,
-                            alignment = TextAlignment.Right,
+                            alignment = TextAlignment.Right
                         )
-                    ),
+                    )
                 ),
                 Flexible(
                     flex = 3,
-                    child = value,
+                    child = value
                 )
             )
         )

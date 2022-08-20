@@ -21,7 +21,7 @@ class SettingsBusinessScreen : AbstractQuery() {
             appBar = AppBar(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
-                foregroundColor = Theme.COLOR_BLACK,
+                foregroundColor = Theme.COLOR_BLACK
             ),
             child = PageView(
                 children = listOf(
@@ -32,7 +32,7 @@ class SettingsBusinessScreen : AbstractQuery() {
                     com.wutsi.flutter.sdui.Page(url = urlBuilder.build("/settings/business/pages/city")),
                     com.wutsi.flutter.sdui.Page(url = urlBuilder.build("/settings/business/pages/street")),
                     com.wutsi.flutter.sdui.Page(url = urlBuilder.build("/settings/business/pages/whatsapp")),
-                    com.wutsi.flutter.sdui.Page(url = urlBuilder.build("/settings/business/pages/confirm")),
+                    com.wutsi.flutter.sdui.Page(url = urlBuilder.build("/settings/business/pages/confirm"))
                 )
             )
         ).toWidget()

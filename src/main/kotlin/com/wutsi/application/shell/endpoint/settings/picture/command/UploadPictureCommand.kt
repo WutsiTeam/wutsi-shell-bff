@@ -17,7 +17,7 @@ import java.util.UUID
 @RequestMapping("/commands/upload-picture")
 class UploadPictureCommand(
     private val accountApi: WutsiAccountApi,
-    private val storageService: StorageService,
+    private val storageService: StorageService
 ) : AbstractCommand() {
     @PostMapping
     fun index(@RequestParam file: MultipartFile) {

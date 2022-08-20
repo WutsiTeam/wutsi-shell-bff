@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/commands/confirm-pin")
 class ConfirmPinCommand(
-    private val service: AccountService,
+    private val service: AccountService
 ) : AbstractCommand() {
     @PostMapping
     fun index(@RequestParam pin: String, @RequestBody request: ChangePinRequest): Action {

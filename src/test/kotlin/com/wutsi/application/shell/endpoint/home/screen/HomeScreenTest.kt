@@ -53,7 +53,7 @@ internal class HomeScreenTest : AbstractEndpointTest() {
         val paymentMethods = listOf(
             createPaymentMethodSummary("A", "11111"),
             createPaymentMethodSummary("B", "22222"),
-            createPaymentMethodSummary("C", "33333"),
+            createPaymentMethodSummary("C", "33333")
         )
         doReturn(ListPaymentMethodResponse(paymentMethods)).whenever(accountApi).listPaymentMethods(any())
 
@@ -62,7 +62,7 @@ internal class HomeScreenTest : AbstractEndpointTest() {
             createAccount(100),
             createAccount(101),
             createAccount(102),
-            createAccount(103),
+            createAccount(103)
         )
         doReturn(SearchAccountResponse(accounts)).whenever(accountApi).searchAccount(any())
 

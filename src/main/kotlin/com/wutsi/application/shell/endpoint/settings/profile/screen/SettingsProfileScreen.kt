@@ -26,7 +26,7 @@ import java.util.Locale
 @RestController
 @RequestMapping("/settings/profile")
 class SettingsProfileScreen(
-    private val cityService: CityService,
+    private val cityService: CityService
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
@@ -67,7 +67,7 @@ class SettingsProfileScreen(
                     "page.settings.profile.attribute.timezone-id",
                     account.timezoneId,
                     "settings/profile/timezone"
-                ),
+                )
             )
         )
 
@@ -109,7 +109,7 @@ class SettingsProfileScreen(
                             "page.settings.profile.attribute.whatsapp",
                             account.whatsapp,
                             "settings/profile/whatsapp"
-                        ),
+                        )
                     )
                 )
 
@@ -139,7 +139,7 @@ class SettingsProfileScreen(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.settings.profile.app-bar.title"),
+                title = getText("page.settings.profile.app-bar.title")
             ),
             child = Container(
                 child = ListView(

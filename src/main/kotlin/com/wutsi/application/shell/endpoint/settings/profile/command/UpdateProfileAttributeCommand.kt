@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/commands/update-profile-attribute")
 class UpdateProfileAttributeCommand(
     private val accountApi: WutsiAccountApi,
-    private val cityService: CityService,
+    private val cityService: CityService
 ) : AbstractCommand() {
     @PostMapping
     fun index(@RequestParam name: String, @RequestBody request: UpdateAccountAttributeRequest): ResponseEntity<Action> {

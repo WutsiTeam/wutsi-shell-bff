@@ -145,7 +145,7 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
         biography = "This is my bio",
         category = Category(
             id = 1000,
-            title = "Marketing",
+            title = "Marketing"
         ),
         website = "https://my.business.com/12432",
         whatsapp = "+23500000000",
