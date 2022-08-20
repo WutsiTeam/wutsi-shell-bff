@@ -70,7 +70,7 @@
                           "attributes": {
                             "name": "bankCode",
                             "value": "WAF",
-                            "hint": "Select the Bank",
+                            "hint": "Select the bank",
                             "required": true
                           },
                           "children": [
@@ -81,6 +81,34 @@
                                 "icon": "http://www.goole.com/images/waf.png",
                                 "enabled": true,
                                 "value": "WAF"
+                              },
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "padding": 10.0
+                      },
+                      "children": [
+                        {
+                          "type": "DropdownButton",
+                          "attributes": {
+                            "name": "country",
+                            "value": "CM",
+                            "hint": "Select the country",
+                            "required": true
+                          },
+                          "children": [
+                            {
+                              "type": "DropdownMenuItem",
+                              "attributes": {
+                                "caption": "Cameroon",
+                                "enabled": true,
+                                "value": "CM"
                               },
                               "children": []
                             }

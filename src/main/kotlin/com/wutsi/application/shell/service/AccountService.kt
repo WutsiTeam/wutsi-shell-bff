@@ -118,7 +118,8 @@ class AccountService(
                     number = request.number,
                     bankCode = request.bankCode,
                     ownerName = request.ownerName,
-                    provider = toPaymentProvider(request.bankCode)!!.name
+                    provider = toPaymentProvider(request.bankCode)!!.name,
+                    country = request.country
                 )
             )
             logger.add("payment_method_token", response.token)

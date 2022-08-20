@@ -21,9 +21,11 @@ import com.wutsi.flutter.sdui.enums.Alignment.Center
 import com.wutsi.flutter.sdui.enums.Alignment.TopCenter
 import com.wutsi.flutter.sdui.enums.InputType.Submit
 import com.wutsi.flutter.sdui.enums.TextAlignment
+import org.springframework.context.i18n.LocaleContextHolder
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import java.util.Locale
 
 @RestController
 @RequestMapping("/settings/accounts/link/bank")
@@ -35,6 +37,9 @@ class SettingsLinkAccountBankScreen(
         val tenant = tenantProvider.get()
         val user = securityContext.currentAccount()
         val financialInstitutions = tenant.financialInstitutions.sortedBy { it.name }
+        val countries = financialInstitutions.flatMap { it.countries }.toSet()
+            .sortedBy { Locale(LocaleContextHolder.getLocale().language, it).displayCountry }
+
         return Screen(
             id = Page.SETTINGS_ACCOUNT_LINK_BANK,
             appBar = AppBar(
@@ -80,6 +85,24 @@ class SettingsLinkAccountBankScreen(
                                                     value = it.code,
                                                     caption = it.name,
                                                     icon = tenantProvider.logo(it)
+                                                )
+                                            }
+                                        ),
+                                    ),
+                                    Container(
+                                        padding = 10.0,
+                                        child = DropdownButton(
+                                            name = "country",
+                                            required = true,
+                                            hint = getText("page.link-account-bank.input.country"),
+                                            value = if (countries.size == 1) countries.toList()[0] else null,
+                                            children = countries.map {
+                                                DropdownMenuItem(
+                                                    value = it,
+                                                    caption = Locale(
+                                                        LocaleContextHolder.getLocale().language,
+                                                        it
+                                                    ).displayCountry
                                                 )
                                             }
                                         ),

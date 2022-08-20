@@ -22,10 +22,12 @@ import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.TextAlignment
 import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.payment.PaymentMethodType
+import org.springframework.context.i18n.LocaleContextHolder
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import java.util.Locale
 
 @RestController
 @RequestMapping("/settings/account/profile")
@@ -80,6 +82,14 @@ class SettingsAccountProfileScreen(
                                     )
                                 )
                             )
+                        ),
+                        Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
+                        toRowWidget(
+                            key = "page.settings.account.profile.country",
+                            value = Locale(
+                                LocaleContextHolder.getLocale().language,
+                                paymentMethod.phone?.country ?: paymentMethod.bankAccount?.country ?: ""
+                            ).displayCountry
                         ),
                         Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
                         toRowWidget(

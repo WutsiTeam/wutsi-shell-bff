@@ -41,7 +41,8 @@ internal class LinkAccountBankCommandTest : AbstractEndpointTest() {
     val request = LinkBankAccountRequest(
         ownerName = "RAY SPONSIBLE",
         bankCode = "WAF",
-        number = "120932093"
+        number = "120932093",
+        country = "CM"
     )
 
     @BeforeEach
@@ -73,6 +74,7 @@ internal class LinkAccountBankCommandTest : AbstractEndpointTest() {
         assertEquals(request.ownerName, entity.firstValue.ownerName)
         assertEquals(PaymentMethodType.BANK.name, entity.firstValue.type)
         assertEquals(PaymentMethodProvider.WAF.name, entity.firstValue.provider)
+        assertEquals(request.country, entity.firstValue.country)
     }
 
     @Test

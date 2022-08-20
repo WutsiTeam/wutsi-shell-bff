@@ -43,7 +43,8 @@ internal class SettingsAccountProfileScreenTest : AbstractEndpointTest() {
             bankAccount = BankAccount(
                 id = 123,
                 number = "123456",
-                bankCode = "WAF"
+                bankCode = "WAF",
+                country = "CM"
             )
         )
         doReturn(GetPaymentMethodResponse(paymentMethod)).whenever(accountApi).getPaymentMethod(any(), any())
@@ -63,7 +64,8 @@ internal class SettingsAccountProfileScreenTest : AbstractEndpointTest() {
             number = "+1237665111122",
             phone = Phone(
                 id = 123,
-                number = "+1237665111122"
+                number = "+1237665111122",
+                country = "CM"
             )
         )
         doReturn(GetPaymentMethodResponse(paymentMethod)).whenever(accountApi).getPaymentMethod(any(), any())
