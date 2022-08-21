@@ -7,7 +7,6 @@ import com.wutsi.application.shell.endpoint.AbstractEndpointTest
 import com.wutsi.platform.account.dto.BankAccount
 import com.wutsi.platform.account.dto.GetPaymentMethodResponse
 import com.wutsi.platform.account.dto.PaymentMethod
-import com.wutsi.platform.account.dto.Phone
 import com.wutsi.platform.payment.PaymentMethodProvider
 import com.wutsi.platform.payment.PaymentMethodType
 import org.junit.jupiter.api.BeforeEach
@@ -50,25 +49,5 @@ internal class SettingsAccountProfileScreenTest : AbstractEndpointTest() {
 
         // THEN
         assertEndpointEquals("/screens/settings/accounts/profile/bank.json", url)
-    }
-
-    @Test
-    fun `mobile account`() {
-        // GIVEN
-        val paymentMethod = PaymentMethod(
-            token = "456",
-            type = PaymentMethodType.MOBILE.name,
-            provider = PaymentMethodProvider.ORANGE.name,
-            maskedNumber = "...1122",
-            phone = Phone(
-                id = 123,
-                number = "+1237665111122",
-                country = "CM"
-            )
-        )
-        doReturn(GetPaymentMethodResponse(paymentMethod)).whenever(accountApi).getPaymentMethod(any(), any())
-
-        // THEN
-        assertEndpointEquals("/screens/settings/accounts/profile/mobile.json", url)
     }
 }

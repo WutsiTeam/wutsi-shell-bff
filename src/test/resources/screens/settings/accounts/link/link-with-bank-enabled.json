@@ -19,7 +19,7 @@
             {
               "type": "ListItem",
               "attributes": {
-                "caption": "Mobile Money Account",
+                "caption": "Mobile Money",
                 "trailing": {
                   "type": "Icon",
                   "attributes": {
@@ -45,7 +45,7 @@
             {
               "type": "ListItem",
               "attributes": {
-                "caption": "Bank Account",
+                "caption": "Bank",
                 "trailing": {
                   "type": "Icon",
                   "attributes": {

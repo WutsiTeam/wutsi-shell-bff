@@ -77,6 +77,10 @@ class SettingsAccountProfileScreen(
                                                 tenant,
                                                 paymentMethod.provider
                                             )?.name ?: ""
+                                            PaymentMethodType.CREDIT_CARD.name -> accountService.findCreditCardType(
+                                                tenant,
+                                                paymentMethod.provider
+                                            )?.name ?: ""
                                             else -> ""
                                         }
                                     )

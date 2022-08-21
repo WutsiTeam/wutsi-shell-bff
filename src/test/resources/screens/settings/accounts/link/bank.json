@@ -128,7 +128,7 @@
                             "name": "number",
                             "hideText": false,
                             "required": true,
-                            "caption": "Account Number (Required)",
+                            "caption": "Account number (Required)",
                             "enabled": true,
                             "readOnly": false,
                             "type": "Text",
@@ -152,7 +152,7 @@
                             "value": "Ray Sponsible",
                             "hideText": false,
                             "required": true,
-                            "caption": "Account Owner (Required)",
+                            "caption": "Account owner (Required)",
                             "enabled": true,
                             "readOnly": false,
                             "type": "Text",
@@ -201,7 +201,7 @@
   "appBar": {
     "type": "AppBar",
     "attributes": {
-      "title": "Link Bank Account",
+      "title": "Link bank account",
       "elevation": 0.0,
       "backgroundColor": "#FFFFFF",
       "foregroundColor": "#000000"

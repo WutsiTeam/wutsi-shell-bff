@@ -21,6 +21,7 @@ import com.wutsi.platform.core.tracing.spring.SpringTracingRequestInterceptor
 import com.wutsi.platform.payment.PaymentMethodProvider
 import com.wutsi.platform.payment.core.ErrorCode
 import com.wutsi.platform.tenant.WutsiTenantApi
+import com.wutsi.platform.tenant.dto.CreditCardType
 import com.wutsi.platform.tenant.dto.FinancialInstitution
 import com.wutsi.platform.tenant.dto.GetTenantResponse
 import com.wutsi.platform.tenant.dto.Logo
@@ -140,6 +141,24 @@ abstract class AbstractEndpointTest {
                     countries = listOf("CM"),
                     logos = listOf(
                         Logo(type = "PICTORIAL", url = "http://www.goole.com/images/waf.png")
+                    )
+                )
+            ),
+            creditCardTypes = listOf(
+                CreditCardType(
+                    code = PaymentMethodProvider.VISA.name,
+                    name = "Visa",
+                    countries = listOf("CM"),
+                    logos = listOf(
+                        Logo(type = "PICTORIAL", url = "http://www.goole.com/images/visa.png")
+                    )
+                ),
+                CreditCardType(
+                    code = PaymentMethodProvider.MASTERCARD.name,
+                    name = "Mastercard",
+                    countries = listOf("CM"),
+                    logos = listOf(
+                        Logo(type = "PICTORIAL", url = "http://www.goole.com/images/mastercard.png")
                     )
                 )
             )

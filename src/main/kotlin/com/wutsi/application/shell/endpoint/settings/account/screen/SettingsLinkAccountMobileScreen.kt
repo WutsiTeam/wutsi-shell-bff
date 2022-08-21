@@ -13,11 +13,11 @@ import com.wutsi.flutter.sdui.Image
 import com.wutsi.flutter.sdui.Input
 import com.wutsi.flutter.sdui.Row
 import com.wutsi.flutter.sdui.Screen
+import com.wutsi.flutter.sdui.SingleChildScrollView
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.enums.ActionType.Command
 import com.wutsi.flutter.sdui.enums.Alignment.Center
-import com.wutsi.flutter.sdui.enums.Alignment.TopCenter
 import com.wutsi.flutter.sdui.enums.InputType.Phone
 import com.wutsi.flutter.sdui.enums.InputType.Submit
 import com.wutsi.flutter.sdui.enums.TextAlignment
@@ -41,8 +41,7 @@ class SettingsLinkAccountMobileScreen(
                 foregroundColor = Theme.COLOR_BLACK,
                 title = getText("page.link-account-mobile.app-bar.title")
             ),
-            child = Container(
-                alignment = Center,
+            child = SingleChildScrollView(
                 child = Column(
                     children = listOf(
                         Container(
@@ -53,14 +52,6 @@ class SettingsLinkAccountMobileScreen(
                                 alignment = TextAlignment.Center,
                                 size = Theme.TEXT_SIZE_LARGE,
                                 bold = true
-                            )
-                        ),
-                        Container(
-                            alignment = TopCenter,
-                            padding = 10.0,
-                            child = Text(
-                                caption = getText("page.link-account-mobile.sub-title"),
-                                alignment = TextAlignment.Center
                             )
                         ),
                         Form(
@@ -81,8 +72,8 @@ class SettingsLinkAccountMobileScreen(
                                             .mapNotNull { tenantProvider.logo(it) }
                                             .map {
                                                 Image(
-                                                    width = 48.0,
-                                                    height = 48.0,
+                                                    width = 32.0,
+                                                    height = 32.0,
                                                     url = it
                                                 )
                                             }

@@ -6,10 +6,8 @@
   },
   "children": [
     {
-      "type": "Container",
-      "attributes": {
-        "alignment": "Center"
-      },
+      "type": "SingleChildScrollView",
+      "attributes": {},
       "children": [
         {
           "type": "Column",
@@ -28,23 +26,6 @@
                     "caption": "Link your Wallet with a Mobile Money account",
                     "bold": true,
                     "size": 16.0,
-                    "alignment": "Center"
-                  },
-                  "children": []
-                }
-              ]
-            },
-            {
-              "type": "Container",
-              "attributes": {
-                "alignment": "TopCenter",
-                "padding": 10.0
-              },
-              "children": [
-                {
-                  "type": "Text",
-                  "attributes": {
-                    "caption": "You will receive an SMS to confirm you are the owner of the account.",
                     "alignment": "Center"
                   },
                   "children": []
@@ -94,8 +75,8 @@
                           "type": "Image",
                           "attributes": {
                             "url": "http://www.goole.com/images/mtn.png",
-                            "width": 48.0,
-                            "height": 48.0
+                            "width": 32.0,
+                            "height": 32.0
                           },
                           "children": []
                         },
@@ -103,8 +84,8 @@
                           "type": "Image",
                           "attributes": {
                             "url": "http://www.goole.com/images/orange.png",
-                            "width": 48.0,
-                            "height": 48.0
+                            "width": 32.0,
+                            "height": 32.0
                           },
                           "children": []
                         }
@@ -148,7 +129,7 @@
   "appBar": {
     "type": "AppBar",
     "attributes": {
-      "title": "Link Mobile Money Account",
+      "title": "Link Mobile Money",
       "elevation": 0.0,
       "backgroundColor": "#FFFFFF",
       "foregroundColor": "#000000"

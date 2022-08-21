@@ -13,6 +13,7 @@ import com.wutsi.flutter.sdui.ListView
 import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.enums.ActionType.Route
+import com.wutsi.platform.tenant.entity.ToggleName
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -26,6 +27,7 @@ class SettingsLinkAccountScreen(
     fun index(): Widget {
         val tenant = tenantProvider.get()
         val financialInstitutions = tenant.financialInstitutions.sortedBy { it.name }
+        val creditCardTypes = tenant.creditCardTypes.sortedBy { it.name }
         return Screen(
             id = Page.SETTINGS_ACCOUNT_LINK,
             appBar = AppBar(
@@ -48,7 +50,8 @@ class SettingsLinkAccountScreen(
                                 url = urlBuilder.build("settings/accounts/link/mobile")
                             )
                         ),
-                        if (financialInstitutions.isNotEmpty())
+
+                        if (financialInstitutions.isNotEmpty() && togglesProvider.isToggleEnabled(ToggleName.ACCOUNT_BANK))
                             ListItem(
                                 caption = getText("page.link-account.item.bank"),
                                 leading = Icon(code = Theme.ICON_BANK, color = Theme.COLOR_PRIMARY),
@@ -56,6 +59,19 @@ class SettingsLinkAccountScreen(
                                 action = Action(
                                     type = Route,
                                     url = urlBuilder.build("settings/accounts/link/bank")
+                                )
+                            )
+                        else
+                            null,
+
+                        if (creditCardTypes.isNotEmpty() && togglesProvider.isToggleEnabled(ToggleName.ACCOUNT_CREDIT_CARD))
+                            ListItem(
+                                caption = getText("page.link-account.item.credit-card"),
+                                leading = Icon(code = Theme.ICON_CREDIT_CARD, color = Theme.COLOR_PRIMARY),
+                                trailing = Icon(code = Theme.ICON_CHEVRON_RIGHT),
+                                action = Action(
+                                    type = Route,
+                                    url = urlBuilder.build("settings/accounts/link/credit-card")
                                 )
                             )
                         else

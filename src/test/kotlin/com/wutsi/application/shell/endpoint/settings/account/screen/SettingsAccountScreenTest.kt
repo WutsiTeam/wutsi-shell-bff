@@ -64,7 +64,13 @@ internal class SettingsAccountScreenTest : AbstractEndpointTest() {
             provider = PaymentMethodProvider.WAF.name,
             maskedNumber = "...3456"
         )
-        doReturn(ListPaymentMethodResponse(listOf(m1, m2, m3))).whenever(accountApi).listPaymentMethods(any())
+        val m4 = PaymentMethodSummary(
+            token = "054909",
+            type = PaymentMethodType.CREDIT_CARD.name,
+            provider = PaymentMethodProvider.MASTERCARD.name,
+            maskedNumber = "...4444"
+        )
+        doReturn(ListPaymentMethodResponse(listOf(m1, m2, m3, m4))).whenever(accountApi).listPaymentMethods(any())
     }
 
     @Test

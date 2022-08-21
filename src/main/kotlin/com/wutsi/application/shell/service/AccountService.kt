@@ -4,11 +4,14 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.wutsi.application.shared.service.SecurityContext
 import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.application.shell.endpoint.settings.account.dto.LinkBankAccountRequest
+import com.wutsi.application.shell.endpoint.settings.account.dto.LinkCreditCardRequest
 import com.wutsi.application.shell.endpoint.settings.account.dto.SendSmsCodeRequest
 import com.wutsi.application.shell.endpoint.settings.account.dto.VerifySmsCodeRequest
 import com.wutsi.application.shell.endpoint.settings.security.dto.ChangePinRequest
 import com.wutsi.application.shell.entity.SmsCodeEntity
 import com.wutsi.application.shell.exception.AccountAlreadyLinkedException
+import com.wutsi.application.shell.exception.CreditCardExpiredException
+import com.wutsi.application.shell.exception.CreditCardInvalidException
 import com.wutsi.application.shell.exception.InvalidPhoneNumberException
 import com.wutsi.application.shell.exception.PinMismatchException
 import com.wutsi.application.shell.exception.SmsCodeMismatchException
@@ -26,6 +29,7 @@ import com.wutsi.platform.payment.PaymentMethodProvider
 import com.wutsi.platform.payment.PaymentMethodType
 import com.wutsi.platform.sms.WutsiSmsApi
 import com.wutsi.platform.sms.dto.SendVerificationRequest
+import com.wutsi.platform.tenant.dto.CreditCardType
 import com.wutsi.platform.tenant.dto.FinancialInstitution
 import com.wutsi.platform.tenant.dto.MobileCarrier
 import com.wutsi.platform.tenant.dto.Tenant
@@ -85,48 +89,70 @@ class AccountService(
     }
 
     fun linkMobileAccount() {
-        try {
-            val state = getSmsCodeEntity()
-            log(state)
+        val state = getSmsCodeEntity()
+        log(state)
 
-            val principal = securityContext.principal()
-            val response = accountApi.addPaymentMethod(
-                principal.id.toLong(),
-                request = AddPaymentMethodRequest(
-                    ownerName = principal.name,
-                    number = state.phoneNumber,
-                    type = PaymentMethodType.MOBILE.name,
-                    provider = toPaymentProvider(state.carrier)!!.name
-                )
+        val principal = securityContext.principal()
+        linkAccount(
+            request = AddPaymentMethodRequest(
+                ownerName = principal.name,
+                number = state.phoneNumber,
+                provider = toPaymentProvider(state.carrier)!!.name
             )
-            logger.add("payment_method_token", response.token)
-        } catch (ex: FeignException) {
-            val code = ex.toErrorResponse(objectMapper)?.error?.code ?: throw ex
-            if (code == com.wutsi.platform.account.error.ErrorURN.PAYMENT_METHOD_OWNERSHIP.urn)
-                throw AccountAlreadyLinkedException(ex)
-            else
-                throw ex
-        }
+        )
     }
 
     fun linkBankAccount(request: LinkBankAccountRequest) {
-        try {
-            val response = accountApi.addPaymentMethod(
-                id = securityContext.currentAccountId(),
-                request = AddPaymentMethodRequest(
-                    type = PaymentMethodType.BANK.name,
-                    number = request.number,
-                    bankCode = request.bankCode,
-                    ownerName = request.ownerName,
-                    provider = toPaymentProvider(request.bankCode)!!.name,
-                    country = request.country
-                )
+        linkAccount(
+            request = AddPaymentMethodRequest(
+                number = request.number,
+                bankCode = request.bankCode,
+                ownerName = request.ownerName,
+                provider = toPaymentProvider(request.bankCode)!!.name,
+                country = request.country
             )
-            logger.add("payment_method_token", response.token)
+        )
+    }
+
+    fun linkCreditCard(request: LinkCreditCardRequest) {
+        val tenant = tenantProvider.get()
+        linkAccount(
+            request = AddPaymentMethodRequest(
+                number = request.number,
+                expiryMonth = request.expiryMonth,
+                expiryYear = request.expiryYear,
+                provider = getCreditCardProvider(request.number, tenant).name,
+                ownerName = request.ownerName
+            )
+        )
+    }
+
+    /**
+     * See https://howtodoinjava.com/java/regex/java-regex-validate-credit-card-numbers/
+     */
+    private fun getCreditCardProvider(number: String, tenant: Tenant): PaymentMethodProvider =
+        if (number.startsWith("4") && (number.length == 13 || number.length == 16)) {
+            PaymentMethodProvider.VISA
+        } else if (number.substring(0, 2).toInt() in 51..55) {
+            PaymentMethodProvider.MASTERCARD
+        } else {
+            throw CreditCardInvalidException()
+        }
+
+    fun linkAccount(request: AddPaymentMethodRequest) {
+        try {
+            accountApi.addPaymentMethod(
+                id = securityContext.currentAccountId(),
+                request = request
+            )
         } catch (ex: FeignException) {
             val code = ex.toErrorResponse(objectMapper)?.error?.code ?: throw ex
             if (code == com.wutsi.platform.account.error.ErrorURN.PAYMENT_METHOD_OWNERSHIP.urn)
                 throw AccountAlreadyLinkedException(ex)
+            else if (code == com.wutsi.platform.account.error.ErrorURN.CREDIT_CARD_NUMBER_EXPIRED.urn)
+                throw CreditCardExpiredException()
+            else if (code == com.wutsi.platform.account.error.ErrorURN.CREDIT_CARD_NUMBER_MALFORMED.urn)
+                throw CreditCardInvalidException()
             else
                 throw ex
         }
@@ -148,6 +174,11 @@ class AccountService(
             if (financialInstitution != null) {
                 return tenantProvider.logo(financialInstitution)
             }
+        } else if (paymentMethod.type == PaymentMethodType.CREDIT_CARD.name) {
+            val creditCard = findCreditCardType(tenant, paymentMethod.provider)
+            if (creditCard != null) {
+                return tenantProvider.logo(creditCard)
+            }
         }
         return null
     }
@@ -162,6 +193,11 @@ class AccountService(
             val financialInstitution = findFinancialInstitution(tenant, paymentMethod.provider)
             if (financialInstitution != null) {
                 return tenantProvider.logo(financialInstitution)
+            }
+        } else if (paymentMethod.type == PaymentMethodType.CREDIT_CARD.name) {
+            val creditCardType = findCreditCardType(tenant, paymentMethod.provider)
+            if (creditCardType != null) {
+                return tenantProvider.logo(creditCardType)
             }
         }
         return null
@@ -190,6 +226,9 @@ class AccountService(
 
     fun findFinancialInstitution(tenant: Tenant, provider: String): FinancialInstitution? =
         tenant.financialInstitutions.find { it.code.equals(provider, true) }
+
+    fun findCreditCardType(tenant: Tenant, provider: String): CreditCardType? =
+        tenant.creditCardTypes.find { it.code.equals(provider, true) }
 
     fun getSmsCodeEntity(): SmsCodeEntity =
         cacheKey().let {

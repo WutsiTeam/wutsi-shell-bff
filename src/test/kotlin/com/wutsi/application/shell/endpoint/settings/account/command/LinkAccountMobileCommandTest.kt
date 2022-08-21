@@ -17,7 +17,6 @@ import com.wutsi.platform.account.dto.AddPaymentMethodRequest
 import com.wutsi.platform.account.dto.AddPaymentMethodResponse
 import com.wutsi.platform.account.error.ErrorURN
 import com.wutsi.platform.payment.PaymentMethodProvider
-import com.wutsi.platform.payment.PaymentMethodType
 import feign.FeignException
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -72,7 +71,6 @@ internal class LinkAccountMobileCommandTest : AbstractEndpointTest() {
         verify(accountApi).addPaymentMethod(eq(ACCOUNT_ID), entity.capture())
         assertNull(entity.firstValue.bankCode)
         assertEquals(state.phoneNumber, entity.firstValue.number)
-        assertEquals(PaymentMethodType.MOBILE.name, entity.firstValue.type)
         assertEquals(PaymentMethodProvider.MTN.name, entity.firstValue.provider)
         assertEquals(ACCOUNT_NAME, entity.firstValue.ownerName)
     }

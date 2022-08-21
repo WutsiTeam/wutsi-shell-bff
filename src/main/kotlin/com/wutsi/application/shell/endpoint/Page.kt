@@ -10,6 +10,7 @@ object Page {
     const val SETTINGS_ACCOUNT = "page.settings.account"
     const val SETTINGS_ACCOUNT_LINK = "page.settings.account.link"
     const val SETTINGS_ACCOUNT_LINK_BANK = "page.settings.account.link.bank"
+    const val SETTINGS_ACCOUNT_LINK_CREDIT_CARD = "page.settings.account.link.credit-card"
     const val SETTINGS_ACCOUNT_LINK_MOBILE = "page.settings.account.link.mobile"
     const val SETTINGS_ACCOUNT_PROFILE = "page.settings.account.profile"
     const val SETTINGS_ACCOUNT_LINK_SUCCESS = "page.settings.account.link.success"
