@@ -38,8 +38,7 @@ internal class SettingsAccountProfileScreenTest : AbstractEndpointTest() {
             token = token,
             type = PaymentMethodType.BANK.name,
             provider = PaymentMethodProvider.WAF.name,
-            maskedNumber = "yyy",
-            number = "123456",
+            maskedNumber = "...3456",
             bankAccount = BankAccount(
                 id = 123,
                 number = "123456",
@@ -60,8 +59,7 @@ internal class SettingsAccountProfileScreenTest : AbstractEndpointTest() {
             token = "456",
             type = PaymentMethodType.MOBILE.name,
             provider = PaymentMethodProvider.ORANGE.name,
-            maskedNumber = "yyy",
-            number = "+1237665111122",
+            maskedNumber = "...1122",
             phone = Phone(
                 id = 123,
                 number = "+1237665111122",

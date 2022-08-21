@@ -88,17 +88,14 @@ abstract class AbstractEndpoint {
         messages.getMessage(key, args, LocaleContextHolder.getLocale()) ?: key
 
     protected fun formattedAccountNumber(paymentMethod: PaymentMethodSummary): String =
+        paymentMethod.maskedNumber
+
+    protected fun formattedAccountNumber(paymentMethod: PaymentMethod): String =
         if (paymentMethod.type == PaymentMethodType.MOBILE.name)
             formattedPhoneNumber(paymentMethod.phone?.number, paymentMethod.phone?.country)
                 ?: paymentMethod.maskedNumber
         else
             paymentMethod.maskedNumber
-
-    protected fun formattedAccountNumber(paymentMethod: PaymentMethod): String? =
-        if (paymentMethod.type == PaymentMethodType.MOBILE.name)
-            formattedPhoneNumber(paymentMethod.phone?.number, paymentMethod.phone?.country)
-        else
-            paymentMethod.number
 
     protected fun formattedPhoneNumber(number: String?, country: String? = null): String? {
         if (number == null)

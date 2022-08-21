@@ -5,12 +5,10 @@ import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
-import com.wutsi.platform.account.dto.BankAccount
 import com.wutsi.platform.account.dto.Category
 import com.wutsi.platform.account.dto.GetAccountResponse
 import com.wutsi.platform.account.dto.ListPaymentMethodResponse
 import com.wutsi.platform.account.dto.PaymentMethodSummary
-import com.wutsi.platform.account.dto.Phone
 import com.wutsi.platform.payment.PaymentMethodProvider
 import com.wutsi.platform.payment.PaymentMethodType
 import com.wutsi.platform.payment.WutsiPaymentApi
@@ -52,35 +50,19 @@ internal class SettingsAccountScreenTest : AbstractEndpointTest() {
             token = "123",
             type = PaymentMethodType.MOBILE.name,
             provider = PaymentMethodProvider.MTN.name,
-            maskedNumber = "...1111",
-            number = "+1237665111111",
-            phone = Phone(
-                id = 123,
-                number = "+1237665111111"
-            )
+            maskedNumber = "...1111"
         )
         val m2 = PaymentMethodSummary(
             token = "456",
             type = PaymentMethodType.MOBILE.name,
             provider = PaymentMethodProvider.ORANGE.name,
-            maskedNumber = "...1122",
-            number = "+1237665111122",
-            phone = Phone(
-                id = 123,
-                number = "+1237665111122"
-            )
+            maskedNumber = "...1122"
         )
         val m3 = PaymentMethodSummary(
             token = "456",
             type = PaymentMethodType.BANK.name,
             provider = PaymentMethodProvider.WAF.name,
-            maskedNumber = "...3456",
-            number = "123456",
-            bankAccount = BankAccount(
-                id = 123,
-                number = "123456",
-                bankCode = "WAF"
-            )
+            maskedNumber = "...3456"
         )
         doReturn(ListPaymentMethodResponse(listOf(m1, m2, m3))).whenever(accountApi).listPaymentMethods(any())
     }
