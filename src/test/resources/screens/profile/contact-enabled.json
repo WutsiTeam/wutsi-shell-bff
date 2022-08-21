@@ -80,40 +80,8 @@
                         {
                           "type": "Container",
                           "attributes": {
-                            "alignment": "Center",
                             "padding": 10.0
                           },
-                          "children": [
-                            {
-                              "type": "Text",
-                              "attributes": {
-                                "caption": "Business Account",
-                                "color": "#95A5A6",
-                                "alignment": "Center"
-                              },
-                              "children": []
-                            }
-                          ]
-                        },
-                        {
-                          "type": "Container",
-                          "attributes": {
-                            "alignment": "Center"
-                          },
-                          "children": [
-                            {
-                              "type": "Text",
-                              "attributes": {
-                                "caption": "This is my bio",
-                                "alignment": "Center"
-                              },
-                              "children": []
-                            }
-                          ]
-                        },
-                        {
-                          "type": "Container",
-                          "attributes": {},
                           "children": [
                             {
                               "type": "Wrap",
@@ -159,88 +127,6 @@
                                       ]
                                     }
                                   ]
-                                },
-                                {
-                                  "type": "Container",
-                                  "attributes": {},
-                                  "children": [
-                                    {
-                                      "type": "Row",
-                                      "attributes": {
-                                        "mainAxisSize": "min"
-                                      },
-                                      "children": [
-                                        {
-                                          "type": "Icon",
-                                          "attributes": {
-                                            "code": "ef0b",
-                                            "size": 16.0
-                                          },
-                                          "children": []
-                                        },
-                                        {
-                                          "type": "Container",
-                                          "attributes": {
-                                            "padding": 2.0
-                                          },
-                                          "children": []
-                                        },
-                                        {
-                                          "type": "Text",
-                                          "attributes": {
-                                            "caption": "Marketing",
-                                            "color": "#95A5A6"
-                                          },
-                                          "children": []
-                                        }
-                                      ]
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "Container",
-                                  "attributes": {
-                                    "alignment": "Center",
-                                    "padding": 10.0
-                                  },
-                                  "children": [
-                                    {
-                                      "type": "Row",
-                                      "attributes": {
-                                        "mainAxisSize": "min"
-                                      },
-                                      "children": [
-                                        {
-                                          "type": "Icon",
-                                          "attributes": {
-                                            "code": "f169",
-                                            "size": 16.0
-                                          },
-                                          "children": []
-                                        },
-                                        {
-                                          "type": "Container",
-                                          "attributes": {
-                                            "padding": 2.0
-                                          },
-                                          "children": []
-                                        },
-                                        {
-                                          "type": "Text",
-                                          "attributes": {
-                                            "caption": "my.business.com/12432",
-                                            "color": "#1D7EDF",
-                                            "decoration": "Underline"
-                                          },
-                                          "children": []
-                                        }
-                                      ]
-                                    }
-                                  ],
-                                  "action": {
-                                    "type": "Navigate",
-                                    "url": "https://my.business.com/12432"
-                                  }
                                 }
                               ]
                             }

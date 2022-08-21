@@ -80,7 +80,7 @@ class SettingsAccountScreen(
         children.addAll(
             paymentMethods.map {
                 ListItem(
-                    caption = formattedAccountNumber(it) ?: it.maskedNumber,
+                    caption = formattedAccountNumber(it),
                     iconLeft = accountService.getLogoUrl(tenant, it),
                     iconRight = Theme.ICON_CHEVRON_RIGHT,
                     padding = 10.0,

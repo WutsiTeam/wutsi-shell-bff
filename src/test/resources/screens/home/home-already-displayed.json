@@ -2,7 +2,7 @@
   "type": "Screen",
   "attributes": {
     "id": "page.home",
-    "safe": true
+    "safe": false
   },
   "children": [
     {

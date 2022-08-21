@@ -56,7 +56,6 @@ abstract class AbstractEndpoint {
         model = sharedUIMapper.toBottomNavigationBarModel(
             shellUrl = "",
             cashUrl = cashUrl,
-            togglesProvider = togglesProvider,
             urlBuilder = urlBuilder
         )
     ).toBottomNavigationBar()
@@ -88,11 +87,12 @@ abstract class AbstractEndpoint {
     protected fun getText(key: String, args: Array<Any?> = emptyArray()) =
         messages.getMessage(key, args, LocaleContextHolder.getLocale()) ?: key
 
-    protected fun formattedAccountNumber(paymentMethod: PaymentMethodSummary): String? =
+    protected fun formattedAccountNumber(paymentMethod: PaymentMethodSummary): String =
         if (paymentMethod.type == PaymentMethodType.MOBILE.name)
             formattedPhoneNumber(paymentMethod.phone?.number, paymentMethod.phone?.country)
+                ?: paymentMethod.maskedNumber
         else
-            paymentMethod.number
+            paymentMethod.maskedNumber
 
     protected fun formattedAccountNumber(paymentMethod: PaymentMethod): String? =
         if (paymentMethod.type == PaymentMethodType.MOBILE.name)

@@ -15,6 +15,7 @@ import com.wutsi.platform.account.dto.GetAccountResponse
 import com.wutsi.platform.account.dto.Phone
 import com.wutsi.platform.contact.WutsiContactApi
 import com.wutsi.platform.contact.dto.SearchContactResponse
+import com.wutsi.platform.tenant.entity.ToggleName
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
@@ -58,6 +59,7 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
     @Test
     fun storeEnabled() {
         // GIVEN
+        doReturn(true).whenever(togglesProvider).isToggleEnabled(ToggleName.BUSINESS_ACCOUNT)
         doReturn(true).whenever(togglesProvider).isStoreEnabled()
 
         val account = createAccount(555, true, hasStore = true)
@@ -74,6 +76,7 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
     @Test
     fun cartEnabled() {
         // GIVEN
+        doReturn(true).whenever(togglesProvider).isToggleEnabled(ToggleName.BUSINESS_ACCOUNT)
         doReturn(true).whenever(togglesProvider).isStoreEnabled()
         doReturn(true).whenever(togglesProvider).isCartEnabled()
 
@@ -96,6 +99,8 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
     @Test
     fun business() {
         // GIVEN
+        doReturn(true).whenever(togglesProvider).isToggleEnabled(ToggleName.BUSINESS_ACCOUNT)
+
         val account = createAccount(555, true)
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
 

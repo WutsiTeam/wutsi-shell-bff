@@ -228,7 +228,7 @@
                                         {
                                           "type": "Text",
                                           "attributes": {
-                                            "caption": "my.business.com/12432",
+                                            "caption": "Website",
                                             "color": "#1D7EDF",
                                             "decoration": "Underline"
                                           },

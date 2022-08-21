@@ -5,6 +5,7 @@ import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.flutter.sdui.Action
+import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.Center
 import com.wutsi.flutter.sdui.Column
@@ -13,15 +14,12 @@ import com.wutsi.flutter.sdui.MoneyText
 import com.wutsi.flutter.sdui.Row
 import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.SingleChildScrollView
-import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.Alignment
 import com.wutsi.flutter.sdui.enums.ButtonType
-import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment.spaceAround
-import com.wutsi.flutter.sdui.enums.MainAxisAlignment.start
 import com.wutsi.platform.account.dto.Account
 import com.wutsi.platform.payment.WutsiPaymentApi
 import com.wutsi.platform.payment.core.Money
@@ -43,25 +41,6 @@ class HomeScreen(
         val me = securityContext.currentAccount()
         val balance = getBalance(me, tenant)
         val children = mutableListOf<WidgetAware>()
-
-        // Greetings
-        children.add(
-            Container(
-                padding = 10.0,
-                background = Theme.COLOR_PRIMARY,
-                alignment = Alignment.TopLeft,
-                child = Row(
-                    children = listOf(
-                        Text(
-                            caption = getText("page.home.greetings", arrayOf(me.displayName)),
-                            color = Theme.COLOR_WHITE
-                        )
-                    ),
-                    mainAxisAlignment = start,
-                    crossAxisAlignment = CrossAxisAlignment.start
-                )
-            )
-        )
 
         // Balance - for business account only
         if (togglesProvider.isAccountEnabled())
@@ -109,12 +88,18 @@ class HomeScreen(
 
         return Screen(
             id = Page.HOME,
-            appBar = null,
+            appBar = AppBar(
+                title = getText("page.home.greetings", arrayOf(me.displayName)),
+                backgroundColor = Theme.COLOR_PRIMARY,
+                foregroundColor = Theme.COLOR_WHITE,
+                elevation = 0.0,
+                automaticallyImplyLeading = false,
+                leading = null
+            ),
             child = SingleChildScrollView(
                 child = Column(children = children)
             ),
-            bottomNavigationBar = bottomNavigationBar(),
-            safe = true
+            bottomNavigationBar = bottomNavigationBar()
         ).toWidget()
     }
 

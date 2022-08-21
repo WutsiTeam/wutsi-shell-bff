@@ -2,7 +2,7 @@
   "type": "Screen",
   "attributes": {
     "id": "page.home",
-    "safe": true
+    "safe": false
   },
   "children": [
     {
@@ -13,33 +13,6 @@
           "type": "Column",
           "attributes": {},
           "children": [
-            {
-              "type": "Container",
-              "attributes": {
-                "alignment": "TopLeft",
-                "padding": 10.0,
-                "background": "#1D7EDF"
-              },
-              "children": [
-                {
-                  "type": "Row",
-                  "attributes": {
-                    "mainAxisAlignment": "start",
-                    "crossAxisAlignment": "start"
-                  },
-                  "children": [
-                    {
-                      "type": "Text",
-                      "attributes": {
-                        "caption": "Hi Ray Sponsible",
-                        "color": "#FFFFFF"
-                      },
-                      "children": []
-                    }
-                  ]
-                }
-              ]
-            },
             {
               "type": "Container",
               "attributes": {
@@ -104,6 +77,17 @@
       ]
     }
   ],
+  "appBar": {
+    "type": "AppBar",
+    "attributes": {
+      "title": "Hi Ray Sponsible",
+      "elevation": 0.0,
+      "backgroundColor": "#1D7EDF",
+      "foregroundColor": "#FFFFFF",
+      "automaticallyImplyLeading": false
+    },
+    "children": []
+  },
   "bottomNavigationBar": {
     "type": "BottomNavigationBar",
     "attributes": {

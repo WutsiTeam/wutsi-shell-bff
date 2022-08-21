@@ -116,7 +116,7 @@
                     {
                       "type": "ListItem",
                       "attributes": {
-                        "caption": "123456",
+                        "caption": "...3456",
                         "iconLeft": "http://www.goole.com/images/waf.png",
                         "iconRight": "e15f",
                         "padding": 10.0
