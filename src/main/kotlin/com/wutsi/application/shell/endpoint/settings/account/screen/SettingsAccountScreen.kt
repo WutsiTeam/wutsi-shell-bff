@@ -28,8 +28,6 @@ import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisSize
 import com.wutsi.platform.account.dto.PaymentMethodSummary
-import com.wutsi.platform.payment.PaymentMethodProvider
-import com.wutsi.platform.payment.PaymentMethodType
 import com.wutsi.platform.tenant.dto.Tenant
 import com.wutsi.platform.tenant.entity.ToggleName
 import org.springframework.web.bind.annotation.PostMapping
@@ -81,7 +79,6 @@ class SettingsAccountScreen(
         val children = mutableListOf<WidgetAware>()
         children.addAll(
             paymentMethods
-                .filter { supports(PaymentMethodProvider.valueOf(it.provider.uppercase())) }
                 .map {
                     ListItem(
                         caption = formattedAccountNumber(it),
@@ -113,18 +110,6 @@ class SettingsAccountScreen(
             separatorColor = Theme.COLOR_DIVIDER,
             separator = true
         )
-    }
-
-    private fun supports(provider: PaymentMethodProvider): Boolean {
-        return if (provider.type == PaymentMethodType.MOBILE) {
-            togglesProvider.isToggleEnabled(ToggleName.ACCOUNT_MOBILE_MONEY)
-        } else if (provider.type == PaymentMethodType.CREDIT_CARD) {
-            togglesProvider.isToggleEnabled(ToggleName.ACCOUNT_CREDIT_CARD)
-        } else if (provider.type == PaymentMethodType.BANK) {
-            togglesProvider.isToggleEnabled(ToggleName.ACCOUNT_BANK)
-        } else {
-            false
-        }
     }
 
     private fun toBalanceWidget(

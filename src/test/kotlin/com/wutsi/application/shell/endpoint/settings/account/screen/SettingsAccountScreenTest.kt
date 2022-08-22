@@ -71,10 +71,6 @@ internal class SettingsAccountScreenTest : AbstractEndpointTest() {
             maskedNumber = "...4444"
         )
         doReturn(ListPaymentMethodResponse(listOf(m1, m2, m3, m4))).whenever(accountApi).listPaymentMethods(any())
-
-        doReturn(true).whenever(toggleProvider).isToggleEnabled(ToggleName.ACCOUNT_BANK)
-        doReturn(true).whenever(toggleProvider).isToggleEnabled(ToggleName.ACCOUNT_CREDIT_CARD)
-        doReturn(true).whenever(toggleProvider).isToggleEnabled(ToggleName.ACCOUNT_MOBILE_MONEY)
     }
 
     @Test
