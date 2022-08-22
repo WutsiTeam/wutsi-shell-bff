@@ -28,6 +28,8 @@ import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisSize
 import com.wutsi.platform.account.dto.PaymentMethodSummary
+import com.wutsi.platform.payment.PaymentMethodProvider
+import com.wutsi.platform.payment.PaymentMethodType
 import com.wutsi.platform.tenant.dto.Tenant
 import com.wutsi.platform.tenant.entity.ToggleName
 import org.springframework.web.bind.annotation.PostMapping
@@ -78,18 +80,20 @@ class SettingsAccountScreen(
     private fun accountListWidget(paymentMethods: List<PaymentMethodSummary>, tenant: Tenant): WidgetAware {
         val children = mutableListOf<WidgetAware>()
         children.addAll(
-            paymentMethods.map {
-                ListItem(
-                    caption = formattedAccountNumber(it),
-                    iconLeft = accountService.getLogoUrl(tenant, it),
-                    iconRight = Theme.ICON_CHEVRON_RIGHT,
-                    padding = 10.0,
-                    action = Action(
-                        type = Route,
-                        url = urlBuilder.build("settings/account/profile?token=${it.token}")
+            paymentMethods
+                .filter { supports(PaymentMethodProvider.valueOf(it.provider.uppercase())) }
+                .map {
+                    ListItem(
+                        caption = formattedAccountNumber(it),
+                        iconLeft = accountService.getLogoUrl(tenant, it),
+                        iconRight = Theme.ICON_CHEVRON_RIGHT,
+                        padding = 10.0,
+                        action = Action(
+                            type = Route,
+                            url = urlBuilder.build("settings/account/profile?token=${it.token}")
+                        )
                     )
-                )
-            }
+                }
         )
         children.add(
             Container(
@@ -109,6 +113,18 @@ class SettingsAccountScreen(
             separatorColor = Theme.COLOR_DIVIDER,
             separator = true
         )
+    }
+
+    private fun supports(provider: PaymentMethodProvider): Boolean {
+        return if (provider.type == PaymentMethodType.MOBILE) {
+            togglesProvider.isToggleEnabled(ToggleName.ACCOUNT_MOBILE_MONEY)
+        } else if (provider.type == PaymentMethodType.CREDIT_CARD) {
+            togglesProvider.isToggleEnabled(ToggleName.ACCOUNT_CREDIT_CARD)
+        } else if (provider.type == PaymentMethodType.BANK) {
+            togglesProvider.isToggleEnabled(ToggleName.ACCOUNT_BANK)
+        } else {
+            false
+        }
     }
 
     private fun toBalanceWidget(
