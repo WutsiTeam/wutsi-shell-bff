@@ -28,13 +28,14 @@ internal class BusinessCategoryPageTest : AbstractEndpointTest() {
     fun invoke() {
         // GIVEN
         val categories = listOf(
-            Category(id = 1, title = "category1"),
-            Category(id = 2, title = "category2"),
-            Category(id = 3, title = "category3")
+            Category(id = 1, title = "Art"),
+            Category(id = 2, title = "Beauté"),
+            Category(id = 3, title = "Club de Sport"),
+            Category(id = 4, title = "Écrivain"),
+            Category(id = 5, title = "Garage")
         )
         doReturn(ListCategoryResponse(categories)).whenever(accountApi).listCategories()
 
-        // THEN
         // THEN
         assertEndpointEquals("/pages/settings/profile/category.json", url)
     }

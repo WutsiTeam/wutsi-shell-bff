@@ -48,7 +48,7 @@
                 {
                   "type": "DropdownMenuItem",
                   "attributes": {
-                    "caption": "category1",
+                    "caption": "Art",
                     "enabled": true,
                     "value": "1"
                   },
@@ -57,7 +57,7 @@
                 {
                   "type": "DropdownMenuItem",
                   "attributes": {
-                    "caption": "category2",
+                    "caption": "Beauté",
                     "enabled": true,
                     "value": "2"
                   },
@@ -66,9 +66,27 @@
                 {
                   "type": "DropdownMenuItem",
                   "attributes": {
-                    "caption": "category3",
+                    "caption": "Club de Sport",
                     "enabled": true,
                     "value": "3"
+                  },
+                  "children": []
+                },
+                {
+                  "type": "DropdownMenuItem",
+                  "attributes": {
+                    "caption": "Écrivain",
+                    "enabled": true,
+                    "value": "4"
+                  },
+                  "children": []
+                },
+                {
+                  "type": "DropdownMenuItem",
+                  "attributes": {
+                    "caption": "Garage",
+                    "enabled": true,
+                    "value": "5"
                   },
                   "children": []
                 }

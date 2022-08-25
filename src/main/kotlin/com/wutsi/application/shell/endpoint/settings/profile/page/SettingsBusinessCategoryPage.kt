@@ -1,5 +1,6 @@
 package com.wutsi.application.shell.endpoint.settings.profile.page
 
+import com.wutsi.application.shared.service.StringUtil
 import com.wutsi.flutter.sdui.DropdownMenuItem
 import com.wutsi.flutter.sdui.SearchableDropdown
 import com.wutsi.flutter.sdui.WidgetAware
@@ -22,7 +23,7 @@ class SettingsBusinessCategoryPage(
             name = "value",
             value = user.category?.id?.toString(),
             children = accountApi.listCategories().categories
-                .sortedBy { it.title }
+                .sortedBy { StringUtil.unaccent(it.title.uppercase()) }
                 .map {
                     DropdownMenuItem(
                         caption = it.title,
