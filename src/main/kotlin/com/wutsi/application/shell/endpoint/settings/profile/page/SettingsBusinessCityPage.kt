@@ -1,6 +1,7 @@
 package com.wutsi.application.shell.endpoint.settings.profile.page
 
 import com.wutsi.application.shared.service.CityService
+import com.wutsi.application.shared.service.StringUtil
 import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.flutter.sdui.DropdownMenuItem
 import com.wutsi.flutter.sdui.SearchableDropdown
@@ -26,7 +27,11 @@ class SettingsBusinessCityPage(
             name = "value",
             value = user.cityId?.toString(),
             children = cityService.search(null, tenant.countries)
-                .sortedBy { sharedUIMapper.toLocationText(it, user.country) }
+                .sortedBy {
+                    StringUtil.unaccent(
+                        sharedUIMapper.toLocationText(it, user.country).uppercase()
+                    )
+                }
                 .map {
                     DropdownMenuItem(
                         caption = sharedUIMapper.toLocationText(it, user.country),
@@ -35,4 +40,6 @@ class SettingsBusinessCityPage(
                 }
         )
     }
+
+
 }
