@@ -178,7 +178,7 @@ class SettingsScreen(
                     type = ButtonType.Outlined,
                     action = Action(
                         type = Route,
-                        url = urlBuilder.build(loginUrl, ""),
+                        url = urlBuilder.build("/commands/logout"),
                         replacement = true,
                         parameters = mapOf(
                             "phone" to user.phone!!.number,

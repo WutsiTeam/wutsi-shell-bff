@@ -229,7 +229,7 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "https://wutsi-gateway-test.herokuapp.com/login",
+                    "url": "http://localhost:0/commands/logout",
                     "replacement": true,
                     "parameters": {
                       "phone": "+1237666666666",
