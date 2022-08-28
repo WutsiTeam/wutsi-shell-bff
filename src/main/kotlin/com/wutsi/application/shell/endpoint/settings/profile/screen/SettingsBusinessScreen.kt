@@ -26,14 +26,38 @@ class SettingsBusinessScreen : AbstractQuery() {
             ),
             child = PageView(
                 children = listOf(
-                    com.wutsi.flutter.sdui.Page(url = urlBuilder.build("/settings/business/pages/start")),
-                    com.wutsi.flutter.sdui.Page(url = urlBuilder.build("/settings/business/pages/display-name")),
-                    com.wutsi.flutter.sdui.Page(url = urlBuilder.build("/settings/business/pages/biography")),
-                    com.wutsi.flutter.sdui.Page(url = urlBuilder.build("/settings/business/pages/category")),
-                    com.wutsi.flutter.sdui.Page(url = urlBuilder.build("/settings/business/pages/city")),
-                    com.wutsi.flutter.sdui.Page(url = urlBuilder.build("/settings/business/pages/street")),
-                    com.wutsi.flutter.sdui.Page(url = urlBuilder.build("/settings/business/pages/whatsapp")),
-                    com.wutsi.flutter.sdui.Page(url = urlBuilder.build("/settings/business/pages/confirm"))
+                    com.wutsi.flutter.sdui.Page(
+                        id = Page.SETTINGS_BUSINESS + ".0",
+                        url = urlBuilder.build("/settings/business/pages/start")
+                    ),
+                    com.wutsi.flutter.sdui.Page(
+                        id = Page.SETTINGS_BUSINESS + ".1",
+                        url = urlBuilder.build("/settings/business/pages/display-name")
+                    ),
+                    com.wutsi.flutter.sdui.Page(
+                        id = Page.SETTINGS_BUSINESS + ".2",
+                        url = urlBuilder.build("/settings/business/pages/biography")
+                    ),
+                    com.wutsi.flutter.sdui.Page(
+                        id = Page.SETTINGS_BUSINESS + ".3",
+                        url = urlBuilder.build("/settings/business/pages/category")
+                    ),
+                    com.wutsi.flutter.sdui.Page(
+                        id = Page.SETTINGS_BUSINESS + ".4",
+                        url = urlBuilder.build("/settings/business/pages/city")
+                    ),
+                    com.wutsi.flutter.sdui.Page(
+                        id = Page.SETTINGS_BUSINESS + ".5",
+                        url = urlBuilder.build("/settings/business/pages/street")
+                    ),
+                    com.wutsi.flutter.sdui.Page(
+                        id = Page.SETTINGS_BUSINESS + ".6",
+                        url = urlBuilder.build("/settings/business/pages/whatsapp")
+                    ),
+                    com.wutsi.flutter.sdui.Page(
+                        id = Page.SETTINGS_BUSINESS + ".7",
+                        url = urlBuilder.build("/settings/business/pages/confirm")
+                    )
                 )
             )
         ).toWidget()
