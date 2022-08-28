@@ -257,13 +257,9 @@
                   },
                   "children": [],
                   "action": {
-                    "type": "Route",
+                    "type": "Command",
                     "url": "http://localhost:0/commands/logout",
-                    "replacement": true,
-                    "parameters": {
-                      "phone": "+1237666666666",
-                      "hide-back-button": "true"
-                    }
+                    "replacement": true
                   }
                 }
               ]

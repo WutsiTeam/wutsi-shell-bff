@@ -177,13 +177,9 @@ class SettingsScreen(
                     caption = getText("page.settings.button.logout"),
                     type = ButtonType.Outlined,
                     action = Action(
-                        type = Route,
+                        type = Command,
                         url = urlBuilder.build("/commands/logout"),
-                        replacement = true,
-                        parameters = mapOf(
-                            "phone" to user.phone!!.number,
-                            "hide-back-button" to "true"
-                        )
+                        replacement = true
                     )
                 )
             )
