@@ -2,6 +2,7 @@ package com.wutsi.application.shell.endpoint.settings.profile.page
 
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.shell.endpoint.AbstractQuery
+import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.Column
@@ -22,6 +23,7 @@ class SettingBusinessConfirmPage : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
         return Column(
+            id = Page.SETTINGS_BUSINESS + ".7",
             children = listOf(
                 Container(padding = 40.0),
                 Container(

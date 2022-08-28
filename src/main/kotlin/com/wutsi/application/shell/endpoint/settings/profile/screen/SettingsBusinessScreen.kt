@@ -25,6 +25,7 @@ class SettingsBusinessScreen : AbstractQuery() {
                 automaticallyImplyLeading = false
             ),
             child = PageView(
+                id = Page.SETTINGS_BUSINESS + ".view",
                 children = listOf(
                     com.wutsi.flutter.sdui.Page(
                         id = Page.SETTINGS_BUSINESS + ".0",

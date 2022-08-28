@@ -1,6 +1,8 @@
 {
   "type": "Column",
-  "attributes": {},
+  "attributes": {
+    "id": "page.settings.business.7"
+  },
   "children": [
     {
       "type": "Container",

@@ -1,6 +1,7 @@
 package com.wutsi.application.shell.endpoint.settings.profile.page
 
 import com.wutsi.application.shell.endpoint.AbstractQuery
+import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.Container
@@ -28,6 +29,7 @@ abstract class AbstractBusinessAttributePage : AbstractQuery() {
     fun index(): Widget {
         val user = securityContext.currentAccount()
         return Container(
+            id = Page.SETTINGS_BUSINESS + "." + getPageIndex(),
             padding = 10.0,
             child = Form(
                 children = listOfNotNull(
