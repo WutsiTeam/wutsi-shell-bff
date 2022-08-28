@@ -13,6 +13,7 @@ import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.Alignment
+import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.TextAlignment
@@ -62,6 +63,17 @@ class SettingBusinessStartPage : AbstractQuery() {
                         action = Action(
                             type = ActionType.Page,
                             url = "page:/1"
+                        )
+                    )
+                ),
+                Container(
+                    padding = 10.0,
+                    child = Button(
+                        type = ButtonType.Text,
+                        caption = getText("page.settings.profile.attribute.button.back"),
+                        action = Action(
+                            type = ActionType.Route,
+                            url = "route:/.."
                         )
                     )
                 )
