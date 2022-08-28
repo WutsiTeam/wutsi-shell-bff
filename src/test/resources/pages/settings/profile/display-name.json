@@ -93,7 +93,7 @@
               "attributes": {
                 "caption": "Back",
                 "padding": 15.0,
-                "type": "Text"
+                "type": "Outlined"
               },
               "children": [],
               "action": {

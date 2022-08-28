@@ -71,7 +71,7 @@ class SettingBusinessStartPage : AbstractQuery() {
                 Container(
                     padding = 10.0,
                     child = Button(
-                        type = ButtonType.Text,
+                        type = ButtonType.Outlined,
                         caption = getText("page.settings.profile.attribute.button.back"),
                         action = Action(
                             type = ActionType.Route,
