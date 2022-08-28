@@ -119,6 +119,27 @@
               }
             }
           ]
+        },
+        {
+          "type": "Container",
+          "attributes": {
+            "padding": 10.0
+          },
+          "children": [
+            {
+              "type": "Button",
+              "attributes": {
+                "caption": "Back",
+                "padding": 15.0,
+                "type": "Text"
+              },
+              "children": [],
+              "action": {
+                "type": "Page",
+                "url": "page:/2"
+              }
+            }
+          ]
         }
       ]
     }

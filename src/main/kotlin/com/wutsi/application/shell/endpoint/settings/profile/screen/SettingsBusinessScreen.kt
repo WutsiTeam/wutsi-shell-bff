@@ -21,7 +21,8 @@ class SettingsBusinessScreen : AbstractQuery() {
             appBar = AppBar(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
-                foregroundColor = Theme.COLOR_BLACK
+                foregroundColor = Theme.COLOR_BLACK,
+                automaticallyImplyLeading = false
             ),
             child = PageView(
                 children = listOf(

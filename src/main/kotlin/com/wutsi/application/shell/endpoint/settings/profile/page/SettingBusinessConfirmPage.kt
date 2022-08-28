@@ -62,6 +62,17 @@ class SettingBusinessConfirmPage : AbstractQuery() {
                             url = "route:/~"
                         )
                     )
+                ),
+                Container(
+                    padding = 10.0,
+                    child = Button(
+                        type = ButtonType.Text,
+                        caption = getText("page.settings.profile.attribute.button.back"),
+                        action = Action(
+                            type = ActionType.Page,
+                            url = "page:/6"
+                        )
+                    )
                 )
             )
         ).toWidget()
