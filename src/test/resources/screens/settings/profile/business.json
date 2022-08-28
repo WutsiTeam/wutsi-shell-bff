@@ -8,6 +8,7 @@
     {
       "type": "PageView",
       "attributes": {
+        "id": "page.settings.business.view",
         "direction": "Horizontal"
       },
       "children": [
