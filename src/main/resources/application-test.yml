@@ -6,7 +6,7 @@ spring:
     password: ${SMTP_PASSWORD}
     properties:
       mail:
-        debug: false
+        debug: true
 
 wutsi:
   application:

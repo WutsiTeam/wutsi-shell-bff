@@ -13,7 +13,6 @@ import com.wutsi.platform.messaging.Message
 import com.wutsi.platform.messaging.MessagingServiceProvider
 import com.wutsi.platform.messaging.MessagingType
 import com.wutsi.platform.messaging.Party
-import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -26,18 +25,31 @@ class SendFeedbackCommand(
     private val tracingContext: TracingContext,
     private val tenantProvider: TenantProvider
 ) : AbstractCommand() {
-    companion object {
-        private val LOGGER = LoggerFactory.getLogger(SendFeedbackRequest::class.java)
-    }
-
     @PostMapping
     fun index(@RequestBody request: SendFeedbackRequest): Action {
         // Send
-        try {
-            send(request)
-        } catch (ex: Exception) {
-            LOGGER.warn("Unable to send the feedback", ex)
-        }
+        val user = securityContext.currentAccount()
+        val tenant = tenantProvider.get()
+        val id = provider.get(MessagingType.EMAIL).send(
+            message = Message(
+                recipient = Party(email = tenant.supportEmail),
+                mimeType = "text/plain",
+                subject = "User Feedback",
+                body = """
+                        ${request.message}
+
+                        --------------------------------------
+
+                        User: ${user.id} - ${user.displayName}
+                        Device-ID: ${tracingContext.deviceId()}
+                        Trace-ID: ${tracingContext.traceId()}
+                        Client-Info: ${tracingContext.clientInfo()}
+                """.trimIndent()
+            )
+        )
+        logger.add("sender_id", user.id)
+        logger.add("sender_fullname", user.displayName)
+        logger.add("message_id", id)
 
         // Result
         return Action(
@@ -55,28 +67,6 @@ class SendFeedbackCommand(
                     )
                 )
             ).toWidget()
-        )
-    }
-
-    private fun send(@RequestBody request: SendFeedbackRequest) {
-        val user = securityContext.currentAccount()
-        val tenant = tenantProvider.get()
-        provider.get(MessagingType.EMAIL).send(
-            message = Message(
-                recipient = Party(email = tenant.supportEmail),
-                mimeType = "text/plain",
-                subject = "User Feedback",
-                body = """
-                        ${request.message}
-
-                        --------------------------------------
-
-                        User: ${user.id} - ${user.displayName}
-                        Device-ID: ${tracingContext.deviceId()}
-                        Trace-ID: ${tracingContext.traceId()}
-                        Client-Info: ${tracingContext.clientInfo()}
-                """.trimIndent()
-            )
         )
     }
 }
