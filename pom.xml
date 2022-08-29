@@ -30,7 +30,7 @@
     <klint.version>0.47.0</klint.version>
     <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
 
-    <wutsi-mail.version>0.0.10</wutsi-mail.version>
+    <wutsi-messaging.version>0.0.1</wutsi-messaging.version>
     <wutsi-shared-ui.version>0.0.319</wutsi-shared-ui.version>
   </properties>
 
@@ -41,9 +41,9 @@
       <version>${wutsi-shared-ui.version}</version>
     </dependency>
     <dependency>
-      <groupId>com.wutsi.platform.mail</groupId>
-      <artifactId>wutsi-mail-sdk-kotlin</artifactId>
-      <version>${wutsi-mail.version}</version>
+      <groupId>com.wutsi</groupId>
+      <artifactId>wutsi-platform-messaging</artifactId>
+      <version>${wutsi-messaging.version}</version>
     </dependency>
 
     <dependency>
@@ -68,6 +68,10 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-validation</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-mail</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
