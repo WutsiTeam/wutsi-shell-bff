@@ -20,6 +20,7 @@ import com.wutsi.platform.core.tracing.TracingContext
 import com.wutsi.platform.core.tracing.spring.SpringTracingRequestInterceptor
 import com.wutsi.platform.payment.PaymentMethodProvider
 import com.wutsi.platform.payment.core.ErrorCode
+import com.wutsi.platform.security.WutsiSecurityApi
 import com.wutsi.platform.tenant.WutsiTenantApi
 import com.wutsi.platform.tenant.dto.CreditCardType
 import com.wutsi.platform.tenant.dto.FinancialInstitution
@@ -69,6 +70,9 @@ abstract class AbstractEndpointTest {
 
     @MockBean
     protected lateinit var cache: Cache
+
+    @MockBean
+    protected lateinit var securityApi: WutsiSecurityApi
 
     @Autowired
     private lateinit var messages: MessageSource

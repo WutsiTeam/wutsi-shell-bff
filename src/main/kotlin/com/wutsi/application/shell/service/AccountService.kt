@@ -25,10 +25,12 @@ import com.wutsi.platform.core.error.Error
 import com.wutsi.platform.core.error.exception.NotFoundException
 import com.wutsi.platform.core.logging.KVLogger
 import com.wutsi.platform.core.tracing.DeviceIdProvider
+import com.wutsi.platform.messaging.MessagingType
 import com.wutsi.platform.payment.PaymentMethodProvider
 import com.wutsi.platform.payment.PaymentMethodType
-import com.wutsi.platform.sms.WutsiSmsApi
-import com.wutsi.platform.sms.dto.SendVerificationRequest
+import com.wutsi.platform.security.WutsiSecurityApi
+import com.wutsi.platform.security.dto.CreateOTPRequest
+import com.wutsi.platform.security.dto.VerifyOTPRequest
 import com.wutsi.platform.tenant.dto.CreditCardType
 import com.wutsi.platform.tenant.dto.FinancialInstitution
 import com.wutsi.platform.tenant.dto.MobileCarrier
@@ -36,17 +38,15 @@ import com.wutsi.platform.tenant.dto.Tenant
 import feign.FeignException
 import org.springframework.cache.Cache
 import org.springframework.stereotype.Service
-import org.springframework.web.servlet.LocaleResolver
 import javax.servlet.http.HttpServletRequest
 
 @Service
 class AccountService(
     private val tenantProvider: TenantProvider,
-    private val smsApi: WutsiSmsApi,
     private val accountApi: WutsiAccountApi,
+    private val securityApi: WutsiSecurityApi,
     private val deviceIdProvider: DeviceIdProvider,
     private val httpServletRequest: HttpServletRequest,
-    private val localeResolver: LocaleResolver,
     private val securityContext: SecurityContext,
     private val logger: KVLogger,
     private val objectMapper: ObjectMapper,
@@ -79,9 +79,11 @@ class AccountService(
         logger.add("verification_code", request.code)
 
         try {
-            smsApi.validateVerification(
-                id = state.verificationId,
-                code = request.code
+            securityApi.verifyOtp(
+                token = state.token,
+                request = VerifyOTPRequest(
+                    code = request.code
+                )
             )
         } catch (ex: Exception) {
             throw SmsCodeMismatchException(ex)
@@ -218,7 +220,7 @@ class AccountService(
     private fun log(state: SmsCodeEntity) {
         logger.add("phone_carrier", state.carrier)
         logger.add("phone_number", state.phoneNumber)
-        logger.add("verification_id", state.verificationId)
+        logger.add("token", state.token)
     }
 
     fun findMobileCarrier(tenant: Tenant, provider: String): MobileCarrier? =
@@ -243,13 +245,13 @@ class AccountService(
                 )
         }
 
-    private fun storeVerificationNumber(phoneNumber: String, verificationId: Long, carrier: String) {
+    private fun storeVerificationNumber(phoneNumber: String, token: String, carrier: String) {
         cache.put(
             cacheKey(),
             SmsCodeEntity(
                 phoneNumber = phoneNumber,
                 carrier = carrier,
-                verificationId = verificationId
+                token = token
             )
         )
     }
@@ -257,13 +259,13 @@ class AccountService(
     private fun toPaymentProvider(carrier: String): PaymentMethodProvider? =
         PaymentMethodProvider.values().find { it.name.equals(carrier, ignoreCase = true) }
 
-    private fun sendVerificationCode(phoneNumber: String): Long =
-        smsApi.sendVerification(
-            SendVerificationRequest(
-                phoneNumber = phoneNumber,
-                language = localeResolver.resolveLocale(httpServletRequest).language
+    private fun sendVerificationCode(phoneNumber: String): String =
+        securityApi.createOpt(
+            request = CreateOTPRequest(
+                address = phoneNumber,
+                type = MessagingType.SMS.name
             )
-        ).id
+        ).token
 
     private fun findCarrier(phoneNumber: String, tenant: Tenant): MobileCarrier? {
         val carriers = tenantProvider.mobileCarriers(tenant)

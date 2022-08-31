@@ -13,13 +13,12 @@ import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.DialogType
 import com.wutsi.platform.account.dto.AddPaymentMethodResponse
-import com.wutsi.platform.sms.WutsiSmsApi
+import com.wutsi.platform.security.dto.VerifyOTPRequest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.test.web.server.LocalServerPort
 import org.springframework.context.MessageSource
 import org.springframework.test.context.ActiveProfiles
@@ -33,9 +32,6 @@ internal class VerifySmsCodeCommandTest : AbstractEndpointTest() {
 
     private lateinit var url: String
 
-    @MockBean
-    lateinit var smsApi: WutsiSmsApi
-
     @Autowired
     lateinit var messageSource: MessageSource
 
@@ -47,7 +43,7 @@ internal class VerifySmsCodeCommandTest : AbstractEndpointTest() {
 
         url = "http://localhost:$port/commands/verify-sms-code"
 
-        state = SmsCodeEntity(phoneNumber = "+23799509999", verificationId = 777L, carrier = "mtn")
+        state = SmsCodeEntity(phoneNumber = "+23799509999", token = "777", carrier = "mtn")
         doReturn(state).whenever(cache).get(any(), eq(SmsCodeEntity::class.java))
     }
 
@@ -71,13 +67,13 @@ internal class VerifySmsCodeCommandTest : AbstractEndpointTest() {
             action.url
         )
 
-        verify(smsApi).validateVerification(state.verificationId, request.code)
+        verify(securityApi).verifyOtp(state.token, VerifyOTPRequest(request.code))
     }
 
     @Test
     fun verificationFailed() {
         // GIVEN
-        doThrow(RuntimeException::class).whenever(smsApi).validateVerification(any(), any())
+        doThrow(RuntimeException::class).whenever(securityApi).verifyOtp(any(), any())
 
         // WHEN
         val request = VerifySmsCodeRequest(

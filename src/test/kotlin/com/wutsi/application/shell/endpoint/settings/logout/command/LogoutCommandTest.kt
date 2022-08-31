@@ -7,7 +7,6 @@ import com.wutsi.application.shell.endpoint.AbstractEndpointTest
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.platform.core.security.spring.RequestTokenProvider
-import com.wutsi.platform.security.WutsiSecurityApi
 import com.wutsi.platform.security.dto.LogoutRequest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -19,9 +18,6 @@ import org.springframework.boot.test.web.server.LocalServerPort
 internal class LogoutCommandTest : AbstractEndpointTest() {
     @LocalServerPort
     val port: Int = 0
-
-    @MockBean
-    private lateinit var securityApi: WutsiSecurityApi
 
     @MockBean
     private lateinit var tokenProvider: RequestTokenProvider

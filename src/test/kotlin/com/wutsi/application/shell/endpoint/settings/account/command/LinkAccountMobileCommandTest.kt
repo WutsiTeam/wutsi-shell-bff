@@ -48,7 +48,7 @@ internal class LinkAccountMobileCommandTest : AbstractEndpointTest() {
 
         url = "http://localhost:$port/commands/link-mobile-account"
 
-        state = SmsCodeEntity(phoneNumber = "+23799509999", verificationId = 777L, carrier = "mtn")
+        state = SmsCodeEntity(phoneNumber = "+23799509999", token = "777019", carrier = "mtn")
         doReturn(state).whenever(cache).get(any(), eq(SmsCodeEntity::class.java))
     }
 

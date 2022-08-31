@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.scheduling.annotation.EnableScheduling
 
 @WutsiApplication
-@WutsiBffApplication
 @WutsiMessaging
+@WutsiBffApplication
 @SpringBootApplication
 @EnableScheduling
 class Application

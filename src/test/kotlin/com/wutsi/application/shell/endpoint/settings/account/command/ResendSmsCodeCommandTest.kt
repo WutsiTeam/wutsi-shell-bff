@@ -11,13 +11,12 @@ import com.wutsi.application.shell.entity.SmsCodeEntity
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.DialogType
-import com.wutsi.platform.sms.WutsiSmsApi
-import com.wutsi.platform.sms.dto.SendVerificationResponse
+import com.wutsi.platform.security.dto.CreateOTPRequest
+import com.wutsi.platform.security.dto.CreateOTPResponse
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.test.web.server.LocalServerPort
 import org.springframework.test.context.ActiveProfiles
 
@@ -31,24 +30,21 @@ internal class ResendSmsCodeCommandTest : AbstractEndpointTest() {
 
     private lateinit var state: SmsCodeEntity
 
-    @MockBean
-    lateinit var smsApi: WutsiSmsApi
-
     @BeforeEach
     override fun setUp() {
         super.setUp()
 
         url = "http://localhost:$port/commands/resend-sms-code"
 
-        state = SmsCodeEntity(phoneNumber = "+23799509999", verificationId = 777L, carrier = "mtn")
+        state = SmsCodeEntity(phoneNumber = "+23799509999", token = "777", carrier = "mtn")
         doReturn(state).whenever(cache).get(any(), eq(SmsCodeEntity::class.java))
     }
 
     @Test
     fun sendVerification() {
         // GIVEN
-        val verificationId = 777L
-        doReturn(SendVerificationResponse(verificationId)).whenever(smsApi).sendVerification(any())
+        val token = "4309403-4304039"
+        doReturn(CreateOTPResponse(token)).whenever(securityApi).createOpt(any())
 
         // WHEN
         val request = emptyMap<String, String>()
@@ -59,9 +55,11 @@ internal class ResendSmsCodeCommandTest : AbstractEndpointTest() {
         assertEquals(ActionType.Prompt, action.type)
         assertEquals(DialogType.Information.name, action.prompt?.attributes?.get("type"))
 
+        verify(securityApi).createOpt(CreateOTPRequest(address = state.phoneNumber, type = "SMS"))
+
         val entity = argumentCaptor<SmsCodeEntity>()
         verify(cache).put(any(), entity.capture())
         assertEquals(state.phoneNumber, entity.firstValue.phoneNumber)
-        assertEquals(verificationId, entity.firstValue.verificationId)
+        assertEquals(token, entity.firstValue.token)
     }
 }

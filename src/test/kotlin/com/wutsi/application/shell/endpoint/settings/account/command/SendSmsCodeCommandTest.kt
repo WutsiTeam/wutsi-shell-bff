@@ -13,13 +13,12 @@ import com.wutsi.application.shell.entity.SmsCodeEntity
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.DialogType
-import com.wutsi.platform.sms.WutsiSmsApi
-import com.wutsi.platform.sms.dto.SendVerificationResponse
+import com.wutsi.platform.security.dto.CreateOTPRequest
+import com.wutsi.platform.security.dto.CreateOTPResponse
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.test.web.server.LocalServerPort
 import org.springframework.test.context.ActiveProfiles
 
@@ -31,9 +30,6 @@ internal class SendSmsCodeCommandTest : AbstractEndpointTest() {
 
     private lateinit var url: String
 
-    @MockBean
-    lateinit var smsApi: WutsiSmsApi
-
     @BeforeEach
     override fun setUp() {
         super.setUp()
@@ -44,8 +40,8 @@ internal class SendSmsCodeCommandTest : AbstractEndpointTest() {
     @Test
     fun sendVerification() {
         // GIVEN
-        val verificationId = 777L
-        doReturn(SendVerificationResponse(verificationId)).whenever(smsApi).sendVerification(any())
+        val token = "4309403-4304039"
+        doReturn(CreateOTPResponse(token)).whenever(securityApi).createOpt(any())
 
         // WHEN
         val request = SendSmsCodeRequest(
@@ -58,10 +54,12 @@ internal class SendSmsCodeCommandTest : AbstractEndpointTest() {
         assertEquals(ActionType.Route, action.type)
         assertEquals("http://localhost:0/settings/accounts/verify/mobile", action.url)
 
+        verify(securityApi).createOpt(CreateOTPRequest(address = PHONE_NUMBER, type = "SMS"))
+
         val entity = argumentCaptor<SmsCodeEntity>()
         verify(cache).put(eq("verification-code-$DEVICE_ID"), entity.capture())
         assertEquals(request.phoneNumber, entity.firstValue.phoneNumber)
-        assertEquals(verificationId, entity.firstValue.verificationId)
+        assertEquals(token, entity.firstValue.token)
         assertEquals("mtn", entity.firstValue.carrier)
     }
 
