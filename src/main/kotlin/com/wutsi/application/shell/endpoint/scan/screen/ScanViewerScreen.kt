@@ -1,12 +1,10 @@
 package com.wutsi.application.shell.endpoint.scan.screen
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.wutsi.application.shared.Theme
-import com.wutsi.application.shared.service.QrService
+import com.wutsi.application.shared.entity.QrEntityType
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.application.shell.endpoint.scan.dto.ScanRequest
-import com.wutsi.application.shell.exception.toErrorResponse
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
@@ -22,12 +20,10 @@ import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.Alignment
 import com.wutsi.flutter.sdui.enums.ButtonType
-import com.wutsi.platform.qr.WutsiQrApi
-import com.wutsi.platform.qr.dto.DecodeQRCodeRequest
-import com.wutsi.platform.qr.dto.Entity
-import com.wutsi.platform.qr.entity.EntityType
-import com.wutsi.platform.qr.error.ErrorURN
-import feign.FeignException
+import com.wutsi.platform.qrcode.ExpiredQrCodeException
+import com.wutsi.platform.qrcode.KeyProvider
+import com.wutsi.platform.qrcode.QrCode
+import com.wutsi.platform.qrcode.QrCodeException
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -36,9 +32,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/scan/viewer")
 class ScanViewerScreen(
-    private val qrApi: WutsiQrApi,
-    private val qrService: QrService,
-    private val mapper: ObjectMapper
+    private val keyProvider: KeyProvider
 ) : AbstractQuery() {
     @PostMapping
     fun index(@RequestBody request: ScanRequest): Widget {
@@ -48,31 +42,21 @@ class ScanViewerScreen(
         // Parse the qr-code
         var error: String? = null
         var nextUrl: String? = null
-        var entity: Entity? = null
+        var entity: QrCode? = null
         var imageUrl: String? = null
         try {
-            entity = qrApi.decode(
-                DecodeQRCodeRequest(
-                    token = request.code
-                )
-            ).entity
+            entity = QrCode.decode(request.code, keyProvider)
             nextUrl = nextUrl(entity)
-            imageUrl = qrService.imageUrl(request.code)
+            imageUrl = urlBuilder.build("/qr-code/${entity.type.lowercase()}/${entity.value}.png")
 
-            logger.add("entity_type", entity.type)
-            logger.add("entity_id", entity.id)
+            logger.add("qr_type", entity.type)
+            logger.add("qr_value", entity.value)
             logger.add("next_url", nextUrl)
-            logger.add("qr_code_url", imageUrl)
-        } catch (ex: FeignException) {
-            val response = ex.toErrorResponse(mapper)
-            error = if (response?.error?.code == ErrorURN.EXPIRED.urn)
-                getText("prompt.error.expired-qr-code")
-            else if (response?.error?.code == ErrorURN.MALFORMED_TOKEN.urn)
-                getText("prompt.error.malformed-qr-code")
-            else
-                getText("prompt.error.unexpected-error")
-
-            logger.add("qr_code_error_code", response?.error?.code)
+            logger.add("qr_image_url", imageUrl)
+        } catch (ex: ExpiredQrCodeException) {
+            error = getText("prompt.error.expired-qr-code")
+        } catch (ex: QrCodeException) {
+            error = getText("prompt.error.unexpected-error")
         }
 
         // Viewer
@@ -128,16 +112,16 @@ class ScanViewerScreen(
         ).toWidget()
     }
 
-    private fun nextUrl(entity: Entity?): String? =
+    private fun nextUrl(entity: QrCode?): String? =
         when (entity?.type?.uppercase()) {
-            EntityType.ACCOUNT.name -> urlBuilder.build("profile?id=${entity.id}")
-            EntityType.ORDER.name -> urlBuilder.build(storeUrl, "order?id=${entity.id}")
-            EntityType.PRODUCT.name -> urlBuilder.build(storeUrl, "product?id=${entity.id}")
-            EntityType.URL.name -> entity.id
+            QrEntityType.ACCOUNT.name -> urlBuilder.build("profile?id=${entity.value}")
+            QrEntityType.ORDER.name -> urlBuilder.build(storeUrl, "order?id=${entity.value}")
+            QrEntityType.PRODUCT.name -> urlBuilder.build(storeUrl, "product?id=${entity.value}")
+            QrEntityType.URL.name -> entity.value
             else -> null
         }
 
-    private fun nextButton(nextUrl: String?, entity: Entity?): WidgetAware =
+    private fun nextButton(nextUrl: String?, entity: QrCode?): WidgetAware =
         if (nextUrl == null)
             Button(
                 caption = getText("page.scan-viewer.button.close"),
@@ -150,10 +134,10 @@ class ScanViewerScreen(
         else
             Button(
                 caption = when (entity?.type?.uppercase()) {
-                    EntityType.ACCOUNT.name -> getText("page.scan-viewer.button.continue-account")
-                    EntityType.ORDER.name -> getText("page.scan-viewer.button.continue-order")
-                    EntityType.PRODUCT.name -> getText("page.scan-viewer.button.continue-product")
-                    EntityType.URL.name -> getText("page.scan-viewer.button.continue-url")
+                    QrEntityType.ACCOUNT.name -> getText("page.scan-viewer.button.continue-account")
+                    QrEntityType.ORDER.name -> getText("page.scan-viewer.button.continue-order")
+                    QrEntityType.PRODUCT.name -> getText("page.scan-viewer.button.continue-product")
+                    QrEntityType.URL.name -> getText("page.scan-viewer.button.continue-url")
                     else -> getText("page.scan-viewer.button.continue")
                 },
                 action = Action(

@@ -26,7 +26,7 @@
                 {
                   "type": "Image",
                   "attributes": {
-                    "url": "https://wutsi-qr-server-test.herokuapp.com/image/xxxxxx.png?tenant-id=1",
+                    "url": "http://localhost:0/qr-code/product/1.png",
                     "width": 230.0,
                     "height": 230.0
                   },
@@ -88,7 +88,7 @@
               "children": [],
               "action": {
                 "type": "Route",
-                "url": "https://wutsi-gateway-test.herokuapp.com/store/product?id=1111",
+                "url": "https://wutsi-gateway-test.herokuapp.com/store/product?id=1",
                 "replacement": true
               }
             }

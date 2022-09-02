@@ -26,7 +26,7 @@
                 {
                   "type": "Image",
                   "attributes": {
-                    "url": "https://wutsi-qr-server-test.herokuapp.com/image/xxxxxx.png?tenant-id=1",
+                    "url": "http://localhost:0/qr-code/url/https://www.google.ca.png",
                     "width": 230.0,
                     "height": 230.0
                   },

@@ -2,16 +2,12 @@ package com.wutsi.application.shell.endpoint.scan.screen
 
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.doThrow
 import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
 import com.wutsi.application.shell.endpoint.scan.dto.ScanRequest
 import com.wutsi.flutter.sdui.Widget
-import com.wutsi.platform.qr.WutsiQrApi
-import com.wutsi.platform.qr.dto.DecodeQRCodeResponse
-import com.wutsi.platform.qr.dto.Entity
-import com.wutsi.platform.qr.entity.EntityType
-import com.wutsi.platform.qr.error.ErrorURN
+import com.wutsi.platform.qrcode.KeyProvider
+import com.wutsi.platform.qrcode.QrCode
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
@@ -23,43 +19,38 @@ internal class ScanViewerScreenTest : AbstractEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 
-    @MockBean
-    lateinit var qrApi: WutsiQrApi
-
     private lateinit var url: String
+
+    @MockBean
+    private lateinit var keyProvider: KeyProvider
 
     @BeforeEach
     override fun setUp() {
         super.setUp()
 
         url = "http://localhost:$port/scan/viewer"
+
+        doReturn("1").whenever(keyProvider).getKeyId()
+        doReturn("123456").whenever(keyProvider).getKey(any())
     }
 
     @Test
-    fun contact() {
-        // GIVEN
-        val entity = Entity(EntityType.ACCOUNT.name, "1111")
-        doReturn(DecodeQRCodeResponse(entity)).whenever(qrApi).decode(any())
-
+    fun account() {
         // WHEN
         val request = ScanRequest(
-            code = "xxxxxx"
+            code = QrCode("ACCOUNT", "1").encode(keyProvider)
         )
         val response = rest.postForEntity(url, request, Widget::class.java)
 
         // THEN
-        assertJsonEquals("/screens/scan/viewer-contact.json", response.body)
+        assertJsonEquals("/screens/scan/viewer-account.json", response.body)
     }
 
     @Test
     fun order() {
-        // GIVEN
-        val entity = Entity(EntityType.ORDER.name, "1111")
-        doReturn(DecodeQRCodeResponse(entity)).whenever(qrApi).decode(any())
-
         // WHEN
         val request = ScanRequest(
-            code = "xxxxxx"
+            code = QrCode("ORDER", "1").encode(keyProvider)
         )
         val response = rest.postForEntity(url, request, Widget::class.java)
 
@@ -69,13 +60,9 @@ internal class ScanViewerScreenTest : AbstractEndpointTest() {
 
     @Test
     fun product() {
-        // GIVEN
-        val entity = Entity(EntityType.PRODUCT.name, "1111")
-        doReturn(DecodeQRCodeResponse(entity)).whenever(qrApi).decode(any())
-
         // WHEN
         val request = ScanRequest(
-            code = "xxxxxx"
+            code = QrCode("PRODUCT", "1").encode(keyProvider)
         )
         val response = rest.postForEntity(url, request, Widget::class.java)
 
@@ -85,13 +72,9 @@ internal class ScanViewerScreenTest : AbstractEndpointTest() {
 
     @Test
     fun url() {
-        // GIVEN
-        val entity = Entity(EntityType.URL.name, "https://www.google.ca")
-        doReturn(DecodeQRCodeResponse(entity)).whenever(qrApi).decode(any())
-
         // WHEN
         val request = ScanRequest(
-            code = "xxxxxx"
+            code = "https://www.google.ca"
         )
         val response = rest.postForEntity(url, request, Widget::class.java)
 
@@ -101,10 +84,6 @@ internal class ScanViewerScreenTest : AbstractEndpointTest() {
 
     @Test
     fun invalid() {
-        // GIVEN
-        val ex = createFeignException(ErrorURN.EXPIRED.urn)
-        doThrow(ex).whenever(qrApi).decode(any())
-
         // WHEN
         val request = ScanRequest(
             code = "xxxxxx"

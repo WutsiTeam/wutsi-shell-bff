@@ -42,7 +42,7 @@
             {
               "type": "Text",
               "attributes": {
-                "caption": "Sorry! This QR code has expired.",
+                "caption": "Oops! An unexpected error has occurred. Please, try again.",
                 "size": 16.0
               },
               "children": []

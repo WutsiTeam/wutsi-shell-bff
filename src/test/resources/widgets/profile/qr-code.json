@@ -52,7 +52,7 @@
             {
               "type": "Image",
               "attributes": {
-                "url": "https://wutsi-qr-server-test.herokuapp.com/image/xxxxx.png?tenant-id=1",
+                "url": "http://localhost:0/qr-code/account/1.png",
                 "width": 230.0,
                 "height": 230.0
               },
