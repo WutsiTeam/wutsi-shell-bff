@@ -52,7 +52,7 @@
             {
               "type": "Image",
               "attributes": {
-                "url": "http://localhost:0/qr-code/account/1.png",
+                "url": "http://localhost:0/qr-code/account/1.png?tenant-id=1",
                 "width": 230.0,
                 "height": 230.0
               },

@@ -1,6 +1,7 @@
 package com.wutsi.application.shell.endpoint.profile.widget
 
 import com.wutsi.application.shared.Theme
+import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.application.shared.ui.ProfileListItem
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.flutter.sdui.Center
@@ -19,13 +20,15 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/profile/qr-code-widget")
 class QrCodeWidget(
-    private val accountApi: WutsiAccountApi
+    private val accountApi: WutsiAccountApi,
+    private val tenantProvider: TenantProvider
 ) : AbstractQuery() {
     @PostMapping
     fun index(
         @RequestParam id: Long
     ): Widget {
-        val imageUrl = urlBuilder.build("/qr-code/account/$id.png")
+        val tenantId = tenantProvider.tenantId()
+        val imageUrl = urlBuilder.build("/qr-code/account/$id.png?tenant-id=$tenantId")
         val user = accountApi.getAccount(id).account
 
         return Column(
