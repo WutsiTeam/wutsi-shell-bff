@@ -1,7 +1,9 @@
 package com.wutsi.application.shell.endpoint.home.screen
 
 import com.wutsi.application.shared.Theme
+import com.wutsi.application.shared.service.EnvironmentDetector
 import com.wutsi.application.shared.service.TenantProvider
+import com.wutsi.application.shared.ui.EnvironmentBanner
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.flutter.sdui.Action
@@ -28,12 +30,15 @@ import com.wutsi.platform.tenant.entity.ToggleName
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import javax.servlet.http.HttpServletRequest
 
 @RestController
 @RequestMapping("/")
 class HomeScreen(
     private val paymentApi: WutsiPaymentApi,
-    private val tenantProvider: TenantProvider
+    private val tenantProvider: TenantProvider,
+    private val env: EnvironmentDetector,
+    private val request: HttpServletRequest
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
@@ -72,6 +77,11 @@ class HomeScreen(
                     )
                 )
             )
+
+        // Environment banner
+        if (env.test()) {
+            children.add(EnvironmentBanner(env, request))
+        }
 
         // Secondary Apps
         children.addAll(

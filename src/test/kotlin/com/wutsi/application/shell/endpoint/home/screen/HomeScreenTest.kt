@@ -4,6 +4,7 @@ import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.eq
 import com.nhaarman.mockitokotlin2.whenever
+import com.wutsi.application.shared.service.EnvironmentDetector
 import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
 import com.wutsi.ecommerce.shipping.WutsiShippingApi
@@ -38,6 +39,9 @@ internal class HomeScreenTest : AbstractEndpointTest() {
 
     @MockBean
     private lateinit var togglesProvider: TogglesProvider
+
+    @MockBean
+    private lateinit var env: EnvironmentDetector
 
     @BeforeEach
     override fun setUp() {
@@ -150,6 +154,11 @@ internal class HomeScreenTest : AbstractEndpointTest() {
         doReturn(ListShippingResponse()).whenever(shippingApi).listShipping()
 
         assertEndpointEquals("/screens/home/home-news-enabled.json", url)
+    }
+
+    @Test
+    fun testEnvironment() {
+        assertEndpointEquals("/screens/home/home-test-env.json", url)
     }
 
     private fun createPaymentMethodSummary(token: String, maskedNumber: String) = PaymentMethodSummary(
