@@ -43,7 +43,7 @@
         {
           "type": "ListItem",
           "attributes": {
-            "caption": "Delete my Wallet",
+            "caption": "Delete Wallet",
             "trailing": {
               "type": "Icon",
               "attributes": {

@@ -12,6 +12,8 @@ object Page {
     const val SETTINGS_ACCOUNT_LINK_BANK = "page.settings.account.link.bank"
     const val SETTINGS_ACCOUNT_LINK_CREDIT_CARD = "page.settings.account.link.credit-card"
     const val SETTINGS_ACCOUNT_LINK_MOBILE = "page.settings.account.link.mobile"
+    const val SETTINGS_ACCOUNT_DELETE = "page.settings.account.delete"
+    const val SETTINGS_ACCOUNT_DELETE_PIN = "page.settings.account.delete.pin"
     const val SETTINGS_ACCOUNT_PROFILE = "page.settings.account.profile"
     const val SETTINGS_ACCOUNT_LINK_SUCCESS = "page.settings.account.link.success"
     const val SETTINGS_ACCOUNT_LINK_VERIFY = "page.settings.account.link.verify"

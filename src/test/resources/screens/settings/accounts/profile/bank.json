@@ -261,6 +261,31 @@
                 "color": "#8c8c8c"
               },
               "children": []
+            },
+            {
+              "type": "Container",
+              "attributes": {
+                "padding": 10.0
+              },
+              "children": [
+                {
+                  "type": "Button",
+                  "attributes": {
+                    "caption": "Delete",
+                    "padding": 15.0,
+                    "type": "Elevated"
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "http://localhost:0/settings/account/delete",
+                    "replacement": true,
+                    "parameters": {
+                      "token": "xxxx"
+                    }
+                  }
+                }
+              ]
             }
           ]
         }

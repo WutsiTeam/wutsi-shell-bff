@@ -223,6 +223,23 @@ class AccountService(
         logger.add("token", state.token)
     }
 
+    fun getNamePaymentMethodName(tenant: Tenant, paymentMethod: PaymentMethod): String =
+        when (paymentMethod.type) {
+            PaymentMethodType.MOBILE.name -> findMobileCarrier(
+                tenant,
+                paymentMethod.provider
+            )?.name ?: ""
+            PaymentMethodType.BANK.name -> findFinancialInstitution(
+                tenant,
+                paymentMethod.provider
+            )?.name ?: ""
+            PaymentMethodType.CREDIT_CARD.name -> findCreditCardType(
+                tenant,
+                paymentMethod.provider
+            )?.name ?: ""
+            else -> ""
+        }
+
     fun findMobileCarrier(tenant: Tenant, provider: String): MobileCarrier? =
         tenant.mobileCarriers.find { it.code.equals(provider, true) }
 

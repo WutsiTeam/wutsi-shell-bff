@@ -5,7 +5,9 @@ import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.application.shell.service.AccountService
+import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
+import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Divider
@@ -17,11 +19,11 @@ import com.wutsi.flutter.sdui.SingleChildScrollView
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
+import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.TextAlignment
 import com.wutsi.platform.account.WutsiAccountApi
-import com.wutsi.platform.payment.PaymentMethodType
 import org.springframework.context.i18n.LocaleContextHolder
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -67,23 +69,7 @@ class SettingsAccountProfileScreen(
                                         )
                                     },
                                     Container(padding = 5.0),
-                                    Text(
-                                        caption = when (paymentMethod.type) {
-                                            PaymentMethodType.MOBILE.name -> accountService.findMobileCarrier(
-                                                tenant,
-                                                paymentMethod.provider
-                                            )?.name ?: ""
-                                            PaymentMethodType.BANK.name -> accountService.findFinancialInstitution(
-                                                tenant,
-                                                paymentMethod.provider
-                                            )?.name ?: ""
-                                            PaymentMethodType.CREDIT_CARD.name -> accountService.findCreditCardType(
-                                                tenant,
-                                                paymentMethod.provider
-                                            )?.name ?: ""
-                                            else -> ""
-                                        }
-                                    )
+                                    Text(accountService.getNamePaymentMethodName(tenant, paymentMethod))
                                 )
                             )
                         ),
@@ -105,7 +91,21 @@ class SettingsAccountProfileScreen(
                             key = "page.settings.account.profile.owner",
                             value = paymentMethod.ownerName
                         ),
-                        Divider(color = Theme.COLOR_DIVIDER, height = 1.0)
+                        Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
+                        Container(
+                            padding = 10.0,
+                            child = Button(
+                                caption = getText("page.settings.account.profile.button.delete"),
+                                action = Action(
+                                    type = ActionType.Route,
+                                    url = urlBuilder.build("settings/account/delete"),
+                                    parameters = mapOf(
+                                        "token" to token
+                                    ),
+                                    replacement = true
+                                )
+                            )
+                        )
                     )
                 )
             )
