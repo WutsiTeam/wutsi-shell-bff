@@ -27,17 +27,13 @@ import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisSize
 import com.wutsi.flutter.sdui.enums.TextAlignment
 import com.wutsi.platform.account.dto.Account
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/settings")
-class SettingsScreen(
-    private val tokenProvider: TokenProviderWrapper,
-    @Value("\${wutsi.application.login-url}") private val loginUrl: String
-) : AbstractQuery() {
+class SettingsScreen : AbstractQuery() {
     @PostMapping
     fun index(): Widget = Screen(
         id = Page.SETTINGS,

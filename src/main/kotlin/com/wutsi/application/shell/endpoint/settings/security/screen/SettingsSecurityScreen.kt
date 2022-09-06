@@ -12,16 +12,13 @@ import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.enums.ActionType.Route
 import com.wutsi.platform.account.dto.Account
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/settings/security")
-class SettingsSecurityScreen(
-    @Value("\${wutsi.application.login-url}") private val loginUrl: String
-) : AbstractQuery() {
+class SettingsSecurityScreen : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
         val me = securityContext.currentAccount()

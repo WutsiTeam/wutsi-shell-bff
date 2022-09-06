@@ -37,6 +37,9 @@ abstract class AbstractEndpoint {
     @Autowired
     protected lateinit var securityContext: SecurityContext
 
+    @Value("\${wutsi.application.login-url}")
+    protected lateinit var loginUrl: String
+
     @Value("\${wutsi.application.cash-url}")
     protected lateinit var cashUrl: String
 

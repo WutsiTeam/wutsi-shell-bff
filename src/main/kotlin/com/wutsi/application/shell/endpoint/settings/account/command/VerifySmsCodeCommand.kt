@@ -7,7 +7,6 @@ import com.wutsi.application.shell.exception.SmsCodeMismatchException
 import com.wutsi.application.shell.service.AccountService
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -18,9 +17,7 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("/commands/verify-sms-code")
 class VerifySmsCodeCommand(
-    private val service: AccountService,
-
-    @Value("\${wutsi.application.login-url}") private val loginUrl: String
+    private val service: AccountService
 ) : AbstractCommand() {
     @PostMapping
     fun index(
