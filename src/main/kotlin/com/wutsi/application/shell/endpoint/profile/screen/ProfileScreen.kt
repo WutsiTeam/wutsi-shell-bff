@@ -107,7 +107,7 @@ class ProfileScreen(
                     elevation = 0.0,
                     backgroundColor = Theme.COLOR_PRIMARY,
                     foregroundColor = Theme.COLOR_WHITE,
-                    actions = titleBarActions(user, cart, tenant),
+                    actions = titleBarActions(user, cart, tenant)
                 ),
                 child = tabViews.children[0],
                 bottomNavigationBar = bottomNavigationBar()

@@ -26,4 +26,3 @@ internal class SettingsDeleteWalletScreenTest : AbstractEndpointTest() {
         assertEndpointEquals("/screens/settings/security/delete.json", url)
     }
 }
-

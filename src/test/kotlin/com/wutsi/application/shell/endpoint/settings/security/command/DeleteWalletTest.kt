@@ -44,4 +44,3 @@ internal class DeleteWalletTest : AbstractEndpointTest() {
         verify(logout).index()
     }
 }
-

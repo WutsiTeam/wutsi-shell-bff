@@ -92,8 +92,8 @@ class SettingsDeleteWalletScreen : AbstractQuery() {
                                 type = ActionType.Command,
                                 url = deleteActionUrl(user)
                             )
-                        ),
-                    ),
+                        )
+                    )
                 )
             )
         ).toWidget()
@@ -108,5 +108,4 @@ class SettingsDeleteWalletScreen : AbstractQuery() {
             "&return-to-route=true" +
             "&return-url=" + encodeURLParam(urlBuilder.build("commands/delete-wallet"))
     }
-
 }
