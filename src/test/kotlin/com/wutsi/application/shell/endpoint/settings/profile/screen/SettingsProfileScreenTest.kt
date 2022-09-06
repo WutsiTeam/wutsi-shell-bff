@@ -96,7 +96,6 @@ internal class SettingsProfileScreenTest : AbstractEndpointTest() {
             cityId = 2233100,
             whatsapp = "+1237666666666",
             street = "3030 Linton",
-            retail = true,
             pictureUrl = "https://www.img.com/1.png"
         )
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())

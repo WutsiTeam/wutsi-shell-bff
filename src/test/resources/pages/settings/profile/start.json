@@ -76,7 +76,7 @@
                     {
                       "type": "Text",
                       "attributes": {
-                        "caption": "Sell and Ship your Products"
+                        "caption": "Sell your products"
                       },
                       "children": []
                     }
@@ -114,7 +114,7 @@
                     {
                       "type": "Text",
                       "attributes": {
-                        "caption": "Receive your Payments"
+                        "caption": "Receive your payments"
                       },
                       "children": []
                     }
@@ -152,7 +152,7 @@
                     {
                       "type": "Text",
                       "attributes": {
-                        "caption": "Communicate with your Customers"
+                        "caption": "Communicate directly with your customers"
                       },
                       "children": []
                     }
@@ -190,7 +190,7 @@
                     {
                       "type": "Text",
                       "attributes": {
-                        "caption": "Track your Performance"
+                        "caption": "Track your performance"
                       },
                       "children": []
                     }

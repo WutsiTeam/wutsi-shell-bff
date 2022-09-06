@@ -267,26 +267,26 @@
               }
             },
             {
-              "type": "Container",
+              "type": "ListItem",
               "attributes": {
-                "padding": 20.0
-              },
-              "children": [
-                {
-                  "type": "Button",
+                "caption": "Logout",
+                "padding": 5.0,
+                "leading": {
+                  "type": "Icon",
                   "attributes": {
-                    "caption": "Logout",
-                    "padding": 15.0,
-                    "type": "Outlined"
+                    "code": "f199",
+                    "size": 24.0,
+                    "color": "#1D7EDF"
                   },
-                  "children": [],
-                  "action": {
-                    "type": "Command",
-                    "url": "http://localhost:0/commands/logout",
-                    "replacement": true
-                  }
+                  "children": []
                 }
-              ]
+              },
+              "children": [],
+              "action": {
+                "type": "Command",
+                "url": "http://localhost:0/commands/logout",
+                "replacement": true
+              }
             }
           ]
         }

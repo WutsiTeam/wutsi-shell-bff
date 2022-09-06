@@ -33,6 +33,8 @@ object Page {
     const val SETTINGS_PROFILE_WEBSITE = "page.settings.profile.website"
     const val SETTINGS_PROFILE_WHATSAPP = "page.settings.profile.whatsapp"
     const val SETTINGS_SECURITY = "page.settings.security"
+    const val SETTINGS_SECURITY_DELETE_WALLET = "page.settings.security.delete.wallet"
+    const val SETTINGS_SECURITY_DELETE_WALLET_PIN = "page.settings.security.delete.wallet.pin"
     const val SETTINGS_SECURITY_PIN = "page.settings.security.pin"
     const val SETTINGS_SECURITY_PIN_LOGIN = "page.settings.security.pin.login"
     const val SETTINGS_SECURITY_PIN_CONFIRM = "page.settings.security.pin.confirm"

@@ -7,35 +7,66 @@
   "children": [
     {
       "type": "ListView",
-      "attributes": {},
+      "attributes": {
+        "separator": true,
+        "separatorColor": "#8c8c8c"
+      },
       "children": [
         {
-          "type": "Container",
+          "type": "ListItem",
           "attributes": {
-            "padding": 10.0
-          },
-          "children": [
-            {
-              "type": "Button",
+            "caption": "Change PIN",
+            "trailing": {
+              "type": "Icon",
               "attributes": {
-                "caption": "Change PIN",
-                "padding": 15.0,
-                "type": "Elevated"
+                "code": "e15f",
+                "size": 24.0
               },
-              "children": [],
-              "action": {
-                "type": "Route",
-                "url": "https://wutsi-gateway-test.herokuapp.com/login/?phone=%2B1237666666666&screen-id=page.settings.security.pin.login&title=Authorisation&sub-title=Enter+your+current+PIN&auth=false&return-to-route=true&return-url=http%3A%2F%2Flocalhost%3A0%2Fsettings%2Fsecurity%2Fpin"
-              }
+              "children": []
+            },
+            "leading": {
+              "type": "Icon",
+              "attributes": {
+                "code": "f2aa",
+                "size": 24.0,
+                "color": "#1D7EDF"
+              },
+              "children": []
             }
-          ]
+          },
+          "children": [],
+          "action": {
+            "type": "Route",
+            "url": "https://wutsi-gateway-test.herokuapp.com/login/?phone=%2B1237666666666&screen-id=page.settings.security.delete.wallet&title=Authorisation&sub-title=Enter+your+current+PIN&auth=false&return-to-route=true&return-url=http%3A%2F%2Flocalhost%3A0%2Fsettings%2Fsecurity%2Fpin"
+          }
         },
         {
-          "type": "Divider",
+          "type": "ListItem",
           "attributes": {
-            "color": "#8c8c8c"
+            "caption": "Delete my Wallet",
+            "trailing": {
+              "type": "Icon",
+              "attributes": {
+                "code": "e15f",
+                "size": 24.0
+              },
+              "children": []
+            },
+            "leading": {
+              "type": "Icon",
+              "attributes": {
+                "code": "ef28",
+                "size": 24.0,
+                "color": "#8B0000"
+              },
+              "children": []
+            }
           },
-          "children": []
+          "children": [],
+          "action": {
+            "type": "Route",
+            "url": "http://localhost:0/settings/security/delete-wallet"
+          }
         }
       ]
     }

@@ -146,7 +146,6 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
         ),
         pictureUrl = pictureUrl,
         business = business,
-        retail = business,
         biography = "This is my bio",
         category = Category(
             id = 1000,

@@ -1,0 +1,211 @@
+{
+  "type": "Screen",
+  "attributes": {
+    "id": "page.settings.security.delete.wallet",
+    "safe": false
+  },
+  "children": [
+    {
+      "type": "Column",
+      "attributes": {
+        "mainAxisAlignment": "start",
+        "crossAxisAlignment": "start"
+      },
+      "children": [
+        {
+          "type": "Row",
+          "attributes": {},
+          "children": [
+            {
+              "type": "Container",
+              "attributes": {
+                "padding": 10.0
+              },
+              "children": [
+                {
+                  "type": "Icon",
+                  "attributes": {
+                    "code": "ef28",
+                    "size": 32.0,
+                    "color": "#8B0000"
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "type": "Container",
+              "attributes": {
+                "alignment": "CenterLeft"
+              },
+              "children": [
+                {
+                  "type": "Text",
+                  "attributes": {
+                    "caption": "Confirmation",
+                    "bold": true,
+                    "size": 16.0,
+                    "alignment": "Center"
+                  },
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Container",
+          "attributes": {
+            "padding": 10.0
+          },
+          "children": [
+            {
+              "type": "Container",
+              "attributes": {
+                "alignment": "CenterLeft",
+                "padding": 10.0
+              },
+              "children": [
+                {
+                  "type": "Text",
+                  "attributes": {
+                    "caption": "If you delete your Wallet:"
+                  },
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Container",
+          "attributes": {
+            "padding": 10.0
+          },
+          "children": [
+            {
+              "type": "Column",
+              "attributes": {
+                "mainAxisAlignment": "start",
+                "crossAxisAlignment": "start"
+              },
+              "children": [
+                {
+                  "type": "Container",
+                  "attributes": {
+                    "alignment": "CenterLeft",
+                    "padding": 10.0
+                  },
+                  "children": [
+                    {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "- You will no longer be able to log into your Wallet with this account."
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "type": "Container",
+                  "attributes": {
+                    "alignment": "CenterLeft",
+                    "padding": 10.0
+                  },
+                  "children": [
+                    {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "- You will no longer be able to send or receive money."
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "type": "Container",
+                  "attributes": {
+                    "alignment": "CenterLeft",
+                    "padding": 10.0
+                  },
+                  "children": [
+                    {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "- Your products will no longer be available to your customers."
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "type": "Container",
+                  "attributes": {
+                    "alignment": "CenterLeft",
+                    "padding": 10.0
+                  },
+                  "children": [
+                    {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "- Transactions associated with our wallet will still be visible by others."
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "type": "Container",
+                  "attributes": {
+                    "alignment": "CenterLeft",
+                    "padding": 10.0
+                  },
+                  "children": [
+                    {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "- Your account will be deleted immediately!"
+                      },
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Container",
+          "attributes": {
+            "padding": 10.0
+          },
+          "children": [
+            {
+              "type": "Button",
+              "attributes": {
+                "caption": "Delete Wallet",
+                "padding": 15.0,
+                "type": "Elevated"
+              },
+              "children": [],
+              "action": {
+                "type": "Command",
+                "url": "?phone=%2B1237666666666&screen-id=page.settings.security.delete.wallet.pin&title=Delete+my+Wallet&sub-title=Enter+your+PIN+to+delete+permanently+your+Wallet&auth=false&return-to-route=true&return-url=http%3A%2F%2Flocalhost%3A0%2Fcommands%2Fdelete-wallet"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "appBar": {
+    "type": "AppBar",
+    "attributes": {
+      "title": "Delete my Wallet",
+      "elevation": 0.0,
+      "backgroundColor": "#FFFFFF",
+      "foregroundColor": "#000000"
+    },
+    "children": []
+  }
+}

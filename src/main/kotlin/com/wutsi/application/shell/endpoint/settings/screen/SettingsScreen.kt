@@ -166,16 +166,11 @@ class SettingsScreen(
                     "page.settings.listitem.about.caption",
                     urlBuilder.build("settings/about"),
                     icon = Theme.ICON_INFO
-                )
-            )
-        )
-
-        children.add(
-            Container(
-                padding = 20.0,
-                child = Button(
-                    caption = getText("page.settings.button.logout"),
-                    type = ButtonType.Outlined,
+                ),
+                listItem(
+                    caption = "page.settings.button.logout",
+                    icon = Theme.ICON_LOGOUT,
+                    showTrailingIcon = false,
                     action = Action(
                         type = Command,
                         url = urlBuilder.build("/commands/logout"),
@@ -188,19 +183,29 @@ class SettingsScreen(
         return children
     }
 
-    private fun listItem(caption: String, url: String, icon: String? = null) = ListItem(
-        padding = 5.0,
-        leading = icon?.let { Icon(code = icon, size = 24.0, color = Theme.COLOR_PRIMARY) },
-        caption = getText(caption),
-        trailing = Icon(
-            code = Theme.ICON_CHEVRON_RIGHT,
-            size = 24.0
-        ),
+    private fun listItem(caption: String, url: String, icon: String? = null) = listItem(
+        caption = caption,
+        icon = icon,
         action = Action(
             type = Route,
             url = url
         )
     )
+
+    private fun listItem(caption: String, action: Action, icon: String? = null, showTrailingIcon: Boolean = true) =
+        ListItem(
+            padding = 5.0,
+            leading = icon?.let { Icon(code = icon, size = 24.0, color = Theme.COLOR_PRIMARY) },
+            caption = getText(caption),
+            trailing = if (showTrailingIcon)
+                Icon(
+                    code = Theme.ICON_CHEVRON_RIGHT,
+                    size = 24.0
+                )
+            else
+                null,
+            action = action
+        )
 
     private fun listItemSwitch(
         caption: String,
