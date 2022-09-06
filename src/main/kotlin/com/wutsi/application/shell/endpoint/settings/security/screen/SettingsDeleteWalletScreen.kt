@@ -89,7 +89,7 @@ class SettingsDeleteWalletScreen : AbstractQuery() {
                         child = Button(
                             caption = getText("page.settings.delete-wallet.button.delete"),
                             action = Action(
-                                type = ActionType.Command,
+                                type = ActionType.Route,
                                 url = deleteActionUrl(user)
                             )
                         )
