@@ -31,8 +31,10 @@ import com.wutsi.flutter.sdui.enums.DialogType
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.Account
+import com.wutsi.platform.account.entity.AccountStatus
 import com.wutsi.platform.contact.WutsiContactApi
 import com.wutsi.platform.contact.dto.SearchContactRequest
+import com.wutsi.platform.tenant.dto.Tenant
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.PostMapping
@@ -62,6 +64,7 @@ class ProfileScreen(
         val user = accountApi.getAccount(
             id ?: securityContext.currentAccountId()
         ).account
+        val active = AccountStatus.ACTIVE.name.equals(user.status, true)
         val tenant = tenantProvider.get()
         val cart = getCart(user)
 
@@ -69,131 +72,157 @@ class ProfileScreen(
             tabs = listOfNotNull(
                 Text(getText("page.profile.tab.about").uppercase(), bold = true),
 
-                if (user.business && togglesProvider.isStoreEnabled() && user.hasStore)
+                if (active && isStoreEnabled(user))
                     Text(getText("page.profile.tab.store").uppercase(), bold = true)
                 else
                     null,
 
-                Text(getText("page.profile.tab.qr-code").uppercase(), bold = true)
+                if (active)
+                    Text(getText("page.profile.tab.qr-code").uppercase(), bold = true)
+                else
+                    null
             )
         )
         val tabViews = TabBarView(
             children = listOfNotNull(
                 aboutTab(user),
 
-                if (isStoreEnabled(user))
+                if (active && isStoreEnabled(user))
                     storeTab(user)
                 else
                     null,
 
-                qrCodeTab(user)
+                if (active)
+                    qrCodeTab(user)
+                else
+                    null
             )
         )
 
-        return DefaultTabController(
-            length = tabs.tabs.size,
-            initialIndex = if (tab == "store" && isStoreEnabled(user))
-                1
-            else
-                null,
-            child = Screen(
+        return if (tabViews.children.size == 1)
+            Screen(
                 id = Page.PROFILE,
                 backgroundColor = Theme.COLOR_WHITE,
                 appBar = AppBar(
                     elevation = 0.0,
                     backgroundColor = Theme.COLOR_PRIMARY,
                     foregroundColor = Theme.COLOR_WHITE,
-                    actions = listOfNotNull(
-                        if (user.business)
-                            PhoneUtil.toWhatsAppUrl(user.whatsapp)?.let {
-                                Container(
-                                    padding = 4.0,
-                                    child = CircleAvatar(
-                                        radius = 20.0,
-                                        backgroundColor = Theme.COLOR_PRIMARY_LIGHT,
-                                        child = IconButton(
-                                            icon = Theme.ICON_CHAT,
-                                            size = 20.0,
-                                            action = Action(
-                                                type = ActionType.Navigate,
-                                                url = it
-                                            )
-                                        )
-                                    )
-                                )
-                            }
-                        else
-                            null,
+                    actions = titleBarActions(user, cart, tenant),
+                ),
+                child = tabViews.children[0],
+                bottomNavigationBar = bottomNavigationBar()
+            ).toWidget()
+        else
+            DefaultTabController(
+                id = Page.PROFILE,
+                length = tabs.tabs.size,
+                initialIndex = if (tab == "store" && isStoreEnabled(user))
+                    1
+                else
+                    null,
+                child = Screen(
+                    backgroundColor = Theme.COLOR_WHITE,
+                    appBar = AppBar(
+                        elevation = 0.0,
+                        backgroundColor = Theme.COLOR_PRIMARY,
+                        foregroundColor = Theme.COLOR_WHITE,
+                        actions = titleBarActions(user, cart, tenant),
+                        bottom = tabs
+                    ),
+                    child = tabViews,
+                    bottomNavigationBar = bottomNavigationBar()
+                )
+            ).toWidget()
+    }
 
-                        if (togglesProvider.isContactEnabled() && canAddContact(user))
-                            Container(
-                                padding = 4.0,
-                                child = CircleAvatar(
-                                    radius = 20.0,
-                                    backgroundColor = Theme.COLOR_PRIMARY_LIGHT,
-                                    child = IconButton(
-                                        icon = Theme.ICON_ADD_PERSON,
-                                        size = 20.0,
-                                        action = Action(
-                                            type = ActionType.Command,
-                                            url = urlBuilder.build("commands/add-contact?contact-id=${user.id}"),
-                                            prompt = Dialog(
-                                                type = DialogType.Confirm,
-                                                title = getText("prompt.confirm.title"),
-                                                message = getText(
-                                                    "page.profile.confirm-add-contact",
-                                                    arrayOf(user.displayName ?: "")
-                                                )
-                                            ).toWidget()
-                                        )
-                                    )
-                                )
-                            )
-                        else
-                            null,
-
+    private fun titleBarActions(user: Account, cart: Cart?, tenant: Tenant): List<WidgetAware>? =
+        if (AccountStatus.ACTIVE.name != user.status)
+            null
+        else
+            listOfNotNull(
+                if (user.business)
+                    PhoneUtil.toWhatsAppUrl(user.whatsapp)?.let {
                         Container(
                             padding = 4.0,
                             child = CircleAvatar(
                                 radius = 20.0,
                                 backgroundColor = Theme.COLOR_PRIMARY_LIGHT,
                                 child = IconButton(
-                                    icon = Theme.ICON_SHARE,
+                                    icon = Theme.ICON_CHAT,
                                     size = 20.0,
                                     action = Action(
-                                        type = ActionType.Share,
-                                        url = "${tenant.webappUrl}/profile?id=${user.id}"
+                                        type = ActionType.Navigate,
+                                        url = it
                                     )
                                 )
                             )
-                        ),
+                        )
+                    }
+                else
+                    null,
 
-                        if (cart != null && cart.products.isNotEmpty())
-                            Container(
-                                padding = 4.0,
-                                child = CircleAvatar(
-                                    radius = 20.0,
-                                    backgroundColor = Theme.COLOR_PRIMARY_LIGHT,
-                                    child = CartIcon(
-                                        productCount = cart.products.size,
-                                        size = 20.0,
-                                        action = Action(
-                                            type = ActionType.Route,
-                                            url = urlBuilder.build(storeUrl, "cart?merchant-id=${user.id}")
+                if (togglesProvider.isContactEnabled() && canAddContact(user))
+                    Container(
+                        padding = 4.0,
+                        child = CircleAvatar(
+                            radius = 20.0,
+                            backgroundColor = Theme.COLOR_PRIMARY_LIGHT,
+                            child = IconButton(
+                                icon = Theme.ICON_ADD_PERSON,
+                                size = 20.0,
+                                action = Action(
+                                    type = ActionType.Command,
+                                    url = urlBuilder.build("commands/add-contact?contact-id=${user.id}"),
+                                    prompt = Dialog(
+                                        type = DialogType.Confirm,
+                                        title = getText("prompt.confirm.title"),
+                                        message = getText(
+                                            "page.profile.confirm-add-contact",
+                                            arrayOf(user.displayName ?: "")
                                         )
-                                    )
+                                    ).toWidget()
                                 )
                             )
-                        else
-                            null
-                    ),
-                    bottom = tabs
+                        )
+                    )
+                else
+                    null,
+
+                Container(
+                    padding = 4.0,
+                    child = CircleAvatar(
+                        radius = 20.0,
+                        backgroundColor = Theme.COLOR_PRIMARY_LIGHT,
+                        child = IconButton(
+                            icon = Theme.ICON_SHARE,
+                            size = 20.0,
+                            action = Action(
+                                type = ActionType.Share,
+                                url = "${tenant.webappUrl}/profile?id=${user.id}"
+                            )
+                        )
+                    )
                 ),
-                child = tabViews,
-                bottomNavigationBar = bottomNavigationBar()
+
+                if (cart != null && cart.products.isNotEmpty())
+                    Container(
+                        padding = 4.0,
+                        child = CircleAvatar(
+                            radius = 20.0,
+                            backgroundColor = Theme.COLOR_PRIMARY_LIGHT,
+                            child = CartIcon(
+                                productCount = cart.products.size,
+                                size = 20.0,
+                                action = Action(
+                                    type = ActionType.Route,
+                                    url = urlBuilder.build(storeUrl, "cart?merchant-id=${user.id}")
+                                )
+                            )
+                        )
+                    )
+                else
+                    null
             )
-        ).toWidget()
-    }
 
     private fun isStoreEnabled(user: Account): Boolean =
         user.business && togglesProvider.isStoreEnabled() && user.hasStore
@@ -232,7 +261,12 @@ class ProfileScreen(
             ).contacts.isEmpty()
 
     private fun getCart(merchant: Account): Cart? =
-        if (merchant.business && togglesProvider.isCartEnabled() && merchant.hasStore)
+        if (
+            AccountStatus.ACTIVE.name.equals(merchant.status, true) &&
+            merchant.business &&
+            togglesProvider.isCartEnabled() &&
+            merchant.hasStore
+        )
             try {
                 cartApi.getCart(merchant.id).cart
             } catch (ex: Exception) {

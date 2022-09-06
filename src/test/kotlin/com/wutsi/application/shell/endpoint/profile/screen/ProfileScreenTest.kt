@@ -13,6 +13,7 @@ import com.wutsi.platform.account.dto.Account
 import com.wutsi.platform.account.dto.Category
 import com.wutsi.platform.account.dto.GetAccountResponse
 import com.wutsi.platform.account.dto.Phone
+import com.wutsi.platform.account.entity.AccountStatus
 import com.wutsi.platform.contact.WutsiContactApi
 import com.wutsi.platform.contact.dto.SearchContactResponse
 import com.wutsi.platform.tenant.entity.ToggleName
@@ -128,17 +129,33 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
         assertJsonEquals("/screens/profile/contact-enabled.json", response.body)
     }
 
+    @Test
+    fun accountSuspended() {
+        // GIVEN
+        doReturn(true).whenever(togglesProvider).isContactEnabled()
+
+        val account = createAccount(555, business = true, status = AccountStatus.SUSPENDED)
+        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
+
+        // WHEN
+        val url = "http://localhost:$port/profile?id=555"
+        val response = rest.postForEntity(url, null, Any::class.java)
+
+        // THEN
+        assertJsonEquals("/screens/profile/suspended.json", response.body)
+    }
+
     private fun createAccount(
         id: Long,
         business: Boolean,
         pictureUrl: String? = "https://img.com/1.png",
-        hasStore: Boolean = false
+        hasStore: Boolean = false,
+        status: AccountStatus = AccountStatus.ACTIVE
     ) = Account(
         id = id,
         displayName = "Ray Sponsible",
         country = "CM",
         language = "en",
-        status = "ACTIVE",
         phone = Phone(
             id = 1,
             number = "+1237666666666",
@@ -153,6 +170,7 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
         ),
         website = "https://my.business.com/12432",
         whatsapp = "+23500000000",
-        hasStore = hasStore
+        hasStore = hasStore,
+        status = status.name
     )
 }

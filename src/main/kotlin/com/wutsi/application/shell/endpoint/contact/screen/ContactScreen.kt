@@ -12,6 +12,7 @@ import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.SearchAccountRequest
+import com.wutsi.platform.account.entity.AccountStatus
 import com.wutsi.platform.contact.WutsiContactApi
 import com.wutsi.platform.contact.dto.SearchContactRequest
 import org.springframework.web.bind.annotation.PostMapping
@@ -39,6 +40,7 @@ class ContactScreen(
         else
             accountApi.searchAccount(
                 SearchAccountRequest(
+                    status = AccountStatus.ACTIVE.name,
                     ids = accountIds,
                     limit = accountIds.size
                 )

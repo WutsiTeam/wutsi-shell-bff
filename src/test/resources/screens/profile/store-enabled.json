@@ -2,13 +2,13 @@
   "type": "DefaultTabController",
   "attributes": {
     "length": 3,
-    "initialIndex": 1
+    "initialIndex": 1,
+    "id": "page.profile"
   },
   "children": [
     {
       "type": "Screen",
       "attributes": {
-        "id": "page.profile",
         "safe": false,
         "backgroundColor": "#FFFFFF"
       },

@@ -6,6 +6,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
 import com.wutsi.platform.account.dto.AccountSummary
 import com.wutsi.platform.account.dto.SearchAccountResponse
+import com.wutsi.platform.account.entity.AccountStatus
 import com.wutsi.platform.contact.WutsiContactApi
 import com.wutsi.platform.contact.dto.ContactSummary
 import com.wutsi.platform.contact.dto.SearchContactResponse
@@ -56,6 +57,7 @@ internal class ContactScreenTest : AbstractEndpointTest() {
 
     private fun createAccount(id: Long, displayName: String) = AccountSummary(
         id = id,
-        displayName = displayName
+        displayName = displayName,
+        status = AccountStatus.ACTIVE.name
     )
 }
