@@ -120,7 +120,7 @@ class SettingsDeleteWalletScreen : AbstractQuery() {
             "&title=" + encodeURLParam(getText("page.settings.delete-wallet.app-bar.title")) +
             "&sub-title=" + encodeURLParam(getText("page.settings.delete-wallet.pin")) +
             "&auth=false" +
-            "&return-to-route=true" +
+            "&return-to-route=false" +
             "&return-url=" + encodeURLParam(urlBuilder.build("commands/delete-wallet"))
     }
 }
