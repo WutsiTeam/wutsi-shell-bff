@@ -1,8 +1,10 @@
 package com.wutsi.application.shell.endpoint.settings.profile.screen
 
 import com.wutsi.application.shell.endpoint.Page
+import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.Input
 import com.wutsi.flutter.sdui.WidgetAware
+import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.InputType
 import com.wutsi.platform.account.dto.Account
 import org.springframework.web.bind.annotation.RequestMapping
@@ -20,5 +22,10 @@ class SettingsProfileEmailScreen : AbstractSettingsProfileAttributeScreen() {
         value = account.email,
         maxLength = 160,
         type = InputType.Email
+    )
+
+    override fun getSubmitUrl(name: String) = Action(
+        type = ActionType.Command,
+        url = urlBuilder.build("commands/start-email-verification")
     )
 }

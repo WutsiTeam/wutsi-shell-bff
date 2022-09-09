@@ -28,6 +28,7 @@ object Page {
     const val SETTINGS_PROFILE_CATEGORY = "page.settings.profile.category"
     const val SETTINGS_PROFILE_CITY = "page.settings.profile.city"
     const val SETTINGS_PROFILE_EMAIL = "page.settings.profile.email"
+    const val SETTINGS_PROFILE_EMAIL_VERIFICATION = "page.settings.profile.email.verification"
     const val SETTINGS_PROFILE_STREET = "page.settings.profile.street"
     const val SETTINGS_PROFILE_LANGUAGE = "page.settings.profile.language"
     const val SETTINGS_PROFILE_NAME = "page.settings.profile.name"

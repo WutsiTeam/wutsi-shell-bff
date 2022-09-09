@@ -27,6 +27,11 @@ abstract class AbstractSettingsProfileAttributeScreen : AbstractQuery() {
     open fun getDescription(account: Account): String =
         getText("page.settings.profile.attribute.${getAttributeName()}.description")
 
+    protected open fun getSubmitUrl(name: String) = Action(
+        type = ActionType.Command,
+        url = urlBuilder.build("commands/update-profile-attribute?name=$name")
+    )
+
     @PostMapping
     fun index(): Widget {
         val user = securityContext.currentAccount()
@@ -60,10 +65,7 @@ abstract class AbstractSettingsProfileAttributeScreen : AbstractQuery() {
                             name = "submit",
                             type = InputType.Submit,
                             caption = getText("page.settings.profile.attribute.button.submit"),
-                            action = Action(
-                                type = ActionType.Command,
-                                url = urlBuilder.build("commands/update-profile-attribute?name=$name")
-                            )
+                            action = getSubmitUrl(name)
                         )
                     )
                 )

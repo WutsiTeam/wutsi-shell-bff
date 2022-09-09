@@ -1,99 +1,86 @@
 {
-  "type": "Screen",
-  "attributes": {
-    "id": "page.settings.profile.email",
-    "safe": false,
-    "backgroundColor": "#FFFFFF"
+  "type" : "Screen",
+  "attributes" : {
+    "id" : "page.settings.profile.email",
+    "safe" : false,
+    "backgroundColor" : "#FFFFFF"
   },
-  "children": [
-    {
-      "type": "Form",
-      "attributes": {},
-      "children": [
-        {
-          "type": "Container",
-          "attributes": {
-            "alignment": "Center",
-            "padding": 10.0
-          },
-          "children": [
-            {
-              "type": "Text",
-              "attributes": {
-                "caption": "Enter your Email"
-              },
-              "children": []
-            }
-          ]
+  "children" : [ {
+    "type" : "Form",
+    "attributes" : { },
+    "children" : [ {
+      "type" : "Container",
+      "attributes" : {
+        "alignment" : "Center",
+        "padding" : 10.0
+      },
+      "children" : [ {
+        "type" : "Text",
+        "attributes" : {
+          "caption" : "Enter your Email"
         },
-        {
-          "type": "Container",
-          "attributes": {
-            "padding": 20.0
-          },
-          "children": []
+        "children" : [ ]
+      } ]
+    }, {
+      "type" : "Container",
+      "attributes" : {
+        "padding" : 20.0
+      },
+      "children" : [ ]
+    }, {
+      "type" : "Container",
+      "attributes" : {
+        "padding" : 10.0
+      },
+      "children" : [ {
+        "type" : "Input",
+        "attributes" : {
+          "name" : "value",
+          "value" : "foo@bar.com",
+          "hideText" : false,
+          "required" : false,
+          "caption" : "",
+          "enabled" : true,
+          "readOnly" : false,
+          "type" : "Email",
+          "maxLength" : 160,
+          "minLength" : 0
         },
-        {
-          "type": "Container",
-          "attributes": {
-            "padding": 10.0
-          },
-          "children": [
-            {
-              "type": "Input",
-              "attributes": {
-                "name": "value",
-                "value": "foo@bar.com",
-                "hideText": false,
-                "required": false,
-                "caption": "",
-                "enabled": true,
-                "readOnly": false,
-                "type": "Email",
-                "maxLength": 160,
-                "minLength": 0
-              },
-              "children": []
-            }
-          ]
+        "children" : [ ]
+      } ]
+    }, {
+      "type" : "Container",
+      "attributes" : {
+        "padding" : 10.0
+      },
+      "children" : [ {
+        "type" : "Input",
+        "attributes" : {
+          "name" : "submit",
+          "hideText" : false,
+          "required" : false,
+          "caption" : "Submit",
+          "enabled" : true,
+          "readOnly" : false,
+          "type" : "Submit",
+          "minLength" : 0
         },
-        {
-          "type": "Container",
-          "attributes": {
-            "padding": 10.0
-          },
-          "children": [
-            {
-              "type": "Input",
-              "attributes": {
-                "name": "submit",
-                "hideText": false,
-                "required": false,
-                "caption": "Submit",
-                "enabled": true,
-                "readOnly": false,
-                "type": "Submit",
-                "minLength": 0
-              },
-              "children": [],
-              "action": {
-                "type": "Command",
-                "url": "http://localhost:0/commands/update-profile-attribute?name=email"
-              }
-            }
-          ]
+        "children" : [ ],
+        "action" : {
+          "type" : "Command",
+          "url" : "http://localhost:0/commands/start-email-verification"
         }
-      ]
-    }
-  ],
-  "appBar": {
-    "type": "AppBar",
-    "attributes": {
-      "title": "Email",
-      "elevation": 0.0,
-      "backgroundColor": "#FFFFFF",
-      "foregroundColor": "#000000"
+      } ]
+    } ]
+  } ],
+  "appBar" : {
+    "type" : "AppBar",
+    "attributes" : {
+      "title" : "Email",
+      "elevation" : 0.0,
+      "backgroundColor" : "#FFFFFF",
+      "foregroundColor" : "#000000"
     },
-    "children": []
+    "children" : [ ]
   }
 }
