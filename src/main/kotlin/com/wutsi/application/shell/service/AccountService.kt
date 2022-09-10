@@ -24,8 +24,8 @@ import com.wutsi.platform.account.dto.SavePasswordRequest
 import com.wutsi.platform.core.error.Error
 import com.wutsi.platform.core.error.exception.NotFoundException
 import com.wutsi.platform.core.logging.KVLogger
+import com.wutsi.platform.core.messaging.MessagingType
 import com.wutsi.platform.core.tracing.DeviceIdProvider
-import com.wutsi.platform.messaging.MessagingType
 import com.wutsi.platform.payment.PaymentMethodProvider
 import com.wutsi.platform.payment.PaymentMethodType
 import com.wutsi.platform.security.WutsiSecurityApi

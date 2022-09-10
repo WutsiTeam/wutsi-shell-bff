@@ -1,9 +1,9 @@
 package com.wutsi.application.shell.endpoint.qr
 
 import com.wutsi.application.shared.service.TenantProvider
-import com.wutsi.platform.qrcode.KeyProvider
-import com.wutsi.platform.qrcode.QrCode
-import com.wutsi.platform.qrcode.QrCodeImageGenerator
+import com.wutsi.platform.core.qrcode.KeyProvider
+import com.wutsi.platform.core.qrcode.QrCode
+import com.wutsi.platform.core.qrcode.QrCodeImageGenerator
 import org.slf4j.LoggerFactory
 import org.springframework.core.io.ByteArrayResource
 import org.springframework.core.io.Resource

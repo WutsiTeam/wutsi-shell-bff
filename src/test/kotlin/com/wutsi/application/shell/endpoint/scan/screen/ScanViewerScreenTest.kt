@@ -6,8 +6,8 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
 import com.wutsi.application.shell.endpoint.scan.dto.ScanRequest
 import com.wutsi.flutter.sdui.Widget
-import com.wutsi.platform.qrcode.KeyProvider
-import com.wutsi.platform.qrcode.QrCode
+import com.wutsi.platform.core.qrcode.KeyProvider
+import com.wutsi.platform.core.qrcode.QrCode
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

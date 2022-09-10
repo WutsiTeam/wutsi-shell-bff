@@ -4,7 +4,7 @@ import com.wutsi.application.shell.endpoint.AbstractCommand
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.platform.account.dto.UpdateAccountAttributeRequest
-import com.wutsi.platform.messaging.MessagingType
+import com.wutsi.platform.core.messaging.MessagingType
 import com.wutsi.platform.security.WutsiSecurityApi
 import com.wutsi.platform.security.dto.CreateOTPRequest
 import org.springframework.web.bind.annotation.PostMapping

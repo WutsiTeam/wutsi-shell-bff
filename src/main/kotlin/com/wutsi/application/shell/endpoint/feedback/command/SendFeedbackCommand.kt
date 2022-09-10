@@ -8,11 +8,11 @@ import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.Dialog
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.DialogType
+import com.wutsi.platform.core.messaging.Message
+import com.wutsi.platform.core.messaging.MessagingServiceProvider
+import com.wutsi.platform.core.messaging.MessagingType
+import com.wutsi.platform.core.messaging.Party
 import com.wutsi.platform.core.tracing.TracingContext
-import com.wutsi.platform.messaging.Message
-import com.wutsi.platform.messaging.MessagingServiceProvider
-import com.wutsi.platform.messaging.MessagingType
-import com.wutsi.platform.messaging.Party
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping

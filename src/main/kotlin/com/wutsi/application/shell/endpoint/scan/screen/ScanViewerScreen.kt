@@ -20,10 +20,10 @@ import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.Alignment
 import com.wutsi.flutter.sdui.enums.ButtonType
-import com.wutsi.platform.qrcode.ExpiredQrCodeException
-import com.wutsi.platform.qrcode.KeyProvider
-import com.wutsi.platform.qrcode.QrCode
-import com.wutsi.platform.qrcode.QrCodeException
+import com.wutsi.platform.core.qrcode.ExpiredQrCodeException
+import com.wutsi.platform.core.qrcode.KeyProvider
+import com.wutsi.platform.core.qrcode.QrCode
+import com.wutsi.platform.core.qrcode.QrCodeException
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping

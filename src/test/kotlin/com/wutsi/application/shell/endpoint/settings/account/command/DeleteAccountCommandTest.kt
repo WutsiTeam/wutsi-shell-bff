@@ -1,11 +1,9 @@
 package com.wutsi.application.shell.endpoint.settings.account.command
 
-import com.nhaarman.mockitokotlin2.argumentCaptor
 import com.nhaarman.mockitokotlin2.verify
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
-import com.wutsi.platform.account.dto.AddPaymentMethodRequest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -38,7 +36,6 @@ internal class DeleteAccountCommandTest : AbstractEndpointTest() {
         assertEquals(ActionType.Route, action.type)
         assertEquals("route:/..", action.url)
 
-        val entity = argumentCaptor<AddPaymentMethodRequest>()
         verify(accountApi).deactivatePaymentMethod(ACCOUNT_ID, token)
     }
 }
