@@ -2,6 +2,8 @@ package com.wutsi.application.shell.endpoint.settings.profile.command
 
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.never
+import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
 import com.wutsi.flutter.sdui.Action
@@ -47,5 +49,43 @@ internal class StartEmailVerificationCommandTest : AbstractEndpointTest() {
             action.parameters
         )
         assertEquals(true, action.replacement)
+    }
+
+    @Test
+    fun empty() {
+        // WHEN
+        val request = UpdateAccountAttributeRequest(
+            value = ""
+        )
+        val url = "http://localhost:$port/commands/start-email-verification"
+        val response = rest.postForEntity(url, request, Action::class.java)
+
+        // THEN
+        assertEquals(200, response.statusCodeValue)
+
+        verify(securityApi, never()).createOpt(any())
+
+        val action = response.body!!
+        assertEquals(ActionType.Route, action.type)
+        assertEquals("route:/..", action.url)
+    }
+
+    @Test
+    fun noChange() {
+        // WHEN
+        val request = UpdateAccountAttributeRequest(
+            value = user.email
+        )
+        val url = "http://localhost:$port/commands/start-email-verification"
+        val response = rest.postForEntity(url, request, Action::class.java)
+
+        // THEN
+        assertEquals(200, response.statusCodeValue)
+
+        verify(securityApi, never()).createOpt(any())
+
+        val action = response.body!!
+        assertEquals(ActionType.Route, action.type)
+        assertEquals("route:/..", action.url)
     }
 }

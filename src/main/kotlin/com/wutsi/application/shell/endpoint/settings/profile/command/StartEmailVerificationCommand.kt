@@ -19,6 +19,12 @@ class StartEmailVerificationCommand(
 ) : AbstractCommand() {
     @PostMapping
     fun index(@RequestBody request: UpdateAccountAttributeRequest): Action {
+        if (request.value.isNullOrEmpty() || securityContext.currentAccount().email.equals(request.value, true))
+            return Action(
+                type = ActionType.Route,
+                url = "route:/.."
+            )
+
         val response = securityApi.createOpt(
             request = CreateOTPRequest(
                 address = request.value ?: "",
