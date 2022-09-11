@@ -8,13 +8,13 @@ import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Icon
+import com.wutsi.flutter.sdui.IconButton
 import com.wutsi.flutter.sdui.Row
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.Alignment
-import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.TextAlignment
@@ -30,6 +30,20 @@ class SettingBusinessStartPage : AbstractQuery() {
         return Column(
             id = Page.SETTINGS_BUSINESS + ".0",
             children = listOf(
+                Row(
+                    mainAxisAlignment = MainAxisAlignment.end,
+                    crossAxisAlignment = CrossAxisAlignment.start,
+                    children = listOf(
+                        IconButton(
+                            icon = Theme.ICON_CANCEL,
+                            color = Theme.COLOR_BLACK,
+                            action = Action(
+                                type = ActionType.Route,
+                                url = "route:/.."
+                            )
+                        )
+                    )
+                ),
                 Container(padding = 40.0),
                 Container(
                     alignment = Alignment.Center,
@@ -65,17 +79,6 @@ class SettingBusinessStartPage : AbstractQuery() {
                         action = Action(
                             type = ActionType.Page,
                             url = "page:/1"
-                        )
-                    )
-                ),
-                Container(
-                    padding = 10.0,
-                    child = Button(
-                        type = ButtonType.Outlined,
-                        caption = getText("page.settings.profile.attribute.button.back"),
-                        action = Action(
-                            type = ActionType.Route,
-                            url = "route:/.."
                         )
                     )
                 )

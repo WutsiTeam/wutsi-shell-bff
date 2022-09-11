@@ -5,6 +5,27 @@
   },
   "children": [
     {
+      "type": "Row",
+      "attributes": {
+        "mainAxisAlignment": "end",
+        "crossAxisAlignment": "start"
+      },
+      "children": [
+        {
+          "type": "IconButton",
+          "attributes": {
+            "icon": "ef28",
+            "color": "#000000"
+          },
+          "children": [],
+          "action": {
+            "type": "Route",
+            "url": "route:/.."
+          }
+        }
+      ]
+    },
+    {
       "type": "Container",
       "attributes": {
         "padding": 40.0
@@ -152,7 +173,7 @@
                     {
                       "type": "Text",
                       "attributes": {
-                        "caption": "Communicate directly with your customers"
+                        "caption": "Communicate with your customers"
                       },
                       "children": []
                     }
@@ -226,27 +247,6 @@
           "action": {
             "type": "Page",
             "url": "page:/1"
-          }
-        }
-      ]
-    },
-    {
-      "type": "Container",
-      "attributes": {
-        "padding": 10.0
-      },
-      "children": [
-        {
-          "type": "Button",
-          "attributes": {
-            "caption": "Back",
-            "padding": 15.0,
-            "type": "Outlined"
-          },
-          "children": [],
-          "action": {
-            "type": "Route",
-            "url": "route:/.."
           }
         }
       ]

@@ -3,6 +3,7 @@ package com.wutsi.application.shell.endpoint.settings.profile.command
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.platform.account.dto.UpdateAccountAttributeRequest
+import com.wutsi.platform.security.WutsiSecurityApi
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/commands/update-business-attribute")
-class UpdateBusinessAttributeCommand : AbstractBusinessCommand() {
+class UpdateBusinessAttributeCommand(
+    private val securityApi: WutsiSecurityApi
+) : AbstractBusinessCommand() {
     @PostMapping
     fun index(
         @RequestParam name: String,
@@ -23,18 +26,31 @@ class UpdateBusinessAttributeCommand : AbstractBusinessCommand() {
         val data = getData(key)
 
         // Update the attribute
-        if (name == "display-name")
+        if (name == "display-name") {
             data.displayName = request.value!!
-        else if (name == "biography")
+        } else if (name == "biography") {
             data.biography = request.value
-        else if (name == "category-id")
+        } else if (name == "category-id") {
             data.categoryId = request.value?.toLong()
-        else if (name == "city-id")
+        } else if (name == "city-id") {
             data.cityId = request.value?.toLong()
-        else if (name == "whatsapp")
+        } else if (name == "whatsapp") {
             data.whatsapp = request.value
-        else if (name == "street")
+
+            // Disable Whatsapp verification for the moment
+//            if (!request.value.isNullOrEmpty()) {
+//                data.otpToken = securityApi.createOpt(
+//                    CreateOTPRequest(
+//                        address = request.value!!,
+//                        type = MessagingType.WHATSTAPP.name
+//                    )
+//                ).token
+//            } else {
+//                data.otpToken = null
+//            }
+        } else if (name == "street") {
             data.street = request.value
+        }
 
         // Store
         cache.put(key, data)

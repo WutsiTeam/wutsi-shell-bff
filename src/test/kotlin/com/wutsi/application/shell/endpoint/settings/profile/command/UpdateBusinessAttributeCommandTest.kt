@@ -2,12 +2,15 @@ package com.wutsi.application.shell.endpoint.settings.profile.command
 
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.argumentCaptor
+import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
 import com.wutsi.application.shell.endpoint.settings.profile.entity.BusinessEntity
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.platform.account.dto.UpdateAccountAttributeRequest
+import com.wutsi.platform.security.dto.CreateOTPResponse
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
@@ -105,6 +108,9 @@ internal class UpdateBusinessAttributeCommandTest : AbstractEndpointTest() {
         val value = "+151454095049"
         val response = post("whatsapp", value, 5)
 
+        val token = "xxx"
+        doReturn(CreateOTPResponse(token = token)).whenever(securityApi).createOpt(any())
+
         // THEN
         assertEquals(200, response.statusCodeValue)
 
@@ -113,6 +119,7 @@ internal class UpdateBusinessAttributeCommandTest : AbstractEndpointTest() {
         val data = argumentCaptor<BusinessEntity>()
         verify(cache).put(any(), data.capture())
         assertEquals(value, data.firstValue.whatsapp)
+//        assertEquals(token, data.firstValue.otpToken)
     }
 
     private fun post(name: String, value: String, page: Int): ResponseEntity<Action> {

@@ -10,6 +10,39 @@
       "attributes": {},
       "children": [
         {
+          "type": "Row",
+          "attributes": {
+            "mainAxisAlignment": "spaceBetween",
+            "crossAxisAlignment": "start"
+          },
+          "children": [
+            {
+              "type": "IconButton",
+              "attributes": {
+                "icon": "ee85",
+                "color": "#000000"
+              },
+              "children": [],
+              "action": {
+                "type": "Page",
+                "url": "page:/5"
+              }
+            },
+            {
+              "type": "IconButton",
+              "attributes": {
+                "icon": "ef28",
+                "color": "#000000"
+              },
+              "children": [],
+              "action": {
+                "type": "Route",
+                "url": "route:/.."
+              }
+            }
+          ]
+        },
+        {
           "type": "Container",
           "attributes": {
             "alignment": "Center",
@@ -78,27 +111,6 @@
               "action": {
                 "type": "Command",
                 "url": "http://localhost:0/commands/update-business-attribute?name=whatsapp&page=6"
-              }
-            }
-          ]
-        },
-        {
-          "type": "Container",
-          "attributes": {
-            "padding": 10.0
-          },
-          "children": [
-            {
-              "type": "Button",
-              "attributes": {
-                "caption": "Back",
-                "padding": 15.0,
-                "type": "Outlined"
-              },
-              "children": [],
-              "action": {
-                "type": "Page",
-                "url": "page:/5"
               }
             }
           ]
