@@ -119,7 +119,6 @@ internal class UpdateBusinessAttributeCommandTest : AbstractEndpointTest() {
         val data = argumentCaptor<BusinessEntity>()
         verify(cache).put(any(), data.capture())
         assertEquals(value, data.firstValue.whatsapp)
-//        assertEquals(token, data.firstValue.otpToken)
     }
 
     private fun post(name: String, value: String, page: Int): ResponseEntity<Action> {
