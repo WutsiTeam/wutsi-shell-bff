@@ -68,8 +68,9 @@ wutsi:
       type: jwt
       api-key: "d779ed54-dadf-11ec-94e8-127037cd15a7"
       public-endpoints:
-        - "POST /shell/track/**"
         - "GET /qr-code/**"
+        - "POST /shell/track/**"
+        - "PORT /firebase/on-message/**"
     tracing:
       client-id: ${wutsi.application.name}
     stream:
