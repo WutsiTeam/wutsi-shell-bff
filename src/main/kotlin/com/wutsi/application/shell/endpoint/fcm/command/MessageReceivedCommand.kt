@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RestController
 class MessageReceivedCommand : AbstractCommand() {
     @PostMapping
     fun index(@RequestBody request: FCMRemoteMessage) {
-        logger.add("message_title", request.title)
-        logger.add("message_body", request.body)
+        logger.add("title", request.title)
+        logger.add("body", request.body)
+        logger.add("background", request.background)
+        logger.add("data", request.data)
     }
 }
