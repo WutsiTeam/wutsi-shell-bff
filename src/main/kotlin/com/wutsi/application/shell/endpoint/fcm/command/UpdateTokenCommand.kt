@@ -1,7 +1,7 @@
 package com.wutsi.application.shell.endpoint.fcm.command
 
 import com.wutsi.application.shell.endpoint.AbstractCommand
-import com.wutsi.application.shell.endpoint.fcm.dto.UpdateTokenRequest
+import com.wutsi.application.shell.endpoint.fcm.dto.UpdateFCMTokenRequest
 import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.UpdateAccountAttributeRequest
 import org.springframework.web.bind.annotation.PostMapping
@@ -15,7 +15,7 @@ class UpdateTokenCommand(
     private val accountApi: WutsiAccountApi
 ) : AbstractCommand() {
     @PostMapping
-    fun index(@RequestBody request: UpdateTokenRequest) {
+    fun index(@RequestBody request: UpdateFCMTokenRequest) {
         accountApi.updateAccountAttribute(
             id = securityContext.currentAccountId(),
             name = "fcm-token",

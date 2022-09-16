@@ -3,7 +3,7 @@ package com.wutsi.application.shell.endpoint.fcm.command
 import com.nhaarman.mockitokotlin2.argumentCaptor
 import com.nhaarman.mockitokotlin2.verify
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
-import com.wutsi.application.shell.endpoint.fcm.dto.UpdateTokenRequest
+import com.wutsi.application.shell.endpoint.fcm.dto.UpdateFCMTokenRequest
 import com.wutsi.platform.account.dto.UpdateAccountAttributeRequest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -26,7 +26,7 @@ internal class UpdateTokenCommandTest : AbstractEndpointTest() {
 
     @Test
     fun sync() {
-        val request = UpdateTokenRequest(
+        val request = UpdateFCMTokenRequest(
             token = "123"
         )
         rest.postForEntity(url, request, Any::class.java)
