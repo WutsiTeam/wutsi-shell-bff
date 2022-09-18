@@ -12,39 +12,7 @@
         {
           "type": "Column",
           "attributes": {},
-          "children": [
-            {
-              "type": "Container",
-              "attributes": {},
-              "children": [
-                {
-                  "type": "Row",
-                  "attributes": {
-                    "mainAxisAlignment": "spaceAround"
-                  },
-                  "children": [
-                    {
-                      "type": "Button",
-                      "attributes": {
-                        "caption": "News",
-                        "padding": 1.0,
-                        "type": "Text",
-                        "stretched": false,
-                        "icon": "f0639",
-                        "iconColor": "#1D7EDF",
-                        "color": "#1D7EDF"
-                      },
-                      "children": [],
-                      "action": {
-                        "type": "Route",
-                        "url": "https://wutsi-gateway-test.herokuapp.com/news"
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
+          "children": []
         }
       ]
     }
@@ -52,11 +20,24 @@
   "appBar": {
     "type": "AppBar",
     "attributes": {
-      "title": "Hi Ray Sponsible",
+      "title": "Ray Sponsible",
       "elevation": 0.0,
       "backgroundColor": "#1D7EDF",
       "foregroundColor": "#FFFFFF",
-      "automaticallyImplyLeading": false
+      "automaticallyImplyLeading": false,
+      "actions": [
+        {
+          "type": "IconButton",
+          "attributes": {
+            "icon": "f36e"
+          },
+          "children": [],
+          "action": {
+            "type": "Route",
+            "url": "http://localhost:0/settings"
+          }
+        }
+      ]
     },
     "children": []
   },
@@ -95,13 +76,13 @@
       {
         "type": "BottomNavigationBarItem",
         "attributes": {
-          "icon": "f36e",
-          "caption": "Settings"
+          "icon": "f0639",
+          "caption": "News"
         },
         "children": [],
         "action": {
           "type": "Route",
-          "url": "http://localhost:0/settings"
+          "url": "https://wutsi-gateway-test.herokuapp.com/news"
         }
       }
     ]

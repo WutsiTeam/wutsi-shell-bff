@@ -12,39 +12,7 @@
         {
           "type": "Column",
           "attributes": {},
-          "children": [
-            {
-              "type": "Container",
-              "attributes": {},
-              "children": [
-                {
-                  "type": "Row",
-                  "attributes": {
-                    "mainAxisAlignment": "spaceAround"
-                  },
-                  "children": [
-                    {
-                      "type": "Button",
-                      "attributes": {
-                        "caption": "Orders",
-                        "padding": 1.0,
-                        "type": "Text",
-                        "stretched": false,
-                        "icon": "f37a",
-                        "iconColor": "#1D7EDF",
-                        "color": "#1D7EDF"
-                      },
-                      "children": [],
-                      "action": {
-                        "type": "Route",
-                        "url": "https://wutsi-gateway-test.herokuapp.com/store/orders?merchant=true"
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
+          "children": []
         }
       ]
     }
@@ -52,11 +20,24 @@
   "appBar": {
     "type": "AppBar",
     "attributes": {
-      "title": "Hi Ray Sponsible",
+      "title": "Ray Sponsible",
       "elevation": 0.0,
       "backgroundColor": "#1D7EDF",
       "foregroundColor": "#FFFFFF",
-      "automaticallyImplyLeading": false
+      "automaticallyImplyLeading": false,
+      "actions": [
+        {
+          "type": "IconButton",
+          "attributes": {
+            "icon": "f36e"
+          },
+          "children": [],
+          "action": {
+            "type": "Route",
+            "url": "http://localhost:0/settings"
+          }
+        }
+      ]
     },
     "children": []
   },
@@ -90,18 +71,6 @@
         "action": {
           "type": "Route",
           "url": "http://localhost:0/profile"
-        }
-      },
-      {
-        "type": "BottomNavigationBarItem",
-        "attributes": {
-          "icon": "f36e",
-          "caption": "Settings"
-        },
-        "children": [],
-        "action": {
-          "type": "Route",
-          "url": "http://localhost:0/settings"
         }
       }
     ]

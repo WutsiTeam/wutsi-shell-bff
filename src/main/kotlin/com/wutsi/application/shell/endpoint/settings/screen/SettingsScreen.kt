@@ -49,8 +49,7 @@ class SettingsScreen : AbstractQuery() {
                 separatorColor = Theme.COLOR_DIVIDER,
                 children = listItems()
             )
-        ),
-        bottomNavigationBar = bottomNavigationBar()
+        )
     ).toWidget()
 
     private fun listItems(): List<WidgetAware> {
@@ -107,15 +106,6 @@ class SettingsScreen : AbstractQuery() {
                     "page.settings.listitem.account.caption",
                     urlBuilder.build("settings/account"),
                     icon = Theme.ICON_PAYMENT
-                )
-            )
-
-        if (togglesProvider.isOrderEnabled())
-            children.add(
-                listItem(
-                    "page.settings.listitem.my-orders.caption",
-                    urlBuilder.build(storeUrl, "orders"),
-                    icon = Theme.ICON_ORDERS
                 )
             )
 

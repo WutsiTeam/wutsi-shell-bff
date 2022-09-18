@@ -12,6 +12,7 @@ import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.Center
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
+import com.wutsi.flutter.sdui.IconButton
 import com.wutsi.flutter.sdui.MoneyText
 import com.wutsi.flutter.sdui.Row
 import com.wutsi.flutter.sdui.Screen
@@ -83,28 +84,24 @@ class HomeScreen(
             children.add(EnvironmentBanner(env, request))
         }
 
-        // Secondary Apps
-        children.addAll(
-            toRows(applicationButtons(me), 4)
-                .map {
-                    Container(
-                        child = Row(
-                            children = it,
-                            mainAxisAlignment = spaceAround
-                        )
-                    )
-                }
-        )
-
         return Screen(
             id = Page.HOME,
             appBar = AppBar(
-                title = getText("page.home.greetings", arrayOf(me.displayName)),
+                title = me.displayName ?: "",
                 backgroundColor = Theme.COLOR_PRIMARY,
                 foregroundColor = Theme.COLOR_WHITE,
                 elevation = 0.0,
                 automaticallyImplyLeading = false,
-                leading = null
+                leading = null,
+                actions = listOf(
+                    IconButton(
+                        icon = Theme.ICON_SETTINGS,
+                        action = Action(
+                            type = ActionType.Route,
+                            url = urlBuilder.build("settings")
+                        )
+                    )
+                )
             ),
             child = SingleChildScrollView(
                 child = Column(children = children)
@@ -191,49 +188,23 @@ class HomeScreen(
         action = action
     )
 
-    private fun applicationButtons(me: Account): List<WidgetAware> {
-        val buttons = mutableListOf<WidgetAware>()
-
-        if (togglesProvider.isStoreEnabled())
-            buttons.addAll(
-                listOf(
-                    applicationButton(
-                        caption = getText("page.home.button.marketplace"),
-                        icon = Theme.ICON_CART,
-                        action = Action(
-                            type = ActionType.Route,
-                            url = "$storeUrl/marketplace"
-                        )
-                    )
-                )
-            )
-
-        if (togglesProvider.isToggleEnabled(ToggleName.BUSINESS_ACCOUNT) && me.business && me.hasStore && togglesProvider.isOrderEnabled())
-            buttons.add(
-                applicationButton(
-                    caption = getText("page.home.button.orders"),
-                    icon = Theme.ICON_ORDERS,
-                    action = Action(
-                        type = ActionType.Route,
-                        url = urlBuilder.build(storeUrl, "orders?merchant=true")
-                    )
-                )
-            )
-
-        if (me.superUser && togglesProvider.isToggleEnabled(ToggleName.NEWS))
-            buttons.add(
-                applicationButton(
-                    caption = getText("page.home.button.news"),
-                    icon = Theme.ICON_NEWSPAPER,
-                    action = Action(
-                        type = ActionType.Route,
-                        url = urlBuilder.build(newsUrl, "")
-                    )
-                )
-            )
-
-        return buttons
-    }
+//    private fun applicationButtons(me: Account): List<WidgetAware> {
+//        val buttons = mutableListOf<WidgetAware>()
+//
+//        if (me.superUser && togglesProvider.isToggleEnabled(ToggleName.NEWS))
+//            buttons.add(
+//                applicationButton(
+//                    caption = getText("page.home.button.news"),
+//                    icon = Theme.ICON_NEWSPAPER,
+//                    action = Action(
+//                        type = ActionType.Route,
+//                        url = urlBuilder.build(newsUrl, "")
+//                    )
+//                )
+//            )
+//
+//        return buttons
+//    }
 
     private fun applicationButton(caption: String, icon: String, action: Action) = Button(
         type = ButtonType.Text,

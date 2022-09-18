@@ -1,28 +1,46 @@
 {
-  "type" : "Screen",
-  "attributes" : {
-    "id" : "page.scan",
-    "safe" : false
+  "type": "Screen",
+  "attributes": {
+    "id": "page.scan",
+    "safe": false
   },
-  "children" : [ {
-    "type" : "Container",
-    "attributes" : { },
-    "children" : [ {
-      "type" : "QrView",
-      "attributes" : {
-        "submitUrl" : "http://localhost:0/scan/viewer"
-      },
-      "children" : [ ]
-    } ]
-  } ],
-  "appBar" : {
-    "type" : "AppBar",
-    "attributes" : {
-      "title" : "QR Code Scanner",
-      "elevation" : 0.0,
-      "backgroundColor" : "#FFFFFF",
-      "foregroundColor" : "#000000"
+  "children": [
+    {
+      "type": "Container",
+      "attributes": {},
+      "children": [
+        {
+          "type": "QrView",
+          "attributes": {
+            "submitUrl": "http://localhost:0/scan/viewer"
+          },
+          "children": []
+        }
+      ]
+    }
+  ],
+  "appBar": {
+    "type": "AppBar",
+    "attributes": {
+      "title": "QR Code Scanner",
+      "elevation": 0.0,
+      "backgroundColor": "#FFFFFF",
+      "foregroundColor": "#000000",
+      "automaticallyImplyLeading": false,
+      "actions": [
+        {
+          "type": "IconButton",
+          "attributes": {
+            "icon": "ef28"
+          },
+          "children": [],
+          "action": {
+            "type": "Route",
+            "url": "route:/.."
+          }
+        }
+      ]
     },
-    "children" : [ ]
+    "children": []
   }
 }

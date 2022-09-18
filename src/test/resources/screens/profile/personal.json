@@ -246,18 +246,6 @@
               "type": "Route",
               "url": "http://localhost:0/profile"
             }
-          },
-          {
-            "type": "BottomNavigationBarItem",
-            "attributes": {
-              "icon": "f36e",
-              "caption": "Settings"
-            },
-            "children": [],
-            "action": {
-              "type": "Route",
-              "url": "http://localhost:0/settings"
-            }
           }
         ]
       }

@@ -54,11 +54,24 @@
   "appBar": {
     "type": "AppBar",
     "attributes": {
-      "title": "Hi Ray Sponsible",
+      "title": "Ray Sponsible",
       "elevation": 0.0,
       "backgroundColor": "#1D7EDF",
       "foregroundColor": "#FFFFFF",
-      "automaticallyImplyLeading": false
+      "automaticallyImplyLeading": false,
+      "actions": [
+        {
+          "type": "IconButton",
+          "attributes": {
+            "icon": "f36e"
+          },
+          "children": [],
+          "action": {
+            "type": "Route",
+            "url": "http://localhost:0/settings"
+          }
+        }
+      ]
     },
     "children": []
   },
@@ -92,18 +105,6 @@
         "action": {
           "type": "Route",
           "url": "http://localhost:0/profile"
-        }
-      },
-      {
-        "type": "BottomNavigationBarItem",
-        "attributes": {
-          "icon": "f36e",
-          "caption": "Settings"
-        },
-        "children": [],
-        "action": {
-          "type": "Route",
-          "url": "http://localhost:0/settings"
         }
       }
     ]

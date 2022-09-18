@@ -59,6 +59,8 @@ abstract class AbstractEndpoint {
         model = sharedUIMapper.toBottomNavigationBarModel(
             shellUrl = "",
             cashUrl = cashUrl,
+            storeUrl = storeUrl,
+            newsUrl = if (securityContext.currentAccount().superUser) newsUrl else null,
             urlBuilder = urlBuilder
         )
     ).toBottomNavigationBar()
@@ -95,7 +97,7 @@ abstract class AbstractEndpoint {
 
     protected fun formattedAccountNumber(paymentMethod: PaymentMethod): String =
         if (paymentMethod.type == PaymentMethodType.MOBILE.name)
-            formattedPhoneNumber(paymentMethod.phone?.number, paymentMethod.phone?.country)
+            formattedPhoneNumber(paymentMethod.phone.number, paymentMethod.phone.country)
                 ?: paymentMethod.maskedNumber
         else
             paymentMethod.maskedNumber
