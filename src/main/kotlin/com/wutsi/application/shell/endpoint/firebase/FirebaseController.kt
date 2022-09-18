@@ -19,6 +19,5 @@ class FirebaseController : AbstractQuery() {
         logger.add("message_image_url", request.imageUrl)
         logger.add("message_background", request.background)
         logger.add("message_data", request.data)
-        logger.add("device_id", request.deviceId)
     }
 }

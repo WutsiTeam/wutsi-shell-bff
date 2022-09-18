@@ -5,6 +5,5 @@ data class FirebaseRemoteMessageDto(
     val title: String? = null,
     val body: String? = null,
     val imageUrl: String? = null,
-    val data: Map<String, String?>? = null,
-    val deviceId: String? = null
+    val data: Map<String, String?>? = null
 )
