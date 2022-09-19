@@ -1,9 +1,8 @@
 package com.wutsi.application.shell.endpoint.home.screen
 
 import com.wutsi.application.shared.Theme
-import com.wutsi.application.shared.service.EnvironmentDetector
 import com.wutsi.application.shared.service.TenantProvider
-import com.wutsi.application.shared.ui.EnvironmentBanner
+import com.wutsi.application.shared.ui.TransactionListItem
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.flutter.sdui.Action
@@ -12,6 +11,7 @@ import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.Center
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
+import com.wutsi.flutter.sdui.Divider
 import com.wutsi.flutter.sdui.IconButton
 import com.wutsi.flutter.sdui.MoneyText
 import com.wutsi.flutter.sdui.Row
@@ -23,23 +23,27 @@ import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.Alignment
 import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment.spaceAround
+import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.Account
+import com.wutsi.platform.account.dto.AccountSummary
+import com.wutsi.platform.account.dto.PaymentMethodSummary
+import com.wutsi.platform.account.dto.SearchAccountRequest
 import com.wutsi.platform.payment.WutsiPaymentApi
 import com.wutsi.platform.payment.core.Money
+import com.wutsi.platform.payment.dto.SearchTransactionRequest
+import com.wutsi.platform.payment.dto.TransactionSummary
 import com.wutsi.platform.tenant.dto.Tenant
 import com.wutsi.platform.tenant.entity.ToggleName
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import javax.servlet.http.HttpServletRequest
 
 @RestController
 @RequestMapping("/")
 class HomeScreen(
     private val paymentApi: WutsiPaymentApi,
-    private val tenantProvider: TenantProvider,
-    private val env: EnvironmentDetector,
-    private val request: HttpServletRequest
+    private val accountApi: WutsiAccountApi,
+    private val tenantProvider: TenantProvider
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
@@ -79,9 +83,9 @@ class HomeScreen(
                 )
             )
 
-        // Environment banner
-        if (env.test()) {
-            children.add(EnvironmentBanner(env, request))
+        // Recent Transactions
+        if (togglesProvider.isToggleEnabled(ToggleName.TRANSACTION_HISTORY)) {
+            toTransactionsWidget(tenant)?.let { children.add(it) }
         }
 
         return Screen(
@@ -188,34 +192,77 @@ class HomeScreen(
         action = action
     )
 
-//    private fun applicationButtons(me: Account): List<WidgetAware> {
-//        val buttons = mutableListOf<WidgetAware>()
-//
-//        if (me.superUser && togglesProvider.isToggleEnabled(ToggleName.NEWS))
-//            buttons.add(
-//                applicationButton(
-//                    caption = getText("page.home.button.news"),
-//                    icon = Theme.ICON_NEWSPAPER,
-//                    action = Action(
-//                        type = ActionType.Route,
-//                        url = urlBuilder.build(newsUrl, "")
-//                    )
-//                )
-//            )
-//
-//        return buttons
-//    }
+    private fun toTransactionsWidget(tenant: Tenant): WidgetAware? {
+        val txs = findTransactions(3)
+        if (txs.isEmpty())
+            return null
 
-    private fun applicationButton(caption: String, icon: String, action: Action) = Button(
-        type = ButtonType.Text,
-        caption = caption,
-        icon = icon,
-        stretched = false,
-        color = Theme.COLOR_PRIMARY,
-        iconColor = Theme.COLOR_PRIMARY,
-        padding = 1.0,
-        action = action
-    )
+        val accounts = findAccounts(txs)
+        val paymentMethods = findPaymentMethods()
+        val currentUser = securityContext.currentAccount()
+        val children = mutableListOf<WidgetAware>()
+        children.addAll(
+            txs.flatMap {
+                listOf(
+                    TransactionListItem(
+                        action = Action(
+                            type = ActionType.Route,
+                            url = urlBuilder.build(cashUrl, "transaction?id=${it.id}")
+                        ),
+                        model = sharedUIMapper.toTransactionModel(
+                            it,
+                            currentUser = currentUser,
+                            accounts = accounts,
+                            paymentMethod = it.paymentMethodToken?.let { paymentMethods[it] },
+                            tenant = tenant,
+                            tenantProvider = tenantProvider
+                        )
+                    ),
+                    Divider(height = 1.0, color = Theme.COLOR_DIVIDER)
+                )
+            }
+        )
+        children.add(
+            Button(
+                type = ButtonType.Text,
+                padding = 5.0,
+                caption = getText("page.home.button.more_transactions"),
+                action = Action(
+                    type = ActionType.Route,
+                    url = urlBuilder.build(cashUrl, "history")
+                )
+            )
+        )
+        return Column(
+            children = children
+        )
+    }
+
+    private fun findTransactions(limit: Int): List<TransactionSummary> =
+        paymentApi.searchTransaction(
+            SearchTransactionRequest(
+                accountId = securityContext.currentAccountId(),
+                limit = limit,
+                offset = 0
+            )
+        ).transactions
+
+    private fun findPaymentMethods(): Map<String, PaymentMethodSummary> =
+        accountApi.listPaymentMethods(securityContext.currentAccountId())
+            .paymentMethods
+            .map { it.token to it }.toMap()
+
+    private fun findAccounts(txs: List<TransactionSummary>): Map<Long, AccountSummary> {
+        val accountIds = txs.map { it.accountId }.toMutableSet()
+        accountIds.addAll(txs.mapNotNull { it.recipientId })
+
+        return accountApi.searchAccount(
+            SearchAccountRequest(
+                ids = accountIds.toList(),
+                limit = accountIds.size
+            )
+        ).accounts.map { it.id to it }.toMap()
+    }
 
     private fun getBalance(user: Account, tenant: Tenant): Money {
         try {
@@ -227,20 +274,5 @@ class HomeScreen(
         } catch (ex: Throwable) {
             return Money(currency = tenant.currency)
         }
-    }
-
-    private fun toRows(products: List<WidgetAware>, size: Int): List<List<WidgetAware>> {
-        val rows = mutableListOf<List<WidgetAware>>()
-        var cur = mutableListOf<WidgetAware>()
-        products.forEach {
-            cur.add(it)
-            if (cur.size == size) {
-                rows.add(cur)
-                cur = mutableListOf()
-            }
-        }
-        if (cur.isNotEmpty())
-            rows.add(cur)
-        return rows
     }
 }

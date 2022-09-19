@@ -4,7 +4,6 @@ import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.eq
 import com.nhaarman.mockitokotlin2.whenever
-import com.wutsi.application.shared.service.EnvironmentDetector
 import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
 import com.wutsi.ecommerce.shipping.WutsiShippingApi
@@ -14,15 +13,23 @@ import com.wutsi.platform.account.dto.GetAccountResponse
 import com.wutsi.platform.account.dto.ListPaymentMethodResponse
 import com.wutsi.platform.account.dto.PaymentMethodSummary
 import com.wutsi.platform.account.dto.SearchAccountResponse
+import com.wutsi.platform.payment.PaymentMethodProvider
+import com.wutsi.platform.payment.PaymentMethodType
 import com.wutsi.platform.payment.WutsiPaymentApi
+import com.wutsi.platform.payment.core.Status
 import com.wutsi.platform.payment.dto.Balance
 import com.wutsi.platform.payment.dto.GetBalanceResponse
+import com.wutsi.platform.payment.dto.SearchTransactionResponse
+import com.wutsi.platform.payment.dto.TransactionSummary
+import com.wutsi.platform.payment.entity.TransactionType
 import com.wutsi.platform.tenant.entity.ToggleName
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.test.web.server.LocalServerPort
+import java.time.OffsetDateTime
+import java.time.ZoneOffset
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 internal class HomeScreenTest : AbstractEndpointTest() {
@@ -39,9 +46,6 @@ internal class HomeScreenTest : AbstractEndpointTest() {
 
     @MockBean
     private lateinit var togglesProvider: TogglesProvider
-
-    @MockBean
-    private lateinit var env: EnvironmentDetector
 
     @BeforeEach
     override fun setUp() {
@@ -157,13 +161,49 @@ internal class HomeScreenTest : AbstractEndpointTest() {
     }
 
     @Test
-    fun testEnvironment() {
-        assertEndpointEquals("/screens/home/home-test-env.json", url)
+    fun transactionEnabled() {
+        doReturn(true).whenever(togglesProvider).isToggleEnabled(ToggleName.TRANSACTION_HISTORY)
+
+        val txs = listOf(
+            createTransaction("A"),
+            createTransaction("B"),
+            createTransaction("C")
+        )
+        doReturn(SearchTransactionResponse(txs)).whenever(paymentApi).searchTransaction(any())
+
+        val paymentMethods = listOf(
+            createPaymentMethodSummary("A", "11111"),
+            createPaymentMethodSummary("B", "22222"),
+            createPaymentMethodSummary("C", "33333")
+        )
+        doReturn(ListPaymentMethodResponse(paymentMethods)).whenever(accountApi).listPaymentMethods(any())
+
+        val accounts = listOf(
+            createAccount(USER_ID),
+            createAccount(USER_ID),
+            createAccount(USER_ID)
+        )
+        doReturn(SearchAccountResponse(accounts)).whenever(accountApi).searchAccount(any())
+
+        assertEndpointEquals("/screens/home/home-transaction-enabled.json", url)
     }
+
+    private fun createTransaction(token: String) = TransactionSummary(
+        accountId = USER_ID,
+        type = TransactionType.CASHOUT.name,
+        status = Status.SUCCESSFUL.name,
+        net = 10000.0,
+        amount = 10000.0,
+        paymentMethodToken = token,
+        description = "Sample description",
+        created = OffsetDateTime.of(2021, 1, 1, 1, 1, 1, 1, ZoneOffset.UTC)
+    )
 
     private fun createPaymentMethodSummary(token: String, maskedNumber: String) = PaymentMethodSummary(
         token = token,
-        maskedNumber = maskedNumber
+        maskedNumber = maskedNumber,
+        type = PaymentMethodType.MOBILE.name,
+        provider = PaymentMethodProvider.MTN.name
     )
 
     private fun createAccount(id: Long) = AccountSummary(

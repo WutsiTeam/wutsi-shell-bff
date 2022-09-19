@@ -1,0 +1,278 @@
+{
+  "type": "Screen",
+  "attributes": {
+    "id": "page.home",
+    "safe": false
+  },
+  "children": [
+    {
+      "type": "SingleChildScrollView",
+      "attributes": {},
+      "children": [
+        {
+          "type": "Column",
+          "attributes": {},
+          "children": [
+            {
+              "type": "Column",
+              "attributes": {},
+              "children": [
+                {
+                  "type": "ListItem",
+                  "attributes": {
+                    "caption": "Cash Out",
+                    "subCaption": "11111",
+                    "trailing": {
+                      "type": "Column",
+                      "attributes": {
+                        "mainAxisAlignment": "spaceAround",
+                        "crossAxisAlignment": "end"
+                      },
+                      "children": [
+                        {
+                          "type": "Text",
+                          "attributes": {
+                            "caption": "-10,000 CFA",
+                            "bold": true,
+                            "alignment": "Right"
+                          },
+                          "children": []
+                        },
+                        {
+                          "type": "Text",
+                          "attributes": {
+                            "caption": "01 Jan 2021",
+                            "size": 10.0,
+                            "alignment": "Right"
+                          },
+                          "children": []
+                        }
+                      ]
+                    },
+                    "leading": {
+                      "type": "Image",
+                      "attributes": {
+                        "url": "http://www.goole.com/images/mtn.png",
+                        "width": 48.0,
+                        "height": 48.0
+                      },
+                      "children": []
+                    }
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/transaction?id="
+                  }
+                },
+                {
+                  "type": "Divider",
+                  "attributes": {
+                    "height": 1.0,
+                    "color": "#8c8c8c"
+                  },
+                  "children": []
+                },
+                {
+                  "type": "ListItem",
+                  "attributes": {
+                    "caption": "Cash Out",
+                    "subCaption": "22222",
+                    "trailing": {
+                      "type": "Column",
+                      "attributes": {
+                        "mainAxisAlignment": "spaceAround",
+                        "crossAxisAlignment": "end"
+                      },
+                      "children": [
+                        {
+                          "type": "Text",
+                          "attributes": {
+                            "caption": "-10,000 CFA",
+                            "bold": true,
+                            "alignment": "Right"
+                          },
+                          "children": []
+                        },
+                        {
+                          "type": "Text",
+                          "attributes": {
+                            "caption": "01 Jan 2021",
+                            "size": 10.0,
+                            "alignment": "Right"
+                          },
+                          "children": []
+                        }
+                      ]
+                    },
+                    "leading": {
+                      "type": "Image",
+                      "attributes": {
+                        "url": "http://www.goole.com/images/mtn.png",
+                        "width": 48.0,
+                        "height": 48.0
+                      },
+                      "children": []
+                    }
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/transaction?id="
+                  }
+                },
+                {
+                  "type": "Divider",
+                  "attributes": {
+                    "height": 1.0,
+                    "color": "#8c8c8c"
+                  },
+                  "children": []
+                },
+                {
+                  "type": "ListItem",
+                  "attributes": {
+                    "caption": "Cash Out",
+                    "subCaption": "33333",
+                    "trailing": {
+                      "type": "Column",
+                      "attributes": {
+                        "mainAxisAlignment": "spaceAround",
+                        "crossAxisAlignment": "end"
+                      },
+                      "children": [
+                        {
+                          "type": "Text",
+                          "attributes": {
+                            "caption": "-10,000 CFA",
+                            "bold": true,
+                            "alignment": "Right"
+                          },
+                          "children": []
+                        },
+                        {
+                          "type": "Text",
+                          "attributes": {
+                            "caption": "01 Jan 2021",
+                            "size": 10.0,
+                            "alignment": "Right"
+                          },
+                          "children": []
+                        }
+                      ]
+                    },
+                    "leading": {
+                      "type": "Image",
+                      "attributes": {
+                        "url": "http://www.goole.com/images/mtn.png",
+                        "width": 48.0,
+                        "height": 48.0
+                      },
+                      "children": []
+                    }
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/transaction?id="
+                  }
+                },
+                {
+                  "type": "Divider",
+                  "attributes": {
+                    "height": 1.0,
+                    "color": "#8c8c8c"
+                  },
+                  "children": []
+                },
+                {
+                  "type": "Button",
+                  "attributes": {
+                    "caption": "View more...",
+                    "padding": 5.0,
+                    "type": "Text"
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/history"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "appBar": {
+    "type": "AppBar",
+    "attributes": {
+      "title": "Ray Sponsible",
+      "elevation": 0.0,
+      "backgroundColor": "#1D7EDF",
+      "foregroundColor": "#FFFFFF",
+      "automaticallyImplyLeading": false,
+      "actions": [
+        {
+          "type": "IconButton",
+          "attributes": {
+            "icon": "f36e"
+          },
+          "children": [],
+          "action": {
+            "type": "Route",
+            "url": "http://localhost:0/settings"
+          }
+        }
+      ]
+    },
+    "children": []
+  },
+  "bottomNavigationBar": {
+    "type": "BottomNavigationBar",
+    "attributes": {
+      "background": "#1D7EDF",
+      "selectedItemColor": "#FFFFFF",
+      "unselectedItemColor": "#FFFFFF"
+    },
+    "children": [
+      {
+        "type": "BottomNavigationBarItem",
+        "attributes": {
+          "icon": "f107",
+          "caption": "Home"
+        },
+        "children": [],
+        "action": {
+          "type": "Route",
+          "url": "route:/~"
+        }
+      },
+      {
+        "type": "BottomNavigationBarItem",
+        "attributes": {
+          "icon": "f27b",
+          "caption": "Me"
+        },
+        "children": [],
+        "action": {
+          "type": "Route",
+          "url": "http://localhost:0/profile"
+        }
+      },
+      {
+        "type": "BottomNavigationBarItem",
+        "attributes": {
+          "icon": "e314",
+          "caption": "Transactions"
+        },
+        "children": [],
+        "action": {
+          "type": "Route",
+          "url": "https://wutsi-gateway-test.herokuapp.com/cash/history"
+        }
+      }
+    ]
+  }
+}
