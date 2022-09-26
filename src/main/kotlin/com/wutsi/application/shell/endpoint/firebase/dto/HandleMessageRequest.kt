@@ -1,6 +1,6 @@
 package com.wutsi.application.shell.endpoint.firebase.dto
 
-data class FirebaseRemoteMessageDto(
+data class HandleMessageRequest(
     val background: Boolean = false,
     val title: String? = null,
     val body: String? = null,
