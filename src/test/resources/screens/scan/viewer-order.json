@@ -88,7 +88,7 @@
               "children": [],
               "action": {
                 "type": "Route",
-                "url": "https://wutsi-gateway-test.herokuapp.com/store/order?id=1",
+                "url": "https://wutsi-store-bff-test.herokuapp.com/order?id=1",
                 "replacement": true
               }
             }

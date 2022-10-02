@@ -169,7 +169,7 @@
               "children": [],
               "action": {
                 "type": "Route",
-                "url": "https://wutsi-gateway-test.herokuapp.com/store/settings/store"
+                "url": "https://wutsi-store-bff-test.herokuapp.com/settings/store"
               }
             },
             {

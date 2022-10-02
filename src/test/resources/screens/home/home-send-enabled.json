@@ -39,7 +39,7 @@
                       "children": [],
                       "action": {
                         "type": "Route",
-                        "url": "https://wutsi-gateway-test.herokuapp.com/cash/send"
+                        "url": "https://wutsi-cash-bff-test.herokuapp.com/send"
                       }
                     }
                   ]

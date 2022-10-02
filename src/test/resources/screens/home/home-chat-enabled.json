@@ -83,7 +83,7 @@
         "children": [],
         "action": {
           "type": "Route",
-          "url": "https://wutsi-gateway-test.herokuapp.com/chat"
+          "url": "https://wutsi-chat-bff-test.herokuapp.com"
         }
       }
     ]

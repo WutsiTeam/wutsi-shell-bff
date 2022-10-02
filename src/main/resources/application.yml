@@ -52,14 +52,15 @@ spring:
 
 wutsi:
   application:
+    env: test
     name: wutsi-shell-bff
     server-url: http://localhost:${server.port}
-    gateway-url: https://wutsi-gateway-test.herokuapp.com
-    cash-url: ${wutsi.application.gateway-url}/cash
-    chat-url: ${wutsi.application.gateway-url}/chat
-    login-url: ${wutsi.application.gateway-url}/login
-    news-url: ${wutsi.application.gateway-url}/news
-    store-url: ${wutsi.application.gateway-url}/store
+    cash-url: https://wutsi-cash-bff-${wutsi.application.env}.herokuapp.com
+    chat-url: https://wutsi-chat-bff-${wutsi.application.env}.herokuapp.com
+    login-url: https://wutsi-login-bff-${wutsi.application.env}.herokuapp.com
+    news-url: https://wutsi-news-bff-${wutsi.application.env}.herokuapp.com
+    shell-url: https://wutsi-shell-bff-${wutsi.application.env}.herokuapp.com
+    store-url: https://wutsi-store-bff-${wutsi.application.env}.herokuapp.com
     asset-url: https://int-wutsi.s3.amazonaws.com/static/wutsi-web
   platform:
     cache:

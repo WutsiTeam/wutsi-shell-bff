@@ -262,7 +262,7 @@
             {
               "type": "DynamicWidget",
               "attributes": {
-                "url": "https://wutsi-gateway-test.herokuapp.com/store/widget?id=555"
+                "url": "https://wutsi-store-bff-test.herokuapp.com/widget?id=555"
               },
               "children": []
             },
@@ -367,7 +367,7 @@
                           "children": [],
                           "action": {
                             "type": "Route",
-                            "url": "https://wutsi-gateway-test.herokuapp.com/store/cart?merchant-id=555"
+                            "url": "https://wutsi-store-bff-test.herokuapp.com/cart?merchant-id=555"
                           }
                         },
                         {

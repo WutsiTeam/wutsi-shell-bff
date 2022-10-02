@@ -202,7 +202,7 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "https://wutsi-gateway-test.herokuapp.com/login/?phone=%2B1237666666666&screen-id=page.settings.account.delete.pin&title=Delete+Account&sub-title=Enter+your+PIN+to+delete+permanently+the+account&auth=false&return-to-route=false&return-url=http%3A%2F%2Flocalhost%3A0%2Fcommands%2Fdelete-account%3Ftoken%3Dxxx",
+                    "url": "https://wutsi-login-bff-test.herokuapp.com/?phone=%2B1237666666666&screen-id=page.settings.account.delete.pin&title=Delete+Account&sub-title=Enter+your+PIN+to+delete+permanently+the+account&auth=false&return-to-route=false&return-url=http%3A%2F%2Flocalhost%3A0%2Fcommands%2Fdelete-account%3Ftoken%3Dxxx",
                     "replacement": true
                   }
                 }

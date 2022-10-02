@@ -86,7 +86,7 @@ internal class UpdateProfileAttributeCommandTest : AbstractEndpointTest() {
         assertEquals(200, response.statusCodeValue)
         val action = response.body!!
         assertEquals(ActionType.Route, action.type)
-        assertEquals("https://wutsi-gateway-test.herokuapp.com/store/settings/store", action.url)
+        assertEquals("https://wutsi-store-bff-test.herokuapp.com/settings/store", action.url)
         assertEquals(false, action.replacement)
 
         verify(accountApi).updateAccountAttribute(ACCOUNT_ID, "has-store", UpdateAccountAttributeRequest(request.value))

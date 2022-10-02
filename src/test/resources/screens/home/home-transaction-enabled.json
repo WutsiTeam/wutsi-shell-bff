@@ -62,7 +62,7 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/transaction?id="
+                    "url": "https://wutsi-cash-bff-test.herokuapp.com/transaction?id="
                   }
                 },
                 {
@@ -118,7 +118,7 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/transaction?id="
+                    "url": "https://wutsi-cash-bff-test.herokuapp.com/transaction?id="
                   }
                 },
                 {
@@ -174,7 +174,7 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/transaction?id="
+                    "url": "https://wutsi-cash-bff-test.herokuapp.com/transaction?id="
                   }
                 },
                 {
@@ -195,7 +195,7 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/history"
+                    "url": "https://wutsi-cash-bff-test.herokuapp.com/history"
                   }
                 }
               ]
@@ -271,7 +271,7 @@
         "children": [],
         "action": {
           "type": "Route",
-          "url": "https://wutsi-gateway-test.herokuapp.com/cash/history"
+          "url": "https://wutsi-cash-bff-test.herokuapp.com/history"
         }
       }
     ]
