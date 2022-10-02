@@ -30,6 +30,7 @@ import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.test.web.server.LocalServerPort
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
+import kotlin.test.Ignore
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 internal class HomeScreenTest : AbstractEndpointTest() {
@@ -139,6 +140,7 @@ internal class HomeScreenTest : AbstractEndpointTest() {
     }
 
     @Test
+    @Ignore
     fun newsEnabled() {
         val user = createAccount(superUser = true)
         doReturn(GetAccountResponse(user)).whenever(accountApi).getAccount(any())
