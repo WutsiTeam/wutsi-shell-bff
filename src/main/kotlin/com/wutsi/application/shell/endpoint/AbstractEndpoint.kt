@@ -6,10 +6,11 @@ import com.wutsi.application.shared.service.SharedUIMapper
 import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shared.ui.BottomNavigationBarWidget
+import com.wutsi.application.shared.ui.BottomNavigationButton
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.Dialog
 import com.wutsi.flutter.sdui.enums.ActionType.Prompt
-import com.wutsi.flutter.sdui.enums.DialogType.Error
+import com.wutsi.flutter.sdui.enums.DialogType
 import com.wutsi.platform.account.dto.PaymentMethod
 import com.wutsi.platform.account.dto.PaymentMethodSummary
 import com.wutsi.platform.core.logging.KVLogger
@@ -43,6 +44,9 @@ abstract class AbstractEndpoint {
     @Value("\${wutsi.application.cash-url}")
     protected lateinit var cashUrl: String
 
+    @Value("\${wutsi.application.chat-url}")
+    protected lateinit var chatUrl: String
+
     @Value("\${wutsi.application.store-url}")
     protected lateinit var storeUrl: String
 
@@ -55,13 +59,15 @@ abstract class AbstractEndpoint {
     @Autowired
     protected lateinit var togglesProvider: TogglesProvider
 
-    protected fun bottomNavigationBar() = BottomNavigationBarWidget(
+    protected fun bottomNavigationBar(selectedButton: BottomNavigationButton? = null) = BottomNavigationBarWidget(
         model = sharedUIMapper.toBottomNavigationBarModel(
             shellUrl = "",
             cashUrl = cashUrl,
             storeUrl = storeUrl,
-            newsUrl = if (securityContext.currentAccount().superUser) newsUrl else null,
-            urlBuilder = urlBuilder
+            newsUrl = newsUrl,
+            chatUrl = chatUrl,
+            urlBuilder = urlBuilder,
+            selectedButton = selectedButton
         )
     ).toBottomNavigationBar()
 
@@ -70,7 +76,7 @@ abstract class AbstractEndpoint {
             type = Prompt,
             prompt = Dialog(
                 title = getText("prompt.error.title"),
-                type = Error,
+                type = DialogType.Error,
                 message = getText(messageKey)
             ).toWidget()
         )

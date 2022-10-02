@@ -46,7 +46,8 @@
     "attributes": {
       "background": "#1D7EDF",
       "selectedItemColor": "#FFFFFF",
-      "unselectedItemColor": "#FFFFFF"
+      "unselectedItemColor": "#FFFFFF",
+      "currentIndex": 0
     },
     "children": [
       {

@@ -2,6 +2,7 @@ package com.wutsi.application.shell.endpoint.home.screen
 
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.shared.service.TenantProvider
+import com.wutsi.application.shared.ui.BottomNavigationButton
 import com.wutsi.application.shared.ui.TransactionListItem
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
@@ -110,7 +111,7 @@ class HomeScreen(
             child = SingleChildScrollView(
                 child = Column(children = children)
             ),
-            bottomNavigationBar = bottomNavigationBar()
+            bottomNavigationBar = bottomNavigationBar(BottomNavigationButton.HOME)
         ).toWidget()
     }
 

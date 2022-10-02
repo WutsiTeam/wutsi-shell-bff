@@ -12,45 +12,42 @@
         {
           "type": "Column",
           "attributes": {},
-          "children": [
-            {
-              "type": "Container",
-              "attributes": {
-                "alignment": "TopLeft",
-                "padding": 10.0,
-                "background": "#1D7EDF"
-              },
-              "children": [
-                {
-                  "type": "Row",
-                  "attributes": {
-                    "mainAxisAlignment": "start",
-                    "crossAxisAlignment": "start"
-                  },
-                  "children": [
-                    {
-                      "type": "Text",
-                      "attributes": {
-                        "caption": "Hi Ray Sponsible",
-                        "color": "#FFFFFF"
-                      },
-                      "children": []
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
+          "children": []
         }
       ]
     }
   ],
+  "appBar": {
+    "type": "AppBar",
+    "attributes": {
+      "title": "Ray Sponsible",
+      "elevation": 0.0,
+      "backgroundColor": "#1D7EDF",
+      "foregroundColor": "#FFFFFF",
+      "automaticallyImplyLeading": false,
+      "actions": [
+        {
+          "type": "IconButton",
+          "attributes": {
+            "icon": "f36e"
+          },
+          "children": [],
+          "action": {
+            "type": "Route",
+            "url": "http://localhost:0/settings"
+          }
+        }
+      ]
+    },
+    "children": []
+  },
   "bottomNavigationBar": {
     "type": "BottomNavigationBar",
     "attributes": {
       "background": "#1D7EDF",
       "selectedItemColor": "#FFFFFF",
-      "unselectedItemColor": "#FFFFFF"
+      "unselectedItemColor": "#FFFFFF",
+      "currentIndex": 0
     },
     "children": [
       {
@@ -80,13 +77,13 @@
       {
         "type": "BottomNavigationBarItem",
         "attributes": {
-          "icon": "f36e",
-          "caption": "Settings"
+          "icon": "ef42",
+          "caption": "Messages"
         },
         "children": [],
         "action": {
           "type": "Route",
-          "url": "http://localhost:0/settings"
+          "url": "https://wutsi-gateway-test.herokuapp.com/chat"
         }
       }
     ]

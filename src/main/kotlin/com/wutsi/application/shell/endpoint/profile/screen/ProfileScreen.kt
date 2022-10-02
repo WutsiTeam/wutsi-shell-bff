@@ -3,6 +3,7 @@ package com.wutsi.application.shell.endpoint.profile.screen
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.shared.service.PhoneUtil
 import com.wutsi.application.shared.service.TenantProvider
+import com.wutsi.application.shared.ui.BottomNavigationButton
 import com.wutsi.application.shared.ui.CartIcon
 import com.wutsi.application.shared.ui.ProfileCard
 import com.wutsi.application.shared.ui.ProfileCardType
@@ -110,7 +111,7 @@ class ProfileScreen(
                     actions = titleBarActions(user, cart, tenant)
                 ),
                 child = tabViews.children[0],
-                bottomNavigationBar = bottomNavigationBar()
+                bottomNavigationBar = bottomNavigationBar(BottomNavigationButton.PROFILE)
             ).toWidget()
         else
             DefaultTabController(

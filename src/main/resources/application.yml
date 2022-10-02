@@ -56,6 +56,7 @@ wutsi:
     server-url: http://localhost:${server.port}
     gateway-url: https://wutsi-gateway-test.herokuapp.com
     cash-url: ${wutsi.application.gateway-url}/cash
+    chat-url: ${wutsi.application.gateway-url}/chat
     login-url: ${wutsi.application.gateway-url}/login
     news-url: ${wutsi.application.gateway-url}/news
     store-url: ${wutsi.application.gateway-url}/store

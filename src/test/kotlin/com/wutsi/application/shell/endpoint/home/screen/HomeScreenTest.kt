@@ -139,17 +139,6 @@ internal class HomeScreenTest : AbstractEndpointTest() {
     }
 
     @Test
-    fun ordersEnabled() {
-        doReturn(true).whenever(togglesProvider).isToggleEnabled(ToggleName.BUSINESS_ACCOUNT)
-        user = createAccount(business = true, hasStore = true)
-        doReturn(GetAccountResponse(user)).whenever(accountApi).getAccount(any())
-
-        doReturn(true).whenever(togglesProvider).isOrderEnabled()
-
-        assertEndpointEquals("/screens/home/home-orders-enabled.json", url)
-    }
-
-    @Test
     fun newsEnabled() {
         val user = createAccount(superUser = true)
         doReturn(GetAccountResponse(user)).whenever(accountApi).getAccount(any())
@@ -158,6 +147,17 @@ internal class HomeScreenTest : AbstractEndpointTest() {
         doReturn(ListShippingResponse()).whenever(shippingApi).listShipping()
 
         assertEndpointEquals("/screens/home/home-news-enabled.json", url)
+    }
+
+    @Test
+    fun chatEnabled() {
+        val user = createAccount(superUser = true)
+        doReturn(GetAccountResponse(user)).whenever(accountApi).getAccount(any())
+
+        doReturn(true).whenever(togglesProvider).isToggleEnabled(ToggleName.CHAT)
+        doReturn(ListShippingResponse()).whenever(shippingApi).listShipping()
+
+        assertEndpointEquals("/screens/home/home-chat-enabled.json", url)
     }
 
     @Test
