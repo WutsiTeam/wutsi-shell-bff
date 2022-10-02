@@ -10,8 +10,8 @@ spring:
 
 wutsi:
   application:
-    gateway-url: https://wutsi-gateway-test.herokuapp.com
-    server-url: ${wutsi.application.gateway-url}/shell
+    env: test
+    server-url: ${wutsi.application.shell-url}
   platform:
     cache:
       type: memcached

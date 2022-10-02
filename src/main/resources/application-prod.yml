@@ -11,8 +11,7 @@ spring:
 wutsi:
   application:
     env: prod
-    gateway-url: https://wutsi-gateway-prod.herokuapp.com
-    server-url: https://wutsi-sheel-bff-prod.herokuapp.com
+    server-url: ${wutsi.application.shell-url}
     asset-url: https://prod-wutsi.s3.amazonaws.com/static/wutsi-web
   platform:
     cache:
