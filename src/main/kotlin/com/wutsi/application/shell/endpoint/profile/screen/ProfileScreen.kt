@@ -36,6 +36,7 @@ import com.wutsi.platform.account.entity.AccountStatus
 import com.wutsi.platform.contact.WutsiContactApi
 import com.wutsi.platform.contact.dto.SearchContactRequest
 import com.wutsi.platform.tenant.dto.Tenant
+import com.wutsi.platform.tenant.entity.ToggleName
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.PostMapping
@@ -142,7 +143,7 @@ class ProfileScreen(
         else
             listOfNotNull(
                 if (user.business)
-                    PhoneUtil.toWhatsAppUrl(user.whatsapp)?.let {
+                    if (togglesProvider.isToggleEnabled(ToggleName.CHAT)) {
                         Container(
                             padding = 4.0,
                             child = CircleAvatar(
@@ -152,12 +153,30 @@ class ProfileScreen(
                                     icon = Theme.ICON_CHAT,
                                     size = 20.0,
                                     action = Action(
-                                        type = ActionType.Navigate,
-                                        url = it
+                                        type = ActionType.Route,
+                                        url = "$chatUrl/messages?recipient-id=${user.id}"
                                     )
                                 )
                             )
                         )
+                    } else {
+                        PhoneUtil.toWhatsAppUrl(user.whatsapp)?.let {
+                            Container(
+                                padding = 4.0,
+                                child = CircleAvatar(
+                                    radius = 20.0,
+                                    backgroundColor = Theme.COLOR_PRIMARY_LIGHT,
+                                    child = IconButton(
+                                        icon = Theme.ICON_CHAT,
+                                        size = 20.0,
+                                        action = Action(
+                                            type = ActionType.Navigate,
+                                            url = it
+                                        )
+                                    )
+                                )
+                            )
+                        }
                     }
                 else
                     null,

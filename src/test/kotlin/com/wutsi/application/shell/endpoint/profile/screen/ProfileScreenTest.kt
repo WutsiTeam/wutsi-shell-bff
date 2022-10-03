@@ -130,6 +130,22 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
     }
 
     @Test
+    fun chatEnabled() {
+        // GIVEN
+        doReturn(true).whenever(togglesProvider).isToggleEnabled(ToggleName.CHAT)
+
+        val account = createAccount(555, true)
+        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
+        
+        // WHEN
+        val url = "http://localhost:$port/profile?id=555"
+        val response = rest.postForEntity(url, null, Any::class.java)
+
+        // THEN
+        assertJsonEquals("/screens/profile/chat-enabled.json", response.body)
+    }
+
+    @Test
     fun accountSuspended() {
         // GIVEN
         doReturn(true).whenever(togglesProvider).isContactEnabled()
