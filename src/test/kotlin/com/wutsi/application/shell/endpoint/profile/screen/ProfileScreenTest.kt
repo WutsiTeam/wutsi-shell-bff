@@ -136,7 +136,7 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
 
         val account = createAccount(555, true)
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
-        
+
         // WHEN
         val url = "http://localhost:$port/profile?id=555"
         val response = rest.postForEntity(url, null, Any::class.java)
