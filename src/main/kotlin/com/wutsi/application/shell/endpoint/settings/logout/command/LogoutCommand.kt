@@ -17,7 +17,7 @@ class LogoutCommand(
     private val tokenProvider: RequestTokenProvider
 ) : AbstractCommand() {
     @PostMapping
-    fun index(): Action {
+    fun execute(): Action {
         tokenProvider.getToken()?.let {
             securityApi.logout(
                 request = LogoutRequest(accessToken = it)

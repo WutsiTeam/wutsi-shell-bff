@@ -37,7 +37,7 @@ internal class DeleteWalletTest : AbstractEndpointTest() {
         assertEquals(200, response.statusCodeValue)
 
         verify(accountApi).suspendAccount(ACCOUNT_ID)
-        verify(logout).index()
+        verify(logout).execute()
 
         val action = response.body!!
         assertEquals(ActionType.Route, action.type)

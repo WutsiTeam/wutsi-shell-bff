@@ -25,7 +25,7 @@ class DeleteWallet(
         accountApi.suspendAccount(securityContext.currentAccountId())
 
         try {
-            logout.index()
+            logout.execute()
         } catch (ex: Exception) {
             LOGGER.warn("Unexpected error while login out")
         } finally {
