@@ -67,6 +67,7 @@ class ProfileScreen(
             id ?: securityContext.currentAccountId()
         ).account
         val active = AccountStatus.ACTIVE.name.equals(user.status, true)
+        val qrEnabled = togglesProvider.isToggleEnabled(ToggleName.SCAN)
         val tenant = tenantProvider.get()
         val cart = getCart(user)
 
@@ -79,7 +80,7 @@ class ProfileScreen(
                 else
                     null,
 
-                if (active)
+                if (active && qrEnabled)
                     Text(getText("page.profile.tab.qr-code").uppercase(), bold = true)
                 else
                     null
@@ -94,7 +95,7 @@ class ProfileScreen(
                 else
                     null,
 
-                if (active)
+                if (active && qrEnabled)
                     qrCodeTab(user)
                 else
                     null

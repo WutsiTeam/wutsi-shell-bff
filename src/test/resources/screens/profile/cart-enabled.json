@@ -1,7 +1,7 @@
 {
   "type": "DefaultTabController",
   "attributes": {
-    "length": 3,
+    "length": 2,
     "id": "page.profile"
   },
   "children": [
@@ -265,13 +265,6 @@
                 "url": "https://wutsi-store-bff-test.herokuapp.com/widget?id=555"
               },
               "children": []
-            },
-            {
-              "type": "DynamicWidget",
-              "attributes": {
-                "url": "http://localhost:0/profile/qr-code-widget?id=555"
-              },
-              "children": []
             }
           ]
         }
@@ -411,14 +404,6 @@
                 "type": "Text",
                 "attributes": {
                   "caption": "STORE",
-                  "bold": true
-                },
-                "children": []
-              },
-              {
-                "type": "Text",
-                "attributes": {
-                  "caption": "QR CODE",
                   "bold": true
                 },
                 "children": []
