@@ -58,9 +58,9 @@ wutsi:
     server-url: http://localhost:${server.port}
     store-url: ${wutsi.application.server-url}
     shell-url: ${wutsi.application.server-url}
+    cash-url: ${wutsi.application.server-url}
     login-url: https://wutsi-login-bff-${wutsi.application.env}.herokuapp.com
     chat-url: https://wutsi-chat-bff-${wutsi.application.env}.herokuapp.com
-    cash-url: https://wutsi-cash-bff-${wutsi.application.env}.herokuapp.com
     news-url: https://wutsi-news-bff-${wutsi.application.env}.herokuapp.com
   platform:
     cache:

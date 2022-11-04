@@ -1,0 +1,110 @@
+{
+  "type": "Screen",
+  "attributes": {
+    "id": "page.history",
+    "safe": false
+  },
+  "children": [
+    {
+      "type": "Column",
+      "attributes": {
+        "mainAxisAlignment": "center"
+      },
+      "children": [
+        {
+          "type": "Text",
+          "attributes": {
+            "caption": "Balance"
+          },
+          "children": []
+        },
+        {
+          "type": "MoneyText",
+          "attributes": {
+            "value": 100000.0,
+            "currency": "XAF",
+            "numberFormat": "#,###,##0"
+          },
+          "children": []
+        },
+        {
+          "type": "Text",
+          "attributes": {
+            "caption": "Your last 30 transactions"
+          },
+          "children": []
+        },
+        {
+          "type": "Divider",
+          "attributes": {
+            "color": "#8c8c8c"
+          },
+          "children": []
+        },
+        {
+          "type": "Container",
+          "attributes": {
+            "alignment": "TopCenter",
+            "padding": 20.0
+          },
+          "children": [
+            {
+              "type": "Text",
+              "attributes": {
+                "caption": "No transaction",
+                "bold": true,
+                "size": 16.0,
+                "alignment": "Center"
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "appBar": {
+    "type": "AppBar",
+    "attributes": {
+      "title": "My Transactions",
+      "elevation": 0.0,
+      "backgroundColor": "#FFFFFF",
+      "foregroundColor": "#000000"
+    },
+    "children": []
+  },
+  "bottomNavigationBar": {
+    "type": "BottomNavigationBar",
+    "attributes": {
+      "background": "#1D7EDF",
+      "selectedItemColor": "#FFFFFF",
+      "unselectedItemColor": "#FFFFFF"
+    },
+    "children": [
+      {
+        "type": "BottomNavigationBarItem",
+        "attributes": {
+          "icon": "f107",
+          "caption": "Home"
+        },
+        "children": [],
+        "action": {
+          "type": "Route",
+          "url": "route:/~"
+        }
+      },
+      {
+        "type": "BottomNavigationBarItem",
+        "attributes": {
+          "icon": "f27b",
+          "caption": "Me"
+        },
+        "children": [],
+        "action": {
+          "type": "Route",
+          "url": "http://localhost:0/profile"
+        }
+      }
+    ]
+  }
+}

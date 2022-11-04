@@ -64,7 +64,7 @@
                       "children": [],
                       "action": {
                         "type": "Route",
-                        "url": "https://wutsi-cash-bff-test.herokuapp.com/history"
+                        "url": "http://localhost:0/history"
                       }
                     }
                   ]

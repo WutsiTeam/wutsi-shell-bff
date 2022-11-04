@@ -64,7 +64,7 @@
                       "children": [],
                       "action": {
                         "type": "Route",
-                        "url": "https://wutsi-cash-bff-test.herokuapp.com/cashout"
+                        "url": "http://localhost:0/cashout"
                       }
                     }
                   ]
