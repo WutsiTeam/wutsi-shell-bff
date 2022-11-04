@@ -23,6 +23,6 @@ internal class SettingsDeleteWalletScreenTest : AbstractEndpointTest() {
     @Test
     fun index() {
         // THEN
-        assertEndpointEquals("/screens/settings/security/delete.json", url)
+        assertEndpointEquals("/shell/screens/settings/security/delete.json", url)
     }
 }

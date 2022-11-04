@@ -22,6 +22,6 @@ internal class BusinessDisplayNamePageTest : AbstractEndpointTest() {
 
     @Test
     fun invoke() {
-        assertEndpointEquals("/pages/settings/profile/display-name.json", url)
+        assertEndpointEquals("/shell/pages/settings/profile/display-name.json", url)
     }
 }

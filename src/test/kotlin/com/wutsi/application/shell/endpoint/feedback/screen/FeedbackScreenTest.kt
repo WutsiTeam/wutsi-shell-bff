@@ -22,6 +22,6 @@ internal class FeedbackScreenTest : AbstractEndpointTest() {
 
     @Test
     fun index() {
-        assertEndpointEquals("/screens/feedback/feedback.json", url)
+        assertEndpointEquals("/shell/screens/feedback/feedback.json", url)
     }
 }

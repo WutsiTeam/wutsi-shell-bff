@@ -31,11 +31,11 @@ internal class SettingsAboutScreenTest : AbstractEndpointTest() {
     }
 
     @Test
-    fun index() = assertEndpointEquals("/screens/settings/about/about.json", url)
+    fun index() = assertEndpointEquals("/shell/screens/settings/about/about.json", url)
 
     @Test
     fun switchToProd() {
         doReturn(true).whenever(togglesProvider).isSwitchEnvironmentEnabled()
-        assertEndpointEquals("/screens/settings/about/about-env-enabled.json", url)
+        assertEndpointEquals("/shell/screens/settings/about/about-env-enabled.json", url)
     }
 }

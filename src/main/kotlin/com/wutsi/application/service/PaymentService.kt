@@ -1,4 +1,4 @@
-package com.wutsi.application.shell.service
+package com.wutsi.application.service
 
 import com.wutsi.application.shared.service.SecurityContext
 import com.wutsi.platform.payment.WutsiPaymentApi

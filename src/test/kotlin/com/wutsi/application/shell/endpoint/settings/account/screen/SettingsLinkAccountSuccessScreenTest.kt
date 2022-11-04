@@ -21,5 +21,5 @@ internal class SettingsLinkAccountSuccessScreenTest : AbstractEndpointTest() {
     }
 
     @Test
-    fun index() = assertEndpointEquals("/screens/settings/accounts/link/success.json", url)
+    fun index() = assertEndpointEquals("/shell/screens/settings/accounts/link/success.json", url)
 }

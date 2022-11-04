@@ -83,7 +83,7 @@ internal class HomeScreenTest : AbstractEndpointTest() {
         val account = createAccount(business = false)
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
 
-        assertEndpointEquals("/screens/home/home-personal.json", url)
+        assertEndpointEquals("/shell/screens/home/home-personal.json", url)
     }
 
     @Test
@@ -92,14 +92,14 @@ internal class HomeScreenTest : AbstractEndpointTest() {
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
         doReturn(true).whenever(togglesProvider).isAccountEnabled()
 
-        assertEndpointEquals("/screens/home/home-business.json", url)
+        assertEndpointEquals("/shell/screens/home/home-business.json", url)
     }
 
     @Test
     fun accountEnabled() {
         doReturn(true).whenever(togglesProvider).isAccountEnabled()
 
-        assertEndpointEquals("/screens/home/home-account-enabled.json", url)
+        assertEndpointEquals("/shell/screens/home/home-account-enabled.json", url)
     }
 
     @Test
@@ -107,7 +107,7 @@ internal class HomeScreenTest : AbstractEndpointTest() {
         doReturn(true).whenever(togglesProvider).isAccountEnabled()
         doReturn(true).whenever(togglesProvider).isToggleEnabled(ToggleName.CASHIN)
 
-        assertEndpointEquals("/screens/home/home-cashin-enabled.json", url)
+        assertEndpointEquals("/shell/screens/home/home-cashin-enabled.json", url)
     }
 
     @Test
@@ -115,28 +115,28 @@ internal class HomeScreenTest : AbstractEndpointTest() {
         doReturn(true).whenever(togglesProvider).isAccountEnabled()
         doReturn(true).whenever(togglesProvider).isToggleEnabled(ToggleName.CASHOUT)
 
-        assertEndpointEquals("/screens/home/home-cashout-enabled.json", url)
+        assertEndpointEquals("/shell/screens/home/home-cashout-enabled.json", url)
     }
 
     @Test
     fun storeEnabled() {
         doReturn(true).whenever(togglesProvider).isStoreEnabled()
 
-        assertEndpointEquals("/screens/home/home-store-enabled.json", url)
+        assertEndpointEquals("/shell/screens/home/home-store-enabled.json", url)
     }
 
     @Test
     fun sendEnabled() {
         doReturn(true).whenever(togglesProvider).isSendEnabled()
 
-        assertEndpointEquals("/screens/home/home-send-enabled.json", url)
+        assertEndpointEquals("/shell/screens/home/home-send-enabled.json", url)
     }
 
     @Test
     fun contactEnabled() {
         doReturn(true).whenever(togglesProvider).isContactEnabled()
 
-        assertEndpointEquals("/screens/home/home-contact-enabled.json", url)
+        assertEndpointEquals("/shell/screens/home/home-contact-enabled.json", url)
     }
 
     @Test
@@ -148,7 +148,7 @@ internal class HomeScreenTest : AbstractEndpointTest() {
         doReturn(true).whenever(togglesProvider).isToggleEnabled(ToggleName.NEWS)
         doReturn(ListShippingResponse()).whenever(shippingApi).listShipping()
 
-        assertEndpointEquals("/screens/home/home-news-enabled.json", url)
+        assertEndpointEquals("/shell/screens/home/home-news-enabled.json", url)
     }
 
     @Test
@@ -159,7 +159,7 @@ internal class HomeScreenTest : AbstractEndpointTest() {
         doReturn(true).whenever(togglesProvider).isToggleEnabled(ToggleName.CHAT)
         doReturn(ListShippingResponse()).whenever(shippingApi).listShipping()
 
-        assertEndpointEquals("/screens/home/home-chat-enabled.json", url)
+        assertEndpointEquals("/shell/screens/home/home-chat-enabled.json", url)
     }
 
     @Test
@@ -187,7 +187,7 @@ internal class HomeScreenTest : AbstractEndpointTest() {
         )
         doReturn(SearchAccountResponse(accounts)).whenever(accountApi).searchAccount(any())
 
-        assertEndpointEquals("/screens/home/home-transaction-enabled.json", url)
+        assertEndpointEquals("/shell/screens/home/home-transaction-enabled.json", url)
     }
 
     private fun createTransaction(token: String) = TransactionSummary(

@@ -1,4 +1,4 @@
-package com.wutsi.application.shell
+package com.wutsi.application
 
 import com.wutsi.application.shared.WutsiBffApplication
 import com.wutsi.platform.core.WutsiApplication

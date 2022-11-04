@@ -30,6 +30,6 @@ internal class SettingsBusinessScreenTest : AbstractEndpointTest() {
         doReturn(ListPaymentMethodResponse()).whenever(accountApi).listPaymentMethods(any())
 
         // THEN
-        assertEndpointEquals("/screens/settings/profile/business.json", url)
+        assertEndpointEquals("/shell/screens/settings/profile/business.json", url)
     }
 }

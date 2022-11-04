@@ -20,6 +20,6 @@ internal class SettingsProfileFacebookIdScreenTest : AbstractEndpointTest() {
 
     @Test
     fun index() {
-        assertEndpointEquals("/screens/settings/profile/facebook-id.json", url)
+        assertEndpointEquals("/shell/screens/settings/profile/facebook-id.json", url)
     }
 }

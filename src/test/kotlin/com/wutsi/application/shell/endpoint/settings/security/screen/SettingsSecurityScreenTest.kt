@@ -9,7 +9,7 @@ import org.springframework.boot.test.web.server.LocalServerPort
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 internal class SettingsSecurityScreenTest : AbstractEndpointTest() {
     @LocalServerPort
-    public val port: Int = 0
+    val port: Int = 0
 
     private lateinit var url: String
 
@@ -23,6 +23,6 @@ internal class SettingsSecurityScreenTest : AbstractEndpointTest() {
     @Test
     fun index() {
         // THEN
-        assertEndpointEquals("/screens/settings/security/security.json", url)
+        assertEndpointEquals("/shell/screens/settings/security/security.json", url)
     }
 }

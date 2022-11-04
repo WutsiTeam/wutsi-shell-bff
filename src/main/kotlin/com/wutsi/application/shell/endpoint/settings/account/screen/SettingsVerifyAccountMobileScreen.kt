@@ -1,9 +1,9 @@
 package com.wutsi.application.shell.endpoint.settings.account.screen
 
+import com.wutsi.application.service.AccountService
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
-import com.wutsi.application.shell.service.AccountService
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button

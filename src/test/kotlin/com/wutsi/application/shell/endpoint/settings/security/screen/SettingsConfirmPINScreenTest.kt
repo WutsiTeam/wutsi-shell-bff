@@ -23,6 +23,6 @@ internal class SettingsConfirmPINScreenTest : AbstractEndpointTest() {
     @Test
     fun index() {
         // THEN
-        assertEndpointEquals("/screens/settings/security/confirm-pin.json", url)
+        assertEndpointEquals("/shell/screens/settings/security/confirm-pin.json", url)
     }
 }

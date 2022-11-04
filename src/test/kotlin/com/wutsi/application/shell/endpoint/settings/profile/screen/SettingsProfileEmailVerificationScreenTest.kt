@@ -23,6 +23,6 @@ internal class SettingsProfileEmailVerificationScreenTest : AbstractEndpointTest
     @Test
     fun index() {
         // THEN
-        assertEndpointEquals("/screens/settings/profile/email-verification.json", url)
+        assertEndpointEquals("/shell/screens/settings/profile/email-verification.json", url)
     }
 }

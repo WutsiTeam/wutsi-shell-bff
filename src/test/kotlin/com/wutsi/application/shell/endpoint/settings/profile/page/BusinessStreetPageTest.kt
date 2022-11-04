@@ -22,6 +22,6 @@ internal class BusinessStreetPageTest : AbstractEndpointTest() {
 
     @Test
     fun invoke() {
-        assertEndpointEquals("/pages/settings/profile/street.json", url)
+        assertEndpointEquals("/shell/pages/settings/profile/street.json", url)
     }
 }

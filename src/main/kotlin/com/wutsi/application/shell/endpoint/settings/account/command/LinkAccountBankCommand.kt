@@ -1,8 +1,8 @@
 package com.wutsi.application.shell.endpoint.settings.account.command
 
+import com.wutsi.application.service.AccountService
 import com.wutsi.application.shell.endpoint.AbstractCommand
 import com.wutsi.application.shell.endpoint.settings.account.dto.LinkBankAccountRequest
-import com.wutsi.application.shell.service.AccountService
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
 import org.springframework.web.bind.annotation.PostMapping

@@ -22,6 +22,6 @@ internal class SettingsProfileDisplayNameScreenTest : AbstractEndpointTest() {
 
     @Test
     fun index() {
-        assertEndpointEquals("/screens/settings/profile/display-name.json", url)
+        assertEndpointEquals("/shell/screens/settings/profile/display-name.json", url)
     }
 }

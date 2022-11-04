@@ -1,4 +1,4 @@
-package com.wutsi.application.shell.service
+package com.wutsi.application.service
 
 import com.wutsi.platform.core.security.spring.ApiKeyAuthenticator
 import com.wutsi.platform.security.WutsiSecurityApi

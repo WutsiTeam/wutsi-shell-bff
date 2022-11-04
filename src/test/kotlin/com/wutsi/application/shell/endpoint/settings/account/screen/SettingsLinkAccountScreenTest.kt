@@ -32,20 +32,20 @@ internal class SettingsLinkAccountScreenTest : AbstractEndpointTest() {
     fun mobileMoney() {
         doReturn(true).whenever(togglesProvider).isToggleEnabled(ToggleName.ACCOUNT_MOBILE_MONEY)
 
-        assertEndpointEquals("/screens/settings/accounts/link/link-mobile-money.json", url)
+        assertEndpointEquals("/shell/screens/settings/accounts/link/link-mobile-money.json", url)
     }
 
     @Test
     fun bank() {
         doReturn(true).whenever(togglesProvider).isToggleEnabled(ToggleName.ACCOUNT_BANK)
 
-        assertEndpointEquals("/screens/settings/accounts/link/link-with-bank-enabled.json", url)
+        assertEndpointEquals("/shell/screens/settings/accounts/link/link-with-bank-enabled.json", url)
     }
 
     @Test
     fun creditCard() {
         doReturn(true).whenever(togglesProvider).isToggleEnabled(ToggleName.ACCOUNT_CREDIT_CARD)
 
-        assertEndpointEquals("/screens/settings/accounts/link/link-with-credit-card-enabled.json", url)
+        assertEndpointEquals("/shell/screens/settings/accounts/link/link-with-credit-card-enabled.json", url)
     }
 }

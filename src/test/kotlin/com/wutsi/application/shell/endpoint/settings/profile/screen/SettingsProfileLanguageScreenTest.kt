@@ -22,6 +22,6 @@ internal class SettingsProfileLanguageScreenTest : AbstractEndpointTest() {
 
     @Test
     fun index() {
-        assertEndpointEquals("/screens/settings/profile/language.json", url)
+        assertEndpointEquals("/shell/screens/settings/profile/language.json", url)
     }
 }

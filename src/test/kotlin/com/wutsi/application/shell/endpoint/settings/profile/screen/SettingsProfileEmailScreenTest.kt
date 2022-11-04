@@ -20,6 +20,6 @@ internal class SettingsProfileEmailScreenTest : AbstractEndpointTest() {
 
     @Test
     fun index() {
-        assertEndpointEquals("/screens/settings/profile/email.json", url)
+        assertEndpointEquals("/shell/screens/settings/profile/email.json", url)
     }
 }

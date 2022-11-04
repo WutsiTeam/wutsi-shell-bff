@@ -26,5 +26,5 @@ internal class SettingsLinkAccountCreditCardScreenTest : AbstractEndpointTest() 
     }
 
     @Test
-    fun index() = assertEndpointEquals("/screens/settings/accounts/link/credit-card.json", url)
+    fun index() = assertEndpointEquals("/shell/screens/settings/accounts/link/credit-card.json", url)
 }

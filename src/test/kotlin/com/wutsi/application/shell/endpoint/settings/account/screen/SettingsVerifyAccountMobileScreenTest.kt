@@ -29,5 +29,5 @@ internal class SettingsVerifyAccountMobileScreenTest : AbstractEndpointTest() {
     }
 
     @Test
-    fun index() = assertEndpointEquals("/screens/settings/accounts/verify/mobile.json", url)
+    fun index() = assertEndpointEquals("/shell/screens/settings/accounts/verify/mobile.json", url)
 }

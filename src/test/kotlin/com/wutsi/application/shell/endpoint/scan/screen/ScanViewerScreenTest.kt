@@ -43,7 +43,7 @@ internal class ScanViewerScreenTest : AbstractEndpointTest() {
         val response = rest.postForEntity(url, request, Widget::class.java)
 
         // THEN
-        assertJsonEquals("/screens/scan/viewer-account.json", response.body)
+        assertJsonEquals("/shell/screens/scan/viewer-account.json", response.body)
     }
 
     @Test
@@ -55,7 +55,7 @@ internal class ScanViewerScreenTest : AbstractEndpointTest() {
         val response = rest.postForEntity(url, request, Widget::class.java)
 
         // THEN
-        assertJsonEquals("/screens/scan/viewer-order.json", response.body)
+        assertJsonEquals("/shell/screens/scan/viewer-order.json", response.body)
     }
 
     @Test
@@ -67,7 +67,7 @@ internal class ScanViewerScreenTest : AbstractEndpointTest() {
         val response = rest.postForEntity(url, request, Widget::class.java)
 
         // THEN
-        assertJsonEquals("/screens/scan/viewer-product.json", response.body)
+        assertJsonEquals("/shell/screens/scan/viewer-product.json", response.body)
     }
 
     @Test
@@ -79,7 +79,7 @@ internal class ScanViewerScreenTest : AbstractEndpointTest() {
         val response = rest.postForEntity(url, request, Widget::class.java)
 
         // THEN
-        assertJsonEquals("/screens/scan/viewer-url.json", response.body)
+        assertJsonEquals("/shell/screens/scan/viewer-url.json", response.body)
     }
 
     @Test
@@ -91,6 +91,6 @@ internal class ScanViewerScreenTest : AbstractEndpointTest() {
         val response = rest.postForEntity(url, request, Widget::class.java)
 
         // THEN
-        assertJsonEquals("/screens/scan/viewer-invalid.json", response.body)
+        assertJsonEquals("/shell/screens/scan/viewer-invalid.json", response.body)
     }
 }

@@ -22,6 +22,6 @@ internal class BusinessCityPageTest : AbstractEndpointTest() {
 
     @Test
     fun invoke() {
-        assertEndpointEquals("/pages/settings/profile/city.json", url)
+        assertEndpointEquals("/shell/pages/settings/profile/city.json", url)
     }
 }

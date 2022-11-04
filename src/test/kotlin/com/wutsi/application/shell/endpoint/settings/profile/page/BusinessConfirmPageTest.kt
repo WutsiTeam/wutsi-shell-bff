@@ -22,6 +22,6 @@ internal class BusinessConfirmPageTest : AbstractEndpointTest() {
 
     @Test
     fun invoke() {
-        assertEndpointEquals("/pages/settings/profile/confirm.json", url)
+        assertEndpointEquals("/shell/pages/settings/profile/confirm.json", url)
     }
 }

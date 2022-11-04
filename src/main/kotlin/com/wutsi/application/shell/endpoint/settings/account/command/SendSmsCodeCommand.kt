@@ -1,9 +1,9 @@
 package com.wutsi.application.shell.endpoint.settings.account.command
 
+import com.wutsi.application.service.AccountService
 import com.wutsi.application.shell.endpoint.AbstractCommand
 import com.wutsi.application.shell.endpoint.settings.account.dto.SendSmsCodeRequest
 import com.wutsi.application.shell.exception.InvalidPhoneNumberException
-import com.wutsi.application.shell.service.AccountService
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType.Route
 import org.springframework.web.bind.annotation.ExceptionHandler

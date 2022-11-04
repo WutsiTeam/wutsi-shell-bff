@@ -47,7 +47,7 @@ internal class ContactScreenTest : AbstractEndpointTest() {
         )
         doReturn(SearchAccountResponse(accounts)).whenever(accountApi).searchAccount(any())
 
-        assertEndpointEquals("/screens/contact/contact.json", url)
+        assertEndpointEquals("/shell/screens/contact/contact.json", url)
     }
 
     private fun createContact(contactId: Long) = ContactSummary(

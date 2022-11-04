@@ -1,4 +1,4 @@
-package com.wutsi.application.shell.service
+package com.wutsi.application.service
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.wutsi.application.shared.service.SecurityContext

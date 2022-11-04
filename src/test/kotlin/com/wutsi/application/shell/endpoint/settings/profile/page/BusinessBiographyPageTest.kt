@@ -22,6 +22,6 @@ internal class BusinessBiographyPageTest : AbstractEndpointTest() {
 
     @Test
     fun invoke() {
-        assertEndpointEquals("/pages/settings/profile/biography.json", url)
+        assertEndpointEquals("/shell/pages/settings/profile/biography.json", url)
     }
 }

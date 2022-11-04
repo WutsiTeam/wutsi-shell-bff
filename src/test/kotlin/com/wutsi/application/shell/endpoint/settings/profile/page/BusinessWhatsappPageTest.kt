@@ -22,6 +22,6 @@ internal class BusinessWhatsappPageTest : AbstractEndpointTest() {
 
     @Test
     fun invoke() {
-        assertEndpointEquals("/pages/settings/profile/whatsapp.json", url)
+        assertEndpointEquals("/shell/pages/settings/profile/whatsapp.json", url)
     }
 }

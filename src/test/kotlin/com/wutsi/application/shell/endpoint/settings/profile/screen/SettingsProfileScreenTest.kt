@@ -40,7 +40,7 @@ internal class SettingsProfileScreenTest : AbstractEndpointTest() {
         doReturn(ListPaymentMethodResponse()).whenever(accountApi).listPaymentMethods(any())
 
         // THEN
-        assertEndpointEquals("/screens/settings/profile/profile-personal.json", url)
+        assertEndpointEquals("/shell/screens/settings/profile/profile-personal.json", url)
     }
 
     @Test
@@ -50,7 +50,7 @@ internal class SettingsProfileScreenTest : AbstractEndpointTest() {
         doReturn(ListPaymentMethodResponse()).whenever(accountApi).listPaymentMethods(any())
 
         // THEN
-        assertEndpointEquals("/screens/settings/profile/profile-personal-business-enabled.json", url)
+        assertEndpointEquals("/shell/screens/settings/profile/profile-personal-business-enabled.json", url)
     }
 
     @Test
@@ -60,7 +60,7 @@ internal class SettingsProfileScreenTest : AbstractEndpointTest() {
         doReturn(ListPaymentMethodResponse()).whenever(accountApi).listPaymentMethods(any())
 
         // THEN
-        assertEndpointEquals("/screens/settings/profile/profile-business.json", url)
+        assertEndpointEquals("/shell/screens/settings/profile/profile-business.json", url)
     }
 
     @Test
@@ -71,7 +71,7 @@ internal class SettingsProfileScreenTest : AbstractEndpointTest() {
         doReturn(true).whenever(togglesProvider).isToggleEnabled(ToggleName.BUSINESS_ACCOUNT)
 
         // THEN
-        assertEndpointEquals("/screens/settings/profile/profile-business-business-enabled.json", url)
+        assertEndpointEquals("/shell/screens/settings/profile/profile-business-business-enabled.json", url)
     }
 
     private fun setUpBusinessAccount() {

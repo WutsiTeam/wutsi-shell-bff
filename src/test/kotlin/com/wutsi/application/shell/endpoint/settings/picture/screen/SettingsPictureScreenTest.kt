@@ -13,7 +13,7 @@ import org.springframework.boot.test.web.server.LocalServerPort
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 internal class SettingsPictureScreenTest : AbstractEndpointTest() {
     @LocalServerPort
-    public val port: Int = 0
+    val port: Int = 0
 
     private lateinit var url: String
 
@@ -30,6 +30,6 @@ internal class SettingsPictureScreenTest : AbstractEndpointTest() {
         doReturn(ListPaymentMethodResponse()).whenever(accountApi).listPaymentMethods(any())
 
         // THEN
-        assertEndpointEquals("/screens/settings/picture/picture.json", url)
+        assertEndpointEquals("/shell/screens/settings/picture/picture.json", url)
     }
 }

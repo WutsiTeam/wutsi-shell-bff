@@ -76,7 +76,7 @@ internal class SettingsAccountScreenTest : AbstractEndpointTest() {
     @Test
     fun `personnal account`() {
         // THEN
-        assertEndpointEquals("/screens/settings/accounts/account-personal.json", url)
+        assertEndpointEquals("/shell/screens/settings/accounts/account-personal.json", url)
     }
 
     @Test
@@ -84,7 +84,7 @@ internal class SettingsAccountScreenTest : AbstractEndpointTest() {
         doReturn(true).whenever(toggleProvider).isToggleEnabled(ToggleName.TRANSACTION_HISTORY)
 
         // THEN
-        assertEndpointEquals("/screens/settings/accounts/account-history-enabled.json", url)
+        assertEndpointEquals("/shell/screens/settings/accounts/account-history-enabled.json", url)
     }
 
     @Test
@@ -94,7 +94,7 @@ internal class SettingsAccountScreenTest : AbstractEndpointTest() {
         doReturn(GetAccountResponse(user)).whenever(accountApi).getAccount(any())
 
         // THEN
-        assertEndpointEquals("/screens/settings/accounts/account-business.json", url)
+        assertEndpointEquals("/shell/screens/settings/accounts/account-business.json", url)
     }
 
     @Test
@@ -105,6 +105,6 @@ internal class SettingsAccountScreenTest : AbstractEndpointTest() {
         doReturn(true).whenever(toggleProvider).isToggleEnabled(ToggleName.CASHOUT)
 
         // THEN
-        assertEndpointEquals("/screens/settings/accounts/account-cashout-enabled.json", url)
+        assertEndpointEquals("/shell/screens/settings/accounts/account-cashout-enabled.json", url)
     }
 }

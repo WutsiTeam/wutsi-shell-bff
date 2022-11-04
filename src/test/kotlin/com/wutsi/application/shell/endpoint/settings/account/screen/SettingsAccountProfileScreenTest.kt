@@ -48,6 +48,6 @@ internal class SettingsAccountProfileScreenTest : AbstractEndpointTest() {
         doReturn(GetPaymentMethodResponse(paymentMethod)).whenever(accountApi).getPaymentMethod(any(), any())
 
         // THEN
-        assertEndpointEquals("/screens/settings/accounts/profile/bank.json", url)
+        assertEndpointEquals("/shell/screens/settings/accounts/profile/bank.json", url)
     }
 }

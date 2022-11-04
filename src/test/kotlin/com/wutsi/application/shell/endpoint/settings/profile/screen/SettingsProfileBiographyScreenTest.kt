@@ -22,6 +22,6 @@ internal class SettingsProfileBiographyScreenTest : AbstractEndpointTest() {
 
     @Test
     fun invoke() {
-        assertEndpointEquals("/screens/settings/profile/biography.json", url)
+        assertEndpointEquals("/shell/screens/settings/profile/biography.json", url)
     }
 }

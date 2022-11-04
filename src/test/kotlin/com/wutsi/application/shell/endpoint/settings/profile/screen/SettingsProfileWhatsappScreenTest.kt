@@ -22,6 +22,6 @@ internal class SettingsProfileWhatsappScreenTest : AbstractEndpointTest() {
 
     @Test
     fun invoke() {
-        assertEndpointEquals("/screens/settings/profile/whatsapp.json", url)
+        assertEndpointEquals("/shell/screens/settings/profile/whatsapp.json", url)
     }
 }

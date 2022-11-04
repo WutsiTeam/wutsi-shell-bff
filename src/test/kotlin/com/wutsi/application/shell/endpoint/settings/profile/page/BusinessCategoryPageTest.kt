@@ -37,6 +37,6 @@ internal class BusinessCategoryPageTest : AbstractEndpointTest() {
         doReturn(ListCategoryResponse(categories)).whenever(accountApi).listCategories()
 
         // THEN
-        assertEndpointEquals("/pages/settings/profile/category.json", url)
+        assertEndpointEquals("/shell/pages/settings/profile/category.json", url)
     }
 }

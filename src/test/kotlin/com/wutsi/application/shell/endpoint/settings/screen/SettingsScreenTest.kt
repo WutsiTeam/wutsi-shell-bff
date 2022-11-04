@@ -39,13 +39,13 @@ internal class SettingsScreenTest : AbstractEndpointTest() {
     @Test
     fun index() {
         // THEN
-        assertEndpointEquals("/screens/settings/settings.json", url)
+        assertEndpointEquals("/shell/screens/settings/settings.json", url)
     }
 
     @Test
     fun accountEnabled() {
         doReturn(true).whenever(togglesProvider).isAccountEnabled()
-        assertEndpointEquals("/screens/settings/settings-account-enabled.json", url)
+        assertEndpointEquals("/shell/screens/settings/settings-account-enabled.json", url)
     }
 
     @Test
@@ -53,7 +53,7 @@ internal class SettingsScreenTest : AbstractEndpointTest() {
         setUpBusinessAccount()
         doReturn(true).whenever(togglesProvider).isStoreEnabled()
 
-        assertEndpointEquals("/screens/settings/settings-store-enabled.json", url)
+        assertEndpointEquals("/shell/screens/settings/settings-store-enabled.json", url)
     }
 
     @Test
@@ -61,7 +61,7 @@ internal class SettingsScreenTest : AbstractEndpointTest() {
         setUpBusinessAccount()
         doReturn(true).whenever(togglesProvider).isOrderEnabled()
 
-        assertEndpointEquals("/screens/settings/settings-order-enabled.json", url)
+        assertEndpointEquals("/shell/screens/settings/settings-order-enabled.json", url)
     }
 
     private fun setUpBusinessAccount(hasStore: Boolean = true) {

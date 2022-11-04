@@ -22,6 +22,6 @@ internal class ScanScreenTest : AbstractEndpointTest() {
 
     @Test
     fun invoke() {
-        assertEndpointEquals("/screens/scan/scan.json", url)
+        assertEndpointEquals("/shell/screens/scan/scan.json", url)
     }
 }

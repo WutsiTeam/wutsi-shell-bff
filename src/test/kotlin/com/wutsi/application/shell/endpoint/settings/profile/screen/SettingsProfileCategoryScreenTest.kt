@@ -35,6 +35,6 @@ internal class SettingsProfileCategoryScreenTest : AbstractEndpointTest() {
         doReturn(ListCategoryResponse(categories)).whenever(accountApi).listCategories()
 
         // THEN
-        assertEndpointEquals("/screens/settings/profile/category.json", url)
+        assertEndpointEquals("/shell/screens/settings/profile/category.json", url)
     }
 }

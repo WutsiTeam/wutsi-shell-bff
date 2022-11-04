@@ -20,6 +20,6 @@ internal class SettingsProfileInstagramIdScreenTest : AbstractEndpointTest() {
 
     @Test
     fun index() {
-        assertEndpointEquals("/screens/settings/profile/instagram-id.json", url)
+        assertEndpointEquals("/shell/screens/settings/profile/instagram-id.json", url)
     }
 }

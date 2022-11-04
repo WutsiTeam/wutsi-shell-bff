@@ -1,4 +1,4 @@
-package com.wutsi.application.shell.config
+package com.wutsi.application.config
 
 import com.wutsi.analytics.tracking.WutsiTrackingApi
 import com.wutsi.analytics.tracking.WutsiTrackingApiStream

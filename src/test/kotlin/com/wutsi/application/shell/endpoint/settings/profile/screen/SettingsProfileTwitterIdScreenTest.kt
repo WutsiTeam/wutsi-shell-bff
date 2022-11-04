@@ -20,6 +20,6 @@ internal class SettingsProfileTwitterIdScreenTest : AbstractEndpointTest() {
 
     @Test
     fun index() {
-        assertEndpointEquals("/screens/settings/profile/twitter-id.json", url)
+        assertEndpointEquals("/shell/screens/settings/profile/twitter-id.json", url)
     }
 }

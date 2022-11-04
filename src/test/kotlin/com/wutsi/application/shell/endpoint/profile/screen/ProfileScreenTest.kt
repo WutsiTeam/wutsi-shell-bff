@@ -54,7 +54,7 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
         val response = rest.postForEntity(url, null, Any::class.java)
 
         // THEN
-        assertJsonEquals("/screens/profile/personal.json", response.body)
+        assertJsonEquals("/shell/screens/profile/personal.json", response.body)
     }
 
     @Test
@@ -71,7 +71,7 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
         val response = rest.postForEntity(url, null, Any::class.java)
 
         // THEN
-        assertJsonEquals("/screens/profile/store-enabled.json", response.body)
+        assertJsonEquals("/shell/screens/profile/store-enabled.json", response.body)
     }
 
     @Test
@@ -94,7 +94,7 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
         val response = rest.postForEntity(url, null, Any::class.java)
 
         // THEN
-        assertJsonEquals("/screens/profile/cart-enabled.json", response.body)
+        assertJsonEquals("/shell/screens/profile/cart-enabled.json", response.body)
     }
 
     @Test
@@ -110,7 +110,7 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
         val response = rest.postForEntity(url, null, Any::class.java)
 
         // THEN
-        assertJsonEquals("/screens/profile/business.json", response.body)
+        assertJsonEquals("/shell/screens/profile/business.json", response.body)
     }
 
     @Test
@@ -126,7 +126,7 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
         val response = rest.postForEntity(url, null, Any::class.java)
 
         // THEN
-        assertJsonEquals("/screens/profile/contact-enabled.json", response.body)
+        assertJsonEquals("/shell/screens/profile/contact-enabled.json", response.body)
     }
 
     @Test
@@ -142,7 +142,7 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
         val response = rest.postForEntity(url, null, Any::class.java)
 
         // THEN
-        assertJsonEquals("/screens/profile/chat-enabled.json", response.body)
+        assertJsonEquals("/shell/screens/profile/chat-enabled.json", response.body)
     }
 
     @Test
@@ -158,7 +158,7 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
         val response = rest.postForEntity(url, null, Any::class.java)
 
         // THEN
-        assertJsonEquals("/screens/profile/suspended.json", response.body)
+        assertJsonEquals("/shell/screens/profile/suspended.json", response.body)
     }
 
     private fun createAccount(

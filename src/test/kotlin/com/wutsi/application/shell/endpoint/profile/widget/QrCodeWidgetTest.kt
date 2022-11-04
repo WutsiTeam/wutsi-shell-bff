@@ -23,6 +23,6 @@ internal class QrCodeWidgetTest : AbstractEndpointTest() {
     @Test
     fun profile() {
         // THEN
-        assertEndpointEquals("/widgets/profile/qr-code.json", url)
+        assertEndpointEquals("/shell/profile/qr-code.json", url)
     }
 }

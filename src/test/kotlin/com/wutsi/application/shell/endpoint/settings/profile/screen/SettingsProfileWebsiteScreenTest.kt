@@ -22,6 +22,6 @@ internal class SettingsProfileWebsiteScreenTest : AbstractEndpointTest() {
 
     @Test
     fun index() {
-        assertEndpointEquals("/screens/settings/profile/website.json", url)
+        assertEndpointEquals("/shell/screens/settings/profile/website.json", url)
     }
 }
