@@ -2,7 +2,7 @@ package com.wutsi.application.shell.endpoint.settings.profile.command
 
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.verify
-import com.wutsi.application.shell.endpoint.AbstractEndpointTest
+import com.wutsi.application.shell.endpoint.AbstractShellEndpointTest
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.platform.account.dto.UpdateAccountAttributeRequest
@@ -12,7 +12,7 @@ import org.springframework.boot.test.web.server.LocalServerPort
 import kotlin.test.assertEquals
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class UpdateProfileAttributeCommandTest : AbstractEndpointTest() {
+internal class UpdateProfileAttributeCommandTest : AbstractShellEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 
@@ -86,7 +86,7 @@ internal class UpdateProfileAttributeCommandTest : AbstractEndpointTest() {
         assertEquals(200, response.statusCodeValue)
         val action = response.body!!
         assertEquals(ActionType.Route, action.type)
-        assertEquals("https://wutsi-store-bff-test.herokuapp.com/settings/store", action.url)
+        assertEquals("http://localhost:0/settings/store", action.url)
         assertEquals(false, action.replacement)
 
         verify(accountApi).updateAccountAttribute(ACCOUNT_ID, "has-store", UpdateAccountAttributeRequest(request.value))

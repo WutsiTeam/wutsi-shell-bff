@@ -169,7 +169,7 @@
               "children": [],
               "action": {
                 "type": "Route",
-                "url": "https://wutsi-store-bff-test.herokuapp.com/settings/store"
+                "url": "http://localhost:0/settings/store"
               }
             },
             {

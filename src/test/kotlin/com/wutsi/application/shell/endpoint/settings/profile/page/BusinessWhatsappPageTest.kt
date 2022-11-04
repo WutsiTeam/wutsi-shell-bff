@@ -1,13 +1,13 @@
 package com.wutsi.application.shell.endpoint.settings.profile.page
 
-import com.wutsi.application.shell.endpoint.AbstractEndpointTest
+import com.wutsi.application.shell.endpoint.AbstractShellEndpointTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.server.LocalServerPort
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class BusinessWhatsappPageTest : AbstractEndpointTest() {
+internal class BusinessWhatsappPageTest : AbstractShellEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 

@@ -3,7 +3,7 @@ package com.wutsi.application.shell.endpoint.settings.security.command
 import com.nhaarman.mockitokotlin2.argumentCaptor
 import com.nhaarman.mockitokotlin2.eq
 import com.nhaarman.mockitokotlin2.verify
-import com.wutsi.application.shell.endpoint.AbstractEndpointTest
+import com.wutsi.application.shell.endpoint.AbstractShellEndpointTest
 import com.wutsi.application.shell.endpoint.settings.security.dto.ChangePinRequest
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
@@ -15,7 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.server.LocalServerPort
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class ConfirmPinCommandTest : AbstractEndpointTest() {
+internal class ConfirmPinCommandTest : AbstractShellEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 

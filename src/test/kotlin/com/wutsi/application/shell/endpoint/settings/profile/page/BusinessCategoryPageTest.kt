@@ -2,7 +2,7 @@ package com.wutsi.application.shell.endpoint.settings.profile.page
 
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
-import com.wutsi.application.shell.endpoint.AbstractEndpointTest
+import com.wutsi.application.shell.endpoint.AbstractShellEndpointTest
 import com.wutsi.platform.account.dto.Category
 import com.wutsi.platform.account.dto.ListCategoryResponse
 import org.junit.jupiter.api.BeforeEach
@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.server.LocalServerPort
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class BusinessCategoryPageTest : AbstractEndpointTest() {
+internal class BusinessCategoryPageTest : AbstractShellEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 

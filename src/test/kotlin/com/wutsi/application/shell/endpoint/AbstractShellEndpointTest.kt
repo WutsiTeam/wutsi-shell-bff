@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
+import com.wutsi.application.LanguageClientHttpRequestInterceptor
 import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.Account
 import com.wutsi.platform.account.dto.Category
@@ -46,7 +47,7 @@ import java.util.UUID
 import kotlin.test.assertEquals
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-abstract class AbstractEndpointTest {
+abstract class AbstractShellEndpointTest {
     companion object {
         const val USER_ID = 1L
         const val DEVICE_ID = "0000-1111"
@@ -252,7 +253,7 @@ abstract class AbstractEndpointTest {
     }
 
     protected fun assertJsonEquals(expectedPath: String, value: Any?) {
-        val input = AbstractEndpointTest::class.java.getResourceAsStream(expectedPath)
+        val input = AbstractShellEndpointTest::class.java.getResourceAsStream(expectedPath)
         val expected = mapper.readValue(input, Any::class.java)
 
         val writer = mapper.writerWithDefaultPrettyPrinter()

@@ -1,7 +1,7 @@
 package com.wutsi.application.shell.endpoint.settings.account.command
 
 import com.nhaarman.mockitokotlin2.verify
-import com.wutsi.application.shell.endpoint.AbstractEndpointTest
+import com.wutsi.application.shell.endpoint.AbstractShellEndpointTest
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.server.LocalServerPort
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class DeleteAccountCommandTest : AbstractEndpointTest() {
+internal class DeleteAccountCommandTest : AbstractShellEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 

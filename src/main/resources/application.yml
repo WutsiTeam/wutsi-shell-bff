@@ -54,14 +54,14 @@ wutsi:
   application:
     env: test
     name: wutsi-shell-bff
-    server-url: http://localhost:${server.port}
-    cash-url: https://wutsi-cash-bff-${wutsi.application.env}.herokuapp.com
-    chat-url: https://wutsi-chat-bff-${wutsi.application.env}.herokuapp.com
-    login-url: https://wutsi-login-bff-${wutsi.application.env}.herokuapp.com
-    news-url: https://wutsi-news-bff-${wutsi.application.env}.herokuapp.com
-    shell-url: https://wutsi-shell-bff-${wutsi.application.env}.herokuapp.com
-    store-url: https://wutsi-store-bff-${wutsi.application.env}.herokuapp.com
     asset-url: https://int-wutsi.s3.amazonaws.com/static/wutsi-web
+    server-url: http://localhost:${server.port}
+    store-url: ${wutsi.application.server-url}
+    shell-url: ${wutsi.application.server-url}
+    login-url: https://wutsi-login-bff-${wutsi.application.env}.herokuapp.com
+    chat-url: https://wutsi-chat-bff-${wutsi.application.env}.herokuapp.com
+    cash-url: https://wutsi-cash-bff-${wutsi.application.env}.herokuapp.com
+    news-url: https://wutsi-news-bff-${wutsi.application.env}.herokuapp.com
   platform:
     cache:
       name: ${wutsi.application.name}
@@ -86,6 +86,12 @@ wutsi:
         - wutsi-account
     storage:
       type: local
+
+  store:
+    pictures:
+      max-per-product: 5
+      max-width: 512
+      max-height: 512
 
 logging:
   level:

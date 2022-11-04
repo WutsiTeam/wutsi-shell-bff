@@ -1,13 +1,13 @@
 package com.wutsi.application.shell.endpoint.scan.screen
 
-import com.wutsi.application.shell.endpoint.AbstractEndpointTest
+import com.wutsi.application.shell.endpoint.AbstractShellEndpointTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.server.LocalServerPort
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class ScanScreenTest : AbstractEndpointTest() {
+internal class ScanScreenTest : AbstractShellEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 

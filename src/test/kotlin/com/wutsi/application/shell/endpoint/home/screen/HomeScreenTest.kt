@@ -5,7 +5,7 @@ import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.eq
 import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.shared.service.TogglesProvider
-import com.wutsi.application.shell.endpoint.AbstractEndpointTest
+import com.wutsi.application.shell.endpoint.AbstractShellEndpointTest
 import com.wutsi.ecommerce.shipping.WutsiShippingApi
 import com.wutsi.ecommerce.shipping.dto.ListShippingResponse
 import com.wutsi.platform.account.dto.AccountSummary
@@ -33,7 +33,7 @@ import java.time.ZoneOffset
 import kotlin.test.Ignore
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class HomeScreenTest : AbstractEndpointTest() {
+internal class HomeScreenTest : AbstractShellEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 

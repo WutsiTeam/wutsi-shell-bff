@@ -263,7 +263,7 @@
             {
               "type": "DynamicWidget",
               "attributes": {
-                "url": "https://wutsi-store-bff-test.herokuapp.com/widget?id=555"
+                "url": "http://localhost:0/widget?id=555"
               },
               "children": []
             }

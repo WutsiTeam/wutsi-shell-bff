@@ -6,7 +6,7 @@ import com.nhaarman.mockitokotlin2.doThrow
 import com.nhaarman.mockitokotlin2.eq
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
-import com.wutsi.application.shell.endpoint.AbstractEndpointTest
+import com.wutsi.application.shell.endpoint.AbstractShellEndpointTest
 import com.wutsi.application.shell.endpoint.settings.account.dto.VerifySmsCodeRequest
 import com.wutsi.application.shell.entity.SmsCodeEntity
 import com.wutsi.flutter.sdui.Action
@@ -26,7 +26,7 @@ import java.util.Locale
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("qa")
-internal class VerifySmsCodeCommandTest : AbstractEndpointTest() {
+internal class VerifySmsCodeCommandTest : AbstractShellEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 

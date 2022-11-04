@@ -1,7 +1,7 @@
 package com.wutsi.application.shell.endpoint.settings.account.screen
 
 import com.wutsi.application.shared.service.TogglesProvider
-import com.wutsi.application.shell.endpoint.AbstractEndpointTest
+import com.wutsi.application.shell.endpoint.AbstractShellEndpointTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
@@ -9,7 +9,7 @@ import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.test.web.server.LocalServerPort
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class SettingsLinkAccountCreditCardScreenTest : AbstractEndpointTest() {
+internal class SettingsLinkAccountCreditCardScreenTest : AbstractShellEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 

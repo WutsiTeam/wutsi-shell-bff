@@ -8,7 +8,7 @@ import com.nhaarman.mockitokotlin2.eq
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
-import com.wutsi.application.shell.endpoint.AbstractEndpointTest
+import com.wutsi.application.shell.endpoint.AbstractShellEndpointTest
 import com.wutsi.application.shell.endpoint.settings.account.dto.LinkCreditCardRequest
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
@@ -30,7 +30,7 @@ import java.time.LocalDate
 import java.util.Locale
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class LinkCreditCardCommandTest : AbstractEndpointTest() {
+internal class LinkCreditCardCommandTest : AbstractShellEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 

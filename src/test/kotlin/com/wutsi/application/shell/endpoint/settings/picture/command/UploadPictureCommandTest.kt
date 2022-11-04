@@ -7,7 +7,7 @@ import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.eq
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
-import com.wutsi.application.shell.endpoint.AbstractEndpointTest
+import com.wutsi.application.shell.endpoint.AbstractShellEndpointTest
 import com.wutsi.platform.account.dto.UpdateAccountAttributeRequest
 import com.wutsi.platform.core.storage.StorageService
 import org.junit.jupiter.api.BeforeEach
@@ -27,7 +27,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class UploadPictureCommandTest : AbstractEndpointTest() {
+internal class UploadPictureCommandTest : AbstractShellEndpointTest() {
     @MockBean
     lateinit var storageService: StorageService
 

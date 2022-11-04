@@ -88,7 +88,7 @@
               "children": [],
               "action": {
                 "type": "Route",
-                "url": "https://wutsi-store-bff-test.herokuapp.com/order?id=1",
+                "url": "http://localhost:0/order?id=1",
                 "replacement": true
               }
             }

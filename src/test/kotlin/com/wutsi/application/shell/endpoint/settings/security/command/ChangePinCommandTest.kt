@@ -1,6 +1,6 @@
 package com.wutsi.application.shell.endpoint.settings.security.command
 
-import com.wutsi.application.shell.endpoint.AbstractEndpointTest
+import com.wutsi.application.shell.endpoint.AbstractShellEndpointTest
 import com.wutsi.application.shell.endpoint.settings.security.dto.ChangePinRequest
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
@@ -11,7 +11,7 @@ import org.springframework.boot.test.web.server.LocalServerPort
 import kotlin.test.assertEquals
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class ChangePinCommandTest : AbstractEndpointTest() {
+internal class ChangePinCommandTest : AbstractShellEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 

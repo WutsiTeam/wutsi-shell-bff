@@ -1,4 +1,4 @@
-package com.wutsi.application.shell.endpoint
+package com.wutsi.application
 
 import org.springframework.http.HttpRequest
 import org.springframework.http.client.ClientHttpRequestExecution

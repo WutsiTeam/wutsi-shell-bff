@@ -3,7 +3,7 @@ package com.wutsi.application.shell.endpoint.scan.screen
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
-import com.wutsi.application.shell.endpoint.AbstractEndpointTest
+import com.wutsi.application.shell.endpoint.AbstractShellEndpointTest
 import com.wutsi.application.shell.endpoint.scan.dto.ScanRequest
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.platform.core.qrcode.KeyProvider
@@ -15,7 +15,7 @@ import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.test.web.server.LocalServerPort
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class ScanViewerScreenTest : AbstractEndpointTest() {
+internal class ScanViewerScreenTest : AbstractShellEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 
