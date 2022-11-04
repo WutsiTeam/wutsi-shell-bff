@@ -22,8 +22,8 @@
     "attributes": {
       "title": "Ray Sponsible",
       "elevation": 0.0,
-      "backgroundColor": "#1D7EDF",
-      "foregroundColor": "#FFFFFF",
+      "backgroundColor": "#FFFFFF",
+      "foregroundColor": "#000000",
       "automaticallyImplyLeading": false,
       "actions": [
         {

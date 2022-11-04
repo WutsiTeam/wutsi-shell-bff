@@ -132,12 +132,12 @@ internal class HomeScreenTest : AbstractShellEndpointTest() {
         assertEndpointEquals("/shell/screens/home/home-send-enabled.json", url)
     }
 
-    @Test
-    fun contactEnabled() {
-        doReturn(true).whenever(togglesProvider).isContactEnabled()
-
-        assertEndpointEquals("/shell/screens/home/home-contact-enabled.json", url)
-    }
+//    @Test
+//    fun contactEnabled() {
+//        doReturn(true).whenever(togglesProvider).isContactEnabled()
+//
+//        assertEndpointEquals("/shell/screens/home/home-contact-enabled.json", url)
+//    }
 
     @Test
     @Ignore

@@ -264,7 +264,7 @@ class ProfileScreen(
     }
 
     private fun storeTab(user: Account) = DynamicWidget(
-        url = urlBuilder.build(storeUrl, "widget?id=${user.id}")
+        url = urlBuilder.build(storeUrl, "store/widget?id=${user.id}")
     )
 
     private fun qrCodeTab(user: Account) = DynamicWidget(

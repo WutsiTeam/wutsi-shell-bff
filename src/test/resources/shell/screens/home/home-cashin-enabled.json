@@ -12,67 +12,7 @@
         {
           "type": "Column",
           "attributes": {},
-          "children": [
-            {
-              "type": "Container",
-              "attributes": {
-                "alignment": "Center",
-                "padding": 10.0,
-                "background": "#1D7EDF"
-              },
-              "children": [
-                {
-                  "type": "Center",
-                  "attributes": {},
-                  "children": [
-                    {
-                      "type": "MoneyText",
-                      "attributes": {
-                        "value": 10000.0,
-                        "color": "#FFFFFF",
-                        "currency": "CFA",
-                        "numberFormat": "#,###,##0"
-                      },
-                      "children": []
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "Container",
-              "attributes": {
-                "background": "#1D7EDF"
-              },
-              "children": [
-                {
-                  "type": "Row",
-                  "attributes": {
-                    "mainAxisAlignment": "spaceAround"
-                  },
-                  "children": [
-                    {
-                      "type": "Button",
-                      "attributes": {
-                        "caption": "Add Cash",
-                        "padding": 1.0,
-                        "type": "Text",
-                        "stretched": false,
-                        "icon": "f1e0",
-                        "iconColor": "#FFFFFF",
-                        "color": "#FFFFFF"
-                      },
-                      "children": [],
-                      "action": {
-                        "type": "Route",
-                        "url": "https://wutsi-cash-bff-test.herokuapp.com/cashin"
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
+          "children": []
         }
       ]
     }
@@ -82,8 +22,8 @@
     "attributes": {
       "title": "Ray Sponsible",
       "elevation": 0.0,
-      "backgroundColor": "#1D7EDF",
-      "foregroundColor": "#FFFFFF",
+      "backgroundColor": "#FFFFFF",
+      "foregroundColor": "#000000",
       "automaticallyImplyLeading": false,
       "actions": [
         {

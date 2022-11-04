@@ -10,8 +10,7 @@ spring:
 
 wutsi:
   application:
-    env: test
-    server-url: ${wutsi.application.shell-url}
+    server-url: https://wutsi-shell-bff-test.herokuapp.com
   platform:
     cache:
       type: memcached

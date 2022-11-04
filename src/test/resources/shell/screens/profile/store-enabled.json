@@ -263,7 +263,7 @@
             {
               "type": "DynamicWidget",
               "attributes": {
-                "url": "http://localhost:0/widget?id=555"
+                "url": "http://localhost:0/store/widget?id=555"
               },
               "children": []
             }
