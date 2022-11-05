@@ -3,6 +3,7 @@ package com.wutsi.application.config
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.wutsi.ecommerce.order.WutsiOrderApi
 import com.wutsi.ecommerce.order.WutsiOrderApiBuilder
+import com.wutsi.platform.core.security.feign.FeignApiKeyRequestInterceptor
 import com.wutsi.platform.core.security.feign.FeignAuthorizationRequestInterceptor
 import com.wutsi.platform.core.tracing.feign.FeignTracingRequestInterceptor
 import com.wutsi.platform.core.util.feign.Custom5XXErrorDecoder
@@ -15,6 +16,7 @@ import org.springframework.core.env.Profiles
 class OrderApiConfiguration(
     private val authorizationRequestInterceptor: FeignAuthorizationRequestInterceptor,
     private val tracingRequestInterceptor: FeignTracingRequestInterceptor,
+    private val apiKeyInterceptor: FeignApiKeyRequestInterceptor,
     private val mapper: ObjectMapper,
     private val env: Environment
 ) {
@@ -25,7 +27,8 @@ class OrderApiConfiguration(
             mapper = mapper,
             interceptors = listOf(
                 tracingRequestInterceptor,
-                authorizationRequestInterceptor
+                authorizationRequestInterceptor,
+                apiKeyInterceptor
             ),
             errorDecoder = Custom5XXErrorDecoder()
         )

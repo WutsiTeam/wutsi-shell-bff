@@ -37,7 +37,7 @@
           "children": [],
           "action": {
             "type": "Route",
-            "url": "https://wutsi-login-bff-test.herokuapp.com/?phone=%2B1237666666666&screen-id=page.settings.security.delete.wallet&title=Authorisation&sub-title=Enter+your+current+PIN&auth=false&return-to-route=true&return-url=http%3A%2F%2Flocalhost%3A0%2Fsettings%2Fsecurity%2Fpin"
+            "url": "http://localhost:0/?phone=%2B1237666666666&screen-id=page.settings.security.delete.wallet&title=Authorisation&sub-title=Enter+your+current+PIN&auth=false&return-to-route=true&return-url=http%3A%2F%2Flocalhost%3A0%2Fsettings%2Fsecurity%2Fpin"
           }
         },
         {

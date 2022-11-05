@@ -5,6 +5,7 @@ import com.wutsi.platform.contact.Environment.PRODUCTION
 import com.wutsi.platform.contact.Environment.SANDBOX
 import com.wutsi.platform.contact.WutsiContactApi
 import com.wutsi.platform.contact.WutsiContactApiBuilder
+import com.wutsi.platform.core.security.feign.FeignApiKeyRequestInterceptor
 import com.wutsi.platform.core.security.feign.FeignAuthorizationRequestInterceptor
 import com.wutsi.platform.core.tracing.feign.FeignTracingRequestInterceptor
 import com.wutsi.platform.core.util.feign.Custom5XXErrorDecoder
@@ -17,6 +18,7 @@ import org.springframework.core.env.Profiles
 class ContactApiConfiguration(
     private val authorizationRequestInterceptor: FeignAuthorizationRequestInterceptor,
     private val tracingRequestInterceptor: FeignTracingRequestInterceptor,
+    private val apiKeyInterceptor: FeignApiKeyRequestInterceptor,
     private val mapper: ObjectMapper,
     private val env: Environment
 ) {
@@ -27,7 +29,8 @@ class ContactApiConfiguration(
             mapper = mapper,
             interceptors = listOf(
                 tracingRequestInterceptor,
-                authorizationRequestInterceptor
+                authorizationRequestInterceptor,
+                apiKeyInterceptor
             ),
             errorDecoder = Custom5XXErrorDecoder()
         )

@@ -59,7 +59,7 @@ wutsi:
     store-url: ${wutsi.application.server-url}
     shell-url: ${wutsi.application.server-url}
     cash-url: ${wutsi.application.server-url}
-    login-url: https://wutsi-login-bff-${wutsi.application.env}.herokuapp.com
+    login-url: ${wutsi.application.server-url}
     chat-url: https://wutsi-chat-bff-${wutsi.application.env}.herokuapp.com
     news-url: https://wutsi-news-bff-${wutsi.application.env}.herokuapp.com
   platform:
@@ -76,6 +76,26 @@ wutsi:
         - "GET /qr-code/**"
         - "POST /shell/track/**"
         - "POST /firebase/on-message/**"
+        - "POST /login"
+        - "POST /login/onboard"
+        - "POST /phone"
+        - "POST /commands/login"
+        - "POST /onboard"
+        - "POST /pages/city"
+        - "POST /pages/confirm-pin"
+        - "POST /pages/final"
+        - "POST /pages/phone"
+        - "POST /pages/pin"
+        - "POST /pages/profile"
+        - "POST /pages/verification"
+        - "POST /commands/confirm-login-pin"
+        - "POST /commands/save-profile"
+        - "POST /commands/save-pin"
+        - "POST /commands/create-wallet"
+        - "POST /commands/verify-code"
+        - "POST /commands/send-code"
+        - "POST /commands/resend-code"
+        - "POST /commands/save-city"
     tracing:
       client-id: ${wutsi.application.name}
     stream:

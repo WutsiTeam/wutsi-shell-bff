@@ -6,7 +6,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.shell.endpoint.AbstractShellEndpointTest
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
-import com.wutsi.platform.core.security.spring.RequestTokenProvider
+import com.wutsi.platform.core.security.TokenProvider
 import com.wutsi.platform.security.dto.LogoutRequest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -20,7 +20,7 @@ internal class LogoutCommandTest : AbstractShellEndpointTest() {
     val port: Int = 0
 
     @MockBean
-    private lateinit var tokenProvider: RequestTokenProvider
+    private lateinit var tokenProvider: TokenProvider
 
     @Test
     fun logout() {

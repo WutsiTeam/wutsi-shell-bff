@@ -41,7 +41,7 @@ internal class AuthorizeOrderPaymentCommandTest : AbstractEndpointTest() {
         val action = response.body!!
         assertEquals(ActionType.Route, action.type)
         assertEquals(
-            "https://wutsi-login-bff-test.herokuapp.com/?phone=%2B12376666666677777&icon=f197&screen-id=page.checkout.pin&title=Authorization&sub-title=Enter+your+PIN+to+authorize+the+payment&auth=false&return-to-route=false&return-url=http%3A%2F%2Flocalhost%3A0%2Fcommands%2Fpay-order%3Forder-id%3D123%26payment-token%3Dxxx%26idempotency-key%3D567",
+            "http://localhost:0/?phone=%2B12376666666677777&icon=f197&screen-id=page.checkout.pin&title=Authorization&sub-title=Enter+your+PIN+to+authorize+the+payment&auth=false&return-to-route=false&return-url=http%3A%2F%2Flocalhost%3A0%2Fcommands%2Fpay-order%3Forder-id%3D123%26payment-token%3Dxxx%26idempotency-key%3D567",
             action.url
         )
     }

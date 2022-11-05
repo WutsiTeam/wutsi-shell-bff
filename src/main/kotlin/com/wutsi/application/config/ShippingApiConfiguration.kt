@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.wutsi.application.shared.service.FeignAcceptLanguageInterceptor
 import com.wutsi.ecommerce.shipping.WutsiShippingApi
 import com.wutsi.ecommerce.shipping.WutsiShippingApiBuilder
+import com.wutsi.platform.core.security.feign.FeignApiKeyRequestInterceptor
 import com.wutsi.platform.core.security.feign.FeignAuthorizationRequestInterceptor
 import com.wutsi.platform.core.tracing.feign.FeignTracingRequestInterceptor
 import com.wutsi.platform.core.util.feign.Custom5XXErrorDecoder
@@ -17,6 +18,7 @@ class ShippingApiConfiguration(
     private val authorizationRequestInterceptor: FeignAuthorizationRequestInterceptor,
     private val tracingRequestInterceptor: FeignTracingRequestInterceptor,
     private val acceptLanguageInterceptor: FeignAcceptLanguageInterceptor,
+    private val apiKeyInterceptor: FeignApiKeyRequestInterceptor,
     private val mapper: ObjectMapper,
     private val env: Environment
 ) {
@@ -28,7 +30,8 @@ class ShippingApiConfiguration(
             interceptors = listOf(
                 tracingRequestInterceptor,
                 authorizationRequestInterceptor,
-                acceptLanguageInterceptor
+                acceptLanguageInterceptor,
+                apiKeyInterceptor
             ),
             errorDecoder = Custom5XXErrorDecoder()
         )

@@ -41,6 +41,6 @@ internal class DeleteWalletTest : AbstractShellEndpointTest() {
 
         val action = response.body!!
         assertEquals(ActionType.Route, action.type)
-        assertEquals("https://wutsi-login-bff-test.herokuapp.com/onboard", action.url)
+        assertEquals("http://localhost:0/onboard", action.url)
     }
 }

@@ -3,7 +3,7 @@ package com.wutsi.application.shell.endpoint.settings.logout.command
 import com.wutsi.application.shell.endpoint.AbstractCommand
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
-import com.wutsi.platform.core.security.spring.RequestTokenProvider
+import com.wutsi.platform.core.security.TokenProvider
 import com.wutsi.platform.security.WutsiSecurityApi
 import com.wutsi.platform.security.dto.LogoutRequest
 import org.springframework.web.bind.annotation.PostMapping
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/commands/logout")
 class LogoutCommand(
     private val securityApi: WutsiSecurityApi,
-    private val tokenProvider: RequestTokenProvider
+    private val tokenProvider: TokenProvider
 ) : AbstractCommand() {
     @PostMapping
     fun execute(): Action {
