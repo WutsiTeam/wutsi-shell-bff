@@ -96,6 +96,7 @@ wutsi:
         - "POST /commands/send-code"
         - "POST /commands/resend-code"
         - "POST /commands/save-city"
+        - "POST /commands/login"
     tracing:
       client-id: ${wutsi.application.name}
     stream:
