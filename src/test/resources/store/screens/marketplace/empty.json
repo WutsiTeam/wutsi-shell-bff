@@ -34,6 +34,15 @@
       ]
     }
   ],
+  "appBar": {
+    "type": "AppBar",
+    "attributes": {
+      "elevation": 0.0,
+      "backgroundColor": "#e8e8e8",
+      "foregroundColor": "#000000"
+    },
+    "children": []
+  },
   "bottomNavigationBar": {
     "type": "BottomNavigationBar",
     "attributes": {

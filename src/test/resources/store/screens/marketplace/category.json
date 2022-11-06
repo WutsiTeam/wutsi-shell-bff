@@ -158,7 +158,7 @@
                                           "attributes": {
                                             "value": 7000.0,
                                             "color": "#1D7EDF",
-                                            "currency": "XAF",
+                                            "currency": "FCFA",
                                             "numberFormat": "#,###,##0",
                                             "valueFontSize": 16.0,
                                             "currencyFontSize": 10.0
@@ -362,7 +362,7 @@
                                           "attributes": {
                                             "value": 7000.0,
                                             "color": "#1D7EDF",
-                                            "currency": "XAF",
+                                            "currency": "FCFA",
                                             "numberFormat": "#,###,##0",
                                             "valueFontSize": 16.0,
                                             "currencyFontSize": 10.0
@@ -576,7 +576,7 @@
                                           "attributes": {
                                             "value": 7000.0,
                                             "color": "#1D7EDF",
-                                            "currency": "XAF",
+                                            "currency": "FCFA",
                                             "numberFormat": "#,###,##0",
                                             "valueFontSize": 16.0,
                                             "currencyFontSize": 10.0

@@ -326,7 +326,7 @@ class ProductScreen(
         // Price
         children.add(
             MoneyText(
-                currency = tenant.currency,
+                currency = tenant.currencySymbol,
                 color = Theme.COLOR_PRIMARY,
                 valueFontSize = Theme.TEXT_SIZE_X_LARGE,
                 value = price,

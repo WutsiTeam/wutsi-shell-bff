@@ -134,7 +134,7 @@
                           "attributes": {
                             "value": 7000.0,
                             "color": "#1D7EDF",
-                            "currency": "XAF",
+                            "currency": "FCFA",
                             "numberFormat": "#,###,##0",
                             "valueFontSize": 18.0
                           },
