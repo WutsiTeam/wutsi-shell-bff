@@ -141,13 +141,16 @@ class CheckoutPaymentScreen(
         tenant: Tenant
     ): List<DropdownMenuItem> {
         val items = mutableListOf<DropdownMenuItem>()
-        items.add(
-            DropdownMenuItem(
-                caption = getText("page.checkout.payment.dropdown-item-wallet"),
-                value = "WALLET",
-                icon = tenantProvider.logo(tenant)
-            )
-        )
+
+// Remove wallet for the moment
+//        items.add(
+//            DropdownMenuItem(
+//                caption = getText("page.checkout.payment.dropdown-item-wallet"),
+//                value = "WALLET",
+//                icon = tenantProvider.logo(tenant)
+//            )
+//        )
+
         items.addAll(
             paymentMethods.map {
                 DropdownMenuItem(

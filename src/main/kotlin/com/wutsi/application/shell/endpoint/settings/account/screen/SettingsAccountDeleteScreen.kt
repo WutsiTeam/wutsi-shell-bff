@@ -147,7 +147,7 @@ class SettingsAccountDeleteScreen(
     }
 
     private fun deleteActionUrl(me: Account, token: String): String {
-        return "?phone=" + encodeURLParam(me.phone!!.number) +
+        return "/login?phone=" + encodeURLParam(me.phone!!.number) +
             "&screen-id=" + Page.SETTINGS_ACCOUNT_DELETE_PIN +
             "&title=" + encodeURLParam(getText("page.settings.account.delete.app-bar.title")) +
             "&sub-title=" + encodeURLParam(getText("page.settings.account.delete.pin")) +

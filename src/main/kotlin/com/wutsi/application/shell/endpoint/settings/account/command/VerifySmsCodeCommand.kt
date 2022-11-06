@@ -37,7 +37,7 @@ class VerifySmsCodeCommand(
 
     private fun getSubmitUrl(): String {
         val me = securityContext.currentAccount()
-        return "?phone=" + encodeURLParam(me.phone!!.number) +
+        return "/login?phone=" + encodeURLParam(me.phone!!.number) +
             "&screen-id=" + Page.SETTINGS_ACCOUNT_LINK_PIN +
             "&title=" + encodeURLParam(getText("page.settings.account-pin.title")) +
             "&sub-title=" + encodeURLParam(getText("page.settings.account-pin.sub-title")) +

@@ -115,7 +115,7 @@ class SettingsDeleteWalletScreen : AbstractQuery() {
     }
 
     private fun deleteActionUrl(me: Account): String {
-        return "?phone=" + encodeURLParam(me.phone!!.number) +
+        return "/login?phone=" + encodeURLParam(me.phone!!.number) +
             "&screen-id=" + Page.SETTINGS_SECURITY_DELETE_WALLET_PIN +
             "&title=" + encodeURLParam(getText("page.settings.delete-wallet.app-bar.title")) +
             "&sub-title=" + encodeURLParam(getText("page.settings.delete-wallet.pin")) +

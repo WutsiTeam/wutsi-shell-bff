@@ -26,7 +26,7 @@ class AuthorizeOrderPaymentCommand(
         @RequestBody request: AuthorizeOrderPaymentRequest
     ): Action {
         val me = accountApi.getAccount(securityContext.currentAccountId()).account
-        val path = "?phone=" + encodeURLParam(me.phone!!.number) +
+        val path = "/login?phone=" + encodeURLParam(me.phone!!.number) +
             "&icon=" + Theme.ICON_LOCK +
             "&screen-id=" + Page.CHECKOUT_PIN +
             "&title=" + encodeURLParam(getText("page.checkout-pin.title")) +

@@ -72,7 +72,7 @@ class SettingsSecurityScreen : AbstractQuery() {
     }
 
     private fun loginUrlPath(me: Account): String {
-        return "?phone=" + encodeURLParam(me.phone!!.number) +
+        return "/login?phone=" + encodeURLParam(me.phone!!.number) +
             "&screen-id=" + Page.SETTINGS_SECURITY_DELETE_WALLET +
             "&title=" + encodeURLParam(getText("page.settings.security.pin-login.title")) +
             "&sub-title=" + encodeURLParam(getText("page.settings.security.pin-login.sub-title")) +
