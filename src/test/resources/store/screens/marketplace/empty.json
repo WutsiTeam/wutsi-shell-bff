@@ -34,16 +34,6 @@
       ]
     }
   ],
-  "appBar": {
-    "type": "AppBar",
-    "attributes": {
-      "title": "Marketplace",
-      "elevation": 0.0,
-      "backgroundColor": "#FFFFFF",
-      "foregroundColor": "#000000"
-    },
-    "children": []
-  },
   "bottomNavigationBar": {
     "type": "BottomNavigationBar",
     "attributes": {

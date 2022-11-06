@@ -94,12 +94,7 @@ class MarketplaceScreen(
 
         return Screen(
             id = Page.MARKETPLACE,
-            appBar = AppBar(
-                elevation = 0.0,
-                backgroundColor = Theme.COLOR_WHITE,
-                foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.marketplace.app-bar.title")
-            ),
+            appBar = null,
             bottomNavigationBar = bottomNavigationBar(),
             backgroundColor = Theme.COLOR_GRAY_LIGHT,
             child = SingleChildScrollView(

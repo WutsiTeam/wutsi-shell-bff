@@ -32,8 +32,8 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/")
-class HomeScreen(
+@RequestMapping("/shell")
+class ShellScreen(
     private val paymentApi: WutsiPaymentApi,
     private val accountApi: WutsiAccountApi,
     private val tenantProvider: TenantProvider

@@ -33,7 +33,7 @@ import java.time.ZoneOffset
 import kotlin.test.Ignore
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class HomeScreenTest : AbstractShellEndpointTest() {
+internal class ShellScreenTest : AbstractShellEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 
@@ -52,7 +52,7 @@ internal class HomeScreenTest : AbstractShellEndpointTest() {
     override fun setUp() {
         super.setUp()
 
-        url = "http://localhost:$port"
+        url = "http://localhost:$port/shell"
 
         doReturn(GetBalanceResponse(balance = Balance(amount = 10000.0, currency = "XAF"))).whenever(paymentApi)
             .getBalance(
