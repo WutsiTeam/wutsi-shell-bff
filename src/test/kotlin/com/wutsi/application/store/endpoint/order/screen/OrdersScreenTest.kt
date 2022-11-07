@@ -12,6 +12,7 @@ import com.wutsi.ecommerce.order.dto.OrderSummary
 import com.wutsi.ecommerce.order.dto.SearchOrderResponse
 import com.wutsi.ecommerce.order.entity.OrderStatus
 import com.wutsi.platform.account.dto.AccountSummary
+import com.wutsi.platform.account.dto.GetAccountResponse
 import com.wutsi.platform.account.dto.SearchAccountResponse
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -56,7 +57,7 @@ internal class OrdersScreenTest : AbstractEndpointTest() {
             reservationId = 777L,
             created = OffsetDateTime.of(2020, 6, 5, 1, 1, 0, 0, ZoneOffset.UTC),
             itemCount = 5,
-            productIds = listOf(200L, 201L, 202L, 203L, 204L)
+            productIds = listOf(200L, 201L, 100L, 202L)
         )
     )
 
@@ -109,13 +110,19 @@ internal class OrdersScreenTest : AbstractEndpointTest() {
 
     @Test
     fun merchant() {
-        val url = "http://localhost:$port/orders?merchant=true"
+        val account = createAccount(ACCOUNT_ID, business = true)
+        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
+
+        val url = "http://localhost:$port/orders"
         assertEndpointEquals("/store/screens/orders/merchant.json", url)
     }
 
     @Test
     fun customer() {
-        val url = "http://localhost:$port/orders?merchant=false"
+        val account = createAccount(ACCOUNT_ID, business = false)
+        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
+
+        val url = "http://localhost:$port/orders"
         assertEndpointEquals("/store/screens/orders/customer.json", url)
     }
 }

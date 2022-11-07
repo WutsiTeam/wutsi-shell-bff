@@ -346,7 +346,7 @@ abstract class AbstractEndpointTest {
         accountId = accountId
     )
 
-    protected fun createAccount(id: Long = ACCOUNT_ID) = Account(
+    protected fun createAccount(id: Long = ACCOUNT_ID, business: Boolean = true) = Account(
         id = id,
         displayName = "Ray Sponsible",
         country = "CM",
@@ -357,7 +357,7 @@ abstract class AbstractEndpointTest {
             number = "+123766666666$id",
             country = "CM"
         ),
-        business = true,
+        business = business,
         website = "https://www.google.ca",
         biography = "Short bio to descbribe my business",
         category = Category(

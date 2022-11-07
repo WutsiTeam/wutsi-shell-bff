@@ -135,7 +135,7 @@ class OrdersScreen(
 
     private fun toListView(orders: List<OrderSummary>, tenant: Tenant, showMerchantIcon: Boolean): WidgetAware {
         val accountIds = orders.map { it.merchantId }.toSet()
-        val products = if (orders.isEmpty()) emptyList() else getProducts(orders)
+        val products = if (orders.isEmpty()) emptyMap() else getProducts(orders).associateBy { it.id }
         val merchants = accountApi.searchAccount(
             SearchAccountRequest(
                 ids = accountIds.toList(),
@@ -169,7 +169,7 @@ class OrdersScreen(
 
     private fun toOrderWidget(
         order: OrderSummary,
-        products: List<ProductSummary>,
+        products: Map<Long, ProductSummary>,
         merchants: Map<Long, AccountSummary>,
         tenant: Tenant,
         showMerchantIcon: Boolean
@@ -180,9 +180,8 @@ class OrdersScreen(
             url = urlBuilder.build("/order?id=${order.id}")
         )
 
-        val productMap = products.associateBy { it.id }
         val pictureUrls = order.productIds
-            .map { productMap[it]?.thumbnail?.url }
+            .map { products[it]?.thumbnail?.url }
             .filterNotNull()
 
         val pictures = mutableListOf<WidgetAware>()
