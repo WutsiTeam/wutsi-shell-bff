@@ -39,7 +39,20 @@
     "attributes": {
       "elevation": 0.0,
       "backgroundColor": "#e8e8e8",
-      "foregroundColor": "#000000"
+      "foregroundColor": "#000000",
+      "actions": [
+        {
+          "type": "IconButton",
+          "attributes": {
+            "icon": "f36e"
+          },
+          "children": [],
+          "action": {
+            "type": "Route",
+            "url": "http://localhost:0/settings"
+          }
+        }
+      ]
     },
     "children": []
   },

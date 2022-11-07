@@ -9,11 +9,13 @@ import com.wutsi.ecommerce.cart.dto.SearchCartRequest
 import com.wutsi.ecommerce.catalog.WutsiCatalogApi
 import com.wutsi.ecommerce.catalog.dto.SearchMerchantRequest
 import com.wutsi.ecommerce.catalog.dto.SearchProductRequest
+import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Center
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Divider
+import com.wutsi.flutter.sdui.IconButton
 import com.wutsi.flutter.sdui.Image
 import com.wutsi.flutter.sdui.Row
 import com.wutsi.flutter.sdui.Screen
@@ -21,6 +23,7 @@ import com.wutsi.flutter.sdui.SingleChildScrollView
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
+import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.platform.account.WutsiAccountApi
@@ -97,7 +100,16 @@ class MarketplaceScreen(
             appBar = AppBar(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_GRAY_LIGHT,
-                foregroundColor = Theme.COLOR_BLACK
+                foregroundColor = Theme.COLOR_BLACK,
+                actions = listOf(
+                    IconButton(
+                        icon = Theme.ICON_SETTINGS,
+                        action = Action(
+                            type = ActionType.Route,
+                            url = urlBuilder.build("settings")
+                        )
+                    )
+                )
             ),
             bottomNavigationBar = bottomNavigationBar(),
             backgroundColor = Theme.COLOR_GRAY_LIGHT,

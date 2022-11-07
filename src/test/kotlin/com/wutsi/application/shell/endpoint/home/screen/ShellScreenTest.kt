@@ -190,6 +190,14 @@ internal class ShellScreenTest : AbstractShellEndpointTest() {
         assertEndpointEquals("/shell/screens/home/home-transaction-enabled.json", url)
     }
 
+
+    @Test
+    fun orderEnabled() {
+        doReturn(true).whenever(togglesProvider).isToggleEnabled(ToggleName.ORDER)
+
+        assertEndpointEquals("/shell/screens/home/home-order-enabled.json", url)
+    }
+
     private fun createTransaction(token: String) = TransactionSummary(
         accountId = USER_ID,
         type = TransactionType.CASHOUT.name,
