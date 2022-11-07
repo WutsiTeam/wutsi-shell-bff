@@ -190,7 +190,6 @@ internal class ShellScreenTest : AbstractShellEndpointTest() {
         assertEndpointEquals("/shell/screens/home/home-transaction-enabled.json", url)
     }
 
-
     @Test
     fun orderEnabled() {
         doReturn(true).whenever(togglesProvider).isToggleEnabled(ToggleName.ORDER)

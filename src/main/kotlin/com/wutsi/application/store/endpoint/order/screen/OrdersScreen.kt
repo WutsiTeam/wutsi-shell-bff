@@ -5,37 +5,27 @@ import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.application.shared.ui.Avatar
 import com.wutsi.application.store.endpoint.AbstractQuery
 import com.wutsi.application.store.endpoint.Page
-import com.wutsi.application.store.endpoint.order.dto.FilterOrderRequest
 import com.wutsi.ecommerce.order.WutsiOrderApi
 import com.wutsi.ecommerce.order.dto.OrderSummary
 import com.wutsi.ecommerce.order.dto.SearchOrderRequest
 import com.wutsi.ecommerce.order.entity.OrderStatus
 import com.wutsi.flutter.sdui.AppBar
-import com.wutsi.flutter.sdui.Center
-import com.wutsi.flutter.sdui.Column
-import com.wutsi.flutter.sdui.Container
-import com.wutsi.flutter.sdui.Divider
-import com.wutsi.flutter.sdui.DropdownButton
-import com.wutsi.flutter.sdui.DropdownMenuItem
-import com.wutsi.flutter.sdui.Flexible
+import com.wutsi.flutter.sdui.DefaultTabController
 import com.wutsi.flutter.sdui.ListItem
 import com.wutsi.flutter.sdui.ListView
 import com.wutsi.flutter.sdui.Screen
+import com.wutsi.flutter.sdui.TabBar
+import com.wutsi.flutter.sdui.TabBarView
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
-import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
-import com.wutsi.flutter.sdui.enums.MainAxisAlignment
-import com.wutsi.flutter.sdui.enums.MainAxisSize
 import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.AccountSummary
 import com.wutsi.platform.account.dto.SearchAccountRequest
 import com.wutsi.platform.tenant.dto.Tenant
 import org.springframework.context.i18n.LocaleContextHolder
 import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import java.text.DecimalFormat
 import java.time.format.DateTimeFormatter
@@ -52,83 +42,88 @@ class OrdersScreen(
     }
 
     @PostMapping
-    fun index(
-        @RequestParam(name = "merchant", required = false, defaultValue = "false") merchant: Boolean = false,
-        @RequestBody(required = false) request: FilterOrderRequest? = null
-    ): Widget {
+    fun index(): Widget {
         val tenant = tenantProvider.get()
-        val orders = getOrders(merchant, request)
-        val statuses = mutableListOf("")
-        statuses.addAll(
-            getOrderStatusList()
-                .map { it.name to getText("order.status.${it.name}") }
-                .sortedBy { it.second }
-                .toMap()
-                .map { it.key }
+        val user = securityContext.currentAccount()
+
+        val tabs = TabBar(
+            tabs = listOfNotNull(
+                if (user.business)
+                    Text(getText("page.orders.customer-orders").uppercase(), bold = true)
+                else
+                    null,
+
+                Text(getText("page.orders.my-orders").uppercase(), bold = true)
+            )
+        )
+        val tabViews = TabBarView(
+            children = listOfNotNull(
+                if (user.business)
+                    customerOrders(tenant)
+                else
+                    null,
+
+                myOrders(tenant)
+            )
         )
 
-        return Screen(
-            id = Page.ORDERS,
-            appBar = AppBar(
-                elevation = 0.0,
-                backgroundColor = Theme.COLOR_WHITE,
-                foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.orders.app-bar.title")
-            ),
-            child = Column(
-                mainAxisAlignment = MainAxisAlignment.start,
-                crossAxisAlignment = CrossAxisAlignment.start,
-                children = listOfNotNull(
-                    Container(
-                        padding = 10.0,
-                        child = DropdownButton(
-                            name = "status",
-                            value = request?.status ?: "",
-                            children = statuses.map {
-                                DropdownMenuItem(
-                                    value = it,
-                                    caption = if (it.isEmpty())
-                                        getText("page.orders.all-orders")
-                                    else
-                                        getText("order.status.$it")
-                                )
-                            },
-                            action = gotoUrl(
-                                url = urlBuilder.build("/orders?merchant=$merchant"),
-                                replacement = true
-                            )
-                        )
+        return if (tabViews.children.size == 1)
+            Screen(
+                id = Page.ORDERS,
+                appBar = AppBar(
+                    elevation = 0.0,
+                    backgroundColor = Theme.COLOR_PRIMARY,
+                    foregroundColor = Theme.COLOR_WHITE,
+                    title = getText("page.orders.app-bar.title")
+                ),
+                child = tabViews.children[0],
+                bottomNavigationBar = bottomNavigationBar()
+            ).toWidget()
+        else
+            DefaultTabController(
+                id = Page.ORDERS,
+                length = tabs.tabs.size,
+                initialIndex = 0,
+                child = Screen(
+                    backgroundColor = Theme.COLOR_WHITE,
+                    appBar = AppBar(
+                        elevation = 0.0,
+                        backgroundColor = Theme.COLOR_PRIMARY,
+                        foregroundColor = Theme.COLOR_WHITE,
+                        title = getText("page.orders.app-bar.title"),
+                        bottom = tabs
                     ),
-
-                    Center(
-                        child = Container(
-                            padding = 10.0,
-                            child = Text(
-                                caption = getText(
-                                    if (orders.size <= 1)
-                                        "page.order.list.count-1"
-                                    else
-                                        "page.order.list.count-n",
-                                    arrayOf(orders.size.toString())
-                                )
-                            )
-                        )
-                    ),
-                    Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
-
-                    if (orders.isEmpty())
-                        null
-                    else
-                        Flexible(child = toListView(orders, tenant, !merchant))
+                    child = tabViews,
+                    bottomNavigationBar = bottomNavigationBar()
                 )
-            ),
-            bottomNavigationBar = bottomNavigationBar()
-        ).toWidget()
+            ).toWidget()
+    }
+
+    private fun myOrders(tenant: Tenant): WidgetAware {
+        val orders = orderApi.searchOrders(
+            request = SearchOrderRequest(
+                accountId = securityContext.currentAccountId(),
+                status = getOrderStatusList().map { it.name },
+                limit = MAX_ORDERS
+            )
+        ).orders
+        return toListView(orders, tenant, true)
+    }
+
+    private fun customerOrders(tenant: Tenant): WidgetAware {
+        val orders = orderApi.searchOrders(
+            request = SearchOrderRequest(
+                merchantId = securityContext.currentAccountId(),
+                status = getOrderStatusList().map { it.name },
+                limit = MAX_ORDERS
+            )
+        ).orders
+        return toListView(orders, tenant, false)
     }
 
     private fun toListView(orders: List<OrderSummary>, tenant: Tenant, showMerchantIcon: Boolean): WidgetAware {
-        val accountIds = orders.flatMap { listOf(it.merchantId, it.accountId) }.toSet()
-        val accounts = accountApi.searchAccount(
+        val accountIds = orders.map { it.merchantId }.toSet()
+        val merchants = accountApi.searchAccount(
             SearchAccountRequest(
                 ids = accountIds.toList(),
                 limit = accountIds.size
@@ -139,20 +134,20 @@ class OrdersScreen(
             separatorColor = Theme.COLOR_DIVIDER,
             separator = true,
             children = orders.map {
-                toOrderWidget(it, accounts, tenant, showMerchantIcon)
+                toOrderWidget(it, merchants, tenant, showMerchantIcon)
             }
         )
     }
 
     private fun toOrderWidget(
         order: OrderSummary,
-        accounts: Map<Long, AccountSummary>,
+        merchants: Map<Long, AccountSummary>,
         tenant: Tenant,
         showMerchantIcon: Boolean
     ): WidgetAware {
         val moneyFormat = DecimalFormat(tenant.monetaryFormat)
         val dateFormat = DateTimeFormatter.ofPattern(tenant.dateFormat, LocaleContextHolder.getLocale())
-        val merchant = accounts[order.merchantId]
+        val merchant = merchants[order.merchantId]
         return ListItem(
             leading = if (showMerchantIcon)
                 merchant?.let {
@@ -163,40 +158,31 @@ class OrdersScreen(
                 }
             else
                 null,
-            trailing = Column(
-                mainAxisAlignment = MainAxisAlignment.start,
-                crossAxisAlignment = CrossAxisAlignment.end,
-                mainAxisSize = MainAxisSize.min,
-                children = listOf(
-                    Text(
-                        caption = moneyFormat.format(order.totalPrice),
-                        bold = true,
-                        color = Theme.COLOR_PRIMARY,
-                        size = Theme.TEXT_SIZE_SMALL
-                    ),
-                    Text(
-                        caption = order.created.format(dateFormat),
-                        size = Theme.TEXT_SIZE_SMALL
-                    )
-                )
+            trailing = Text(
+                caption = moneyFormat.format(order.totalPrice),
+                bold = true,
+                color = Theme.COLOR_PRIMARY
             ),
-            caption = getText("page.order.number", arrayOf(order.id.takeLast(4))),
-            subCaption = getText("order.status.${order.status}") +
-                if (togglesProvider.isOrderPaymentEnabled()) " - " + getText("payment.status.${order.paymentStatus}") else "",
+            caption = getOrderCaption(order, tenant),
+            subCaption = if (order.itemCount <= 1)
+                getText("page.order.1_item")
+            else
+                getText("page.order.n_items", arrayOf(order.itemCount.toString())),
             action = gotoUrl(
                 url = urlBuilder.build("/order?id=${order.id}")
             )
         )
     }
 
-    fun getOrders(merchant: Boolean, request: FilterOrderRequest?) = orderApi.searchOrders(
-        request = SearchOrderRequest(
-            merchantId = if (merchant) securityContext.currentAccountId() else null,
-            accountId = if (!merchant) securityContext.currentAccountId() else null,
-            status = if (request?.status.isNullOrEmpty()) getOrderStatusList().map { it.name } else listOf(request?.status!!),
-            limit = MAX_ORDERS
-        )
-    ).orders
+    private fun getOrderCaption(order: OrderSummary, tenant: Tenant): String {
+        val fmt = DateTimeFormatter.ofPattern(tenant.dateFormat)
+        return when (order.status) {
+            OrderStatus.CANCELLED.name -> getText("page.orders.order-cancelled")
+            OrderStatus.OPENED.name -> getText("page.orders.order-opened", arrayOf(order.created.format(fmt)))
+            OrderStatus.DONE.name -> getText("page.orders.order-done")
+            else -> ""
+        }
+    }
 
     private fun getOrderStatusList(): List<OrderStatus> =
         listOf(
