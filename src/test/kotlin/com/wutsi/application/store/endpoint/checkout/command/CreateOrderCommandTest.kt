@@ -50,7 +50,7 @@ internal class CreateOrderCommandTest : AbstractEndpointTest() {
 
     private val products = listOf(
         ProductSummary(id = 1),
-        ProductSummary(id = 3),
+        ProductSummary(id = 3)
     )
 
     @BeforeEach

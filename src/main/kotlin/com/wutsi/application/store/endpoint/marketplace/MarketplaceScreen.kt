@@ -248,8 +248,8 @@ class MarketplaceScreen(
                                     padding = 5.0,
                                     child = Image(
                                         url = it.thumbnail?.url ?: "",
-                                        width = 24.0,
-                                        height = 24.0
+                                        width = 48.0,
+                                        height = 48.0
                                     )
                                 )
                             }

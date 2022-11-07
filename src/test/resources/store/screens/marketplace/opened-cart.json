@@ -129,8 +129,8 @@
                                       "type": "Image",
                                       "attributes": {
                                         "url": "https://www.g.com/0.png",
-                                        "width": 24.0,
-                                        "height": 24.0
+                                        "width": 48.0,
+                                        "height": 48.0
                                       },
                                       "children": []
                                     }
@@ -146,8 +146,8 @@
                                       "type": "Image",
                                       "attributes": {
                                         "url": "https://www.g.com/1.png",
-                                        "width": 24.0,
-                                        "height": 24.0
+                                        "width": 48.0,
+                                        "height": 48.0
                                       },
                                       "children": []
                                     }
@@ -163,8 +163,8 @@
                                       "type": "Image",
                                       "attributes": {
                                         "url": "https://www.g.com/2.png",
-                                        "width": 24.0,
-                                        "height": 24.0
+                                        "width": 48.0,
+                                        "height": 48.0
                                       },
                                       "children": []
                                     }
@@ -180,8 +180,8 @@
                                       "type": "Image",
                                       "attributes": {
                                         "url": "https://www.g.com/3.png",
-                                        "width": 24.0,
-                                        "height": 24.0
+                                        "width": 48.0,
+                                        "height": 48.0
                                       },
                                       "children": []
                                     }
@@ -197,8 +197,8 @@
                                       "type": "Image",
                                       "attributes": {
                                         "url": "https://www.g.com/4.png",
-                                        "width": 24.0,
-                                        "height": 24.0
+                                        "width": 48.0,
+                                        "height": 48.0
                                       },
                                       "children": []
                                     }
@@ -214,8 +214,8 @@
                                       "type": "Image",
                                       "attributes": {
                                         "url": "https://www.g.com/5.png",
-                                        "width": 24.0,
-                                        "height": 24.0
+                                        "width": 48.0,
+                                        "height": 48.0
                                       },
                                       "children": []
                                     }
@@ -231,8 +231,8 @@
                                       "type": "Image",
                                       "attributes": {
                                         "url": "https://www.g.com/6.png",
-                                        "width": 24.0,
-                                        "height": 24.0
+                                        "width": 48.0,
+                                        "height": 48.0
                                       },
                                       "children": []
                                     }
@@ -248,8 +248,8 @@
                                       "type": "Image",
                                       "attributes": {
                                         "url": "https://www.g.com/7.png",
-                                        "width": 24.0,
-                                        "height": 24.0
+                                        "width": 48.0,
+                                        "height": 48.0
                                       },
                                       "children": []
                                     }
