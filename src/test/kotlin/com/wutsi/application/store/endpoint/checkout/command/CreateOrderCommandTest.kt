@@ -11,6 +11,8 @@ import com.wutsi.ecommerce.cart.WutsiCartApi
 import com.wutsi.ecommerce.cart.dto.Cart
 import com.wutsi.ecommerce.cart.dto.GetCartResponse
 import com.wutsi.ecommerce.cart.dto.Product
+import com.wutsi.ecommerce.catalog.dto.ProductSummary
+import com.wutsi.ecommerce.catalog.dto.SearchProductResponse
 import com.wutsi.ecommerce.order.WutsiOrderApi
 import com.wutsi.ecommerce.order.dto.CreateOrderRequest
 import com.wutsi.ecommerce.order.dto.CreateOrderResponse
@@ -46,11 +48,18 @@ internal class CreateOrderCommandTest : AbstractEndpointTest() {
         )
     )
 
+    private val products = listOf(
+        ProductSummary(id = 1),
+        ProductSummary(id = 3),
+    )
+
     @BeforeEach
     override fun setUp() {
         super.setUp()
 
         url = "http://localhost:$port/commands/create-order?merchant-id=111"
+
+        doReturn(SearchProductResponse(products)).whenever(catalogApi).searchProducts(any())
     }
 
     @Test

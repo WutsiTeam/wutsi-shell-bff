@@ -1,6 +1,8 @@
 package com.wutsi.application.store.endpoint.checkout.command
 
 import com.wutsi.application.store.endpoint.AbstractCommand
+import com.wutsi.ecommerce.catalog.WutsiCatalogApi
+import com.wutsi.ecommerce.catalog.dto.SearchProductRequest
 import com.wutsi.ecommerce.order.WutsiOrderApi
 import com.wutsi.ecommerce.order.dto.CreateOrderItem
 import com.wutsi.ecommerce.order.dto.CreateOrderRequest
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/commands/create-order")
 class CreateOrderCommand(
     private val orderApi: WutsiOrderApi,
+    private val catalogApi: WutsiCatalogApi,
     private val logger: KVLogger
 ) : AbstractCommand() {
     @PostMapping
@@ -25,16 +28,25 @@ class CreateOrderCommand(
     ): Action {
         try {
             val cart = cartApi.getCart(merchantId).cart
+            val productMap = catalogApi.searchProducts(
+                request = SearchProductRequest(
+                    productIds = cart.products.map { it.productId },
+                    limit = cart.products.size
+                )
+            ).products.associateBy { it.id }
+
             val orderId = orderApi.createOrder(
                 CreateOrderRequest(
                     addressType = AddressType.POSTAL.name,
                     merchantId = merchantId,
-                    items = cart.products.map {
-                        CreateOrderItem(
-                            productId = it.productId,
-                            quantity = it.quantity
-                        )
-                    }
+                    items = cart.products
+                        .filter { productMap[it.productId] != null }
+                        .map {
+                            CreateOrderItem(
+                                productId = it.productId,
+                                quantity = it.quantity
+                            )
+                        }
                 )
             ).id
             logger.add("order_id", orderId)
