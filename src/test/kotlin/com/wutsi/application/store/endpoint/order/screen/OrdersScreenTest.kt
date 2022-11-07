@@ -4,6 +4,9 @@ import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.store.endpoint.AbstractEndpointTest
+import com.wutsi.ecommerce.catalog.dto.PictureSummary
+import com.wutsi.ecommerce.catalog.dto.ProductSummary
+import com.wutsi.ecommerce.catalog.dto.SearchProductResponse
 import com.wutsi.ecommerce.order.WutsiOrderApi
 import com.wutsi.ecommerce.order.dto.OrderSummary
 import com.wutsi.ecommerce.order.dto.SearchOrderResponse
@@ -37,7 +40,9 @@ internal class OrdersScreenTest : AbstractEndpointTest() {
             currency = "XAF",
             status = OrderStatus.DONE.name,
             reservationId = 777L,
-            created = OffsetDateTime.of(2020, 5, 5, 1, 1, 0, 0, ZoneOffset.UTC)
+            created = OffsetDateTime.of(2020, 5, 5, 1, 1, 0, 0, ZoneOffset.UTC),
+            itemCount = 1,
+            productIds = listOf(100L)
         ),
         OrderSummary(
             id = "222",
@@ -49,7 +54,9 @@ internal class OrdersScreenTest : AbstractEndpointTest() {
             currency = "XAF",
             status = OrderStatus.OPENED.name,
             reservationId = 777L,
-            created = OffsetDateTime.of(2020, 6, 5, 1, 1, 0, 0, ZoneOffset.UTC)
+            created = OffsetDateTime.of(2020, 6, 5, 1, 1, 0, 0, ZoneOffset.UTC),
+            itemCount = 5,
+            productIds = listOf(200L, 201L, 202L, 203L, 204L)
         )
     )
 
@@ -58,12 +65,46 @@ internal class OrdersScreenTest : AbstractEndpointTest() {
         AccountSummary(id = 222L, displayName = "John Smith")
     )
 
+    private val products = listOf(
+        ProductSummary(
+            id = 100,
+            thumbnail = PictureSummary(
+                url = "https://img.com/100.png"
+            )
+        ),
+        ProductSummary(
+            id = 200,
+            thumbnail = PictureSummary(
+                url = "https://img.com/200.png"
+            )
+        ),
+        ProductSummary(
+            id = 201,
+            thumbnail = PictureSummary(
+                url = "https://img.com/201.png"
+            )
+        ),
+        ProductSummary(
+            id = 202,
+            thumbnail = PictureSummary(
+                url = "https://img.com/202.png"
+            )
+        ),
+        ProductSummary(
+            id = 203,
+            thumbnail = PictureSummary(
+                url = "https://img.com/203.png"
+            )
+        )
+    )
+
     @BeforeEach
     override fun setUp() {
         super.setUp()
 
         doReturn(SearchOrderResponse(orders)).whenever(orderApi).searchOrders(any())
         doReturn(SearchAccountResponse(customers)).whenever(accountApi).searchAccount(any())
+        doReturn(SearchProductResponse(products)).whenever(catalogApi).searchProducts(any())
     }
 
     @Test
