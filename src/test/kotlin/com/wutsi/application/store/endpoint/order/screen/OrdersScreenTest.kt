@@ -111,7 +111,6 @@ internal class OrdersScreenTest : AbstractEndpointTest() {
 
     @Test
     fun empty() {
-
     }
 
     @Test
