@@ -1,228 +1,441 @@
 {
-  "type": "Screen",
+  "type": "DefaultTabController",
   "attributes": {
-    "id": "page.orders",
-    "safe": false
+    "length": 2,
+    "initialIndex": 0,
+    "id": "page.orders"
   },
   "children": [
     {
-      "type": "ListView",
+      "type": "Screen",
       "attributes": {
-        "separator": true,
-        "separatorColor": "#8c8c8c"
+        "safe": false,
+        "backgroundColor": "#FFFFFF"
       },
       "children": [
         {
-          "type": "Column",
-          "attributes": {
-            "mainAxisAlignment": "start",
-            "crossAxisAlignment": "start"
-          },
+          "type": "TabBarView",
+          "attributes": {},
           "children": [
             {
-              "type": "ListItem",
+              "type": "ListView",
               "attributes": {
-                "caption": "Completed",
-                "subCaption": "1 product",
-                "trailing": {
-                  "type": "Text",
-                  "attributes": {
-                    "caption": "25,000 CFA",
-                    "color": "#1D7EDF",
-                    "bold": true
-                  },
-                  "children": []
-                }
+                "separator": true,
+                "separatorColor": "#8c8c8c"
               },
-              "children": [],
-              "action": {
-                "type": "Route",
-                "url": "http://localhost:0/order?id=111"
-              }
-            },
-            {
-              "type": "Container",
-              "attributes": {},
               "children": [
                 {
-                  "type": "Row",
+                  "type": "Column",
                   "attributes": {
                     "mainAxisAlignment": "start",
-                    "crossAxisAlignment": "center"
+                    "crossAxisAlignment": "start"
                   },
                   "children": [
                     {
-                      "type": "Container",
+                      "type": "ListItem",
                       "attributes": {
-                        "padding": 5.0
-                      },
-                      "children": [
-                        {
-                          "type": "Image",
+                        "caption": "Completed",
+                        "subCaption": "1 product",
+                        "trailing": {
+                          "type": "Text",
                           "attributes": {
-                            "url": "https://img.com/100.png",
-                            "width": 48.0,
-                            "height": 48.0
+                            "caption": "25,000 CFA",
+                            "color": "#1D7EDF",
+                            "bold": true
                           },
                           "children": []
                         }
-                      ]
+                      },
+                      "children": [],
+                      "action": {
+                        "type": "Route",
+                        "url": "http://localhost:0/order?id=111"
+                      }
+                    },
+                    {
+                      "type": "Container",
+                      "attributes": {},
+                      "children": [
+                        {
+                          "type": "Row",
+                          "attributes": {
+                            "mainAxisAlignment": "start",
+                            "crossAxisAlignment": "center"
+                          },
+                          "children": [
+                            {
+                              "type": "Container",
+                              "attributes": {
+                                "padding": 5.0
+                              },
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://img.com/100.png",
+                                    "width": 48.0,
+                                    "height": 48.0
+                                  },
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ],
+                      "action": {
+                        "type": "Route",
+                        "url": "http://localhost:0/order?id=111"
+                      }
                     }
                   ]
-                }
-              ],
-              "action": {
-                "type": "Route",
-                "url": "http://localhost:0/order?id=111"
-              }
-            }
-          ]
-        },
-        {
-          "type": "Column",
-          "attributes": {
-            "mainAxisAlignment": "start",
-            "crossAxisAlignment": "start"
-          },
-          "children": [
-            {
-              "type": "ListItem",
-              "attributes": {
-                "caption": "Opened on 05 Jun. 2020",
-                "subCaption": "5 products",
-                "trailing": {
-                  "type": "Text",
-                  "attributes": {
-                    "caption": "50,000 CFA",
-                    "color": "#1D7EDF",
-                    "bold": true
-                  },
-                  "children": []
-                }
-              },
-              "children": [],
-              "action": {
-                "type": "Route",
-                "url": "http://localhost:0/order?id=222"
-              }
-            },
-            {
-              "type": "Container",
-              "attributes": {},
-              "children": [
+                },
                 {
-                  "type": "Row",
+                  "type": "Column",
                   "attributes": {
                     "mainAxisAlignment": "start",
-                    "crossAxisAlignment": "center"
+                    "crossAxisAlignment": "start"
                   },
                   "children": [
                     {
-                      "type": "Container",
+                      "type": "ListItem",
                       "attributes": {
-                        "padding": 5.0
-                      },
-                      "children": [
-                        {
-                          "type": "Image",
+                        "caption": "Opened on 05 Jun. 2020",
+                        "subCaption": "5 products",
+                        "trailing": {
+                          "type": "Text",
                           "attributes": {
-                            "url": "https://img.com/200.png",
-                            "width": 48.0,
-                            "height": 48.0
+                            "caption": "50,000 CFA",
+                            "color": "#1D7EDF",
+                            "bold": true
                           },
                           "children": []
                         }
-                      ]
+                      },
+                      "children": [],
+                      "action": {
+                        "type": "Route",
+                        "url": "http://localhost:0/order?id=222"
+                      }
                     },
                     {
                       "type": "Container",
-                      "attributes": {
-                        "padding": 5.0
-                      },
+                      "attributes": {},
                       "children": [
                         {
-                          "type": "Image",
+                          "type": "Row",
                           "attributes": {
-                            "url": "https://img.com/201.png",
-                            "width": 48.0,
-                            "height": 48.0
+                            "mainAxisAlignment": "start",
+                            "crossAxisAlignment": "center"
                           },
-                          "children": []
+                          "children": [
+                            {
+                              "type": "Container",
+                              "attributes": {
+                                "padding": 5.0
+                              },
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://img.com/200.png",
+                                    "width": 48.0,
+                                    "height": 48.0
+                                  },
+                                  "children": []
+                                }
+                              ]
+                            },
+                            {
+                              "type": "Container",
+                              "attributes": {
+                                "padding": 5.0
+                              },
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://img.com/201.png",
+                                    "width": 48.0,
+                                    "height": 48.0
+                                  },
+                                  "children": []
+                                }
+                              ]
+                            },
+                            {
+                              "type": "Container",
+                              "attributes": {
+                                "padding": 5.0
+                              },
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://img.com/100.png",
+                                    "width": 48.0,
+                                    "height": 48.0
+                                  },
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
                         }
-                      ]
-                    },
-                    {
-                      "type": "Container",
-                      "attributes": {
-                        "padding": 5.0
-                      },
-                      "children": [
-                        {
-                          "type": "Image",
-                          "attributes": {
-                            "url": "https://img.com/202.png",
-                            "width": 48.0,
-                            "height": 48.0
-                          },
-                          "children": []
-                        }
-                      ]
+                      ],
+                      "action": {
+                        "type": "Route",
+                        "url": "http://localhost:0/order?id=222"
+                      }
                     }
                   ]
                 }
-              ],
-              "action": {
-                "type": "Route",
-                "url": "http://localhost:0/order?id=222"
-              }
+              ]
+            },
+            {
+              "type": "ListView",
+              "attributes": {
+                "separator": true,
+                "separatorColor": "#8c8c8c"
+              },
+              "children": [
+                {
+                  "type": "Column",
+                  "attributes": {
+                    "mainAxisAlignment": "start",
+                    "crossAxisAlignment": "start"
+                  },
+                  "children": [
+                    {
+                      "type": "ListItem",
+                      "attributes": {
+                        "caption": "Completed",
+                        "subCaption": "1 product",
+                        "trailing": {
+                          "type": "Text",
+                          "attributes": {
+                            "caption": "25,000 CFA",
+                            "color": "#1D7EDF",
+                            "bold": true
+                          },
+                          "children": []
+                        }
+                      },
+                      "children": [],
+                      "action": {
+                        "type": "Route",
+                        "url": "http://localhost:0/order?id=111"
+                      }
+                    },
+                    {
+                      "type": "Container",
+                      "attributes": {},
+                      "children": [
+                        {
+                          "type": "Row",
+                          "attributes": {
+                            "mainAxisAlignment": "start",
+                            "crossAxisAlignment": "center"
+                          },
+                          "children": [
+                            {
+                              "type": "Container",
+                              "attributes": {
+                                "padding": 5.0
+                              },
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://img.com/100.png",
+                                    "width": 48.0,
+                                    "height": 48.0
+                                  },
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ],
+                      "action": {
+                        "type": "Route",
+                        "url": "http://localhost:0/order?id=111"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "attributes": {
+                    "mainAxisAlignment": "start",
+                    "crossAxisAlignment": "start"
+                  },
+                  "children": [
+                    {
+                      "type": "ListItem",
+                      "attributes": {
+                        "caption": "Opened on 05 Jun. 2020",
+                        "subCaption": "5 products",
+                        "trailing": {
+                          "type": "Text",
+                          "attributes": {
+                            "caption": "50,000 CFA",
+                            "color": "#1D7EDF",
+                            "bold": true
+                          },
+                          "children": []
+                        }
+                      },
+                      "children": [],
+                      "action": {
+                        "type": "Route",
+                        "url": "http://localhost:0/order?id=222"
+                      }
+                    },
+                    {
+                      "type": "Container",
+                      "attributes": {},
+                      "children": [
+                        {
+                          "type": "Row",
+                          "attributes": {
+                            "mainAxisAlignment": "start",
+                            "crossAxisAlignment": "center"
+                          },
+                          "children": [
+                            {
+                              "type": "Container",
+                              "attributes": {
+                                "padding": 5.0
+                              },
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://img.com/200.png",
+                                    "width": 48.0,
+                                    "height": 48.0
+                                  },
+                                  "children": []
+                                }
+                              ]
+                            },
+                            {
+                              "type": "Container",
+                              "attributes": {
+                                "padding": 5.0
+                              },
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://img.com/201.png",
+                                    "width": 48.0,
+                                    "height": 48.0
+                                  },
+                                  "children": []
+                                }
+                              ]
+                            },
+                            {
+                              "type": "Container",
+                              "attributes": {
+                                "padding": 5.0
+                              },
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://img.com/100.png",
+                                    "width": 48.0,
+                                    "height": 48.0
+                                  },
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ],
+                      "action": {
+                        "type": "Route",
+                        "url": "http://localhost:0/order?id=222"
+                      }
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
-      ]
-    }
-  ],
-  "appBar": {
-    "type": "AppBar",
-    "attributes": {
-      "title": "Orders",
-      "elevation": 0.0,
-      "backgroundColor": "#1D7EDF",
-      "foregroundColor": "#FFFFFF"
-    },
-    "children": []
-  },
-  "bottomNavigationBar": {
-    "type": "BottomNavigationBar",
-    "attributes": {
-      "background": "#1D7EDF",
-      "selectedItemColor": "#FFFFFF",
-      "unselectedItemColor": "#FFFFFF"
-    },
-    "children": [
-      {
-        "type": "BottomNavigationBarItem",
+      ],
+      "appBar": {
+        "type": "AppBar",
         "attributes": {
-          "icon": "f107",
-          "caption": "Home"
+          "title": "Orders",
+          "elevation": 0.0,
+          "backgroundColor": "#1D7EDF",
+          "foregroundColor": "#FFFFFF",
+          "bottom": {
+            "type": "TabBar",
+            "attributes": {},
+            "children": [
+              {
+                "type": "Text",
+                "attributes": {
+                  "caption": "RECEIVED",
+                  "bold": true
+                },
+                "children": []
+              },
+              {
+                "type": "Text",
+                "attributes": {
+                  "caption": "MY ORDERS",
+                  "bold": true
+                },
+                "children": []
+              }
+            ]
+          }
         },
-        "children": [],
-        "action": {
-          "type": "Route",
-          "url": "route:/~"
-        }
+        "children": []
       },
-      {
-        "type": "BottomNavigationBarItem",
+      "bottomNavigationBar": {
+        "type": "BottomNavigationBar",
         "attributes": {
-          "icon": "f27b",
-          "caption": "Me"
+          "background": "#1D7EDF",
+          "selectedItemColor": "#FFFFFF",
+          "unselectedItemColor": "#FFFFFF"
         },
-        "children": [],
-        "action": {
-          "type": "Route",
-          "url": "http://localhost:0/profile"
-        }
+        "children": [
+          {
+            "type": "BottomNavigationBarItem",
+            "attributes": {
+              "icon": "f107",
+              "caption": "Home"
+            },
+            "children": [],
+            "action": {
+              "type": "Route",
+              "url": "route:/~"
+            }
+          },
+          {
+            "type": "BottomNavigationBarItem",
+            "attributes": {
+              "icon": "f27b",
+              "caption": "Me"
+            },
+            "children": [],
+            "action": {
+              "type": "Route",
+              "url": "http://localhost:0/profile"
+            }
+          }
+        ]
       }
-    ]
-  }
+    }
+  ]
 }

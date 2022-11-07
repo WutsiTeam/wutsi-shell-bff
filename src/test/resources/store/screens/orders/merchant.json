@@ -145,6 +145,40 @@
                                   "children": []
                                 }
                               ]
+                            },
+                            {
+                              "type": "Container",
+                              "attributes": {
+                                "padding": 5.0
+                              },
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://img.com/201.png",
+                                    "width": 48.0,
+                                    "height": 48.0
+                                  },
+                                  "children": []
+                                }
+                              ]
+                            },
+                            {
+                              "type": "Container",
+                              "attributes": {
+                                "padding": 5.0
+                              },
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://img.com/100.png",
+                                    "width": 48.0,
+                                    "height": 48.0
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         }
@@ -280,6 +314,40 @@
                                   "type": "Image",
                                   "attributes": {
                                     "url": "https://img.com/200.png",
+                                    "width": 48.0,
+                                    "height": 48.0
+                                  },
+                                  "children": []
+                                }
+                              ]
+                            },
+                            {
+                              "type": "Container",
+                              "attributes": {
+                                "padding": 5.0
+                              },
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://img.com/201.png",
+                                    "width": 48.0,
+                                    "height": 48.0
+                                  },
+                                  "children": []
+                                }
+                              ]
+                            },
+                            {
+                              "type": "Container",
+                              "attributes": {
+                                "padding": 5.0
+                              },
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://img.com/100.png",
                                     "width": 48.0,
                                     "height": 48.0
                                   },
