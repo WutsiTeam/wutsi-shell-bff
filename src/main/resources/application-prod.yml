@@ -23,7 +23,7 @@ wutsi:
         ttl: 86400
     security:
       api-key: ${API_KEY}
-      verify-token: true
+      verify-token: false
       token-blacklist:
         type: redis
         redis:
