@@ -81,6 +81,9 @@ internal class SettingsAccountScreenTest : AbstractShellEndpointTest() {
 
     @Test
     fun `transaction history enabled`() {
+        user = createAccount(true, Category(id = 100, title = "Foo"))
+        doReturn(GetAccountResponse(user)).whenever(accountApi).getAccount(any())
+        
         doReturn(true).whenever(toggleProvider).isToggleEnabled(ToggleName.TRANSACTION_HISTORY)
 
         // THEN
@@ -90,7 +93,7 @@ internal class SettingsAccountScreenTest : AbstractShellEndpointTest() {
     @Test
     fun `business account`() {
         // GIVEN
-        user = createAccount(false, Category(id = 100, title = "Foo"))
+        user = createAccount(true, Category(id = 100, title = "Foo"))
         doReturn(GetAccountResponse(user)).whenever(accountApi).getAccount(any())
 
         // THEN
@@ -100,11 +103,22 @@ internal class SettingsAccountScreenTest : AbstractShellEndpointTest() {
     @Test
     fun `cashout enabled`() {
         // GIVEN
-        user = createAccount(false, Category(id = 100, title = "Foo"))
+        user = createAccount(true, Category(id = 100, title = "Foo"))
         doReturn(GetAccountResponse(user)).whenever(accountApi).getAccount(any())
         doReturn(true).whenever(toggleProvider).isToggleEnabled(ToggleName.CASHOUT)
 
         // THEN
         assertEndpointEquals("/shell/screens/settings/accounts/account-cashout-enabled.json", url)
+    }
+
+    @Test
+    fun `cashin enabled`() {
+        // GIVEN
+        user = createAccount(true, Category(id = 100, title = "Foo"))
+        doReturn(GetAccountResponse(user)).whenever(accountApi).getAccount(any())
+        doReturn(true).whenever(toggleProvider).isToggleEnabled(ToggleName.CASHOUT)
+
+        // THEN
+        assertEndpointEquals("/shell/screens/settings/accounts/account-cashin-enabled.json", url)
     }
 }

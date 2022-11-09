@@ -13,6 +13,67 @@
       },
       "children": [
         {
+          "type": "Container",
+          "attributes": {
+            "alignment": "Center",
+            "padding": 10.0
+          },
+          "children": [
+            {
+              "type": "Column",
+              "attributes": {
+                "mainAxisAlignment": "center",
+                "mainAxisSize": "min",
+                "crossAxisAlignment": "center"
+              },
+              "children": [
+                {
+                  "type": "Container",
+                  "attributes": {
+                    "alignment": "Center",
+                    "padding": 10.0
+                  },
+                  "children": [
+                    {
+                      "type": "MoneyText",
+                      "attributes": {
+                        "value": 150000.0,
+                        "color": "#1D7EDF",
+                        "currency": "CFA",
+                        "numberFormat": "#,###,##0"
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "type": "Row",
+                  "attributes": {
+                    "mainAxisAlignment": "spaceAround",
+                    "crossAxisAlignment": "center"
+                  },
+                  "children": [
+                    {
+                      "type": "Button",
+                      "attributes": {
+                        "caption": "Cash Out",
+                        "padding": 10.0,
+                        "type": "Text",
+                        "stretched": false
+                      },
+                      "children": [],
+                      "action": {
+                        "type": "Route",
+                        "url": "http://localhost:0/cashout"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
           "type": "Divider",
           "attributes": {
             "color": "#8c8c8c"

@@ -45,6 +45,7 @@ class SettingsAccountScreen(
     fun index(): Widget {
         val tenant = tenantProvider.get()
         val paymentMethods = accountService.getPaymentMethods(tenant)
+        val user = securityContext.currentAccount()
 
         return Screen(
             id = Page.SETTINGS_ACCOUNT,
@@ -56,12 +57,15 @@ class SettingsAccountScreen(
                 title = getText("page.settings.account.app-bar.title")
             ),
             child = Column(
-                children = listOf(
-                    Container(
-                        padding = 10.0,
-                        alignment = Center,
-                        child = toBalanceWidget(paymentMethods, tenant)
-                    ),
+                children = listOfNotNull(
+                    if (user.business)
+                        Container(
+                            padding = 10.0,
+                            alignment = Center,
+                            child = toBalanceWidget(paymentMethods, tenant)
+                        )
+                    else
+                        null,
                     Divider(color = Theme.COLOR_DIVIDER),
                     Flexible(
                         child = Container(
