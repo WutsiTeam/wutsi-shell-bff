@@ -83,7 +83,7 @@ internal class SettingsAccountScreenTest : AbstractShellEndpointTest() {
     fun `transaction history enabled`() {
         user = createAccount(true, Category(id = 100, title = "Foo"))
         doReturn(GetAccountResponse(user)).whenever(accountApi).getAccount(any())
-        
+
         doReturn(true).whenever(toggleProvider).isToggleEnabled(ToggleName.TRANSACTION_HISTORY)
 
         // THEN
