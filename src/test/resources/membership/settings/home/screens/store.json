@@ -253,7 +253,7 @@
               "children": [],
               "action": {
                 "type": "Route",
-                "url": "http://localhost:0/settings/2/about"
+                "url": "http://localhost:0/about"
               }
             },
             {

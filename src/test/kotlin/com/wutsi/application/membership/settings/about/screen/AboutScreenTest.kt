@@ -27,7 +27,6 @@ internal class AboutScreenTest : AbstractSecuredEndpointTest() {
 
     private fun url(action: String = "", qs: String = "") = "http://localhost:$port${Page.getAboutUrl()}$action?$qs"
 
-
     @BeforeEach
     override fun setUp() {
         super.setUp()

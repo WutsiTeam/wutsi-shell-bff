@@ -84,7 +84,7 @@
                       "children": [],
                       "action": {
                         "type": "Command",
-                        "url": "http://localhost:0/login/2/submit?auth=true&return-to-route=true&phone=+237670000010&return-url=%2F2"
+                        "url": "http://localhost:0/login/2/submit?auth=true&return-to-route=true&phone=+237670000010"
                       }
                     }
                   ]

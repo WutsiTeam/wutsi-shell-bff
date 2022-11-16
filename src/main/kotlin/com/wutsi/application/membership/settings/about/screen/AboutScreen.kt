@@ -122,7 +122,6 @@ class AboutScreen(
             .body(
                 gotoLogin(member.phoneNumber)
             )
-
     }
 
     private fun listItem(key: String, value: String?) = Row(
