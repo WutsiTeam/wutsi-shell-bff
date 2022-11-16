@@ -16,7 +16,7 @@ class OnboardScreen(
 ) : AbstractQuery() {
     @PostMapping("/onboard")
     fun index() = Screen(
-        id = com.wutsi.application.login.endpoint.Page.ONBOARD,
+        id = com.wutsi.application.Page.ONBOARD,
         safe = true,
         appBar = null,
         child = PageView(

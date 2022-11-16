@@ -36,6 +36,11 @@ abstract class AbstractEndpoint {
     @Value("\${wutsi.application.shell-url}")
     protected lateinit var shellUrl: String
 
+    @Value("\${wutsi.application.asset-url}")
+    protected lateinit var assertUrl: String
+
+    fun getLogoUrl() = "$assertUrl/logo/wutsi.png"
+
     @ExceptionHandler(Throwable::class)
     fun onException(ex: Throwable): Action {
         val action = Action(
@@ -68,6 +73,24 @@ abstract class AbstractEndpoint {
         if (e is WutsiException) {
             logger.add("error_code", e.error.code)
         }
+    }
+
+    fun gotoLogin(
+        phoneNumber: String,
+        title: String? = null,
+        subTitle: String? = null
+    ): Action {
+        return gotoUrl(
+            url = urlBuilder.build(
+                Page.getLoginUrl() + "?title=" + encodeURLParam(title ?: "") +
+                    "&sub-title=" + encodeURLParam(subTitle ?: getText("page.login.sub-title")) +
+                    "&phone=" + encodeURLParam(phoneNumber) +
+                    "&return-to-route=true" +
+                    "&hide-change-account-button=true"
+            ),
+            type = ActionType.Route,
+            replacement = true
+        )
     }
 
     protected fun gotoPage(page: Int) = Action(

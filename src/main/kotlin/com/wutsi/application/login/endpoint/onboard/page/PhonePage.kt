@@ -22,7 +22,6 @@ import com.wutsi.flutter.sdui.enums.TextAlignment
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import javax.servlet.http.HttpServletRequest
 
 @RestController
 @RequestMapping("/pages/phone")

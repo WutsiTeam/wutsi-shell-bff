@@ -32,10 +32,11 @@ class HomeV2Screen : AbstractEndpoint() {
                             url = urlBuilder.build(Page.getSettingsUrl())
                         )
                     )
-                )
+                ),
+                automaticallyImplyLeading = false
             ),
             bottomNavigationBar = createBottomNavigationBarWidget(),
-            backgroundColor = Theme.COLOR_GRAY_LIGHT,
+            backgroundColor = Theme.COLOR_GRAY_LIGHT
         ).toWidget()
     }
 }

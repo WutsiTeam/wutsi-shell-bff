@@ -1,6 +1,9 @@
 package com.wutsi.application
 
+import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.shell.endpoint.AbstractShellEndpointTest
+import com.wutsi.membership.manager.dto.GetMemberResponse
 import com.wutsi.platform.core.security.SubjectType
 import com.wutsi.platform.core.security.spring.SpringAuthorizationRequestInterceptor
 import com.wutsi.platform.core.security.spring.jwt.JWTBuilder
@@ -12,6 +15,8 @@ abstract class AbstractSecuredEndpointTest : AbstractEndpointTest() {
     companion object {
         const val MEMBER_ID = 1000L
     }
+
+    val member = Fixtures.createMember(id = MEMBER_ID)
 
     @BeforeEach
     override fun setUp() {
@@ -30,5 +35,7 @@ abstract class AbstractSecuredEndpointTest : AbstractEndpointTest() {
                 )
             )
         )
+
+        doReturn(GetMemberResponse(member)).whenever(membershipManagerApi).getMember()
     }
 }

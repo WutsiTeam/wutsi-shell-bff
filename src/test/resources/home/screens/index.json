@@ -12,6 +12,7 @@
       "elevation": 0.0,
       "backgroundColor": "#e8e8e8",
       "foregroundColor": "#000000",
+      "automaticallyImplyLeading": false,
       "actions": [
         {
           "type": "IconButton",

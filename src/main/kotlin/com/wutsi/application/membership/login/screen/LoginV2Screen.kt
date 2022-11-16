@@ -170,7 +170,6 @@ class LoginV2Screen(
                 )
             )
         ).toWidget()
-
     }
 
     @PostMapping("/submit")
@@ -212,7 +211,6 @@ class LoginV2Screen(
                 .ok()
                 .headers(headers)
                 .body(action)
-
         } catch (ex: Exception) {
             return ResponseEntity
                 .ok()

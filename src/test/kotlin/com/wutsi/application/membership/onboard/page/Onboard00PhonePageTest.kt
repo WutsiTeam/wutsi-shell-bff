@@ -8,7 +8,6 @@ import com.nhaarman.mockitokotlin2.never
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.AbstractEndpointTest
-import com.wutsi.application.Page
 import com.wutsi.application.membership.onboard.dto.SubmitPhoneRequest
 import com.wutsi.application.membership.onboard.entity.OnboardEntity
 import com.wutsi.application.service.EnvironmentDetector
@@ -94,7 +93,7 @@ internal class Onboard00PhonePageTest : AbstractEndpointTest() {
         val action = response.body!!
         assertEquals(ActionType.Route, action.type)
         assertEquals(
-            "http://localhost:0${Page.getLoginUrl()}?title=You+Have+a+wallet%21&sub-title=Enter+your+Passcode&phone=%2B237670000010&return-to-route=true&return-url=route%3A%2F&hide-change-account-button=true",
+            "http://localhost:0/login/2?title=You+Have+a+wallet%21&sub-title=Enter+your+Passcode&phone=%2B237670000010&return-to-route=true&hide-change-account-button=true",
             action.url
         )
 
