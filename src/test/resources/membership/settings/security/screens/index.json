@@ -1,7 +1,7 @@
 {
   "type": "Screen",
   "attributes": {
-    "id": "page.settings.security",
+    "id": "page.security",
     "safe": false
   },
   "children": [
@@ -37,7 +37,7 @@
           "children": [],
           "action": {
             "type": "Route",
-            "url": "http://localhost:0/login?phone=%2B1237666666666&screen-id=page.settings.security.delete.wallet&title=Authorisation&sub-title=Enter+your+current+Passcode&auth=false&return-to-route=true&return-url=http%3A%2F%2Flocalhost%3A0%2Fsettings%2Fsecurity%2Fpin"
+            "url": "http://localhost:0/login?phone=%2B237670000010&title=Authorisation&sub-title=Enter+your+current+Passcode&auth=false&return-to-route=true&dark-mode=true&return-url=http%3A%2F%2Flocalhost%3A0%2Fsecurity%2Fpin"
           }
         },
         {
@@ -65,7 +65,7 @@
           "children": [],
           "action": {
             "type": "Route",
-            "url": "http://localhost:0/settings/security/delete-wallet"
+            "url": "http://localhost:0/security/delete-wallet"
           }
         }
       ]

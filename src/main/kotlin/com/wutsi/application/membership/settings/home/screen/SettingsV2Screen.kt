@@ -138,7 +138,7 @@ class SettingsV2Screen : AbstractSecuredEndpoint() {
                         Container(padding = 20.0),
                         listItem(
                             "page.settings.listitem.security.caption",
-                            urlBuilder.build("${Page.getSettingsUrl()}/security"),
+                            urlBuilder.build("${Page.getSecurityUrl()}"),
                             icon = Theme.ICON_LOCK
                         ),
                         listItem(

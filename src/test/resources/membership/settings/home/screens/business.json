@@ -210,7 +210,7 @@
               "children": [],
               "action": {
                 "type": "Route",
-                "url": "http://localhost:0/settings/2/security"
+                "url": "http://localhost:0/security"
               }
             },
             {
