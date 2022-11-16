@@ -6,6 +6,7 @@ import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.doThrow
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
+import com.wutsi.application.Page
 import com.wutsi.application.login.endpoint.AbstractEndpointTest
 import com.wutsi.application.service.OnboardService
 import com.wutsi.flutter.sdui.Action
@@ -83,7 +84,7 @@ internal class CreateWalletCommandTest : AbstractEndpointTest() {
         val action = response.body!!
         assertEquals(ActionType.Route, action.type)
         assertEquals(
-            "http://localhost:0/login?title=You+have+a+Wallet.&sub-title=Enter+your+Password&phone=%2B15147550011&return-to-route=true&return-url=route%3A%2F&hide-change-account-button=true",
+            "http://localhost:0/login?title=You+have+a+Wallet.&sub-title=Enter+your+Passcode&phone=%2B15147550011&return-to-route=true&return-url=route%3A%2F&hide-change-account-button=true",
             action.url
         )
     }

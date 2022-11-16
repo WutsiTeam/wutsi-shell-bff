@@ -1,10 +1,10 @@
 package com.wutsi.application.login.endpoint.onboard.page
 
+import com.wutsi.application.service.EnvironmentDetector
 import com.wutsi.application.shared.Theme
-import com.wutsi.application.shared.service.EnvironmentDetector
 import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.application.shared.service.URLBuilder
-import com.wutsi.application.shared.ui.EnvironmentBanner
+import com.wutsi.application.shared.ui.EnvironmentBannerWidget
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
@@ -29,8 +29,7 @@ import javax.servlet.http.HttpServletRequest
 class PhonePage(
     private val urlBuilder: URLBuilder,
     private val tenantProvider: TenantProvider,
-    private val env: EnvironmentDetector,
-    private val request: HttpServletRequest
+    private val env: EnvironmentDetector
 ) : AbstractOnboardQuery() {
     @PostMapping
     fun index(): Widget {
@@ -39,7 +38,7 @@ class PhonePage(
         return Column(
             children = listOfNotNull(
                 if (env.test()) {
-                    EnvironmentBanner(env, request)
+                    EnvironmentBannerWidget()
                 } else {
                     null
                 },

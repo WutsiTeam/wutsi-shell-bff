@@ -3,9 +3,9 @@ package com.wutsi.application.membership.onboard.page
 import com.wutsi.application.membership.onboard.dto.SubmitPhoneRequest
 import com.wutsi.application.membership.onboard.entity.OnboardEntity
 import com.wutsi.application.service.CountryDetector
+import com.wutsi.application.service.EnvironmentDetector
 import com.wutsi.application.shared.Theme
-import com.wutsi.application.shared.service.EnvironmentDetector
-import com.wutsi.application.shared.ui.EnvironmentBanner
+import com.wutsi.application.widget.EnvironmentBannerWidget
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
@@ -30,13 +30,11 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import javax.servlet.http.HttpServletRequest
 
 @RestController
 @RequestMapping("/onboard/pages/phone")
 class Onboard00PhonePage(
     private val env: EnvironmentDetector,
-    private val request: HttpServletRequest,
     private val countryDetector: CountryDetector,
     private val membershipManagerApi: MembershipManagerApi,
     private val securityManagerApi: SecurityManagerApi
@@ -50,7 +48,7 @@ class Onboard00PhonePage(
         return Column(
             children = listOfNotNull(
                 if (env.test()) {
-                    EnvironmentBanner(env, request)
+                    EnvironmentBannerWidget()
                 } else {
                     null
                 },

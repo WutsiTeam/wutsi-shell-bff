@@ -1,7 +1,7 @@
 package com.wutsi.application.login.endpoint.onboard.page
 
 import com.wutsi.application.login.endpoint.AbstractEndpointTest
-import com.wutsi.application.shared.service.EnvironmentDetector
+import com.wutsi.application.service.EnvironmentDetector
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

@@ -3,11 +3,11 @@ package com.wutsi.application.login.endpoint.login.screen
 import com.wutsi.application.login.endpoint.AbstractQuery
 import com.wutsi.application.login.endpoint.Page
 import com.wutsi.application.login.endpoint.onboard.screen.OnboardScreen
+import com.wutsi.application.service.EnvironmentDetector
 import com.wutsi.application.shared.Theme
-import com.wutsi.application.shared.service.EnvironmentDetector
 import com.wutsi.application.shared.service.StringUtil.initials
 import com.wutsi.application.shared.service.URLBuilder
-import com.wutsi.application.shared.ui.EnvironmentBanner
+import com.wutsi.application.shared.ui.EnvironmentBannerWidget
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
@@ -43,7 +43,6 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import java.net.URLEncoder
-import javax.servlet.http.HttpServletRequest
 
 @RestController
 @RequestMapping
@@ -51,8 +50,7 @@ class LoginScreen(
     private val urlBuilder: URLBuilder,
     private val accountApi: WutsiAccountApi,
     private val onboardScreen: OnboardScreen,
-    private val env: EnvironmentDetector,
-    private val request: HttpServletRequest
+    private val env: EnvironmentDetector
 ) : AbstractQuery() {
     companion object {
         private val LOGGER = LoggerFactory.getLogger(LoginScreen::class.java)
@@ -135,7 +133,7 @@ class LoginScreen(
                         child = Column(
                             children = listOfNotNull(
                                 if (env.test()) {
-                                    EnvironmentBanner(env, request)
+                                    EnvironmentBannerWidget()
                                 } else {
                                     null
                                 },

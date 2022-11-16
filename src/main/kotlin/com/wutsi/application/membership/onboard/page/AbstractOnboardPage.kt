@@ -1,6 +1,7 @@
 package com.wutsi.application.membership.onboard.page
 
 import com.wutsi.application.AbstractEndpoint
+import com.wutsi.application.Page
 import com.wutsi.application.membership.onboard.dao.OnboardRepository
 import com.wutsi.application.membership.onboard.exception.OnboardEntityNotFoundException
 import com.wutsi.flutter.sdui.Action
@@ -25,7 +26,7 @@ abstract class AbstractOnboardPage : AbstractEndpoint() {
     ): Action {
         return gotoUrl(
             url = urlBuilder.build(
-                "/login/2?title=" + encodeURLParam(title ?: "") +
+                Page.getLoginUrl() + "?title=" + encodeURLParam(title ?: "") +
                     "&sub-title=" + encodeURLParam(subTitle ?: getText("page.login.sub-title")) +
                     "&phone=" + encodeURLParam(phoneNumber) +
                     "&return-to-route=true" +

@@ -3,6 +3,7 @@ package com.wutsi.application.membership.onboard.page
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.AbstractEndpointTest
+import com.wutsi.application.Page
 import com.wutsi.application.membership.onboard.entity.OnboardEntity
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
@@ -50,7 +51,7 @@ internal class Onboard06SuccessPageTest : AbstractEndpointTest() {
         val action = response.body!!
         assertEquals(ActionType.Route, action.type)
         assertEquals(
-            "http://localhost:0/login?title=&sub-title=Enter+your+Password&phone=%2B237670000010&return-to-route=true&return-url=route%3A%2F&hide-change-account-button=true",
+            "http://localhost:0${Page.getLoginUrl()}?title=&sub-title=Enter+your+Passcode&phone=%2B237670000010&return-to-route=true&return-url=route%3A%2F&hide-change-account-button=true",
             action.url
         )
     }

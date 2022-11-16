@@ -2,9 +2,8 @@ package com.wutsi.application
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.i18n.phonenumbers.PhoneNumberUtil
-import com.wutsi.application.login.exception.AuthenticationException
-import com.wutsi.application.login.exception.PinMismatchException
 import com.wutsi.application.shared.service.URLBuilder
+import com.wutsi.application.widget.BottomNavigationBarWidget
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.Dialog
 import com.wutsi.flutter.sdui.enums.ActionType
@@ -38,29 +37,23 @@ abstract class AbstractEndpoint {
     protected lateinit var shellUrl: String
 
     @ExceptionHandler(Throwable::class)
-    fun onException(ex: Throwable) =
-        createErrorAction(ex, "message.error.unexpected-error")
-
-    @ExceptionHandler(AuthenticationException::class)
-    fun onAuthenticationException(ex: AuthenticationException) =
-        createErrorAction(ex, "message.error.login-failed")
-
-    @ExceptionHandler(PinMismatchException::class)
-    fun onPinMismatchException(e: PinMismatchException): Action =
-        createErrorAction(e, "message.error.pin-mismatch")
-
-    private fun createErrorAction(e: Throwable, messageKey: String): Action {
+    fun onException(ex: Throwable): Action {
         val action = Action(
             type = Prompt,
             prompt = Dialog(
                 title = getText("prompt.error.title"),
                 type = Error,
-                message = getText(messageKey)
+                message = getText("message.error.unexpected-error")
             ).toWidget()
         )
-        log(action, e)
+        log(action, ex)
         return action
     }
+
+    protected fun createBottomNavigationBarWidget() = BottomNavigationBarWidget(
+        profileUrl = urlBuilder.build(Page.getLoginUrl()),
+        ordersUrl = urlBuilder.build(Page.getOrdersUrl())
+    ).toBottomNavigationBar()
 
     protected fun log(action: Action, e: Throwable) {
         log(e)
@@ -81,9 +74,6 @@ abstract class AbstractEndpoint {
         type = ActionType.Page,
         url = "page:/$page"
     )
-
-    protected fun getText(key: String, args: Array<Any?> = emptyArray()) =
-        messages.getMessage(key, args, LocaleContextHolder.getLocale())
 
     protected fun gotoRoute(path: String, replacement: Boolean? = null, parameters: Map<String, String>? = null) =
         Action(
@@ -107,6 +97,9 @@ abstract class AbstractEndpoint {
             message = getText(errorKey)
         ).toWidget()
     )
+
+    protected fun getText(key: String, args: Array<Any?> = emptyArray()) =
+        messages.getMessage(key, args, LocaleContextHolder.getLocale())
 
     protected fun formattedPhoneNumber(phoneNumber: String?, country: String? = null): String? {
         if (phoneNumber == null) {

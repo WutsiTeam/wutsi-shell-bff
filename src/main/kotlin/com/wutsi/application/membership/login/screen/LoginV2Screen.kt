@@ -2,15 +2,16 @@ package com.wutsi.application.membership.login.screen
 
 import com.wutsi.application.AbstractEndpoint
 import com.wutsi.application.Page
-import com.wutsi.application.login.endpoint.login.dto.LoginRequest
+import com.wutsi.application.membership.login.dto.SubmitPasscodeRequest
 import com.wutsi.application.membership.onboard.screen.OnboardV2Screen
+import com.wutsi.application.service.EnvironmentDetector
 import com.wutsi.application.shared.Theme
-import com.wutsi.application.shared.service.EnvironmentDetector
 import com.wutsi.application.shared.service.PhoneUtil
 import com.wutsi.application.shared.service.StringUtil.initials
-import com.wutsi.application.shared.ui.EnvironmentBanner
+import com.wutsi.application.widget.EnvironmentBannerWidget
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
+import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.CircleAvatar
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
@@ -20,38 +21,37 @@ import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.SingleChildScrollView
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
+import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.ActionType.Command
 import com.wutsi.flutter.sdui.enums.Alignment.Center
+import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.flutter.sdui.enums.TextAlignment
 import com.wutsi.membership.manager.MembershipManagerApi
 import com.wutsi.membership.manager.dto.MemberSummary
 import com.wutsi.membership.manager.dto.SearchMemberRequest
 import com.wutsi.security.manager.SecurityManagerApi
-import org.slf4j.LoggerFactory
+import com.wutsi.security.manager.dto.VerifyPasswordRequest
+import com.wutsi.security.manager.enums.LoginType
+import org.springframework.http.HttpHeaders
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import java.net.URLDecoder
 import java.net.URLEncoder
-import javax.servlet.http.HttpServletRequest
 import javax.validation.Valid
 
 @RestController
-@RequestMapping("/login")
-class LoginScreen(
+@RequestMapping("/login/2")
+class LoginV2Screen(
     private val membershipManagerApi: MembershipManagerApi,
     private val securityManagerApi: SecurityManagerApi,
     private val onboardScreen: OnboardV2Screen,
-    private val env: EnvironmentDetector,
-    private val request: HttpServletRequest
+    private val env: EnvironmentDetector
 ) : AbstractEndpoint() {
-    companion object {
-        private val LOGGER = LoggerFactory.getLogger(LoginScreen::class.java)
-    }
-
-    @PostMapping("/2")
+    @PostMapping()
     fun index(
         @RequestParam(name = "phone") phoneNumber: String,
         @RequestParam(name = "screen-id", required = false) screenId: String? = null,
@@ -83,7 +83,7 @@ class LoginScreen(
                 backgroundColor = backgroundColor,
                 foregroundColor = textColor,
                 elevation = 0.0,
-                title = title ?: getText("page.login.app-bar.title"),
+                title = title,
                 automaticallyImplyLeading = hideBackButton?.let { !it }
             ),
             backgroundColor = backgroundColor,
@@ -93,7 +93,7 @@ class LoginScreen(
                     child = Column(
                         children = listOfNotNull(
                             if (env.test()) {
-                                EnvironmentBanner(env, request)
+                                EnvironmentBannerWidget()
                             } else {
                                 null
                             },
@@ -147,7 +147,24 @@ class LoginScreen(
                                     ),
                                     color = textColor
                                 )
-                            )
+                            ),
+                            if (auth && !hideChangeAccountButton && member.superUser) {
+                                Container(
+                                    padding = 10.0,
+                                    child = Button(
+                                        id = "other-account",
+                                        type = ButtonType.Text,
+                                        caption = getText("page.login.button.another-account"),
+                                        action = gotoUrl(
+                                            url = urlBuilder.build(Page.getOnboardUrl()),
+                                            type = ActionType.Route
+                                        )
+                                    )
+                                )
+                            } else {
+                                null
+                            }
+
                         )
                     )
                 )
@@ -163,10 +180,65 @@ class LoginScreen(
         @RequestParam(name = "return-url", required = false) returnUrl: String? = null,
         @RequestParam(name = "return-to-route", required = false, defaultValue = "true") returnToRoute: Boolean = true,
         @Valid @RequestBody
-        request: LoginRequest
+        request: SubmitPasscodeRequest
     ): ResponseEntity<Action> {
-        TODO()
+        try {
+            val headers = HttpHeaders()
+            if (auth) {
+                val accessToken = authenticate(phoneNumber, request)
+                headers["x-access-token"] = accessToken
+            } else {
+                validate(phoneNumber, request)
+            }
+
+            val action = returnUrl
+                ?.let {
+                    gotoUrl(
+                        url = URLDecoder.decode(it, "utf-8"),
+                        type = actionType(returnToRoute),
+                        replacement = if (returnToRoute) true else null
+                    )
+                }
+                ?: gotoUrl(
+                    url = urlBuilder.build(Page.getHomeUrl()),
+                    type = ActionType.Route,
+                    replacement = true
+                )
+
+            logger.add("action_url", action.url)
+            logger.add("action_type", action.type)
+            logger.add("action_replacement", action.replacement)
+            return ResponseEntity
+                .ok()
+                .headers(headers)
+                .body(action)
+
+        } catch (ex: Exception) {
+            return ResponseEntity
+                .ok()
+                .body(promptError("message.error.login-failed"))
+        }
     }
+
+    private fun authenticate(phoneNumber: String, request: SubmitPasscodeRequest): String =
+        securityManagerApi.login(
+            request = com.wutsi.security.manager.dto.LoginRequest(
+                type = LoginType.PASSWORD.name,
+                username = PhoneUtil.sanitize(phoneNumber),
+                password = request.pin
+            )
+        ).accessToken
+
+    private fun validate(phoneNumber: String, request: SubmitPasscodeRequest) =
+        securityManagerApi.verifyPassword(
+            request = VerifyPasswordRequest(
+                username = PhoneUtil.sanitize(phoneNumber),
+                value = request.pin
+            )
+        )
+
+    private fun actionType(returnToRoute: Boolean): ActionType =
+        if (returnToRoute) ActionType.Route else ActionType.Command
 
     private fun findMember(phoneNumber: String): MemberSummary? {
         val members = membershipManagerApi.searchMember(
@@ -190,7 +262,10 @@ class LoginScreen(
 
     private fun submitUrl(phoneNumber: String, auth: Boolean, returnUrl: String?, returnToRoute: Boolean): String {
         val url =
-            "/login/2/submit?auth=$auth&return-to-route=$returnToRoute&phone=" + URLEncoder.encode(phoneNumber, "utf-8")
+            Page.getLoginUrl() + "/submit?auth=$auth&return-to-route=$returnToRoute&phone=" + URLEncoder.encode(
+                phoneNumber,
+                "utf-8"
+            )
         return if (returnUrl == null) {
             url
         } else {

@@ -100,7 +100,7 @@
                     {
                       "type": "Text",
                       "attributes": {
-                        "caption": "Enter your Password",
+                        "caption": "Enter your Passcode",
                         "color": "#000000",
                         "size": 18.0,
                         "alignment": "Center"

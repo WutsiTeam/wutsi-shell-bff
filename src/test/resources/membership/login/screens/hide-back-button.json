@@ -19,56 +19,21 @@
         "children" : [ {
           "type" : "Container",
           "attributes" : {
-            "alignment" : "Center"
+            "alignment" : "Center",
+            "padding" : 10.0
           },
           "children" : [ {
-            "type" : "Row",
+            "type" : "CircleAvatar",
             "attributes" : {
-              "mainAxisAlignment" : "center"
+              "radius" : 16.0
             },
             "children" : [ {
-              "type" : "Container",
+              "type" : "Text",
               "attributes" : {
-                "padding" : 5.0
+                "caption" : "",
+                "color" : "#000000"
               },
-              "children" : [ {
-                "type" : "CircleAvatar",
-                "attributes" : {
-                  "radius" : 16.0
-                },
-                "children" : [ {
-                  "type" : "Image",
-                  "attributes" : {
-                    "url" : "https://me.com/1203920.png"
-                  },
-                  "children" : [ ]
-                } ]
-              } ]
-            }, {
-              "type" : "Container",
-              "attributes" : {
-                "padding" : 5.0
-              },
-              "children" : [ {
-                "type" : "Column",
-                "attributes" : { },
-                "children" : [ {
-                  "type" : "Text",
-                  "attributes" : {
-                    "caption" : "Ray Sponsible",
-                    "color" : "#000000",
-                    "bold" : true
-                  },
-                  "children" : [ ]
-                }, {
-                  "type" : "Text",
-                  "attributes" : {
-                    "caption" : "",
-                    "color" : "#000000"
-                  },
-                  "children" : [ ]
-                } ]
-              } ]
+              "children" : [ ]
             } ]
           } ]
         }, {
@@ -106,7 +71,7 @@
             "children" : [ ],
             "action" : {
               "type" : "Command",
-              "url" : "http://localhost:0/commands/login?auth=true&return-to-route=true&phone=+5147580000"
+              "url" : "http://localhost:0/login/2/submit?auth=true&return-to-route=true&phone=+237670000010"
             }
           } ]
         } ]
@@ -116,7 +81,6 @@
   "appBar" : {
     "type" : "AppBar",
     "attributes" : {
-      "title" : "Login",
       "elevation" : 0.0,
       "backgroundColor" : "#FFFFFF",
       "foregroundColor" : "#000000",

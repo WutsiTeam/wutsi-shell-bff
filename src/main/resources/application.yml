@@ -73,14 +73,14 @@ wutsi:
       token-blacklist:
         type: none
       public-endpoints:
+        - "POST /login"
+        - "POST /login/**"
         - "POST /onboard"
         - "POST /onboard/**"
         - "GET /legacy-endpoints--"
         - "GET /qr-code/**"
         - "POST /shell/track/**"
         - "POST /firebase/on-message/**"
-        - "POST /login"
-        - "POST /login/onboard"
         - "POST /phone"
         - "POST /commands/login"
         - "POST /pages/city"
