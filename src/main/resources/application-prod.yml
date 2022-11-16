@@ -12,7 +12,7 @@ wutsi:
   application:
     env: prod
     server-url: https://wutsi-shell-bff-prod.herokuapp.com
-    asset-url: https://prod-wutsi.s3.amazonaws.com/static/wutsi-web
+    asset-url: https://prod-wutsi.s3.amazonaws.com/static/wutsi-shell-bff
   platform:
     cache:
       type: memcached

@@ -1,8 +1,9 @@
-package com.wutsi.application.config
+package com.wutsi.application.config.deprecated
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.wutsi.ecommerce.order.WutsiOrderApi
-import com.wutsi.ecommerce.order.WutsiOrderApiBuilder
+import com.wutsi.application.shared.service.FeignAcceptLanguageInterceptor
+import com.wutsi.ecommerce.cart.WutsiCartApi
+import com.wutsi.ecommerce.cart.WutsiCartApiBuilder
 import com.wutsi.platform.core.security.feign.FeignApiKeyRequestInterceptor
 import com.wutsi.platform.core.security.feign.FeignAuthorizationRequestInterceptor
 import com.wutsi.platform.core.tracing.feign.FeignTracingRequestInterceptor
@@ -13,29 +14,31 @@ import org.springframework.core.env.Environment
 import org.springframework.core.env.Profiles
 
 @Configuration
-class OrderApiConfiguration(
+class CartApiConfiguration(
     private val authorizationRequestInterceptor: FeignAuthorizationRequestInterceptor,
     private val tracingRequestInterceptor: FeignTracingRequestInterceptor,
+    private val acceptLanguageInterceptor: FeignAcceptLanguageInterceptor,
     private val apiKeyInterceptor: FeignApiKeyRequestInterceptor,
     private val mapper: ObjectMapper,
     private val env: Environment
 ) {
     @Bean
-    fun orderApi(): WutsiOrderApi =
-        WutsiOrderApiBuilder().build(
+    fun cartApi(): WutsiCartApi =
+        WutsiCartApiBuilder().build(
             env = environment(),
             mapper = mapper,
             interceptors = listOf(
                 tracingRequestInterceptor,
                 authorizationRequestInterceptor,
+                acceptLanguageInterceptor,
                 apiKeyInterceptor
             ),
             errorDecoder = Custom5XXErrorDecoder()
         )
 
-    private fun environment(): com.wutsi.ecommerce.order.Environment =
+    private fun environment(): com.wutsi.ecommerce.cart.Environment =
         if (env.acceptsProfiles(Profiles.of("prod")))
-            com.wutsi.ecommerce.order.Environment.PRODUCTION
+            com.wutsi.ecommerce.cart.Environment.PRODUCTION
         else
-            com.wutsi.ecommerce.order.Environment.SANDBOX
+            com.wutsi.ecommerce.cart.Environment.SANDBOX
 }

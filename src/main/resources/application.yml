@@ -54,7 +54,7 @@ wutsi:
   application:
     env: test
     name: wutsi-shell-bff
-    asset-url: https://int-wutsi.s3.amazonaws.com/static/wutsi-web
+    asset-url: https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff
     server-url: http://localhost:${server.port}
     store-url: ${wutsi.application.server-url}
     shell-url: ${wutsi.application.server-url}
@@ -73,6 +73,9 @@ wutsi:
       token-blacklist:
         type: none
       public-endpoints:
+        - "POST /onboard"
+        - "POST /onboard/**"
+        - "GET /legacy-endpoints--"
         - "GET /qr-code/**"
         - "POST /shell/track/**"
         - "POST /firebase/on-message/**"
@@ -80,7 +83,6 @@ wutsi:
         - "POST /login/onboard"
         - "POST /phone"
         - "POST /commands/login"
-        - "POST /onboard"
         - "POST /pages/city"
         - "POST /pages/confirm-pin"
         - "POST /pages/final"

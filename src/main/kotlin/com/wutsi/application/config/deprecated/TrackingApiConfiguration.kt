@@ -1,4 +1,4 @@
-package com.wutsi.application.config
+package com.wutsi.application.config.deprecated
 
 import com.wutsi.analytics.tracking.WutsiTrackingApi
 import com.wutsi.analytics.tracking.WutsiTrackingApiStream
