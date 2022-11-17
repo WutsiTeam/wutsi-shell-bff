@@ -1,7 +1,7 @@
 {
   "type": "Screen",
   "attributes": {
-    "id": "page.settings.security.delete.wallet",
+    "id": "page.security.delete",
     "safe": false
   },
   "children": [
@@ -194,7 +194,7 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "http://localhost:0/login?phone=%2B1237666666666&screen-id=page.settings.security.delete.wallet.pin&title=Delete+Account&sub-title=Enter+your+Passcode+to+confirm+the+deletion+of+your+account&auth=false&return-to-route=false&return-url=http%3A%2F%2Flocalhost%3A0%2Fcommands%2Fdelete-wallet"
+                    "url": "http://localhost:0/login?phone=%2B237670000010&title=Delete+Account&sub-title=Enter+your+Passcode+to+confirm+the+deletion+of+your+account&auth=false&return-to-route=false&dark-mode=true"
                   }
                 }
               ]
@@ -215,7 +215,7 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "route:/.."
+                    "url": "route:.."
                   }
                 }
               ]

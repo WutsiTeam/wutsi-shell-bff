@@ -9,6 +9,7 @@
   "appBar": {
     "type": "AppBar",
     "attributes": {
+      "title": "Ray Sponsible",
       "elevation": 0.0,
       "backgroundColor": "#e8e8e8",
       "foregroundColor": "#000000",

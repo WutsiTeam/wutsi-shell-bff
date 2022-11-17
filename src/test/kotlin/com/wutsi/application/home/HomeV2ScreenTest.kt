@@ -9,7 +9,7 @@ internal class HomeV2ScreenTest : AbstractSecuredEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 
-    private fun url(action: String = "") = "http://localhost:$port${Page.getHomeUrl()}"
+    private fun url() = "http://localhost:$port${Page.getHomeUrl()}"
 
     @Test
     fun index() = assertEndpointEquals("/home/screens/index.json", url())

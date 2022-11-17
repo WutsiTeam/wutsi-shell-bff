@@ -51,10 +51,10 @@ class SecurityScreen : AbstractSecuredEndpoint() {
                         )
                     ),
                     ListItem(
-                        caption = getText("page.settings.security.list-item.delete-wallet.caption"),
+                        caption = getText("page.settings.security.list-item.delete-account.caption"),
                         action = Action(
                             type = Route,
-                            url = urlBuilder.build("/security/delete-wallet")
+                            url = urlBuilder.build("${Page.getSecurityUrl()}/delete")
                         ),
                         trailing = Icon(
                             code = Theme.ICON_CHEVRON_RIGHT,

@@ -1,6 +1,6 @@
 package com.wutsi.application.home
 
-import com.wutsi.application.AbstractEndpoint
+import com.wutsi.application.AbstractSecuredEndpoint
 import com.wutsi.application.Page
 import com.wutsi.application.shared.Theme
 import com.wutsi.flutter.sdui.Action
@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/2")
-class HomeV2Screen : AbstractEndpoint() {
+class HomeV2Screen : AbstractSecuredEndpoint() {
     @PostMapping
     fun index(): Widget {
+        val member = getCurrentMember()
         return Screen(
             id = Page.HOME,
             appBar = AppBar(
@@ -33,7 +34,8 @@ class HomeV2Screen : AbstractEndpoint() {
                         )
                     )
                 ),
-                automaticallyImplyLeading = false
+                automaticallyImplyLeading = false,
+                title = member.displayName
             ),
             bottomNavigationBar = createBottomNavigationBarWidget(),
             backgroundColor = Theme.COLOR_GRAY_LIGHT

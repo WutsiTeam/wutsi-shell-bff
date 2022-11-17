@@ -75,12 +75,18 @@ abstract class AbstractEndpoint {
         }
     }
 
-    fun gotoLogin(
+    protected fun gotoPreviousScreen(): Action =
+        gotoRoute("..")
+
+    protected fun gotoOnboard(): Action =
+        gotoUrl(url = urlBuilder.build(Page.getOnboardUrl()))
+
+    protected fun gotoLogin(
         phoneNumber: String,
         title: String? = null,
         subTitle: String? = null
-    ): Action {
-        return gotoUrl(
+    ): Action =
+        gotoUrl(
             url = urlBuilder.build(
                 Page.getLoginUrl() + "?title=" + encodeURLParam(title ?: "") +
                     "&sub-title=" + encodeURLParam(subTitle ?: getText("page.login.sub-title")) +
@@ -91,7 +97,6 @@ abstract class AbstractEndpoint {
             type = ActionType.Route,
             replacement = true
         )
-    }
 
     protected fun gotoPage(page: Int) = Action(
         type = ActionType.Page,

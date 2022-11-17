@@ -43,7 +43,7 @@
         {
           "type": "ListItem",
           "attributes": {
-            "caption": "Delete Wallet",
+            "caption": "Delete your account",
             "trailing": {
               "type": "Icon",
               "attributes": {
@@ -65,7 +65,7 @@
           "children": [],
           "action": {
             "type": "Route",
-            "url": "http://localhost:0/security/delete-wallet"
+            "url": "http://localhost:0/security/delete"
           }
         }
       ]

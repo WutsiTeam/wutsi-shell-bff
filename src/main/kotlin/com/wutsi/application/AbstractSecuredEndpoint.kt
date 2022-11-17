@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired
 
 abstract class AbstractSecuredEndpoint : AbstractEndpoint() {
     @Autowired
-    private lateinit var membershipManagerApi: MembershipManagerApi
+    protected lateinit var membershipManagerApi: MembershipManagerApi
 
     @Autowired
     protected lateinit var securityManagerApi: SecurityManagerApi
