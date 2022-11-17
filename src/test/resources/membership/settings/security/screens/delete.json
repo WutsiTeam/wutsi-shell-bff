@@ -181,6 +181,13 @@
             {
               "type": "Container",
               "attributes": {
+                "padding": 20.0
+              },
+              "children": []
+            },
+            {
+              "type": "Container",
+              "attributes": {
                 "padding": 10.0
               },
               "children": [
@@ -194,7 +201,7 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "http://localhost:0/login?phone=%2B237670000010&title=Delete+Account&sub-title=Enter+your+Passcode+to+confirm+the+deletion+of+your+account&auth=false&return-to-route=false&dark-mode=true"
+                    "url": "http://localhost:0/login/2?phone=%2B237670000010&title=Delete+Account&sub-title=Enter+your+Passcode+to+confirm+the+deletion+of+your+account&auth=false&return-to-route=false&dark-mode=true&return-url=http%3A%2F%2Flocalhost%3A0%2Fsecurity%2Fdelete%2Fsubmit"
                   }
                 }
               ]

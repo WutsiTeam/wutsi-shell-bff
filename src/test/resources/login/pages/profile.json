@@ -85,7 +85,7 @@
                 {
                   "type": "Text",
                   "attributes": {
-                    "caption": "Enter your first and last names",
+                    "caption": "Enter your first and last name",
                     "alignment": "Center"
                   },
                   "children": []

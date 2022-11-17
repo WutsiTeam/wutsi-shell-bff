@@ -18,7 +18,7 @@ class OnboardV2Screen : AbstractEndpoint() {
             "onboard/pages/profile",
             "onboard/pages/pin",
             "onboard/pages/confirm-pin",
-            "onboard/pages/final",
+            "onboard/pages/review",
             "onboard/pages/success"
         )
     }

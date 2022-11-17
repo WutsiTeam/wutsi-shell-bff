@@ -106,7 +106,7 @@
               "children": [],
               "action": {
                 "type": "Command",
-                "url": "http://localhost:0/onboard/pages/final/submit"
+                "url": "http://localhost:0/onboard/pages/review/submit"
               }
             }
           ]

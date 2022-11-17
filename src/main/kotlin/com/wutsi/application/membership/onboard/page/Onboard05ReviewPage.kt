@@ -90,7 +90,7 @@ class Onboard05ReviewPage(
                                 caption = getText("page.final.field.submit.caption"),
                                 action = Action(
                                     type = Command,
-                                    url = urlBuilder.build("/onboard/pages/final/submit")
+                                    url = urlBuilder.build("/onboard/pages/review/submit")
                                 )
                             )
                         )

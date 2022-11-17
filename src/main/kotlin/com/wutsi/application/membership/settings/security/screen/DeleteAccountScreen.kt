@@ -88,6 +88,9 @@ class DeleteAccountScreen : AbstractSecuredEndpoint() {
                             )
                         ),
                         Container(
+                            padding = 20.0
+                        ),
+                        Container(
                             padding = 10.0,
                             child = Button(
                                 caption = getText("page.settings.delete-wallet.button.delete"),
@@ -111,19 +114,71 @@ class DeleteAccountScreen : AbstractSecuredEndpoint() {
         ).toWidget()
     }
 
+    @PostMapping("/done")
+    fun done(): Widget =
+        Screen(
+            id = Page.SECURITY_DELETE,
+            appBar = AppBar(
+                elevation = 0.0,
+                title = getText("page.settings.delete-wallet.app-bar.title"),
+                foregroundColor = Theme.COLOR_BLACK,
+                backgroundColor = Theme.COLOR_WHITE,
+                automaticallyImplyLeading = false
+            ),
+            child = SingleChildScrollView(
+                child = Column(
+                    mainAxisAlignment = MainAxisAlignment.center,
+                    crossAxisAlignment = CrossAxisAlignment.center,
+                    children = listOf(
+                        Container(
+                            padding = 20.0,
+                            alignment = Alignment.Center,
+                            child = Icon(
+                                code = Theme.ICON_CHECK,
+                                color = Theme.COLOR_SUCCESS,
+                                size = 80.0
+                            )
+                        ),
+                        Container(
+                            alignment = Alignment.Center,
+                            child = Text(
+                                caption = getText("page.settings.delete-wallet.done"),
+                                alignment = TextAlignment.Center,
+                                size = Theme.TEXT_SIZE_LARGE,
+                                color = Theme.COLOR_PRIMARY,
+                                bold = true
+                            )
+                        ),
+                        Container(
+                            padding = 20.0
+                        ),
+                        Container(
+                            padding = 10.0,
+                            child = Button(
+                                caption = getText("page.settings.delete-wallet.button.done"),
+                                action = gotoOnboard()
+                            )
+                        )
+                    )
+                )
+            )
+        ).toWidget()
+
     @PostMapping("/submit")
     fun submit(): Action {
         membershipManagerApi.deleteMember()
-        return gotoOnboard()
+        return gotoUrl(
+            urlBuilder.build("${Page.getSecurityUrl()}/delete/done")
+        )
     }
 
     private fun getConfirmationUrl(me: Member): String {
-        return "/login?phone=" + encodeURLParam(me.phoneNumber) +
+        return "${Page.getLoginUrl()}?phone=" + encodeURLParam(me.phoneNumber) +
             "&title=" + encodeURLParam(getText("page.settings.delete-wallet.app-bar.title")) +
             "&sub-title=" + encodeURLParam(getText("page.settings.delete-wallet.pin")) +
             "&auth=false" +
             "&return-to-route=false" +
-            "&dark-mode=true"
-        "&return-url=" + encodeURLParam(urlBuilder.build("${Page.getSecurityUrl()}/delete/submit"))
+            "&dark-mode=true" +
+            "&return-url=" + encodeURLParam(urlBuilder.build("${Page.getSecurityUrl()}/delete/submit"))
     }
 }

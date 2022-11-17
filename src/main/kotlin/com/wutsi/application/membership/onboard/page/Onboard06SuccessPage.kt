@@ -42,7 +42,8 @@ class Onboard06SuccessPage : AbstractOnboardPage() {
                             caption = getText("page.onboard.success.title"),
                             alignment = TextAlignment.Center,
                             size = Theme.TEXT_SIZE_LARGE,
-                            color = Theme.COLOR_PRIMARY
+                            color = Theme.COLOR_PRIMARY,
+                            bold = true
                         )
                     ),
                     Container(
@@ -71,5 +72,9 @@ class Onboard06SuccessPage : AbstractOnboardPage() {
 
     @PostMapping("/start")
     fun start(): Action =
-        gotoLogin(phoneNumber = onboardDao.get().phoneNumber)
+        gotoLogin(
+            phoneNumber = onboardDao.get().phoneNumber,
+            auth = true,
+            hideBackButton = true
+        )
 }

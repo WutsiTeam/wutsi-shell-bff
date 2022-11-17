@@ -37,7 +37,7 @@
           "children": [],
           "action": {
             "type": "Route",
-            "url": "http://localhost:0/login?phone=%2B237670000010&title=Authorisation&sub-title=Enter+your+current+Passcode&auth=false&return-to-route=true&dark-mode=true&return-url=http%3A%2F%2Flocalhost%3A0%2Fsecurity%2Fpin"
+            "url": "http://localhost:0/login/2?phone=%2B237670000010&title=Authorisation&sub-title=Enter+your+current+Passcode&auth=false&return-to-route=true&dark-mode=true&return-url=http%3A%2F%2Flocalhost%3A0%2Fsecurity%2Fpin"
           }
         },
         {

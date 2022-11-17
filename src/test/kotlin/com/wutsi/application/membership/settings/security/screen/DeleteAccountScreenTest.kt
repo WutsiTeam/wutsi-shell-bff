@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test
 import org.springframework.boot.test.web.server.LocalServerPort
 import org.springframework.http.HttpStatus
 import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 
 internal class DeleteAccountScreenTest : AbstractSecuredEndpointTest() {
     @LocalServerPort
@@ -19,6 +18,9 @@ internal class DeleteAccountScreenTest : AbstractSecuredEndpointTest() {
 
     @Test
     fun index() = assertEndpointEquals("/membership/settings/security/screens/delete.json", url())
+
+    @Test
+    fun done() = assertEndpointEquals("/membership/settings/security/screens/delete-done.json", url("/done"))
 
     @Test
     fun submit() {
@@ -32,6 +34,6 @@ internal class DeleteAccountScreenTest : AbstractSecuredEndpointTest() {
 
         val action = response.body!!
         assertEquals(ActionType.Route, action.type)
-        assertTrue(action.url.startsWith("http://localhost:0${Page.getOnboardUrl()}"))
+        assertEquals("http://localhost:0${Page.getSecurityUrl()}/delete/done", action.url)
     }
 }

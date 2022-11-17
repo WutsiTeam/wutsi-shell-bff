@@ -39,6 +39,7 @@
               "attributes": {
                 "caption": "Congratulation.",
                 "color": "#1D7EDF",
+                "bold": true,
                 "size": 16.0,
                 "alignment": "Center"
               },

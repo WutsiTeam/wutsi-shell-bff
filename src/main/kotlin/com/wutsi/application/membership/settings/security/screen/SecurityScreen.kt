@@ -72,7 +72,7 @@ class SecurityScreen : AbstractSecuredEndpoint() {
     }
 
     private fun getChangePasscodeUrl(me: Member): String {
-        return "/login?phone=" + encodeURLParam(me.phoneNumber) +
+        return "${Page.getLoginUrl()}?phone=" + encodeURLParam(me.phoneNumber) +
             "&title=" + encodeURLParam(getText("page.settings.security.pin-login.title")) +
             "&sub-title=" + encodeURLParam(getText("page.settings.security.pin-login.sub-title")) +
             "&auth=false" +
