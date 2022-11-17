@@ -25,7 +25,7 @@ wutsi:
       token-blacklist:
         type: redis
         redis:
-          url: ${REDIS_URL}
+          url: ${REDISCLOUD_URL}
     storage:
       type: aws
       aws:
