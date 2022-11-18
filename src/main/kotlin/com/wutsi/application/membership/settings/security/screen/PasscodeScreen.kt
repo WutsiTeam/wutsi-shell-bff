@@ -1,4 +1,4 @@
-package com.wutsi.application.membership.onboard.screen
+package com.wutsi.application.membership.settings.security.screen
 
 import com.wutsi.application.AbstractEndpoint
 import com.wutsi.flutter.sdui.Page
@@ -9,25 +9,21 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/onboard/2")
-class OnboardV2Screen : AbstractEndpoint() {
+@RequestMapping("/security/passcode")
+class PasscodeScreen : AbstractEndpoint() {
     companion object {
         private val PAGE_URLS = listOf(
-            "onboard/pages/phone",
-            "onboard/pages/verification",
-            "onboard/pages/profile",
-            "onboard/pages/pin",
-            "onboard/pages/confirm-pin",
-            "onboard/pages/review",
-            "onboard/pages/success"
+            "security/passcode/pages/pin",
+            "security/passcode/pages/confirm",
+            "security/passcode/pages/success"
         )
     }
 
     @PostMapping
     fun index() = Screen(
-        id = com.wutsi.application.Page.ONBOARD,
-        safe = true,
+        id = com.wutsi.application.Page.SECURITY_PASSCODE,
         appBar = null,
+        safe = true,
         child = PageView(
             children = PAGE_URLS.map {
                 Page(url = urlBuilder.build(it))

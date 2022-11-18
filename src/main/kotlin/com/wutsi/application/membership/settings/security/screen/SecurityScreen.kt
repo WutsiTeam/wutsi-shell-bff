@@ -38,7 +38,7 @@ class SecurityScreen : AbstractSecuredEndpoint() {
                         caption = getText("page.settings.security.list-item.change-pin.caption"),
                         action = Action(
                             type = Route,
-                            url = urlBuilder.build(getChangePasscodeUrl(me))
+                            url = urlBuilder.build(getConfirmationUrl(me))
                         ),
                         trailing = Icon(
                             code = Theme.ICON_CHEVRON_RIGHT,
@@ -71,13 +71,13 @@ class SecurityScreen : AbstractSecuredEndpoint() {
         ).toWidget()
     }
 
-    private fun getChangePasscodeUrl(me: Member): String {
+    private fun getConfirmationUrl(me: Member): String {
         return "${Page.getLoginUrl()}?phone=" + encodeURLParam(me.phoneNumber) +
             "&title=" + encodeURLParam(getText("page.settings.security.pin-login.title")) +
             "&sub-title=" + encodeURLParam(getText("page.settings.security.pin-login.sub-title")) +
             "&auth=false" +
             "&return-to-route=true" +
             "&dark-mode=true" +
-            "&return-url=" + encodeURLParam(urlBuilder.build("security/pin"))
+            "&return-url=" + encodeURLParam(urlBuilder.build("${Page.getSecurityUrl()}/passcode"))
     }
 }

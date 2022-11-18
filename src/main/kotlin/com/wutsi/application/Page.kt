@@ -7,7 +7,7 @@ object Page {
     const val LOGIN = "page.login"
     const val SECURITY = "page.security"
     const val SECURITY_DELETE = "page.security.delete"
-    const val SECURITY_PASSCODE = "page.security.password"
+    const val SECURITY_PASSCODE = "page.security.passcode"
     const val SETTINGS = "page.settings"
 
     fun getAboutUrl() = "/about"

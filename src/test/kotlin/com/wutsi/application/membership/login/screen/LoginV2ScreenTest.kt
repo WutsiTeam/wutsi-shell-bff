@@ -164,7 +164,6 @@ internal class LoginV2ScreenTest : AbstractEndpointTest() {
 
         com.nhaarman.mockitokotlin2.verify(securityManagerApi).verifyPassword(
             VerifyPasswordRequest(
-                username = phoneNumber,
                 value = request.pin
             )
         )
@@ -192,7 +191,6 @@ internal class LoginV2ScreenTest : AbstractEndpointTest() {
 
         com.nhaarman.mockitokotlin2.verify(securityManagerApi).verifyPassword(
             VerifyPasswordRequest(
-                username = phoneNumber,
                 value = request.pin
             )
         )

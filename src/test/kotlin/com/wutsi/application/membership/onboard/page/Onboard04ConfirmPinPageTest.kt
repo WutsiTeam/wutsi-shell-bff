@@ -73,7 +73,7 @@ internal class Onboard04ConfirmPinPageTest : AbstractEndpointTest() {
         val response = rest.postForEntity(url("/submit"), request, Action::class.java)
 
         // THEN
-        Assertions.assertEquals(HttpStatus.OK, response.statusCode)
+        assertEquals(HttpStatus.OK, response.statusCode)
 
         val action = response.body!!
         assertEquals(ActionType.Prompt, action.type)

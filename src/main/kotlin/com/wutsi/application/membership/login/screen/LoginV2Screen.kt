@@ -187,7 +187,7 @@ class LoginV2Screen(
                 val accessToken = authenticate(phoneNumber, request)
                 headers["x-access-token"] = accessToken
             } else {
-                validate(phoneNumber, request)
+                validate(request)
             }
 
             val action = returnUrl
@@ -227,10 +227,9 @@ class LoginV2Screen(
             )
         ).accessToken
 
-    private fun validate(phoneNumber: String, request: SubmitPasscodeRequest) =
+    private fun validate(request: SubmitPasscodeRequest) =
         securityManagerApi.verifyPassword(
             request = VerifyPasswordRequest(
-                username = PhoneUtil.sanitize(phoneNumber),
                 value = request.pin
             )
         )

@@ -76,7 +76,7 @@ abstract class AbstractEndpoint {
     }
 
     protected fun gotoPreviousScreen(): Action =
-        gotoRoute("..")
+        gotoRoute("/..")
 
     protected fun gotoOnboard(): Action =
         gotoUrl(url = urlBuilder.build(Page.getOnboardUrl()))
