@@ -17,11 +17,11 @@ import java.util.Locale
 import java.util.TimeZone
 
 @Service
-class ProfileEditorWidget(
+class ProfileEditorWidgetProvider(
     private val regulationEngine: RegulationEngine,
     private val membershipManagerApi: MembershipManagerApi
 ) {
-    fun getWidget(name: String, member: Member): WidgetAware =
+    fun get(name: String, member: Member): WidgetAware =
         when (name) {
             "display-name" -> getDisplayNameWidget(member)
             "email" -> getEmailWidget(member)

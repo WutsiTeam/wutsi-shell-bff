@@ -5,7 +5,7 @@ import com.wutsi.application.Page
 import com.wutsi.application.membership.settings.profile.dao.EmailRepository
 import com.wutsi.application.membership.settings.profile.dto.SubmitProfileAttributeRequest
 import com.wutsi.application.membership.settings.profile.entity.EmailEntity
-import com.wutsi.application.membership.settings.profile.service.ProfileEditorWidget
+import com.wutsi.application.membership.settings.profile.service.ProfileEditorWidgetProvider
 import com.wutsi.application.shared.Theme
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/settings/2/profile/editor")
 class SettingsV2ProfileEditorScreen(
-    private val editor: ProfileEditorWidget,
+    private val editor: ProfileEditorWidgetProvider,
     private val dao: EmailRepository,
     private val membershipManagerApi: MembershipManagerApi,
     private val securityManagerApi: SecurityManagerApi
@@ -62,7 +62,7 @@ class SettingsV2ProfileEditorScreen(
                     ),
                     Container(
                         padding = 10.0,
-                        child = editor.getWidget(name, member)
+                        child = editor.get(name, member)
                     ),
                     Container(
                         padding = 10.0,

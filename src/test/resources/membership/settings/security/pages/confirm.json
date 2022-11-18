@@ -5,7 +5,7 @@
     {
       "type": "Row",
       "attributes": {
-        "mainAxisAlignment": "start",
+        "mainAxisAlignment": "spaceBetween",
         "crossAxisAlignment": "start"
       },
       "children": [
@@ -20,6 +20,38 @@
             "type": "Page",
             "url": "page:/0"
           }
+        },
+        {
+          "type": "IconButton",
+          "attributes": {
+            "icon": "ef28",
+            "color": "#000000"
+          },
+          "children": [],
+          "action": {
+            "type": "Route",
+            "url": "route:/.."
+          }
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "attributes": {
+        "alignment": "Center",
+        "padding": 10.0
+      },
+      "children": [
+        {
+          "type": "Text",
+          "attributes": {
+            "caption": "Confirm your Passcode",
+            "color": "#1D7EDF",
+            "bold": true,
+            "size": 16.0,
+            "alignment": "Center"
+          },
+          "children": []
         }
       ]
     },
@@ -34,12 +66,18 @@
           "type": "Text",
           "attributes": {
             "caption": "Confirm your new 6-digits Passcode",
-            "size": 16.0,
             "alignment": "Center"
           },
           "children": []
         }
       ]
+    },
+    {
+      "type": "Container",
+      "attributes": {
+        "padding": 20.0
+      },
+      "children": []
     },
     {
       "type": "PinWithKeyboard",

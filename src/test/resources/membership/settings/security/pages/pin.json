@@ -5,14 +5,14 @@
     {
       "type": "Row",
       "attributes": {
-        "mainAxisAlignment": "start",
+        "mainAxisAlignment": "end",
         "crossAxisAlignment": "start"
       },
       "children": [
         {
           "type": "IconButton",
           "attributes": {
-            "icon": "ee85",
+            "icon": "ef28",
             "color": "#000000"
           },
           "children": [],
@@ -33,13 +33,39 @@
         {
           "type": "Text",
           "attributes": {
-            "caption": "Enter your new 6-digits Passcode",
+            "caption": "Modify your Passcode",
+            "color": "#1D7EDF",
+            "bold": true,
             "size": 16.0,
             "alignment": "Center"
           },
           "children": []
         }
       ]
+    },
+    {
+      "type": "Container",
+      "attributes": {
+        "alignment": "Center",
+        "padding": 10.0
+      },
+      "children": [
+        {
+          "type": "Text",
+          "attributes": {
+            "caption": "Enter your new 6-digits Passcode",
+            "alignment": "Center"
+          },
+          "children": []
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "attributes": {
+        "padding": 20.0
+      },
+      "children": []
     },
     {
       "type": "PinWithKeyboard",

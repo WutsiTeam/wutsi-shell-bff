@@ -140,7 +140,7 @@ abstract class AbstractEndpoint {
         ).toWidget()
     )
 
-    protected fun getText(key: String, args: Array<Any?> = emptyArray()) =
+    protected fun getText(key: String, args: Array<Any?> = emptyArray()): String =
         messages.getMessage(key, args, LocaleContextHolder.getLocale())
 
     protected fun formattedPhoneNumber(phoneNumber: String?, country: String? = null): String? {

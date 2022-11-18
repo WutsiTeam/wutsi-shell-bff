@@ -141,7 +141,9 @@ class SettingsV2ProfileScreen(
                     caption = getText("page.settings.profile.attribute.business"),
                     name = "value",
                     selected = member.business,
-                    action = gotoUrl("${Page.getSettingsUrl()}/profile/business")
+                    action = gotoUrl(
+                        urlBuilder.build("${Page.getSettingsUrl()}/business")
+                    )
                 )
             )
         }

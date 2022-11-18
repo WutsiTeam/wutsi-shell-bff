@@ -1,56 +1,82 @@
 {
-  "type": "Container",
-  "attributes": {
-    "alignment": "Center",
-    "padding": 20.0
-  },
+  "type": "Column",
+  "attributes": {},
   "children": [
     {
-      "type": "Column",
-      "attributes": {},
+      "type": "Container",
+      "attributes": {
+        "padding": 20.0
+      },
+      "children": []
+    },
+    {
+      "type": "Container",
+      "attributes": {
+        "alignment": "Center",
+        "padding": 20.0
+      },
       "children": [
         {
-          "type": "Container",
+          "type": "Icon",
           "attributes": {
-            "alignment": "Center",
-            "padding": 10.0
-          },
-          "children": [
-            {
-              "type": "Icon",
-              "attributes": {
-                "code": "e156",
-                "size": 80.0,
-                "color": "#4CAF50"
-              },
-              "children": []
-            }
-          ]
-        },
-        {
-          "type": "Container",
-          "attributes": {
-            "alignment": "Center",
-            "padding": 10.0
-          },
-          "children": [
-            {
-              "type": "Text",
-              "attributes": {
-                "caption": "Your passcode has been updated",
-                "alignment": "Center"
-              },
-              "children": []
-            }
-          ]
-        },
-        {
-          "type": "Container",
-          "attributes": {
-            "padding": 20.0
+            "code": "e156",
+            "size": 80.0,
+            "color": "#4CAF50"
           },
           "children": []
-        },
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "attributes": {
+        "alignment": "Center",
+        "padding": 10.0
+      },
+      "children": [
+        {
+          "type": "Text",
+          "attributes": {
+            "caption": "Passcode updated",
+            "color": "#1D7EDF",
+            "bold": true,
+            "size": 16.0,
+            "alignment": "Center"
+          },
+          "children": []
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "attributes": {
+        "alignment": "Center",
+        "padding": 10.0
+      },
+      "children": [
+        {
+          "type": "Text",
+          "attributes": {
+            "caption": "Your have successfully updated your passcode",
+            "alignment": "Center"
+          },
+          "children": []
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "attributes": {
+        "padding": 20.0
+      },
+      "children": []
+    },
+    {
+      "type": "Container",
+      "attributes": {
+        "padding": 10.0
+      },
+      "children": [
         {
           "type": "Button",
           "attributes": {
