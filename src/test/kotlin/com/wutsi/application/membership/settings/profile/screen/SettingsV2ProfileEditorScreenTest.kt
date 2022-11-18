@@ -2,20 +2,24 @@ package com.wutsi.application.membership.settings.profile.screen
 
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.never
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.AbstractSecuredEndpointTest
 import com.wutsi.application.Fixtures
 import com.wutsi.application.Page
 import com.wutsi.application.membership.settings.profile.dto.SubmitProfileAttributeRequest
+import com.wutsi.application.membership.settings.profile.entity.EmailEntity
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.membership.manager.dto.SearchPlaceResponse
 import com.wutsi.membership.manager.dto.UpdateMemberAttributeRequest
+import com.wutsi.security.manager.dto.CreateOTPResponse
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.web.server.LocalServerPort
 import org.springframework.http.HttpStatus
+import java.util.UUID
 
 internal class SettingsV2ProfileEditorScreenTest : AbstractSecuredEndpointTest() {
     @LocalServerPort
@@ -44,21 +48,19 @@ internal class SettingsV2ProfileEditorScreenTest : AbstractSecuredEndpointTest()
             Fixtures.createPlaceSummary(3, "Bafoussam")
         )
         doReturn(SearchPlaceResponse(places)).whenever(membershipManagerApi).searchPlace(any())
-        
+
         assertEndpointEquals("/membership/settings/profile/screens/editor-city.json", url("city-id"))
     }
 
     @Test
-    fun `timezone`() =
-        assertEndpointEquals("/membership/settings/profile/screens/editor-timezone.json", url("timezone-id"))
-
-    @Test
     fun submit() {
+        // WHEN
         val request = SubmitProfileAttributeRequest(
             value = "Foo"
         )
         val response = rest.postForEntity(url("display-name", "/submit"), request, Action::class.java)
 
+        // THEN
         assertEquals(HttpStatus.OK, response.statusCode)
 
         val action = response.body!!
@@ -71,5 +73,59 @@ internal class SettingsV2ProfileEditorScreenTest : AbstractSecuredEndpointTest()
                 value = request.value
             )
         )
+    }
+
+    @Test
+    fun submitEmail() {
+        // GIVEN
+        val token = UUID.randomUUID().toString()
+        doReturn(CreateOTPResponse(token)).whenever(securityManagerApi).createOtp(any())
+
+        // WHEN
+        val request = SubmitProfileAttributeRequest(
+            value = "yo@gmail.com"
+        )
+        val response = rest.postForEntity(url("email", "/submit"), request, Action::class.java)
+
+        // THEN
+        assertEquals(HttpStatus.OK, response.statusCode)
+
+        val action = response.body!!
+        assertEquals(ActionType.Route, action.type)
+        assertEquals("http://localhost:0${Page.getSettingsUrl()}/profile/email/verification", action.url)
+        assertEquals(true, action.replacement)
+
+        verify(membershipManagerApi, never()).updateMemberAttribute(any())
+
+        verify(cache).put(
+            DEVICE_ID,
+            EmailEntity(
+                value = request.value,
+                token = token
+            )
+        )
+    }
+
+    @Test
+    fun submitSameEmail() {
+        // GIVEN
+        val token = UUID.randomUUID().toString()
+        doReturn(CreateOTPResponse(token)).whenever(securityManagerApi).createOtp(any())
+
+        // WHEN
+        val request = SubmitProfileAttributeRequest(
+            value = member.email ?: ""
+        )
+        val response = rest.postForEntity(url("email", "/submit"), request, Action::class.java)
+
+        // THEN
+        assertEquals(HttpStatus.OK, response.statusCode)
+
+        val action = response.body!!
+        assertEquals(ActionType.Route, action.type)
+        assertEquals("route:/..", action.url)
+
+        verify(membershipManagerApi, never()).updateMemberAttribute(any())
+        verify(cache, never()).put(any(), any())
     }
 }

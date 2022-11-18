@@ -91,7 +91,7 @@ internal class Onboard01VerificationPageTest : AbstractEndpointTest() {
         assertEquals(200, response.statusCodeValue)
 
         val action = response.body!!
-        kotlin.test.assertEquals(ActionType.Prompt, action.type)
+        assertEquals(ActionType.Prompt, action.type)
         assertNotNull(action.prompt)
         assertEquals(DialogType.Error.name, action.prompt?.attributes?.get("type"))
         assertEquals(getText("message.error.sms-verification-failed"), action.prompt?.attributes?.get("message"))

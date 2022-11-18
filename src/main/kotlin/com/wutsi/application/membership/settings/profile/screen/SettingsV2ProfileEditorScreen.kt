@@ -2,7 +2,9 @@ package com.wutsi.application.membership.settings.profile.screen
 
 import com.wutsi.application.AbstractEndpoint
 import com.wutsi.application.Page
+import com.wutsi.application.membership.settings.profile.dao.EmailRepository
 import com.wutsi.application.membership.settings.profile.dto.SubmitProfileAttributeRequest
+import com.wutsi.application.membership.settings.profile.entity.EmailEntity
 import com.wutsi.application.membership.settings.profile.service.ProfileEditorWidget
 import com.wutsi.application.shared.Theme
 import com.wutsi.flutter.sdui.Action
@@ -17,6 +19,9 @@ import com.wutsi.flutter.sdui.enums.Alignment
 import com.wutsi.flutter.sdui.enums.InputType
 import com.wutsi.membership.manager.MembershipManagerApi
 import com.wutsi.membership.manager.dto.UpdateMemberAttributeRequest
+import com.wutsi.platform.core.messaging.MessagingType
+import com.wutsi.security.manager.SecurityManagerApi
+import com.wutsi.security.manager.dto.CreateOTPRequest
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -27,7 +32,9 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/settings/2/profile/editor")
 class SettingsV2ProfileEditorScreen(
     private val editor: ProfileEditorWidget,
-    private val membershipManagerApi: MembershipManagerApi
+    private val dao: EmailRepository,
+    private val membershipManagerApi: MembershipManagerApi,
+    private val securityManagerApi: SecurityManagerApi
 ) : AbstractEndpoint() {
     @PostMapping
     fun index(@RequestParam name: String): Widget {
@@ -47,7 +54,7 @@ class SettingsV2ProfileEditorScreen(
                         padding = 10.0,
                         alignment = Alignment.Center,
                         child = Text(
-                            getText("page.settings.profile.attribute.${name}.description")
+                            getText("page.settings.profile.attribute.$name.description")
                         )
                     ),
                     Container(
@@ -78,12 +85,38 @@ class SettingsV2ProfileEditorScreen(
         @RequestParam name: String,
         @RequestBody request: SubmitProfileAttributeRequest
     ): Action {
-        membershipManagerApi.updateMemberAttribute(
-            request = UpdateMemberAttributeRequest(
-                name = name,
-                value = request.value
+        if (name == "email") {
+            val member = membershipManagerApi.getMember().member
+            if (member.email.equals(request.value, true)) {
+                return gotoPreviousScreen()
+            }
+
+            val token = securityManagerApi.createOtp(
+                request = CreateOTPRequest(
+                    address = request.value,
+                    type = MessagingType.EMAIL.name
+                )
+            ).token
+            dao.save(
+                EmailEntity(
+                    value = request.value,
+                    token = token
+                )
             )
-        )
-        return gotoPreviousScreen()
+
+            return gotoUrl(
+                url = urlBuilder.build("${Page.getSettingsUrl()}/profile/email/verification"),
+                replacement = true
+            )
+        } else {
+            membershipManagerApi.updateMemberAttribute(
+                request = UpdateMemberAttributeRequest(
+                    name = name,
+                    value = request.value
+                )
+            )
+
+            return gotoPreviousScreen()
+        }
     }
 }

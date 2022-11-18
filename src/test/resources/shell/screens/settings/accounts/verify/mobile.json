@@ -39,7 +39,7 @@
         {
           "type": "Button",
           "attributes": {
-            "caption": "Resend code",
+            "caption": "Resend a new code",
             "padding": 15.0,
             "type": "Text"
           },

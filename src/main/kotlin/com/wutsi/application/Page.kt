@@ -11,6 +11,7 @@ object Page {
     const val SETTINGS = "page.settings"
     const val SETTINGS_PROFILE = "page.settings.profile"
     const val SETTINGS_PROFILE_EDITOR = "page.settings.profile.editor"
+    const val SETTINGS_PROFILE_EMAIL_VERIFICATION = "page.settings.profile.email.verification"
 
     fun getAboutUrl() = "/about"
     fun getHomeUrl() = "/2"

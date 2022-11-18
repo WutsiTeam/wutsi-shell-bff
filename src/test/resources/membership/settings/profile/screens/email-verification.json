@@ -39,7 +39,7 @@
             {
               "type": "Text",
               "attributes": {
-                "caption": "Enter the code sent to ray.sponsible@gmail.com.",
+                "caption": "Enter the code sent to EmailEntity(value=yo@man.com, token=043049309).",
                 "alignment": "Center"
               },
               "children": []
@@ -57,12 +57,30 @@
           "children": [],
           "action": {
             "type": "Command",
-            "url": "http://localhost:0/commands/verify-email",
-            "parameters": {
-              "email": "ray.sponsible@gmail.com",
-              "token": "xxxx"
-            }
+            "url": "http://localhost:0/settings/2/profile/email/verification/submit"
           }
+        },
+        {
+          "type": "Container",
+          "attributes": {
+            "alignment": "Center",
+            "padding": 10.0
+          },
+          "children": [
+            {
+              "type": "Button",
+              "attributes": {
+                "caption": "Resend a new code",
+                "padding": 15.0,
+                "type": "Text"
+              },
+              "children": [],
+              "action": {
+                "type": "Command",
+                "url": "http://localhost:0/settings/2/profile/email/verification/resend"
+              }
+            }
+          ]
         }
       ]
     }
