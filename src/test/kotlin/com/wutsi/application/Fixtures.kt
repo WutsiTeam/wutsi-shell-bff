@@ -4,6 +4,7 @@ import com.wutsi.membership.manager.dto.Category
 import com.wutsi.membership.manager.dto.Member
 import com.wutsi.membership.manager.dto.MemberSummary
 import com.wutsi.membership.manager.dto.Place
+import com.wutsi.membership.manager.dto.PlaceSummary
 
 object Fixtures {
     fun createMemberSummary() = MemberSummary()
@@ -39,5 +40,10 @@ object Fixtures {
             id = 555,
             title = "Ads"
         )
+    )
+
+    fun createPlaceSummary(id: Long = -1, name: String = "Yaounde") = PlaceSummary(
+        id = id,
+        name = name
     )
 }
