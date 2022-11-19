@@ -69,7 +69,7 @@ class SettingsV2Screen : AbstractSecuredEndpoint() {
                                         padding = 10.0
                                     ),
                                     Text(
-                                        caption = user.displayName ?: "",
+                                        caption = user.displayName,
                                         alignment = TextAlignment.Center,
                                         size = Theme.TEXT_SIZE_LARGE,
                                         bold = true
