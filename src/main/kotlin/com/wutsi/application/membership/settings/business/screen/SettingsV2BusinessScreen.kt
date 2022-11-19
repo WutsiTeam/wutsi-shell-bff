@@ -1,4 +1,4 @@
-package com.wutsi.application.membership.settings.profile.screen
+package com.wutsi.application.membership.settings.business.screen
 
 import com.wutsi.application.Page
 import com.wutsi.application.shell.endpoint.AbstractQuery

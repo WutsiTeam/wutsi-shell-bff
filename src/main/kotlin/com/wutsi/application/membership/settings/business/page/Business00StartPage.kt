@@ -1,16 +1,21 @@
-package com.wutsi.application.membership.settings.profile.page
+package com.wutsi.application.membership.settings.business.page
 
+import com.wutsi.application.Page
+import com.wutsi.application.membership.settings.business.entity.BusinessEntity
 import com.wutsi.application.shared.Theme
-import com.wutsi.flutter.sdui.Button
+import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.CircleAvatar
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Icon
+import com.wutsi.flutter.sdui.Input
 import com.wutsi.flutter.sdui.Row
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
+import com.wutsi.flutter.sdui.enums.InputType
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
+import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -43,10 +48,29 @@ class Business00StartPage : AbstractBusinessPage() {
         )
     )
 
-    override fun getButton() = Button(
+    override fun getButton() = Input(
+        name = "value",
+        type = InputType.Submit,
         caption = getText("page.settings.business.button.next"),
-        action = gotoPage(PAGE_INDEX + 1)
+        action = executeCommand(
+            url = urlBuilder.build("${Page.getSettingsBusinessUrl()}/pages/start/submit")
+        )
     )
+
+    @PostMapping("/submit")
+    fun submit(): Action {
+        val member = membershipManagerApi.getMember().member
+        dao.save(
+            BusinessEntity(
+                displayName = member.displayName,
+                cityId = member.city?.id,
+                categoryId = member.category?.id,
+                whatsapp = member.whatsapp,
+                biography = member.biography
+            )
+        )
+        return gotoPage(PAGE_INDEX + 1)
+    }
 
     private fun toRowWidget(icon: String, text: String): WidgetAware =
         Row(

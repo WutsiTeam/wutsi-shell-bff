@@ -1,6 +1,6 @@
-package com.wutsi.application.membership.settings.profile.dao
+package com.wutsi.application.membership.settings.business.dao
 
-import com.wutsi.application.membership.settings.profile.entity.BusinessEntity
+import com.wutsi.application.membership.settings.business.entity.BusinessEntity
 import com.wutsi.platform.core.tracing.TracingContext
 import org.springframework.cache.Cache
 import org.springframework.stereotype.Service

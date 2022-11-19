@@ -1,7 +1,7 @@
-package com.wutsi.application.membership.settings.profile.page
+package com.wutsi.application.membership.settings.business.page
 
 import com.wutsi.application.common.page.AbstractPageEndpoint
-import com.wutsi.application.membership.settings.profile.dao.BusinessRepository
+import com.wutsi.application.membership.settings.business.dao.BusinessRepository
 import com.wutsi.membership.manager.MembershipManagerApi
 import org.springframework.beans.factory.annotation.Autowired
 

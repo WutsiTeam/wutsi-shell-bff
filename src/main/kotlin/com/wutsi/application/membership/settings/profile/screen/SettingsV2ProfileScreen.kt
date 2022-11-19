@@ -2,7 +2,7 @@ package com.wutsi.application.membership.settings.profile.screen
 
 import com.wutsi.application.AbstractEndpoint
 import com.wutsi.application.Page
-import com.wutsi.application.membership.settings.profile.dto.SubmitBusinessAttributeRequest
+import com.wutsi.application.membership.settings.business.dto.SubmitBusinessAttributeRequest
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.shared.service.StringUtil
 import com.wutsi.flutter.sdui.Action
@@ -182,7 +182,7 @@ class SettingsV2ProfileScreen(
     }
 
     @PostMapping("/submit")
-    fun submitAsync(
+    fun submit(
         @RequestParam name: String,
         @RequestBody request: SubmitBusinessAttributeRequest
     ): Action {

@@ -1,4 +1,4 @@
-package com.wutsi.application.membership.settings.profile.page
+package com.wutsi.application.membership.settings.business.page
 
 import com.wutsi.application.Page
 import com.wutsi.flutter.sdui.Action
@@ -35,7 +35,7 @@ class Business06ConfirmPage : AbstractBusinessPage() {
                         caption = getText("page.settings.business.button.yes"),
                         action = Action(
                             type = ActionType.Command,
-                            url = urlBuilder.build("${Page.getSettingsUrl()}/business/pages/confirm/submit")
+                            url = urlBuilder.build("${Page.getSettingsBusinessUrl()}/pages/confirm/submit")
                         )
                     )
                 ),
@@ -58,8 +58,8 @@ class Business06ConfirmPage : AbstractBusinessPage() {
         membershipManagerApi.enableBusiness(
             request = EnableBusinessRequest(
                 displayName = entity.displayName,
-                cityId = entity.cityId,
-                categoryId = entity.categoryId,
+                cityId = entity.cityId ?: -1,
+                categoryId = entity.categoryId ?: -1,
                 whatsapp = entity.whatsapp,
                 biography = entity.biography
             )

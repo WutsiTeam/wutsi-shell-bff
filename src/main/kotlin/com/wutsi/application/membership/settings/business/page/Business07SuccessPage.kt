@@ -1,4 +1,4 @@
-package com.wutsi.application.membership.settings.profile.page
+package com.wutsi.application.membership.settings.business.page
 
 import com.wutsi.application.common.page.AbstractSuccessPageEndpoint
 import com.wutsi.flutter.sdui.Button

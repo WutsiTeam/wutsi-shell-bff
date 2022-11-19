@@ -5,7 +5,7 @@ import com.wutsi.application.Page
 import com.wutsi.application.membership.settings.profile.dao.EmailRepository
 import com.wutsi.application.membership.settings.profile.dto.SubmitProfileAttributeRequest
 import com.wutsi.application.membership.settings.profile.entity.EmailEntity
-import com.wutsi.application.membership.settings.profile.service.ProfileEditorWidgetProvider
+import com.wutsi.application.membership.settings.service.ProfileEditorWidgetProvider
 import com.wutsi.application.shared.Theme
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar

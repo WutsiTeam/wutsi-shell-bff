@@ -1,4 +1,4 @@
-package com.wutsi.application.membership.settings.profile.service
+package com.wutsi.application.membership.settings.service
 
 import com.wutsi.application.shared.service.StringUtil
 import com.wutsi.flutter.sdui.DropdownButton
@@ -26,25 +26,43 @@ class ProfileEditorWidgetProvider(
 ) {
     fun get(name: String, member: Member): WidgetAware =
         when (name) {
-            "biography" -> getInputWidget(member.biography, 160, maxLines = 2)
-            "category-id" -> getCategoryWidget(member)
-            "city-id" -> getCityWidget(member)
-            "display-name" -> getInputWidget(member.displayName, 50, required = true)
-            "email" -> getInputWidget(member.email, 160, InputType.Email)
-            "facebook-id" -> getInputWidget(member.facebookId, 30)
-            "instagram-id" -> getInputWidget(member.instagramId, 30)
-            "language" -> getLanguageWidget(member)
-            "timezone-id" -> getTimezoneWidget(member)
-            "twitter-id" -> getInputWidget(member.twitterId, 30)
-            "whatsapp" -> getWhatsappWidget(member)
-            "website" -> getInputWidget(member.website, 160, InputType.Url)
-            "youtube-id" -> getInputWidget(member.youtubeId, 30)
+            "biography" -> get(name, member.biography)
+            "category-id" -> get(name, member.id)
+            "city-id" -> get(name, member.city?.id, member.country)
+            "display-name" -> get(name, member.displayName)
+            "email" -> get(name, member.email)
+            "facebook-id" -> get(name, member.facebookId)
+            "instagram-id" -> get(name, member.instagramId)
+            "language" -> get(name, member.language)
+            "timezone-id" -> get(name, member.timezoneId)
+            "twitter-id" -> get(name, member.twitterId)
+            "whatsapp" -> get(name, member.whatsapp)
+            "website" -> get(name, member.website)
+            "youtube-id" -> get(name, member.youtubeId)
             else -> throw IllegalStateException("Not supported: $name")
         }
 
-    private fun getLanguageWidget(member: Member) = DropdownButton(
+    fun get(name: String, defaultValue: Any?, country: String? = null): WidgetAware =
+        when (name) {
+            "biography" -> getInputWidget(defaultValue, 160, maxLines = 2)
+            "category-id" -> getCategoryWidget(defaultValue?.toString()?.toLong())
+            "city-id" -> getCityWidget(defaultValue?.toString()?.toLong(), country)
+            "display-name" -> getInputWidget(defaultValue, 50, required = true)
+            "email" -> getInputWidget(defaultValue, 160, InputType.Email)
+            "facebook-id" -> getInputWidget(defaultValue, 30)
+            "instagram-id" -> getInputWidget(defaultValue, 30)
+            "language" -> getLanguageWidget(defaultValue?.toString())
+            "timezone-id" -> getTimezoneWidget(defaultValue?.toString())
+            "twitter-id" -> getInputWidget(defaultValue, 30)
+            "whatsapp" -> getWhatsappWidget(defaultValue?.toString()?.toBoolean())
+            "website" -> getInputWidget(defaultValue, 160, InputType.Url)
+            "youtube-id" -> getInputWidget(defaultValue, 30)
+            else -> throw IllegalStateException("Not supported: $name")
+        }
+
+    private fun getLanguageWidget(language: String?) = DropdownButton(
         name = "value",
-        value = member.language,
+        value = language,
         required = true,
         children = regulationEngine.supportedLanguages().map {
             DropdownMenuItem(
@@ -54,9 +72,9 @@ class ProfileEditorWidgetProvider(
         }
     )
 
-    private fun getWhatsappWidget(member: Member) = DropdownButton(
+    private fun getWhatsappWidget(value: Boolean?) = DropdownButton(
         name = "value",
-        value = member.whatsapp.toString(),
+        value = value?.toString(),
         children = listOf(
             DropdownMenuItem(
                 caption = getText("button.yes"),
@@ -69,9 +87,9 @@ class ProfileEditorWidgetProvider(
         )
     )
 
-    private fun getTimezoneWidget(member: Member) = SearchableDropdown(
+    private fun getTimezoneWidget(timezoneId: String?) = SearchableDropdown(
         name = "value",
-        value = member.timezoneId,
+        value = timezoneId,
         children = TimeZone.getAvailableIDs()
             .filter { it.contains("/") }
             .map {
@@ -79,13 +97,13 @@ class ProfileEditorWidgetProvider(
             }.sortedBy { it.caption }
     )
 
-    private fun getCityWidget(member: Member) = SearchableDropdown(
+    private fun getCityWidget(cityId: Long?, country: String?) = SearchableDropdown(
         name = "value",
-        value = member.city?.id?.toString(),
-        required = if (member.business) true else null,
+        value = cityId?.toString(),
+        required = true,
         children = membershipManagerApi.searchPlace(
             request = SearchPlaceRequest(
-                country = member.country,
+                country = country,
                 type = "CITY",
                 limit = 200
             )
@@ -99,9 +117,9 @@ class ProfileEditorWidgetProvider(
             }
     )
 
-    private fun getCategoryWidget(member: Member) = SearchableDropdown(
+    private fun getCategoryWidget(categoryId: Long?) = SearchableDropdown(
         name = "value",
-        value = member.category?.id?.toString(),
+        value = categoryId?.toString(),
         children = membershipManagerApi.searchCategory(
             request = SearchCategoryRequest(
                 limit = 2000
@@ -118,7 +136,7 @@ class ProfileEditorWidgetProvider(
     )
 
     private fun getInputWidget(
-        value: String?,
+        value: Any?,
         maxlength: Int,
         type: InputType = InputType.Text,
         maxLines: Int? = null,
@@ -126,7 +144,7 @@ class ProfileEditorWidgetProvider(
     ) =
         Input(
             name = "value",
-            value = value,
+            value = value?.toString(),
             type = type,
             maxLength = maxlength,
             maxLines = maxLines,

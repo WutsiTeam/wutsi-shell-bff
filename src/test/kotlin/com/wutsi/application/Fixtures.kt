@@ -1,6 +1,7 @@
 package com.wutsi.application
 
 import com.wutsi.membership.manager.dto.Category
+import com.wutsi.membership.manager.dto.CategorySummary
 import com.wutsi.membership.manager.dto.Member
 import com.wutsi.membership.manager.dto.MemberSummary
 import com.wutsi.membership.manager.dto.Place
@@ -31,6 +32,7 @@ object Fixtures {
         language = "en",
         pictureUrl = "https://www.img.com/100.png",
         superUser = superUser,
+        biography = "This is a biography",
         city = Place(
             id = 111,
             name = "Yaounde",
@@ -45,5 +47,10 @@ object Fixtures {
     fun createPlaceSummary(id: Long = -1, name: String = "Yaounde") = PlaceSummary(
         id = id,
         name = name
+    )
+
+    fun createCategorySummary(id: Long = -1, title: String = "Art") = CategorySummary(
+        id = id,
+        title = title
     )
 }

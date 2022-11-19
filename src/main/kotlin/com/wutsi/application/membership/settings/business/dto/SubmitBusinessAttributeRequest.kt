@@ -1,4 +1,4 @@
-package com.wutsi.application.membership.settings.profile.dto
+package com.wutsi.application.membership.settings.business.dto
 
 import javax.validation.constraints.NotEmpty
 
