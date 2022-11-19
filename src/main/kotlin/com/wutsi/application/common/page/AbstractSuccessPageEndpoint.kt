@@ -1,19 +1,13 @@
 package com.wutsi.application.common.page
 
 import com.wutsi.application.shared.Theme
-import com.wutsi.flutter.sdui.Button
-import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Icon
+import com.wutsi.flutter.sdui.WidgetAware
 
 abstract class AbstractSuccessPageEndpoint : AbstractPageEndpoint() {
-    abstract fun getButton(): Button?
-
     override fun showHeader() = false
 
-    override fun getBody() = Container(
-        padding = 10.0,
-        child = getButton()
-    )
+    override fun getBody(): WidgetAware? = null
 
     override fun getIcon() = Icon(
         code = Theme.ICON_CHECK,

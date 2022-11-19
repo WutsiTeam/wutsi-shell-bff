@@ -15,7 +15,7 @@ class Passcode02SuccessPage : AbstractSuccessPageEndpoint() {
     override fun getPageIndex() = PAGE_INDEX
 
     override fun getTitle() = getText("page.settings.passcode.success.title")
-    
+
     override fun getSubTitle() = getText("page.settings.passcode.success.sub-title")
 
     override fun getButton() = Button(

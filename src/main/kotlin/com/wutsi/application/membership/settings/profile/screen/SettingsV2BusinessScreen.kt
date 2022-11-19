@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RestController
 class SettingsV2BusinessScreen : AbstractQuery() {
     companion object {
         private val PAGE_URLS = listOf(
-            "${Page.getSettingsUrl()}/business/pages/start",
-            "${Page.getSettingsUrl()}/business/pages/display-name",
-            "${Page.getSettingsUrl()}/business/pages/category",
-            "${Page.getSettingsUrl()}/business/pages/biography",
-            "${Page.getSettingsUrl()}/business/pages/city",
-            "${Page.getSettingsUrl()}/business/pages/whatsapp",
-            "${Page.getSettingsUrl()}/business/pages/confirm",
-            "${Page.getSettingsUrl()}/business/pages/success"
+            "${Page.getSettingsBusinessUrl()}/pages/start",
+            "${Page.getSettingsBusinessUrl()}/pages/display-name",
+            "${Page.getSettingsBusinessUrl()}/pages/category",
+            "${Page.getSettingsBusinessUrl()}/pages/city",
+            "${Page.getSettingsBusinessUrl()}/pages/whatsapp",
+            "${Page.getSettingsBusinessUrl()}/pages/biography",
+            "${Page.getSettingsBusinessUrl()}/pages/confirm",
+            "${Page.getSettingsBusinessUrl()}/pages/success"
         )
     }
 

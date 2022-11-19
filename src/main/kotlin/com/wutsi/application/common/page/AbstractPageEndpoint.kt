@@ -2,8 +2,8 @@ package com.wutsi.application.common.page
 
 import com.wutsi.application.AbstractEndpoint
 import com.wutsi.application.shared.Theme
-import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
+import com.wutsi.flutter.sdui.Form
 import com.wutsi.flutter.sdui.Icon
 import com.wutsi.flutter.sdui.IconButton
 import com.wutsi.flutter.sdui.Row
@@ -18,14 +18,18 @@ import org.springframework.web.bind.annotation.PostMapping
 
 abstract class AbstractPageEndpoint : AbstractEndpoint() {
     protected abstract fun getPageIndex(): Int
-    protected abstract fun getBody(): WidgetAware?
     protected abstract fun getTitle(): String?
     protected open fun getSubTitle(): String? = null
+    protected abstract fun getBody(): WidgetAware?
+    protected abstract fun getButton(): WidgetAware?
     protected open fun getIcon(): Icon? = null
 
     @PostMapping
-    fun index(): Widget =
-        Column(
+    fun index(): Widget {
+        val body = getBody()
+        val button = getButton()
+
+        return Form(
             children = listOfNotNull(
                 if (showHeader()) {
                     Row(
@@ -77,14 +81,24 @@ abstract class AbstractPageEndpoint : AbstractEndpoint() {
                         padding = 10.0,
                         child = Text(
                             caption = it,
-                            alignment = TextAlignment.Center,
+                            alignment = TextAlignment.Center
                         )
                     )
                 },
-                Container(padding = 20.0),
-                getBody()
+
+                body?.let { Container(padding = 20.0) },
+                body?.let { it },
+
+                button?.let { Container(padding = 20.0) },
+                button?.let {
+                    Container(
+                        padding = 10.0,
+                        child = it
+                    )
+                }
             )
         ).toWidget()
+    }
 
     protected open fun showHeader(): Boolean = true
 

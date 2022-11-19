@@ -4,6 +4,7 @@ import com.wutsi.application.common.page.AbstractPageEndpoint
 import com.wutsi.application.membership.settings.security.dao.PasscodeRepository
 import com.wutsi.application.membership.settings.security.dto.SubmitPasscodeRequest
 import com.wutsi.flutter.sdui.Action
+import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.PinWithKeyboard
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.ActionType.Command
@@ -41,6 +42,8 @@ class Passcode01ConfirmPage(
                 url = urlBuilder.build("/security/passcode/pages/confirm/submit")
             )
         )
+
+    override fun getButton(): Button? = null
 
     @PostMapping("/submit")
     fun submit(@RequestBody request: SubmitPasscodeRequest): Action {

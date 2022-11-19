@@ -110,7 +110,7 @@
   "appBar": {
     "type": "AppBar",
     "attributes": {
-      "title": "Category",
+      "title": "Sector of activity",
       "elevation": 0.0,
       "backgroundColor": "#FFFFFF",
       "foregroundColor": "#000000"

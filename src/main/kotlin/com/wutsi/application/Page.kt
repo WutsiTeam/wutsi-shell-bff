@@ -21,5 +21,8 @@ object Page {
     fun getOrdersUrl() = "/orders/2"
     fun getSecurityUrl() = "/security"
     fun getSettingsUrl() = "/settings/2"
+    fun getSettingsBusinessUrl() = "${getSettingsUrl()}/business"
+    fun getSettingsProfileUrl() = "${getSettingsUrl()}/profile"
+    fun getSettingsProfileEditorUrl() = "${getSettingsProfileUrl()}/editor"
     fun getStoreUrl() = "/store/2"
 }

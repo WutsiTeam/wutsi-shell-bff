@@ -1,22 +1,14 @@
 package com.wutsi.application.membership.settings.profile.page
 
-import com.wutsi.application.AbstractEndpoint
+import com.wutsi.application.common.page.AbstractPageEndpoint
 import com.wutsi.application.membership.settings.profile.dao.BusinessRepository
-import com.wutsi.application.membership.settings.profile.entity.BusinessEntity
-import com.wutsi.application.membership.settings.profile.service.ProfileEditorWidgetProvider
 import com.wutsi.membership.manager.MembershipManagerApi
 import org.springframework.beans.factory.annotation.Autowired
 
-abstract class AbstractBusinessPage : AbstractEndpoint() {
+abstract class AbstractBusinessPage : AbstractPageEndpoint() {
     @Autowired
-    private lateinit var widgetProvider: ProfileEditorWidgetProvider
+    protected lateinit var dao: BusinessRepository
 
     @Autowired
-    private lateinit var dao: BusinessRepository
-
-    @Autowired
-    private lateinit var membershipManagerApi: MembershipManagerApi
-
-    protected fun getEntity(): BusinessEntity =
-        dao.get() ?: BusinessEntity()
+    protected lateinit var membershipManagerApi: MembershipManagerApi
 }

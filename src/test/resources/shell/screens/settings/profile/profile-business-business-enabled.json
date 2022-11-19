@@ -151,7 +151,7 @@
             {
               "type": "ListItem",
               "attributes": {
-                "caption": "Category",
+                "caption": "Sector of activity",
                 "subCaption": "Marketing",
                 "trailing": {
                   "type": "Icon",
@@ -193,7 +193,7 @@
             {
               "type": "ListItem",
               "attributes": {
-                "caption": "My Website",
+                "caption": "Website",
                 "subCaption": "https://www.google.ca",
                 "trailing": {
                   "type": "Icon",

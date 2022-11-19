@@ -2,6 +2,7 @@ package com.wutsi.application.membership.settings.profile.screen
 
 import com.wutsi.application.AbstractEndpoint
 import com.wutsi.application.Page
+import com.wutsi.application.membership.settings.profile.dto.SubmitBusinessAttributeRequest
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.shared.service.StringUtil
 import com.wutsi.flutter.sdui.Action
@@ -17,11 +18,14 @@ import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.membership.manager.MembershipManagerApi
 import com.wutsi.membership.manager.dto.Member
+import com.wutsi.membership.manager.dto.UpdateMemberAttributeRequest
 import com.wutsi.regulation.CountryNotSupportedException
 import com.wutsi.regulation.RegulationEngine
 import org.springframework.context.i18n.LocaleContextHolder
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import java.util.Locale
 
@@ -45,12 +49,12 @@ class SettingsV2ProfileScreen(
                 listItem(
                     "page.settings.profile.attribute.display-name",
                     member.displayName,
-                    "${Page.getSettingsUrl()}/profile/editor?name=display-name"
+                    "${Page.getSettingsProfileEditorUrl()}?name=display-name"
                 ),
                 listItem(
                     "page.settings.profile.attribute.email",
                     member.email,
-                    "${Page.getSettingsUrl()}/profile/editor?name=email"
+                    "${Page.getSettingsProfileEditorUrl()}?name=email"
                 )
             )
         )
@@ -64,37 +68,46 @@ class SettingsV2ProfileScreen(
                     listItem(
                         "page.settings.profile.attribute.category-id",
                         member.category?.let { it.title },
-                        "${Page.getSettingsUrl()}/profile/editor?name=category"
+                        "${Page.getSettingsProfileEditorUrl()}?name=category"
                     ),
                     listItem(
                         "page.settings.profile.attribute.biography",
                         member.biography,
-                        "${Page.getSettingsUrl()}/profile/editor?name=biography"
-                    ),
-                    listItem(
-                        "page.settings.profile.attribute.whatsapp",
-                        member.whatsapp,
-                        "${Page.getSettingsUrl()}/profile/editor?name=whatsapp"
+                        "${Page.getSettingsProfileEditorUrl()}?name=biography"
                     ),
                     listItem(
                         "page.settings.profile.attribute.website",
                         member.website,
-                        "${Page.getSettingsUrl()}/profile/editor?name=website"
+                        "${Page.getSettingsProfileEditorUrl()}?name=website"
                     ),
                     listItem(
                         "page.settings.profile.attribute.facebook-id",
                         member.facebookId?.let { "https://www.facebook.com/${member.facebookId}" },
-                        "${Page.getSettingsUrl()}/profile/editor?name=facebook"
+                        "${Page.getSettingsProfileEditorUrl()}?name=facebook-id"
                     ),
                     listItem(
                         "page.settings.profile.attribute.instagram-id",
                         member.instagramId?.let { "https://www.instagram.com/${member.instagramId}" },
-                        "${Page.getSettingsUrl()}/profile/editor?name=instagram"
+                        "${Page.getSettingsProfileEditorUrl()}?name=instagram-id"
                     ),
                     listItem(
                         "page.settings.profile.attribute.twitter-id",
                         member.twitterId?.let { "https://www.twitter.com/${member.twitterId}" },
-                        "${Page.getSettingsUrl()}/profile/editor?name=twitter"
+                        "${Page.getSettingsProfileEditorUrl()}?name=twitter-id"
+                    ),
+                    listItem(
+                        "page.settings.profile.attribute.youtube-id",
+                        member.twitterId?.let { "https://www.youtube.com/@${member.youtubeId}" },
+                        "${Page.getSettingsProfileEditorUrl()}?name=youtube-id"
+                    ),
+                    ListItemSwitch(
+                        caption = getText("page.settings.profile.attribute.whatsapp"),
+                        subCaption = getText("page.settings.profile.attribute.whatsapp.description"),
+                        name = "value",
+                        selected = member.whatsapp,
+                        action = executeCommand(
+                            urlBuilder.build("${Page.getSettingsProfileUrl()}/submit?name=whatsapp")
+                        )
                     )
                 )
             )
@@ -110,17 +123,17 @@ class SettingsV2ProfileScreen(
                     StringUtil.capitalizeFirstLetter(
                         Locale(member.language).getDisplayLanguage(locale)
                     ),
-                    "${Page.getSettingsUrl()}/profile/editor?name=language"
+                    "${Page.getSettingsProfileEditorUrl()}?name=language"
                 ),
                 listItem(
                     "page.settings.profile.attribute.timezone-id",
                     member.timezoneId,
-                    "${Page.getSettingsUrl()}/profile/editor?name=timezone-id"
+                    "${Page.getSettingsProfileEditorUrl()}?name=timezone-id"
                 ),
                 listItem(
                     "page.settings.profile.attribute.city-id",
                     member.city?.name,
-                    "${Page.getSettingsUrl()}/profile/editor?name=city-id"
+                    "${Page.getSettingsProfileEditorUrl()}?name=city-id"
                 ),
                 listItem(
                     "page.settings.profile.attribute.country",
@@ -139,10 +152,11 @@ class SettingsV2ProfileScreen(
             children.add(
                 ListItemSwitch(
                     caption = getText("page.settings.profile.attribute.business"),
+                    subCaption = getText("page.settings.profile.attribute.business.description"),
                     name = "value",
                     selected = member.business,
                     action = gotoUrl(
-                        urlBuilder.build("${Page.getSettingsUrl()}/business")
+                        urlBuilder.build(Page.getSettingsBusinessUrl())
                     )
                 )
             )
@@ -167,6 +181,23 @@ class SettingsV2ProfileScreen(
         ).toWidget()
     }
 
+    @PostMapping("/submit")
+    fun submitAsync(
+        @RequestParam name: String,
+        @RequestBody request: SubmitBusinessAttributeRequest
+    ): Action {
+        membershipManagerApi.updateMemberAttribute(
+            request = UpdateMemberAttributeRequest(
+                name = name,
+                value = request.value
+            )
+        )
+        return gotoUrl(
+            url = urlBuilder.build(Page.getSettingsProfileUrl()),
+            replacement = true
+        )
+    }
+
     private fun canEnableBusiness(member: Member): Boolean =
         try {
             !member.business && regulationEngine.country(member.country).supportsBusinessAccount
@@ -177,7 +208,7 @@ class SettingsV2ProfileScreen(
     private fun listItem(caption: String, value: Any?, commandUrl: String?): ListItem =
         ListItem(
             caption = getText(caption),
-            subCaption = value?.toString(),
+            subCaption = if (value?.toString().isNullOrEmpty()) null else value?.toString(),
             trailing = commandUrl?.let {
                 Icon(
                     code = Theme.ICON_EDIT,

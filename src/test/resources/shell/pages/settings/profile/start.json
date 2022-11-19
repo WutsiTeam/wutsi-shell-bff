@@ -97,7 +97,7 @@
                     {
                       "type": "Text",
                       "attributes": {
-                        "caption": "Sell your products"
+                        "caption": "Sell Products Online"
                       },
                       "children": []
                     }
@@ -135,7 +135,7 @@
                     {
                       "type": "Text",
                       "attributes": {
-                        "caption": "Receive your payments"
+                        "caption": "Receive payments via Mobile Money"
                       },
                       "children": []
                     }
@@ -173,7 +173,7 @@
                     {
                       "type": "Text",
                       "attributes": {
-                        "caption": "Communicate with your customers"
+                        "caption": "Chat with customers"
                       },
                       "children": []
                     }

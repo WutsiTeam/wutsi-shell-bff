@@ -89,7 +89,7 @@
   "appBar": {
     "type": "AppBar",
     "attributes": {
-      "title": "My Website",
+      "title": "Website",
       "elevation": 0.0,
       "backgroundColor": "#FFFFFF",
       "foregroundColor": "#000000"

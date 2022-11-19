@@ -154,13 +154,14 @@
               "type": "ListItemSwitch",
               "attributes": {
                 "caption": "Business Account",
+                "subCaption": "Enable Business Account to sell your products and services online",
                 "name": "value",
                 "selected": false
               },
               "children": [],
               "action": {
                 "type": "Route",
-                "url": "/settings/2/profile/business"
+                "url": "http://localhost:0/settings/2/business"
               }
             }
           ]
