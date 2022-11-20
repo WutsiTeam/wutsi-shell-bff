@@ -1,0 +1,119 @@
+{
+  "type": "Form",
+  "attributes": {},
+  "children": [
+    {
+      "type": "Row",
+      "attributes": {
+        "mainAxisAlignment": "end",
+        "crossAxisAlignment": "start"
+      },
+      "children": [
+        {
+          "type": "IconButton",
+          "attributes": {
+            "icon": "ef28",
+            "color": "#000000"
+          },
+          "children": [],
+          "action": {
+            "type": "Route",
+            "url": "route:/.."
+          }
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "attributes": {
+        "alignment": "Center",
+        "padding": 10.0
+      },
+      "children": [
+        {
+          "type": "Text",
+          "attributes": {
+            "caption": "Activate your Store",
+            "color": "#1D7EDF",
+            "bold": true,
+            "size": 16.0,
+            "alignment": "Center"
+          },
+          "children": []
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "attributes": {
+        "alignment": "Center",
+        "padding": 10.0
+      },
+      "children": [
+        {
+          "type": "Text",
+          "attributes": {
+            "caption": "Activate your Store and start selling your products online",
+            "alignment": "Center"
+          },
+          "children": []
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "attributes": {
+        "padding": 20.0
+      },
+      "children": []
+    },
+    {
+      "type": "Column",
+      "attributes": {},
+      "children": [
+        {
+          "type": "Container",
+          "attributes": {
+            "padding": 10.0
+          },
+          "children": [
+            {
+              "type": "Button",
+              "attributes": {
+                "caption": "Activate my Store",
+                "padding": 15.0,
+                "type": "Elevated"
+              },
+              "children": [],
+              "action": {
+                "type": "Command",
+                "url": "http://localhost:0/settings/2/store/pages/start/submit"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Container",
+          "attributes": {
+            "padding": 10.0
+          },
+          "children": [
+            {
+              "type": "Button",
+              "attributes": {
+                "caption": "Not Now",
+                "padding": 15.0,
+                "type": "Text"
+              },
+              "children": [],
+              "action": {
+                "type": "Route",
+                "url": "route:/.."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

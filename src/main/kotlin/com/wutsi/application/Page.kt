@@ -14,6 +14,8 @@ object Page {
     const val SETTINGS_PROFILE = "page.settings.profile"
     const val SETTINGS_PROFILE_EDITOR = "page.settings.profile.editor"
     const val SETTINGS_PROFILE_EMAIL_VERIFICATION = "page.settings.profile.email.verification"
+    const val SETTINGS_STORE = "page.settings.store"
+    const val SETTINGS_CATALOG = "page.settings.catalog"
 
     fun getAboutUrl() = "/about"
     fun getHomeUrl() = "/2"
@@ -25,5 +27,6 @@ object Page {
     fun getSettingsBusinessUrl() = "${getSettingsUrl()}/business"
     fun getSettingsProfileUrl() = "${getSettingsUrl()}/profile"
     fun getSettingsProfileEditorUrl() = "${getSettingsProfileUrl()}/editor"
-    fun getStoreUrl() = "/store/2"
+    fun getSettingsStoreUrl() = "${getSettingsUrl()}/store"
+    fun getSettingsCatalogUrl() = "${getSettingsUrl()}/catalog"
 }

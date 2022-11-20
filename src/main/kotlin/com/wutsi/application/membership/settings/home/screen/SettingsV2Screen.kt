@@ -117,19 +117,20 @@ class SettingsV2Screen : AbstractSecuredEndpoint() {
                         },
 
                         /* Business Apps - Store */
-                        if (user.business && user.storeId != null) {
-                            listItem(
-                                "page.settings.listitem.store.caption",
-                                urlBuilder.build("${Page.getStoreUrl()}/settings"),
-                                icon = Theme.ICON_STORE
-                            )
-                        } else if (user.business && user.storeId == null) {
-                            listItemSwitch(
-                                "page.settings.listitem.activate-store.caption",
-                                urlBuilder.build("${Page.getSettingsUrl()}/activate-store"),
-                                icon = Theme.ICON_STORE,
-                                subCaption = "page.settings.listitem.store.sub-caption"
-                            )
+                        if (user.business) {
+                            if (user.storeId != null) {
+                                listItem(
+                                    "page.settings.listitem.store.caption",
+                                    urlBuilder.build(Page.getSettingsCatalogUrl()),
+                                    icon = Theme.ICON_STORE
+                                )
+                            } else {
+                                listItemSwitch(
+                                    "page.settings.listitem.activate-store.caption",
+                                    urlBuilder.build("${Page.getSettingsUrl()}/enable-store"),
+                                    subCaption = "page.settings.listitem.store.sub-caption"
+                                )
+                            }
                         } else {
                             null
                         },
@@ -169,6 +170,12 @@ class SettingsV2Screen : AbstractSecuredEndpoint() {
         securityManagerApi.logout()
         return gotoLogin(phoneNumber = member.phoneNumber)
     }
+
+    @PostMapping("/enable-store")
+    fun enableStore(): Action =
+        gotoUrl(
+            urlBuilder.build(Page.getSettingsStoreUrl())
+        )
 
     private fun listItem(caption: String, url: String, icon: String? = null) = listItem(
         caption = caption,

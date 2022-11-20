@@ -188,7 +188,7 @@
               "children": [],
               "action": {
                 "type": "Route",
-                "url": "http://localhost:0/store/2/settings"
+                "url": "http://localhost:0/settings/2/catalog"
               }
             },
             {

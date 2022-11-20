@@ -167,14 +167,13 @@
               "attributes": {
                 "caption": "Activate your Store",
                 "subCaption": "Sell your products online",
-                "icon": "f3ee",
                 "name": "value",
                 "selected": false
               },
               "children": [],
               "action": {
                 "type": "Command",
-                "url": "http://localhost:0/settings/2/activate-store"
+                "url": "http://localhost:0/settings/2/enable-store"
               }
             },
             {
