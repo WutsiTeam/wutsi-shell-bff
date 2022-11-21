@@ -57,9 +57,10 @@ object Fixtures {
         title = title
     )
 
-    fun createProductSummary(id: Long = -1, title: String = "Product") = ProductSummary(
+    fun createProductSummary(id: Long = -1, title: String = "Product", thumbnailUrl: String? = null) = ProductSummary(
         id = id,
-        title = title
+        title = title,
+        thumbnailUrl = thumbnailUrl
     )
 
     fun createProduct(

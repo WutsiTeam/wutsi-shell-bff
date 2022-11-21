@@ -1,7 +1,6 @@
 package com.wutsi.application.marketplace.settings.catalog.add.page
 
 import com.nhaarman.mockitokotlin2.any
-import com.nhaarman.mockitokotlin2.anyOrNull
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
@@ -18,7 +17,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.test.web.server.LocalServerPort
-import java.net.URL
 
 internal class AppProduct01EditorPageTest : AbstractSecuredEndpointTest() {
     @LocalServerPort
@@ -46,11 +44,6 @@ internal class AppProduct01EditorPageTest : AbstractSecuredEndpointTest() {
 
     @Test
     fun submit() {
-        // GIVEN
-        val filename = "toto.png"
-        val fileUrl = URL("http://www.wutsi.com/asset/1/$filename")
-        doReturn(fileUrl).whenever(storageService).store(any(), any(), anyOrNull(), anyOrNull(), anyOrNull())
-
         // WHEN
         val request = SubmitProductRequest(
             title = "Yo man",

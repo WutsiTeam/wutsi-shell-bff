@@ -147,11 +147,18 @@ abstract class AbstractEndpoint {
         url = "route:/~"
     )
 
-    protected fun executeCommand(url: String, parameters: Map<String, String>? = null) = Action(
-        type = ActionType.Command,
-        url = url,
-        parameters = parameters
-    )
+    protected fun executeCommand(url: String, parameters: Map<String, String>? = null, confirm: String? = null) =
+        Action(
+            type = ActionType.Command,
+            url = url,
+            parameters = parameters,
+            prompt = confirm?.let {
+                Dialog(
+                    type = DialogType.Confirm,
+                    message = confirm
+                ).toWidget()
+            }
+        )
 
     protected fun showError(message: String) = Action(
         type = ActionType.Prompt,

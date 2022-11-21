@@ -82,7 +82,9 @@ class SettingsV2CatalogScreen(
                         child = ListView(
                             children = products.map {
                                 ProductCardWidget.of(
-                                    product = it.copy(thumbnailUrl = resize(it.thumbnailUrl)),
+                                    product = it.copy(
+                                        thumbnailUrl = resize(it.thumbnailUrl) ?: getNoPictureUrl()
+                                    ),
                                     country = regulationEngine.country(member.country),
                                     messages = messages,
                                     action = gotoUrl(

@@ -28,7 +28,7 @@ internal class SettingsV2CatalogScreenTest : AbstractSecuredEndpointTest() {
         super.setUp()
 
         val products = listOf(
-            Fixtures.createProductSummary(1, "Product1"),
+            Fixtures.createProductSummary(1, "Product1", "http://www.google.ca/1.png"),
             Fixtures.createProductSummary(2, "Product 2")
         )
         doReturn(SearchProductResponse(products)).whenever(marketplaceManagerApi).searchProduct(any())

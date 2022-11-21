@@ -141,15 +141,16 @@ class SettingsV2ProductScreen(
         val images = mutableListOf<PictureWidget>()
 
         // Thumbnail as 1st image
-        if (product.thumbnail != null)
-            images.add(toPictureWidget(product, product.thumbnail!!))
+        if (product.thumbnail != null) {
+            images.add(toPictureWidget(product.thumbnail!!))
+        }
 
         // Other pictures
         images.addAll(
             product.pictures
                 .filter { it.id != product.thumbnail?.id }
                 .map {
-                    toPictureWidget(product, it)
+                    toPictureWidget(it)
                 }
         )
 
@@ -170,14 +171,18 @@ class SettingsV2ProductScreen(
         )
     }
 
-    private fun toPictureWidget(product: Product, picture: PictureSummary) = PictureWidget(
+    private fun toPictureWidget(picture: PictureSummary) = PictureWidget(
         padding = PictureListViewWidget.IMAGE_PADDING,
         width = PictureListViewWidget.IMAGE_WIDTH,
         height = PictureListViewWidget.IMAGE_HEIGHT,
         border = 1.0,
         url = picture.url,
         action = gotoUrl(
-            urlBuilder.build("/settings/catalog/picture?product-id=${product.id}&picture-id=${picture.id}")
+            urlBuilder.build(
+                "${Page.getSettingsCatalogUrl()}/picture?id=${picture.id}&url=" + encodeURLParam(
+                    picture.url
+                )
+            )
         )
     )
 

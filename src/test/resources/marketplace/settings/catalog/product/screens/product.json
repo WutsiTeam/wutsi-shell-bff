@@ -40,7 +40,7 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "http://localhost:0/settings/catalog/picture?product-id=-1&picture-id=0"
+                    "url": "http://localhost:0/settings/2/catalog/picture?id=0&url=https%3A%2F%2Fimg.com%2F0.png"
                   }
                 },
                 {
@@ -57,7 +57,7 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "http://localhost:0/settings/catalog/picture?product-id=-1&picture-id=1"
+                    "url": "http://localhost:0/settings/2/catalog/picture?id=1&url=https%3A%2F%2Fimg.com%2F1.png"
                   }
                 },
                 {
@@ -74,7 +74,7 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "http://localhost:0/settings/catalog/picture?product-id=-1&picture-id=2"
+                    "url": "http://localhost:0/settings/2/catalog/picture?id=2&url=https%3A%2F%2Fimg.com%2F2.png"
                   }
                 },
                 {

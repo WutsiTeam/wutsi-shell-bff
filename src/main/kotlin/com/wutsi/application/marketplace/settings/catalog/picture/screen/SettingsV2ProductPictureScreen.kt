@@ -1,52 +1,65 @@
-package com.wutsi.application.store.endpoint.settings.product.picture.screen
+package com.wutsi.application.marketplace.settings.catalog.picture.screen
 
+import com.wutsi.application.Page
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.store.endpoint.AbstractQuery
-import com.wutsi.application.store.endpoint.Page
-import com.wutsi.ecommerce.catalog.WutsiCatalogApi
+import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
+import com.wutsi.flutter.sdui.IconButton
 import com.wutsi.flutter.sdui.PhotoView
 import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.enums.ButtonType
+import com.wutsi.marketplace.manager.MarketplaceManagerApi
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/settings/store/picture")
-class SettingsStorePictureScreen(
-    private val catalogApi: WutsiCatalogApi
+@RequestMapping("/settings/2/catalog/picture")
+class SettingsV2ProductPictureScreen(
+    private val marketplaceManagerApi: MarketplaceManagerApi
 ) : AbstractQuery() {
     @PostMapping
     fun index(
-        @RequestParam(name = "product-id") productId: Long,
-        @RequestParam("picture-id") pictureId: Long
+        @RequestParam id: Long,
+        @RequestParam url: String
     ): Widget {
-        val product = catalogApi.getProduct(productId).product
-        val picture = product.pictures.find { it.id == pictureId }!!
-
         return Screen(
-            id = Page.SETTINGS_STORE_PICTURE,
+            id = Page.SETTINGS_CATALOG_PICTURE,
             appBar = AppBar(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.settings.store.picture.app-bar.title")
+                title = getText("page.settings.catalog.picture.app-bar.title"),
+                automaticallyImplyLeading = false,
+                actions = listOf(
+                    IconButton(
+                        icon = Theme.ICON_CANCEL,
+                        color = Theme.COLOR_BLACK,
+                        action = gotoPreviousScreen()
+                    )
+                )
             ),
-            child = PhotoView(url = picture.url),
+            child = PhotoView(url = url),
             floatingActionButton = Button(
                 type = ButtonType.Floatable,
                 icon = Theme.ICON_DELETE,
                 stretched = false,
                 color = Theme.COLOR_WHITE,
-                action = gotoUrl(
-                    url = urlBuilder.build("settings/store/picture/delete?picture-id=$pictureId&product-id=$productId"),
-                    replacement = true
+                action = executeCommand(
+                    url = urlBuilder.build("${Page.getSettingsCatalogUrl()}/picture/delete?id=$id"),
+                    confirm = getText("page.settings.catalog.picture.confirm-delete")
                 )
             )
         ).toWidget()
+    }
+
+    @PostMapping("/delete")
+    fun delete(@RequestParam id: Long): Action {
+        marketplaceManagerApi.deletePicture(id)
+        return gotoPreviousScreen()
     }
 }

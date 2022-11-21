@@ -19,6 +19,7 @@ object Page {
     const val SETTINGS_CATALOG_ADD = "page.settings.catalog.add"
     const val SETTINGS_CATALOG_PRODUCT = "page.settings.catalog.product"
     const val SETTINGS_CATALOG_EDITOR = "page.settings.catalog.editor"
+    const val SETTINGS_CATALOG_PICTURE = "page.settings.catalog.picture"
 
     fun getAboutUrl() = "/about"
     fun getHomeUrl() = "/2"

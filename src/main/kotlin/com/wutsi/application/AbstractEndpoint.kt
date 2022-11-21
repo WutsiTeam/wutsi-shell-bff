@@ -41,6 +41,8 @@ abstract class AbstractEndpoint {
 
     fun getLogoUrl() = "$assertUrl/logo/wutsi.png"
 
+    fun getNoPictureUrl() = "$assertUrl/images/nopicture.png"
+
     @ExceptionHandler(Throwable::class)
     fun onException(ex: Throwable): Action {
         val action = Action(
