@@ -15,6 +15,7 @@ import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.CircleAvatar
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
+import com.wutsi.flutter.sdui.IconButton
 import com.wutsi.flutter.sdui.Image
 import com.wutsi.flutter.sdui.PinWithKeyboard
 import com.wutsi.flutter.sdui.Screen
@@ -84,7 +85,18 @@ class LoginV2Screen(
                 foregroundColor = textColor,
                 elevation = 0.0,
                 title = title,
-                automaticallyImplyLeading = hideBackButton?.let { !it }
+                automaticallyImplyLeading = false,
+                actions = if (hideBackButton == false) {
+                    listOf(
+                        IconButton(
+                            icon = Theme.ICON_CANCEL,
+                            color = Theme.COLOR_BLACK,
+                            action = gotoPreviousScreen()
+                        )
+                    )
+                } else {
+                    null
+                }
             ),
             backgroundColor = backgroundColor,
             child = SingleChildScrollView(

@@ -1,4 +1,4 @@
-package com.wutsi.application.marketplace.settings.catalog.screen
+package com.wutsi.application.marketplace.settings.catalog.home.screen
 
 import com.wutsi.application.AbstractEndpoint
 import com.wutsi.application.Page
@@ -56,7 +56,7 @@ class SettingsV2CatalogScreen(
                     stretched = false,
                     iconColor = Theme.COLOR_WHITE,
                     action = gotoUrl(
-                        url = urlBuilder.build("settings/catalog/add")
+                        url = urlBuilder.build("settings/2/catalog/add")
                     )
                 )
             } else {
@@ -84,7 +84,7 @@ class SettingsV2CatalogScreen(
                                     pictureUrl = it.thumbnailUrl,
                                     summary = it.summary,
                                     action = gotoUrl(
-                                        url = urlBuilder.build("/settings/product?id=${it.id}")
+                                        url = urlBuilder.build("/settings/2/catalog/product?id=${it.id}")
                                     )
                                 )
                             }

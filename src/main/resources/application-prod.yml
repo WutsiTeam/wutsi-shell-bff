@@ -21,6 +21,11 @@ wutsi:
         password: ${MEMCACHIER_PASSWORD}
         servers: ${MEMCACHIER_SERVERS}
         ttl: 86400
+    image:
+      type: image-kit
+      image-kit:
+        origin-url: "https://s3.amazonaws.com/prod-wutsi"
+        endpoint-url: "https://ik.imagekit.io/toifevuwjn"
     security:
       api-key: ${API_KEY}
       verify-token: true

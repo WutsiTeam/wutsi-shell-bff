@@ -101,7 +101,8 @@
     "attributes": {
       "elevation": 0.0,
       "backgroundColor": "#FFFFFF",
-      "foregroundColor": "#000000"
+      "foregroundColor": "#000000",
+      "automaticallyImplyLeading": false
     },
     "children": []
   }

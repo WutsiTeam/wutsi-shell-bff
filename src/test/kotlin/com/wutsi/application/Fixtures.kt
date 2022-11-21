@@ -1,5 +1,6 @@
 package com.wutsi.application
 
+import com.wutsi.marketplace.manager.dto.ProductSummary
 import com.wutsi.membership.manager.dto.Category
 import com.wutsi.membership.manager.dto.CategorySummary
 import com.wutsi.membership.manager.dto.Member
@@ -50,6 +51,11 @@ object Fixtures {
     )
 
     fun createCategorySummary(id: Long = -1, title: String = "Art") = CategorySummary(
+        id = id,
+        title = title
+    )
+
+    fun createProductSummary(id: Long = -1, title: String = "Product") = ProductSummary(
         id = id,
         title = title
     )

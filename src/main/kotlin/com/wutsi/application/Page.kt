@@ -16,6 +16,7 @@ object Page {
     const val SETTINGS_PROFILE_EMAIL_VERIFICATION = "page.settings.profile.email.verification"
     const val SETTINGS_STORE = "page.settings.store"
     const val SETTINGS_CATALOG = "page.settings.catalog"
+    const val SETTINGS_CATALOG_ADD = "page.settings.catalog.add"
 
     fun getAboutUrl() = "/about"
     fun getHomeUrl() = "/2"

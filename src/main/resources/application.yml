@@ -67,6 +67,8 @@ wutsi:
     cache:
       name: ${wutsi.application.name}
       type: local
+    image:
+      type: none
     security:
       type: jwt
       api-key: "d779ed54-dadf-11ec-94e8-127037cd15a7"
