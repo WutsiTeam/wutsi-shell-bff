@@ -41,30 +41,209 @@
           "children": [
             {
               "type": "ListView",
-              "attributes": {
-                "separator": true,
-                "separatorColor": "#8c8c8c"
-              },
+              "attributes": {},
               "children": [
                 {
-                  "type": "ListItem",
+                  "type": "Container",
                   "attributes": {
-                    "caption": "Product1",
-                    "padding": 10.0
+                    "margin": 5.0,
+                    "border": 1.0,
+                    "borderColor": "#e8e8e8"
                   },
-                  "children": [],
+                  "children": [
+                    {
+                      "type": "Row",
+                      "attributes": {
+                        "mainAxisAlignment": "start",
+                        "crossAxisAlignment": "start"
+                      },
+                      "children": [
+                        {
+                          "type": "Flexible",
+                          "attributes": {
+                            "flex": 1,
+                            "fit": "Tight"
+                          },
+                          "children": [
+                            {
+                              "type": "Container",
+                              "attributes": {
+                                "alignment": "Center",
+                                "border": 1.0,
+                                "borderColor": "#e4edf7",
+                                "height": 120.0,
+                                "width": 50.0,
+                                "backgroundImageUrl": ""
+                              },
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "type": "Flexible",
+                          "attributes": {
+                            "flex": 3,
+                            "fit": "Tight"
+                          },
+                          "children": [
+                            {
+                              "type": "Container",
+                              "attributes": {
+                                "height": 120.0
+                              },
+                              "children": [
+                                {
+                                  "type": "Stack",
+                                  "attributes": {},
+                                  "children": [
+                                    {
+                                      "type": "Container",
+                                      "attributes": {
+                                        "alignment": "TopLeft"
+                                      },
+                                      "children": [
+                                        {
+                                          "type": "Column",
+                                          "attributes": {
+                                            "mainAxisAlignment": "start",
+                                            "crossAxisAlignment": "start"
+                                          },
+                                          "children": [
+                                            {
+                                              "type": "Container",
+                                              "attributes": {
+                                                "padding": 5.0
+                                              },
+                                              "children": [
+                                                {
+                                                  "type": "Text",
+                                                  "attributes": {
+                                                    "caption": "Product1",
+                                                    "bold": true,
+                                                    "size": 14.0,
+                                                    "overflow": "Elipsis",
+                                                    "maxLines": 3
+                                                  },
+                                                  "children": []
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
                   "action": {
                     "type": "Route",
                     "url": "http://localhost:0/settings/2/catalog/product?id=1"
                   }
                 },
                 {
-                  "type": "ListItem",
+                  "type": "Container",
                   "attributes": {
-                    "caption": "Product 2",
-                    "padding": 10.0
+                    "margin": 5.0,
+                    "border": 1.0,
+                    "borderColor": "#e8e8e8"
                   },
-                  "children": [],
+                  "children": [
+                    {
+                      "type": "Row",
+                      "attributes": {
+                        "mainAxisAlignment": "start",
+                        "crossAxisAlignment": "start"
+                      },
+                      "children": [
+                        {
+                          "type": "Flexible",
+                          "attributes": {
+                            "flex": 1,
+                            "fit": "Tight"
+                          },
+                          "children": [
+                            {
+                              "type": "Container",
+                              "attributes": {
+                                "alignment": "Center",
+                                "border": 1.0,
+                                "borderColor": "#e4edf7",
+                                "height": 120.0,
+                                "width": 50.0,
+                                "backgroundImageUrl": ""
+                              },
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "type": "Flexible",
+                          "attributes": {
+                            "flex": 3,
+                            "fit": "Tight"
+                          },
+                          "children": [
+                            {
+                              "type": "Container",
+                              "attributes": {
+                                "height": 120.0
+                              },
+                              "children": [
+                                {
+                                  "type": "Stack",
+                                  "attributes": {},
+                                  "children": [
+                                    {
+                                      "type": "Container",
+                                      "attributes": {
+                                        "alignment": "TopLeft"
+                                      },
+                                      "children": [
+                                        {
+                                          "type": "Column",
+                                          "attributes": {
+                                            "mainAxisAlignment": "start",
+                                            "crossAxisAlignment": "start"
+                                          },
+                                          "children": [
+                                            {
+                                              "type": "Container",
+                                              "attributes": {
+                                                "padding": 5.0
+                                              },
+                                              "children": [
+                                                {
+                                                  "type": "Text",
+                                                  "attributes": {
+                                                    "caption": "Product 2",
+                                                    "bold": true,
+                                                    "size": 14.0,
+                                                    "overflow": "Elipsis",
+                                                    "maxLines": 3
+                                                  },
+                                                  "children": []
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
                   "action": {
                     "type": "Route",
                     "url": "http://localhost:0/settings/2/catalog/product?id=2"

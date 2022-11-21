@@ -76,7 +76,6 @@ class AppProduct01EditorPage(
                         name = "quantity",
                         caption = getText("page.settings.catalog.add.product.attribute.quantity"),
                         type = InputType.Number,
-                        required = true,
                         inputFormatterRegex = "[0-9]"
                     )
                 )

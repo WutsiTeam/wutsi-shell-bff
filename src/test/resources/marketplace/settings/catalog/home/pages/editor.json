@@ -70,8 +70,6 @@
           "type": "Container",
           "attributes": {
             "alignment": "Center",
-            "border": 1.0,
-            "borderColor": "#e4edf7",
             "height": 100.0,
             "width": 100.0,
             "backgroundImageUrl": "http://www.google.ca/1.png"
@@ -137,7 +135,7 @@
               "attributes": {
                 "name": "quantity",
                 "hideText": false,
-                "required": true,
+                "required": false,
                 "caption": "Quantity in stock",
                 "enabled": true,
                 "readOnly": false,
