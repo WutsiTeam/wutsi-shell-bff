@@ -1,5 +1,7 @@
 package com.wutsi.application
 
+import com.wutsi.marketplace.manager.dto.PictureSummary
+import com.wutsi.marketplace.manager.dto.Product
 import com.wutsi.marketplace.manager.dto.ProductSummary
 import com.wutsi.membership.manager.dto.Category
 import com.wutsi.membership.manager.dto.CategorySummary
@@ -59,4 +61,44 @@ object Fixtures {
         id = id,
         title = title
     )
+
+    fun createProduct(
+        id: Long = -1,
+        title: String = "Product A",
+        quantity: Int = 10,
+        price: Long = 20000L,
+        summary: String = "This is a summary",
+        description: String = "This is a long description",
+        pictures: List<PictureSummary> = emptyList()
+    ) = Product(
+        id = id,
+        title = title,
+        quantity = quantity,
+        price = price,
+        summary = summary,
+        description = description,
+        thumbnail = if (pictures.isEmpty()) null else pictures[0],
+        pictures = pictures
+    )
+
+    fun createPictureSummary(
+        id: Long = -1,
+        url: String = "http://www.google.com/1.png"
+    ) = PictureSummary(
+        id = id,
+        url = url
+    )
+
+    fun createPictureSummaryList(size: Int): List<PictureSummary> {
+        val pictures = mutableListOf<PictureSummary>()
+        for (i in 0..size) {
+            pictures.add(
+                PictureSummary(
+                    id = i.toLong(),
+                    url = "https://img.com/$i.png"
+                )
+            )
+        }
+        return pictures
+    }
 }

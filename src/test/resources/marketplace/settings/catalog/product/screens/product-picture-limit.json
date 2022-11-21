@@ -1,0 +1,278 @@
+{
+  "type": "Screen",
+  "attributes": {
+    "id": "page.settings.catalog.product",
+    "safe": false,
+    "backgroundColor": "#FFFFFF"
+  },
+  "children": [
+    {
+      "type": "Column",
+      "attributes": {
+        "mainAxisAlignment": "start",
+        "crossAxisAlignment": "start"
+      },
+      "children": [
+        {
+          "type": "Container",
+          "attributes": {
+            "padding": 10.0,
+            "height": 174.0
+          },
+          "children": [
+            {
+              "type": "ListView",
+              "attributes": {
+                "direction": "Horizontal"
+              },
+              "children": [
+                {
+                  "type": "Container",
+                  "attributes": {
+                    "alignment": "Center",
+                    "padding": 2.0,
+                    "border": 1.0,
+                    "borderColor": "#e4edf7",
+                    "height": 150.0,
+                    "width": 150.0,
+                    "backgroundImageUrl": "https://img.com/0.png"
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "http://localhost:0/settings/catalog/picture?product-id=-1&picture-id=0"
+                  }
+                },
+                {
+                  "type": "Container",
+                  "attributes": {
+                    "alignment": "Center",
+                    "padding": 2.0,
+                    "border": 1.0,
+                    "borderColor": "#e4edf7",
+                    "height": 150.0,
+                    "width": 150.0,
+                    "backgroundImageUrl": "https://img.com/1.png"
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "http://localhost:0/settings/catalog/picture?product-id=-1&picture-id=1"
+                  }
+                },
+                {
+                  "type": "Container",
+                  "attributes": {
+                    "alignment": "Center",
+                    "padding": 2.0,
+                    "border": 1.0,
+                    "borderColor": "#e4edf7",
+                    "height": 150.0,
+                    "width": 150.0,
+                    "backgroundImageUrl": "https://img.com/2.png"
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "http://localhost:0/settings/catalog/picture?product-id=-1&picture-id=2"
+                  }
+                },
+                {
+                  "type": "Container",
+                  "attributes": {
+                    "alignment": "Center",
+                    "padding": 2.0,
+                    "border": 1.0,
+                    "borderColor": "#e4edf7",
+                    "height": 150.0,
+                    "width": 150.0,
+                    "backgroundImageUrl": "https://img.com/3.png"
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "http://localhost:0/settings/catalog/picture?product-id=-1&picture-id=3"
+                  }
+                },
+                {
+                  "type": "Container",
+                  "attributes": {
+                    "alignment": "Center",
+                    "padding": 2.0,
+                    "border": 1.0,
+                    "borderColor": "#e4edf7",
+                    "height": 150.0,
+                    "width": 150.0,
+                    "backgroundImageUrl": "https://img.com/4.png"
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "http://localhost:0/settings/catalog/picture?product-id=-1&picture-id=4"
+                  }
+                },
+                {
+                  "type": "Container",
+                  "attributes": {
+                    "alignment": "Center",
+                    "padding": 2.0,
+                    "border": 1.0,
+                    "borderColor": "#e4edf7",
+                    "height": 150.0,
+                    "width": 150.0,
+                    "backgroundImageUrl": "https://img.com/5.png"
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "http://localhost:0/settings/catalog/picture?product-id=-1&picture-id=5"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Divider",
+          "attributes": {
+            "color": "#8c8c8c"
+          },
+          "children": []
+        },
+        {
+          "type": "Flexible",
+          "attributes": {
+            "flex": 10,
+            "fit": "Tight"
+          },
+          "children": [
+            {
+              "type": "ListView",
+              "attributes": {
+                "separator": true,
+                "separatorColor": "#8c8c8c"
+              },
+              "children": [
+                {
+                  "type": "ListItem",
+                  "attributes": {
+                    "caption": "Name",
+                    "subCaption": "Product A",
+                    "trailing": {
+                      "type": "Icon",
+                      "attributes": {
+                        "code": "e21a",
+                        "size": 24.0,
+                        "color": "#000000"
+                      },
+                      "children": []
+                    }
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "http://localhost:0/settings/2/catalog/product/editor?name=title&id=-1"
+                  }
+                },
+                {
+                  "type": "ListItem",
+                  "attributes": {
+                    "caption": "Price",
+                    "subCaption": "20,000 FCFA",
+                    "trailing": {
+                      "type": "Icon",
+                      "attributes": {
+                        "code": "e21a",
+                        "size": 24.0,
+                        "color": "#000000"
+                      },
+                      "children": []
+                    }
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "http://localhost:0/settings/2/catalog/product/editor?name=price&id=-1"
+                  }
+                },
+                {
+                  "type": "ListItem",
+                  "attributes": {
+                    "caption": "Quantity in Stock",
+                    "subCaption": "10",
+                    "trailing": {
+                      "type": "Icon",
+                      "attributes": {
+                        "code": "e21a",
+                        "size": 24.0,
+                        "color": "#000000"
+                      },
+                      "children": []
+                    }
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "http://localhost:0/settings/2/catalog/product/editor?name=quantity&id=-1"
+                  }
+                },
+                {
+                  "type": "ListItem",
+                  "attributes": {
+                    "caption": "Summary",
+                    "subCaption": "This is a summary",
+                    "trailing": {
+                      "type": "Icon",
+                      "attributes": {
+                        "code": "e21a",
+                        "size": 24.0,
+                        "color": "#000000"
+                      },
+                      "children": []
+                    }
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "http://localhost:0/settings/2/catalog/product/editor?name=summary&id=-1"
+                  }
+                },
+                {
+                  "type": "ListItem",
+                  "attributes": {
+                    "caption": "Description",
+                    "subCaption": "This is a long description",
+                    "trailing": {
+                      "type": "Icon",
+                      "attributes": {
+                        "code": "e21a",
+                        "size": 24.0,
+                        "color": "#000000"
+                      },
+                      "children": []
+                    }
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "http://localhost:0/settings/2/catalog/product/editor?name=description&id=-1"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "appBar": {
+    "type": "AppBar",
+    "attributes": {
+      "title": "Product",
+      "elevation": 0.0,
+      "backgroundColor": "#1D7EDF",
+      "foregroundColor": "#FFFFFF"
+    },
+    "children": []
+  }
+}

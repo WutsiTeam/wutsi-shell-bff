@@ -4,20 +4,17 @@ import com.wutsi.application.AbstractEndpoint
 import com.wutsi.application.Page
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.util.SecurityUtil
+import com.wutsi.application.widget.UploadWidget
 import com.wutsi.flutter.sdui.AppBar
-import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Divider
+import com.wutsi.flutter.sdui.IconButton
 import com.wutsi.flutter.sdui.Image
-import com.wutsi.flutter.sdui.Input
 import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.enums.Alignment
-import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
-import com.wutsi.flutter.sdui.enums.ImageSource
-import com.wutsi.flutter.sdui.enums.InputType
 import com.wutsi.membership.manager.MembershipManagerApi
 import com.wutsi.membership.manager.dto.UpdateMemberAttributeRequest
 import com.wutsi.platform.core.storage.StorageService
@@ -45,7 +42,15 @@ class SettingsV2PictureScreen(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.settings.picture.app-bar.title")
+                title = getText("page.settings.picture.app-bar.title"),
+                automaticallyImplyLeading = false,
+                actions = listOf(
+                    IconButton(
+                        icon = Theme.ICON_CANCEL,
+                        color = Theme.COLOR_BLACK,
+                        action = gotoPreviousScreen()
+                    )
+                )
             ),
             child = Column(
                 crossAxisAlignment = CrossAxisAlignment.center,
@@ -60,32 +65,17 @@ class SettingsV2PictureScreen(
                         )
                     ),
                     Divider(color = Theme.COLOR_DIVIDER),
-                    Input(
-                        name = "file",
-                        uploadUrl = urlBuilder.build("${Page.getSettingsUrl()}/picture/upload"),
-                        type = InputType.Image,
-                        imageSource = ImageSource.Camera,
-                        caption = getText("page.settings.picture.camera"),
-                        imageMaxWidth = 512,
-                        imageMaxHeight = 512,
-                        action = gotoPreviousScreen()
-                    ),
-                    Input(
-                        name = "file",
-                        uploadUrl = urlBuilder.build("${Page.getSettingsUrl()}/picture/upload"),
-                        type = InputType.Image,
-                        imageSource = ImageSource.Gallery,
-                        caption = getText("page.settings.picture.gallery"),
-                        imageMaxWidth = 512,
-                        imageMaxHeight = 512,
-                        action = gotoPreviousScreen()
-                    ),
-                    Button(
-                        type = ButtonType.Text,
-                        caption = getText("page.settings.picture.cancel"),
-                        action = gotoPreviousScreen()
-                    ),
-                    Divider(color = Theme.COLOR_DIVIDER)
+                    Container(
+                        padding = 10.0,
+                        child = UploadWidget(
+                            name = "file",
+                            uploadUrl = urlBuilder.build("${Page.getSettingsUrl()}/picture/upload"),
+                            imageMaxWidth = 512,
+                            imageMaxHeight = 512,
+                            action = gotoPreviousScreen(),
+                            messages = messages
+                        )
+                    )
                 )
             )
         ).toWidget()

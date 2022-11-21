@@ -81,9 +81,10 @@ abstract class AbstractEndpoint {
     protected fun gotoOnboard(): Action =
         gotoUrl(url = urlBuilder.build(Page.getOnboardUrl()))
 
-    protected fun executeCommand(url: String) = Action(
+    protected fun executeCommand(url: String, parameters: Map<String, String>? = null) = Action(
         type = ActionType.Command,
-        url = url
+        url = url,
+        parameters = parameters
     )
 
     protected fun gotoLogin(

@@ -3,14 +3,10 @@ package com.wutsi.application.marketplace.settings.catalog.add.page
 import com.wutsi.application.common.page.AbstractPageEndpoint
 import com.wutsi.application.marketplace.settings.catalog.add.dao.PictureRepository
 import com.wutsi.application.marketplace.settings.catalog.add.entity.PictureEntity
-import com.wutsi.application.shared.Theme
+import com.wutsi.application.widget.UploadWidget
 import com.wutsi.flutter.sdui.Button
-import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
-import com.wutsi.flutter.sdui.Input
 import com.wutsi.flutter.sdui.WidgetAware
-import com.wutsi.flutter.sdui.enums.ImageSource
-import com.wutsi.flutter.sdui.enums.InputType
 import com.wutsi.platform.core.storage.StorageService
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.PostMapping
@@ -41,38 +37,13 @@ class AppProduct00PicturePage(
     override fun getBody(): WidgetAware =
         Container(
             padding = 20.0,
-            child = Column(
-                children = listOf(
-                    Container(
-                        borderColor = Theme.COLOR_PRIMARY,
-                        border = 1.0,
-                        child = Input(
-                            name = "file",
-                            uploadUrl = urlBuilder.build("/settings/2/catalog/add/pages/picture/upload"),
-                            type = InputType.Image,
-                            imageSource = ImageSource.Camera,
-                            caption = getText("page.settings.catalog.add.picture.camera"),
-                            imageMaxWidth = pictureMaxWidth,
-                            imageMaxHeight = pictureMaxHeight,
-                            action = gotoNextPage()
-                        )
-                    ),
-                    Container(padding = 10.0),
-                    Container(
-                        borderColor = Theme.COLOR_PRIMARY,
-                        border = 1.0,
-                        child = Input(
-                            name = "file",
-                            uploadUrl = urlBuilder.build("/settings/2/catalog/add/pages/picture/upload"),
-                            type = InputType.Image,
-                            imageSource = ImageSource.Gallery,
-                            caption = getText("page.settings.catalog.add.picture.gallery"),
-                            imageMaxWidth = pictureMaxWidth,
-                            imageMaxHeight = pictureMaxHeight,
-                            action = gotoNextPage()
-                        )
-                    )
-                )
+            child = UploadWidget(
+                name = "file",
+                uploadUrl = urlBuilder.build("/settings/2/catalog/add/pages/picture/upload"),
+                imageMaxWidth = pictureMaxWidth,
+                imageMaxHeight = pictureMaxHeight,
+                action = gotoNextPage(),
+                messages = messages
             )
         )
 
@@ -81,13 +52,8 @@ class AppProduct00PicturePage(
     @PostMapping("/upload")
     fun upload(@RequestParam file: MultipartFile) {
         val contentType = Files.probeContentType(Path.of(file.originalFilename))
-        logger.add("file_name", file.originalFilename)
-        logger.add("content_type", contentType)
-
-        // Upload file
         val path = "product/pictures/${UUID.randomUUID()}-${file.originalFilename}"
         val url = storageService.store(path, file.inputStream, contentType)
-        logger.add("url", url)
 
         dao.save(PictureEntity(url.toString()))
     }
