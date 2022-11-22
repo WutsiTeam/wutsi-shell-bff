@@ -163,7 +163,6 @@ class SettingsV2ProductScreen(
                 header = getText("page.settings.catalog.product.button.more"),
                 expanded = Container(
                     padding = 20.0,
-                    margin = 20.0,
                     borderColor = Theme.COLOR_DANGER,
                     border = 1.0,
                     background = Theme.COLOR_DANGER_LIGHT,

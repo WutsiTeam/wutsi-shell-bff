@@ -296,7 +296,6 @@
                           "type": "Container",
                           "attributes": {
                             "padding": 20.0,
-                            "margin": 20.0,
                             "background": "#f8d7da",
                             "border": 1.0,
                             "borderColor": "#8B0000"
