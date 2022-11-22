@@ -82,51 +82,125 @@
                   "attributes": {
                     "alignment": "Center",
                     "padding": 2.0,
-                    "border": 1.0,
-                    "borderColor": "#e4edf7",
+                    "background": "#e4edf7",
+                    "borderColor": "#95A5A6",
                     "height": 150.0,
-                    "width": 150.0,
-                    "backgroundImageUrl": "https://img.com/3.png"
+                    "width": 150.0
                   },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "http://localhost:0/settings/2/catalog/picture?id=3&url=https%3A%2F%2Fimg.com%2F3.png"
-                  }
-                },
-                {
-                  "type": "Container",
-                  "attributes": {
-                    "alignment": "Center",
-                    "padding": 2.0,
-                    "border": 1.0,
-                    "borderColor": "#e4edf7",
-                    "height": 150.0,
-                    "width": 150.0,
-                    "backgroundImageUrl": "https://img.com/4.png"
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "http://localhost:0/settings/2/catalog/picture?id=4&url=https%3A%2F%2Fimg.com%2F4.png"
-                  }
-                },
-                {
-                  "type": "Container",
-                  "attributes": {
-                    "alignment": "Center",
-                    "padding": 2.0,
-                    "border": 1.0,
-                    "borderColor": "#e4edf7",
-                    "height": 150.0,
-                    "width": 150.0,
-                    "backgroundImageUrl": "https://img.com/5.png"
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "http://localhost:0/settings/2/catalog/picture?id=5&url=https%3A%2F%2Fimg.com%2F5.png"
-                  }
+                  "children": [
+                    {
+                      "type": "Button",
+                      "attributes": {
+                        "caption": "",
+                        "padding": 15.0,
+                        "type": "Text",
+                        "icon": "e758",
+                        "iconSize": 32.0,
+                        "iconColor": "#1D7EDF"
+                      },
+                      "children": [],
+                      "action": {
+                        "type": "Prompt",
+                        "url": "",
+                        "prompt": {
+                          "type": "Dialog",
+                          "attributes": {
+                            "type": "Alert",
+                            "title": "Add picture",
+                            "actions": [
+                              {
+                                "type": "Column",
+                                "attributes": {},
+                                "children": [
+                                  {
+                                    "type": "Container",
+                                    "attributes": {
+                                      "border": 1.0,
+                                      "borderColor": "#1D7EDF"
+                                    },
+                                    "children": [
+                                      {
+                                        "type": "Input",
+                                        "attributes": {
+                                          "name": "file",
+                                          "hideText": false,
+                                          "required": false,
+                                          "caption": "Take a picture",
+                                          "enabled": true,
+                                          "readOnly": false,
+                                          "type": "Image",
+                                          "minLength": 0,
+                                          "uploadUrl": "http://localhost:0/settings/2/catalog/product/upload?id=-1",
+                                          "imageSource": "Camera",
+                                          "imageMaxHeight": 512,
+                                          "imageMaxWidth": 512
+                                        },
+                                        "children": [],
+                                        "action": {
+                                          "type": "Route",
+                                          "url": "http://localhost:0/settings/2/catalog/product/upload?id=-1",
+                                          "replacement": true
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "Container",
+                                    "attributes": {
+                                      "padding": 10.0
+                                    },
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "Container",
+                                    "attributes": {
+                                      "border": 1.0,
+                                      "borderColor": "#1D7EDF"
+                                    },
+                                    "children": [
+                                      {
+                                        "type": "Input",
+                                        "attributes": {
+                                          "name": "file",
+                                          "hideText": false,
+                                          "required": false,
+                                          "caption": "Select a picture",
+                                          "enabled": true,
+                                          "readOnly": false,
+                                          "type": "Image",
+                                          "minLength": 0,
+                                          "uploadUrl": "http://localhost:0/settings/2/catalog/product/upload?id=-1",
+                                          "imageSource": "Gallery",
+                                          "imageMaxHeight": 512,
+                                          "imageMaxWidth": 512
+                                        },
+                                        "children": [],
+                                        "action": {
+                                          "type": "Route",
+                                          "url": "http://localhost:0/settings/2/catalog/product/upload?id=-1",
+                                          "replacement": true
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "Button",
+                                "attributes": {
+                                  "caption": "Cancel",
+                                  "padding": 15.0,
+                                  "type": "Text"
+                                },
+                                "children": []
+                              }
+                            ]
+                          },
+                          "children": []
+                        }
+                      }
+                    }
+                  ]
                 }
               ]
             }
@@ -141,15 +215,14 @@
             {
               "type": "Button",
               "attributes": {
-                "caption": "Share",
+                "caption": "Publish Now",
                 "padding": 15.0,
                 "type": "Elevated"
               },
               "children": [],
               "action": {
-                "type": "Share",
-                "url": "",
-                "message": "https://wutsi-web-test.herokuapp.com/product?id=-1"
+                "type": "Command",
+                "url": "http://localhost:0/settings/2/catalog/product/publish?id=-1"
               }
             }
           ]
@@ -306,34 +379,6 @@
                               "type": "Column",
                               "attributes": {},
                               "children": [
-                                {
-                                  "type": "Button",
-                                  "attributes": {
-                                    "caption": "Unpublish",
-                                    "padding": 15.0,
-                                    "type": "Elevated"
-                                  },
-                                  "children": [],
-                                  "action": {
-                                    "type": "Command",
-                                    "url": "http://localhost:0/settings/2/catalog/product/unpublish?id=-1",
-                                    "prompt": {
-                                      "type": "Dialog",
-                                      "attributes": {
-                                        "type": "Confirm",
-                                        "message": "Are you sure you want to unpublish the product?"
-                                      },
-                                      "children": []
-                                    }
-                                  }
-                                },
-                                {
-                                  "type": "Container",
-                                  "attributes": {
-                                    "padding": 10.0
-                                  },
-                                  "children": []
-                                },
                                 {
                                   "type": "Button",
                                   "attributes": {

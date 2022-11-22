@@ -57,10 +57,16 @@ object Fixtures {
         title = title
     )
 
-    fun createProductSummary(id: Long = -1, title: String = "Product", thumbnailUrl: String? = null) = ProductSummary(
+    fun createProductSummary(
+        id: Long = -1,
+        title: String = "Product",
+        thumbnailUrl: String? = null,
+        published: Boolean = true
+    ) = ProductSummary(
         id = id,
         title = title,
-        thumbnailUrl = thumbnailUrl
+        thumbnailUrl = thumbnailUrl,
+        status = if (published) "PUBLISHED" else "DRAFT"
     )
 
     fun createProduct(
@@ -70,7 +76,8 @@ object Fixtures {
         price: Long = 20000L,
         summary: String = "This is a summary",
         description: String = "This is a long description",
-        pictures: List<PictureSummary> = emptyList()
+        pictures: List<PictureSummary> = emptyList(),
+        published: Boolean = true
     ) = Product(
         id = id,
         title = title,
@@ -79,7 +86,8 @@ object Fixtures {
         summary = summary,
         description = description,
         thumbnail = if (pictures.isEmpty()) null else pictures[0],
-        pictures = pictures
+        pictures = pictures,
+        status = if (published) "PUBLISHED" else "DRAFT"
     )
 
     fun createPictureSummary(

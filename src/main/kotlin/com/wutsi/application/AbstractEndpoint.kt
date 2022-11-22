@@ -11,8 +11,10 @@ import com.wutsi.flutter.sdui.enums.ActionType.Prompt
 import com.wutsi.flutter.sdui.enums.ActionType.Route
 import com.wutsi.flutter.sdui.enums.DialogType
 import com.wutsi.flutter.sdui.enums.DialogType.Error
+import com.wutsi.platform.core.error.ErrorResponse
 import com.wutsi.platform.core.error.exception.WutsiException
 import com.wutsi.platform.core.logging.KVLogger
+import feign.FeignException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.MessageSource
@@ -50,11 +52,23 @@ abstract class AbstractEndpoint {
             prompt = Dialog(
                 title = getText("prompt.error.title"),
                 type = Error,
-                message = getText("message.error.unexpected-error")
+                message = getErrorMessage(ex)
             ).toWidget()
         )
         log(action, ex)
         return action
+    }
+
+    private fun getErrorMessage(ex: Throwable): String {
+        if (ex is FeignException) {
+            try {
+                val response = objectMapper.readValue(ex.contentUTF8(), ErrorResponse::class.java)
+                return getText(response.error.code)
+            } catch (e: Exception) {
+                // Ignore
+            }
+        }
+        return getText("message.error.unexpected-error")
     }
 
     protected fun createBottomNavigationBarWidget() = BottomNavigationBarWidget(
@@ -83,11 +97,18 @@ abstract class AbstractEndpoint {
     protected fun gotoOnboard(): Action =
         gotoUrl(url = urlBuilder.build(Page.getOnboardUrl()))
 
-    protected fun executeCommand(url: String, parameters: Map<String, String>? = null) = Action(
-        type = ActionType.Command,
-        url = url,
-        parameters = parameters
-    )
+    protected fun executeCommand(url: String, parameters: Map<String, String>? = null, confirm: String? = null) =
+        Action(
+            type = ActionType.Command,
+            url = url,
+            parameters = parameters,
+            prompt = confirm?.let {
+                Dialog(
+                    type = DialogType.Confirm,
+                    message = confirm
+                ).toWidget()
+            }
+        )
 
     protected fun gotoLogin(
         phoneNumber: String,

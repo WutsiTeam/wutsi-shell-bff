@@ -1,8 +1,8 @@
 package com.wutsi.application.marketplace.settings.catalog.picture.screen
 
+import com.wutsi.application.AbstractEndpoint
 import com.wutsi.application.Page
 import com.wutsi.application.shared.Theme
-import com.wutsi.application.store.endpoint.AbstractQuery
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/settings/2/catalog/picture")
 class SettingsV2ProductPictureScreen(
     private val marketplaceManagerApi: MarketplaceManagerApi
-) : AbstractQuery() {
+) : AbstractEndpoint() {
     @PostMapping
     fun index(
         @RequestParam id: Long,

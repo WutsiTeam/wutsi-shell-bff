@@ -62,7 +62,7 @@ wutsi:
     login-url: ${wutsi.application.server-url}
     chat-url: https://wutsi-chat-bff-${wutsi.application.env}.herokuapp.com
     news-url: https://wutsi-news-bff-${wutsi.application.env}.herokuapp.com
-
+    webapp-url: https://wutsi-web-test.herokuapp.com
   platform:
     cache:
       name: ${wutsi.application.name}

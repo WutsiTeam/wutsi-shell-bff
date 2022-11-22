@@ -1,11 +1,12 @@
 package com.wutsi.application.marketplace.settings.catalog.product.screen
 
+import com.wutsi.application.AbstractEndpoint
 import com.wutsi.application.Page
 import com.wutsi.application.shared.Theme
-import com.wutsi.application.store.endpoint.AbstractQuery
 import com.wutsi.application.widget.PictureListViewWidget
 import com.wutsi.application.widget.PictureWidget
 import com.wutsi.application.widget.UploadWidget
+import com.wutsi.ecommerce.catalog.entity.ProductStatus
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
@@ -13,6 +14,7 @@ import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Dialog
 import com.wutsi.flutter.sdui.Divider
+import com.wutsi.flutter.sdui.ExpandablePanel
 import com.wutsi.flutter.sdui.Flexible
 import com.wutsi.flutter.sdui.Icon
 import com.wutsi.flutter.sdui.ListItem
@@ -30,6 +32,7 @@ import com.wutsi.marketplace.manager.dto.PictureSummary
 import com.wutsi.marketplace.manager.dto.Product
 import com.wutsi.membership.manager.MembershipManagerApi
 import com.wutsi.membership.manager.dto.Member
+import com.wutsi.platform.core.messaging.UrlShortener
 import com.wutsi.platform.core.storage.StorageService
 import com.wutsi.regulation.RegulationEngine
 import org.springframework.beans.factory.annotation.Value
@@ -50,10 +53,12 @@ class SettingsV2ProductScreen(
     private val membershipManagerApi: MembershipManagerApi,
     private val regulationEngine: RegulationEngine,
     private val storageService: StorageService,
+    private val urlShortener: UrlShortener,
 
     @Value("\${wutsi.store.pictures.max-width}") private val pictureMaxWidth: Int,
-    @Value("\${wutsi.store.pictures.max-width}") private val pictureMaxHeight: Int
-) : AbstractQuery() {
+    @Value("\${wutsi.store.pictures.max-width}") private val pictureMaxHeight: Int,
+    @Value("\${wutsi.application.webapp-url}") private val webAppUrl: String,
+) : AbstractEndpoint() {
     @PostMapping
     fun index(
         @RequestParam id: Long,
@@ -84,6 +89,7 @@ class SettingsV2ProductScreen(
             crossAxisAlignment = CrossAxisAlignment.start,
             children = listOfNotNull(
                 toPictureListViewWidget(product),
+                toCTAWidget(product),
                 Divider(color = Theme.COLOR_DIVIDER),
                 Flexible(
                     flex = 10,
@@ -115,13 +121,84 @@ class SettingsV2ProductScreen(
                                 "page.settings.catalog.product.attribute.description",
                                 description(product.description),
                                 urlBuilder.build("${Page.getSettingsCatalogUrl()}/product/editor?name=description&id=${product.id}")
-                            )
+                            ),
+                            toDangerWidget(product)
                         )
                     )
                 )
             )
         )
     }
+
+    private fun toCTAWidget(product: Product): WidgetAware? =
+        if (product.status == ProductStatus.DRAFT.name) {
+            Container(
+                padding = 10.0,
+                child = Button(
+                    caption = getText("page.settings.catalog.product.button.publish"),
+                    action = executeCommand(
+                        url = urlBuilder.build("${Page.getSettingsCatalogUrl()}/product/publish?id=${product.id}")
+                    )
+                )
+            )
+        } else if (product.status == ProductStatus.PUBLISHED.name) {
+            Container(
+                padding = 10.0,
+                child = Button(
+                    caption = getText("page.settings.catalog.product.button.share"),
+                    action = Action(
+                        type = ActionType.Share,
+                        message = urlShortener.shorten("${webAppUrl}/product?id=${product.id}")
+                    )
+                )
+            )
+        } else {
+            null
+        }
+
+    private fun toDangerWidget(product: Product): WidgetAware =
+        Container(
+            padding = 10.0,
+            child = ExpandablePanel(
+                header = getText("page.settings.catalog.product.button.more"),
+                expanded = Container(
+                    padding = 20.0,
+                    margin = 20.0,
+                    borderColor = Theme.COLOR_DANGER,
+                    border = 1.0,
+                    background = Theme.COLOR_DANGER_LIGHT,
+                    child = Column(
+                        children = listOfNotNull(
+                            if (product.status == "PUBLISHED") {
+                                Button(
+                                    caption = getText("page.settings.catalog.product.button.unpublish"),
+                                    action = executeCommand(
+                                        url = urlBuilder.build("${Page.getSettingsCatalogUrl()}/product/unpublish?id=${product.id}"),
+                                        confirm = getText("page.settings.catalog.product.confirm-unpublish")
+                                    )
+                                )
+                            } else {
+                                null
+                            },
+
+                            if (product.status == "PUBLISHED") {
+                                Container(padding = 10.0)
+                            } else {
+                                null
+                            },
+
+                            Button(
+                                caption = getText("page.settings.catalog.product.button.delete"),
+                                action = executeCommand(
+                                    url = urlBuilder.build("${Page.getSettingsCatalogUrl()}/product/delete?id=${product.id}"),
+                                    confirm = getText("page.settings.catalog.product.confirm-delete")
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        )
 
     private fun toListItemWidget(caption: String, value: String?, url: String) = ListItem(
         caption = getText(caption),
@@ -227,5 +304,29 @@ class SettingsV2ProductScreen(
                 url = url.toString()
             )
         )
+    }
+
+    @PostMapping("/publish")
+    fun publish(@RequestParam id: Long): Action {
+        marketplaceManagerApi.publishProduct(id)
+        return gotoUrl(
+            url = urlBuilder.build("${Page.getSettingsCatalogUrl()}/product?id=$id"),
+            replacement = true
+        )
+    }
+
+    @PostMapping("/unpublish")
+    fun unpublish(@RequestParam id: Long): Action {
+        marketplaceManagerApi.unpublishProduct(id)
+        return gotoUrl(
+            url = urlBuilder.build("${Page.getSettingsCatalogUrl()}/product?id=$id"),
+            replacement = true
+        )
+    }
+
+    @PostMapping("/delete")
+    fun delete(@RequestParam id: Long): Action {
+        marketplaceManagerApi.deleteProduct(id)
+        return gotoPreviousScreen()
     }
 }

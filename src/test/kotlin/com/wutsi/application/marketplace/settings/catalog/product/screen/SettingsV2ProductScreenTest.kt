@@ -10,6 +10,8 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.AbstractSecuredEndpointTest
 import com.wutsi.application.Fixtures
 import com.wutsi.application.Page
+import com.wutsi.flutter.sdui.Action
+import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.marketplace.manager.dto.AddPictureRequest
 import com.wutsi.marketplace.manager.dto.GetProductResponse
 import com.wutsi.platform.core.storage.StorageService
@@ -18,7 +20,9 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.test.web.server.LocalServerPort
+import org.springframework.http.HttpStatus
 import java.net.URL
+import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 internal class SettingsV2ProductScreenTest : AbstractSecuredEndpointTest() {
@@ -37,13 +41,25 @@ internal class SettingsV2ProductScreenTest : AbstractSecuredEndpointTest() {
         "http://localhost:$port${Page.getSettingsCatalogUrl()}/product$action?id=$productId"
 
     @Test
-    fun index() {
+    fun draft() {
         val product = Fixtures.createProduct(
-            pictures = Fixtures.createPictureSummaryList(2)
+            pictures = Fixtures.createPictureSummaryList(2),
+            published = false
         )
         doReturn(GetProductResponse(product)).whenever(marketplaceManagerApi).getProduct(any())
 
-        assertEndpointEquals("/marketplace/settings/catalog/product/screens/product.json", url())
+        assertEndpointEquals("/marketplace/settings/catalog/product/screens/product-draft.json", url())
+    }
+
+    @Test
+    fun published() {
+        val product = Fixtures.createProduct(
+            pictures = Fixtures.createPictureSummaryList(2),
+            published = true
+        )
+        doReturn(GetProductResponse(product)).whenever(marketplaceManagerApi).getProduct(any())
+
+        assertEndpointEquals("/marketplace/settings/catalog/product/screens/product-published.json", url())
     }
 
     @Test
@@ -78,5 +94,50 @@ internal class SettingsV2ProductScreenTest : AbstractSecuredEndpointTest() {
                 url = fileUrl.toString()
             )
         )
+    }
+
+    @Test
+    fun publish() {
+        // WHEN
+        val response = rest.postForEntity(url("/publish"), null, Action::class.java)
+
+        // THEN
+        assertEquals(HttpStatus.OK, response.statusCode)
+
+        val action = response.body!!
+        assertEquals(ActionType.Route, action.type)
+        assertEquals("http://localhost:0/settings/2/catalog/product?id=123", action.url)
+
+        verify(marketplaceManagerApi).publishProduct(productId)
+    }
+
+    @Test
+    fun unpublish() {
+        // WHEN
+        val response = rest.postForEntity(url("/unpublish"), null, Action::class.java)
+
+        // THEN
+        assertEquals(HttpStatus.OK, response.statusCode)
+
+        val action = response.body!!
+        assertEquals(ActionType.Route, action.type)
+        assertEquals("http://localhost:0/settings/2/catalog/product?id=123", action.url)
+
+        verify(marketplaceManagerApi).unpublishProduct(productId)
+    }
+
+    @Test
+    fun delete() {
+        // WHEN
+        val response = rest.postForEntity(url("/delete"), null, Action::class.java)
+
+        // THEN
+        assertEquals(HttpStatus.OK, response.statusCode)
+
+        val action = response.body!!
+        assertEquals(ActionType.Route, action.type)
+        assertEquals("route:/..", action.url)
+
+        verify(marketplaceManagerApi).deleteProduct(productId)
     }
 }

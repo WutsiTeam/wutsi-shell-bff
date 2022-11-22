@@ -2,7 +2,9 @@ package com.wutsi.application.widget
 
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.shared.ui.CompositeWidgetAware
+import com.wutsi.ecommerce.catalog.entity.ProductStatus
 import com.wutsi.flutter.sdui.Action
+import com.wutsi.flutter.sdui.Chip
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Flexible
@@ -28,10 +30,11 @@ class ProductCardWidget(
     private val quantity: Int? = null,
     private val pictureUrl: String? = null,
     private val action: Action? = null,
+    private val status: String? = null,
     private val messages: MessageSource
 ) : CompositeWidgetAware() {
     companion object {
-        const val PICTURE_HEIGHT = 120.0
+        const val PICTURE_HEIGHT = 150.0
         const val PICTURE_WIDTH = 50.0
 
         fun of(product: ProductSummary, country: Country, action: Action, messages: MessageSource) = ProductCardWidget(
@@ -41,7 +44,8 @@ class ProductCardWidget(
             quantity = product.quantity,
             pictureUrl = product.thumbnailUrl,
             action = action,
-            messages = messages
+            messages = messages,
+            status = product.status
         )
     }
 
@@ -69,8 +73,8 @@ class ProductCardWidget(
                         height = PICTURE_HEIGHT,
                         child = Stack(
                             children = listOfNotNull(
-                                toDescriptionSection(title, quantity),
-                                toPriceSection(price, country)
+                                toDescriptionSection(),
+                                toPriceSection()
                             )
                         )
                     )
@@ -79,7 +83,7 @@ class ProductCardWidget(
         )
     )
 
-    private fun toDescriptionSection(title: String, quantity: Int? = null): WidgetAware =
+    private fun toDescriptionSection(): WidgetAware =
         Container(
             alignment = Alignment.TopLeft,
             child = Column(
@@ -110,19 +114,34 @@ class ProductCardWidget(
             )
         )
 
-    private fun toPriceSection(price: Long?, country: Country): WidgetAware? =
+    private fun toPriceSection(): WidgetAware? =
         price?.let {
             Positioned(
                 bottom = 10.0,
                 right = 10.0,
-                child = MoneyText(
-                    color = Theme.COLOR_PRIMARY,
-                    value = it.toDouble(),
-                    currency = country.currencySymbol,
-                    numberFormat = country.monetaryFormat,
-                    valueFontSize = Theme.TEXT_SIZE_DEFAULT,
-                    currencyFontSize = Theme.TEXT_SIZE_SMALL,
-                    bold = true
+                child = Column(
+                    children = listOfNotNull(
+                        if (status == ProductStatus.DRAFT.name) {
+                            Chip(
+                                color = Theme.COLOR_WHITE,
+                                backgroundColor = Theme.COLOR_GRAY,
+                                caption = getText("widget.product-card.draft"),
+                                fontSize = Theme.TEXT_SIZE_SMALL,
+                                padding = 2.0
+                            )
+                        } else {
+                            null
+                        },
+                        MoneyText(
+                            color = Theme.COLOR_PRIMARY,
+                            value = it.toDouble(),
+                            currency = country.currencySymbol,
+                            numberFormat = country.monetaryFormat,
+                            valueFontSize = Theme.TEXT_SIZE_DEFAULT,
+                            currencyFontSize = Theme.TEXT_SIZE_SMALL,
+                            bold = true
+                        )
+                    )
                 )
             )
         }

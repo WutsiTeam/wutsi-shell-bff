@@ -1,7 +1,7 @@
 package com.wutsi.application.marketplace.settings.store.screen
 
+import com.wutsi.application.AbstractEndpoint
 import com.wutsi.application.Page
-import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.flutter.sdui.PageView
 import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Widget
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/settings/2/store")
-class SettingsV2StoreScreen : AbstractQuery() {
+class SettingsV2StoreScreen : AbstractEndpoint() {
     companion object {
         private val PAGE_URLS = listOf(
             "${Page.getSettingsStoreUrl()}/pages/start",
