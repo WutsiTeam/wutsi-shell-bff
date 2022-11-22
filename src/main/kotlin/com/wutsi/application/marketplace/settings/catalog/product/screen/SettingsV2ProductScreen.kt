@@ -57,7 +57,7 @@ class SettingsV2ProductScreen(
 
     @Value("\${wutsi.store.pictures.max-width}") private val pictureMaxWidth: Int,
     @Value("\${wutsi.store.pictures.max-width}") private val pictureMaxHeight: Int,
-    @Value("\${wutsi.application.webapp-url}") private val webAppUrl: String,
+    @Value("\${wutsi.application.webapp-url}") private val webAppUrl: String
 ) : AbstractEndpoint() {
     @PostMapping
     fun index(
@@ -148,7 +148,7 @@ class SettingsV2ProductScreen(
                     caption = getText("page.settings.catalog.product.button.share"),
                     action = Action(
                         type = ActionType.Share,
-                        message = urlShortener.shorten("${webAppUrl}/product?id=${product.id}")
+                        message = urlShortener.shorten("$webAppUrl/product?id=${product.id}")
                     )
                 )
             )

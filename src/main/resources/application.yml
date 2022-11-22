@@ -34,22 +34,6 @@ spring:
       ACCEPT_CASE_INSENSITIVE_PROPERTIES: true
     default-property-inclusion: non_null
 
-  mail:
-    default-encoding: UTF-8
-    host: localhost
-    port: 2525
-    username: username
-    password: secret
-    properties:
-      mail:
-        debug: true
-        smtp:
-          from: no-reply@wutsi.com
-          auth: true
-          starttls:
-            enable: true
-    test-connection: false
-
 wutsi:
   application:
     env: test
@@ -69,6 +53,9 @@ wutsi:
       type: local
     image:
       type: none
+    messaging:
+      url-shortener:
+        type: none
     security:
       type: jwt
       api-key: "d779ed54-dadf-11ec-94e8-127037cd15a7"
