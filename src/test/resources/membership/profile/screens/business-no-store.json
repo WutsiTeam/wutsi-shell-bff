@@ -271,6 +271,74 @@
                           ]
                         }
                       ]
+                    },
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "alignment": "Center"
+                      },
+                      "children": [
+                        {
+                          "type": "Column",
+                          "attributes": {
+                            "mainAxisAlignment": "center",
+                            "crossAxisAlignment": "center"
+                          },
+                          "children": [
+                            {
+                              "type": "CircleAvatar",
+                              "attributes": {
+                                "radius": 24.0,
+                                "backgroundColor": "#1D7EDF"
+                              },
+                              "children": [
+                                {
+                                  "type": "CircleAvatar",
+                                  "attributes": {
+                                    "radius": 23.0,
+                                    "backgroundColor": "#FFFFFF"
+                                  },
+                                  "children": [
+                                    {
+                                      "type": "Icon",
+                                      "attributes": {
+                                        "code": "ea47",
+                                        "size": 20.0
+                                      },
+                                      "children": []
+                                    }
+                                  ],
+                                  "action": {
+                                    "type": "Share",
+                                    "url": "https://wutsi-web-test.herokuapp.com/u/1000"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "type": "Container",
+                              "attributes": {
+                                "padding": 5.0
+                              },
+                              "children": [
+                                {
+                                  "type": "Text",
+                                  "attributes": {
+                                    "caption": "SHARE",
+                                    "color": "#1D7EDF",
+                                    "bold": true
+                                  },
+                                  "children": []
+                                }
+                              ],
+                              "action": {
+                                "type": "Share",
+                                "url": "https://wutsi-web-test.herokuapp.com/u/1000"
+                              }
+                            }
+                          ]
+                        }
+                      ]
                     }
                   ]
                 }

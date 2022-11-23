@@ -33,11 +33,7 @@ import com.wutsi.marketplace.manager.dto.ProductSummary
 import com.wutsi.marketplace.manager.dto.SearchProductRequest
 import com.wutsi.membership.manager.MembershipManagerApi
 import com.wutsi.membership.manager.dto.Member
-import com.wutsi.platform.core.image.AspectRatio
-import com.wutsi.platform.core.image.Dimension
-import com.wutsi.platform.core.image.Focus
 import com.wutsi.platform.core.image.ImageService
-import com.wutsi.platform.core.image.Transformation
 import com.wutsi.regulation.RegulationEngine
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -134,7 +130,8 @@ class ProfileV2Screen(
                     Divider(color = Theme.COLOR_DIVIDER),
                     BusinessToolbarWidget.of(
                         member = member,
-                        storeAction = gotoStore(member)
+                        storeAction = gotoStore(member),
+                        webappUrl = webappUrl
                     ),
                     toOffersWidget(member),
                     toSocialWidget(member)
@@ -149,6 +146,10 @@ class ProfileV2Screen(
             )
         )
     }
+
+    private fun toStoreTab(member: Member) = DynamicWidget(
+        url = urlBuilder.build("${Page.getCatalogUrl()}/fragment?id=${member.id}")
+    )
 
     private fun toOffersWidget(member: Member): WidgetAware? {
         if (member.storeId == null) {
@@ -172,9 +173,8 @@ class ProfileV2Screen(
                 Divider(color = Theme.COLOR_DIVIDER),
                 GridWidget(
                     children = offers
-                        .map { it.copy(thumbnailUrl = resize(it.thumbnailUrl)) }
-                        .map { OfferWidget.of(it, country, gotoOffer(it)) },
-                    productsPerRow = 2
+                        .map { OfferWidget.of(it, country, gotoOffer(it), imageService) },
+                    columns = 2
                 ),
                 Container(
                     padding = 10.0,
@@ -199,7 +199,8 @@ class ProfileV2Screen(
             ),
             toSocialIcon(member.youtubeId, "https://www.youtube.com/@", "$assertUrl/images/social/youtube.png"),
             toSocialIcon(member.facebookId, "https://www.facebook.com/", "$assertUrl/images/social/facebook.png"),
-            toSocialIcon(member.twitterId, "https://www.twitter.com/", "$assertUrl/images/social/twitter.png")
+            toSocialIcon(member.twitterId, "https://www.twitter.com/", "$assertUrl/images/social/twitter.png"),
+            toSocialIcon(member.website, "", "$assertUrl/images/social/website.png")
         )
         if (children.isEmpty()) {
             return null
@@ -236,34 +237,15 @@ class ProfileV2Screen(
             )
         }
 
-    private fun toStoreTab(member: Member) = DynamicWidget(
-        url = urlBuilder.build("", "${Page.getCatalogUrl()}/widget?id=${member.id}")
-    )
-
     private fun hasStore(user: Member): Boolean =
         user.active && user.business && (user.storeId != null)
 
     private fun gotoStore(member: Member) = gotoUrl(
-        url = urlBuilder.build("${Page.getProfileUrl()}?tab=store"),
+        url = urlBuilder.build("${Page.getProfileUrl()}?id=${member.id}&tab=store"),
         replacement = true
     )
 
     private fun gotoOffer(product: ProductSummary) = gotoUrl(
         url = urlBuilder.build("${Page.getProductUrl()}?id=${product.id}")
     )
-
-    private fun resize(url: String?): String? =
-        url?.let {
-            imageService.transform(
-                it,
-                Transformation(
-                    focus = Focus.AUTO,
-                    dimension = Dimension(height = OfferWidget.PICTURE_HEIGHT.toInt()),
-                    aspectRatio = AspectRatio(
-                        width = OfferWidget.PICTURE_ASPECT_RATIO_WIDTH.toInt(),
-                        height = OfferWidget.PICTURE_ASPECT_RATIO_HEIGHT.toInt()
-                    )
-                )
-            )
-        }
 }

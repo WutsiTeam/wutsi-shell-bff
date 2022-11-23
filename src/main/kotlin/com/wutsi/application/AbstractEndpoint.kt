@@ -41,6 +41,9 @@ abstract class AbstractEndpoint {
     @Value("\${wutsi.application.asset-url}")
     protected lateinit var assertUrl: String
 
+    @Value("\${wutsi.application.webapp-url}")
+    protected lateinit var webappUrl: String
+
     fun getLogoUrl() = "$assertUrl/logo/wutsi.png"
 
     fun getNoPictureUrl() = "$assertUrl/images/nopicture.png"

@@ -273,8 +273,7 @@ class SettingsV2ProductScreen(
                 action = gotoUrl(
                     url = urlBuilder.build("${Page.getSettingsCatalogUrl()}/product/upload?id=${product.id}"),
                     replacement = true
-                ),
-                messages = messages
+                )
             ),
             Button(
                 type = ButtonType.Text,

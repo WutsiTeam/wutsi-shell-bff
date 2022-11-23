@@ -19,6 +19,10 @@ import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.TextOverflow
 import com.wutsi.marketplace.manager.dto.ProductSummary
+import com.wutsi.platform.core.image.Dimension
+import com.wutsi.platform.core.image.Focus
+import com.wutsi.platform.core.image.ImageService
+import com.wutsi.platform.core.image.Transformation
 import com.wutsi.regulation.Country
 
 class ProductWidget(
@@ -28,20 +32,22 @@ class ProductWidget(
     private val quantity: Int? = null,
     private val pictureUrl: String? = null,
     private val action: Action? = null,
-    private val status: String? = null
+    private val status: String? = null,
+    private val imageService: ImageService
 ) : CompositeWidgetAware() {
     companion object {
-        const val PICTURE_HEIGHT = 150.0
-        const val PICTURE_WIDTH = 50.0
+        private const val PICTURE_HEIGHT = 150.0
+        private const val PICTURE_WIDTH = 50.0
 
-        fun of(product: ProductSummary, country: Country, action: Action) = ProductWidget(
+        fun of(product: ProductSummary, country: Country, action: Action, imageService: ImageService) = ProductWidget(
             title = product.title,
             price = product.price,
             country = country,
             quantity = product.quantity,
             pictureUrl = product.thumbnailUrl,
             action = action,
-            status = product.status
+            status = product.status,
+            imageService = imageService
         )
     }
 
@@ -56,12 +62,14 @@ class ProductWidget(
             children = listOf(
                 Flexible(
                     flex = 1,
-                    child = PictureWidget(
-                        url = pictureUrl ?: "",
-                        border = 1.0,
-                        height = PICTURE_HEIGHT,
-                        width = PICTURE_WIDTH
-                    )
+                    child = pictureUrl?.let {
+                        PictureWidget(
+                            url = resize(it),
+                            border = 1.0,
+                            height = PICTURE_HEIGHT,
+                            width = PICTURE_WIDTH
+                        )
+                    }
                 ),
                 Flexible(
                     flex = 3,
@@ -144,4 +152,13 @@ class ProductWidget(
 
     private fun getText(key: String, args: Array<Any> = emptyArray()): String =
         WidgetL10n.getText(key, args)
+
+    private fun resize(url: String): String =
+        imageService.transform(
+            url,
+            Transformation(
+                focus = Focus.AUTO,
+                dimension = Dimension(height = PICTURE_HEIGHT.toInt())
+            )
+        )
 }

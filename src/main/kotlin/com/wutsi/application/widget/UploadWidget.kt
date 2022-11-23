@@ -9,16 +9,13 @@ import com.wutsi.flutter.sdui.Input
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.ImageSource
 import com.wutsi.flutter.sdui.enums.InputType
-import org.springframework.context.MessageSource
-import org.springframework.context.i18n.LocaleContextHolder
 
 class UploadWidget(
     private val name: String = "file",
     private val uploadUrl: String,
     private val action: Action? = null,
     private val imageMaxWidth: Int? = null,
-    private val imageMaxHeight: Int? = null,
-    private val messages: MessageSource
+    private val imageMaxHeight: Int? = null
 ) : CompositeWidgetAware() {
     override fun toWidgetAware(): WidgetAware =
         Column(
@@ -27,7 +24,7 @@ class UploadWidget(
                     borderColor = Theme.COLOR_PRIMARY,
                     border = 1.0,
                     child = Input(
-                        name = "file",
+                        name = name,
                         uploadUrl = uploadUrl,
                         type = InputType.Image,
                         imageSource = ImageSource.Camera,
@@ -42,7 +39,7 @@ class UploadWidget(
                     borderColor = Theme.COLOR_PRIMARY,
                     border = 1.0,
                     child = Input(
-                        name = "file",
+                        name = name,
                         uploadUrl = uploadUrl,
                         type = InputType.Image,
                         imageSource = ImageSource.Gallery,
@@ -55,6 +52,6 @@ class UploadWidget(
             )
         )
 
-    private fun getText(key: String, args: Array<Any?> = emptyArray()): String =
-        messages.getMessage(key, args, LocaleContextHolder.getLocale())
+    private fun getText(key: String, args: Array<Any> = emptyArray()): String =
+        WidgetL10n.getText(key, args)
 }

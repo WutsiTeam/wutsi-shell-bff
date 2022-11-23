@@ -36,7 +36,7 @@ internal class ProfileV2ScreenTest : AbstractSecuredEndpointTest() {
 
     @Test
     fun businessNoStore() {
-        val business = Fixtures.createMember(business = true, storeId = null)
+        val business = Fixtures.createMember(id = MEMBER_ID, business = true, storeId = null)
         doReturn(GetMemberResponse(business)).whenever(membershipManagerApi).getMember()
 
         assertEndpointEquals("/membership/profile/screens/business-no-store.json", url())

@@ -21,16 +21,16 @@ class BusinessToolbarWidget(
     private val phoneNumber: String? = null,
     private val storeId: Long? = null,
     private val storeAction: Action? = null,
-    private val websiteUrl: String? = null,
-    private val whatsapp: Boolean = false
+    private val whatsapp: Boolean = false,
+    private val shareUrl: String? = null
 ) : CompositeWidgetAware() {
     companion object {
-        fun of(member: Member, storeAction: Action?) = BusinessToolbarWidget(
+        fun of(member: Member, webappUrl: String, storeAction: Action?) = BusinessToolbarWidget(
             phoneNumber = member.phoneNumber,
             storeId = member.storeId,
             storeAction = storeAction,
-            websiteUrl = member.website,
-            whatsapp = member.whatsapp
+            whatsapp = member.whatsapp,
+            shareUrl = "$webappUrl/u/${member.id}"
         )
     }
 
@@ -70,12 +70,12 @@ class BusinessToolbarWidget(
                 } else {
                     null
                 },
-                websiteUrl?.let {
+                shareUrl?.let {
                     toIconButton(
-                        icon = Theme.ICON_LINK,
-                        caption = getText("widget.business-toolbar.website"),
+                        icon = Theme.ICON_SHARE,
+                        caption = getText("widget.business-toolbar.share"),
                         action = Action(
-                            type = ActionType.Navigate,
+                            type = ActionType.Share,
                             url = it
                         )
                     )

@@ -1,0 +1,366 @@
+{
+  "type": "SingleChildScrollView",
+  "attributes": {},
+  "children": [
+    {
+      "type": "Column",
+      "attributes": {
+        "mainAxisAlignment": "start",
+        "crossAxisAlignment": "start"
+      },
+      "children": [
+        {
+          "type": "Container",
+          "attributes": {
+            "padding": 10.0
+          },
+          "children": [
+            {
+              "type": "Text",
+              "attributes": {
+                "caption": "4 product(s)"
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "type": "Divider",
+          "attributes": {
+            "color": "#8c8c8c"
+          },
+          "children": []
+        },
+        {
+          "type": "Column",
+          "attributes": {
+            "mainAxisAlignment": "start",
+            "crossAxisAlignment": "start"
+          },
+          "children": [
+            {
+              "type": "Row",
+              "attributes": {
+                "mainAxisAlignment": "start",
+                "mainAxisSize": "min",
+                "crossAxisAlignment": "start"
+              },
+              "children": [
+                {
+                  "type": "Flexible",
+                  "attributes": {
+                    "flex": 1,
+                    "fit": "Tight"
+                  },
+                  "children": [
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "margin": 10.0
+                      },
+                      "children": [
+                        {
+                          "type": "Column",
+                          "attributes": {
+                            "mainAxisAlignment": "start",
+                            "crossAxisAlignment": "start"
+                          },
+                          "children": [
+                            {
+                              "type": "Column",
+                              "attributes": {
+                                "mainAxisAlignment": "start",
+                                "crossAxisAlignment": "start"
+                              },
+                              "children": [
+                                {
+                                  "type": "Container",
+                                  "attributes": {
+                                    "padding": 5.0
+                                  },
+                                  "children": []
+                                },
+                                {
+                                  "type": "Text",
+                                  "attributes": {
+                                    "caption": "Product",
+                                    "bold": true,
+                                    "overflow": "Elipsis",
+                                    "maxLines": 2
+                                  },
+                                  "children": []
+                                },
+                                {
+                                  "type": "Container",
+                                  "attributes": {
+                                    "padding": 5.0
+                                  },
+                                  "children": []
+                                },
+                                {
+                                  "type": "MoneyText",
+                                  "attributes": {
+                                    "value": 15000.0,
+                                    "color": "#1D7EDF",
+                                    "currency": "FCFA",
+                                    "numberFormat": "#,###,##0 FCFA",
+                                    "valueFontSize": 14.0,
+                                    "currencyFontSize": 10.0
+                                  },
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ],
+                      "action": {
+                        "type": "Route",
+                        "url": "http://localhost:0/product/2?id=1"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "Flexible",
+                  "attributes": {
+                    "flex": 1,
+                    "fit": "Tight"
+                  },
+                  "children": [
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "margin": 10.0
+                      },
+                      "children": [
+                        {
+                          "type": "Column",
+                          "attributes": {
+                            "mainAxisAlignment": "start",
+                            "crossAxisAlignment": "start"
+                          },
+                          "children": [
+                            {
+                              "type": "Column",
+                              "attributes": {
+                                "mainAxisAlignment": "start",
+                                "crossAxisAlignment": "start"
+                              },
+                              "children": [
+                                {
+                                  "type": "Container",
+                                  "attributes": {
+                                    "padding": 5.0
+                                  },
+                                  "children": []
+                                },
+                                {
+                                  "type": "Text",
+                                  "attributes": {
+                                    "caption": "Product",
+                                    "bold": true,
+                                    "overflow": "Elipsis",
+                                    "maxLines": 2
+                                  },
+                                  "children": []
+                                },
+                                {
+                                  "type": "Container",
+                                  "attributes": {
+                                    "padding": 5.0
+                                  },
+                                  "children": []
+                                },
+                                {
+                                  "type": "MoneyText",
+                                  "attributes": {
+                                    "value": 15000.0,
+                                    "color": "#1D7EDF",
+                                    "currency": "FCFA",
+                                    "numberFormat": "#,###,##0 FCFA",
+                                    "valueFontSize": 14.0,
+                                    "currencyFontSize": 10.0
+                                  },
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ],
+                      "action": {
+                        "type": "Route",
+                        "url": "http://localhost:0/product/2?id=2"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Row",
+              "attributes": {
+                "mainAxisAlignment": "start",
+                "mainAxisSize": "min",
+                "crossAxisAlignment": "start"
+              },
+              "children": [
+                {
+                  "type": "Flexible",
+                  "attributes": {
+                    "flex": 1,
+                    "fit": "Tight"
+                  },
+                  "children": [
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "margin": 10.0
+                      },
+                      "children": [
+                        {
+                          "type": "Column",
+                          "attributes": {
+                            "mainAxisAlignment": "start",
+                            "crossAxisAlignment": "start"
+                          },
+                          "children": [
+                            {
+                              "type": "Column",
+                              "attributes": {
+                                "mainAxisAlignment": "start",
+                                "crossAxisAlignment": "start"
+                              },
+                              "children": [
+                                {
+                                  "type": "Container",
+                                  "attributes": {
+                                    "padding": 5.0
+                                  },
+                                  "children": []
+                                },
+                                {
+                                  "type": "Text",
+                                  "attributes": {
+                                    "caption": "Product",
+                                    "bold": true,
+                                    "overflow": "Elipsis",
+                                    "maxLines": 2
+                                  },
+                                  "children": []
+                                },
+                                {
+                                  "type": "Container",
+                                  "attributes": {
+                                    "padding": 5.0
+                                  },
+                                  "children": []
+                                },
+                                {
+                                  "type": "MoneyText",
+                                  "attributes": {
+                                    "value": 15000.0,
+                                    "color": "#1D7EDF",
+                                    "currency": "FCFA",
+                                    "numberFormat": "#,###,##0 FCFA",
+                                    "valueFontSize": 14.0,
+                                    "currencyFontSize": 10.0
+                                  },
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ],
+                      "action": {
+                        "type": "Route",
+                        "url": "http://localhost:0/product/2?id=3"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "Flexible",
+                  "attributes": {
+                    "flex": 1,
+                    "fit": "Tight"
+                  },
+                  "children": [
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "margin": 10.0
+                      },
+                      "children": [
+                        {
+                          "type": "Column",
+                          "attributes": {
+                            "mainAxisAlignment": "start",
+                            "crossAxisAlignment": "start"
+                          },
+                          "children": [
+                            {
+                              "type": "Column",
+                              "attributes": {
+                                "mainAxisAlignment": "start",
+                                "crossAxisAlignment": "start"
+                              },
+                              "children": [
+                                {
+                                  "type": "Container",
+                                  "attributes": {
+                                    "padding": 5.0
+                                  },
+                                  "children": []
+                                },
+                                {
+                                  "type": "Text",
+                                  "attributes": {
+                                    "caption": "Product",
+                                    "bold": true,
+                                    "overflow": "Elipsis",
+                                    "maxLines": 2
+                                  },
+                                  "children": []
+                                },
+                                {
+                                  "type": "Container",
+                                  "attributes": {
+                                    "padding": 5.0
+                                  },
+                                  "children": []
+                                },
+                                {
+                                  "type": "MoneyText",
+                                  "attributes": {
+                                    "value": 15000.0,
+                                    "color": "#1D7EDF",
+                                    "currency": "FCFA",
+                                    "numberFormat": "#,###,##0 FCFA",
+                                    "valueFontSize": 14.0,
+                                    "currencyFontSize": 10.0
+                                  },
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ],
+                      "action": {
+                        "type": "Route",
+                        "url": "http://localhost:0/product/2?id=4"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

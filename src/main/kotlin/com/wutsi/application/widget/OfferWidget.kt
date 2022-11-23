@@ -19,6 +19,10 @@ import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.TextOverflow
 import com.wutsi.marketplace.manager.dto.Product
 import com.wutsi.marketplace.manager.dto.ProductSummary
+import com.wutsi.platform.core.image.Dimension
+import com.wutsi.platform.core.image.Focus
+import com.wutsi.platform.core.image.ImageService
+import com.wutsi.platform.core.image.Transformation
 import com.wutsi.regulation.Country
 
 class OfferWidget(
@@ -27,27 +31,30 @@ class OfferWidget(
     private val country: Country,
     private val thumbnailUrl: String?,
     private val action: Action,
-    private val margin: Double = 10.0
+    private val margin: Double = 10.0,
+    private val imageService: ImageService
 ) : CompositeWidgetAware() {
     companion object {
-        const val PICTURE_HEIGHT = 150.0
-        const val PICTURE_ASPECT_RATIO_WIDTH = 4.0
-        const val PICTURE_ASPECT_RATIO_HEIGHT = 4.0
+        private const val PICTURE_HEIGHT = 150.0
+        private const val PICTURE_ASPECT_RATIO_WIDTH = 4.0
+        private const val PICTURE_ASPECT_RATIO_HEIGHT = 4.0
 
-        fun of(product: Product, country: Country, action: Action) = OfferWidget(
+        fun of(product: Product, country: Country, action: Action, imageService: ImageService) = OfferWidget(
             title = product.title,
             price = product.price,
             country = country,
             thumbnailUrl = product.thumbnail?.url,
-            action = action
+            action = action,
+            imageService = imageService
         )
 
-        fun of(product: ProductSummary, country: Country, action: Action) = OfferWidget(
+        fun of(product: ProductSummary, country: Country, action: Action, imageService: ImageService) = OfferWidget(
             title = product.title,
             price = product.price,
             country = country,
             thumbnailUrl = product.thumbnailUrl,
-            action = action
+            action = action,
+            imageService = imageService
         )
     }
 
@@ -76,7 +83,7 @@ class OfferWidget(
                         background = Theme.COLOR_GRAY_LIGHT,
                         borderColor = Theme.COLOR_GRAY,
                         child = Image(
-                            url = it,
+                            url = resize(it),
                             fit = BoxFit.fitHeight
                         )
                     )
@@ -110,5 +117,18 @@ class OfferWidget(
             numberFormat = country.monetaryFormat,
             valueFontSize = Theme.TEXT_SIZE_DEFAULT,
             currencyFontSize = Theme.TEXT_SIZE_SMALL
+        )
+
+    private fun resize(url: String): String =
+        imageService.transform(
+            url,
+            Transformation(
+                focus = Focus.AUTO,
+                dimension = Dimension(height = PICTURE_HEIGHT.toInt()),
+                aspectRatio = com.wutsi.platform.core.image.AspectRatio(
+                    width = PICTURE_ASPECT_RATIO_WIDTH.toInt(),
+                    height = PICTURE_ASPECT_RATIO_HEIGHT.toInt()
+                )
+            )
         )
 }

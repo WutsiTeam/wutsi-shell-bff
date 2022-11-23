@@ -19,11 +19,7 @@ import com.wutsi.flutter.sdui.enums.TextAlignment
 import com.wutsi.marketplace.manager.MarketplaceManagerApi
 import com.wutsi.marketplace.manager.dto.SearchProductRequest
 import com.wutsi.membership.manager.MembershipManagerApi
-import com.wutsi.platform.core.image.AspectRatio
-import com.wutsi.platform.core.image.Dimension
-import com.wutsi.platform.core.image.Focus
 import com.wutsi.platform.core.image.ImageService
-import com.wutsi.platform.core.image.Transformation
 import com.wutsi.regulation.RegulationEngine
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -82,13 +78,16 @@ class SettingsV2CatalogScreen(
                         child = ListView(
                             children = products.map {
                                 ProductWidget.of(
-                                    product = it.copy(
-                                        thumbnailUrl = resize(it.thumbnailUrl) ?: getNoPictureUrl()
-                                    ),
+                                    product = if (it.thumbnailUrl == null) {
+                                        it.copy(thumbnailUrl = getNoPictureUrl())
+                                    } else {
+                                        it
+                                    },
                                     country = regulationEngine.country(member.country),
                                     action = gotoUrl(
                                         url = urlBuilder.build("/settings/2/catalog/product?id=${it.id}")
-                                    )
+                                    ),
+                                    imageService = imageService
                                 )
                             }
                         )
@@ -97,19 +96,4 @@ class SettingsV2CatalogScreen(
             )
         ).toWidget()
     }
-
-    private fun resize(url: String?): String? =
-        url?.let {
-            imageService.transform(
-                it,
-                Transformation(
-                    focus = Focus.AUTO,
-                    aspectRatio = AspectRatio(
-                        ProductWidget.PICTURE_WIDTH.toInt(),
-                        ProductWidget.PICTURE_HEIGHT.toInt()
-                    ),
-                    dimension = Dimension(height = ProductWidget.PICTURE_HEIGHT.toInt())
-                )
-            )
-        }
 }

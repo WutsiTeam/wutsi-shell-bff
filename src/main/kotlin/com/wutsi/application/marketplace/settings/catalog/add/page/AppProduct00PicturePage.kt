@@ -42,8 +42,7 @@ class AppProduct00PicturePage(
                 uploadUrl = urlBuilder.build("/settings/2/catalog/add/pages/picture/upload"),
                 imageMaxWidth = pictureMaxWidth,
                 imageMaxHeight = pictureMaxHeight,
-                action = gotoNextPage(),
-                messages = messages
+                action = gotoNextPage()
             )
         )
 

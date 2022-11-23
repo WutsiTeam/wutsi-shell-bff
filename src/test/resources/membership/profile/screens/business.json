@@ -252,7 +252,7 @@
                                           ],
                                           "action": {
                                             "type": "Route",
-                                            "url": "http://localhost:0/profile/2?tab=store",
+                                            "url": "http://localhost:0/profile/2?id=-1&tab=store",
                                             "replacement": true
                                           }
                                         }
@@ -276,7 +276,7 @@
                                       ],
                                       "action": {
                                         "type": "Route",
-                                        "url": "http://localhost:0/profile/2?tab=store",
+                                        "url": "http://localhost:0/profile/2?id=-1&tab=store",
                                         "replacement": true
                                       }
                                     }
@@ -346,6 +346,74 @@
                                       "action": {
                                         "type": "Navigate",
                                         "url": "tel:+237670000010"
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "Container",
+                              "attributes": {
+                                "alignment": "Center"
+                              },
+                              "children": [
+                                {
+                                  "type": "Column",
+                                  "attributes": {
+                                    "mainAxisAlignment": "center",
+                                    "crossAxisAlignment": "center"
+                                  },
+                                  "children": [
+                                    {
+                                      "type": "CircleAvatar",
+                                      "attributes": {
+                                        "radius": 24.0,
+                                        "backgroundColor": "#1D7EDF"
+                                      },
+                                      "children": [
+                                        {
+                                          "type": "CircleAvatar",
+                                          "attributes": {
+                                            "radius": 23.0,
+                                            "backgroundColor": "#FFFFFF"
+                                          },
+                                          "children": [
+                                            {
+                                              "type": "Icon",
+                                              "attributes": {
+                                                "code": "ea47",
+                                                "size": 20.0
+                                              },
+                                              "children": []
+                                            }
+                                          ],
+                                          "action": {
+                                            "type": "Share",
+                                            "url": "https://wutsi-web-test.herokuapp.com/u/-1"
+                                          }
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "Container",
+                                      "attributes": {
+                                        "padding": 5.0
+                                      },
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "attributes": {
+                                            "caption": "SHARE",
+                                            "color": "#1D7EDF",
+                                            "bold": true
+                                          },
+                                          "children": []
+                                        }
+                                      ],
+                                      "action": {
+                                        "type": "Share",
+                                        "url": "https://wutsi-web-test.herokuapp.com/u/-1"
                                       }
                                     }
                                   ]
@@ -552,7 +620,7 @@
                               "children": [],
                               "action": {
                                 "type": "Route",
-                                "url": "http://localhost:0/profile/2?tab=store",
+                                "url": "http://localhost:0/profile/2?id=-1&tab=store",
                                 "replacement": true
                               }
                             }
@@ -567,7 +635,7 @@
             {
               "type": "DynamicWidget",
               "attributes": {
-                "url": "/catalog/2/widget?id=-1"
+                "url": "http://localhost:0/catalog/2/fragment?id=-1"
               },
               "children": []
             }

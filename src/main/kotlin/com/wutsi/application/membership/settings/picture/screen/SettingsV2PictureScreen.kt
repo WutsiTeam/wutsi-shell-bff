@@ -72,8 +72,7 @@ class SettingsV2PictureScreen(
                             uploadUrl = urlBuilder.build("${Page.getSettingsUrl()}/picture/upload"),
                             imageMaxWidth = 512,
                             imageMaxHeight = 512,
-                            action = gotoPreviousScreen(),
-                            messages = messages
+                            action = gotoPreviousScreen()
                         )
                     )
                 )
