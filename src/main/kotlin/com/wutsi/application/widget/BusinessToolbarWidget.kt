@@ -15,6 +15,7 @@ import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.Alignment
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
+import com.wutsi.marketplace.manager.dto.Product
 import com.wutsi.membership.manager.dto.Member
 
 class BusinessToolbarWidget(
@@ -31,6 +32,12 @@ class BusinessToolbarWidget(
             storeAction = storeAction,
             whatsapp = member.whatsapp,
             shareUrl = "$webappUrl/u/${member.id}"
+        )
+
+        fun of(product: Product, member: Member, webappUrl: String) = BusinessToolbarWidget(
+            phoneNumber = member.phoneNumber,
+            whatsapp = member.whatsapp,
+            shareUrl = "$webappUrl/p/${product.id}"
         )
     }
 

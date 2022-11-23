@@ -37,7 +37,7 @@ internal class CatalogV2FragmentTest : AbstractSecuredEndpointTest() {
         val member = Fixtures.createMember(business = true, storeId = 111)
         doReturn(GetMemberResponse(member)).whenever(membershipManagerApi).getMember(anyOrNull())
 
-        assertEndpointEquals("/marketplace/settings/catalog/fragment/products.json", url())
+        assertEndpointEquals("/marketplace/catalog/home/fragments/products.json", url())
     }
 
     @Test
@@ -45,7 +45,7 @@ internal class CatalogV2FragmentTest : AbstractSecuredEndpointTest() {
         val member = Fixtures.createMember(business = false, storeId = 111)
         doReturn(GetMemberResponse(member)).whenever(membershipManagerApi).getMember(anyOrNull())
 
-        assertEndpointEquals("/marketplace/settings/catalog/fragment/not-business.json", url())
+        assertEndpointEquals("/marketplace/catalog/home/fragments/not-business.json", url())
     }
 
     @Test
@@ -53,6 +53,6 @@ internal class CatalogV2FragmentTest : AbstractSecuredEndpointTest() {
         val member = Fixtures.createMember(business = true, storeId = null)
         doReturn(GetMemberResponse(member)).whenever(membershipManagerApi).getMember(anyOrNull())
 
-        assertEndpointEquals("/marketplace/settings/catalog/fragment/not-store.json", url())
+        assertEndpointEquals("/marketplace/catalog/home/fragments/not-store.json", url())
     }
 }
