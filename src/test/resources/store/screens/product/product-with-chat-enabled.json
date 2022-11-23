@@ -957,7 +957,7 @@
                 {
                   "type": "IconButton",
                   "attributes": {
-                    "icon": "ef42",
+                    "icon": "ef44",
                     "size": 20.0
                   },
                   "children": [],
@@ -1042,7 +1042,7 @@
       {
         "type": "BottomNavigationBarItem",
         "attributes": {
-          "icon": "ef42",
+          "icon": "ef44",
           "caption": "Messages"
         },
         "children": [],

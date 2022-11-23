@@ -20,31 +20,27 @@ import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.TextOverflow
 import com.wutsi.marketplace.manager.dto.ProductSummary
 import com.wutsi.regulation.Country
-import org.springframework.context.MessageSource
-import org.springframework.context.i18n.LocaleContextHolder
 
-class ProductCardWidget(
+class ProductWidget(
     private val title: String,
     private val price: Long?,
     private val country: Country,
     private val quantity: Int? = null,
     private val pictureUrl: String? = null,
     private val action: Action? = null,
-    private val status: String? = null,
-    private val messages: MessageSource
+    private val status: String? = null
 ) : CompositeWidgetAware() {
     companion object {
         const val PICTURE_HEIGHT = 150.0
         const val PICTURE_WIDTH = 50.0
 
-        fun of(product: ProductSummary, country: Country, action: Action, messages: MessageSource) = ProductCardWidget(
+        fun of(product: ProductSummary, country: Country, action: Action) = ProductWidget(
             title = product.title,
             price = product.price,
             country = country,
             quantity = product.quantity,
             pictureUrl = product.thumbnailUrl,
             action = action,
-            messages = messages,
             status = product.status
         )
     }
@@ -146,6 +142,6 @@ class ProductCardWidget(
             )
         }
 
-    private fun getText(key: String, args: Array<Any?> = emptyArray()): String =
-        messages.getMessage(key, args, LocaleContextHolder.getLocale())
+    private fun getText(key: String, args: Array<Any> = emptyArray()): String =
+        WidgetL10n.getText(key, args)
 }

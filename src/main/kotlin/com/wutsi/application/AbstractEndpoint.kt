@@ -72,7 +72,7 @@ abstract class AbstractEndpoint {
     }
 
     protected fun createBottomNavigationBarWidget() = BottomNavigationBarWidget(
-        profileUrl = urlBuilder.build(Page.getLoginUrl()),
+        profileUrl = urlBuilder.build(Page.getProfileUrl()),
         ordersUrl = urlBuilder.build(Page.getOrdersUrl())
     ).toBottomNavigationBar()
 

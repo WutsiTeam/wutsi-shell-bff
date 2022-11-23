@@ -61,12 +61,14 @@ object Fixtures {
         id: Long = -1,
         title: String = "Product",
         thumbnailUrl: String? = null,
-        published: Boolean = true
+        published: Boolean = true,
+        price: Long = 15000
     ) = ProductSummary(
         id = id,
         title = title,
         thumbnailUrl = thumbnailUrl,
-        status = if (published) "PUBLISHED" else "DRAFT"
+        status = if (published) "PUBLISHED" else "DRAFT",
+        price = price
     )
 
     fun createProduct(

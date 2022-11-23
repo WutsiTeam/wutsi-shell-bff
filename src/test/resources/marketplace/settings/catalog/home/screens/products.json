@@ -131,6 +131,34 @@
                                           ]
                                         }
                                       ]
+                                    },
+                                    {
+                                      "type": "Positioned",
+                                      "attributes": {
+                                        "bottom": 10.0,
+                                        "right": 10.0
+                                      },
+                                      "children": [
+                                        {
+                                          "type": "Column",
+                                          "attributes": {},
+                                          "children": [
+                                            {
+                                              "type": "MoneyText",
+                                              "attributes": {
+                                                "value": 15000.0,
+                                                "color": "#1D7EDF",
+                                                "currency": "FCFA",
+                                                "numberFormat": "#,###,##0 FCFA",
+                                                "bold": true,
+                                                "valueFontSize": 14.0,
+                                                "currencyFontSize": 10.0
+                                              },
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
                                     }
                                   ]
                                 }
@@ -230,6 +258,45 @@
                                                   "children": []
                                                 }
                                               ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "Positioned",
+                                      "attributes": {
+                                        "bottom": 10.0,
+                                        "right": 10.0
+                                      },
+                                      "children": [
+                                        {
+                                          "type": "Column",
+                                          "attributes": {},
+                                          "children": [
+                                            {
+                                              "type": "Chip",
+                                              "attributes": {
+                                                "color": "#FFFFFF",
+                                                "padding": 2.0,
+                                                "backgroundColor": "#95A5A6",
+                                                "caption": "Not Published",
+                                                "fontSize": 10.0
+                                              },
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "MoneyText",
+                                              "attributes": {
+                                                "value": 15000.0,
+                                                "color": "#1D7EDF",
+                                                "currency": "FCFA",
+                                                "numberFormat": "#,###,##0 FCFA",
+                                                "bold": true,
+                                                "valueFontSize": 14.0,
+                                                "currencyFontSize": 10.0
+                                              },
+                                              "children": []
                                             }
                                           ]
                                         }

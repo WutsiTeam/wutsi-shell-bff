@@ -77,7 +77,7 @@
       {
         "type": "BottomNavigationBarItem",
         "attributes": {
-          "icon": "ef42",
+          "icon": "ef44",
           "caption": "Messages"
         },
         "children": [],

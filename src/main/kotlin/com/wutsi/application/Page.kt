@@ -5,6 +5,7 @@ object Page {
     const val HOME = "page.home"
     const val ONBOARD = "page.onboard"
     const val LOGIN = "page.login"
+    const val PROFILE = "page.profile"
     const val SECURITY = "page.security"
     const val SECURITY_DELETE = "page.security.delete"
     const val SECURITY_PASSCODE = "page.security.passcode"
@@ -33,4 +34,7 @@ object Page {
     fun getSettingsProfileEditorUrl() = "${getSettingsProfileUrl()}/editor"
     fun getSettingsStoreUrl() = "${getSettingsUrl()}/store"
     fun getSettingsCatalogUrl() = "${getSettingsUrl()}/catalog"
+    fun getProfileUrl() = "/profile/2"
+    fun getProductUrl() = "/product/2"
+    fun getCatalogUrl() = "/catalog/2"
 }

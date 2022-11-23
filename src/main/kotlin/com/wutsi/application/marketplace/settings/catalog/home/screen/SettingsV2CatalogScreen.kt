@@ -3,7 +3,7 @@ package com.wutsi.application.marketplace.settings.catalog.home.screen
 import com.wutsi.application.AbstractEndpoint
 import com.wutsi.application.Page
 import com.wutsi.application.shared.Theme
-import com.wutsi.application.widget.ProductCardWidget
+import com.wutsi.application.widget.ProductWidget
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.Column
@@ -81,12 +81,11 @@ class SettingsV2CatalogScreen(
                     Flexible(
                         child = ListView(
                             children = products.map {
-                                ProductCardWidget.of(
+                                ProductWidget.of(
                                     product = it.copy(
                                         thumbnailUrl = resize(it.thumbnailUrl) ?: getNoPictureUrl()
                                     ),
                                     country = regulationEngine.country(member.country),
-                                    messages = messages,
                                     action = gotoUrl(
                                         url = urlBuilder.build("/settings/2/catalog/product?id=${it.id}")
                                     )
@@ -106,10 +105,10 @@ class SettingsV2CatalogScreen(
                 Transformation(
                     focus = Focus.AUTO,
                     aspectRatio = AspectRatio(
-                        ProductCardWidget.PICTURE_WIDTH.toInt(),
-                        ProductCardWidget.PICTURE_HEIGHT.toInt()
+                        ProductWidget.PICTURE_WIDTH.toInt(),
+                        ProductWidget.PICTURE_HEIGHT.toInt()
                     ),
-                    dimension = Dimension(height = ProductCardWidget.PICTURE_HEIGHT.toInt())
+                    dimension = Dimension(height = ProductWidget.PICTURE_HEIGHT.toInt())
                 )
             )
         }
