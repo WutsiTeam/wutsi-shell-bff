@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/settings/2/catalog/picture")
-class SettingsV2ProductPictureScreen(
+class SettingsV2ProductPictureViewerScreen(
     private val marketplaceManagerApi: MarketplaceManagerApi
 ) : AbstractEndpoint() {
     @PostMapping

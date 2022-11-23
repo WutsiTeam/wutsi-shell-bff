@@ -271,7 +271,7 @@ class SettingsV2ProductScreen(
                 imageMaxWidth = pictureMaxWidth,
                 imageMaxHeight = pictureMaxHeight,
                 action = gotoUrl(
-                    url = urlBuilder.build("${Page.getSettingsCatalogUrl()}/product/upload?id=${product.id}"),
+                    url = urlBuilder.build("${Page.getSettingsCatalogUrl()}/product?id=${product.id}"),
                     replacement = true
                 )
             ),

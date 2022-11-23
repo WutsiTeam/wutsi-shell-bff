@@ -138,7 +138,7 @@
                                         "children": [],
                                         "action": {
                                           "type": "Route",
-                                          "url": "http://localhost:0/settings/2/catalog/product/upload?id=-1",
+                                          "url": "http://localhost:0/settings/2/catalog/product?id=-1",
                                           "replacement": true
                                         }
                                       }
@@ -177,7 +177,7 @@
                                         "children": [],
                                         "action": {
                                           "type": "Route",
-                                          "url": "http://localhost:0/settings/2/catalog/product/upload?id=-1",
+                                          "url": "http://localhost:0/settings/2/catalog/product?id=-1",
                                           "replacement": true
                                         }
                                       }

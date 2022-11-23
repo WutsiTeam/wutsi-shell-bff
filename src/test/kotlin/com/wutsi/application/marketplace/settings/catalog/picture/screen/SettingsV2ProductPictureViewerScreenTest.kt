@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.web.server.LocalServerPort
 
-internal class SettingsV2ProductPictureScreenTest : AbstractSecuredEndpointTest() {
+internal class SettingsV2ProductPictureViewerScreenTest : AbstractSecuredEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 
@@ -20,7 +20,7 @@ internal class SettingsV2ProductPictureScreenTest : AbstractSecuredEndpointTest(
         "http://localhost:$port${Page.getSettingsCatalogUrl()}/picture$action?id=$pictureId&url=$url"
 
     @Test
-    fun index() = assertEndpointEquals("/marketplace/settings/catalog/picture/screens/picture.json", url())
+    fun index() = assertEndpointEquals("/marketplace/settings/catalog/picture/screens/picture-viewer.json", url())
 
     @Test
     fun delete() {
