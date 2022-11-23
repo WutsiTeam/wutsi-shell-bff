@@ -16,6 +16,8 @@ import com.wutsi.flutter.sdui.DefaultTabController
 import com.wutsi.flutter.sdui.Divider
 import com.wutsi.flutter.sdui.DynamicWidget
 import com.wutsi.flutter.sdui.IconButton
+import com.wutsi.flutter.sdui.Image
+import com.wutsi.flutter.sdui.Row
 import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.SingleChildScrollView
 import com.wutsi.flutter.sdui.TabBar
@@ -134,8 +136,8 @@ class ProfileV2Screen(
                         member = member,
                         storeAction = gotoStore(member)
                     ),
-                    Divider(color = Theme.COLOR_DIVIDER),
-                    toOffersWidget(member)
+                    toOffersWidget(member),
+                    toSocialWidget(member)
                 )
             )
         }
@@ -167,6 +169,7 @@ class ProfileV2Screen(
         val country = regulationEngine.country(member.country)
         return Column(
             children = listOf(
+                Divider(color = Theme.COLOR_DIVIDER),
                 GridWidget(
                     children = offers
                         .map { it.copy(thumbnailUrl = resize(it.thumbnailUrl)) }
@@ -183,6 +186,52 @@ class ProfileV2Screen(
             )
         )
     }
+
+    private fun toSocialWidget(member: Member): WidgetAware? {
+        if (!member.business) {
+            return null
+        }
+        val children = listOfNotNull(
+            toSocialIcon(
+                member.instagramId,
+                "https://www.instagram.com/",
+                "$assertUrl/images/social/instagram.png"
+            ),
+            toSocialIcon(member.youtubeId, "https://www.youtube.com/@", "$assertUrl/images/social/youtube.png"),
+            toSocialIcon(member.facebookId, "https://www.facebook.com/", "$assertUrl/images/social/facebook.png"),
+            toSocialIcon(member.twitterId, "https://www.twitter.com/", "$assertUrl/images/social/twitter.png")
+        )
+        if (children.isEmpty()) {
+            return null
+        }
+        return Column(
+            children = listOf(
+                Divider(color = Theme.COLOR_DIVIDER),
+                Row(
+                    mainAxisAlignment = MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment = CrossAxisAlignment.start,
+                    children = children.filterNotNull()
+                )
+            )
+        )
+    }
+
+    private fun toSocialIcon(id: String?, urlPrefix: String, iconUrl: String): WidgetAware? =
+        if (id.isNullOrEmpty()) {
+            null
+        } else {
+            Container(
+                child = Image(
+                    width = 32.0,
+                    height = 32.0,
+                    url = iconUrl
+                ),
+                action = Action(
+                    type = ActionType.Navigate,
+                    url = "$urlPrefix$id"
+                )
+            )
+        }
 
     private fun toStoreTab(member: Member) = DynamicWidget(
         url = urlBuilder.build("", "${Page.getCatalogUrl()}/widget?id=${member.id}")
