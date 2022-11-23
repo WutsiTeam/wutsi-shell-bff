@@ -207,10 +207,13 @@ class ProfileV2Screen(
         return Column(
             children = listOf(
                 Divider(color = Theme.COLOR_DIVIDER),
-                Row(
-                    mainAxisAlignment = MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment = CrossAxisAlignment.start,
-                    children = children.filterNotNull()
+                Container(
+                    padding = 10.0,
+                    child = Row(
+                        mainAxisAlignment = MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment = CrossAxisAlignment.start,
+                        children = children
+                    )
                 )
             )
         )
