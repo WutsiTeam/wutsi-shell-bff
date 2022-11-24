@@ -61,14 +61,9 @@ class ProfileWidget(
                         getText("widget.profile.account-business")
                     ),
                     category?.let {
-                        Row(
-                            mainAxisAlignment = MainAxisAlignment.start,
-                            crossAxisAlignment = CrossAxisAlignment.start,
-                            children = listOf(
-                                Icon(code = Theme.ICON_CATEGORY, size = 14.0),
-                                Container(padding = 2.0),
-                                Text(category)
-                            )
+                        Text(
+                            caption = category,
+                            color = Theme.COLOR_GRAY
                         )
                     }
                 )

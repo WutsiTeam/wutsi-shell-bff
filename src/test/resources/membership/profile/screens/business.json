@@ -111,35 +111,12 @@
                                           "children": []
                                         },
                                         {
-                                          "type": "Row",
+                                          "type": "Text",
                                           "attributes": {
-                                            "mainAxisAlignment": "start",
-                                            "crossAxisAlignment": "start"
+                                            "caption": "Ads",
+                                            "color": "#95A5A6"
                                           },
-                                          "children": [
-                                            {
-                                              "type": "Icon",
-                                              "attributes": {
-                                                "code": "ef37",
-                                                "size": 14.0
-                                              },
-                                              "children": []
-                                            },
-                                            {
-                                              "type": "Container",
-                                              "attributes": {
-                                                "padding": 2.0
-                                              },
-                                              "children": []
-                                            },
-                                            {
-                                              "type": "Text",
-                                              "attributes": {
-                                                "caption": "Ads"
-                                              },
-                                              "children": []
-                                            }
-                                          ]
+                                          "children": []
                                         },
                                         {
                                           "type": "Row",
