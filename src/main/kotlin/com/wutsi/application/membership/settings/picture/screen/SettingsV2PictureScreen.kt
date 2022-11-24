@@ -1,6 +1,6 @@
 package com.wutsi.application.membership.settings.picture.screen
 
-import com.wutsi.application.AbstractEndpoint
+import com.wutsi.application.AbstractSecuredEndpoint
 import com.wutsi.application.Page
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.util.SecurityUtil
@@ -15,7 +15,6 @@ import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.enums.Alignment
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
-import com.wutsi.membership.manager.MembershipManagerApi
 import com.wutsi.membership.manager.dto.UpdateMemberAttributeRequest
 import com.wutsi.platform.core.storage.StorageService
 import org.springframework.web.bind.annotation.PostMapping
@@ -30,12 +29,11 @@ import java.util.UUID
 @RestController
 @RequestMapping("/settings/2/picture")
 class SettingsV2PictureScreen(
-    private val membershipManagerApi: MembershipManagerApi,
     private val storageService: StorageService
-) : AbstractEndpoint() {
+) : AbstractSecuredEndpoint() {
     @PostMapping
     fun index(): Widget {
-        val me = membershipManagerApi.getMember().member
+        val me = getCurrentMember()
         return Screen(
             id = Page.SETTINGS_PICTURE,
             appBar = AppBar(

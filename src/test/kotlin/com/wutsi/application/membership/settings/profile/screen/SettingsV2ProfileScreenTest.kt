@@ -1,5 +1,6 @@
 package com.wutsi.application.membership.settings.profile.screen
 
+import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
@@ -28,7 +29,7 @@ internal class SettingsV2ProfileScreenTest : AbstractSecuredEndpointTest() {
     @Test
     fun businessNotSupported() {
         val member = Fixtures.createMember(country = "NZ")
-        doReturn(GetMemberResponse(member)).whenever(membershipManagerApi).getMember()
+        doReturn(GetMemberResponse(member)).whenever(membershipManagerApi).getMember(any())
 
         assertEndpointEquals("/membership/settings/profile/screens/business-not-supported.json", url())
     }

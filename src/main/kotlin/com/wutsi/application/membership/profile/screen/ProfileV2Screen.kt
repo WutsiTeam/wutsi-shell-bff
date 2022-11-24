@@ -1,8 +1,9 @@
 package com.wutsi.application.membership.profile.screen
 
-import com.wutsi.application.AbstractEndpoint
+import com.wutsi.application.AbstractSecuredEndpoint
 import com.wutsi.application.Page
 import com.wutsi.application.shared.Theme
+import com.wutsi.application.util.SecurityUtil
 import com.wutsi.application.widget.BusinessToolbarWidget
 import com.wutsi.application.widget.GridWidget
 import com.wutsi.application.widget.OfferWidget
@@ -31,7 +32,6 @@ import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.marketplace.manager.MarketplaceManagerApi
 import com.wutsi.marketplace.manager.dto.ProductSummary
 import com.wutsi.marketplace.manager.dto.SearchProductRequest
-import com.wutsi.membership.manager.MembershipManagerApi
 import com.wutsi.membership.manager.dto.Member
 import com.wutsi.platform.core.image.ImageService
 import com.wutsi.regulation.RegulationEngine
@@ -43,17 +43,18 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/profile/2")
 class ProfileV2Screen(
-    private val membershipManagerApi: MembershipManagerApi,
     private val marketplaceManagerApi: MarketplaceManagerApi,
     private val regulationEngine: RegulationEngine,
     private val imageService: ImageService
-) : AbstractEndpoint() {
+) : AbstractSecuredEndpoint() {
     @PostMapping
     fun index(
         @RequestParam(required = false) id: Long? = null,
         @RequestParam tab: String? = null
     ): Widget {
-        val member = membershipManagerApi.getMember(id).member
+        val member = membershipManagerApi.getMember(
+            id ?: SecurityUtil.getMemberId()
+        ).member
         val store = hasStore(member)
         val tabs = TabBar(
             tabs = listOfNotNull(

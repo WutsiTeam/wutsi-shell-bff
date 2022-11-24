@@ -1,6 +1,6 @@
 package com.wutsi.application.membership.settings.profile.screen
 
-import com.wutsi.application.AbstractEndpoint
+import com.wutsi.application.AbstractSecuredEndpoint
 import com.wutsi.application.Page
 import com.wutsi.application.membership.settings.business.dto.SubmitBusinessAttributeRequest
 import com.wutsi.application.shared.Theme
@@ -16,7 +16,6 @@ import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.ActionType
-import com.wutsi.membership.manager.MembershipManagerApi
 import com.wutsi.membership.manager.dto.Member
 import com.wutsi.membership.manager.dto.UpdateMemberAttributeRequest
 import com.wutsi.regulation.CountryNotSupportedException
@@ -32,9 +31,8 @@ import java.util.Locale
 @RestController
 @RequestMapping("/settings/2/profile")
 class SettingsV2ProfileScreen(
-    private val membershipManagerApi: MembershipManagerApi,
     private val regulationEngine: RegulationEngine
-) : AbstractEndpoint() {
+) : AbstractSecuredEndpoint() {
     @PostMapping
     fun index(): Widget {
         val children = mutableListOf<WidgetAware>()
@@ -42,7 +40,7 @@ class SettingsV2ProfileScreen(
             Container(padding = 10.0)
         )
 
-        val member = membershipManagerApi.getMember().member
+        val member = getCurrentMember()
         val locale = LocaleContextHolder.getLocale()
         children.addAll(
             listOf(

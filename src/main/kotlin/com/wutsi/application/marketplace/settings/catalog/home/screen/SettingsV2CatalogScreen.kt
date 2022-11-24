@@ -1,6 +1,6 @@
 package com.wutsi.application.marketplace.settings.catalog.home.screen
 
-import com.wutsi.application.AbstractEndpoint
+import com.wutsi.application.AbstractSecuredEndpoint
 import com.wutsi.application.Page
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.widget.ProductWidget
@@ -18,7 +18,6 @@ import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.flutter.sdui.enums.TextAlignment
 import com.wutsi.marketplace.manager.MarketplaceManagerApi
 import com.wutsi.marketplace.manager.dto.SearchProductRequest
-import com.wutsi.membership.manager.MembershipManagerApi
 import com.wutsi.platform.core.image.ImageService
 import com.wutsi.regulation.RegulationEngine
 import org.springframework.web.bind.annotation.PostMapping
@@ -29,13 +28,12 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/settings/2/catalog")
 class SettingsV2CatalogScreen(
     private val marketplaceManagerApi: MarketplaceManagerApi,
-    private val membershipManagerApi: MembershipManagerApi,
     private val regulationEngine: RegulationEngine,
     private val imageService: ImageService
-) : AbstractEndpoint() {
+) : AbstractSecuredEndpoint() {
     @PostMapping
     fun index(): Widget {
-        val member = membershipManagerApi.getMember().member
+        val member = getCurrentMember()
         val products = marketplaceManagerApi.searchProduct(
             request = SearchProductRequest(
                 storeId = member.storeId,

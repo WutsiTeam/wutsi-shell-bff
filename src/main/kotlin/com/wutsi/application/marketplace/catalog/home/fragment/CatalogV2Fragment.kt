@@ -1,8 +1,9 @@
 package com.wutsi.application.marketplace.catalog.home.fragment
 
-import com.wutsi.application.AbstractEndpoint
+import com.wutsi.application.AbstractSecuredEndpoint
 import com.wutsi.application.Page
 import com.wutsi.application.shared.Theme
+import com.wutsi.application.util.SecurityUtil
 import com.wutsi.application.widget.GridWidget
 import com.wutsi.application.widget.OfferWidget
 import com.wutsi.flutter.sdui.Column
@@ -15,7 +16,6 @@ import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.marketplace.manager.MarketplaceManagerApi
 import com.wutsi.marketplace.manager.dto.SearchProductRequest
-import com.wutsi.membership.manager.MembershipManagerApi
 import com.wutsi.platform.core.image.ImageService
 import com.wutsi.regulation.RegulationEngine
 import org.springframework.web.bind.annotation.PostMapping
@@ -26,14 +26,15 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/catalog/2/fragment")
 class CatalogV2Fragment(
-    private val membershipManagerApi: MembershipManagerApi,
     private val marketplaceManagerApi: MarketplaceManagerApi,
     private val regulationEngine: RegulationEngine,
     private val imageService: ImageService
-) : AbstractEndpoint() {
+) : AbstractSecuredEndpoint() {
     @PostMapping
     fun widget(@RequestParam(required = false) id: Long? = null): Widget {
-        val member = membershipManagerApi.getMember(id).member
+        val member = membershipManagerApi.getMember(
+            id ?: SecurityUtil.getMemberId()
+        ).member
         val country = regulationEngine.country(member.country)
         if (!member.business || member.storeId == null || !country.supportsStore) {
             return Container().toWidget()

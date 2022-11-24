@@ -1,5 +1,6 @@
 package com.wutsi.application.membership.settings.home.screen
 
+import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
@@ -26,7 +27,7 @@ internal class SettingsV2ScreenTest : AbstractSecuredEndpointTest() {
     @Test
     fun business() {
         val member = Fixtures.createMember(id = MEMBER_ID, business = true)
-        doReturn(GetMemberResponse(member)).whenever(membershipManagerApi).getMember()
+        doReturn(GetMemberResponse(member)).whenever(membershipManagerApi).getMember(any())
 
         assertEndpointEquals("/membership/settings/home/screens/business.json", url())
     }
@@ -34,7 +35,7 @@ internal class SettingsV2ScreenTest : AbstractSecuredEndpointTest() {
     @Test
     fun storeEnabled() {
         val member = Fixtures.createMember(id = MEMBER_ID, business = true, storeId = 111L)
-        doReturn(GetMemberResponse(member)).whenever(membershipManagerApi).getMember()
+        doReturn(GetMemberResponse(member)).whenever(membershipManagerApi).getMember(any())
 
         assertEndpointEquals("/membership/settings/home/screens/store.json", url())
     }

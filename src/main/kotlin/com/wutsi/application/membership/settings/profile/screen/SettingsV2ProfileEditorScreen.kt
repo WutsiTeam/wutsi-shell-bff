@@ -1,6 +1,6 @@
 package com.wutsi.application.membership.settings.profile.screen
 
-import com.wutsi.application.AbstractEndpoint
+import com.wutsi.application.AbstractSecuredEndpoint
 import com.wutsi.application.Page
 import com.wutsi.application.membership.settings.profile.dao.EmailRepository
 import com.wutsi.application.membership.settings.profile.dto.SubmitProfileAttributeRequest
@@ -17,10 +17,8 @@ import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.enums.Alignment
 import com.wutsi.flutter.sdui.enums.InputType
-import com.wutsi.membership.manager.MembershipManagerApi
 import com.wutsi.membership.manager.dto.UpdateMemberAttributeRequest
 import com.wutsi.platform.core.messaging.MessagingType
-import com.wutsi.security.manager.SecurityManagerApi
 import com.wutsi.security.manager.dto.CreateOTPRequest
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -32,13 +30,11 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/settings/2/profile/editor")
 class SettingsV2ProfileEditorScreen(
     private val editor: ProfileEditorWidgetProvider,
-    private val dao: EmailRepository,
-    private val membershipManagerApi: MembershipManagerApi,
-    private val securityManagerApi: SecurityManagerApi
-) : AbstractEndpoint() {
+    private val dao: EmailRepository
+) : AbstractSecuredEndpoint() {
     @PostMapping
     fun index(@RequestParam name: String): Widget {
-        val member = membershipManagerApi.getMember().member
+        val member = getCurrentMember()
         return Screen(
             id = Page.SETTINGS_PROFILE_EDITOR,
             backgroundColor = Theme.COLOR_WHITE,
@@ -86,7 +82,7 @@ class SettingsV2ProfileEditorScreen(
         @RequestBody request: SubmitProfileAttributeRequest
     ): Action {
         if (name == "email") {
-            val member = membershipManagerApi.getMember().member
+            val member = getCurrentMember()
             if (member.email.equals(request.value, true)) {
                 return gotoPreviousScreen()
             }

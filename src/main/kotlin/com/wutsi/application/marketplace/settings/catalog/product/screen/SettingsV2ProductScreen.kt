@@ -1,6 +1,6 @@
 package com.wutsi.application.marketplace.settings.catalog.product.screen
 
-import com.wutsi.application.AbstractEndpoint
+import com.wutsi.application.AbstractSecuredEndpoint
 import com.wutsi.application.Page
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.widget.PictureListViewWidget
@@ -30,7 +30,6 @@ import com.wutsi.marketplace.manager.MarketplaceManagerApi
 import com.wutsi.marketplace.manager.dto.AddPictureRequest
 import com.wutsi.marketplace.manager.dto.PictureSummary
 import com.wutsi.marketplace.manager.dto.Product
-import com.wutsi.membership.manager.MembershipManagerApi
 import com.wutsi.membership.manager.dto.Member
 import com.wutsi.platform.core.messaging.UrlShortener
 import com.wutsi.platform.core.storage.StorageService
@@ -50,7 +49,6 @@ import java.util.UUID
 @RequestMapping("/settings/2/catalog/product")
 class SettingsV2ProductScreen(
     private val marketplaceManagerApi: MarketplaceManagerApi,
-    private val membershipManagerApi: MembershipManagerApi,
     private val regulationEngine: RegulationEngine,
     private val storageService: StorageService,
     private val urlShortener: UrlShortener,
@@ -58,13 +56,13 @@ class SettingsV2ProductScreen(
     @Value("\${wutsi.store.pictures.max-width}") private val pictureMaxWidth: Int,
     @Value("\${wutsi.store.pictures.max-width}") private val pictureMaxHeight: Int,
     @Value("\${wutsi.application.webapp-url}") private val webAppUrl: String
-) : AbstractEndpoint() {
+) : AbstractSecuredEndpoint() {
     @PostMapping
     fun index(
         @RequestParam id: Long,
         @RequestParam(required = false) errors: Array<String>? = null
     ): Widget {
-        val member = membershipManagerApi.getMember().member
+        val member = getCurrentMember()
         val product = marketplaceManagerApi.getProduct(id).product
 
         return Screen(

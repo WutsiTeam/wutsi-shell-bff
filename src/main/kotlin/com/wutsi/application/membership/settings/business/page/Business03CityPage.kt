@@ -2,6 +2,7 @@ package com.wutsi.application.membership.settings.business.page
 
 import com.wutsi.application.Page
 import com.wutsi.application.membership.settings.business.dto.SubmitBusinessAttributeRequest
+import com.wutsi.application.util.SecurityUtil
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Input
@@ -25,7 +26,9 @@ class Business03CityPage : AbstractBusinessAttributePage() {
     override fun getAttribute(): String = ATTRIBUTE
 
     override fun getBody(): WidgetAware? {
-        val member = membershipManagerApi.getMember().member
+        val member = membershipManagerApi.getMember(
+            SecurityUtil.getMemberId()
+        ).member
         val entity = dao.get()
         return Container(
             padding = 10.0,

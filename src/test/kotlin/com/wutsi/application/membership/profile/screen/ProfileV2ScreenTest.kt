@@ -23,7 +23,7 @@ internal class ProfileV2ScreenTest : AbstractSecuredEndpointTest() {
     @Test
     fun business() {
         val business = Fixtures.createMember(business = true, storeId = 11L)
-        doReturn(GetMemberResponse(business)).whenever(membershipManagerApi).getMember()
+        doReturn(GetMemberResponse(business)).whenever(membershipManagerApi).getMember(any())
 
         val products = listOf(
             Fixtures.createProductSummary(1L, title = "Product1", price = 10000),
@@ -37,7 +37,7 @@ internal class ProfileV2ScreenTest : AbstractSecuredEndpointTest() {
     @Test
     fun businessNoStore() {
         val business = Fixtures.createMember(id = MEMBER_ID, business = true, storeId = null)
-        doReturn(GetMemberResponse(business)).whenever(membershipManagerApi).getMember()
+        doReturn(GetMemberResponse(business)).whenever(membershipManagerApi).getMember(any())
 
         assertEndpointEquals("/membership/profile/screens/business-no-store.json", url())
     }

@@ -17,5 +17,5 @@ abstract class AbstractSecuredEndpoint : AbstractEndpoint() {
         SecurityUtil.getMemberId()
 
     fun getCurrentMember(): Member =
-        membershipManagerApi.getMember().member
+        membershipManagerApi.getMember(getCurrentMemberId()).member
 }

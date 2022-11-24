@@ -1,5 +1,6 @@
 package com.wutsi.application.membership.settings.about.screen
 
+import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
@@ -44,7 +45,7 @@ internal class AboutScreenTest : AbstractSecuredEndpointTest() {
     @Test
     fun superUser() {
         val member = Fixtures.createMember(superUser = true)
-        doReturn(GetMemberResponse(member)).whenever(membershipManagerApi).getMember()
+        doReturn(GetMemberResponse(member)).whenever(membershipManagerApi).getMember(any())
 
         assertEndpointEquals("/membership/settings/about/screens/super-user.json", url())
     }

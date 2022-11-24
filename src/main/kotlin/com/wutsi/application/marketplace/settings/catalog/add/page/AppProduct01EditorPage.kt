@@ -3,6 +3,7 @@ package com.wutsi.application.marketplace.settings.catalog.add.page
 import com.wutsi.application.common.page.AbstractPageEndpoint
 import com.wutsi.application.marketplace.settings.catalog.add.dao.PictureRepository
 import com.wutsi.application.marketplace.settings.catalog.add.dto.SubmitProductRequest
+import com.wutsi.application.util.SecurityUtil
 import com.wutsi.application.widget.PictureWidget
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.Column
@@ -36,7 +37,7 @@ class AppProduct01EditorPage(
     override fun getTitle() = getText("page.settings.catalog.add.product.title")
 
     override fun getBody(): WidgetAware {
-        val member = membershipManagerApi.getMember().member
+        val member = membershipManagerApi.getMember(SecurityUtil.getMemberId()).member
         val country = regulationEngine.country(member.country)
         val hasNoDecimal = country.monetaryFormat.indexOf(".") == -1
         val picture = dao.get()
