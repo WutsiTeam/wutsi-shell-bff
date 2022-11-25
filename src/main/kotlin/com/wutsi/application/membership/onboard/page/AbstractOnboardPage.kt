@@ -1,6 +1,6 @@
 package com.wutsi.application.membership.onboard.page
 
-import com.wutsi.application.AbstractEndpoint
+import com.wutsi.application.common.endpoint.AbstractEndpoint
 import com.wutsi.application.membership.onboard.dao.OnboardRepository
 import com.wutsi.application.membership.onboard.exception.OnboardEntityNotFoundException
 import com.wutsi.flutter.sdui.enums.ActionType

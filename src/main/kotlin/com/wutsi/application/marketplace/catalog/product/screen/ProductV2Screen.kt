@@ -1,6 +1,6 @@
 package com.wutsi.application.marketplace.catalog.product.screen
 
-import com.wutsi.application.AbstractEndpoint
+import com.wutsi.application.common.endpoint.AbstractEndpoint
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.shared.service.StringUtil
 import com.wutsi.application.store.endpoint.Page

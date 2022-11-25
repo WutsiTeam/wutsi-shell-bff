@@ -1,6 +1,6 @@
 package com.wutsi.application.membership.login.screen
 
-import com.wutsi.application.AbstractEndpoint
+import com.wutsi.application.common.endpoint.AbstractEndpoint
 import com.wutsi.application.Page
 import com.wutsi.application.membership.login.dto.SubmitPasscodeRequest
 import com.wutsi.application.membership.onboard.screen.OnboardV2Screen

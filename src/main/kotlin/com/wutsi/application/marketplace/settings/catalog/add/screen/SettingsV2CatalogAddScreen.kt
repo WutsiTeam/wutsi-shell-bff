@@ -1,6 +1,6 @@
 package com.wutsi.application.marketplace.settings.catalog.add.screen
 
-import com.wutsi.application.AbstractEndpoint
+import com.wutsi.application.common.endpoint.AbstractEndpoint
 import com.wutsi.flutter.sdui.Page
 import com.wutsi.flutter.sdui.PageView
 import com.wutsi.flutter.sdui.Screen

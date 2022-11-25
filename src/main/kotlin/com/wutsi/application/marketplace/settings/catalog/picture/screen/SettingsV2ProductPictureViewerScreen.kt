@@ -1,6 +1,6 @@
 package com.wutsi.application.marketplace.settings.catalog.picture.screen
 
-import com.wutsi.application.AbstractEndpoint
+import com.wutsi.application.common.endpoint.AbstractEndpoint
 import com.wutsi.application.Page
 import com.wutsi.application.shared.Theme
 import com.wutsi.flutter.sdui.Action

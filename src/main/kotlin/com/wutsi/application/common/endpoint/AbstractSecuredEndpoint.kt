@@ -1,4 +1,4 @@
-package com.wutsi.application
+package com.wutsi.application.common.endpoint
 
 import com.wutsi.application.util.SecurityUtil
 import com.wutsi.membership.manager.MembershipManagerApi

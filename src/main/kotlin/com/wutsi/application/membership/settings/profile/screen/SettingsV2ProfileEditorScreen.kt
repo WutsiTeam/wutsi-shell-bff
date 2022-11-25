@@ -1,6 +1,6 @@
 package com.wutsi.application.membership.settings.profile.screen
 
-import com.wutsi.application.AbstractSecuredEndpoint
+import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
 import com.wutsi.application.Page
 import com.wutsi.application.membership.settings.profile.dao.EmailRepository
 import com.wutsi.application.membership.settings.profile.dto.SubmitProfileAttributeRequest
