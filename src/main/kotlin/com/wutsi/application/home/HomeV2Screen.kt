@@ -51,6 +51,8 @@ class HomeV2Screen(
                 backgroundColor = Theme.COLOR_GRAY_LIGHT
             ).toWidget()
         } catch (ex: FeignException.NotFound) {
+            LOGGER.warn("Unable to resolve current member", ex)
+
             logger.add("member_not_found", true)
             return onboard.index()
         }
