@@ -77,7 +77,7 @@ internal class Onboard05ReviewPageTest : AbstractEndpointTest() {
     @Test
     fun phoneAlreadyAssigned() {
         // GIVEN
-        val ex = createFeignException(ErrorURN.PHONE_NUMBER_ALREADY_ASSIGNED.urn)
+        val ex = createConflictException(ErrorURN.PHONE_NUMBER_ALREADY_ASSIGNED.urn)
         doThrow(ex).whenever(membershipManagerApi).registerMember(any())
 
         // WHEN

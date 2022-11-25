@@ -74,7 +74,7 @@ internal class SettingsV2ProfileEmailVerificationScreenTest : AbstractSecuredEnd
     @Test
     fun submitInvalidOTP() {
         // GIVEN
-        val ex = createFeignException(errorCode = ErrorURN.OTP_NOT_VALID.urn)
+        val ex = createConflictException(errorCode = ErrorURN.OTP_NOT_VALID.urn)
         doThrow(ex).whenever(securityManagerApi).verifyOtp(any(), any())
 
         // WHEN
@@ -97,7 +97,7 @@ internal class SettingsV2ProfileEmailVerificationScreenTest : AbstractSecuredEnd
     @Test
     fun submitExpiredOTP() {
         // GIVEN
-        val ex = createFeignException(errorCode = ErrorURN.OTP_EXPIRED.urn)
+        val ex = createConflictException(errorCode = ErrorURN.OTP_EXPIRED.urn)
         doThrow(ex).whenever(securityManagerApi).verifyOtp(any(), any())
 
         // WHEN

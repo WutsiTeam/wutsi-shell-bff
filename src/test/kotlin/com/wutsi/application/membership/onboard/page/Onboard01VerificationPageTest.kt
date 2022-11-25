@@ -81,7 +81,7 @@ internal class Onboard01VerificationPageTest : AbstractEndpointTest() {
     @Test
     fun invalidCode() {
         // GIVEN
-        val ex = createFeignException("xxx")
+        val ex = createConflictException("xxx")
         doThrow(ex).whenever(securityManagerApi).verifyOtp(any(), any())
 
         // GIVEN

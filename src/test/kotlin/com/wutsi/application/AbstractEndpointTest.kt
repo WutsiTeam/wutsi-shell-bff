@@ -88,11 +88,37 @@ abstract class AbstractEndpointTest {
     protected fun getText(key: String, args: Array<Any?> = emptyArray()) =
         messages.getMessage(key, args, LocaleContextHolder.getLocale()) ?: key
 
-    protected fun createFeignException(
+    protected fun createConflictException(
         errorCode: String,
         downstreamError: ErrorCode? = null,
         data: Map<String, Any> = emptyMap()
     ) = FeignException.Conflict(
+        "",
+        Request.create(
+            Request.HttpMethod.POST,
+            "https://www.google.ca",
+            emptyMap(),
+            "".toByteArray(),
+            Charset.defaultCharset(),
+            RequestTemplate()
+        ),
+        """
+            {
+                "error":{
+                    "code": "$errorCode",
+                    "downstreamCode": "$downstreamError",
+                    "data": ${toJsonString(data)}
+                }
+            }
+        """.trimIndent().toByteArray(),
+        emptyMap()
+    )
+
+    protected fun createNotFoundException(
+        errorCode: String,
+        downstreamError: ErrorCode? = null,
+        data: Map<String, Any> = emptyMap()
+    ) = FeignException.NotFound(
         "",
         Request.create(
             Request.HttpMethod.POST,
