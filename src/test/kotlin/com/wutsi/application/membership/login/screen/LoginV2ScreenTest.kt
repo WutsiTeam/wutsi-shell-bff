@@ -9,6 +9,7 @@ import com.wutsi.application.Fixtures
 import com.wutsi.application.Page
 import com.wutsi.application.membership.login.dto.SubmitPasscodeRequest
 import com.wutsi.application.service.EnvironmentDetector
+import com.wutsi.error.ErrorURN
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.DialogType
@@ -17,7 +18,6 @@ import com.wutsi.security.manager.dto.LoginRequest
 import com.wutsi.security.manager.dto.LoginResponse
 import com.wutsi.security.manager.dto.VerifyPasswordRequest
 import com.wutsi.security.manager.enums.LoginType
-import com.wutsi.workflow.error.ErrorURN
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.mock.mockito.MockBean

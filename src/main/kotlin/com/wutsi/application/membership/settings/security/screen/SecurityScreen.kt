@@ -1,7 +1,7 @@
 package com.wutsi.application.membership.settings.security.screen
 
-import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
 import com.wutsi.application.Page
+import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
 import com.wutsi.application.shared.Theme
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar

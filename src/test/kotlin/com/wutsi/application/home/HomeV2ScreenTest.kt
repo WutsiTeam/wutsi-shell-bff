@@ -5,7 +5,7 @@ import com.nhaarman.mockitokotlin2.doThrow
 import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.AbstractSecuredEndpointTest
 import com.wutsi.application.Page
-import com.wutsi.workflow.error.ErrorURN
+import com.wutsi.error.ErrorURN
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.web.server.LocalServerPort
 

@@ -1,8 +1,8 @@
 package com.wutsi.application.membership.settings.profile.screen
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.wutsi.application.common.endpoint.AbstractEndpoint
 import com.wutsi.application.Page
+import com.wutsi.application.common.endpoint.AbstractEndpoint
 import com.wutsi.application.membership.settings.profile.dao.EmailRepository
 import com.wutsi.application.membership.settings.profile.dto.SubmitOTPRequest
 import com.wutsi.application.shared.Theme

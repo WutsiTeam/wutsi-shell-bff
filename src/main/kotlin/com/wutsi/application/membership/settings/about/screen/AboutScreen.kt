@@ -1,7 +1,7 @@
 package com.wutsi.application.membership.settings.about.screen
 
-import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
 import com.wutsi.application.Page
+import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
 import com.wutsi.application.service.EnvironmentDetector
 import com.wutsi.application.shared.Theme
 import com.wutsi.flutter.sdui.Action

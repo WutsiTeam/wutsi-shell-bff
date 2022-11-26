@@ -1,7 +1,7 @@
 package com.wutsi.application.marketplace.settings.store.screen
 
-import com.wutsi.application.common.endpoint.AbstractEndpoint
 import com.wutsi.application.Page
+import com.wutsi.application.common.endpoint.AbstractEndpoint
 import com.wutsi.flutter.sdui.PageView
 import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Widget

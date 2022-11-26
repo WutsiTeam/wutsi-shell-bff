@@ -1,7 +1,7 @@
 package com.wutsi.application.marketplace.settings.catalog.product.screen
 
-import com.wutsi.application.common.endpoint.AbstractEndpoint
 import com.wutsi.application.Page
+import com.wutsi.application.common.endpoint.AbstractEndpoint
 import com.wutsi.application.marketplace.service.ProductEditorWidgetProvider
 import com.wutsi.application.marketplace.settings.catalog.add.dto.SubmitProductAttributeRequest
 import com.wutsi.application.shared.Theme

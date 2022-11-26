@@ -9,10 +9,10 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.AbstractEndpointTest
 import com.wutsi.application.membership.onboard.dto.SubmitPinRequest
 import com.wutsi.application.membership.onboard.entity.OnboardEntity
+import com.wutsi.error.ErrorURN
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.membership.manager.dto.RegisterMemberRequest
-import com.wutsi.workflow.error.ErrorURN
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach

@@ -1,6 +1,7 @@
 package com.wutsi.application.membership.onboard.page
 
 import com.wutsi.application.shared.Theme
+import com.wutsi.error.ErrorURN
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.Column
@@ -19,7 +20,6 @@ import com.wutsi.flutter.sdui.enums.TextAlignment
 import com.wutsi.membership.manager.MembershipManagerApi
 import com.wutsi.membership.manager.dto.RegisterMemberRequest
 import com.wutsi.platform.core.error.ErrorResponse
-import com.wutsi.workflow.error.ErrorURN
 import feign.FeignException
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
