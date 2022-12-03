@@ -31,12 +31,12 @@
     <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
 
     <wutsi-shared-ui.version>0.0.385</wutsi-shared-ui.version>
-    <wutsi-enums.version>1.0.7</wutsi-enums.version>
-    <wutsi-errors.version>1.0.2</wutsi-errors.version>
+    <wutsi-enums.version>1.0.10</wutsi-enums.version>
+    <wutsi-errors.version>1.0.6</wutsi-errors.version>
     <wutsi-regulation.version>1.0.8</wutsi-regulation.version>
-    <wutsi-checkout-manager.version>1.0.6</wutsi-checkout-manager.version>
+    <wutsi-checkout-manager.version>1.0.12</wutsi-checkout-manager.version>
+    <wutsi-marketplace-manager.version>1.0.9</wutsi-marketplace-manager.version>
     <wutsi-membership-manager.version>1.0.21</wutsi-membership-manager.version>
-    <wutsi-marketplace-manager.version>1.0.8</wutsi-marketplace-manager.version>
     <wutsi-security-manager.version>1.0.10</wutsi-security-manager.version>
   </properties>
 

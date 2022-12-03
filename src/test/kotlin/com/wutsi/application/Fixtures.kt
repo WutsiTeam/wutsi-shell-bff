@@ -4,6 +4,7 @@ import com.wutsi.marketplace.manager.dto.PictureSummary
 import com.wutsi.marketplace.manager.dto.Product
 import com.wutsi.marketplace.manager.dto.ProductSummary
 import com.wutsi.marketplace.manager.dto.Store
+import com.wutsi.marketplace.manager.dto.StoreSummary
 import com.wutsi.membership.manager.dto.Category
 import com.wutsi.membership.manager.dto.CategorySummary
 import com.wutsi.membership.manager.dto.Member
@@ -84,7 +85,7 @@ object Fixtures {
         published: Boolean = true
     ) = Product(
         id = id,
-        storeId = storeId,
+        store = createStoreSummary(storeId),
         title = title,
         quantity = quantity,
         price = price,
@@ -117,6 +118,11 @@ object Fixtures {
     }
 
     fun createStore(id: Long, accountId: Long) = Store(
+        id = id,
+        accountId = accountId
+    )
+
+    fun createStoreSummary(id: Long, accountId: Long = -1) = StoreSummary(
         id = id,
         accountId = accountId
     )

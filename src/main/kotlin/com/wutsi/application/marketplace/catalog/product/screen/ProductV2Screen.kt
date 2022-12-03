@@ -53,8 +53,7 @@ class ProductV2Screen(
     @PostMapping
     fun index(@RequestParam id: Long): Widget {
         val product = marketplaceManagerApi.getProduct(id).product
-        val store = marketplaceManagerApi.getStore(product.storeId).store
-        val merchant = membershipManagerApi.getMember(store.accountId).member
+        val merchant = membershipManagerApi.getMember(product.store.id).member
         val country = regulationEngine.country(merchant.country)
 
         // Screen
