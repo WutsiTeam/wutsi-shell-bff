@@ -121,7 +121,7 @@ class SettingsV2Screen : AbstractSecuredEndpoint() {
                             if (user.storeId != null) {
                                 listItem(
                                     "page.settings.listitem.store.caption",
-                                    urlBuilder.build(Page.getSettingsCatalogUrl()),
+                                    urlBuilder.build(Page.getSettingsProductListUrl()),
                                     icon = Theme.ICON_STORE
                                 )
                             } else {
