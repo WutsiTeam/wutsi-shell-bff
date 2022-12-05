@@ -1,7 +1,7 @@
 {
   "type": "Screen",
   "attributes": {
-    "id": "page.account",
+    "id": "page.account.list",
     "safe": false,
     "backgroundColor": "#FFFFFF"
   },

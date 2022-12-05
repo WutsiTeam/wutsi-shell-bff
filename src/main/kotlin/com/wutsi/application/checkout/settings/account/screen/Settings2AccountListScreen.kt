@@ -1,4 +1,4 @@
-package com.wutsi.application.checkout.settings.account.home.screen
+package com.wutsi.application.checkout.settings.account.screen
 
 import com.wutsi.application.Page
 import com.wutsi.application.common.endpoint.AbstractEndpoint
@@ -31,8 +31,8 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/settings/2/account")
-class Settings2AccountScreen(
+@RequestMapping("/settings/2/accounts/list")
+class Settings2AccountListScreen(
     private val membershipManagerApi: MembershipManagerApi,
     private val checkoutManagerApi: CheckoutManagerApi,
     private val regulationEngine: RegulationEngine
@@ -42,13 +42,13 @@ class Settings2AccountScreen(
         val memberId = SecurityUtil.getMemberId()
         val member = membershipManagerApi.getMember(memberId).member
         return Screen(
-            id = Page.SETTINGS_ACCOUNT,
+            id = Page.SETTINGS_ACCOUNT_LIST,
             backgroundColor = Theme.COLOR_WHITE,
             appBar = AppBar(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.settings.account.app-bar.title")
+                title = getText("page.settings.account.list.app-bar.title")
             ),
             child = Column(
                 crossAxisAlignment = CrossAxisAlignment.center,

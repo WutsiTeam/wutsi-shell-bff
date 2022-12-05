@@ -5,11 +5,12 @@ import com.wutsi.application.Page
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.web.server.LocalServerPort
 
-internal class Store01SuccessPageTest : AbstractSecuredEndpointTest() {
+internal class StoreEnable01SuccessPageTest : AbstractSecuredEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 
-    private fun url(action: String = "") = "http://localhost:$port${Page.getSettingsStoreUrl()}/pages/success$action"
+    private fun url(action: String = "") =
+        "http://localhost:$port${Page.getSettingsStoreEnableUrl()}/pages/success$action"
 
     @Test
     fun index() = assertEndpointEquals("/marketplace/settings/store/pages/success.json", url())

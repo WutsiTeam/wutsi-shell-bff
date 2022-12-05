@@ -1,4 +1,4 @@
-package com.wutsi.application.checkout.settings.account.home.screen
+package com.wutsi.application.checkout.settings.account.screen
 
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
@@ -11,11 +11,11 @@ import com.wutsi.enums.PaymentMethodType
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.web.server.LocalServerPort
 
-internal class Settings2AccountScreenTest : AbstractSecuredEndpointTest() {
+internal class Settings2AccountListScreenTest : AbstractSecuredEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 
-    private fun url() = "http://localhost:$port${Page.getSettingsUrl()}/account"
+    private fun url() = "http://localhost:$port${Page.getSettingsAccountListUrl()}"
 
     @Test
     fun index() {
@@ -27,6 +27,6 @@ internal class Settings2AccountScreenTest : AbstractSecuredEndpointTest() {
         doReturn(SearchPaymentMethodResponse(paymentMethods)).whenever(checkoutManagerApi).searchPaymentMethod(any())
 
         // WHEN/THEN
-        assertEndpointEquals("/checkout/settings/account/home/screens/index.json", url())
+        assertEndpointEquals("/checkout/settings/account/screens/account-list.json", url())
     }
 }

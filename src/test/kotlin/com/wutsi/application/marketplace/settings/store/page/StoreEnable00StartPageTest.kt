@@ -10,11 +10,12 @@ import org.springframework.boot.test.web.server.LocalServerPort
 import org.springframework.http.HttpStatus
 import kotlin.test.assertEquals
 
-internal class Store00StartPageTest : AbstractSecuredEndpointTest() {
+internal class StoreEnable00StartPageTest : AbstractSecuredEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 
-    private fun url(action: String = "") = "http://localhost:$port${Page.getSettingsStoreUrl()}/pages/start$action"
+    private fun url(action: String = "") =
+        "http://localhost:$port${Page.getSettingsStoreEnableUrl()}/pages/start$action"
 
     @Test
     fun index() = assertEndpointEquals("/marketplace/settings/store/pages/start.json", url())

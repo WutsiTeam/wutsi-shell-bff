@@ -105,7 +105,7 @@ class SettingsV2Screen : AbstractSecuredEndpoint() {
                         ),
                         listItem(
                             "page.settings.listitem.account.caption",
-                            urlBuilder.build("${Page.getSettingsUrl()}/account"),
+                            urlBuilder.build(Page.getSettingsAccountListUrl()),
                             icon = Theme.ICON_PAYMENT
                         ),
 
@@ -121,7 +121,7 @@ class SettingsV2Screen : AbstractSecuredEndpoint() {
                             if (user.storeId != null) {
                                 listItem(
                                     "page.settings.listitem.store.caption",
-                                    urlBuilder.build(Page.getSettingsProductListUrl()),
+                                    urlBuilder.build(Page.getSettingsStoreUrl()),
                                     icon = Theme.ICON_STORE
                                 )
                             } else {
@@ -174,7 +174,7 @@ class SettingsV2Screen : AbstractSecuredEndpoint() {
     @PostMapping("/enable-store")
     fun enableStore(): Action =
         gotoUrl(
-            urlBuilder.build(Page.getSettingsStoreUrl())
+            urlBuilder.build(Page.getSettingsStoreEnableUrl())
         )
 
     private fun listItem(caption: String, url: String, icon: String? = null) = listItem(

@@ -2,30 +2,93 @@
   "type": "Screen",
   "attributes": {
     "id": "page.settings.store",
-    "safe": true
+    "safe": false
   },
   "children": [
     {
-      "type": "PageView",
-      "attributes": {
-        "direction": "Horizontal"
-      },
+      "type": "Column",
+      "attributes": {},
       "children": [
         {
-          "type": "Page",
+          "type": "Container",
           "attributes": {
-            "url": "http://localhost:0/settings/2/store/pages/start"
+            "alignment": "CenterLeft",
+            "padding": 10.0
+          },
+          "children": [
+            {
+              "type": "Text",
+              "attributes": {
+                "caption": "Configure your Store",
+                "alignment": "Left"
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "type": "Divider",
+          "attributes": {
+            "height": 2.0,
+            "color": "#8c8c8c"
           },
           "children": []
         },
         {
-          "type": "Page",
+          "type": "Flexible",
           "attributes": {
-            "url": "http://localhost:0/settings/2/store/pages/success"
+            "flex": 1,
+            "fit": "Tight"
           },
-          "children": []
+          "children": [
+            {
+              "type": "ListView",
+              "attributes": {
+                "separator": true,
+                "separatorColor": "#8c8c8c"
+              },
+              "children": [
+                {
+                  "type": "ListItem",
+                  "attributes": {
+                    "caption": "Products",
+                    "trailing": {
+                      "type": "Icon",
+                      "attributes": {
+                        "code": "e15f"
+                      },
+                      "children": []
+                    },
+                    "leading": {
+                      "type": "Icon",
+                      "attributes": {
+                        "code": "f37d",
+                        "color": "#1D7EDF"
+                      },
+                      "children": []
+                    }
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "http://localhost:0/settings/2/products/list"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }
-  ]
+  ],
+  "appBar": {
+    "type": "AppBar",
+    "attributes": {
+      "title": "Store",
+      "elevation": 0.0,
+      "backgroundColor": "#FFFFFF",
+      "foregroundColor": "#000000"
+    },
+    "children": []
+  }
 }
