@@ -3,6 +3,7 @@ package com.wutsi.application
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
+import com.wutsi.checkout.manager.CheckoutManagerApi
 import com.wutsi.marketplace.manager.MarketplaceManagerApi
 import com.wutsi.membership.manager.MembershipManagerApi
 import com.wutsi.platform.core.tracing.TracingContext
@@ -53,6 +54,9 @@ abstract class AbstractEndpointTest {
 
     @MockBean
     protected lateinit var marketplaceManagerApi: MarketplaceManagerApi
+
+    @MockBean
+    protected lateinit var checkoutManagerApi: CheckoutManagerApi
 
     @MockBean
     protected lateinit var securityManagerApi: SecurityManagerApi

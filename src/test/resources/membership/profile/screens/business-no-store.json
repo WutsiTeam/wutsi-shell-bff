@@ -96,13 +96,6 @@
                                 {
                                   "type": "Text",
                                   "attributes": {
-                                    "caption": "Business Account"
-                                  },
-                                  "children": []
-                                },
-                                {
-                                  "type": "Text",
-                                  "attributes": {
                                     "caption": "Ads",
                                     "color": "#95A5A6"
                                   },

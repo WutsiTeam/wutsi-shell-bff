@@ -1,5 +1,8 @@
 package com.wutsi.application
 
+import com.wutsi.checkout.manager.dto.PaymentMethodSummary
+import com.wutsi.checkout.manager.dto.PaymentProviderSummary
+import com.wutsi.enums.PaymentMethodType
 import com.wutsi.marketplace.manager.dto.PictureSummary
 import com.wutsi.marketplace.manager.dto.Product
 import com.wutsi.marketplace.manager.dto.ProductSummary
@@ -126,4 +129,24 @@ object Fixtures {
         id = id,
         accountId = accountId
     )
+
+    fun createPaymentMethodSummary(
+        token: String = "111",
+        type: PaymentMethodType = PaymentMethodType.MOBILE_MONEY,
+        number: String = "+23767000001",
+        provider: String = "MTN"
+    ) = PaymentMethodSummary(
+        token = token,
+        type = type.name,
+        number = number,
+        provider = createPaymentProviderSummary(provider, type)
+    )
+
+    fun createPaymentProviderSummary(name: String = "MTN", type: PaymentMethodType = PaymentMethodType.MOBILE_MONEY) =
+        PaymentProviderSummary(
+            name = name,
+            code = name,
+            type = type.name,
+            logoUrl = "https://img.com/$name.png"
+        )
 }

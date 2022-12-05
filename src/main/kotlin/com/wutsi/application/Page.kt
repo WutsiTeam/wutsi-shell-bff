@@ -10,6 +10,7 @@ object Page {
     const val SECURITY_DELETE = "page.security.delete"
     const val SECURITY_PASSCODE = "page.security.passcode"
     const val SETTINGS = "page.settings"
+    const val SETTINGS_ACCOUNT = "page.account"
     const val SETTINGS_BUSINESS = "page.settings.business"
     const val SETTINGS_PICTURE = "page.settings.picture"
     const val SETTINGS_PROFILE = "page.settings.profile"

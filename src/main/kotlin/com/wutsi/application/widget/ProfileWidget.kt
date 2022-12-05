@@ -57,9 +57,6 @@ class ProfileWidget(
         if (active && business) {
             profile.addAll(
                 listOf(
-                    Text(
-                        getText("widget.profile.account-business")
-                    ),
                     category?.let {
                         Text(
                             caption = category,
