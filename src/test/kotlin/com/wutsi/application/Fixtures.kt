@@ -1,7 +1,10 @@
 package com.wutsi.application
 
+import com.wutsi.checkout.manager.dto.Business
+import com.wutsi.checkout.manager.dto.OrderSummary
 import com.wutsi.checkout.manager.dto.PaymentMethodSummary
 import com.wutsi.checkout.manager.dto.PaymentProviderSummary
+import com.wutsi.enums.OrderStatus
 import com.wutsi.enums.PaymentMethodType
 import com.wutsi.marketplace.manager.dto.PictureSummary
 import com.wutsi.marketplace.manager.dto.Product
@@ -149,4 +152,17 @@ object Fixtures {
             type = type.name,
             logoUrl = "https://img.com/$name.png"
         )
+
+    fun createOrderSummary(id: String, totalPrice: Long = 15000, status: OrderStatus = OrderStatus.OPENED) =
+        OrderSummary(
+            id = id,
+            totalPrice = totalPrice,
+            status = status.name
+        )
+
+    fun createBusiness(id: Long, accountId: Long) = Business(
+        id = id,
+        accountId = accountId,
+        country = "CM"
+    )
 }

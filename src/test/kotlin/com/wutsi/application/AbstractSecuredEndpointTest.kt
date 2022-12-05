@@ -17,7 +17,7 @@ abstract class AbstractSecuredEndpointTest : AbstractEndpointTest() {
         const val MEMBER_ID = 1000L
     }
 
-    val member = Fixtures.createMember(id = MEMBER_ID)
+    var member = Fixtures.createMember(id = MEMBER_ID)
 
     @BeforeEach
     override fun setUp() {

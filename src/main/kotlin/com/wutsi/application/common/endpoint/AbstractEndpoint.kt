@@ -77,7 +77,7 @@ abstract class AbstractEndpoint {
 
     protected fun createBottomNavigationBarWidget() = BottomNavigationBarWidget(
         profileUrl = urlBuilder.build(Page.getProfileUrl()),
-        ordersUrl = urlBuilder.build(Page.getOrdersUrl())
+        ordersUrl = urlBuilder.build(Page.getOrderListUrl())
     ).toBottomNavigationBar()
 
     protected fun log(action: Action, e: Throwable) {
@@ -153,10 +153,16 @@ abstract class AbstractEndpoint {
             parameters = parameters
         )
 
-    protected fun gotoUrl(url: String, type: ActionType = ActionType.Route, replacement: Boolean? = null) = Action(
+    protected fun gotoUrl(
+        url: String,
+        type: ActionType = ActionType.Route,
+        replacement: Boolean? = null,
+        parameters: Map<String, String>? = null
+    ) = Action(
         type = type,
         url = url,
-        replacement = replacement
+        replacement = replacement,
+        parameters = parameters
     )
 
     protected fun promptError(errorKey: String) = Action(
