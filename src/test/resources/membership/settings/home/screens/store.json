@@ -152,7 +152,7 @@
               "children": [],
               "action": {
                 "type": "Route",
-                "url": "http://localhost:0/settings/2/account"
+                "url": "http://localhost:0/settings/2/accounts/list"
               }
             },
             {
@@ -188,7 +188,7 @@
               "children": [],
               "action": {
                 "type": "Route",
-                "url": "http://localhost:0/settings/2/catalog"
+                "url": "http://localhost:0/settings/2/store"
               }
             },
             {

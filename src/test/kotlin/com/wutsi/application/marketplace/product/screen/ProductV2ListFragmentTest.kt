@@ -1,4 +1,4 @@
-package com.wutsi.application.marketplace.catalog.home.fragment
+package com.wutsi.application.marketplace.product.screen
 
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.anyOrNull
@@ -13,11 +13,11 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.web.server.LocalServerPort
 
-internal class CatalogV2FragmentTest : AbstractSecuredEndpointTest() {
+internal class ProductV2ListFragmentTest : AbstractSecuredEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 
-    private fun url() = "http://localhost:$port${Page.getCatalogUrl()}/fragment?id=111"
+    private fun url() = "http://localhost:$port${Page.getProductListUrl()}/fragment?id=111"
 
     @BeforeEach
     override fun setUp() {
@@ -37,7 +37,7 @@ internal class CatalogV2FragmentTest : AbstractSecuredEndpointTest() {
         val member = Fixtures.createMember(business = true, storeId = 111)
         doReturn(GetMemberResponse(member)).whenever(membershipManagerApi).getMember(anyOrNull())
 
-        assertEndpointEquals("/marketplace/catalog/home/fragments/products.json", url())
+        assertEndpointEquals("/marketplace/product/screens/list.json", url())
     }
 
     @Test
@@ -45,7 +45,7 @@ internal class CatalogV2FragmentTest : AbstractSecuredEndpointTest() {
         val member = Fixtures.createMember(business = false, storeId = 111)
         doReturn(GetMemberResponse(member)).whenever(membershipManagerApi).getMember(anyOrNull())
 
-        assertEndpointEquals("/marketplace/catalog/home/fragments/not-business.json", url())
+        assertEndpointEquals("/marketplace/product/screens/list-not-business.json", url())
     }
 
     @Test
@@ -53,6 +53,6 @@ internal class CatalogV2FragmentTest : AbstractSecuredEndpointTest() {
         val member = Fixtures.createMember(business = true, storeId = null)
         doReturn(GetMemberResponse(member)).whenever(membershipManagerApi).getMember(anyOrNull())
 
-        assertEndpointEquals("/marketplace/catalog/home/fragments/not-store.json", url())
+        assertEndpointEquals("/marketplace/product/screens/list-not-store.json", url())
     }
 }

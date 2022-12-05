@@ -116,7 +116,7 @@
                       ],
                       "action": {
                         "type": "Route",
-                        "url": "http://localhost:0/product/2?id=1"
+                        "url": "http://localhost:0/products/2?id=1"
                       }
                     }
                   ]
@@ -191,7 +191,7 @@
                       ],
                       "action": {
                         "type": "Route",
-                        "url": "http://localhost:0/product/2?id=2"
+                        "url": "http://localhost:0/products/2?id=2"
                       }
                     }
                   ]
@@ -276,7 +276,7 @@
                       ],
                       "action": {
                         "type": "Route",
-                        "url": "http://localhost:0/product/2?id=3"
+                        "url": "http://localhost:0/products/2?id=3"
                       }
                     }
                   ]
@@ -351,7 +351,7 @@
                       ],
                       "action": {
                         "type": "Route",
-                        "url": "http://localhost:0/product/2?id=4"
+                        "url": "http://localhost:0/products/2?id=4"
                       }
                     }
                   ]

@@ -1,4 +1,4 @@
-package com.wutsi.application.marketplace.catalog.product.screen
+package com.wutsi.application.marketplace.product.screen
 
 import com.wutsi.application.common.endpoint.AbstractEndpoint
 import com.wutsi.application.shared.Theme
@@ -37,7 +37,7 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/product/2")
+@RequestMapping("/products/2")
 class ProductV2Screen(
     private val marketplaceManagerApi: MarketplaceManagerApi,
     private val membershipManagerApi: MembershipManagerApi,

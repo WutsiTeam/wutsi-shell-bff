@@ -1,4 +1,4 @@
-package com.wutsi.application.marketplace.catalog.product.screen
+package com.wutsi.application.marketplace.product.screen
 
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.anyOrNull
@@ -52,6 +52,6 @@ internal class ProductV2ScreenTest : AbstractSecuredEndpointTest() {
 
     @Test
     fun products() {
-        assertEndpointEquals("/marketplace/catalog/product/screens/product.json", url())
+        assertEndpointEquals("/marketplace/product/screens/product.json", url())
     }
 }

@@ -490,7 +490,7 @@
                                       ],
                                       "action": {
                                         "type": "Route",
-                                        "url": "http://localhost:0/product/2?id=1"
+                                        "url": "http://localhost:0/products/2?id=1"
                                       }
                                     }
                                   ]
@@ -565,7 +565,7 @@
                                       ],
                                       "action": {
                                         "type": "Route",
-                                        "url": "http://localhost:0/product/2?id=2"
+                                        "url": "http://localhost:0/products/2?id=2"
                                       }
                                     }
                                   ]
@@ -698,7 +698,7 @@
             "children": [],
             "action": {
               "type": "Route",
-              "url": "http://localhost:0/orders/2"
+              "url": "http://localhost:0/orders/2/list"
             }
           }
         ]

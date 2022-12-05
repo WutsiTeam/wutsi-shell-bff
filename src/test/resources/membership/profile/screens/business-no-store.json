@@ -383,7 +383,7 @@
         "children": [],
         "action": {
           "type": "Route",
-          "url": "http://localhost:0/orders/2"
+          "url": "http://localhost:0/orders/2/list"
         }
       }
     ]

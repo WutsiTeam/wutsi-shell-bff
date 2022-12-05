@@ -80,6 +80,7 @@ class OrderListScreen(
                 foregroundColor = Theme.COLOR_BLACK,
                 title = getText("page.order.list.app-bar.title")
             ),
+            bottomNavigationBar = createBottomNavigationBarWidget(),
             child = Column(
                 crossAxisAlignment = CrossAxisAlignment.center,
                 children = listOfNotNull(

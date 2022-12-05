@@ -1,4 +1,4 @@
-package com.wutsi.application.marketplace.catalog.home.fragment
+package com.wutsi.application.marketplace.product.screen
 
 import com.wutsi.application.Page
 import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
@@ -24,8 +24,8 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/catalog/2/fragment")
-class CatalogV2Fragment(
+@RequestMapping("/products/2/list/fragment")
+class ProductV2ListFragment(
     private val marketplaceManagerApi: MarketplaceManagerApi,
     private val regulationEngine: RegulationEngine,
     private val imageService: ImageService
@@ -57,11 +57,11 @@ class CatalogV2Fragment(
                         padding = 10.0,
                         child = Text(
                             caption = if (products.isEmpty()) {
-                                getText("page.catalog.0_product")
+                                getText("page.product.list.0_product")
                             } else if (products.size == 1) {
-                                getText("page.catalog.1_product")
+                                getText("page.product.list.1_product")
                             } else {
-                                getText("page.catalog.n_products", arrayOf(products.size))
+                                getText("page.product.list.n_products", arrayOf(products.size))
                             }
                         )
                     ),
