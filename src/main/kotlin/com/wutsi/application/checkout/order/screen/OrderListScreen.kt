@@ -165,7 +165,7 @@ class OrderListScreen(
                                     Text(
                                         caption = moneyFormat.format(order.totalPrice),
                                         bold = true,
-                                        color = Theme.COLOR_PRIMARY,
+                                        color = Theme.COLOR_PRIMARY
                                     ),
                                     toStatusBadge(order)
                                 )

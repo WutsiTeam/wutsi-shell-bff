@@ -1,11 +1,21 @@
 package com.wutsi.application
 
 import com.wutsi.checkout.manager.dto.Business
+import com.wutsi.checkout.manager.dto.BusinessSummary
+import com.wutsi.checkout.manager.dto.Discount
+import com.wutsi.checkout.manager.dto.Order
+import com.wutsi.checkout.manager.dto.OrderItem
 import com.wutsi.checkout.manager.dto.OrderSummary
 import com.wutsi.checkout.manager.dto.PaymentMethodSummary
 import com.wutsi.checkout.manager.dto.PaymentProviderSummary
+import com.wutsi.checkout.manager.dto.TransactionSummary
+import com.wutsi.enums.BusinessStatus
+import com.wutsi.enums.ChannelType
+import com.wutsi.enums.DeviceType
+import com.wutsi.enums.DiscountType
 import com.wutsi.enums.OrderStatus
 import com.wutsi.enums.PaymentMethodType
+import com.wutsi.enums.TransactionType
 import com.wutsi.marketplace.manager.dto.PictureSummary
 import com.wutsi.marketplace.manager.dto.Product
 import com.wutsi.marketplace.manager.dto.ProductSummary
@@ -17,6 +27,9 @@ import com.wutsi.membership.manager.dto.Member
 import com.wutsi.membership.manager.dto.MemberSummary
 import com.wutsi.membership.manager.dto.Place
 import com.wutsi.membership.manager.dto.PlaceSummary
+import com.wutsi.platform.payment.core.Status
+import java.time.OffsetDateTime
+import java.time.ZoneOffset
 
 object Fixtures {
     fun createMemberSummary() = MemberSummary()
@@ -157,12 +170,101 @@ object Fixtures {
         OrderSummary(
             id = id,
             totalPrice = totalPrice,
-            status = status.name
+            status = status.name,
+            created = OffsetDateTime.of(2020, 1, 1, 10, 30, 0, 0, ZoneOffset.UTC)
         )
 
     fun createBusiness(id: Long, accountId: Long) = Business(
         id = id,
         accountId = accountId,
         country = "CM"
+    )
+
+    fun createOrder(
+        id: String,
+        businessId: Long = -1,
+        merchantId: Long = -1,
+        totalPrice: Long = 100000L,
+        status: OrderStatus = OrderStatus.OPENED
+    ) = Order(
+        id = id,
+        business = createBusinessSummary(businessId, merchantId),
+        totalPrice = totalPrice,
+        totalDiscount = 20000,
+        subTotalPrice = totalPrice + 20000,
+        totalPaid = totalPrice,
+        balance = 0,
+        status = status.name,
+        customerName = "Ray Sponsible",
+        customerEmail = "ray.sponsible@gmail.com",
+        deviceType = DeviceType.MOBILE.name,
+        channelType = ChannelType.WEB.name,
+        currency = "XAF",
+        notes = "Yo man",
+        deviceId = "4309403-43094039-43094309",
+        discounts = listOf(
+            Discount(
+                code = "111",
+                amount = 1000,
+                rate = 0,
+                type = DiscountType.DYNAMIC.name
+            )
+        ),
+        items = listOf(
+            OrderItem(
+                productId = 999,
+                quantity = 3,
+                title = "This is a product",
+                pictureUrl = "https://img.com/1.png",
+                totalPrice = totalPrice,
+                unitPrice = totalPrice / 3,
+                subTotalPrice = totalPrice - 100,
+                totalDiscount = 100,
+                discounts = listOf(
+                    Discount(
+                        code = "111",
+                        amount = 100,
+                        rate = 0,
+                        type = DiscountType.DYNAMIC.name
+                    )
+                )
+            )
+        ),
+        created = OffsetDateTime.of(2020, 1, 1, 10, 30, 0, 0, ZoneOffset.UTC),
+        updated = OffsetDateTime.of(2020, 1, 1, 10, 30, 0, 0, ZoneOffset.UTC),
+        expires = OffsetDateTime.of(2100, 1, 1, 10, 30, 0, 0, ZoneOffset.UTC),
+        transactions = listOf(
+            createTransactionSummary("11", TransactionType.CHARGE, Status.SUCCESSFUL, id),
+            createTransactionSummary("11", TransactionType.CHARGE, Status.FAILED, id),
+            createTransactionSummary("11", TransactionType.CHARGE, Status.PENDING, id)
+        )
+    )
+
+    fun createBusinessSummary(
+        id: Long,
+        accountId: Long,
+        balance: Long = 100000,
+        currency: String = "XAF",
+        country: String = "CM",
+        status: BusinessStatus = BusinessStatus.ACTIVE
+    ) = BusinessSummary(
+        id = id,
+        balance = balance,
+        currency = currency,
+        country = country,
+        status = status.name,
+        accountId = accountId
+    )
+
+    fun createTransactionSummary(
+        id: String,
+        type: TransactionType,
+        status: Status = Status.SUCCESSFUL,
+        orderId: String? = null
+    ) = TransactionSummary(
+        id = id,
+        type = type.name,
+        orderId = orderId,
+        status = status.name
     )
 }
