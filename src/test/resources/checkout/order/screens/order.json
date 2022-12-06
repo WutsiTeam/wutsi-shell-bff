@@ -157,7 +157,8 @@
                                   "attributes": {
                                     "url": "https://img.com/1.png",
                                     "width": 64.0,
-                                    "height": 64.0
+                                    "height": 64.0,
+                                    "fit": "fill"
                                   },
                                   "children": []
                                 }
@@ -445,7 +446,8 @@
                                   "attributes": {
                                     "url": "",
                                     "width": 48.0,
-                                    "height": 48.0
+                                    "height": 48.0,
+                                    "fit": "fill"
                                   },
                                   "children": []
                                 },

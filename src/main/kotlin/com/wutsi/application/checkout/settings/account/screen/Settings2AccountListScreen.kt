@@ -1,7 +1,7 @@
 package com.wutsi.application.checkout.settings.account.screen
 
 import com.wutsi.application.Page
-import com.wutsi.application.common.endpoint.AbstractEndpoint
+import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.util.SecurityUtil
 import com.wutsi.checkout.manager.CheckoutManagerApi
@@ -23,7 +23,6 @@ import com.wutsi.flutter.sdui.enums.Alignment.Center
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisSize
-import com.wutsi.membership.manager.MembershipManagerApi
 import com.wutsi.membership.manager.dto.Member
 import com.wutsi.regulation.RegulationEngine
 import org.springframework.web.bind.annotation.PostMapping
@@ -33,10 +32,9 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/settings/2/accounts/list")
 class Settings2AccountListScreen(
-    private val membershipManagerApi: MembershipManagerApi,
     private val checkoutManagerApi: CheckoutManagerApi,
     private val regulationEngine: RegulationEngine
-) : AbstractEndpoint() {
+) : AbstractSecuredEndpoint() {
     @PostMapping
     fun index(): Widget {
         val memberId = SecurityUtil.getMemberId()

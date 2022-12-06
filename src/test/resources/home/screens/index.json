@@ -5,7 +5,22 @@
     "safe": false,
     "backgroundColor": "#e8e8e8"
   },
-  "children": [],
+  "children": [
+    {
+      "type": "SingleChildScrollView",
+      "attributes": {},
+      "children": [
+        {
+          "type": "Column",
+          "attributes": {
+            "mainAxisAlignment": "start",
+            "crossAxisAlignment": "start"
+          },
+          "children": []
+        }
+      ]
+    }
+  ],
   "appBar": {
     "type": "AppBar",
     "attributes": {

@@ -1,7 +1,7 @@
 package com.wutsi.application.checkout.order.screen
 
 import com.wutsi.application.Page
-import com.wutsi.application.common.endpoint.AbstractEndpoint
+import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
 import com.wutsi.application.shared.Theme
 import com.wutsi.checkout.manager.CheckoutManagerApi
 import com.wutsi.checkout.manager.dto.Order
@@ -22,6 +22,7 @@ import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.Alignment
+import com.wutsi.flutter.sdui.enums.BoxFit
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.TextAlignment
@@ -43,7 +44,7 @@ class OrderV2Screen(
     private val checkoutManagerApi: CheckoutManagerApi,
     private val regulationEngine: RegulationEngine,
     private val imageService: ImageService
-) : AbstractEndpoint() {
+) : AbstractSecuredEndpoint() {
     companion object {
         const val PRODUCT_PICTURE_SIZE = 64.0
         const val PROVIDER_PICTURE_SIZE = 48.0
@@ -152,6 +153,9 @@ class OrderV2Screen(
                     child = ClipRRect(
                         borderRadius = 5.0,
                         child = Image(
+                            width = PRODUCT_PICTURE_SIZE,
+                            height = PRODUCT_PICTURE_SIZE,
+                            fit = BoxFit.fill,
                             url = imageService.transform(
                                 url = it,
                                 Transformation(
@@ -160,9 +164,7 @@ class OrderV2Screen(
                                         height = PRODUCT_PICTURE_SIZE.toInt()
                                     )
                                 )
-                            ),
-                            width = PRODUCT_PICTURE_SIZE,
-                            height = PRODUCT_PICTURE_SIZE
+                            )
                         )
                     )
                 )
@@ -228,6 +230,7 @@ class OrderV2Screen(
                             children = listOf(
                                 Image(
                                     url = tx.paymentMethod.provider.logoUrl,
+                                    fit = BoxFit.fill,
                                     width = PROVIDER_PICTURE_SIZE,
                                     height = PROVIDER_PICTURE_SIZE
                                 ),

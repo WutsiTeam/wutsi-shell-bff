@@ -165,18 +165,25 @@
                                     "bold": true
                                   },
                                   "children": []
+                                },
+                                {
+                                  "type": "Container",
+                                  "attributes": {
+                                    "padding": 5.0
+                                  },
+                                  "children": []
+                                },
+                                {
+                                  "type": "Row",
+                                  "attributes": {
+                                    "mainAxisAlignment": "end",
+                                    "crossAxisAlignment": "center"
+                                  },
+                                  "children": []
                                 }
                               ]
                             }
                           ]
-                        },
-                        {
-                          "type": "Row",
-                          "attributes": {
-                            "mainAxisAlignment": "end",
-                            "crossAxisAlignment": "center"
-                          },
-                          "children": []
                         }
                       ]
                     }
@@ -305,18 +312,25 @@
                                     "bold": true
                                   },
                                   "children": []
+                                },
+                                {
+                                  "type": "Container",
+                                  "attributes": {
+                                    "padding": 5.0
+                                  },
+                                  "children": []
+                                },
+                                {
+                                  "type": "Row",
+                                  "attributes": {
+                                    "mainAxisAlignment": "end",
+                                    "crossAxisAlignment": "center"
+                                  },
+                                  "children": []
                                 }
                               ]
                             }
                           ]
-                        },
-                        {
-                          "type": "Row",
-                          "attributes": {
-                            "mainAxisAlignment": "end",
-                            "crossAxisAlignment": "center"
-                          },
-                          "children": []
                         }
                       ]
                     }
@@ -455,18 +469,25 @@
                                     "size": 10.0
                                   },
                                   "children": []
+                                },
+                                {
+                                  "type": "Container",
+                                  "attributes": {
+                                    "padding": 5.0
+                                  },
+                                  "children": []
+                                },
+                                {
+                                  "type": "Row",
+                                  "attributes": {
+                                    "mainAxisAlignment": "end",
+                                    "crossAxisAlignment": "center"
+                                  },
+                                  "children": []
                                 }
                               ]
                             }
                           ]
-                        },
-                        {
-                          "type": "Row",
-                          "attributes": {
-                            "mainAxisAlignment": "end",
-                            "crossAxisAlignment": "center"
-                          },
-                          "children": []
                         }
                       ]
                     }
@@ -605,18 +626,25 @@
                                     "size": 10.0
                                   },
                                   "children": []
+                                },
+                                {
+                                  "type": "Container",
+                                  "attributes": {
+                                    "padding": 5.0
+                                  },
+                                  "children": []
+                                },
+                                {
+                                  "type": "Row",
+                                  "attributes": {
+                                    "mainAxisAlignment": "end",
+                                    "crossAxisAlignment": "center"
+                                  },
+                                  "children": []
                                 }
                               ]
                             }
                           ]
-                        },
-                        {
-                          "type": "Row",
-                          "attributes": {
-                            "mainAxisAlignment": "end",
-                            "crossAxisAlignment": "center"
-                          },
-                          "children": []
                         }
                       ]
                     }
