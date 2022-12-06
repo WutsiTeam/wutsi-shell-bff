@@ -22,6 +22,7 @@ import com.wutsi.platform.core.image.Dimension
 import com.wutsi.platform.core.image.ImageService
 import com.wutsi.platform.core.image.Transformation
 import com.wutsi.regulation.Country
+import org.springframework.context.i18n.LocaleContextHolder
 import java.text.DecimalFormat
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
@@ -69,7 +70,7 @@ class OrderWidget(
 
     override fun toWidgetAware(): WidgetAware {
         val moneyFormat = DecimalFormat(country.monetaryFormat)
-        val dateFormat = DateTimeFormatter.ofPattern(country.dateFormat)
+        val dateFormat = DateTimeFormatter.ofPattern(country.dateFormat, LocaleContextHolder.getLocale())
 
         return Container(
             padding = 10.0,

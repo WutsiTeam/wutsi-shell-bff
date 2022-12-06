@@ -31,6 +31,7 @@ import com.wutsi.platform.core.image.ImageService
 import com.wutsi.platform.core.image.Transformation
 import com.wutsi.platform.payment.core.Status
 import com.wutsi.regulation.RegulationEngine
+import org.springframework.context.i18n.LocaleContextHolder
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -54,7 +55,7 @@ class OrderV2Screen(
     fun index(@RequestParam id: String): Widget {
         val order = checkoutManagerApi.getOrder(id).order
         val country = regulationEngine.country(order.business.country)
-        val dateFormat = DateTimeFormatter.ofPattern(country.dateTimeFormat)
+        val dateFormat = DateTimeFormatter.ofPattern(country.dateTimeFormat, LocaleContextHolder.getLocale())
         val moneyFormat = DecimalFormat(country.monetaryFormat)
 
         return Screen(

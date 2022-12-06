@@ -72,6 +72,7 @@ abstract class AbstractEndpointTest {
         doReturn(TRACE_ID).whenever(tracingContext).traceId()
 
         rest.interceptors.add(SpringTracingRequestInterceptor(tracingContext))
+        rest.interceptors.add(LanguageClientHttpRequestInterceptor())
     }
 
     protected fun assertEndpointEquals(expectedPath: String, url: String) {
