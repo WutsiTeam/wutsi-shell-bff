@@ -133,7 +133,8 @@ class AboutScreen(
                     child = Text(
                         getText(key),
                         bold = true,
-                        alignment = TextAlignment.Right
+                        alignment = TextAlignment.Right,
+                        size = Theme.TEXT_SIZE_SMALL
                     )
                 )
             ),

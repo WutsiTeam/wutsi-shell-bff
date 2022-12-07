@@ -174,6 +174,15 @@ abstract class AbstractEndpoint {
         ).toWidget()
     )
 
+    protected fun promptInfo(errorKey: String) = Action(
+        type = ActionType.Prompt,
+        prompt = Dialog(
+            title = getText("prompt.info.title"),
+            type = DialogType.Information,
+            message = getText(errorKey)
+        ).toWidget()
+    )
+
     protected fun getText(key: String, args: Array<Any?> = emptyArray()): String =
         messages.getMessage(key, args, LocaleContextHolder.getLocale())
 

@@ -13,6 +13,7 @@ object Page {
     const val SECURITY_PASSCODE = "page.security.passcode"
     const val SETTINGS = "page.settings"
     const val SETTINGS_ACCOUNT = "page.account"
+    const val SETTINGS_ACCOUNT_ADD_MOBILE = "page.account.add.mobile"
     const val SETTINGS_ACCOUNT_LIST = "page.account.list"
     const val SETTINGS_BUSINESS = "page.settings.business"
     const val SETTINGS_PICTURE = "page.settings.picture"

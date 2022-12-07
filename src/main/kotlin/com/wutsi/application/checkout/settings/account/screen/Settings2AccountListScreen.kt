@@ -8,6 +8,7 @@ import com.wutsi.checkout.manager.CheckoutManagerApi
 import com.wutsi.checkout.manager.dto.SearchPaymentMethodRequest
 import com.wutsi.enums.PaymentMethodStatus
 import com.wutsi.flutter.sdui.AppBar
+import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Divider
@@ -111,18 +112,18 @@ class Settings2AccountListScreen(
                     )
                 }
         )
-//        children.add(
-//            Container(
-//                padding = 10.0,
-//                alignment = Center,
-//                child = Button(
-//                    caption = getText("page.settings.account.button.add-account"),
-//                    action = gotoUrl(
-//                        url = urlBuilder.build("${Page.getSettingsUrl()}/account/add")
-//                    )
-//                )
-//            )
-//        )
+        children.add(
+            Container(
+                padding = 10.0,
+                alignment = Center,
+                child = Button(
+                    caption = getText("page.settings.account.button.add-account"),
+                    action = gotoUrl(
+                        url = urlBuilder.build("${Page.getSettingsAccountUrl()}/add/mobile")
+                    )
+                )
+            )
+        )
         return ListView(
             children = children,
             separatorColor = Theme.COLOR_DIVIDER,
