@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/settings/2/store/enable")
+@RequestMapping("/settings/2/store/activate")
 class SettingsV2StoreEnableScreen : AbstractEndpoint() {
     companion object {
         private val PAGE_URLS = listOf(
-            "${Page.getSettingsStoreEnableUrl()}/pages/start",
-            "${Page.getSettingsStoreEnableUrl()}/pages/success"
+            "${Page.getSettingsStoreActivateUrl()}/pages/start",
+            "${Page.getSettingsStoreActivateUrl()}/pages/success"
         )
     }
 

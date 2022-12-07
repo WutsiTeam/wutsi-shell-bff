@@ -127,7 +127,7 @@ internal class LoginV2ScreenTest : AbstractEndpointTest() {
     @Test
     fun authenticateFailure() {
         // GIVEN
-        val ex = createConflictException(errorCode = ErrorURN.MEMBER_SUSPENDED.urn)
+        val ex = createConflictException(errorCode = ErrorURN.MEMBER_NOT_ACTIVE.urn)
         doThrow(ex).whenever(securityManagerApi).login(any())
 
         // WHEN

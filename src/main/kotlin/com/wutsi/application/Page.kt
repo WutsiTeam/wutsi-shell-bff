@@ -42,7 +42,7 @@ object Page {
     fun getSettingsProfileUrl() = "${getSettingsUrl()}/profile"
     fun getSettingsProfileEditorUrl() = "${getSettingsProfileUrl()}/editor"
     fun getSettingsStoreUrl() = "${getSettingsUrl()}/store"
-    fun getSettingsStoreEnableUrl() = "${getSettingsUrl()}/store/enable"
+    fun getSettingsStoreActivateUrl() = "${getSettingsUrl()}/store/activate"
     fun getSettingsProductUrl() = "${getSettingsUrl()}/products"
     fun getSettingsProductPictureUrl() = "${getSettingsProductUrl()}/pictures"
     fun getSettingsProductEditorUrl() = "${getSettingsProductUrl()}/editor"

@@ -15,7 +15,7 @@ internal class StoreEnable00StartPageTest : AbstractSecuredEndpointTest() {
     val port: Int = 0
 
     private fun url(action: String = "") =
-        "http://localhost:$port${Page.getSettingsStoreEnableUrl()}/pages/start$action"
+        "http://localhost:$port${Page.getSettingsStoreActivateUrl()}/pages/start$action"
 
     @Test
     fun index() = assertEndpointEquals("/marketplace/settings/store/pages/start.json", url())
@@ -32,6 +32,6 @@ internal class StoreEnable00StartPageTest : AbstractSecuredEndpointTest() {
         assertEquals(ActionType.Page, action.type)
         assertEquals("page:/1", action.url)
 
-        verify(marketplaceManagerApi).enableStore()
+        verify(marketplaceManagerApi).activateStore()
     }
 }

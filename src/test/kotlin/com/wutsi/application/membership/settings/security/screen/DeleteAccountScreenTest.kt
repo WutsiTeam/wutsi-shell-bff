@@ -30,7 +30,7 @@ internal class DeleteAccountScreenTest : AbstractSecuredEndpointTest() {
         // THEN
         assertEquals(HttpStatus.OK, response.statusCode)
 
-        verify(membershipManagerApi).deleteMember()
+        verify(membershipManagerApi).deactivateMember()
 
         val action = response.body!!
         assertEquals(ActionType.Route, action.type)

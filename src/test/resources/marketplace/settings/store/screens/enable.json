@@ -14,14 +14,14 @@
         {
           "type": "Page",
           "attributes": {
-            "url": "http://localhost:0/settings/2/store/enable/pages/start"
+            "url": "http://localhost:0/settings/2/store/activate/pages/start"
           },
           "children": []
         },
         {
           "type": "Page",
           "attributes": {
-            "url": "http://localhost:0/settings/2/store/enable/pages/success"
+            "url": "http://localhost:0/settings/2/store/activate/pages/success"
           },
           "children": []
         }

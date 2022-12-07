@@ -9,7 +9,7 @@ internal class SettingsV2StoreEnableScreenTest : AbstractSecuredEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 
-    private fun url() = "http://localhost:$port${Page.getSettingsStoreEnableUrl()}"
+    private fun url() = "http://localhost:$port${Page.getSettingsStoreActivateUrl()}"
 
     @Test
     fun index() = assertEndpointEquals("/marketplace/settings/store/screens/enable.json", url())

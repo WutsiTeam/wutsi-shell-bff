@@ -56,6 +56,28 @@
                         "padding": 10.0
                       },
                       "children": []
+                    },
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "alignment": "Center",
+                        "padding": 10.0
+                      },
+                      "children": [
+                        {
+                          "type": "Button",
+                          "attributes": {
+                            "caption": "Link Account",
+                            "padding": 15.0,
+                            "type": "Elevated"
+                          },
+                          "children": [],
+                          "action": {
+                            "type": "Route",
+                            "url": "http://localhost:0/settings/2/accounts/add/mobile"
+                          }
+                        }
+                      ]
                     }
                   ]
                 }

@@ -57,6 +57,7 @@
                           "attributes": {
                             "caption": "Version",
                             "bold": true,
+                            "size": 10.0,
                             "alignment": "Right"
                           },
                           "children": []
@@ -115,6 +116,7 @@
                           "attributes": {
                             "caption": "Operating System",
                             "bold": true,
+                            "size": 10.0,
                             "alignment": "Right"
                           },
                           "children": []
@@ -173,6 +175,7 @@
                           "attributes": {
                             "caption": "Device ID",
                             "bold": true,
+                            "size": 10.0,
                             "alignment": "Right"
                           },
                           "children": []
@@ -231,6 +234,7 @@
                           "attributes": {
                             "caption": "User ID",
                             "bold": true,
+                            "size": 10.0,
                             "alignment": "Right"
                           },
                           "children": []
@@ -289,6 +293,7 @@
                           "attributes": {
                             "caption": "Environment",
                             "bold": true,
+                            "size": 10.0,
                             "alignment": "Right"
                           },
                           "children": []

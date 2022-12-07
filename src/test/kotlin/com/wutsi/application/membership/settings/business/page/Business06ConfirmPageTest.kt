@@ -8,7 +8,7 @@ import com.wutsi.application.Page
 import com.wutsi.application.membership.settings.business.entity.BusinessEntity
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
-import com.wutsi.membership.manager.dto.EnableBusinessRequest
+import com.wutsi.membership.manager.dto.ActivateBusinessRequest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -51,8 +51,8 @@ internal class Business06ConfirmPageTest : AbstractSecuredEndpointTest() {
         assertEquals(ActionType.Page, action.type)
         assertEquals("page:/7", action.url)
 
-        verify(membershipManagerApi).enableBusiness(
-            request = EnableBusinessRequest(
+        verify(membershipManagerApi).activateBusiness(
+            request = ActivateBusinessRequest(
                 displayName = entity.displayName,
                 biography = entity.biography,
                 whatsapp = entity.whatsapp,

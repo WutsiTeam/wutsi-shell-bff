@@ -166,7 +166,7 @@ class DeleteAccountScreen : AbstractSecuredEndpoint() {
 
     @PostMapping("/submit")
     fun submit(): Action {
-        membershipManagerApi.deleteMember()
+        membershipManagerApi.deactivateMember()
         return gotoUrl(
             urlBuilder.build("${Page.getSecurityUrl()}/delete/done")
         )

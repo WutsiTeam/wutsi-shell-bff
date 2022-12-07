@@ -8,7 +8,7 @@ import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.ButtonType
-import com.wutsi.membership.manager.dto.EnableBusinessRequest
+import com.wutsi.membership.manager.dto.ActivateBusinessRequest
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -55,8 +55,8 @@ class Business06ConfirmPage : AbstractBusinessPage() {
     @PostMapping("/submit")
     fun submit(): Action {
         val entity = dao.get()
-        membershipManagerApi.enableBusiness(
-            request = EnableBusinessRequest(
+        membershipManagerApi.activateBusiness(
+            request = ActivateBusinessRequest(
                 displayName = entity.displayName,
                 cityId = entity.cityId ?: -1,
                 categoryId = entity.categoryId ?: -1,

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/settings/2/store/enable/pages/start")
+@RequestMapping("/settings/2/store/activate/pages/start")
 class StoreEnable00StartPage(
     private val marketplaceManagerApi: MarketplaceManagerApi
 ) : AbstractPageEndpoint() {
@@ -25,9 +25,9 @@ class StoreEnable00StartPage(
 
     override fun getPageIndex() = PAGE_INDEX
 
-    override fun getTitle() = getText("page.settings.store.enable.title")
+    override fun getTitle() = getText("page.settings.store.activate.title")
 
-    override fun getSubTitle() = getText("page.settings.store.enable.sub-title")
+    override fun getSubTitle() = getText("page.settings.store.activate.sub-title")
 
     override fun getBody(): WidgetAware =
         Column(
@@ -35,7 +35,7 @@ class StoreEnable00StartPage(
                 Container(
                     padding = 10.0,
                     child = Button(
-                        caption = getText("page.settings.store.enable.button.yes"),
+                        caption = getText("page.settings.store.activate.button.yes"),
                         action = Action(
                             type = ActionType.Command,
                             url = urlBuilder.build("${Page.getSettingsStoreUrl()}/pages/start/submit")
@@ -46,7 +46,7 @@ class StoreEnable00StartPage(
                     padding = 10.0,
                     child = Button(
                         type = ButtonType.Text,
-                        caption = getText("page.settings.store.enable.button.no"),
+                        caption = getText("page.settings.store.activate.button.no"),
                         action = gotoPreviousScreen()
                     )
                 )
@@ -57,7 +57,7 @@ class StoreEnable00StartPage(
 
     @PostMapping("/submit")
     fun submit(): Action {
-        marketplaceManagerApi.enableStore()
+        marketplaceManagerApi.activateStore()
         return gotoPage(PAGE_INDEX + 1)
     }
 }

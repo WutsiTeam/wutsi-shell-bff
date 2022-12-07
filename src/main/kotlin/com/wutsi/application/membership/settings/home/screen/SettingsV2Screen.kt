@@ -174,7 +174,7 @@ class SettingsV2Screen : AbstractSecuredEndpoint() {
     @PostMapping("/enable-store")
     fun enableStore(): Action =
         gotoUrl(
-            urlBuilder.build(Page.getSettingsStoreEnableUrl())
+            urlBuilder.build(Page.getSettingsStoreActivateUrl())
         )
 
     private fun listItem(caption: String, url: String, icon: String? = null) = listItem(
