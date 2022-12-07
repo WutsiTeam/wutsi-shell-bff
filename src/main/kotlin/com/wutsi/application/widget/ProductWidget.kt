@@ -5,9 +5,11 @@ import com.wutsi.application.shared.ui.CompositeWidgetAware
 import com.wutsi.ecommerce.catalog.entity.ProductStatus
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.Chip
+import com.wutsi.flutter.sdui.ClipRRect
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Flexible
+import com.wutsi.flutter.sdui.Image
 import com.wutsi.flutter.sdui.MoneyText
 import com.wutsi.flutter.sdui.Positioned
 import com.wutsi.flutter.sdui.Row
@@ -15,6 +17,7 @@ import com.wutsi.flutter.sdui.Stack
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.Alignment
+import com.wutsi.flutter.sdui.enums.BoxFit
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.TextOverflow
@@ -36,8 +39,8 @@ class ProductWidget(
     private val imageService: ImageService
 ) : CompositeWidgetAware() {
     companion object {
-        private const val PICTURE_HEIGHT = 150.0
-        private const val PICTURE_WIDTH = 50.0
+        private const val PICTURE_HEIGHT = 100.0
+        private const val PICTURE_WIDTH = 100.0
 
         fun of(product: ProductSummary, country: Country, action: Action, imageService: ImageService) = ProductWidget(
             title = product.title,
@@ -63,11 +66,14 @@ class ProductWidget(
                 Flexible(
                     flex = 1,
                     child = pictureUrl?.let {
-                        PictureWidget(
-                            url = resize(it),
-                            border = 1.0,
-                            height = PICTURE_HEIGHT,
-                            width = PICTURE_WIDTH
+                        ClipRRect(
+                            child = Image(
+                                url = resize(it),
+                                height = PICTURE_HEIGHT,
+                                width = PICTURE_WIDTH,
+                                fit = BoxFit.fill
+                            ),
+                            borderRadius = 5.0
                         )
                     }
                 ),

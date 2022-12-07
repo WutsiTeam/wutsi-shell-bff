@@ -66,16 +66,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -89,7 +95,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -197,16 +203,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -220,7 +232,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -328,16 +340,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -351,7 +369,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -459,16 +477,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -482,7 +506,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -590,16 +614,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -613,7 +643,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -721,16 +751,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -744,7 +780,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -852,16 +888,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -875,7 +917,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -983,16 +1025,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -1006,7 +1054,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -1114,16 +1162,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -1137,7 +1191,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -1245,16 +1299,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -1268,7 +1328,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -1376,16 +1436,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -1399,7 +1465,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -1507,16 +1573,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -1530,7 +1602,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -1638,16 +1710,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -1661,7 +1739,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -1769,16 +1847,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -1792,7 +1876,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -1900,16 +1984,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -1923,7 +2013,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -2031,16 +2121,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -2054,7 +2150,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -2162,16 +2258,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -2185,7 +2287,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -2293,16 +2395,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -2316,7 +2424,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -2424,16 +2532,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -2447,7 +2561,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -2555,16 +2669,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -2578,7 +2698,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -2686,16 +2806,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -2709,7 +2835,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -2817,16 +2943,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -2840,7 +2972,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -2948,16 +3080,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -2971,7 +3109,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -3079,16 +3217,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -3102,7 +3246,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -3210,16 +3354,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -3233,7 +3383,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -3341,16 +3491,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -3364,7 +3520,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -3472,16 +3628,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -3495,7 +3657,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -3603,16 +3765,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -3626,7 +3794,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -3734,16 +3902,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -3757,7 +3931,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -3865,16 +4039,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -3888,7 +4068,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -3996,16 +4176,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -4019,7 +4205,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -4127,16 +4313,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -4150,7 +4342,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -4258,16 +4450,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -4281,7 +4479,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -4389,16 +4587,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -4412,7 +4616,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -4520,16 +4724,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -4543,7 +4753,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -4651,16 +4861,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -4674,7 +4890,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -4782,16 +4998,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -4805,7 +5027,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -4913,16 +5135,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -4936,7 +5164,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -5044,16 +5272,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -5067,7 +5301,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -5175,16 +5409,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -5198,7 +5438,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -5306,16 +5546,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -5329,7 +5575,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -5437,16 +5683,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -5460,7 +5712,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -5568,16 +5820,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -5591,7 +5849,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -5699,16 +5957,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -5722,7 +5986,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -5830,16 +6094,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -5853,7 +6123,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -5961,16 +6231,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -5984,7 +6260,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -6092,16 +6368,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -6115,7 +6397,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -6223,16 +6505,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -6246,7 +6534,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -6354,16 +6642,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -6377,7 +6671,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
@@ -6485,16 +6779,22 @@
                           },
                           "children": [
                             {
-                              "type": "Container",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "alignment": "Center",
-                                "border": 1.0,
-                                "borderColor": "#e4edf7",
-                                "height": 150.0,
-                                "width": 50.0,
-                                "backgroundImageUrl": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "width": 100.0,
+                                    "height": 100.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },
@@ -6508,7 +6808,7 @@
                             {
                               "type": "Container",
                               "attributes": {
-                                "height": 150.0
+                                "height": 100.0
                               },
                               "children": [
                                 {
