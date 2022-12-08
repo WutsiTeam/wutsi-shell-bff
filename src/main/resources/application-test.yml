@@ -23,7 +23,7 @@ wutsi:
       api-key: ${API_KEY}
       verify-token: false
       token-blacklist:
-        type: redis
+        type: none
         redis:
           url: ${REDISCLOUD_URL}
     storage:
