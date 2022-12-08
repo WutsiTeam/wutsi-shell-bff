@@ -67,33 +67,11 @@ wutsi:
         - "POST /login/**"
         - "POST /onboard"
         - "POST /onboard/**"
-        - "GET /legacy-endpoints--"
-        - "GET /qr-code/**"
-        - "POST /shell/track/**"
-        - "POST /firebase/on-message/**"
-        - "POST /phone"
-        - "POST /commands/login"
-        - "POST /pages/city"
-        - "POST /pages/confirm-pin"
-        - "POST /pages/final"
-        - "POST /pages/phone"
-        - "POST /pages/pin"
-        - "POST /pages/profile"
-        - "POST /pages/verification"
-        - "POST /commands/confirm-login-pin"
-        - "POST /commands/save-profile"
-        - "POST /commands/save-pin"
-        - "POST /commands/create-wallet"
-        - "POST /commands/verify-code"
-        - "POST /commands/send-code"
-        - "POST /commands/resend-code"
-        - "POST /commands/save-city"
-        - "POST /commands/login"
     tracing:
       client-id: ${wutsi.application.name}
     stream:
       name: ${wutsi.application.name}
-      type: local
+      type: none
     storage:
       type: local
 
