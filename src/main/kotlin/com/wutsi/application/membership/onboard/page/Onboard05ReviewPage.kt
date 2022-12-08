@@ -1,6 +1,6 @@
 package com.wutsi.application.membership.onboard.page
 
-import com.wutsi.application.shared.Theme
+import com.wutsi.application.Theme
 import com.wutsi.error.ErrorURN
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.Button

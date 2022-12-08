@@ -7,6 +7,7 @@ object Page {
     const val LOGIN = "page.login"
     const val ORDER = "page.order"
     const val ORDER_LIST = "page.order.list"
+    const val PRODUCT = "page.product"
     const val PROFILE = "page.profile"
     const val SECURITY = "page.security"
     const val SECURITY_DELETE = "page.security.delete"

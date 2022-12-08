@@ -1,7 +1,7 @@
 package com.wutsi.application.common.page
 
+import com.wutsi.application.Theme
 import com.wutsi.application.common.endpoint.AbstractEndpoint
-import com.wutsi.application.shared.Theme
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Form
 import com.wutsi.flutter.sdui.Icon

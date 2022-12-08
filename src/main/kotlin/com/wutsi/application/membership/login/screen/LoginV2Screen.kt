@@ -1,13 +1,13 @@
 package com.wutsi.application.membership.login.screen
 
 import com.wutsi.application.Page
+import com.wutsi.application.Theme
 import com.wutsi.application.common.endpoint.AbstractEndpoint
 import com.wutsi.application.membership.login.dto.SubmitPasscodeRequest
 import com.wutsi.application.membership.onboard.screen.OnboardV2Screen
 import com.wutsi.application.service.EnvironmentDetector
-import com.wutsi.application.shared.Theme
-import com.wutsi.application.shared.service.PhoneUtil
-import com.wutsi.application.shared.service.StringUtil.initials
+import com.wutsi.application.util.PhoneUtil
+import com.wutsi.application.util.StringUtil.initials
 import com.wutsi.application.widget.EnvironmentBannerWidget
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar

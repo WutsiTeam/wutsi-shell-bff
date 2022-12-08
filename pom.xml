@@ -18,8 +18,8 @@
   </parent>
 
   <properties>
-    <jacoco.threshold.line>0.86</jacoco.threshold.line>
-    <jacoco.threshold.class>0.86</jacoco.threshold.class>
+    <jacoco.threshold.line>0.89</jacoco.threshold.line>
+    <jacoco.threshold.class>0.89</jacoco.threshold.class>
     <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
     <jdk.version>11</jdk.version>
 
@@ -28,9 +28,13 @@
     <kotlin.version>1.7.10</kotlin.version>
     <kotlin-mockito.version>2.2.0</kotlin-mockito.version>
     <klint.version>0.47.0</klint.version>
+    <libphonenumber.version>8.13.1</libphonenumber.version>
     <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
 
-    <wutsi-shared-ui.version>0.0.391</wutsi-shared-ui.version>
+    <sdui-kotlin.version>0.0.125</sdui-kotlin.version>
+
+    <wutsi-platform-core.version>0.0.191</wutsi-platform-core.version>
+    <wutsi-platform-payment.version>0.0.105</wutsi-platform-payment.version>
     <wutsi-enums.version>1.0.12</wutsi-enums.version>
     <wutsi-errors.version>1.0.9</wutsi-errors.version>
     <wutsi-regulation.version>1.0.8</wutsi-regulation.version>
@@ -42,9 +46,14 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.wutsi.application.shared</groupId>
-      <artifactId>wutsi-shared-ui</artifactId>
-      <version>${wutsi-shared-ui.version}</version>
+      <groupId>com.wutsi</groupId>
+      <artifactId>wutsi-platform-core</artifactId>
+      <version>${wutsi-platform-core.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.wutsi</groupId>
+      <artifactId>wutsi-platform-payment</artifactId>
+      <version>${wutsi-platform-payment.version}</version>
     </dependency>
     <dependency>
       <groupId>com.wutsi</groupId>
@@ -80,6 +89,17 @@
       <groupId>com.wutsi.security.manager</groupId>
       <artifactId>security-manager-sdk-kotlin</artifactId>
       <version>${wutsi-security-manager.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.wutsi.flutter</groupId>
+      <artifactId>sdui-kotlin</artifactId>
+      <version>${sdui-kotlin.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.googlecode.libphonenumber</groupId>
+      <artifactId>libphonenumber</artifactId>
+      <version>${libphonenumber.version}</version>
     </dependency>
 
     <dependency>

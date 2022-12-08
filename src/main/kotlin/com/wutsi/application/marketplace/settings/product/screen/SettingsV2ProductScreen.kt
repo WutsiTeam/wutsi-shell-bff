@@ -1,12 +1,12 @@
 package com.wutsi.application.marketplace.settings.product.screen
 
 import com.wutsi.application.Page
+import com.wutsi.application.Theme
 import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
-import com.wutsi.application.shared.Theme
 import com.wutsi.application.widget.PictureListViewWidget
 import com.wutsi.application.widget.PictureWidget
 import com.wutsi.application.widget.UploadWidget
-import com.wutsi.ecommerce.catalog.entity.ProductStatus
+import com.wutsi.enums.ProductStatus
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button

@@ -1,10 +1,10 @@
 package com.wutsi.application.membership.onboard.page
 
+import com.wutsi.application.Theme
 import com.wutsi.application.membership.onboard.dto.SubmitPhoneRequest
 import com.wutsi.application.membership.onboard.entity.OnboardEntity
 import com.wutsi.application.service.CountryDetector
 import com.wutsi.application.service.EnvironmentDetector
-import com.wutsi.application.shared.Theme
 import com.wutsi.application.widget.EnvironmentBannerWidget
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.Column

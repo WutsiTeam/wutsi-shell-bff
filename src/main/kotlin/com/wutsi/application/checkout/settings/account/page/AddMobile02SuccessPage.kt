@@ -2,7 +2,7 @@ package com.wutsi.application.checkout.settings.account.page
 
 import com.wutsi.application.checkout.settings.account.dao.AccountRepository
 import com.wutsi.application.common.page.AbstractSuccessPageEndpoint
-import com.wutsi.application.shared.service.PhoneUtil
+import com.wutsi.application.util.PhoneUtil
 import com.wutsi.flutter.sdui.Button
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController

@@ -1,6 +1,6 @@
 package com.wutsi.application.common.page
 
-import com.wutsi.application.shared.Theme
+import com.wutsi.application.Theme
 import com.wutsi.flutter.sdui.Icon
 import com.wutsi.flutter.sdui.WidgetAware
 

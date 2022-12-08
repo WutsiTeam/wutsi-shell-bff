@@ -5,7 +5,7 @@ import com.wutsi.application.checkout.settings.account.dao.AccountRepository
 import com.wutsi.application.checkout.settings.account.dto.SubmitOTPRequest
 import com.wutsi.application.common.page.AbstractPageEndpoint
 import com.wutsi.application.service.CountryDetector
-import com.wutsi.application.shared.service.PhoneUtil
+import com.wutsi.application.util.PhoneUtil
 import com.wutsi.checkout.manager.CheckoutManagerApi
 import com.wutsi.checkout.manager.dto.AddPaymentMethodRequest
 import com.wutsi.enums.PaymentMethodType

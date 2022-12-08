@@ -1,10 +1,10 @@
 package com.wutsi.application.marketplace.settings.product.screen
 
 import com.wutsi.application.Page
+import com.wutsi.application.Theme
 import com.wutsi.application.common.endpoint.AbstractEndpoint
 import com.wutsi.application.marketplace.service.ProductEditorWidgetProvider
 import com.wutsi.application.marketplace.settings.product.dto.SubmitProductAttributeRequest
-import com.wutsi.application.shared.Theme
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Container

@@ -1,8 +1,8 @@
 package com.wutsi.application.membership.settings.business.page
 
 import com.wutsi.application.Page
+import com.wutsi.application.Theme
 import com.wutsi.application.membership.settings.business.entity.BusinessEntity
-import com.wutsi.application.shared.Theme
 import com.wutsi.application.util.SecurityUtil
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.CircleAvatar

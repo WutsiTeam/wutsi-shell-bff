@@ -1,8 +1,7 @@
 package com.wutsi.application.widget
 
-import com.wutsi.application.shared.Theme
-import com.wutsi.application.shared.service.TranslationUtil.getText
-import com.wutsi.application.shared.ui.CompositeWidgetAware
+import com.wutsi.application.Theme
+import com.wutsi.application.widget.WidgetL10n.getText
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.BottomNavigationBar
 import com.wutsi.flutter.sdui.BottomNavigationBarItem
@@ -23,7 +22,7 @@ class BottomNavigationBarWidget(
         items = listOfNotNull(
             BottomNavigationBarItem(
                 icon = Theme.ICON_HOME,
-                caption = getText("share-ui.bottom-nav-bar.home"),
+                caption = getText("widget.bottom-nav-bar.home"),
                 action = Action(
                     type = ActionType.Route,
                     url = "route:/~"
@@ -32,7 +31,7 @@ class BottomNavigationBarWidget(
             profileUrl?.let {
                 BottomNavigationBarItem(
                     icon = Theme.ICON_PERSON,
-                    caption = getText("share-ui.bottom-nav-bar.me"),
+                    caption = getText("widget.bottom-nav-bar.me"),
                     action = Action(
                         type = ActionType.Route,
                         url = it
@@ -42,7 +41,7 @@ class BottomNavigationBarWidget(
             chatUrl?.let {
                 BottomNavigationBarItem(
                     icon = Theme.ICON_CHAT,
-                    caption = getText("share-ui.bottom-nav-bar.chat"),
+                    caption = getText("widget.bottom-nav-bar.chat"),
                     action = Action(
                         type = ActionType.Route,
                         url = it
@@ -52,7 +51,7 @@ class BottomNavigationBarWidget(
             ordersUrl?.let {
                 BottomNavigationBarItem(
                     icon = Theme.ICON_ORDER,
-                    caption = getText("share-ui.bottom-nav-bar.orders"),
+                    caption = getText("widget.bottom-nav-bar.orders"),
                     action = Action(
                         type = ActionType.Route,
                         url = it
@@ -63,7 +62,7 @@ class BottomNavigationBarWidget(
 //            model.transactionUrl?.let {
 //                BottomNavigationBarItem(
 //                    icon = Theme.ICON_HISTORY,
-//                    caption = getText("share-ui.bottom-nav-bar.transactions"),
+//                    caption = getText("widget.bottom-nav-bar.transactions"),
 //                    action = Action(
 //                        type = ActionType.Route,
 //                        url = it

@@ -1,8 +1,8 @@
 package com.wutsi.application.marketplace.product.screen
 
 import com.wutsi.application.Page
+import com.wutsi.application.Theme
 import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
-import com.wutsi.application.shared.Theme
 import com.wutsi.application.util.SecurityUtil
 import com.wutsi.application.widget.GridWidget
 import com.wutsi.application.widget.OfferWidget

@@ -1,7 +1,7 @@
 package com.wutsi.application.membership.onboard.page
 
+import com.wutsi.application.Theme
 import com.wutsi.application.membership.onboard.dto.SubmitPinRequest
-import com.wutsi.application.shared.Theme
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container

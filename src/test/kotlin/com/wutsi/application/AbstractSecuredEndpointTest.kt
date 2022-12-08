@@ -3,7 +3,6 @@ package com.wutsi.application
 import com.nhaarman.mockitokotlin2.anyOrNull
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
-import com.wutsi.application.shell.endpoint.AbstractShellEndpointTest
 import com.wutsi.membership.manager.dto.GetMemberResponse
 import com.wutsi.platform.core.security.SubjectType
 import com.wutsi.platform.core.security.spring.SpringAuthorizationRequestInterceptor
@@ -28,7 +27,7 @@ abstract class AbstractSecuredEndpointTest : AbstractEndpointTest() {
                 TestTokenProvider(
                     JWTBuilder(
                         subject = MEMBER_ID.toString(),
-                        name = AbstractShellEndpointTest.ACCOUNT_NAME,
+                        name = "Ray Sponsible",
                         subjectType = SubjectType.USER,
                         keyProvider = TestRSAKeyProvider(),
                         admin = false

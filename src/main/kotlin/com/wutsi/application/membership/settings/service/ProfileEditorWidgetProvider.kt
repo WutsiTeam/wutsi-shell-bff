@@ -1,6 +1,6 @@
 package com.wutsi.application.membership.settings.service
 
-import com.wutsi.application.shared.service.StringUtil
+import com.wutsi.application.util.StringUtil
 import com.wutsi.flutter.sdui.DropdownButton
 import com.wutsi.flutter.sdui.DropdownMenuItem
 import com.wutsi.flutter.sdui.Input

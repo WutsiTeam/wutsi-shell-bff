@@ -1,7 +1,6 @@
 package com.wutsi.application.widget
 
-import com.wutsi.application.shared.service.StringUtil
-import com.wutsi.application.shared.ui.CompositeWidgetAware
+import com.wutsi.application.util.StringUtil
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.CircleAvatar
 import com.wutsi.flutter.sdui.Image

@@ -1,9 +1,9 @@
 package com.wutsi.application.checkout.settings.account.screen
 
 import com.wutsi.application.Page
+import com.wutsi.application.Theme
 import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
-import com.wutsi.application.shared.Theme
-import com.wutsi.application.shared.service.PhoneUtil
+import com.wutsi.application.util.PhoneUtil
 import com.wutsi.checkout.manager.CheckoutManagerApi
 import com.wutsi.enums.PaymentMethodType
 import com.wutsi.flutter.sdui.Action

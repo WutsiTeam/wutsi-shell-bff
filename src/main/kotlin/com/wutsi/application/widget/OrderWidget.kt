@@ -1,7 +1,6 @@
 package com.wutsi.application.widget
 
-import com.wutsi.application.shared.Theme
-import com.wutsi.application.shared.ui.CompositeWidgetAware
+import com.wutsi.application.Theme
 import com.wutsi.application.widget.WidgetL10n.getText
 import com.wutsi.checkout.manager.dto.Order
 import com.wutsi.checkout.manager.dto.OrderSummary

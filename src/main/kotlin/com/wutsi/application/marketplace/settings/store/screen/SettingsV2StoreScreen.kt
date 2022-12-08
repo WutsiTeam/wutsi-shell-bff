@@ -1,8 +1,8 @@
 package com.wutsi.application.marketplace.settings.store.screen
 
 import com.wutsi.application.Page
-import com.wutsi.application.shared.Theme
-import com.wutsi.application.store.endpoint.AbstractEndpoint
+import com.wutsi.application.Theme
+import com.wutsi.application.common.endpoint.AbstractEndpoint
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container

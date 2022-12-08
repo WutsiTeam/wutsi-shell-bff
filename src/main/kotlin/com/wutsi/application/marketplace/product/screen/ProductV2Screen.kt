@@ -1,9 +1,9 @@
 package com.wutsi.application.marketplace.product.screen
 
+import com.wutsi.application.Page
+import com.wutsi.application.Theme
 import com.wutsi.application.common.endpoint.AbstractEndpoint
-import com.wutsi.application.shared.Theme
-import com.wutsi.application.shared.service.StringUtil
-import com.wutsi.application.store.endpoint.Page
+import com.wutsi.application.util.StringUtil
 import com.wutsi.application.widget.BusinessToolbarWidget
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.AspectRatio

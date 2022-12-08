@@ -1,7 +1,6 @@
 package com.wutsi.application.widget
 
-import com.wutsi.application.shared.Theme
-import com.wutsi.application.shared.ui.CompositeWidgetAware
+import com.wutsi.application.Theme
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container

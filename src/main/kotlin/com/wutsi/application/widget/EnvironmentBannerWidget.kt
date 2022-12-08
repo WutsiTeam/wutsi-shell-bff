@@ -1,6 +1,6 @@
 package com.wutsi.application.widget
 
-import com.wutsi.application.shared.Theme
+import com.wutsi.application.Theme
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget

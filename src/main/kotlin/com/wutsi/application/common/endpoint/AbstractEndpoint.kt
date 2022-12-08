@@ -3,7 +3,7 @@ package com.wutsi.application.common.endpoint
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.wutsi.application.Page
-import com.wutsi.application.shared.service.URLBuilder
+import com.wutsi.application.service.URLBuilder
 import com.wutsi.application.widget.BottomNavigationBarWidget
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.Dialog

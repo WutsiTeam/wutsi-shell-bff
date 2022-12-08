@@ -1,9 +1,9 @@
 package com.wutsi.application.home
 
 import com.wutsi.application.Page
+import com.wutsi.application.Theme
 import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
 import com.wutsi.application.membership.onboard.screen.OnboardV2Screen
-import com.wutsi.application.shared.Theme
 import com.wutsi.application.widget.OrderWidget
 import com.wutsi.checkout.manager.CheckoutManagerApi
 import com.wutsi.checkout.manager.dto.SearchOrderRequest
