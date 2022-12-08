@@ -18,8 +18,8 @@
   </parent>
 
   <properties>
-    <jacoco.threshold.line>0.88</jacoco.threshold.line>
-    <jacoco.threshold.class>0.88</jacoco.threshold.class>
+    <jacoco.threshold.line>0.86</jacoco.threshold.line>
+    <jacoco.threshold.class>0.86</jacoco.threshold.class>
     <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
     <jdk.version>11</jdk.version>
 
@@ -34,7 +34,7 @@
     <wutsi-enums.version>1.0.12</wutsi-enums.version>
     <wutsi-errors.version>1.0.9</wutsi-errors.version>
     <wutsi-regulation.version>1.0.8</wutsi-regulation.version>
-    <wutsi-checkout-manager.version>1.0.17</wutsi-checkout-manager.version>
+    <wutsi-checkout-manager.version>1.0.18</wutsi-checkout-manager.version>
     <wutsi-marketplace-manager.version>1.0.11</wutsi-marketplace-manager.version>
     <wutsi-membership-manager.version>1.0.24</wutsi-membership-manager.version>
     <wutsi-security-manager.version>1.0.10</wutsi-security-manager.version>

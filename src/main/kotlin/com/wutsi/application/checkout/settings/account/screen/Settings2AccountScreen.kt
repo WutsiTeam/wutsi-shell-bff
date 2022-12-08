@@ -1,10 +1,11 @@
-package com.wutsi.application.shell.endpoint.settings.account.screen
+package com.wutsi.application.checkout.settings.account.screen
 
-import com.wutsi.application.service.AccountService
+import com.wutsi.application.Page
+import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
 import com.wutsi.application.shared.Theme
-import com.wutsi.application.shared.service.TenantProvider
-import com.wutsi.application.shell.endpoint.AbstractQuery
-import com.wutsi.application.shell.endpoint.Page
+import com.wutsi.application.shared.service.PhoneUtil
+import com.wutsi.checkout.manager.CheckoutManagerApi
+import com.wutsi.enums.PaymentMethodType
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
@@ -19,11 +20,9 @@ import com.wutsi.flutter.sdui.SingleChildScrollView
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
-import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.TextAlignment
-import com.wutsi.platform.account.WutsiAccountApi
 import org.springframework.context.i18n.LocaleContextHolder
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -32,77 +31,78 @@ import org.springframework.web.bind.annotation.RestController
 import java.util.Locale
 
 @RestController
-@RequestMapping("/settings/account/profile")
-class SettingsAccountProfileScreen(
-    private val tenantProvider: TenantProvider,
-    private val accountApi: WutsiAccountApi,
-    private val accountService: AccountService
-) : AbstractQuery() {
+@RequestMapping("/settings/2/accounts")
+class Settings2AccountScreen(
+    private val checkoutManagerApi: CheckoutManagerApi
+) : AbstractSecuredEndpoint() {
     @PostMapping
     fun index(@RequestParam token: String): Widget {
-        val tenant = tenantProvider.get()
-        val paymentMethod = accountApi.getPaymentMethod(securityContext.currentAccountId(), token).paymentMethod
-        val logoUrl = accountService.getLogoUrl(tenant, paymentMethod)
-
+        val paymentMethod = checkoutManagerApi.getPaymentMethod(token).paymentMethod
         return Screen(
-            id = Page.SETTINGS_ACCOUNT_PROFILE,
+            id = Page.SETTINGS_ACCOUNT,
             appBar = AppBar(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.settings.account.profile.app-bar.title")
+                title = getText("page.settings.account.app-bar.title")
             ),
             child = SingleChildScrollView(
                 child = Column(
-                    children = listOf(
+                    children = listOfNotNull(
+                        Container(padding = 20.0),
                         toRowWidget(
-                            "page.settings.account.profile.provider",
+                            "page.settings.account.provider",
                             Row(
                                 mainAxisAlignment = MainAxisAlignment.start,
                                 crossAxisAlignment = CrossAxisAlignment.center,
                                 children = listOfNotNull(
-                                    logoUrl?.let {
-                                        Image(
-                                            width = 32.0,
-                                            height = 32.0,
-                                            url = it
-                                        )
-                                    },
+                                    Image(
+                                        width = 32.0,
+                                        height = 32.0,
+                                        url = paymentMethod.provider.logoUrl
+                                    ),
                                     Container(padding = 5.0),
-                                    Text(accountService.getNamePaymentMethodName(tenant, paymentMethod))
+                                    Text(paymentMethod.provider.name)
                                 )
                             )
                         ),
                         Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
+                        if (paymentMethod.country.isNullOrEmpty()) {
+                            null
+                        } else {
+                            toRowWidget(
+                                key = "page.settings.account.country",
+                                value = Locale(
+                                    LocaleContextHolder.getLocale().language,
+                                    paymentMethod.country ?: ""
+                                ).displayCountry
+                            )
+                        },
+                        Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
                         toRowWidget(
-                            key = "page.settings.account.profile.country",
-                            value = Locale(
-                                LocaleContextHolder.getLocale().language,
-                                paymentMethod.phone.country ?: ""
-                            ).displayCountry
+                            key = "page.settings.account.number",
+                            value = if (paymentMethod.type == PaymentMethodType.MOBILE_MONEY.name) {
+                                PhoneUtil.format(paymentMethod.number)
+                            } else {
+                                paymentMethod.number
+                            }
                         ),
                         Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
                         toRowWidget(
-                            key = "page.settings.account.profile.number",
-                            value = formattedAccountNumber(paymentMethod)
-                        ),
-                        Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
-                        toRowWidget(
-                            key = "page.settings.account.profile.owner",
-                            value = paymentMethod.ownerName
+                            key = "page.settings.account.owner",
+                            value = paymentMethod.ownerName.uppercase()
                         ),
                         Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
                         Container(
                             padding = 10.0,
                             child = Button(
-                                caption = getText("page.settings.account.profile.button.delete"),
-                                action = Action(
-                                    type = ActionType.Route,
-                                    url = urlBuilder.build("settings/account/delete"),
+                                caption = getText("page.settings.account.button.delete"),
+                                action = executeCommand(
+                                    url = urlBuilder.build("${Page.getSettingsAccountUrl()}/delete"),
                                     parameters = mapOf(
                                         "token" to token
                                     ),
-                                    replacement = true
+                                    confirm = getText("page.settings.account.confirm.delete")
                                 )
                             )
                         )
@@ -110,6 +110,12 @@ class SettingsAccountProfileScreen(
                 )
             )
         ).toWidget()
+    }
+
+    @PostMapping("/delete")
+    fun delete(@RequestParam token: String): Action {
+        checkoutManagerApi.removePaymentMethod(token)
+        return gotoPreviousScreen()
     }
 
     private fun toRowWidget(key: String, value: String?): WidgetAware =

@@ -1,6 +1,5 @@
 package com.wutsi.application.membership.onboard.page
 
-import com.wutsi.application.login.endpoint.Page
 import com.wutsi.application.membership.onboard.dto.SubmitPinRequest
 import com.wutsi.application.shared.Theme
 import com.wutsi.flutter.sdui.Action
@@ -84,7 +83,7 @@ class Onboard04ConfirmPinPage : AbstractOnboardPage() {
                             id = "change-pin",
                             caption = getText("page.onboard.confirm-pin.field.change-pin.caption"),
                             type = ButtonType.Text,
-                            action = gotoPage(Page.PIN)
+                            action = gotoPage(PAGE_INDEX - 1)
                         )
                     )
                 )

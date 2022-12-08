@@ -104,11 +104,14 @@ class Settings2AccountListScreen(
                     ListItem(
                         caption = it.number,
                         iconLeft = it.provider.logoUrl,
-//                        iconRight = Theme.ICON_CHEVRON_RIGHT,
-                        padding = 10.0
-//                        action = gotoUrl(
-//                            url = urlBuilder.build("${Page.getSettingsUrl()}/account/profile?token=${it.token}")
-//                        )
+                        iconRight = Theme.ICON_CHEVRON_RIGHT,
+                        padding = 10.0,
+                        action = gotoUrl(
+                            url = urlBuilder.build("${Page.getSettingsAccountUrl()}"),
+                            parameters = mapOf(
+                                "token" to it.token
+                            )
+                        )
                     )
                 }
         )

@@ -4,6 +4,7 @@ import com.wutsi.application.Page
 import com.wutsi.application.checkout.settings.account.dao.AccountRepository
 import com.wutsi.application.checkout.settings.account.dto.SubmitOTPRequest
 import com.wutsi.application.common.page.AbstractPageEndpoint
+import com.wutsi.application.service.CountryDetector
 import com.wutsi.application.shared.service.PhoneUtil
 import com.wutsi.checkout.manager.CheckoutManagerApi
 import com.wutsi.checkout.manager.dto.AddPaymentMethodRequest
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/settings/2/accounts/add/mobile/pages/verification")
 class AddMobile01VerificationPage(
     private val dao: AccountRepository,
+    private val countryDetector: CountryDetector,
     private val checkoutManagerApi: CheckoutManagerApi,
     private val securityManager: SecurityManagerApi
 ) : AbstractPageEndpoint() {
@@ -79,7 +81,8 @@ class AddMobile01VerificationPage(
                 providerId = account.providerId,
                 type = account.type,
                 ownerName = account.ownerName,
-                number = account.number
+                number = account.number,
+                country = countryDetector.detect(account.number)
             )
         )
         return gotoNextPage()

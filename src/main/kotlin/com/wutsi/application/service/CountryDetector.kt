@@ -1,4 +1,4 @@
-package com.wutsi.application.membership.onboard.service
+package com.wutsi.application.service
 
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import org.springframework.stereotype.Service

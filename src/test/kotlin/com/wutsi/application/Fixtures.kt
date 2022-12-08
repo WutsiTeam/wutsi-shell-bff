@@ -6,6 +6,7 @@ import com.wutsi.checkout.manager.dto.Discount
 import com.wutsi.checkout.manager.dto.Order
 import com.wutsi.checkout.manager.dto.OrderItem
 import com.wutsi.checkout.manager.dto.OrderSummary
+import com.wutsi.checkout.manager.dto.PaymentMethod
 import com.wutsi.checkout.manager.dto.PaymentMethodSummary
 import com.wutsi.checkout.manager.dto.PaymentProviderSummary
 import com.wutsi.checkout.manager.dto.TransactionSummary
@@ -156,6 +157,20 @@ object Fixtures {
         type = type.name,
         number = number,
         provider = createPaymentProviderSummary(provider, type)
+    )
+
+    fun createPaymentMethod(
+        token: String = "111",
+        type: PaymentMethodType = PaymentMethodType.MOBILE_MONEY,
+        number: String = "+23767000001",
+        provider: String = "MTN",
+        country: String = "CM"
+    ) = PaymentMethod(
+        token = token,
+        type = type.name,
+        number = number,
+        provider = createPaymentProviderSummary(provider, type),
+        country = country
     )
 
     fun createPaymentProviderSummary(name: String = "MTN", type: PaymentMethodType = PaymentMethodType.MOBILE_MONEY) =

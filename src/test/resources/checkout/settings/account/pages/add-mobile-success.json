@@ -37,7 +37,7 @@
         {
           "type": "Text",
           "attributes": {
-            "caption": "Mobile account linked",
+            "caption": "Mobile account added",
             "color": "#1D7EDF",
             "bold": true,
             "size": 16.0,
@@ -57,7 +57,7 @@
         {
           "type": "Text",
           "attributes": {
-            "caption": "+237 6 70 00 00 10 has been linked with your Wallet",
+            "caption": "+237 6 70 00 00 10 has been added to your Wallet",
             "alignment": "Center"
           },
           "children": []

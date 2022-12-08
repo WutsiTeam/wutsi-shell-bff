@@ -70,7 +70,8 @@ internal class AddMobile01VerificationPageTest : AbstractSecuredEndpointTest() {
                 providerId = entity.providerId,
                 type = PaymentMethodType.MOBILE_MONEY.name,
                 number = entity.number,
-                ownerName = entity.ownerName
+                ownerName = entity.ownerName,
+                country = "CM"
             )
         )
     }

@@ -44,18 +44,34 @@
                       "attributes": {
                         "caption": "+237670000010",
                         "iconLeft": "https://img.com/MTN.png",
+                        "iconRight": "e15f",
                         "padding": 10.0
                       },
-                      "children": []
+                      "children": [],
+                      "action": {
+                        "type": "Route",
+                        "url": "http://localhost:0/settings/2/accounts",
+                        "parameters": {
+                          "token": "1111"
+                        }
+                      }
                     },
                     {
                       "type": "ListItem",
                       "attributes": {
                         "caption": "+237690000010",
                         "iconLeft": "https://img.com/Orange.png",
+                        "iconRight": "e15f",
                         "padding": 10.0
                       },
-                      "children": []
+                      "children": [],
+                      "action": {
+                        "type": "Route",
+                        "url": "http://localhost:0/settings/2/accounts",
+                        "parameters": {
+                          "token": "2222"
+                        }
+                      }
                     },
                     {
                       "type": "Container",
@@ -67,7 +83,7 @@
                         {
                           "type": "Button",
                           "attributes": {
-                            "caption": "Link Account",
+                            "caption": "Add",
                             "padding": 15.0,
                             "type": "Elevated"
                           },
