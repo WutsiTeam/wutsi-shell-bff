@@ -82,7 +82,7 @@ jobs:
         env:
           HEROKU_APP: wutsi-shell-bff-test
         run: |
-          sleep 90
+          sleep 120
           curl -sSf https://${HEROKU_APP}.herokuapp.com/actuator/health >> /dev/null
       - name: Notification
         uses: rtCamp/action-slack-notify@v2
@@ -143,7 +143,7 @@ jobs:
         env:
           HEROKU_APP: wutsi-shell-bff-prod
         run: |
-          sleep 90
+          sleep 120
           curl -sSf https://${HEROKU_APP}.herokuapp.com/actuator/health >> /dev/null
       - name: Notification
         uses: rtCamp/action-slack-notify@v2
