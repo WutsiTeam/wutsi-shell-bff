@@ -1,5 +1,5 @@
 package com.wutsi.application.checkout.settings.account.dto
 
-data class SubmitMobileRequest(
+data class SubmitPhoneRequest(
     val phoneNumber: String = ""
 )

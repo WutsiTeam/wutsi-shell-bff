@@ -1,0 +1,96 @@
+{
+  "type": "Form",
+  "attributes": {},
+  "children": [
+    {
+      "type": "Container",
+      "attributes": {
+        "padding": 20.0
+      },
+      "children": []
+    },
+    {
+      "type": "Container",
+      "attributes": {
+        "alignment": "Center",
+        "padding": 20.0
+      },
+      "children": [
+        {
+          "type": "Icon",
+          "attributes": {
+            "code": "e156",
+            "size": 80.0,
+            "color": "#4CAF50"
+          },
+          "children": []
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "attributes": {
+        "alignment": "Center",
+        "padding": 10.0
+      },
+      "children": [
+        {
+          "type": "Text",
+          "attributes": {
+            "caption": "Mobile account linked",
+            "color": "#1D7EDF",
+            "bold": true,
+            "size": 16.0,
+            "alignment": "Center"
+          },
+          "children": []
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "attributes": {
+        "alignment": "Center",
+        "padding": 10.0
+      },
+      "children": [
+        {
+          "type": "Text",
+          "attributes": {
+            "caption": "+237 6 70 00 00 10 has been linked with your Wallet",
+            "alignment": "Center"
+          },
+          "children": []
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "attributes": {
+        "padding": 20.0
+      },
+      "children": []
+    },
+    {
+      "type": "Container",
+      "attributes": {
+        "padding": 10.0
+      },
+      "children": [
+        {
+          "type": "Button",
+          "attributes": {
+            "caption": "OK",
+            "padding": 15.0,
+            "type": "Elevated"
+          },
+          "children": [],
+          "action": {
+            "type": "Route",
+            "url": "route:/.."
+          }
+        }
+      ]
+    }
+  ]
+}
