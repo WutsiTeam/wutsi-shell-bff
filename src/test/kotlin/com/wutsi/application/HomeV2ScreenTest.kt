@@ -1,12 +1,9 @@
-package com.wutsi.application.home
+package com.wutsi.application
 
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.doThrow
 import com.nhaarman.mockitokotlin2.whenever
-import com.wutsi.application.AbstractSecuredEndpointTest
-import com.wutsi.application.Fixtures
-import com.wutsi.application.Page
 import com.wutsi.checkout.manager.dto.SearchOrderResponse
 import com.wutsi.enums.OrderStatus
 import com.wutsi.error.ErrorURN

@@ -2,7 +2,7 @@ package com.wutsi.application.membership.firebase
 
 import com.nhaarman.mockitokotlin2.verify
 import com.wutsi.application.AbstractSecuredEndpointTest
-import com.wutsi.application.membership.firebase.dto.SubmitTokenRequest
+import com.wutsi.application.firebase.dto.SubmitTokenRequest
 import com.wutsi.enums.DeviceType
 import com.wutsi.membership.manager.dto.SaveDeviceRequest
 import org.junit.jupiter.api.Assertions.assertEquals

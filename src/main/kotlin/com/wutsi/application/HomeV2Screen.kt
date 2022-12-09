@@ -1,7 +1,5 @@
-package com.wutsi.application.home
+package com.wutsi.application
 
-import com.wutsi.application.Page
-import com.wutsi.application.Theme
 import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
 import com.wutsi.application.membership.onboard.screen.OnboardV2Screen
 import com.wutsi.application.widget.OrderWidget

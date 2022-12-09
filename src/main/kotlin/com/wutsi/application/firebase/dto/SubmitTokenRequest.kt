@@ -1,4 +1,4 @@
-package com.wutsi.application.membership.firebase.dto
+package com.wutsi.application.firebase.dto
 
 data class SubmitTokenRequest(
     val token: String = ""

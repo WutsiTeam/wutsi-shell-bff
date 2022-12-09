@@ -1,7 +1,7 @@
-package com.wutsi.application.membership.firebase
+package com.wutsi.application.firebase
 
 import com.wutsi.application.common.endpoint.AbstractEndpoint
-import com.wutsi.application.membership.firebase.dto.SubmitTokenRequest
+import com.wutsi.application.firebase.dto.SubmitTokenRequest
 import com.wutsi.enums.DeviceType
 import com.wutsi.membership.manager.MembershipManagerApi
 import com.wutsi.membership.manager.dto.SaveDeviceRequest
