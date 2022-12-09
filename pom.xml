@@ -40,7 +40,7 @@
     <wutsi-regulation.version>1.0.8</wutsi-regulation.version>
     <wutsi-checkout-manager.version>1.0.18</wutsi-checkout-manager.version>
     <wutsi-marketplace-manager.version>1.0.11</wutsi-marketplace-manager.version>
-    <wutsi-membership-manager.version>1.0.24</wutsi-membership-manager.version>
+    <wutsi-membership-manager.version>1.0.25</wutsi-membership-manager.version>
     <wutsi-security-manager.version>1.0.10</wutsi-security-manager.version>
   </properties>
 
