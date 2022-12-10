@@ -12,6 +12,7 @@ import com.wutsi.flutter.sdui.enums.ActionType.Prompt
 import com.wutsi.flutter.sdui.enums.ActionType.Route
 import com.wutsi.flutter.sdui.enums.DialogType
 import com.wutsi.flutter.sdui.enums.DialogType.Error
+import com.wutsi.membership.manager.dto.Member
 import com.wutsi.platform.core.error.ErrorResponse
 import com.wutsi.platform.core.error.exception.WutsiException
 import com.wutsi.platform.core.logging.KVLogger
@@ -75,9 +76,13 @@ abstract class AbstractEndpoint {
         return getText("message.error.unexpected-error")
     }
 
-    protected fun createBottomNavigationBarWidget() = BottomNavigationBarWidget(
+    protected fun createBottomNavigationBarWidget(member: Member) = BottomNavigationBarWidget(
         profileUrl = urlBuilder.build(Page.getProfileUrl()),
-        ordersUrl = urlBuilder.build(Page.getOrderListUrl())
+        ordersUrl = if (member.business) {
+            urlBuilder.build(Page.getOrderListUrl())
+        } else {
+            null
+        }
     ).toBottomNavigationBar()
 
     protected fun log(action: Action, e: Throwable) {

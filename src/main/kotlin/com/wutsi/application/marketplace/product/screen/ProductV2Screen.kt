@@ -3,6 +3,7 @@ package com.wutsi.application.marketplace.product.screen
 import com.wutsi.application.Page
 import com.wutsi.application.Theme
 import com.wutsi.application.common.endpoint.AbstractEndpoint
+import com.wutsi.application.util.SecurityUtil
 import com.wutsi.application.util.StringUtil
 import com.wutsi.application.widget.BusinessToolbarWidget
 import com.wutsi.flutter.sdui.AppBar
@@ -55,6 +56,7 @@ class ProductV2Screen(
         val product = marketplaceManagerApi.getProduct(id).product
         val merchant = membershipManagerApi.getMember(product.store.accountId).member
         val country = regulationEngine.country(merchant.country)
+        val member = membershipManagerApi.getMember(SecurityUtil.getMemberId()).member
 
         // Screen
         return Screen(
@@ -65,7 +67,7 @@ class ProductV2Screen(
                 foregroundColor = Theme.COLOR_BLACK,
                 title = merchant.displayName
             ),
-            bottomNavigationBar = createBottomNavigationBarWidget(),
+            bottomNavigationBar = createBottomNavigationBarWidget(member),
             backgroundColor = Theme.COLOR_WHITE,
             child = SingleChildScrollView(
                 child = Column(

@@ -71,7 +71,7 @@ class OrderListScreen(
                     title = getText("page.order.list.app-bar.title"),
                     bottom = tabs
                 ),
-                bottomNavigationBar = createBottomNavigationBarWidget(),
+                bottomNavigationBar = createBottomNavigationBarWidget(member),
                 child = TabBarView(
                     children = listOfNotNull(
                         toTabView(arrayOf(OrderStatus.OPENED), business, false),

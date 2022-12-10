@@ -84,7 +84,7 @@ class ProfileV2Screen(
                 backgroundColor = Theme.COLOR_WHITE,
                 appBar = toAppBar(member, null),
                 child = tabViews.children[0],
-                bottomNavigationBar = createBottomNavigationBarWidget()
+                bottomNavigationBar = createBottomNavigationBarWidget(member)
             ).toWidget()
         } else {
             DefaultTabController(
@@ -99,7 +99,7 @@ class ProfileV2Screen(
                     backgroundColor = Theme.COLOR_WHITE,
                     appBar = toAppBar(member, tabs),
                     child = tabViews,
-                    bottomNavigationBar = createBottomNavigationBarWidget()
+                    bottomNavigationBar = createBottomNavigationBarWidget(member)
                 )
             ).toWidget()
         }

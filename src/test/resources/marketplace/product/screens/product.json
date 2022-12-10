@@ -193,18 +193,6 @@
           "type": "Route",
           "url": "http://localhost:0/profile/2"
         }
-      },
-      {
-        "type": "BottomNavigationBarItem",
-        "attributes": {
-          "icon": "f16c",
-          "caption": "Orders"
-        },
-        "children": [],
-        "action": {
-          "type": "Route",
-          "url": "http://localhost:0/orders/2/list"
-        }
       }
     ]
   }

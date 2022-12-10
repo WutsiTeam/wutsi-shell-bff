@@ -64,7 +64,7 @@ class HomeV2Screen(
                     automaticallyImplyLeading = false,
                     title = member.displayName
                 ),
-                bottomNavigationBar = createBottomNavigationBarWidget(),
+                bottomNavigationBar = createBottomNavigationBarWidget(member),
                 backgroundColor = Theme.COLOR_GRAY_LIGHT,
                 child = SingleChildScrollView(
                     child = Column(

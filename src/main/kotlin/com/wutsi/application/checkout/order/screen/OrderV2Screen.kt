@@ -3,6 +3,7 @@ package com.wutsi.application.checkout.order.screen
 import com.wutsi.application.Page
 import com.wutsi.application.Theme
 import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
+import com.wutsi.application.util.SecurityUtil
 import com.wutsi.application.util.StringUtil
 import com.wutsi.checkout.manager.CheckoutManagerApi
 import com.wutsi.checkout.manager.dto.Order
@@ -62,6 +63,7 @@ class OrderV2Screen(
         val country = regulationEngine.country(order.business.country)
         val dateFormat = DateTimeFormatter.ofPattern(country.dateTimeFormat, LocaleContextHolder.getLocale())
         val moneyFormat = DecimalFormat(country.monetaryFormat)
+        val member = membershipManagerApi.getMember(SecurityUtil.getMemberId()).member
 
         return Screen(
             id = Page.ORDER,
@@ -72,7 +74,7 @@ class OrderV2Screen(
                 foregroundColor = Theme.COLOR_BLACK,
                 title = getText("page.order.app-bar.title", arrayOf(order.shortId))
             ),
-            bottomNavigationBar = createBottomNavigationBarWidget(),
+            bottomNavigationBar = createBottomNavigationBarWidget(member),
             child = SingleChildScrollView(
                 child = Column(
                     mainAxisAlignment = MainAxisAlignment.start,
