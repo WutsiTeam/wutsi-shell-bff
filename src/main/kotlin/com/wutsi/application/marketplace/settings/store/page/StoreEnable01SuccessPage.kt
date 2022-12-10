@@ -15,9 +15,9 @@ class StoreEnable01SuccessPage : AbstractSuccessPageEndpoint() {
 
     override fun getPageIndex(): Int = PAGE_INDEX
 
-    override fun getTitle() = getText("page.settings.store.activate.title")
+    override fun getTitle() = getText("page.settings.store.activate.success.title")
 
-    override fun getSubTitle() = getText("page.settings.store.activate.sub-title")
+    override fun getSubTitle() = getText("page.settings.store.activate.success.sub-title")
 
     override fun getButton() = Button(
         caption = getText("page.settings.store.activate.button.done"),

@@ -25,9 +25,9 @@ class StoreEnable00StartPage(
 
     override fun getPageIndex() = PAGE_INDEX
 
-    override fun getTitle() = getText("page.settings.store.activate.title")
+    override fun getTitle() = getText("page.settings.store.activate.start.title")
 
-    override fun getSubTitle() = getText("page.settings.store.activate.sub-title")
+    override fun getSubTitle() = getText("page.settings.store.activate.start.sub-title")
 
     override fun getBody(): WidgetAware =
         Column(

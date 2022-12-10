@@ -96,8 +96,7 @@
                                 {
                                   "type": "Text",
                                   "attributes": {
-                                    "caption": "Ads",
-                                    "color": "#95A5A6"
+                                    "caption": "Ads"
                                   },
                                   "children": []
                                 },

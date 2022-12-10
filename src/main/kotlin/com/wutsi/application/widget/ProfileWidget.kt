@@ -57,10 +57,7 @@ class ProfileWidget(
             profile.addAll(
                 listOf(
                     category?.let {
-                        Text(
-                            caption = category,
-                            color = Theme.COLOR_GRAY
-                        )
+                        Text(caption = category)
                     }
                 )
             )

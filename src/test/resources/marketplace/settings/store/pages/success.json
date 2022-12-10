@@ -37,7 +37,7 @@
         {
           "type": "Text",
           "attributes": {
-            "caption": "Activate your Store",
+            "caption": "Your Store is active",
             "color": "#1D7EDF",
             "bold": true,
             "size": 16.0,
@@ -57,7 +57,7 @@
         {
           "type": "Text",
           "attributes": {
-            "caption": "Activate your Store and start selling your products online",
+            "caption": "Congratulation! Your store is now active",
             "alignment": "Center"
           },
           "children": []
