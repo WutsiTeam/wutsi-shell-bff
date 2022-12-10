@@ -22,7 +22,7 @@ class StoreEnable01SuccessPage : AbstractSuccessPageEndpoint() {
     override fun getButton() = Button(
         caption = getText("page.settings.store.activate.button.done"),
         action = gotoUrl(
-            url = urlBuilder.build(Page.getSettingsProductListUrl()),
+            url = urlBuilder.build(Page.getSettingsStoreUrl()),
             replacement = true
         )
     )

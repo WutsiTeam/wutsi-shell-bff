@@ -87,7 +87,7 @@
               "children": [],
               "action": {
                 "type": "Command",
-                "url": "http://localhost:0/settings/2/store/pages/start/submit"
+                "url": "http://localhost:0/settings/2/store/activate/pages/start/submit"
               }
             }
           ]

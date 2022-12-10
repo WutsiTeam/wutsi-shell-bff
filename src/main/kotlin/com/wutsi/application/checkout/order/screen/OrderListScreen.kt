@@ -87,7 +87,9 @@ class OrderListScreen(
     fun fragment(@RequestParam(required = false) status: Array<OrderStatus> = emptyArray()): Widget {
         val member = membershipManagerApi.getMember(SecurityUtil.getMemberId()).member
         if (!member.business || member.businessId == null) {
-            return Container().toWidget()
+            return Container(
+                background = Theme.COLOR_WHITE
+            ).toWidget()
         }
 
         val business = checkoutManagerApi.getBusiness(member.businessId!!).business

@@ -38,7 +38,7 @@ class StoreEnable00StartPage(
                         caption = getText("page.settings.store.activate.button.yes"),
                         action = Action(
                             type = ActionType.Command,
-                            url = urlBuilder.build("${Page.getSettingsStoreUrl()}/pages/start/submit")
+                            url = urlBuilder.build("${Page.getSettingsStoreActivateUrl()}/pages/start/submit")
                         )
                     )
                 ),
