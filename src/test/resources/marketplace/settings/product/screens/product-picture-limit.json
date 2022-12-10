@@ -315,7 +315,7 @@
                                   "children": [],
                                   "action": {
                                     "type": "Command",
-                                    "url": "http://localhost:0/settings/2/products/product/unpublish?id=-1",
+                                    "url": "http://localhost:0/settings/2/products/unpublish?id=-1",
                                     "prompt": {
                                       "type": "Dialog",
                                       "attributes": {
@@ -343,7 +343,7 @@
                                   "children": [],
                                   "action": {
                                     "type": "Command",
-                                    "url": "http://localhost:0/settings/2/products/product/delete?id=-1",
+                                    "url": "http://localhost:0/settings/2/products/delete?id=-1",
                                     "prompt": {
                                       "type": "Dialog",
                                       "attributes": {

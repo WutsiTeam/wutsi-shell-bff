@@ -133,7 +133,7 @@ class SettingsV2ProductScreen(
                 child = Button(
                     caption = getText("page.settings.catalog.product.button.publish"),
                     action = executeCommand(
-                        url = urlBuilder.build("${Page.getSettingsProductUrl()}/product/publish?id=${product.id}")
+                        url = urlBuilder.build("${Page.getSettingsProductUrl()}/publish?id=${product.id}")
                     )
                 )
             )
@@ -168,7 +168,7 @@ class SettingsV2ProductScreen(
                                 Button(
                                     caption = getText("page.settings.catalog.product.button.unpublish"),
                                     action = executeCommand(
-                                        url = urlBuilder.build("${Page.getSettingsProductUrl()}/product/unpublish?id=${product.id}"),
+                                        url = urlBuilder.build("${Page.getSettingsProductUrl()}/unpublish?id=${product.id}"),
                                         confirm = getText("page.settings.catalog.product.confirm-unpublish")
                                     )
                                 )
@@ -185,7 +185,7 @@ class SettingsV2ProductScreen(
                             Button(
                                 caption = getText("page.settings.catalog.product.button.delete"),
                                 action = executeCommand(
-                                    url = urlBuilder.build("${Page.getSettingsProductUrl()}/product/delete?id=${product.id}"),
+                                    url = urlBuilder.build("${Page.getSettingsProductUrl()}/delete?id=${product.id}"),
                                     confirm = getText("page.settings.catalog.product.confirm-delete")
                                 )
                             )
