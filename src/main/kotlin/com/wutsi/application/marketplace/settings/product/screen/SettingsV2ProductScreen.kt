@@ -144,7 +144,7 @@ class SettingsV2ProductScreen(
                     caption = getText("page.settings.catalog.product.button.share"),
                     action = Action(
                         type = ActionType.Share,
-                        message = "$webAppUrl/product?id=${product.id}"
+                        message = "$webAppUrl/p/${product.id}"
                     )
                 )
             )

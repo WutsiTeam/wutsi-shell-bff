@@ -54,6 +54,7 @@ internal class SettingsV2ProductScreenTest : AbstractSecuredEndpointTest() {
     @Test
     fun published() {
         val product = Fixtures.createProduct(
+            id = 111,
             pictures = Fixtures.createPictureSummaryList(2),
             published = true
         )
@@ -65,6 +66,7 @@ internal class SettingsV2ProductScreenTest : AbstractSecuredEndpointTest() {
     @Test
     fun indexPictureLimit() {
         val product = Fixtures.createProduct(
+            id = 111,
             pictures = Fixtures.createPictureSummaryList(regulationEngine.maxPictures())
         )
         doReturn(GetProductResponse(product)).whenever(marketplaceManagerApi).getProduct(any())
