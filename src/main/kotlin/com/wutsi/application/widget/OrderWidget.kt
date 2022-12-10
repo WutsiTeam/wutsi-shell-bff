@@ -1,6 +1,7 @@
 package com.wutsi.application.widget
 
 import com.wutsi.application.Theme
+import com.wutsi.application.util.StringUtil
 import com.wutsi.application.widget.WidgetL10n.getText
 import com.wutsi.checkout.manager.dto.Order
 import com.wutsi.checkout.manager.dto.OrderSummary
@@ -103,7 +104,7 @@ class OrderWidget(
                                         children = listOf(
                                             Icon(code = Theme.ICON_PERSON, size = 12.0),
                                             Container(padding = 5.0),
-                                            Text(customerName)
+                                            Text(StringUtil.capitalize(customerName))
                                         )
                                     )
                                 )
@@ -152,10 +153,10 @@ class OrderWidget(
     }
 
     private fun toStatusBadge(status: OrderStatus): WidgetAware? =
-        if (status == OrderStatus.CLOSED) {
+        if (status == OrderStatus.COMPLETED) {
             Text(
                 color = Theme.COLOR_SUCCESS,
-                caption = getText("order.status.CLOSED"),
+                caption = getText("order.status.COMPLETED"),
                 size = Theme.TEXT_SIZE_SMALL,
                 bold = true
             )
@@ -163,6 +164,13 @@ class OrderWidget(
             Text(
                 color = Theme.COLOR_DANGER,
                 caption = getText("order.status.CANCELLED"),
+                size = Theme.TEXT_SIZE_SMALL,
+                bold = true
+            )
+        } else if (status == OrderStatus.IN_PROGRESS) {
+            Text(
+                color = Theme.COLOR_WARNING,
+                caption = getText("order.status.IN_PROGRESS"),
                 size = Theme.TEXT_SIZE_SMALL,
                 bold = true
             )

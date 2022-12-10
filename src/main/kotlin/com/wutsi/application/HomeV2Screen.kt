@@ -20,6 +20,7 @@ import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
+import com.wutsi.flutter.sdui.enums.TextDecoration
 import com.wutsi.membership.manager.dto.Member
 import com.wutsi.platform.core.image.ImageService
 import com.wutsi.regulation.RegulationEngine
@@ -49,7 +50,7 @@ class HomeV2Screen(
                 id = Page.HOME,
                 appBar = AppBar(
                     elevation = 0.0,
-                    backgroundColor = Theme.COLOR_GRAY_LIGHT,
+                    backgroundColor = Theme.COLOR_WHITE,
                     foregroundColor = Theme.COLOR_BLACK,
                     actions = listOf(
                         IconButton(
@@ -132,6 +133,17 @@ class HomeV2Screen(
                         Divider(height = 1.0, color = Theme.COLOR_DIVIDER)
                     )
                 }
+            )
+            children.add(
+                Container(
+                    padding = 10.0,
+                    child = Text(
+                        caption = getText("page.home.recent-orders.more"),
+                        color = Theme.COLOR_PRIMARY,
+                        decoration = TextDecoration.Underline
+                    ),
+                    action = gotoUrl(urlBuilder.build(Page.getOrderListUrl()))
+                )
             )
 
             return Container(

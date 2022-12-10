@@ -280,6 +280,7 @@ object Fixtures {
         id = id,
         type = type.name,
         orderId = orderId,
-        status = status.name
+        status = status.name,
+        created = OffsetDateTime.of(2020, 1, 1, 10, 30, 0, 0, ZoneOffset.UTC)
     )
 }

@@ -3,12 +3,16 @@ package com.wutsi.application.checkout.order.screen
 import com.wutsi.application.Page
 import com.wutsi.application.Theme
 import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
+import com.wutsi.application.util.StringUtil
 import com.wutsi.checkout.manager.CheckoutManagerApi
 import com.wutsi.checkout.manager.dto.Order
 import com.wutsi.checkout.manager.dto.OrderItem
+import com.wutsi.checkout.manager.dto.UpdateOrderStatusRequest
 import com.wutsi.enums.OrderStatus
 import com.wutsi.enums.TransactionType
+import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
+import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.ClipRRect
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
@@ -23,6 +27,7 @@ import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.Alignment
 import com.wutsi.flutter.sdui.enums.BoxFit
+import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.TextAlignment
@@ -69,23 +74,122 @@ class OrderV2Screen(
             ),
             bottomNavigationBar = createBottomNavigationBarWidget(),
             child = SingleChildScrollView(
-
                 child = Column(
                     mainAxisAlignment = MainAxisAlignment.start,
                     crossAxisAlignment = CrossAxisAlignment.center,
                     children = listOfNotNull(
                         toCustomerWidget(order, dateFormat),
+                        toToolbarWidget(order),
                         Divider(height = 1.0, color = Theme.COLOR_DIVIDER),
                         toItemListWidget(order, moneyFormat),
                         Divider(height = 1.0, color = Theme.COLOR_DIVIDER),
-                        toPriceWidget(order, moneyFormat)
+                        toPriceWidget(order, moneyFormat, dateFormat)
                     )
                 )
             )
         ).toWidget()
     }
 
-    private fun toCustomerWidget(order: Order, dateFormat: DateTimeFormatter) = Container(
+    private fun toToolbarWidget(order: Order): WidgetAware? {
+        val buttons = mutableListOf<WidgetAware>()
+
+        // Accept button
+        if (order.status == OrderStatus.OPENED.name) {
+            buttons.addAll(
+                listOf(
+                    Button(
+                        padding = 5.0,
+                        type = ButtonType.Elevated,
+                        caption = getText("page.order.button.accept"),
+                        stretched = false,
+                        action = executeCommand(
+                            urlBuilder.build("${Page.getOrderUrl()}/accept"),
+                            parameters = mapOf("id" to order.id)
+                        )
+                    ),
+                    Button(
+                        padding = 5.0,
+                        type = ButtonType.Outlined,
+                        caption = getText("page.order.button.reject"),
+                        stretched = false,
+                        action = executeCommand(
+                            urlBuilder.build("${Page.getOrderUrl()}/cancel"),
+                            parameters = mapOf("id" to order.id)
+                        )
+                    )
+                )
+            )
+        }
+
+        // Complete Button
+        if (order.status == OrderStatus.IN_PROGRESS.name) {
+            buttons.addAll(
+                listOf(
+                    Button(
+                        padding = 5.0,
+                        type = ButtonType.Elevated,
+                        caption = getText("page.order.button.complete"),
+                        stretched = false,
+                        action = executeCommand(
+                            urlBuilder.build("${Page.getOrderUrl()}/complete"),
+                            parameters = mapOf("id" to order.id)
+                        )
+                    ),
+                    Button(
+                        padding = 5.0,
+                        type = ButtonType.Outlined,
+                        caption = getText("page.order.button.cancel"),
+                        stretched = false,
+                        action = executeCommand(
+                            urlBuilder.build("${Page.getOrderUrl()}/cancel"),
+                            parameters = mapOf("id" to order.id)
+                        )
+                    )
+                )
+            )
+        }
+
+        return if (buttons.isEmpty()) {
+            null
+        } else {
+            Container(
+                padding = 10.0,
+                child = Row(
+                    mainAxisAlignment = MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment = CrossAxisAlignment.center,
+                    children = buttons
+                )
+            )
+        }
+    }
+
+    @PostMapping("/accept")
+    fun accept(@RequestParam id: String): Action =
+        updateStatus(id, OrderStatus.IN_PROGRESS)
+
+    @PostMapping("/cancel")
+    fun cancel(@RequestParam id: String): Action =
+        updateStatus(id, OrderStatus.CANCELLED)
+
+    @PostMapping("/complete")
+    fun complete(@RequestParam id: String): Action =
+        updateStatus(id, OrderStatus.COMPLETED)
+
+    private fun updateStatus(id: String, status: OrderStatus): Action {
+        checkoutManagerApi.updateOrderStatus(
+            request = UpdateOrderStatusRequest(
+                orderId = id,
+                status = status.name
+            )
+        )
+        return gotoUrl(
+            url = urlBuilder.build(Page.getOrderUrl()),
+            parameters = mapOf("id" to id),
+            replacement = true
+        )
+    }
+
+    fun toCustomerWidget(order: Order, dateFormat: DateTimeFormatter) = Container(
         padding = 10.0,
         alignment = Alignment.Center,
         child = Column(
@@ -95,7 +199,7 @@ class OrderV2Screen(
                 Container(
                     padding = 5.0,
                     child = Text(
-                        caption = order.customerName,
+                        caption = StringUtil.capitalize(order.customerName),
                         bold = true,
                         size = Theme.TEXT_SIZE_X_LARGE
                     )
@@ -112,8 +216,9 @@ class OrderV2Screen(
                         caption = getText("order.status.${order.status}"),
                         color = when (order.status) {
                             OrderStatus.OPENED.name -> Theme.COLOR_PRIMARY
+                            OrderStatus.COMPLETED.name -> Theme.COLOR_SUCCESS
                             OrderStatus.CANCELLED.name, OrderStatus.EXPIRED.name -> Theme.COLOR_DANGER
-                            OrderStatus.CLOSED.name -> Theme.COLOR_SUCCESS
+                            OrderStatus.CANCELLED.name -> Theme.COLOR_SUCCESS
                             else -> null
                         }
                     )
@@ -194,7 +299,7 @@ class OrderV2Screen(
         )
     )
 
-    private fun toPriceWidget(order: Order, moneyFormat: DecimalFormat): WidgetAware {
+    private fun toPriceWidget(order: Order, moneyFormat: DecimalFormat, dateFormat: DateTimeFormatter): WidgetAware {
         val tx = order.transactions
             .find { it.type == TransactionType.CHARGE.name && it.status == Status.SUCCESSFUL.name }
 
@@ -203,7 +308,7 @@ class OrderV2Screen(
             crossAxisAlignment = CrossAxisAlignment.start,
             children = listOfNotNull(
                 if (order.subTotalPrice != order.totalPrice) {
-                    tableRow(getText("page.order.sub-total"), moneyFormat.format(order.subTotalPrice))
+                    tableRow(getText("page.order.sub-total") + ":", moneyFormat.format(order.subTotalPrice))
                 } else {
                     null
                 },
@@ -236,10 +341,23 @@ class OrderV2Screen(
                                     height = PROVIDER_PICTURE_SIZE
                                 ),
                                 Container(padding = 5.0),
-                                Text("..." + tx.paymentMethod.number.takeLast(4))
+                                Column(
+                                    mainAxisAlignment = MainAxisAlignment.start,
+                                    crossAxisAlignment = CrossAxisAlignment.start,
+                                    children = listOf(
+                                        Text(tx.paymentMethod.number),
+                                        Text(
+                                            caption = getText(
+                                                "page.order.paid-on",
+                                                arrayOf(dateFormat.format(tx.created))
+                                            ),
+                                            size = Theme.TEXT_SIZE_SMALL
+                                        )
+                                    )
+                                )
                             )
                         ),
-                        ""
+                        moneyFormat.format(tx.amount)
                     )
                 }
             )

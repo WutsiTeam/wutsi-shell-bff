@@ -368,6 +368,27 @@
                         "color": "#8c8c8c"
                       },
                       "children": []
+                    },
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "padding": 10.0
+                      },
+                      "children": [
+                        {
+                          "type": "Text",
+                          "attributes": {
+                            "caption": "More orders...",
+                            "color": "#1D7EDF",
+                            "decoration": "Underline"
+                          },
+                          "children": []
+                        }
+                      ],
+                      "action": {
+                        "type": "Route",
+                        "url": "http://localhost:0/orders/2/list"
+                      }
                     }
                   ]
                 }
@@ -383,7 +404,7 @@
     "attributes": {
       "title": "Ray Sponsible",
       "elevation": 0.0,
-      "backgroundColor": "#e8e8e8",
+      "backgroundColor": "#FFFFFF",
       "foregroundColor": "#000000",
       "automaticallyImplyLeading": false,
       "actions": [

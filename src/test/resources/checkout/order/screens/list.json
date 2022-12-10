@@ -1,52 +1,26 @@
 {
-  "type": "Screen",
+  "type": "DefaultTabController",
   "attributes": {
-    "id": "page.order.list",
-    "safe": false,
-    "backgroundColor": "#FFFFFF"
+    "length": 3,
+    "id": "page.profile"
   },
   "children": [
     {
-      "type": "Column",
+      "type": "Screen",
       "attributes": {
-        "crossAxisAlignment": "center"
+        "id": "page.order.list",
+        "safe": false,
+        "backgroundColor": "#FFFFFF"
       },
       "children": [
         {
-          "type": "Container",
-          "attributes": {
-            "padding": 10.0
-          },
+          "type": "TabBarView",
+          "attributes": {},
           "children": [
             {
-              "type": "Text",
+              "type": "Column",
               "attributes": {
-                "caption": "4 order(s)"
-              },
-              "children": []
-            }
-          ]
-        },
-        {
-          "type": "Divider",
-          "attributes": {
-            "height": 1.0,
-            "color": "#8c8c8c"
-          },
-          "children": []
-        },
-        {
-          "type": "Flexible",
-          "attributes": {
-            "flex": 1,
-            "fit": "Tight"
-          },
-          "children": [
-            {
-              "type": "ListView",
-              "attributes": {
-                "separator": true,
-                "separatorColor": "#8c8c8c"
+                "crossAxisAlignment": "center"
               },
               "children": [
                 {
@@ -56,164 +30,40 @@
                   },
                   "children": [
                     {
-                      "type": "Column",
+                      "type": "Text",
                       "attributes": {
-                        "mainAxisAlignment": "start",
-                        "crossAxisAlignment": "start"
+                        "caption": "4 order(s)"
                       },
-                      "children": [
-                        {
-                          "type": "Row",
-                          "attributes": {
-                            "mainAxisAlignment": "spaceBetween",
-                            "crossAxisAlignment": "start"
-                          },
-                          "children": [
-                            {
-                              "type": "Column",
-                              "attributes": {
-                                "mainAxisAlignment": "start",
-                                "crossAxisAlignment": "start"
-                              },
-                              "children": [
-                                {
-                                  "type": "Text",
-                                  "attributes": {
-                                    "caption": "Order #",
-                                    "bold": true,
-                                    "size": 16.0
-                                  },
-                                  "children": []
-                                },
-                                {
-                                  "type": "Container",
-                                  "attributes": {
-                                    "padding": 5.0
-                                  },
-                                  "children": []
-                                },
-                                {
-                                  "type": "Row",
-                                  "attributes": {},
-                                  "children": [
-                                    {
-                                      "type": "Icon",
-                                      "attributes": {
-                                        "code": "ef11",
-                                        "size": 12.0
-                                      },
-                                      "children": []
-                                    },
-                                    {
-                                      "type": "Container",
-                                      "attributes": {
-                                        "padding": 5.0
-                                      },
-                                      "children": []
-                                    },
-                                    {
-                                      "type": "Text",
-                                      "attributes": {
-                                        "caption": "01 Jan 2020"
-                                      },
-                                      "children": []
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "Row",
-                                  "attributes": {},
-                                  "children": [
-                                    {
-                                      "type": "Icon",
-                                      "attributes": {
-                                        "code": "f27b",
-                                        "size": 12.0
-                                      },
-                                      "children": []
-                                    },
-                                    {
-                                      "type": "Container",
-                                      "attributes": {
-                                        "padding": 5.0
-                                      },
-                                      "children": []
-                                    },
-                                    {
-                                      "type": "Text",
-                                      "attributes": {
-                                        "caption": ""
-                                      },
-                                      "children": []
-                                    }
-                                  ]
-                                }
-                              ]
-                            },
-                            {
-                              "type": "Column",
-                              "attributes": {
-                                "mainAxisAlignment": "start",
-                                "crossAxisAlignment": "end"
-                              },
-                              "children": [
-                                {
-                                  "type": "Text",
-                                  "attributes": {
-                                    "caption": "1,000 FCFA",
-                                    "color": "#1D7EDF",
-                                    "bold": true
-                                  },
-                                  "children": []
-                                },
-                                {
-                                  "type": "Container",
-                                  "attributes": {
-                                    "padding": 5.0
-                                  },
-                                  "children": []
-                                },
-                                {
-                                  "type": "Row",
-                                  "attributes": {
-                                    "mainAxisAlignment": "end",
-                                    "crossAxisAlignment": "center"
-                                  },
-                                  "children": []
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
+                      "children": []
                     }
-                  ],
-                  "action": {
-                    "type": "Route",
-                    "url": "http://localhost:0/orders/2",
-                    "parameters": {
-                      "id": "111"
-                    }
-                  }
+                  ]
                 },
                 {
-                  "type": "Container",
+                  "type": "Divider",
                   "attributes": {
-                    "padding": 10.0
+                    "height": 1.0,
+                    "color": "#8c8c8c"
+                  },
+                  "children": []
+                },
+                {
+                  "type": "Flexible",
+                  "attributes": {
+                    "flex": 1,
+                    "fit": "Tight"
                   },
                   "children": [
                     {
-                      "type": "Column",
+                      "type": "ListView",
                       "attributes": {
-                        "mainAxisAlignment": "start",
-                        "crossAxisAlignment": "start"
+                        "separator": true,
+                        "separatorColor": "#8c8c8c"
                       },
                       "children": [
                         {
-                          "type": "Row",
+                          "type": "Container",
                           "attributes": {
-                            "mainAxisAlignment": "spaceBetween",
-                            "crossAxisAlignment": "start"
+                            "padding": 10.0
                           },
                           "children": [
                             {
@@ -224,143 +74,143 @@
                               },
                               "children": [
                                 {
-                                  "type": "Text",
-                                  "attributes": {
-                                    "caption": "Order #",
-                                    "bold": true,
-                                    "size": 16.0
-                                  },
-                                  "children": []
-                                },
-                                {
-                                  "type": "Container",
-                                  "attributes": {
-                                    "padding": 5.0
-                                  },
-                                  "children": []
-                                },
-                                {
                                   "type": "Row",
-                                  "attributes": {},
+                                  "attributes": {
+                                    "mainAxisAlignment": "spaceBetween",
+                                    "crossAxisAlignment": "start"
+                                  },
                                   "children": [
                                     {
-                                      "type": "Icon",
+                                      "type": "Column",
                                       "attributes": {
-                                        "code": "ef11",
-                                        "size": 12.0
+                                        "mainAxisAlignment": "start",
+                                        "crossAxisAlignment": "start"
                                       },
-                                      "children": []
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "attributes": {
+                                            "caption": "Order #",
+                                            "bold": true,
+                                            "size": 16.0
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Container",
+                                          "attributes": {
+                                            "padding": 5.0
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Row",
+                                          "attributes": {},
+                                          "children": [
+                                            {
+                                              "type": "Icon",
+                                              "attributes": {
+                                                "code": "ef11",
+                                                "size": 12.0
+                                              },
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "Container",
+                                              "attributes": {
+                                                "padding": 5.0
+                                              },
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "Text",
+                                              "attributes": {
+                                                "caption": "01 Jan 2020"
+                                              },
+                                              "children": []
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "Row",
+                                          "attributes": {},
+                                          "children": [
+                                            {
+                                              "type": "Icon",
+                                              "attributes": {
+                                                "code": "f27b",
+                                                "size": 12.0
+                                              },
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "Container",
+                                              "attributes": {
+                                                "padding": 5.0
+                                              },
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "Text",
+                                              "attributes": {
+                                                "caption": ""
+                                              },
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
                                     },
                                     {
-                                      "type": "Container",
+                                      "type": "Column",
                                       "attributes": {
-                                        "padding": 5.0
+                                        "mainAxisAlignment": "start",
+                                        "crossAxisAlignment": "end"
                                       },
-                                      "children": []
-                                    },
-                                    {
-                                      "type": "Text",
-                                      "attributes": {
-                                        "caption": "01 Jan 2020"
-                                      },
-                                      "children": []
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "attributes": {
+                                            "caption": "1,000 FCFA",
+                                            "color": "#1D7EDF",
+                                            "bold": true
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Container",
+                                          "attributes": {
+                                            "padding": 5.0
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Row",
+                                          "attributes": {
+                                            "mainAxisAlignment": "end",
+                                            "crossAxisAlignment": "center"
+                                          },
+                                          "children": []
+                                        }
+                                      ]
                                     }
                                   ]
-                                },
-                                {
-                                  "type": "Row",
-                                  "attributes": {},
-                                  "children": [
-                                    {
-                                      "type": "Icon",
-                                      "attributes": {
-                                        "code": "f27b",
-                                        "size": 12.0
-                                      },
-                                      "children": []
-                                    },
-                                    {
-                                      "type": "Container",
-                                      "attributes": {
-                                        "padding": 5.0
-                                      },
-                                      "children": []
-                                    },
-                                    {
-                                      "type": "Text",
-                                      "attributes": {
-                                        "caption": ""
-                                      },
-                                      "children": []
-                                    }
-                                  ]
-                                }
-                              ]
-                            },
-                            {
-                              "type": "Column",
-                              "attributes": {
-                                "mainAxisAlignment": "start",
-                                "crossAxisAlignment": "end"
-                              },
-                              "children": [
-                                {
-                                  "type": "Text",
-                                  "attributes": {
-                                    "caption": "0 FCFA",
-                                    "color": "#1D7EDF",
-                                    "bold": true
-                                  },
-                                  "children": []
-                                },
-                                {
-                                  "type": "Container",
-                                  "attributes": {
-                                    "padding": 5.0
-                                  },
-                                  "children": []
-                                },
-                                {
-                                  "type": "Row",
-                                  "attributes": {
-                                    "mainAxisAlignment": "end",
-                                    "crossAxisAlignment": "center"
-                                  },
-                                  "children": []
                                 }
                               ]
                             }
-                          ]
-                        }
-                      ]
-                    }
-                  ],
-                  "action": {
-                    "type": "Route",
-                    "url": "http://localhost:0/orders/2",
-                    "parameters": {
-                      "id": "200"
-                    }
-                  }
-                },
-                {
-                  "type": "Container",
-                  "attributes": {
-                    "padding": 10.0
-                  },
-                  "children": [
-                    {
-                      "type": "Column",
-                      "attributes": {
-                        "mainAxisAlignment": "start",
-                        "crossAxisAlignment": "start"
-                      },
-                      "children": [
+                          ],
+                          "action": {
+                            "type": "Route",
+                            "url": "http://localhost:0/orders/2",
+                            "parameters": {
+                              "id": "111"
+                            }
+                          }
+                        },
                         {
-                          "type": "Row",
+                          "type": "Container",
                           "attributes": {
-                            "mainAxisAlignment": "spaceBetween",
-                            "crossAxisAlignment": "start"
+                            "padding": 10.0
                           },
                           "children": [
                             {
@@ -371,153 +221,143 @@
                               },
                               "children": [
                                 {
-                                  "type": "Text",
-                                  "attributes": {
-                                    "caption": "Order #",
-                                    "bold": true,
-                                    "size": 16.0
-                                  },
-                                  "children": []
-                                },
-                                {
-                                  "type": "Container",
-                                  "attributes": {
-                                    "padding": 5.0
-                                  },
-                                  "children": []
-                                },
-                                {
                                   "type": "Row",
-                                  "attributes": {},
+                                  "attributes": {
+                                    "mainAxisAlignment": "spaceBetween",
+                                    "crossAxisAlignment": "start"
+                                  },
                                   "children": [
                                     {
-                                      "type": "Icon",
+                                      "type": "Column",
                                       "attributes": {
-                                        "code": "ef11",
-                                        "size": 12.0
+                                        "mainAxisAlignment": "start",
+                                        "crossAxisAlignment": "start"
                                       },
-                                      "children": []
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "attributes": {
+                                            "caption": "Order #",
+                                            "bold": true,
+                                            "size": 16.0
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Container",
+                                          "attributes": {
+                                            "padding": 5.0
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Row",
+                                          "attributes": {},
+                                          "children": [
+                                            {
+                                              "type": "Icon",
+                                              "attributes": {
+                                                "code": "ef11",
+                                                "size": 12.0
+                                              },
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "Container",
+                                              "attributes": {
+                                                "padding": 5.0
+                                              },
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "Text",
+                                              "attributes": {
+                                                "caption": "01 Jan 2020"
+                                              },
+                                              "children": []
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "Row",
+                                          "attributes": {},
+                                          "children": [
+                                            {
+                                              "type": "Icon",
+                                              "attributes": {
+                                                "code": "f27b",
+                                                "size": 12.0
+                                              },
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "Container",
+                                              "attributes": {
+                                                "padding": 5.0
+                                              },
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "Text",
+                                              "attributes": {
+                                                "caption": ""
+                                              },
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
                                     },
                                     {
-                                      "type": "Container",
+                                      "type": "Column",
                                       "attributes": {
-                                        "padding": 5.0
+                                        "mainAxisAlignment": "start",
+                                        "crossAxisAlignment": "end"
                                       },
-                                      "children": []
-                                    },
-                                    {
-                                      "type": "Text",
-                                      "attributes": {
-                                        "caption": "01 Jan 2020"
-                                      },
-                                      "children": []
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "attributes": {
+                                            "caption": "0 FCFA",
+                                            "color": "#1D7EDF",
+                                            "bold": true
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Container",
+                                          "attributes": {
+                                            "padding": 5.0
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Row",
+                                          "attributes": {
+                                            "mainAxisAlignment": "end",
+                                            "crossAxisAlignment": "center"
+                                          },
+                                          "children": []
+                                        }
+                                      ]
                                     }
                                   ]
-                                },
-                                {
-                                  "type": "Row",
-                                  "attributes": {},
-                                  "children": [
-                                    {
-                                      "type": "Icon",
-                                      "attributes": {
-                                        "code": "f27b",
-                                        "size": 12.0
-                                      },
-                                      "children": []
-                                    },
-                                    {
-                                      "type": "Container",
-                                      "attributes": {
-                                        "padding": 5.0
-                                      },
-                                      "children": []
-                                    },
-                                    {
-                                      "type": "Text",
-                                      "attributes": {
-                                        "caption": ""
-                                      },
-                                      "children": []
-                                    }
-                                  ]
-                                }
-                              ]
-                            },
-                            {
-                              "type": "Column",
-                              "attributes": {
-                                "mainAxisAlignment": "start",
-                                "crossAxisAlignment": "end"
-                              },
-                              "children": [
-                                {
-                                  "type": "Text",
-                                  "attributes": {
-                                    "caption": "1,000 FCFA",
-                                    "color": "#1D7EDF",
-                                    "bold": true
-                                  },
-                                  "children": []
-                                },
-                                {
-                                  "type": "Text",
-                                  "attributes": {
-                                    "caption": "Cancelled",
-                                    "color": "#8B0000",
-                                    "bold": true,
-                                    "size": 10.0
-                                  },
-                                  "children": []
-                                },
-                                {
-                                  "type": "Container",
-                                  "attributes": {
-                                    "padding": 5.0
-                                  },
-                                  "children": []
-                                },
-                                {
-                                  "type": "Row",
-                                  "attributes": {
-                                    "mainAxisAlignment": "end",
-                                    "crossAxisAlignment": "center"
-                                  },
-                                  "children": []
                                 }
                               ]
                             }
-                          ]
-                        }
-                      ]
-                    }
-                  ],
-                  "action": {
-                    "type": "Route",
-                    "url": "http://localhost:0/orders/2",
-                    "parameters": {
-                      "id": "300"
-                    }
-                  }
-                },
-                {
-                  "type": "Container",
-                  "attributes": {
-                    "padding": 10.0
-                  },
-                  "children": [
-                    {
-                      "type": "Column",
-                      "attributes": {
-                        "mainAxisAlignment": "start",
-                        "crossAxisAlignment": "start"
-                      },
-                      "children": [
+                          ],
+                          "action": {
+                            "type": "Route",
+                            "url": "http://localhost:0/orders/2",
+                            "parameters": {
+                              "id": "200"
+                            }
+                          }
+                        },
                         {
-                          "type": "Row",
+                          "type": "Container",
                           "attributes": {
-                            "mainAxisAlignment": "spaceBetween",
-                            "crossAxisAlignment": "start"
+                            "padding": 10.0
                           },
                           "children": [
                             {
@@ -528,196 +368,412 @@
                               },
                               "children": [
                                 {
-                                  "type": "Text",
-                                  "attributes": {
-                                    "caption": "Order #",
-                                    "bold": true,
-                                    "size": 16.0
-                                  },
-                                  "children": []
-                                },
-                                {
-                                  "type": "Container",
-                                  "attributes": {
-                                    "padding": 5.0
-                                  },
-                                  "children": []
-                                },
-                                {
                                   "type": "Row",
-                                  "attributes": {},
+                                  "attributes": {
+                                    "mainAxisAlignment": "spaceBetween",
+                                    "crossAxisAlignment": "start"
+                                  },
                                   "children": [
                                     {
-                                      "type": "Icon",
+                                      "type": "Column",
                                       "attributes": {
-                                        "code": "ef11",
-                                        "size": 12.0
+                                        "mainAxisAlignment": "start",
+                                        "crossAxisAlignment": "start"
                                       },
-                                      "children": []
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "attributes": {
+                                            "caption": "Order #",
+                                            "bold": true,
+                                            "size": 16.0
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Container",
+                                          "attributes": {
+                                            "padding": 5.0
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Row",
+                                          "attributes": {},
+                                          "children": [
+                                            {
+                                              "type": "Icon",
+                                              "attributes": {
+                                                "code": "ef11",
+                                                "size": 12.0
+                                              },
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "Container",
+                                              "attributes": {
+                                                "padding": 5.0
+                                              },
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "Text",
+                                              "attributes": {
+                                                "caption": "01 Jan 2020"
+                                              },
+                                              "children": []
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "Row",
+                                          "attributes": {},
+                                          "children": [
+                                            {
+                                              "type": "Icon",
+                                              "attributes": {
+                                                "code": "f27b",
+                                                "size": 12.0
+                                              },
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "Container",
+                                              "attributes": {
+                                                "padding": 5.0
+                                              },
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "Text",
+                                              "attributes": {
+                                                "caption": ""
+                                              },
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
                                     },
                                     {
-                                      "type": "Container",
+                                      "type": "Column",
                                       "attributes": {
-                                        "padding": 5.0
+                                        "mainAxisAlignment": "start",
+                                        "crossAxisAlignment": "end"
                                       },
-                                      "children": []
-                                    },
-                                    {
-                                      "type": "Text",
-                                      "attributes": {
-                                        "caption": "01 Jan 2020"
-                                      },
-                                      "children": []
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "Row",
-                                  "attributes": {},
-                                  "children": [
-                                    {
-                                      "type": "Icon",
-                                      "attributes": {
-                                        "code": "f27b",
-                                        "size": 12.0
-                                      },
-                                      "children": []
-                                    },
-                                    {
-                                      "type": "Container",
-                                      "attributes": {
-                                        "padding": 5.0
-                                      },
-                                      "children": []
-                                    },
-                                    {
-                                      "type": "Text",
-                                      "attributes": {
-                                        "caption": ""
-                                      },
-                                      "children": []
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "attributes": {
+                                            "caption": "1,000 FCFA",
+                                            "color": "#1D7EDF",
+                                            "bold": true
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Text",
+                                          "attributes": {
+                                            "caption": "Cancelled",
+                                            "color": "#8B0000",
+                                            "bold": true,
+                                            "size": 10.0
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Container",
+                                          "attributes": {
+                                            "padding": 5.0
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Row",
+                                          "attributes": {
+                                            "mainAxisAlignment": "end",
+                                            "crossAxisAlignment": "center"
+                                          },
+                                          "children": []
+                                        }
+                                      ]
                                     }
                                   ]
                                 }
                               ]
-                            },
+                            }
+                          ],
+                          "action": {
+                            "type": "Route",
+                            "url": "http://localhost:0/orders/2",
+                            "parameters": {
+                              "id": "300"
+                            }
+                          }
+                        },
+                        {
+                          "type": "Container",
+                          "attributes": {
+                            "padding": 10.0
+                          },
+                          "children": [
                             {
                               "type": "Column",
                               "attributes": {
                                 "mainAxisAlignment": "start",
-                                "crossAxisAlignment": "end"
+                                "crossAxisAlignment": "start"
                               },
                               "children": [
                                 {
-                                  "type": "Text",
-                                  "attributes": {
-                                    "caption": "1,500 FCFA",
-                                    "color": "#1D7EDF",
-                                    "bold": true
-                                  },
-                                  "children": []
-                                },
-                                {
-                                  "type": "Text",
-                                  "attributes": {
-                                    "caption": "Completed",
-                                    "color": "#4CAF50",
-                                    "bold": true,
-                                    "size": 10.0
-                                  },
-                                  "children": []
-                                },
-                                {
-                                  "type": "Container",
-                                  "attributes": {
-                                    "padding": 5.0
-                                  },
-                                  "children": []
-                                },
-                                {
                                   "type": "Row",
                                   "attributes": {
-                                    "mainAxisAlignment": "end",
-                                    "crossAxisAlignment": "center"
+                                    "mainAxisAlignment": "spaceBetween",
+                                    "crossAxisAlignment": "start"
                                   },
-                                  "children": []
+                                  "children": [
+                                    {
+                                      "type": "Column",
+                                      "attributes": {
+                                        "mainAxisAlignment": "start",
+                                        "crossAxisAlignment": "start"
+                                      },
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "attributes": {
+                                            "caption": "Order #",
+                                            "bold": true,
+                                            "size": 16.0
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Container",
+                                          "attributes": {
+                                            "padding": 5.0
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Row",
+                                          "attributes": {},
+                                          "children": [
+                                            {
+                                              "type": "Icon",
+                                              "attributes": {
+                                                "code": "ef11",
+                                                "size": 12.0
+                                              },
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "Container",
+                                              "attributes": {
+                                                "padding": 5.0
+                                              },
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "Text",
+                                              "attributes": {
+                                                "caption": "01 Jan 2020"
+                                              },
+                                              "children": []
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "Row",
+                                          "attributes": {},
+                                          "children": [
+                                            {
+                                              "type": "Icon",
+                                              "attributes": {
+                                                "code": "f27b",
+                                                "size": 12.0
+                                              },
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "Container",
+                                              "attributes": {
+                                                "padding": 5.0
+                                              },
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "Text",
+                                              "attributes": {
+                                                "caption": ""
+                                              },
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "Column",
+                                      "attributes": {
+                                        "mainAxisAlignment": "start",
+                                        "crossAxisAlignment": "end"
+                                      },
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "attributes": {
+                                            "caption": "1,500 FCFA",
+                                            "color": "#1D7EDF",
+                                            "bold": true
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Text",
+                                          "attributes": {
+                                            "caption": "Completed",
+                                            "color": "#4CAF50",
+                                            "bold": true,
+                                            "size": 10.0
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Container",
+                                          "attributes": {
+                                            "padding": 5.0
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Row",
+                                          "attributes": {
+                                            "mainAxisAlignment": "end",
+                                            "crossAxisAlignment": "center"
+                                          },
+                                          "children": []
+                                        }
+                                      ]
+                                    }
+                                  ]
                                 }
                               ]
                             }
-                          ]
+                          ],
+                          "action": {
+                            "type": "Route",
+                            "url": "http://localhost:0/orders/2",
+                            "parameters": {
+                              "id": "400"
+                            }
+                          }
                         }
                       ]
                     }
-                  ],
-                  "action": {
-                    "type": "Route",
-                    "url": "http://localhost:0/orders/2",
-                    "parameters": {
-                      "id": "400"
-                    }
-                  }
+                  ]
                 }
               ]
+            },
+            {
+              "type": "DynamicWidget",
+              "attributes": {
+                "url": "http://localhost:0/orders/2/list/fragment?status=IN_PROGRESS"
+              },
+              "children": []
+            },
+            {
+              "type": "DynamicWidget",
+              "attributes": {
+                "url": "http://localhost:0/orders/2/list/fragment?status=COMPLETED&status=CANCELLED"
+              },
+              "children": []
             }
           ]
         }
-      ]
-    }
-  ],
-  "appBar": {
-    "type": "AppBar",
-    "attributes": {
-      "title": "Orders",
-      "elevation": 0.0,
-      "backgroundColor": "#FFFFFF",
-      "foregroundColor": "#000000"
-    },
-    "children": []
-  },
-  "bottomNavigationBar": {
-    "type": "BottomNavigationBar",
-    "attributes": {
-      "background": "#1D7EDF",
-      "selectedItemColor": "#FFFFFF",
-      "unselectedItemColor": "#FFFFFF"
-    },
-    "children": [
-      {
-        "type": "BottomNavigationBarItem",
+      ],
+      "appBar": {
+        "type": "AppBar",
         "attributes": {
-          "icon": "f107",
-          "caption": "Home"
+          "title": "Orders",
+          "elevation": 0.0,
+          "backgroundColor": "#1D7EDF",
+          "foregroundColor": "#FFFFFF",
+          "bottom": {
+            "type": "TabBar",
+            "attributes": {},
+            "children": [
+              {
+                "type": "Text",
+                "attributes": {
+                  "caption": "NEW"
+                },
+                "children": []
+              },
+              {
+                "type": "Text",
+                "attributes": {
+                  "caption": "IN PROGRESS"
+                },
+                "children": []
+              },
+              {
+                "type": "Text",
+                "attributes": {
+                  "caption": "CLOSED"
+                },
+                "children": []
+              }
+            ]
+          }
         },
-        "children": [],
-        "action": {
-          "type": "Route",
-          "url": "route:/~"
-        }
+        "children": []
       },
-      {
-        "type": "BottomNavigationBarItem",
+      "bottomNavigationBar": {
+        "type": "BottomNavigationBar",
         "attributes": {
-          "icon": "f27b",
-          "caption": "Me"
+          "background": "#1D7EDF",
+          "selectedItemColor": "#FFFFFF",
+          "unselectedItemColor": "#FFFFFF"
         },
-        "children": [],
-        "action": {
-          "type": "Route",
-          "url": "http://localhost:0/profile/2"
-        }
-      },
-      {
-        "type": "BottomNavigationBarItem",
-        "attributes": {
-          "icon": "f16c",
-          "caption": "Orders"
-        },
-        "children": [],
-        "action": {
-          "type": "Route",
-          "url": "http://localhost:0/orders/2/list"
-        }
+        "children": [
+          {
+            "type": "BottomNavigationBarItem",
+            "attributes": {
+              "icon": "f107",
+              "caption": "Home"
+            },
+            "children": [],
+            "action": {
+              "type": "Route",
+              "url": "route:/~"
+            }
+          },
+          {
+            "type": "BottomNavigationBarItem",
+            "attributes": {
+              "icon": "f27b",
+              "caption": "Me"
+            },
+            "children": [],
+            "action": {
+              "type": "Route",
+              "url": "http://localhost:0/profile/2"
+            }
+          },
+          {
+            "type": "BottomNavigationBarItem",
+            "attributes": {
+              "icon": "f16c",
+              "caption": "Orders"
+            },
+            "children": [],
+            "action": {
+              "type": "Route",
+              "url": "http://localhost:0/orders/2/list"
+            }
+          }
+        ]
       }
-    ]
-  }
+    }
+  ]
 }

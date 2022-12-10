@@ -15,6 +15,13 @@ internal class StringUtilTest {
     }
 
     @Test
+    fun capitalize() {
+        assertEquals("Ray Sponsible", StringUtil.capitalize("ray sponsible"))
+        assertEquals("Ray", StringUtil.capitalize("ray"))
+        assertEquals(" Ray Sponsible", StringUtil.capitalize(" ray Sponsible"))
+    }
+
+    @Test
     fun capitalizeFirstLetter() {
         assertEquals("Ray sponsible", StringUtil.capitalizeFirstLetter("ray sponsible"))
         assertEquals("Ray", StringUtil.capitalizeFirstLetter("ray"))

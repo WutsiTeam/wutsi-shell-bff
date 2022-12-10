@@ -72,12 +72,63 @@
                         {
                           "type": "Text",
                           "attributes": {
-                            "caption": "Opened",
+                            "caption": "New",
                             "color": "#1D7EDF"
                           },
                           "children": []
                         }
                       ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Container",
+              "attributes": {
+                "padding": 10.0
+              },
+              "children": [
+                {
+                  "type": "Row",
+                  "attributes": {
+                    "mainAxisAlignment": "spaceEvenly",
+                    "crossAxisAlignment": "center"
+                  },
+                  "children": [
+                    {
+                      "type": "Button",
+                      "attributes": {
+                        "caption": "Accept",
+                        "padding": 5.0,
+                        "type": "Elevated",
+                        "stretched": false
+                      },
+                      "children": [],
+                      "action": {
+                        "type": "Command",
+                        "url": "http://localhost:0/orders/2/accept",
+                        "parameters": {
+                          "id": "1111"
+                        }
+                      }
+                    },
+                    {
+                      "type": "Button",
+                      "attributes": {
+                        "caption": "Reject",
+                        "padding": 5.0,
+                        "type": "Outlined",
+                        "stretched": false
+                      },
+                      "children": [],
+                      "action": {
+                        "type": "Command",
+                        "url": "http://localhost:0/orders/2/cancel",
+                        "parameters": {
+                          "id": "1111"
+                        }
+                      }
                     }
                   ]
                 }
@@ -258,7 +309,7 @@
                             {
                               "type": "Text",
                               "attributes": {
-                                "caption": "Sub total"
+                                "caption": "Sub total:"
                               },
                               "children": []
                             }
@@ -459,11 +510,28 @@
                                   "children": []
                                 },
                                 {
-                                  "type": "Text",
+                                  "type": "Column",
                                   "attributes": {
-                                    "caption": "..."
+                                    "mainAxisAlignment": "start",
+                                    "crossAxisAlignment": "start"
                                   },
-                                  "children": []
+                                  "children": [
+                                    {
+                                      "type": "Text",
+                                      "attributes": {
+                                        "caption": ""
+                                      },
+                                      "children": []
+                                    },
+                                    {
+                                      "type": "Text",
+                                      "attributes": {
+                                        "caption": "Paid on 01 Jan 2020, 10:30",
+                                        "size": 10.0
+                                      },
+                                      "children": []
+                                    }
+                                  ]
                                 }
                               ]
                             }
@@ -487,7 +555,7 @@
                             {
                               "type": "Text",
                               "attributes": {
-                                "caption": "",
+                                "caption": "0 FCFA",
                                 "alignment": "Right"
                               },
                               "children": []

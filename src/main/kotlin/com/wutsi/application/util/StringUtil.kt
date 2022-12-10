@@ -17,6 +17,20 @@ object StringUtil {
             xfullName.substring(0, 1).uppercase()
     }
 
+    fun capitalize(str: String?): String {
+        val buff = StringBuilder()
+        var prev: Char = Char.MIN_VALUE
+        str?.forEach {
+            if (buff.isEmpty() || prev == ' ') {
+                buff.append(it.uppercase())
+            } else {
+                buff.append(it)
+            }
+            prev = it
+        }
+        return buff.toString()
+    }
+
     fun capitalizeFirstLetter(str: String?): String =
         if (str.isNullOrEmpty())
             ""
