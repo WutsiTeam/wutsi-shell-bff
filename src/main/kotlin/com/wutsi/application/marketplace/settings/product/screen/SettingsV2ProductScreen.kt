@@ -31,7 +31,6 @@ import com.wutsi.marketplace.manager.dto.AddPictureRequest
 import com.wutsi.marketplace.manager.dto.PictureSummary
 import com.wutsi.marketplace.manager.dto.Product
 import com.wutsi.membership.manager.dto.Member
-import com.wutsi.platform.core.messaging.UrlShortener
 import com.wutsi.platform.core.storage.StorageService
 import com.wutsi.regulation.RegulationEngine
 import org.springframework.beans.factory.annotation.Value
@@ -51,7 +50,6 @@ class SettingsV2ProductScreen(
     private val marketplaceManagerApi: MarketplaceManagerApi,
     private val regulationEngine: RegulationEngine,
     private val storageService: StorageService,
-    private val urlShortener: UrlShortener,
 
     @Value("\${wutsi.store.pictures.max-width}") private val pictureMaxWidth: Int,
     @Value("\${wutsi.store.pictures.max-width}") private val pictureMaxHeight: Int,
@@ -146,7 +144,7 @@ class SettingsV2ProductScreen(
                     caption = getText("page.settings.catalog.product.button.share"),
                     action = Action(
                         type = ActionType.Share,
-                        message = urlShortener.shorten("$webAppUrl/product?id=${product.id}")
+                        message = "$webAppUrl/product?id=${product.id}"
                     )
                 )
             )
