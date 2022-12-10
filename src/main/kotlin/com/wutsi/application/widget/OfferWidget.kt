@@ -79,8 +79,6 @@ class OfferWidget(
                     aspectRatio = PICTURE_ASPECT_RATIO_WIDTH / PICTURE_ASPECT_RATIO_HEIGHT,
                     child = Container(
                         alignment = Alignment.Center,
-                        background = Theme.COLOR_GRAY_LIGHT,
-                        borderColor = Theme.COLOR_GRAY,
                         child = Image(
                             url = resize(it),
                             fit = BoxFit.fitHeight

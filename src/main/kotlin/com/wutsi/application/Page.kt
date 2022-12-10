@@ -52,5 +52,4 @@ object Page {
     fun getProfileUrl() = "/profile/2"
     fun getProductUrl() = "/products/2"
     fun getProductListUrl() = "/products/2/list"
-    fun getCatalogUrl() = "/catalog/2"
 }

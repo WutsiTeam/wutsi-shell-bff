@@ -605,7 +605,7 @@
             {
               "type": "DynamicWidget",
               "attributes": {
-                "url": "http://localhost:0/catalog/2/fragment?id=-1"
+                "url": "http://localhost:0/products/2/list/fragment?id=-1"
               },
               "children": []
             }

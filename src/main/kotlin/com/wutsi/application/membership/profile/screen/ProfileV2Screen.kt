@@ -149,7 +149,7 @@ class ProfileV2Screen(
     }
 
     private fun toStoreTab(member: Member) = DynamicWidget(
-        url = urlBuilder.build("${Page.getCatalogUrl()}/fragment?id=${member.id}")
+        url = urlBuilder.build("${Page.getProductListUrl()}/fragment?id=${member.id}")
     )
 
     private fun toOffersWidget(member: Member): WidgetAware? {
