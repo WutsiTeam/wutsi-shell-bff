@@ -32,6 +32,7 @@ import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.TextAlignment
+import com.wutsi.flutter.sdui.enums.TextDecoration
 import com.wutsi.platform.core.image.Dimension
 import com.wutsi.platform.core.image.ImageService
 import com.wutsi.platform.core.image.Transformation
@@ -85,7 +86,8 @@ class OrderV2Screen(
                         Divider(height = 1.0, color = Theme.COLOR_DIVIDER),
                         toItemListWidget(order, moneyFormat),
                         Divider(height = 1.0, color = Theme.COLOR_DIVIDER),
-                        toPriceWidget(order, moneyFormat, dateFormat)
+                        toPriceWidget(order, moneyFormat, dateFormat),
+                        Divider(height = 1.0, color = Theme.COLOR_DIVIDER)
                     )
                 )
             )
@@ -309,11 +311,13 @@ class OrderV2Screen(
             mainAxisAlignment = MainAxisAlignment.start,
             crossAxisAlignment = CrossAxisAlignment.start,
             children = listOfNotNull(
+
                 if (order.subTotalPrice != order.totalPrice) {
                     tableRow(getText("page.order.sub-total") + ":", moneyFormat.format(order.subTotalPrice))
                 } else {
                     null
                 },
+
                 if (order.totalDiscount > 0) {
                     tableRow(
                         getText("page.order.discount"),
@@ -323,6 +327,7 @@ class OrderV2Screen(
                 } else {
                     null
                 },
+
                 tableRow(
                     getText("page.order.total"),
                     moneyFormat.format(order.totalPrice),
@@ -330,6 +335,10 @@ class OrderV2Screen(
                     size = Theme.TEXT_SIZE_LARGE,
                     color = Theme.COLOR_PRIMARY
                 ),
+                tx?.let {
+                    Divider(height = 1.0, color = Theme.COLOR_DIVIDER)
+                },
+
                 tx?.let {
                     tableRow(
                         Row(
@@ -360,6 +369,25 @@ class OrderV2Screen(
                             )
                         ),
                         moneyFormat.format(tx.amount)
+                    )
+                },
+
+                tx?.let {
+                    Container(
+                        padding = 10.0,
+                        alignment = Alignment.CenterRight,
+                        action = gotoUrl(
+                            url = urlBuilder.build(Page.getTransactionUrl()),
+                            parameters = mapOf(
+                                "id" to it.id,
+                                "hide-order" to "true"
+                            )
+                        ),
+                        child = Text(
+                            caption = getText("page.order.payment-details"),
+                            decoration = TextDecoration.Underline,
+                            color = Theme.COLOR_PRIMARY
+                        )
                     )
                 }
             )

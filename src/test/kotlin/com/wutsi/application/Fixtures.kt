@@ -9,6 +9,7 @@ import com.wutsi.checkout.manager.dto.OrderSummary
 import com.wutsi.checkout.manager.dto.PaymentMethod
 import com.wutsi.checkout.manager.dto.PaymentMethodSummary
 import com.wutsi.checkout.manager.dto.PaymentProviderSummary
+import com.wutsi.checkout.manager.dto.Transaction
 import com.wutsi.checkout.manager.dto.TransactionSummary
 import com.wutsi.enums.BusinessStatus
 import com.wutsi.enums.ChannelType
@@ -28,6 +29,8 @@ import com.wutsi.membership.manager.dto.Member
 import com.wutsi.membership.manager.dto.MemberSummary
 import com.wutsi.membership.manager.dto.Place
 import com.wutsi.membership.manager.dto.PlaceSummary
+import com.wutsi.platform.payment.GatewayType
+import com.wutsi.platform.payment.core.ErrorCode
 import com.wutsi.platform.payment.core.Status
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
@@ -282,5 +285,37 @@ object Fixtures {
         orderId = orderId,
         status = status.name,
         created = OffsetDateTime.of(2020, 1, 1, 10, 30, 0, 0, ZoneOffset.UTC)
+    )
+
+    fun createTransaction(
+        id: String,
+        type: TransactionType,
+        status: Status,
+        orderId: String? = null,
+        businessId: Long = -1,
+        accountId: Long = -1,
+        error: ErrorCode? = null
+    ) = Transaction(
+        id = id,
+        type = type.name,
+        orderId = orderId,
+        status = status.name,
+        description = "This is description",
+        currency = "XAF",
+        business = createBusinessSummary(businessId, accountId),
+        email = "ray.sponsble@gmail.com",
+        created = OffsetDateTime.of(2020, 1, 1, 10, 30, 0, 0, ZoneOffset.UTC),
+        updated = OffsetDateTime.of(2020, 1, 1, 10, 30, 0, 0, ZoneOffset.UTC),
+        errorCode = error?.name,
+        customerId = 1111L,
+        paymentMethod = createPaymentMethodSummary(""),
+        financialTransactionId = "1111-111",
+        gatewayTransactionId = "2222-222",
+        supplierErrorCode = "xyz",
+        amount = 10500,
+        fees = 500,
+        net = 10000,
+        gatewayFees = 250,
+        gatewayType = GatewayType.FLUTTERWAVE.name
     )
 }

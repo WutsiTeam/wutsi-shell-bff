@@ -41,7 +41,7 @@ class OrderWidget(
     companion object {
         const val PRODUCT_PICTURE_SIZE = 48.0
 
-        fun of(order: OrderSummary, country: Country, action: Action, imageService: ImageService): OrderWidget =
+        fun of(order: OrderSummary, country: Country, action: Action? = null, imageService: ImageService): OrderWidget =
             OrderWidget(
                 orderId = order.shortId,
                 created = order.created,
@@ -54,7 +54,7 @@ class OrderWidget(
                 action = action
             )
 
-        fun of(order: Order, country: Country, action: Action, imageService: ImageService): OrderWidget =
+        fun of(order: Order, country: Country, action: Action? = null, imageService: ImageService): OrderWidget =
             OrderWidget(
                 orderId = order.shortId,
                 created = order.created,

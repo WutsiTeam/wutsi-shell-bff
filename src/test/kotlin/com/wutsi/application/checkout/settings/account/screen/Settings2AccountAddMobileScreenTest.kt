@@ -5,7 +5,7 @@ import com.wutsi.application.Page
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.web.server.LocalServerPort
 
-internal class Setting2AccountAddMobileScreenTest : AbstractSecuredEndpointTest() {
+internal class Settings2AccountAddMobileScreenTest : AbstractSecuredEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 

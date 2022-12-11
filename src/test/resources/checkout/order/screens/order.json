@@ -466,6 +466,14 @@
                   ]
                 },
                 {
+                  "type": "Divider",
+                  "attributes": {
+                    "height": 1.0,
+                    "color": "#8c8c8c"
+                  },
+                  "children": []
+                },
+                {
                   "type": "Row",
                   "attributes": {
                     "mainAxisAlignment": "start",
@@ -565,8 +573,42 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "type": "Container",
+                  "attributes": {
+                    "alignment": "CenterRight",
+                    "padding": 10.0
+                  },
+                  "children": [
+                    {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "Payment details...",
+                        "color": "#1D7EDF",
+                        "decoration": "Underline"
+                      },
+                      "children": []
+                    }
+                  ],
+                  "action": {
+                    "type": "Route",
+                    "url": "http://localhost:0/transactions/2",
+                    "parameters": {
+                      "id": "11",
+                      "hide-order": "true"
+                    }
+                  }
                 }
               ]
+            },
+            {
+              "type": "Divider",
+              "attributes": {
+                "height": 1.0,
+                "color": "#8c8c8c"
+              },
+              "children": []
             }
           ]
         }

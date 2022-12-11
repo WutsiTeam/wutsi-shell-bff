@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/settings/2/accounts/add/mobile")
-class Setting2AccountAddMobileScreen : AbstractEndpoint() {
+class Settings2AccountAddMobileScreen : AbstractEndpoint() {
     companion object {
         private val PAGE_URLS = listOf(
             "settings/2/accounts/add/mobile/pages/phone",

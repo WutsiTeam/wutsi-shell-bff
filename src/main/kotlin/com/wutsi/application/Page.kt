@@ -28,6 +28,7 @@ object Page {
     const val SETTINGS_CATALOG_PRODUCT = "page.settings.catalog.product"
     const val SETTINGS_CATALOG_EDITOR = "page.settings.catalog.editor"
     const val SETTINGS_CATALOG_PICTURE = "page.settings.catalog.picture"
+    const val TRANSACTION = "page.transaction"
 
     fun getAboutUrl() = "/about"
     fun getHomeUrl() = "/2"
@@ -52,4 +53,5 @@ object Page {
     fun getProfileUrl() = "/profile/2"
     fun getProductUrl() = "/products/2"
     fun getProductListUrl() = "/products/2/list"
+    fun getTransactionUrl() = "/transactions/2"
 }
