@@ -717,7 +717,7 @@
                       ],
                       "action": {
                         "type": "Route",
-                        "url": "/orders/2",
+                        "url": "http://localhost:0/orders/2",
                         "parameters": {
                           "id": "2222"
                         }

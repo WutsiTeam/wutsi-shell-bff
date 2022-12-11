@@ -146,7 +146,7 @@ class Transaction2Screen(
                                     country = country,
                                     imageService = imageService,
                                     action = gotoUrl(
-                                        Page.getOrderUrl(),
+                                        url = urlBuilder.build(Page.getOrderUrl()),
                                         parameters = mapOf("id" to it.id)
                                     )
                                 )
