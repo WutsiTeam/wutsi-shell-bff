@@ -458,18 +458,6 @@
       {
         "type": "BottomNavigationBarItem",
         "attributes": {
-          "icon": "e314",
-          "caption": "Transactions"
-        },
-        "children": [],
-        "action": {
-          "type": "Route",
-          "url": "http://localhost:0/transactions/2/list"
-        }
-      },
-      {
-        "type": "BottomNavigationBarItem",
-        "attributes": {
           "icon": "f16c",
           "caption": "Orders"
         },

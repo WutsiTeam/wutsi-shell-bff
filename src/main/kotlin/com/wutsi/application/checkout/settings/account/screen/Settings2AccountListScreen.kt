@@ -16,11 +16,13 @@ import com.wutsi.flutter.sdui.Flexible
 import com.wutsi.flutter.sdui.ListItem
 import com.wutsi.flutter.sdui.ListView
 import com.wutsi.flutter.sdui.MoneyText
+import com.wutsi.flutter.sdui.Row
 import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.Alignment
 import com.wutsi.flutter.sdui.enums.Alignment.Center
+import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisSize
@@ -80,6 +82,32 @@ class Settings2AccountListScreen(
                         currency = country.currencySymbol,
                         color = Theme.COLOR_PRIMARY,
                         numberFormat = country.numberFormat
+                    )
+                ),
+                Container(
+                    alignment = Center,
+                    padding = 10.0,
+                    child = Row(
+                        crossAxisAlignment = CrossAxisAlignment.center,
+                        mainAxisAlignment = MainAxisAlignment.spaceAround,
+                        children = listOf(
+                            Button(
+                                type = ButtonType.Outlined,
+                                caption = getText("page.settings.account.list.button.transaction"),
+                                stretched = false,
+                                action = gotoUrl(
+                                    url = urlBuilder.build(Page.getTransactionListUrl())
+                                )
+                            ),
+                            Button(
+                                type = ButtonType.Outlined,
+                                caption = getText("page.settings.account.list.button.cashout"),
+                                stretched = false,
+                                action = gotoUrl(
+                                    url = urlBuilder.build(Page.getSettingsAccountCashoutUrl())
+                                )
+                            )
+                        )
                     )
                 )
             ),

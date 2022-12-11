@@ -42,6 +42,7 @@ object Page {
     fun getSettingsAccountUrl() = "${getSettingsUrl()}/accounts"
     fun getSettingsAccountListUrl() = "${getSettingsAccountUrl()}/list"
     fun getSettingsBusinessUrl() = "${getSettingsUrl()}/business"
+    fun getSettingsAccountCashoutUrl() = "${getSettingsAccountUrl()}/cashout"
     fun getSettingsProfileUrl() = "${getSettingsUrl()}/profile"
     fun getSettingsProfileEditorUrl() = "${getSettingsProfileUrl()}/editor"
     fun getSettingsStoreUrl() = "${getSettingsUrl()}/store"
