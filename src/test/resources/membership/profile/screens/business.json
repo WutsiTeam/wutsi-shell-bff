@@ -691,13 +691,13 @@
           {
             "type": "BottomNavigationBarItem",
             "attributes": {
-              "icon": "f16c",
-              "caption": "Orders"
+              "icon": "e314",
+              "caption": "Transactions"
             },
             "children": [],
             "action": {
               "type": "Route",
-              "url": "http://localhost:0/orders/2/list"
+              "url": "http://localhost:0/transactions/2/list"
             }
           }
         ]

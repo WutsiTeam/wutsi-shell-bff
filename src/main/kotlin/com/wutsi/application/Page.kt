@@ -29,6 +29,7 @@ object Page {
     const val SETTINGS_CATALOG_EDITOR = "page.settings.catalog.editor"
     const val SETTINGS_CATALOG_PICTURE = "page.settings.catalog.picture"
     const val TRANSACTION = "page.transaction"
+    const val TRANSACTION_LIST = "page.transaction.list"
 
     fun getAboutUrl() = "/about"
     fun getHomeUrl() = "/2"
@@ -54,4 +55,5 @@ object Page {
     fun getProductUrl() = "/products/2"
     fun getProductListUrl() = "/products/2/list"
     fun getTransactionUrl() = "/transactions/2"
+    fun getTransactionListUrl() = "${getTransactionUrl()}/list"
 }

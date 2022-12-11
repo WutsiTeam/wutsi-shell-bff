@@ -64,6 +64,7 @@ class Transaction2Screen(
                 foregroundColor = Theme.COLOR_BLACK,
                 title = getText("page.transaction.app-bar.title", arrayOf(tx.id.uppercase().takeLast(4)))
             ),
+            bottomNavigationBar = createBottomNavigationBarWidget(member),
             child = SingleChildScrollView(
                 child = Column(
                     children = listOfNotNull(
@@ -143,8 +144,11 @@ class Transaction2Screen(
                                 OrderWidget.of(
                                     order = it,
                                     country = country,
-                                    action = gotoUrl(Page.getOrderUrl(), parameters = mapOf("id" to it.id)),
-                                    imageService = imageService
+                                    imageService = imageService,
+                                    action = gotoUrl(
+                                        Page.getOrderUrl(),
+                                        parameters = mapOf("id" to it.id)
+                                    )
                                 )
                             )
                         },

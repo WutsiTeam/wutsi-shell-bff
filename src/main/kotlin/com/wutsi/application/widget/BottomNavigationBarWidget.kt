@@ -11,7 +11,8 @@ import com.wutsi.flutter.sdui.enums.ActionType
 class BottomNavigationBarWidget(
     private val profileUrl: String? = null,
     private val chatUrl: String? = null,
-    private val ordersUrl: String? = null
+    private val ordersUrl: String? = null,
+    private val transactionsUrl: String? = null
 ) : CompositeWidgetAware() {
     override fun toWidgetAware(): WidgetAware = toBottomNavigationBar()
 
@@ -48,6 +49,16 @@ class BottomNavigationBarWidget(
                     )
                 )
             },
+            transactionsUrl?.let {
+                BottomNavigationBarItem(
+                    icon = Theme.ICON_HISTORY,
+                    caption = getText("widget.bottom-nav-bar.transactions"),
+                    action = Action(
+                        type = ActionType.Route,
+                        url = it
+                    )
+                )
+            },
             ordersUrl?.let {
                 BottomNavigationBarItem(
                     icon = Theme.ICON_ORDER,
@@ -58,17 +69,6 @@ class BottomNavigationBarWidget(
                     )
                 )
             }
-
-//            model.transactionUrl?.let {
-//                BottomNavigationBarItem(
-//                    icon = Theme.ICON_HISTORY,
-//                    caption = getText("widget.bottom-nav-bar.transactions"),
-//                    action = Action(
-//                        type = ActionType.Route,
-//                        url = it
-//                    )
-//                )
-//            },
         )
     )
 }
