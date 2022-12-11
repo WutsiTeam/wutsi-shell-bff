@@ -148,7 +148,7 @@ class Settings2AccountListScreen(
                 padding = 10.0,
                 alignment = Center,
                 child = Button(
-                    caption = getText("page.settings.account.button.add-account"),
+                    caption = getText("page.settings.account.list.button.add-account"),
                     action = gotoUrl(
                         url = urlBuilder.build("${Page.getSettingsAccountUrl()}/add/mobile")
                     )

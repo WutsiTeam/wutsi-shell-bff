@@ -17,7 +17,6 @@ import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.enums.Alignment
-import com.wutsi.platform.payment.core.Status
 import com.wutsi.regulation.RegulationEngine
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -37,8 +36,7 @@ class Transaction2ListScreen(
             request = SearchTransactionRequest(
                 customerId = member.businessId?.let { null },
                 businessId = member.businessId,
-                limit = 100,
-                status = listOf(Status.FAILED.name, Status.SUCCESSFUL.name)
+                limit = 100
             )
         ).transactions
 

@@ -195,7 +195,8 @@ object Fixtures {
     fun createBusiness(id: Long, accountId: Long) = Business(
         id = id,
         accountId = accountId,
-        country = "CM"
+        country = "CM",
+        balance = 30000
     )
 
     fun createOrder(
