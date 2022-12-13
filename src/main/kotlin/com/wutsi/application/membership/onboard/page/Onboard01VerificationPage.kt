@@ -26,6 +26,7 @@ import com.wutsi.security.manager.SecurityManagerApi
 import com.wutsi.security.manager.dto.CreateOTPRequest
 import com.wutsi.security.manager.dto.VerifyOTPRequest
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -155,7 +156,7 @@ class Onboard01VerificationPage(
     }
 
     @PostMapping("/submit")
-    fun submit(request: VerifyPhoneRequest): Action {
+    fun submit(@RequestBody request: VerifyPhoneRequest): Action {
         return try {
             val account = onboardDao.get()
             securityManagerApi.verifyOtp(
