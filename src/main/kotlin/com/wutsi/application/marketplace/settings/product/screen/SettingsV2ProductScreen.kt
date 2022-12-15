@@ -94,6 +94,11 @@ class SettingsV2ProductScreen(
                         separator = true,
                         children = listOfNotNull(
                             toListItemWidget(
+                                "page.settings.catalog.product.attribute.type",
+                                getText("product.type.${product.type}"),
+                                urlBuilder.build("${Page.getSettingsProductEditorUrl()}?name=type&id=${product.id}")
+                            ),
+                            toListItemWidget(
                                 "page.settings.catalog.product.attribute.title",
                                 product.title,
                                 urlBuilder.build("${Page.getSettingsProductEditorUrl()}?name=title&id=${product.id}")

@@ -8,25 +8,22 @@ import com.wutsi.application.AbstractSecuredEndpointTest
 import com.wutsi.application.Page
 import com.wutsi.application.marketplace.settings.product.dto.SubmitProductRequest
 import com.wutsi.application.marketplace.settings.product.entity.PictureEntity
+import com.wutsi.enums.ProductType
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.marketplace.manager.dto.CreateProductRequest
-import com.wutsi.platform.core.storage.StorageService
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.test.web.server.LocalServerPort
 
-internal class AppProduct01EditorPageTest : AbstractSecuredEndpointTest() {
+internal class AppProduct02EditorPageTest : AbstractSecuredEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 
-    @MockBean
-    private lateinit var storageService: StorageService
-
     private val entity = PictureEntity(
-        url = "http://www.google.ca/1.png"
+        url = "http://www.google.ca/1.png",
+        type = ProductType.EVENT
     )
 
     private fun url(action: String = "") =
@@ -60,7 +57,8 @@ internal class AppProduct01EditorPageTest : AbstractSecuredEndpointTest() {
                 title = request.title,
                 price = request.price,
                 quantity = request.quantity.toInt(),
-                summary = request.summary
+                summary = request.summary,
+                type = entity.type.name
             )
         )
 

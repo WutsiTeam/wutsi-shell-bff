@@ -105,7 +105,8 @@
                                     {
                                       "type": "Container",
                                       "attributes": {
-                                        "alignment": "TopLeft"
+                                        "alignment": "TopLeft",
+                                        "padding": 10.0
                                       },
                                       "children": [
                                         {
@@ -116,23 +117,30 @@
                                           },
                                           "children": [
                                             {
+                                              "type": "Text",
+                                              "attributes": {
+                                                "caption": "Product1",
+                                                "bold": true,
+                                                "size": 14.0,
+                                                "overflow": "Elipsis",
+                                                "maxLines": 3
+                                              },
+                                              "children": []
+                                            },
+                                            {
                                               "type": "Container",
                                               "attributes": {
                                                 "padding": 5.0
                                               },
-                                              "children": [
-                                                {
-                                                  "type": "Text",
-                                                  "attributes": {
-                                                    "caption": "Product1",
-                                                    "bold": true,
-                                                    "size": 14.0,
-                                                    "overflow": "Elipsis",
-                                                    "maxLines": 3
-                                                  },
-                                                  "children": []
-                                                }
-                                              ]
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "Text",
+                                              "attributes": {
+                                                "caption": "Type: Physical Product",
+                                                "size": 10.0
+                                              },
+                                              "children": []
                                             }
                                           ]
                                         }
@@ -147,8 +155,20 @@
                                       "children": [
                                         {
                                           "type": "Column",
-                                          "attributes": {},
+                                          "attributes": {
+                                            "mainAxisAlignment": "end",
+                                            "crossAxisAlignment": "end"
+                                          },
                                           "children": [
+                                            {
+                                              "type": "Text",
+                                              "attributes": {
+                                                "caption": "Published",
+                                                "color": "#4CAF50",
+                                                "size": 10.0
+                                              },
+                                              "children": []
+                                            },
                                             {
                                               "type": "MoneyText",
                                               "attributes": {
@@ -242,7 +262,8 @@
                                     {
                                       "type": "Container",
                                       "attributes": {
-                                        "alignment": "TopLeft"
+                                        "alignment": "TopLeft",
+                                        "padding": 10.0
                                       },
                                       "children": [
                                         {
@@ -253,23 +274,30 @@
                                           },
                                           "children": [
                                             {
+                                              "type": "Text",
+                                              "attributes": {
+                                                "caption": "Product 2",
+                                                "bold": true,
+                                                "size": 14.0,
+                                                "overflow": "Elipsis",
+                                                "maxLines": 3
+                                              },
+                                              "children": []
+                                            },
+                                            {
                                               "type": "Container",
                                               "attributes": {
                                                 "padding": 5.0
                                               },
-                                              "children": [
-                                                {
-                                                  "type": "Text",
-                                                  "attributes": {
-                                                    "caption": "Product 2",
-                                                    "bold": true,
-                                                    "size": 14.0,
-                                                    "overflow": "Elipsis",
-                                                    "maxLines": 3
-                                                  },
-                                                  "children": []
-                                                }
-                                              ]
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "Text",
+                                              "attributes": {
+                                                "caption": "Type: Physical Product",
+                                                "size": 10.0
+                                              },
+                                              "children": []
                                             }
                                           ]
                                         }
@@ -284,16 +312,17 @@
                                       "children": [
                                         {
                                           "type": "Column",
-                                          "attributes": {},
+                                          "attributes": {
+                                            "mainAxisAlignment": "end",
+                                            "crossAxisAlignment": "end"
+                                          },
                                           "children": [
                                             {
-                                              "type": "Chip",
+                                              "type": "Text",
                                               "attributes": {
-                                                "color": "#FFFFFF",
-                                                "padding": 2.0,
-                                                "backgroundColor": "#95A5A6",
                                                 "caption": "Not Published",
-                                                "fontSize": 10.0
+                                                "color": "#95A5A6",
+                                                "size": 10.0
                                               },
                                               "children": []
                                             },

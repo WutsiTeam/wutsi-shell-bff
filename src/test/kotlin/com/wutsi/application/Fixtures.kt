@@ -17,6 +17,7 @@ import com.wutsi.enums.DeviceType
 import com.wutsi.enums.DiscountType
 import com.wutsi.enums.OrderStatus
 import com.wutsi.enums.PaymentMethodType
+import com.wutsi.enums.ProductType
 import com.wutsi.enums.TransactionType
 import com.wutsi.marketplace.manager.dto.PictureSummary
 import com.wutsi.marketplace.manager.dto.Product
@@ -87,13 +88,15 @@ object Fixtures {
         title: String = "Product",
         thumbnailUrl: String? = null,
         published: Boolean = true,
-        price: Long = 15000
+        price: Long = 15000,
+        type: ProductType = ProductType.PHYSICAL_PRODUCT
     ) = ProductSummary(
         id = id,
         title = title,
         thumbnailUrl = thumbnailUrl,
         status = if (published) "PUBLISHED" else "DRAFT",
-        price = price
+        price = price,
+        type = type.name
     )
 
     fun createProduct(
@@ -105,7 +108,8 @@ object Fixtures {
         summary: String = "This is a summary",
         description: String = "This is a long description",
         pictures: List<PictureSummary> = emptyList(),
-        published: Boolean = true
+        published: Boolean = true,
+        type: ProductType = ProductType.PHYSICAL_PRODUCT
     ) = Product(
         id = id,
         store = createStoreSummary(storeId),
@@ -116,7 +120,8 @@ object Fixtures {
         description = description,
         thumbnail = if (pictures.isEmpty()) null else pictures[0],
         pictures = pictures,
-        status = if (published) "PUBLISHED" else "DRAFT"
+        status = if (published) "PUBLISHED" else "DRAFT",
+        type = type.name
     )
 
     fun createPictureSummary(

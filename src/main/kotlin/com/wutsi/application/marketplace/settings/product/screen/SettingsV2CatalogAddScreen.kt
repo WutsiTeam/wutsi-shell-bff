@@ -14,6 +14,7 @@ class SettingsV2CatalogAddScreen : AbstractEndpoint() {
     companion object {
         private val PAGE_URLS = listOf(
             "${com.wutsi.application.Page.getSettingsProductAddUrl()}/pages/picture",
+            "${com.wutsi.application.Page.getSettingsProductAddUrl()}/pages/type",
             "${com.wutsi.application.Page.getSettingsProductAddUrl()}/pages/editor"
         )
     }

@@ -21,6 +21,13 @@
         {
           "type": "Page",
           "attributes": {
+            "url": "http://localhost:0/settings/2/products/add/pages/type"
+          },
+          "children": []
+        },
+        {
+          "type": "Page",
+          "attributes": {
             "url": "http://localhost:0/settings/2/products/add/pages/editor"
           },
           "children": []

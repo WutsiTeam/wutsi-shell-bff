@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/settings/2/store/activate/pages/success")
 class StoreEnable01SuccessPage : AbstractSuccessPageEndpoint() {
     companion object {
-        const val PAGE_INDEX = 6
+        const val PAGE_INDEX = 1
     }
 
     override fun getPageIndex(): Int = PAGE_INDEX

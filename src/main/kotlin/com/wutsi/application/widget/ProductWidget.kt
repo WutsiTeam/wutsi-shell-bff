@@ -2,8 +2,8 @@ package com.wutsi.application.widget
 
 import com.wutsi.application.Theme
 import com.wutsi.enums.ProductStatus
+import com.wutsi.enums.ProductType
 import com.wutsi.flutter.sdui.Action
-import com.wutsi.flutter.sdui.Chip
 import com.wutsi.flutter.sdui.ClipRRect
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
@@ -35,6 +35,7 @@ class ProductWidget(
     private val pictureUrl: String? = null,
     private val action: Action? = null,
     private val status: String? = null,
+    private val type: ProductType = ProductType.UNKNOWN,
     private val imageService: ImageService
 ) : CompositeWidgetAware() {
     companion object {
@@ -49,7 +50,8 @@ class ProductWidget(
             pictureUrl = product.thumbnailUrl,
             action = action,
             status = product.status,
-            imageService = imageService
+            imageService = imageService,
+            type = ProductType.valueOf(product.type)
         )
     }
 
@@ -95,28 +97,34 @@ class ProductWidget(
     private fun toDescriptionSection(): WidgetAware =
         Container(
             alignment = Alignment.TopLeft,
+            padding = 10.0,
             child = Column(
                 mainAxisAlignment = MainAxisAlignment.start,
                 crossAxisAlignment = CrossAxisAlignment.start,
                 children = listOfNotNull(
-                    Container(
-                        padding = 5.0,
-                        child = Text(
-                            caption = title,
-                            bold = true,
-                            overflow = TextOverflow.Elipsis,
-                            maxLines = 3,
-                            size = Theme.TEXT_SIZE_DEFAULT
-                        )
+                    Text(
+                        caption = title,
+                        bold = true,
+                        overflow = TextOverflow.Elipsis,
+                        maxLines = 3,
+                        size = Theme.TEXT_SIZE_DEFAULT
+
+                    ),
+                    Container(padding = 5.0),
+                    Text(
+                        caption = getText(
+                            key = "widget.product-card.type",
+                            args = arrayOf(getText("product.type.$type"))
+                        ),
+                        size = Theme.TEXT_SIZE_SMALL
+
                     ),
                     quantity?.let {
-                        Container(
-                            padding = 5.0,
-                            child = Text(
-                                caption = getText("widget.product-card.quantity", arrayOf(it)),
-                                color = if (it == 0) Theme.COLOR_DANGER else null,
-                                bold = it == 0
-                            )
+                        Text(
+                            caption = getText("widget.product-card.quantity", arrayOf(it)),
+                            color = if (it == 0) Theme.COLOR_DANGER else null,
+                            bold = it == 0,
+                            size = Theme.TEXT_SIZE_SMALL
                         )
                     }
                 )
@@ -129,17 +137,21 @@ class ProductWidget(
                 bottom = 10.0,
                 right = 10.0,
                 child = Column(
+                    mainAxisAlignment = MainAxisAlignment.end,
+                    crossAxisAlignment = CrossAxisAlignment.end,
                     children = listOfNotNull(
                         if (status == ProductStatus.DRAFT.name) {
-                            Chip(
-                                color = Theme.COLOR_WHITE,
-                                backgroundColor = Theme.COLOR_GRAY,
+                            Text(
                                 caption = getText("widget.product-card.draft"),
-                                fontSize = Theme.TEXT_SIZE_SMALL,
-                                padding = 2.0
+                                size = Theme.TEXT_SIZE_SMALL,
+                                color = Theme.COLOR_GRAY
                             )
                         } else {
-                            null
+                            Text(
+                                caption = getText("widget.product-card.published"),
+                                size = Theme.TEXT_SIZE_SMALL,
+                                color = Theme.COLOR_SUCCESS
+                            )
                         },
                         MoneyText(
                             color = Theme.COLOR_PRIMARY,

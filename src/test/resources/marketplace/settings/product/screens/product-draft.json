@@ -251,6 +251,27 @@
                 {
                   "type": "ListItem",
                   "attributes": {
+                    "caption": "Type",
+                    "subCaption": "Physical Product",
+                    "trailing": {
+                      "type": "Icon",
+                      "attributes": {
+                        "code": "e21a",
+                        "size": 24.0,
+                        "color": "#000000"
+                      },
+                      "children": []
+                    }
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "http://localhost:0/settings/2/products/editor?name=type&id=-1"
+                  }
+                },
+                {
+                  "type": "ListItem",
+                  "attributes": {
                     "caption": "Name",
                     "subCaption": "Product A",
                     "trailing": {

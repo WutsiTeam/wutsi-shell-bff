@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/settings/2/products/add/pages/editor")
-class AppProduct01EditorPage(
+class AppProduct02EditorPage(
     private val dao: PictureRepository,
     private val membershipManagerApi: MembershipManagerApi,
     private val marketplaceManagerApi: MarketplaceManagerApi,
@@ -103,7 +103,8 @@ class AppProduct01EditorPage(
                 title = request.title,
                 summary = request.summary,
                 quantity = if (request.quantity.isNullOrEmpty()) null else request.quantity.toInt(),
-                price = request.price
+                price = request.price,
+                type = picture.type.name
             )
         )
 
