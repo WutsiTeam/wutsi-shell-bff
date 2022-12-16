@@ -66,6 +66,14 @@ internal class SettingsV2ProductEditorEventScreenTest : AbstractSecuredEndpointT
 
     @Test
     fun updateEvent() {
+        val product = Fixtures.createProduct(
+            id = productId,
+            pictures = Fixtures.createPictureSummaryList(2),
+            type = ProductType.EVENT,
+            event = Fixtures.createEvent(meetingProvider = Fixtures.createMeetingProviderSummary())
+        )
+        doReturn(GetProductResponse(product)).whenever(marketplaceManagerApi).getProduct(any())
+
         assertEndpointEquals("/marketplace/settings/product/screens/editor-edit-event.json", url())
     }
 

@@ -128,22 +128,26 @@ object Fixtures {
         pictures = pictures,
         status = if (published) "PUBLISHED" else "DRAFT",
         type = type.name,
-        event = event ?: (if (type == ProductType.EVENT) createEvent() else null)
+        event = event
     )
 
-    private fun createEvent() = Event(
+    fun createEvent(
+        meetingProvider: MeetingProviderSummary? = null
+    ) = Event(
         online = true,
         meetingPassword = "123456",
         meetingId = "1234567890",
         meetingJoinUrl = "https://us04.zoom.us/j/12345678",
         starts = OffsetDateTime.of(2020, 1, 1, 10, 30, 0, 0, ZoneOffset.UTC),
         ends = OffsetDateTime.of(2020, 1, 1, 15, 30, 0, 0, ZoneOffset.UTC),
-        meetingProvider = MeetingProviderSummary(
-            id = 1000,
-            type = MeetingProviderType.ZOOM.name,
-            name = "Zoom",
-            logoUrl = "https://prod-wutsi.s3.amazonaws.com/static/marketplace-access-server/meeting-providers/zoom.png"
-        )
+        meetingProvider = meetingProvider
+    )
+
+    fun createMeetingProviderSummary() = MeetingProviderSummary(
+        id = 1000,
+        type = MeetingProviderType.ZOOM.name,
+        name = "Zoom",
+        logoUrl = "https://prod-wutsi.s3.amazonaws.com/static/marketplace-access-server/meeting-providers/zoom.png"
     )
 
     fun createMeetingProviderType(

@@ -38,7 +38,7 @@ class OfferWidget(
     private val action: Action,
     private val margin: Double = 10.0,
     private val imageService: ImageService,
-    private val eventStartDate: String? = null,
+    private val eventStartDate: String? = null
 ) : CompositeWidgetAware() {
     companion object {
         private const val PICTURE_HEIGHT = 150.0
@@ -95,7 +95,6 @@ class OfferWidget(
             } else {
                 DateTimeUtil.convert(date, timezoneId)
             }
-
     }
 
     override fun toWidgetAware(): WidgetAware =

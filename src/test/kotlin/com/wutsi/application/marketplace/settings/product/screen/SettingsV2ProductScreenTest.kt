@@ -70,7 +70,10 @@ internal class SettingsV2ProductScreenTest : AbstractSecuredEndpointTest() {
             id = 111,
             pictures = Fixtures.createPictureSummaryList(2),
             published = true,
-            type = ProductType.EVENT
+            type = ProductType.EVENT,
+            event = Fixtures.createEvent(
+                meetingProvider = Fixtures.createMeetingProviderSummary()
+            )
         )
         doReturn(GetProductResponse(product)).whenever(marketplaceManagerApi).getProduct(any())
 

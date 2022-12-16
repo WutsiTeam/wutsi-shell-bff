@@ -129,7 +129,6 @@
                   "type": "DropdownButton",
                   "attributes": {
                     "name": "meetingProviderId",
-                    "value": "0",
                     "hint": "Select the meeting provider"
                   },
                   "children": [
