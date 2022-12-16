@@ -15,10 +15,13 @@ import com.wutsi.enums.BusinessStatus
 import com.wutsi.enums.ChannelType
 import com.wutsi.enums.DeviceType
 import com.wutsi.enums.DiscountType
+import com.wutsi.enums.MeetingProviderType
 import com.wutsi.enums.OrderStatus
 import com.wutsi.enums.PaymentMethodType
 import com.wutsi.enums.ProductType
 import com.wutsi.enums.TransactionType
+import com.wutsi.marketplace.manager.dto.Event
+import com.wutsi.marketplace.manager.dto.MeetingProviderSummary
 import com.wutsi.marketplace.manager.dto.PictureSummary
 import com.wutsi.marketplace.manager.dto.Product
 import com.wutsi.marketplace.manager.dto.ProductSummary
@@ -62,6 +65,7 @@ object Fixtures {
         pictureUrl = "https://www.img.com/100.png",
         superUser = superUser,
         biography = "This is a biography",
+        timezoneId = "Africa/Douala",
         city = Place(
             id = 111,
             name = "Yaounde",
@@ -96,7 +100,8 @@ object Fixtures {
         thumbnailUrl = thumbnailUrl,
         status = if (published) "PUBLISHED" else "DRAFT",
         price = price,
-        type = type.name
+        type = type.name,
+        event = if (type == ProductType.EVENT) createEvent() else null
     )
 
     fun createProduct(
@@ -109,7 +114,8 @@ object Fixtures {
         description: String = "This is a long description",
         pictures: List<PictureSummary> = emptyList(),
         published: Boolean = true,
-        type: ProductType = ProductType.PHYSICAL_PRODUCT
+        type: ProductType = ProductType.PHYSICAL_PRODUCT,
+        event: Event? = null
     ) = Product(
         id = id,
         store = createStoreSummary(storeId),
@@ -121,7 +127,34 @@ object Fixtures {
         thumbnail = if (pictures.isEmpty()) null else pictures[0],
         pictures = pictures,
         status = if (published) "PUBLISHED" else "DRAFT",
-        type = type.name
+        type = type.name,
+        event = event ?: (if (type == ProductType.EVENT) createEvent() else null)
+    )
+
+    private fun createEvent() = Event(
+        online = true,
+        meetingPassword = "123456",
+        meetingId = "1234567890",
+        meetingJoinUrl = "https://us04.zoom.us/j/12345678",
+        starts = OffsetDateTime.of(2020, 1, 1, 10, 30, 0, 0, ZoneOffset.UTC),
+        ends = OffsetDateTime.of(2020, 1, 1, 15, 30, 0, 0, ZoneOffset.UTC),
+        meetingProvider = MeetingProviderSummary(
+            id = 1000,
+            type = MeetingProviderType.ZOOM.name,
+            name = "Zoom",
+            logoUrl = "https://prod-wutsi.s3.amazonaws.com/static/marketplace-access-server/meeting-providers/zoom.png"
+        )
+    )
+
+    fun createMeetingProviderType(
+        id: Long,
+        type: MeetingProviderType,
+        name: String
+    ) = MeetingProviderSummary(
+        id = id,
+        type = type.name,
+        name = name,
+        logoUrl = "https://prod-wutsi.s3.amazonaws.com/static/marketplace-access-server/meeting-providers/$id.png"
     )
 
     fun createPictureSummary(

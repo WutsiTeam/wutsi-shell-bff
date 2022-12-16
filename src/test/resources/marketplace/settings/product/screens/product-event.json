@@ -130,7 +130,7 @@
                                           "readOnly": false,
                                           "type": "Image",
                                           "minLength": 0,
-                                          "uploadUrl": "http://localhost:0/settings/2/products/upload?id=-1",
+                                          "uploadUrl": "http://localhost:0/settings/2/products/upload?id=111",
                                           "imageSource": "Camera",
                                           "imageMaxHeight": 512,
                                           "imageMaxWidth": 512
@@ -138,7 +138,7 @@
                                         "children": [],
                                         "action": {
                                           "type": "Route",
-                                          "url": "http://localhost:0/settings/2/products?id=-1",
+                                          "url": "http://localhost:0/settings/2/products?id=111",
                                           "replacement": true
                                         }
                                       }
@@ -169,7 +169,7 @@
                                           "readOnly": false,
                                           "type": "Image",
                                           "minLength": 0,
-                                          "uploadUrl": "http://localhost:0/settings/2/products/upload?id=-1",
+                                          "uploadUrl": "http://localhost:0/settings/2/products/upload?id=111",
                                           "imageSource": "Gallery",
                                           "imageMaxHeight": 512,
                                           "imageMaxWidth": 512
@@ -177,7 +177,7 @@
                                         "children": [],
                                         "action": {
                                           "type": "Route",
-                                          "url": "http://localhost:0/settings/2/products?id=-1",
+                                          "url": "http://localhost:0/settings/2/products?id=111",
                                           "replacement": true
                                         }
                                       }
@@ -215,14 +215,15 @@
             {
               "type": "Button",
               "attributes": {
-                "caption": "Publish Now",
+                "caption": "Share",
                 "padding": 15.0,
                 "type": "Elevated"
               },
               "children": [],
               "action": {
-                "type": "Command",
-                "url": "http://localhost:0/settings/2/products/publish?id=-1"
+                "type": "Share",
+                "url": "",
+                "message": "https://wutsi-web-test.herokuapp.com/p/111"
               }
             }
           ]
@@ -253,7 +254,7 @@
                   "type": "ListItem",
                   "attributes": {
                     "caption": "Type",
-                    "subCaption": "Physical Product",
+                    "subCaption": "Event",
                     "trailing": {
                       "type": "Icon",
                       "attributes": {
@@ -267,7 +268,7 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "http://localhost:0/settings/2/products/editor?name=type&id=-1"
+                    "url": "http://localhost:0/settings/2/products/editor?name=type&id=111"
                   }
                 },
                 {
@@ -288,7 +289,7 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "http://localhost:0/settings/2/products/editor?name=title&id=-1"
+                    "url": "http://localhost:0/settings/2/products/editor?name=title&id=111"
                   }
                 },
                 {
@@ -309,7 +310,7 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "http://localhost:0/settings/2/products/editor?name=price&id=-1"
+                    "url": "http://localhost:0/settings/2/products/editor?name=price&id=111"
                   }
                 },
                 {
@@ -330,7 +331,7 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "http://localhost:0/settings/2/products/editor?name=quantity&id=-1"
+                    "url": "http://localhost:0/settings/2/products/editor?name=quantity&id=111"
                   }
                 },
                 {
@@ -351,7 +352,7 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "http://localhost:0/settings/2/products/editor?name=summary&id=-1"
+                    "url": "http://localhost:0/settings/2/products/editor?name=summary&id=111"
                   }
                 },
                 {
@@ -372,7 +373,7 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "http://localhost:0/settings/2/products/editor?name=description&id=-1"
+                    "url": "http://localhost:0/settings/2/products/editor?name=description&id=111"
                   }
                 },
                 {
@@ -381,6 +382,36 @@
                     "padding": 10.0
                   },
                   "children": []
+                },
+                {
+                  "type": "ListItem",
+                  "attributes": {
+                    "caption": "Event",
+                    "subCaption": "01 Jan 2020, 11:30",
+                    "trailing": {
+                      "type": "Icon",
+                      "attributes": {
+                        "code": "e21a",
+                        "size": 24.0,
+                        "color": "#000000"
+                      },
+                      "children": []
+                    },
+                    "leading": {
+                      "type": "Image",
+                      "attributes": {
+                        "url": "https://prod-wutsi.s3.amazonaws.com/static/marketplace-access-server/meeting-providers/zoom.png",
+                        "width": 32.0,
+                        "height": 32.0
+                      },
+                      "children": []
+                    }
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "http://localhost:0/settings/2/products/editor/event?id=111"
+                  }
                 },
                 {
                   "type": "Container",
@@ -410,6 +441,34 @@
                                 {
                                   "type": "Button",
                                   "attributes": {
+                                    "caption": "Unpublish",
+                                    "padding": 15.0,
+                                    "type": "Elevated"
+                                  },
+                                  "children": [],
+                                  "action": {
+                                    "type": "Command",
+                                    "url": "http://localhost:0/settings/2/products/unpublish?id=111",
+                                    "prompt": {
+                                      "type": "Dialog",
+                                      "attributes": {
+                                        "type": "Confirm",
+                                        "message": "Are you sure you want to unpublish the product?"
+                                      },
+                                      "children": []
+                                    }
+                                  }
+                                },
+                                {
+                                  "type": "Container",
+                                  "attributes": {
+                                    "padding": 10.0
+                                  },
+                                  "children": []
+                                },
+                                {
+                                  "type": "Button",
+                                  "attributes": {
                                     "caption": "Delete",
                                     "padding": 15.0,
                                     "type": "Elevated"
@@ -417,7 +476,7 @@
                                   "children": [],
                                   "action": {
                                     "type": "Command",
-                                    "url": "http://localhost:0/settings/2/products/delete?id=-1",
+                                    "url": "http://localhost:0/settings/2/products/delete?id=111",
                                     "prompt": {
                                       "type": "Dialog",
                                       "attributes": {

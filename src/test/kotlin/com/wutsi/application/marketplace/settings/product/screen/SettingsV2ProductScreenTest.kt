@@ -10,6 +10,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.AbstractSecuredEndpointTest
 import com.wutsi.application.Fixtures
 import com.wutsi.application.Page
+import com.wutsi.enums.ProductType
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.marketplace.manager.dto.AddPictureRequest
@@ -61,6 +62,19 @@ internal class SettingsV2ProductScreenTest : AbstractSecuredEndpointTest() {
         doReturn(GetProductResponse(product)).whenever(marketplaceManagerApi).getProduct(any())
 
         assertEndpointEquals("/marketplace/settings/product/screens/product-published.json", url())
+    }
+
+    @Test
+    fun event() {
+        val product = Fixtures.createProduct(
+            id = 111,
+            pictures = Fixtures.createPictureSummaryList(2),
+            published = true,
+            type = ProductType.EVENT
+        )
+        doReturn(GetProductResponse(product)).whenever(marketplaceManagerApi).getProduct(any())
+
+        assertEndpointEquals("/marketplace/settings/product/screens/product-event.json", url())
     }
 
     @Test

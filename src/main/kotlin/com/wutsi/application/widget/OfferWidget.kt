@@ -1,14 +1,18 @@
 package com.wutsi.application.widget
 
 import com.wutsi.application.Theme
+import com.wutsi.application.util.DateTimeUtil
 import com.wutsi.application.util.StringUtil
+import com.wutsi.enums.ProductType
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AspectRatio
 import com.wutsi.flutter.sdui.ClipRRect
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
+import com.wutsi.flutter.sdui.Icon
 import com.wutsi.flutter.sdui.Image
 import com.wutsi.flutter.sdui.MoneyText
+import com.wutsi.flutter.sdui.Row
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.Alignment
@@ -23,6 +27,8 @@ import com.wutsi.platform.core.image.Focus
 import com.wutsi.platform.core.image.ImageService
 import com.wutsi.platform.core.image.Transformation
 import com.wutsi.regulation.Country
+import java.time.OffsetDateTime
+import java.time.format.DateTimeFormatter
 
 class OfferWidget(
     private val title: String,
@@ -31,30 +37,65 @@ class OfferWidget(
     private val thumbnailUrl: String?,
     private val action: Action,
     private val margin: Double = 10.0,
-    private val imageService: ImageService
+    private val imageService: ImageService,
+    private val eventStartDate: String? = null,
 ) : CompositeWidgetAware() {
     companion object {
         private const val PICTURE_HEIGHT = 150.0
         private const val PICTURE_ASPECT_RATIO_WIDTH = 4.0
         private const val PICTURE_ASPECT_RATIO_HEIGHT = 4.0
 
-        fun of(product: Product, country: Country, action: Action, imageService: ImageService) = OfferWidget(
+        fun of(
+            product: Product,
+            country: Country,
+            action: Action,
+            imageService: ImageService,
+            timezoneId: String?
+        ) = OfferWidget(
             title = product.title,
             price = product.price,
             country = country,
             thumbnailUrl = product.thumbnail?.url,
             action = action,
-            imageService = imageService
+            imageService = imageService,
+            eventStartDate = if ((product.type == ProductType.EVENT.name) && (product.event != null)) {
+                product.event!!.starts?.let {
+                    convert(it, timezoneId).format(DateTimeFormatter.ofPattern(country.dateTimeFormat))
+                }
+            } else {
+                null
+            }
         )
 
-        fun of(product: ProductSummary, country: Country, action: Action, imageService: ImageService) = OfferWidget(
+        fun of(
+            product: ProductSummary,
+            country: Country,
+            action: Action,
+            imageService: ImageService,
+            timezoneId: String?
+        ) = OfferWidget(
             title = product.title,
             price = product.price,
             country = country,
             thumbnailUrl = product.thumbnailUrl,
             action = action,
-            imageService = imageService
+            imageService = imageService,
+            eventStartDate = if ((product.type == ProductType.EVENT.name) && (product.event != null)) {
+                product.event!!.starts?.let {
+                    convert(it, timezoneId).format(DateTimeFormatter.ofPattern(country.dateTimeFormat))
+                }
+            } else {
+                null
+            }
         )
+
+        private fun convert(date: OffsetDateTime, timezoneId: String?): OffsetDateTime =
+            if (timezoneId == null) {
+                date
+            } else {
+                DateTimeUtil.convert(date, timezoneId)
+            }
+
     }
 
     override fun toWidgetAware(): WidgetAware =
@@ -99,6 +140,23 @@ class OfferWidget(
                 maxLines = 2,
                 bold = true
             ),
+            eventStartDate?.let {
+                Row(
+                    mainAxisAlignment = MainAxisAlignment.start,
+                    crossAxisAlignment = CrossAxisAlignment.start,
+                    children = listOf(
+                        Icon(
+                            size = 32.0,
+                            code = Theme.ICON_CALENDAR
+                        ),
+                        Container(padding = 5.0),
+                        Text(
+                            caption = it,
+                            size = Theme.TEXT_SIZE_SMALL
+                        )
+                    )
+                )
+            },
             Container(padding = 5.0),
             price?.let {
                 toPriceWidget(it)

@@ -3,10 +3,12 @@ package com.wutsi.application.marketplace.settings.product.screen
 import com.wutsi.application.Page
 import com.wutsi.application.Theme
 import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
+import com.wutsi.application.util.DateTimeUtil
 import com.wutsi.application.widget.PictureListViewWidget
 import com.wutsi.application.widget.PictureWidget
 import com.wutsi.application.widget.UploadWidget
 import com.wutsi.enums.ProductStatus
+import com.wutsi.enums.ProductType
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
@@ -17,6 +19,7 @@ import com.wutsi.flutter.sdui.Divider
 import com.wutsi.flutter.sdui.ExpandablePanel
 import com.wutsi.flutter.sdui.Flexible
 import com.wutsi.flutter.sdui.Icon
+import com.wutsi.flutter.sdui.Image
 import com.wutsi.flutter.sdui.ListItem
 import com.wutsi.flutter.sdui.ListView
 import com.wutsi.flutter.sdui.Screen
@@ -34,6 +37,7 @@ import com.wutsi.membership.manager.dto.Member
 import com.wutsi.platform.core.storage.StorageService
 import com.wutsi.regulation.RegulationEngine
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.context.i18n.LocaleContextHolder
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -42,6 +46,7 @@ import org.springframework.web.multipart.MultipartFile
 import java.nio.file.Files
 import java.nio.file.Path
 import java.text.DecimalFormat
+import java.time.format.DateTimeFormatter
 import java.util.UUID
 
 @RestController
@@ -79,6 +84,7 @@ class SettingsV2ProductScreen(
     private fun toProductListWidget(product: Product, member: Member): WidgetAware {
         val country = regulationEngine.country(member.country)
         val price = product.price?.let { DecimalFormat(country.monetaryFormat).format(it) }
+        val dateFormat = DateTimeFormatter.ofPattern(country.dateTimeFormat, LocaleContextHolder.getLocale())
 
         return Column(
             mainAxisAlignment = MainAxisAlignment.start,
@@ -86,7 +92,7 @@ class SettingsV2ProductScreen(
             children = listOfNotNull(
                 toPictureListViewWidget(product),
                 toCTAWidget(product),
-                Divider(color = Theme.COLOR_DIVIDER),
+                Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
                 Flexible(
                     flex = 10,
                     child = ListView(
@@ -123,6 +129,39 @@ class SettingsV2ProductScreen(
                                 description(product.description),
                                 urlBuilder.build("${Page.getSettingsProductEditorUrl()}?name=description&id=${product.id}")
                             ),
+                            Container(padding = 10.0),
+
+                            if (product.type == ProductType.EVENT.name) {
+                                ListItem(
+                                    leading = if (product.event?.online == true) {
+                                        product.event?.meetingProvider?.logoUrl?.let {
+                                            Image(
+                                                width = 32.0,
+                                                height = 32.0,
+                                                url = it
+                                            )
+                                        }
+                                    } else {
+                                        null
+                                    },
+                                    caption = getText("page.settings.catalog.product.attribute.event"),
+                                    subCaption = product.event?.starts?.let {
+                                        DateTimeUtil.convert(it, member.timezoneId).format(dateFormat)
+                                    },
+                                    trailing = Icon(
+                                        code = Theme.ICON_EDIT,
+                                        size = 24.0,
+                                        color = Theme.COLOR_BLACK
+                                    ),
+                                    action = Action(
+                                        type = ActionType.Route,
+                                        url = urlBuilder.build("${Page.getSettingsProductEditorUrl()}/event?id=${product.id}")
+                                    )
+                                )
+                            } else {
+                                null
+                            },
+
                             toDangerWidget(product)
                         )
                     )
@@ -268,11 +307,11 @@ class SettingsV2ProductScreen(
         actions = listOf(
             UploadWidget(
                 name = "file",
-                uploadUrl = urlBuilder.build("${Page.getSettingsProductUrl()}/product/upload?id=${product.id}"),
+                uploadUrl = urlBuilder.build("${Page.getSettingsProductUrl()}/upload?id=${product.id}"),
                 imageMaxWidth = pictureMaxWidth,
                 imageMaxHeight = pictureMaxHeight,
                 action = gotoUrl(
-                    url = urlBuilder.build("${Page.getSettingsProductUrl()}/product?id=${product.id}"),
+                    url = urlBuilder.build("${Page.getSettingsProductUrl()}?id=${product.id}"),
                     replacement = true
                 )
             ),

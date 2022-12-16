@@ -157,6 +157,7 @@
         {
           "type": "Divider",
           "attributes": {
+            "height": 1.0,
             "color": "#8c8c8c"
           },
           "children": []
@@ -300,6 +301,13 @@
                     "type": "Route",
                     "url": "http://localhost:0/settings/2/products/editor?name=description&id=111"
                   }
+                },
+                {
+                  "type": "Container",
+                  "attributes": {
+                    "padding": 10.0
+                  },
+                  "children": []
                 },
                 {
                   "type": "Container",

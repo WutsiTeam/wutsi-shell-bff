@@ -1,6 +1,7 @@
 package com.wutsi.application.widget
 
 import com.wutsi.application.Theme
+import com.wutsi.application.util.DateTimeUtil
 import com.wutsi.application.widget.WidgetL10n.getText
 import com.wutsi.checkout.manager.dto.TransactionSummary
 import com.wutsi.enums.TransactionType
@@ -33,17 +34,18 @@ class TransactionWidget(
     private val action: Action?
 ) : CompositeWidgetAware() {
     companion object {
-        fun of(tx: TransactionSummary, country: Country, action: Action?, merchant: Boolean) = TransactionWidget(
-            paymentProviderLogoUrl = tx.paymentMethod.provider.logoUrl,
-            orderId = tx.orderId?.takeLast(4),
-            dateTime = tx.created,
-            type = TransactionType.valueOf(tx.type),
-            status = Status.valueOf(tx.status),
-            amount = tx.amount,
-            country = country,
-            merchant = merchant,
-            action = action
-        )
+        fun of(tx: TransactionSummary, country: Country, action: Action?, merchant: Boolean, timezoneId: String?) =
+            TransactionWidget(
+                paymentProviderLogoUrl = tx.paymentMethod.provider.logoUrl,
+                orderId = tx.orderId?.takeLast(4),
+                dateTime = timezoneId?.let { DateTimeUtil.convert(tx.created, it) } ?: tx.created,
+                type = TransactionType.valueOf(tx.type),
+                status = Status.valueOf(tx.status),
+                amount = tx.amount,
+                country = country,
+                merchant = merchant,
+                action = action
+            )
     }
 
     override fun toWidgetAware(): WidgetAware {

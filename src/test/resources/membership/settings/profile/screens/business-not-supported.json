@@ -98,6 +98,7 @@
               "type": "ListItem",
               "attributes": {
                 "caption": "Timezone",
+                "subCaption": "Africa/Douala",
                 "trailing": {
                   "type": "Icon",
                   "attributes": {

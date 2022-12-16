@@ -79,7 +79,8 @@ class Transaction2ListScreen(
                                             "id" to it.id
                                         )
                                     ),
-                                    merchant = member.business
+                                    merchant = member.business,
+                                    timezoneId = member.timezoneId
                                 )
                             }
                         )

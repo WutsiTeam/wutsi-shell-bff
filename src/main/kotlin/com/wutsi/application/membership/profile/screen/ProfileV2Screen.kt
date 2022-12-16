@@ -174,7 +174,9 @@ class ProfileV2Screen(
                 Divider(color = Theme.COLOR_DIVIDER),
                 GridWidget(
                     children = offers
-                        .map { OfferWidget.of(it, country, gotoOffer(it), imageService) },
+                        .map {
+                            OfferWidget.of(it, country, gotoOffer(it), imageService, member.timezoneId)
+                        },
                     columns = 2
                 ),
                 Container(

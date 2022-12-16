@@ -130,7 +130,7 @@
                                           "readOnly": false,
                                           "type": "Image",
                                           "minLength": 0,
-                                          "uploadUrl": "http://localhost:0/settings/2/products/product/upload?id=111",
+                                          "uploadUrl": "http://localhost:0/settings/2/products/upload?id=111",
                                           "imageSource": "Camera",
                                           "imageMaxHeight": 512,
                                           "imageMaxWidth": 512
@@ -138,7 +138,7 @@
                                         "children": [],
                                         "action": {
                                           "type": "Route",
-                                          "url": "http://localhost:0/settings/2/products/product?id=111",
+                                          "url": "http://localhost:0/settings/2/products?id=111",
                                           "replacement": true
                                         }
                                       }
@@ -169,7 +169,7 @@
                                           "readOnly": false,
                                           "type": "Image",
                                           "minLength": 0,
-                                          "uploadUrl": "http://localhost:0/settings/2/products/product/upload?id=111",
+                                          "uploadUrl": "http://localhost:0/settings/2/products/upload?id=111",
                                           "imageSource": "Gallery",
                                           "imageMaxHeight": 512,
                                           "imageMaxWidth": 512
@@ -177,7 +177,7 @@
                                         "children": [],
                                         "action": {
                                           "type": "Route",
-                                          "url": "http://localhost:0/settings/2/products/product?id=111",
+                                          "url": "http://localhost:0/settings/2/products?id=111",
                                           "replacement": true
                                         }
                                       }
@@ -231,6 +231,7 @@
         {
           "type": "Divider",
           "attributes": {
+            "height": 1.0,
             "color": "#8c8c8c"
           },
           "children": []
@@ -374,6 +375,13 @@
                     "type": "Route",
                     "url": "http://localhost:0/settings/2/products/editor?name=description&id=111"
                   }
+                },
+                {
+                  "type": "Container",
+                  "attributes": {
+                    "padding": 10.0
+                  },
+                  "children": []
                 },
                 {
                   "type": "Container",

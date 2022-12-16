@@ -73,7 +73,8 @@ class ProductV2ListFragment(
                                 product = it,
                                 country = country,
                                 action = gotoUrl(urlBuilder.build("${Page.getProductUrl()}?id=${it.id}")),
-                                imageService = imageService
+                                imageService = imageService,
+                                timezoneId = member.timezoneId
                             )
                         }
                     )
