@@ -61,7 +61,7 @@ class SettingsV2ProductEditorScreen(
                         child = Input(
                             name = "submit",
                             type = InputType.Submit,
-                            caption = getText("page.settings.store.product.attribute.button.submit"),
+                            caption = getText("page.settings.store.product.button.submit"),
                             action = executeCommand(
                                 url = urlBuilder.build("${Page.getSettingsProductEditorUrl()}/submit"),
                                 parameters = mapOf(

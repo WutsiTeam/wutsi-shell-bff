@@ -317,7 +317,7 @@ class SettingsV2ProductScreen(
             ),
             Button(
                 type = ButtonType.Text,
-                caption = getText("page.settings.store.product.button.cancel")
+                caption = getText("page.settings.catalog.product.button.cancel")
             )
         )
     )
