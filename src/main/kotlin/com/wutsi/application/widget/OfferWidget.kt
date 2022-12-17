@@ -140,15 +140,18 @@ class OfferWidget(
                 bold = true
             ),
             eventStartDate?.let {
+                Container(padding = 5.0)
+            },
+            eventStartDate?.let {
                 Row(
                     mainAxisAlignment = MainAxisAlignment.start,
                     crossAxisAlignment = CrossAxisAlignment.start,
                     children = listOf(
                         Icon(
-                            size = 32.0,
+                            size = 12.0,
                             code = Theme.ICON_CALENDAR
                         ),
-                        Container(padding = 5.0),
+                        Container(padding = 2.0),
                         Text(
                             caption = it,
                             size = Theme.TEXT_SIZE_SMALL
