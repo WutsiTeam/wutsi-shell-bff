@@ -3,9 +3,11 @@ package com.wutsi.application.marketplace.product.screen
 import com.wutsi.application.Page
 import com.wutsi.application.Theme
 import com.wutsi.application.common.endpoint.AbstractEndpoint
+import com.wutsi.application.util.DateTimeUtil
 import com.wutsi.application.util.SecurityUtil
 import com.wutsi.application.util.StringUtil
 import com.wutsi.application.widget.BusinessToolbarWidget
+import com.wutsi.enums.ProductType
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.AspectRatio
 import com.wutsi.flutter.sdui.CarouselSlider
@@ -27,15 +29,18 @@ import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.marketplace.manager.MarketplaceManagerApi
 import com.wutsi.marketplace.manager.dto.Product
 import com.wutsi.membership.manager.MembershipManagerApi
+import com.wutsi.membership.manager.dto.Member
 import com.wutsi.platform.core.image.Dimension
 import com.wutsi.platform.core.image.ImageService
 import com.wutsi.platform.core.image.Transformation
 import com.wutsi.regulation.Country
 import com.wutsi.regulation.RegulationEngine
+import org.springframework.context.i18n.LocaleContextHolder
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import java.time.format.DateTimeFormatter
 
 @RestController
 @RequestMapping("/products/2")
@@ -57,6 +62,8 @@ class ProductV2Screen(
         val merchant = membershipManagerApi.getMember(product.store.accountId).member
         val country = regulationEngine.country(merchant.country)
         val member = membershipManagerApi.getMember(SecurityUtil.getMemberId()).member
+        val descriptionWidget = toDescriptionWidget(product)
+        val deliveryWidget = toDeliveryWidget(product)
 
         // Screen
         return Screen(
@@ -75,15 +82,25 @@ class ProductV2Screen(
                     crossAxisAlignment = CrossAxisAlignment.start,
                     children = listOfNotNull(
                         toTitleWidget(product),
+
                         toPictureCarouselWidget(product),
+
                         Divider(color = Theme.COLOR_DIVIDER),
                         toPriceWidget(product, country),
+
                         Divider(color = Theme.COLOR_DIVIDER),
-                        BusinessToolbarWidget.of(product, merchant, webappUrl),
+                        BusinessToolbarWidget.of(product, merchant, webappUrl, urlBuilder),
+
                         Divider(color = Theme.COLOR_DIVIDER),
                         toSummaryWidget(product),
                         toAvailabilityWidget(product),
-                        toDescription(product)
+                        toEventWidget(product, country, merchant),
+
+                        deliveryWidget?.let { Divider(color = Theme.COLOR_DIVIDER) },
+                        deliveryWidget,
+
+                        descriptionWidget?.let { Divider(color = Theme.COLOR_DIVIDER) },
+                        descriptionWidget
                     )
                 )
             )
@@ -175,7 +192,100 @@ class ProductV2Screen(
             null
         }
 
-    private fun toDescription(product: Product): WidgetAware? =
+    private fun toEventWidget(product: Product, country: Country, merchant: Member): WidgetAware? {
+        if (product.type != ProductType.EVENT.name) {
+            return null
+        }
+
+        val event = product.event!!
+        val locale = LocaleContextHolder.getLocale()
+        val dateFormat = DateTimeFormatter.ofPattern(country.dateFormat, locale)
+        val timeFormat = DateTimeFormatter.ofPattern(country.timeFormat, locale)
+        val starts = event.starts?.let { DateTimeUtil.convert(it, merchant.timezoneId) }
+        val ends = event.ends?.let { DateTimeUtil.convert(it, merchant.timezoneId) }
+
+        return Container(
+            padding = 10.0,
+            child = Column(
+                mainAxisAlignment = MainAxisAlignment.start,
+                crossAxisAlignment = CrossAxisAlignment.start,
+                children = listOfNotNull(
+                    Text(
+                        caption = if (event.online) {
+                            getText("page.product.event-online.title")
+                        } else {
+                            getText("page.product.event.title")
+                        },
+                        size = Theme.TEXT_SIZE_LARGE,
+                        bold = true
+                    ),
+
+                    starts?.let { Container(padding = 5.0) },
+                    starts?.let {
+                        Row(
+                            mainAxisAlignment = MainAxisAlignment.start,
+                            crossAxisAlignment = CrossAxisAlignment.center,
+                            children = listOfNotNull(
+                                Icon(
+                                    code = Theme.ICON_CALENDAR,
+                                    color = Theme.COLOR_PRIMARY,
+                                    size = 24.0
+                                ),
+                                Container(padding = 5.0),
+                                Text(starts.format(dateFormat))
+                            )
+                        )
+                    },
+
+                    Container(padding = 5.0),
+                    Row(
+                        mainAxisAlignment = MainAxisAlignment.start,
+                        crossAxisAlignment = CrossAxisAlignment.center,
+                        children = listOfNotNull(
+                            Icon(
+                                code = Theme.ICON_CLOCK,
+                                color = Theme.COLOR_PRIMARY,
+                                size = 24.0
+                            ),
+                            Container(padding = 5.0),
+                            starts?.let {
+                                Text(starts.format(timeFormat))
+                            },
+                            Text(" - "),
+                            ends?.let {
+                                Text(ends.format(timeFormat))
+                            }
+                        )
+                    ),
+
+                    product.event?.meetingProvider?.let { Container(padding = 5.0) },
+                    product.event?.meetingProvider?.let {
+                        Row(
+                            mainAxisAlignment = MainAxisAlignment.start,
+                            crossAxisAlignment = CrossAxisAlignment.center,
+                            children = listOfNotNull(
+                                Icon(
+                                    code = Theme.ICON_LOCATION,
+                                    color = Theme.COLOR_PRIMARY,
+                                    size = 24.0
+                                ),
+                                Container(padding = 5.0),
+                                Image(
+                                    url = it.logoUrl,
+                                    width = 24.0,
+                                    height = 24.0
+                                ),
+                                Container(padding = 2.0),
+                                Text(it.name)
+                            )
+                        )
+                    }
+                )
+            )
+        )
+    }
+
+    private fun toDescriptionWidget(product: Product): WidgetAware? =
         if (!product.description.isNullOrEmpty()) {
             Container(
                 padding = 10.0,
@@ -193,4 +303,33 @@ class ProductV2Screen(
         } else {
             null
         }
+
+    private fun toDeliveryWidget(product: Product): WidgetAware? {
+        if (product.type != ProductType.EVENT.name) {
+            return null
+        }
+
+        return Container(
+            padding = 10.0,
+            child = Column(
+                mainAxisAlignment = MainAxisAlignment.start,
+                crossAxisAlignment = CrossAxisAlignment.start,
+                children = listOfNotNull(
+                    Text(
+                        caption = getText("page.product.delivery"),
+                        size = Theme.TEXT_SIZE_LARGE,
+                        bold = true
+                    ),
+                    Container(padding = 5.0),
+                    Text(
+                        caption = if (product.event?.online == true) {
+                            getText("page.product.delivery-event-online")
+                        } else {
+                            getText("page.product.delivery-event-offline")
+                        }
+                    )
+                )
+            )
+        )
+    }
 }

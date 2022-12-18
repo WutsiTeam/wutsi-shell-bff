@@ -38,7 +38,9 @@ class OfferWidget(
     private val action: Action,
     private val margin: Double = 10.0,
     private val imageService: ImageService,
-    private val eventStartDate: String? = null
+    private val eventStartDate: String? = null,
+    private val eventMeetingProviderLogoUrl: String? = null,
+    private val eventMeetingProviderName: String? = null
 ) : CompositeWidgetAware() {
     companion object {
         private const val PICTURE_HEIGHT = 150.0
@@ -58,10 +60,20 @@ class OfferWidget(
             thumbnailUrl = product.thumbnail?.url,
             action = action,
             imageService = imageService,
-            eventStartDate = if ((product.type == ProductType.EVENT.name) && (product.event != null)) {
-                product.event!!.starts?.let {
+            eventStartDate = if (product.type == ProductType.EVENT.name) {
+                product.event?.starts?.let {
                     convert(it, timezoneId).format(DateTimeFormatter.ofPattern(country.dateTimeFormat))
                 }
+            } else {
+                null
+            },
+            eventMeetingProviderLogoUrl = if (product.type == ProductType.EVENT.name) {
+                product.event?.meetingProvider?.logoUrl
+            } else {
+                null
+            },
+            eventMeetingProviderName = if (product.type == ProductType.EVENT.name) {
+                product.event?.meetingProvider?.name
             } else {
                 null
             }
@@ -84,6 +96,16 @@ class OfferWidget(
                 product.event!!.starts?.let {
                     convert(it, timezoneId).format(DateTimeFormatter.ofPattern(country.dateTimeFormat))
                 }
+            } else {
+                null
+            },
+            eventMeetingProviderLogoUrl = if (product.type == ProductType.EVENT.name) {
+                product.event?.meetingProvider?.logoUrl
+            } else {
+                null
+            },
+            eventMeetingProviderName = if (product.type == ProductType.EVENT.name) {
+                product.event?.meetingProvider?.name
             } else {
                 null
             }
@@ -148,14 +170,38 @@ class OfferWidget(
                     crossAxisAlignment = CrossAxisAlignment.start,
                     children = listOf(
                         Icon(
-                            size = 12.0,
+                            size = 16.0,
                             code = Theme.ICON_CALENDAR
                         ),
                         Container(padding = 2.0),
-                        Text(
-                            caption = it,
-                            size = Theme.TEXT_SIZE_SMALL
-                        )
+                        Text(it)
+                    )
+                )
+            },
+
+            eventMeetingProviderName?.let {
+                Container(padding = 2.0)
+            },
+            eventMeetingProviderName?.let {
+                Row(
+                    mainAxisAlignment = MainAxisAlignment.start,
+                    crossAxisAlignment = CrossAxisAlignment.start,
+                    children = listOfNotNull(
+                        if (eventMeetingProviderLogoUrl != null) {
+                            Image(
+                                width = 16.0,
+                                height = 16.0,
+                                url = eventMeetingProviderLogoUrl
+                            )
+                        } else {
+                            null
+                        },
+                        if (eventMeetingProviderLogoUrl != null) {
+                            Container(padding = 2.0)
+                        } else {
+                            null
+                        },
+                        Text(it)
                     )
                 )
             },

@@ -27,7 +27,7 @@
                     "value": "2020-01-01",
                     "hideText": false,
                     "required": true,
-                    "caption": "Start Date",
+                    "caption": "Start Date (Required)",
                     "enabled": true,
                     "readOnly": false,
                     "type": "Date",
@@ -51,7 +51,7 @@
                     "value": "11:30",
                     "hideText": false,
                     "required": true,
-                    "caption": "Start Time",
+                    "caption": "Start Time (Required)",
                     "enabled": true,
                     "readOnly": false,
                     "type": "Time",
@@ -103,7 +103,7 @@
                     {
                       "type": "DropdownMenuItem",
                       "attributes": {
-                        "caption": "Online",
+                        "caption": "Online Event",
                         "enabled": true,
                         "value": "true"
                       },
@@ -112,7 +112,7 @@
                     {
                       "type": "DropdownMenuItem",
                       "attributes": {
-                        "caption": "Offline",
+                        "caption": "Offline Event",
                         "enabled": true,
                         "value": "false"
                       },
@@ -133,7 +133,8 @@
                   "attributes": {
                     "name": "meetingProviderId",
                     "value": "1000",
-                    "hint": "Select the meeting provider"
+                    "hint": "Select the meeting provider (Required)",
+                    "required": true
                   },
                   "children": [
                     {
@@ -181,8 +182,8 @@
                     "name": "meetingId",
                     "value": "1234567890",
                     "hideText": false,
-                    "required": false,
-                    "caption": "Meeting ID",
+                    "required": true,
+                    "caption": "Meeting ID (Required)",
                     "enabled": true,
                     "readOnly": false,
                     "type": "Text",

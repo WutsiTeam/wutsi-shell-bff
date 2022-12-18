@@ -130,6 +130,7 @@ class SettingsV2ProductEditorEventScreen(
                                 name = "meetingProviderId",
                                 hint = getText("page.settings.catalog.event.provider"),
                                 value = product.event?.meetingProvider?.let { it.id.toString() },
+                                required = true,
                                 children = providers
                             )
                         ),
@@ -139,7 +140,8 @@ class SettingsV2ProductEditorEventScreen(
                                 name = "meetingId",
                                 maxLength = 30,
                                 caption = getText("page.settings.catalog.event.meeting-id"),
-                                value = product.event?.meetingId
+                                value = product.event?.meetingId,
+                                required = true
                             )
                         ),
                         Container(

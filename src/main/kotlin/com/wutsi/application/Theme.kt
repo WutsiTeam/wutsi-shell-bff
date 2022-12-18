@@ -39,6 +39,7 @@ object Theme {
     const val ICON_CHECK_CIRCLE = "ef48"
     const val ICON_CHEVRON_RIGHT = "e15f"
     const val ICON_CREDIT_CARD = "ef8f"
+    const val ICON_CLOCK = "f44a"
     const val ICON_DELETE = "e8b8"
     const val ICON_EDIT = "e21a"
     const val ICON_EMAIL = "f018"

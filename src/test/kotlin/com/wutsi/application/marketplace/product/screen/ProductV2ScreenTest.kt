@@ -7,6 +7,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.AbstractSecuredEndpointTest
 import com.wutsi.application.Fixtures
 import com.wutsi.application.Page
+import com.wutsi.enums.ProductType
 import com.wutsi.marketplace.manager.dto.GetProductResponse
 import com.wutsi.marketplace.manager.dto.GetStoreResponse
 import com.wutsi.membership.manager.dto.GetMemberResponse
@@ -22,23 +23,11 @@ internal class ProductV2ScreenTest : AbstractSecuredEndpointTest() {
     val accountId = 222L
     val productId = 444L
 
-    private fun url() = "http://localhost:$port${Page.getProfileUrl()}?id=$productId"
+    private fun url() = "http://localhost:$port${Page.getProductUrl()}?id=$productId"
 
     @BeforeEach
     override fun setUp() {
         super.setUp()
-
-        val product = Fixtures.createProduct(
-            id = productId,
-            storeId = storeId,
-            pictures = listOf(
-                Fixtures.createPictureSummary(id = 1),
-                Fixtures.createPictureSummary(id = 2),
-                Fixtures.createPictureSummary(id = 3),
-                Fixtures.createPictureSummary(id = 4)
-            )
-        )
-        doReturn(GetProductResponse(product)).whenever(marketplaceManagerApi).getProduct(any())
 
         val store = Fixtures.createStore(storeId, accountId)
         doReturn(GetStoreResponse(store)).whenever(marketplaceManagerApi).getStore(any())
@@ -51,7 +40,41 @@ internal class ProductV2ScreenTest : AbstractSecuredEndpointTest() {
     }
 
     @Test
-    fun products() {
-        assertEndpointEquals("/marketplace/product/screens/product.json", url())
+    fun physical() {
+        val product = Fixtures.createProduct(
+            id = productId,
+            storeId = storeId,
+            pictures = listOf(
+                Fixtures.createPictureSummary(id = 1),
+                Fixtures.createPictureSummary(id = 2),
+                Fixtures.createPictureSummary(id = 3),
+                Fixtures.createPictureSummary(id = 4)
+            )
+        )
+        doReturn(GetProductResponse(product)).whenever(marketplaceManagerApi).getProduct(any())
+
+        assertEndpointEquals("/marketplace/product/screens/product-physical.json", url())
+    }
+
+    @Test
+    fun event() {
+        val product = Fixtures.createProduct(
+            id = productId,
+            storeId = storeId,
+            pictures = listOf(
+                Fixtures.createPictureSummary(id = 1),
+                Fixtures.createPictureSummary(id = 2),
+                Fixtures.createPictureSummary(id = 3),
+                Fixtures.createPictureSummary(id = 4)
+            ),
+            type = ProductType.EVENT,
+            event = Fixtures.createEvent(
+                meetingProvider = Fixtures.createMeetingProviderSummary()
+            ),
+            description = "Yo man"
+        )
+        doReturn(GetProductResponse(product)).whenever(marketplaceManagerApi).getProduct(any())
+
+        assertEndpointEquals("/marketplace/product/screens/product-event.json", url())
     }
 }

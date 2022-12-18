@@ -1,6 +1,8 @@
 package com.wutsi.application.widget
 
+import com.wutsi.application.Page
 import com.wutsi.application.Theme
+import com.wutsi.application.service.URLBuilder
 import com.wutsi.application.util.WhatsappUtil
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.CircleAvatar
@@ -22,7 +24,8 @@ class BusinessToolbarWidget(
     private val storeId: Long? = null,
     private val storeAction: Action? = null,
     private val whatsapp: Boolean = false,
-    private val shareUrl: String? = null
+    private val shareUrl: String? = null,
+    private val configAction: Action? = null
 ) : CompositeWidgetAware() {
     companion object {
         fun of(member: Member, webappUrl: String, storeAction: Action?) = BusinessToolbarWidget(
@@ -33,10 +36,18 @@ class BusinessToolbarWidget(
             shareUrl = "$webappUrl/u/${member.id}"
         )
 
-        fun of(product: Product, member: Member, webappUrl: String) = BusinessToolbarWidget(
+        fun of(product: Product, member: Member, webappUrl: String, urlBuilder: URLBuilder) = BusinessToolbarWidget(
             phoneNumber = member.phoneNumber,
             whatsapp = member.whatsapp,
-            shareUrl = "$webappUrl/p/${product.id}"
+            shareUrl = "$webappUrl/p/${product.id}",
+            configAction = if (product.store.accountId == member.id) {
+                Action(
+                    type = ActionType.Route,
+                    url = urlBuilder.build("${Page.getSettingsProductUrl()}?id=${product.id}")
+                )
+            } else {
+                null
+            }
         )
     }
 
@@ -84,6 +95,13 @@ class BusinessToolbarWidget(
                             type = ActionType.Share,
                             url = it
                         )
+                    )
+                },
+                configAction?.let {
+                    toIconButton(
+                        icon = Theme.ICON_SETTINGS,
+                        caption = getText("widget.business-toolbar.edit"),
+                        action = it
                     )
                 }
             )
