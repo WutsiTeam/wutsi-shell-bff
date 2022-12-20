@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/security/passcode/pages/pin")
 class Passcode00PINPage(
-    private val dao: PasscodeRepository
+    private val dao: PasscodeRepository,
 ) : AbstractPageEndpoint() {
     companion object {
         const val PAGE_INDEX = 0
@@ -37,8 +37,8 @@ class Passcode00PINPage(
             maxLength = 6,
             action = Action(
                 type = Command,
-                url = urlBuilder.build("/security/passcode/pages/pin/submit")
-            )
+                url = urlBuilder.build("/security/passcode/pages/pin/submit"),
+            ),
         )
 
     override fun getButton(): Button? = null
@@ -47,8 +47,8 @@ class Passcode00PINPage(
     fun submit(@RequestBody request: SubmitPasscodeRequest): Action {
         dao.save(
             PasscodeEntity(
-                pin = request.pin
-            )
+                pin = request.pin,
+            ),
         )
         return gotoNextPage()
     }

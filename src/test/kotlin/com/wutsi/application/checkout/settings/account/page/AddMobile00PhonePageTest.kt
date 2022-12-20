@@ -33,7 +33,7 @@ internal class AddMobile00PhonePageTest : AbstractSecuredEndpointTest() {
     fun index() {
         val providers = listOf(
             Fixtures.createPaymentProviderSummary("MTN"),
-            Fixtures.createPaymentProviderSummary("Orange")
+            Fixtures.createPaymentProviderSummary("Orange"),
         )
         doReturn(SearchPaymentProviderResponse(providers)).whenever(checkoutManagerApi)
             .searchPaymentProvider(any())
@@ -65,8 +65,8 @@ internal class AddMobile00PhonePageTest : AbstractSecuredEndpointTest() {
         verify(securityManagerApi).createOtp(
             CreateOTPRequest(
                 address = request.phoneNumber,
-                type = MessagingType.SMS.name
-            )
+                type = MessagingType.SMS.name,
+            ),
         )
 
         verify(cache).put(
@@ -76,8 +76,8 @@ internal class AddMobile00PhonePageTest : AbstractSecuredEndpointTest() {
                 ownerName = member.displayName,
                 providerId = provider.id,
                 type = PaymentMethodType.MOBILE_MONEY.name,
-                otpToken = token
-            )
+                otpToken = token,
+            ),
         )
     }
 

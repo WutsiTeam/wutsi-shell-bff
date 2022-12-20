@@ -25,7 +25,7 @@ class AppProduct00PicturePage(
     private val dao: PictureRepository,
     private val storageService: StorageService,
     @Value("\${wutsi.store.pictures.max-width}") private val pictureMaxWidth: Int,
-    @Value("\${wutsi.store.pictures.max-width}") private val pictureMaxHeight: Int
+    @Value("\${wutsi.store.pictures.max-width}") private val pictureMaxHeight: Int,
 ) : AbstractPageEndpoint() {
     companion object {
         const val PAGE_INDEX = 0
@@ -43,8 +43,8 @@ class AppProduct00PicturePage(
                 uploadUrl = urlBuilder.build("${Page.getSettingsProductAddUrl()}/pages/picture/upload"),
                 imageMaxWidth = pictureMaxWidth,
                 imageMaxHeight = pictureMaxHeight,
-                action = gotoNextPage()
-            )
+                action = gotoNextPage(),
+            ),
         )
 
     override fun getButton(): Button? = null

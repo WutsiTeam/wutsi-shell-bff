@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController
 class SettingsV2ProductListScreen(
     private val marketplaceManagerApi: MarketplaceManagerApi,
     private val regulationEngine: RegulationEngine,
-    private val imageService: ImageService
+    private val imageService: ImageService,
 ) : AbstractSecuredEndpoint() {
     @PostMapping
     fun index(): Widget {
@@ -37,8 +37,8 @@ class SettingsV2ProductListScreen(
         val products = marketplaceManagerApi.searchProduct(
             request = SearchProductRequest(
                 storeId = member.storeId,
-                limit = regulationEngine.maxProducts()
-            )
+                limit = regulationEngine.maxProducts(),
+            ),
         ).products
 
         return Screen(
@@ -47,7 +47,7 @@ class SettingsV2ProductListScreen(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.settings.catalog.app-bar.title")
+                title = getText("page.settings.catalog.app-bar.title"),
             ),
             floatingActionButton = if (products.size < regulationEngine.maxProducts()) {
                 Button(
@@ -56,8 +56,8 @@ class SettingsV2ProductListScreen(
                     stretched = false,
                     iconColor = Theme.COLOR_WHITE,
                     action = gotoUrl(
-                        url = urlBuilder.build(Page.getSettingsProductAddUrl())
-                    )
+                        url = urlBuilder.build(Page.getSettingsProductAddUrl()),
+                    ),
                 )
             } else {
                 null
@@ -68,8 +68,8 @@ class SettingsV2ProductListScreen(
                         padding = 10.0,
                         child = Text(
                             caption = getText("page.settings.catalog.count", arrayOf(products.size)),
-                            alignment = TextAlignment.Center
-                        )
+                            alignment = TextAlignment.Center,
+                        ),
                     ),
                     Divider(color = Theme.COLOR_DIVIDER),
                     Flexible(
@@ -83,15 +83,15 @@ class SettingsV2ProductListScreen(
                                     },
                                     country = regulationEngine.country(member.country),
                                     action = gotoUrl(
-                                        url = urlBuilder.build("${Page.getSettingsProductUrl()}?id=${it.id}")
+                                        url = urlBuilder.build("${Page.getSettingsProductUrl()}?id=${it.id}"),
                                     ),
-                                    imageService = imageService
+                                    imageService = imageService,
                                 )
-                            }
-                        )
-                    )
-                )
-            )
+                            },
+                        ),
+                    ),
+                ),
+            ),
         ).toWidget()
     }
 }

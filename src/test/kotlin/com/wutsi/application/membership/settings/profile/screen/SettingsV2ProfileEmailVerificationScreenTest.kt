@@ -31,7 +31,7 @@ internal class SettingsV2ProfileEmailVerificationScreenTest : AbstractSecuredEnd
 
     val entity = EmailEntity(
         value = "yo@man.com",
-        token = "043049309"
+        token = "043049309",
     )
 
     @BeforeEach
@@ -60,14 +60,14 @@ internal class SettingsV2ProfileEmailVerificationScreenTest : AbstractSecuredEnd
         verify(securityManagerApi).verifyOtp(
             token = entity.token,
             request = VerifyOTPRequest(
-                code = request.code
-            )
+                code = request.code,
+            ),
         )
         verify(membershipManagerApi).updateMemberAttribute(
             request = UpdateMemberAttributeRequest(
                 name = "email",
-                value = entity.value
-            )
+                value = entity.value,
+            ),
         )
     }
 
@@ -88,7 +88,7 @@ internal class SettingsV2ProfileEmailVerificationScreenTest : AbstractSecuredEnd
         assertEquals(DialogType.Error.name, action.prompt?.attributes?.get("type"))
         assertEquals(
             getText("prompt.error.otp-mismatch"),
-            action.prompt?.attributes?.get("message")
+            action.prompt?.attributes?.get("message"),
         )
 
         verify(membershipManagerApi, never()).updateMemberAttribute(any())
@@ -111,7 +111,7 @@ internal class SettingsV2ProfileEmailVerificationScreenTest : AbstractSecuredEnd
         assertEquals(DialogType.Error.name, action.prompt?.attributes?.get("type"))
         assertEquals(
             getText("prompt.error.otp-expired"),
-            action.prompt?.attributes?.get("message")
+            action.prompt?.attributes?.get("message"),
         )
 
         verify(membershipManagerApi, never()).updateMemberAttribute(any())
@@ -131,7 +131,7 @@ internal class SettingsV2ProfileEmailVerificationScreenTest : AbstractSecuredEnd
 
         verify(cache).put(
             DEVICE_ID,
-            EmailEntity(value = entity.value, token = token)
+            EmailEntity(value = entity.value, token = token),
         )
 
         val action = response.body!!

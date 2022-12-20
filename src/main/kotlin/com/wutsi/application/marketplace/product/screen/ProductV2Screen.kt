@@ -48,7 +48,7 @@ class ProductV2Screen(
     private val marketplaceManagerApi: MarketplaceManagerApi,
     private val membershipManagerApi: MembershipManagerApi,
     private val regulationEngine: RegulationEngine,
-    private val imageService: ImageService
+    private val imageService: ImageService,
 ) : AbstractEndpoint() {
     companion object {
         const val PICTURE_HEIGHT = 250.0
@@ -72,7 +72,7 @@ class ProductV2Screen(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = merchant.displayName
+                title = merchant.displayName,
             ),
             bottomNavigationBar = createBottomNavigationBarWidget(member),
             backgroundColor = Theme.COLOR_WHITE,
@@ -100,10 +100,10 @@ class ProductV2Screen(
                         deliveryWidget,
 
                         descriptionWidget?.let { Divider(color = Theme.COLOR_DIVIDER) },
-                        descriptionWidget
-                    )
-                )
-            )
+                        descriptionWidget,
+                    ),
+                ),
+            ),
         ).toWidget()
     }
 
@@ -114,8 +114,8 @@ class ProductV2Screen(
             child = Text(
                 caption = StringUtil.capitalizeFirstLetter(product.title),
                 size = Theme.TEXT_SIZE_LARGE,
-                bold = true
-            )
+                bold = true,
+            ),
         )
 
     private fun toPictureCarouselWidget(product: Product): WidgetAware =
@@ -134,14 +134,14 @@ class ProductV2Screen(
                                 dimension = Dimension(height = PICTURE_HEIGHT.toInt()),
                                 aspectRatio = com.wutsi.platform.core.image.AspectRatio(
                                     width = PICTURE_ASPECT_RATIO_WIDTH.toInt(),
-                                    height = PICTURE_ASPECT_RATIO_HEIGHT.toInt()
-                                )
-                            )
+                                    height = PICTURE_ASPECT_RATIO_HEIGHT.toInt(),
+                                ),
+                            ),
                         ),
-                        height = PICTURE_HEIGHT
-                    )
+                        height = PICTURE_HEIGHT,
+                    ),
                 )
-            }
+            },
         )
 
     private fun toAvailabilityWidget(product: Product): WidgetAware? =
@@ -153,17 +153,18 @@ class ProductV2Screen(
                         Icon(
                             code = if (it > 0) Theme.ICON_CHECK else Theme.ICON_CANCEL,
                             color = if (it > 0) Theme.COLOR_SUCCESS else Theme.COLOR_DANGER,
-                            size = 16.0
+                            size = 16.0,
                         ),
                         Container(padding = 5.0),
                         Text(
-                            caption = if (it > 0)
+                            caption = if (it > 0) {
                                 getText("page.product.in-stock")
-                            else
+                            } else {
                                 getText("page.product.out-of-stock")
-                        )
-                    )
-                )
+                            },
+                        ),
+                    ),
+                ),
             )
         }
 
@@ -177,8 +178,8 @@ class ProductV2Screen(
                     valueFontSize = Theme.TEXT_SIZE_X_LARGE,
                     value = it.toDouble(),
                     numberFormat = country.monetaryFormat,
-                    bold = true
-                )
+                    bold = true,
+                ),
             )
         }
 
@@ -186,7 +187,7 @@ class ProductV2Screen(
         if (!product.summary.isNullOrEmpty()) {
             Container(
                 padding = 10.0,
-                child = Text(product.summary!!)
+                child = Text(product.summary!!),
             )
         } else {
             null
@@ -217,7 +218,7 @@ class ProductV2Screen(
                             getText("page.product.event.title")
                         },
                         size = Theme.TEXT_SIZE_LARGE,
-                        bold = true
+                        bold = true,
                     ),
 
                     starts?.let { Container(padding = 5.0) },
@@ -229,11 +230,11 @@ class ProductV2Screen(
                                 Icon(
                                     code = Theme.ICON_CALENDAR,
                                     color = Theme.COLOR_PRIMARY,
-                                    size = 24.0
+                                    size = 24.0,
                                 ),
                                 Container(padding = 5.0),
-                                Text(starts.format(dateFormat))
-                            )
+                                Text(starts.format(dateFormat)),
+                            ),
                         )
                     },
 
@@ -245,7 +246,7 @@ class ProductV2Screen(
                             Icon(
                                 code = Theme.ICON_CLOCK,
                                 color = Theme.COLOR_PRIMARY,
-                                size = 24.0
+                                size = 24.0,
                             ),
                             Container(padding = 5.0),
                             starts?.let {
@@ -254,8 +255,8 @@ class ProductV2Screen(
                             Text(" - "),
                             ends?.let {
                                 Text(ends.format(timeFormat))
-                            }
-                        )
+                            },
+                        ),
                     ),
 
                     product.event?.meetingProvider?.let { Container(padding = 5.0) },
@@ -267,21 +268,21 @@ class ProductV2Screen(
                                 Icon(
                                     code = Theme.ICON_LOCATION,
                                     color = Theme.COLOR_PRIMARY,
-                                    size = 24.0
+                                    size = 24.0,
                                 ),
                                 Container(padding = 5.0),
                                 Image(
                                     url = it.logoUrl,
                                     width = 24.0,
-                                    height = 24.0
+                                    height = 24.0,
                                 ),
                                 Container(padding = 2.0),
-                                Text(it.name)
-                            )
+                                Text(it.name),
+                            ),
                         )
-                    }
-                )
-            )
+                    },
+                ),
+            ),
         )
     }
 
@@ -296,9 +297,9 @@ class ProductV2Screen(
                     header = getText("page.product.product-details"),
                     expanded = Container(
                         padding = 10.0,
-                        child = Text(product.description!!)
-                    )
-                )
+                        child = Text(product.description!!),
+                    ),
+                ),
             )
         } else {
             null
@@ -318,7 +319,7 @@ class ProductV2Screen(
                     Text(
                         caption = getText("page.product.delivery"),
                         size = Theme.TEXT_SIZE_LARGE,
-                        bold = true
+                        bold = true,
                     ),
                     Container(padding = 5.0),
                     Text(
@@ -326,10 +327,10 @@ class ProductV2Screen(
                             getText("page.product.delivery-event-online")
                         } else {
                             getText("page.product.delivery-event-offline")
-                        }
-                    )
-                )
-            )
+                        },
+                    ),
+                ),
+            ),
         )
     }
 }

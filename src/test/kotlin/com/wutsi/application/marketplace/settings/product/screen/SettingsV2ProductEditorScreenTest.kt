@@ -25,7 +25,7 @@ internal class SettingsV2ProductEditorScreenTest : AbstractSecuredEndpointTest()
 
     private val product = Fixtures.createProduct(
         id = 123,
-        pictures = Fixtures.createPictureSummaryList(2)
+        pictures = Fixtures.createPictureSummaryList(2),
     )
 
     private fun url(name: String, action: String = "") =
@@ -49,7 +49,7 @@ internal class SettingsV2ProductEditorScreenTest : AbstractSecuredEndpointTest()
     fun `description`() =
         assertEndpointEquals(
             "/marketplace/settings/product/screens/editor-description.json",
-            url("description")
+            url("description"),
         )
 
     @Test
@@ -77,9 +77,9 @@ internal class SettingsV2ProductEditorScreenTest : AbstractSecuredEndpointTest()
             UpdateProductAttributeListRequest(
                 productId = product.id,
                 attributes = listOf(
-                    ProductAttribute("title", request.value)
-                )
-            )
+                    ProductAttribute("title", request.value),
+                ),
+            ),
         )
     }
 }

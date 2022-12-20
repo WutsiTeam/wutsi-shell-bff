@@ -45,15 +45,15 @@ import org.springframework.web.bind.annotation.RestController
 class ProfileV2Screen(
     private val marketplaceManagerApi: MarketplaceManagerApi,
     private val regulationEngine: RegulationEngine,
-    private val imageService: ImageService
+    private val imageService: ImageService,
 ) : AbstractSecuredEndpoint() {
     @PostMapping
     fun index(
         @RequestParam(required = false) id: Long? = null,
-        @RequestParam tab: String? = null
+        @RequestParam tab: String? = null,
     ): Widget {
         val member = membershipManagerApi.getMember(
-            id ?: SecurityUtil.getMemberId()
+            id ?: SecurityUtil.getMemberId(),
         ).member
         val store = hasStore(member)
         val tabs = TabBar(
@@ -64,8 +64,8 @@ class ProfileV2Screen(
                     Text(getText("page.profile.tab.store").uppercase(), bold = true)
                 } else {
                     null
-                }
-            )
+                },
+            ),
         )
         val tabViews = TabBarView(
             children = listOfNotNull(
@@ -74,8 +74,8 @@ class ProfileV2Screen(
                     toStoreTab(member)
                 } else {
                     null
-                }
-            )
+                },
+            ),
         )
 
         return if (tabViews.children.size == 1) {
@@ -84,7 +84,7 @@ class ProfileV2Screen(
                 backgroundColor = Theme.COLOR_WHITE,
                 appBar = toAppBar(member, null),
                 child = tabViews.children[0],
-                bottomNavigationBar = createBottomNavigationBarWidget(member)
+                bottomNavigationBar = createBottomNavigationBarWidget(member),
             ).toWidget()
         } else {
             DefaultTabController(
@@ -99,8 +99,8 @@ class ProfileV2Screen(
                     backgroundColor = Theme.COLOR_WHITE,
                     appBar = toAppBar(member, tabs),
                     child = tabViews,
-                    bottomNavigationBar = createBottomNavigationBarWidget(member)
-                )
+                    bottomNavigationBar = createBottomNavigationBarWidget(member),
+                ),
             ).toWidget()
         }
     }
@@ -116,10 +116,10 @@ class ProfileV2Screen(
                 icon = Theme.ICON_SETTINGS,
                 action = Action(
                     type = ActionType.Route,
-                    url = urlBuilder.build(Page.getSettingsUrl())
-                )
-            )
-        )
+                    url = urlBuilder.build(Page.getSettingsUrl()),
+                ),
+            ),
+        ),
     )
 
     private fun toAboutTab(member: Member): WidgetAware {
@@ -132,24 +132,24 @@ class ProfileV2Screen(
                     BusinessToolbarWidget.of(
                         member = member,
                         storeAction = gotoStore(member),
-                        webappUrl = webappUrl
+                        webappUrl = webappUrl,
                     ),
                     toOffersWidget(member),
-                    toSocialWidget(member)
-                )
+                    toSocialWidget(member),
+                ),
             )
         }
         return SingleChildScrollView(
             child = Column(
                 mainAxisAlignment = MainAxisAlignment.start,
                 crossAxisAlignment = CrossAxisAlignment.start,
-                children = children
-            )
+                children = children,
+            ),
         )
     }
 
     private fun toStoreTab(member: Member) = DynamicWidget(
-        url = urlBuilder.build("${Page.getProductListUrl()}/fragment?id=${member.id}")
+        url = urlBuilder.build("${Page.getProductListUrl()}/fragment?id=${member.id}"),
     )
 
     private fun toOffersWidget(member: Member): WidgetAware? {
@@ -161,8 +161,8 @@ class ProfileV2Screen(
             request = SearchProductRequest(
                 storeId = member.storeId,
                 limit = 2,
-                status = "PUBLISHED"
-            )
+                status = "PUBLISHED",
+            ),
         ).products
         if (offers.isEmpty()) {
             return null
@@ -177,16 +177,16 @@ class ProfileV2Screen(
                         .map {
                             OfferWidget.of(it, country, gotoOffer(it), imageService, member.timezoneId)
                         },
-                    columns = 2
+                    columns = 2,
                 ),
                 Container(
                     padding = 10.0,
                     child = Button(
                         caption = getText("page.profile.button.more-product"),
-                        action = gotoStore(member)
-                    )
-                )
-            )
+                        action = gotoStore(member),
+                    ),
+                ),
+            ),
         )
     }
 
@@ -198,12 +198,12 @@ class ProfileV2Screen(
             toSocialIcon(
                 member.instagramId,
                 "https://www.instagram.com/",
-                "$assertUrl/images/social/instagram.png"
+                "$assertUrl/images/social/instagram.png",
             ),
             toSocialIcon(member.youtubeId, "https://www.youtube.com/@", "$assertUrl/images/social/youtube.png"),
             toSocialIcon(member.facebookId, "https://www.facebook.com/", "$assertUrl/images/social/facebook.png"),
             toSocialIcon(member.twitterId, "https://www.twitter.com/", "$assertUrl/images/social/twitter.png"),
-            toSocialIcon(member.website, "", "$assertUrl/images/social/website.png")
+            toSocialIcon(member.website, "", "$assertUrl/images/social/website.png"),
         )
         if (children.isEmpty()) {
             return null
@@ -216,10 +216,10 @@ class ProfileV2Screen(
                     child = Row(
                         mainAxisAlignment = MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment = CrossAxisAlignment.start,
-                        children = children
-                    )
-                )
-            )
+                        children = children,
+                    ),
+                ),
+            ),
         )
     }
 
@@ -231,12 +231,12 @@ class ProfileV2Screen(
                 child = Image(
                     width = 32.0,
                     height = 32.0,
-                    url = iconUrl
+                    url = iconUrl,
                 ),
                 action = Action(
                     type = ActionType.Navigate,
-                    url = "$urlPrefix$id"
-                )
+                    url = "$urlPrefix$id",
+                ),
             )
         }
 
@@ -245,10 +245,10 @@ class ProfileV2Screen(
 
     private fun gotoStore(member: Member) = gotoUrl(
         url = urlBuilder.build("${Page.getProfileUrl()}?id=${member.id}&tab=store"),
-        replacement = true
+        replacement = true,
     )
 
     private fun gotoOffer(product: ProductSummary) = gotoUrl(
-        url = urlBuilder.build("${Page.getProductUrl()}?id=${product.id}")
+        url = urlBuilder.build("${Page.getProductUrl()}?id=${product.id}"),
     )
 }

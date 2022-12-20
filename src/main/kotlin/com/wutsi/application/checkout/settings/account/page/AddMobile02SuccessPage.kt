@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/settings/2/accounts/add/mobile/pages/success")
 class AddMobile02SuccessPage(
-    private val dao: AccountRepository
+    private val dao: AccountRepository,
 ) : AbstractSuccessPageEndpoint() {
     companion object {
         const val PAGE_INDEX = 2
@@ -25,6 +25,6 @@ class AddMobile02SuccessPage(
 
     override fun getButton() = Button(
         caption = getText("page.settings.account.add.mobile.button.done"),
-        action = gotoPreviousScreen()
+        action = gotoPreviousScreen(),
     )
 }

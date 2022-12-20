@@ -39,7 +39,7 @@ class SettingsV2Screen : AbstractSecuredEndpoint() {
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.settings.app-bar.title")
+                title = getText("page.settings.app-bar.title"),
             ),
             child = Container(
                 child = ListView(
@@ -57,56 +57,57 @@ class SettingsV2Screen : AbstractSecuredEndpoint() {
                                     AvatarWidget(
                                         radius = 32.0,
                                         displayName = user.displayName,
-                                        pictureUrl = user.pictureUrl
+                                        pictureUrl = user.pictureUrl,
                                     ),
                                     Button(
                                         type = ButtonType.Text,
                                         caption = getText("page.settings.button.change-picture"),
                                         action = Action(
                                             type = Route,
-                                            url = urlBuilder.build("${Page.getSettingsUrl()}/picture")
+                                            url = urlBuilder.build("${Page.getSettingsUrl()}/picture"),
                                         ),
-                                        padding = 10.0
+                                        padding = 10.0,
                                     ),
                                     Text(
                                         caption = user.displayName,
                                         alignment = TextAlignment.Center,
                                         size = Theme.TEXT_SIZE_LARGE,
-                                        bold = true
+                                        bold = true,
                                     ),
 
-                                    if (user.business)
+                                    if (user.business) {
                                         Container(
                                             padding = 10.0,
                                             child = Text(
                                                 caption = getText("page.settings.business-account"),
                                                 alignment = TextAlignment.Center,
-                                                color = Theme.COLOR_GRAY
-                                            )
+                                                color = Theme.COLOR_GRAY,
+                                            ),
                                         )
-                                    else
-                                        null,
+                                    } else {
+                                        null
+                                    },
 
                                     formattedPhoneNumber(user.phoneNumber)?.let {
                                         Text(
                                             caption = it,
-                                            alignment = TextAlignment.Center
+                                            alignment = TextAlignment.Center,
                                         )
-                                    }
-                                )
-                            )
+                                    },
+                                ),
+                            ),
                         ),
 
                         /* Profile */
                         listItem(
                             "page.settings.listitem.personal.caption",
                             urlBuilder.build("${Page.getSettingsUrl()}/profile"),
-                            icon = Theme.ICON_PERSON
+                            icon = Theme.ICON_PERSON,
                         ),
                         listItem(
                             "page.settings.listitem.account.caption",
                             urlBuilder.build(Page.getSettingsAccountListUrl()),
-                            icon = Theme.ICON_PAYMENT
+                            icon = Theme.ICON_PAYMENT,
                         ),
 
                         /* Business Apps */
@@ -122,13 +123,13 @@ class SettingsV2Screen : AbstractSecuredEndpoint() {
                                 listItem(
                                     "page.settings.listitem.store.caption",
                                     urlBuilder.build(Page.getSettingsStoreUrl()),
-                                    icon = Theme.ICON_STORE
+                                    icon = Theme.ICON_STORE,
                                 )
                             } else {
                                 listItemSwitch(
                                     "page.settings.listitem.activate-store.caption",
                                     urlBuilder.build("${Page.getSettingsUrl()}/enable-store"),
-                                    subCaption = "page.settings.listitem.store.sub-caption"
+                                    subCaption = "page.settings.listitem.store.sub-caption",
                                 )
                             }
                         } else {
@@ -140,12 +141,12 @@ class SettingsV2Screen : AbstractSecuredEndpoint() {
                         listItem(
                             "page.settings.listitem.security.caption",
                             urlBuilder.build("${Page.getSecurityUrl()}"),
-                            icon = Theme.ICON_LOCK
+                            icon = Theme.ICON_LOCK,
                         ),
                         listItem(
                             "page.settings.listitem.about.caption",
                             urlBuilder.build("${Page.getAboutUrl()}"),
-                            icon = Theme.ICON_INFO
+                            icon = Theme.ICON_INFO,
                         ),
                         listItem(
                             caption = "page.settings.button.logout",
@@ -154,12 +155,12 @@ class SettingsV2Screen : AbstractSecuredEndpoint() {
                             action = Action(
                                 type = Command,
                                 url = urlBuilder.build("${Page.getSettingsUrl()}/logout"),
-                                replacement = true
-                            )
-                        )
-                    )
-                )
-            )
+                                replacement = true,
+                            ),
+                        ),
+                    ),
+                ),
+            ),
         ).toWidget()
     }
 
@@ -174,7 +175,7 @@ class SettingsV2Screen : AbstractSecuredEndpoint() {
     @PostMapping("/enable-store")
     fun enableStore(): Action =
         gotoUrl(
-            urlBuilder.build(Page.getSettingsStoreActivateUrl())
+            urlBuilder.build(Page.getSettingsStoreActivateUrl()),
         )
 
     private fun listItem(caption: String, url: String, icon: String? = null) = listItem(
@@ -182,8 +183,8 @@ class SettingsV2Screen : AbstractSecuredEndpoint() {
         icon = icon,
         action = Action(
             type = Route,
-            url = url
-        )
+            url = url,
+        ),
     )
 
     private fun listItem(caption: String, action: Action, icon: String? = null, showTrailingIcon: Boolean = true) =
@@ -191,14 +192,15 @@ class SettingsV2Screen : AbstractSecuredEndpoint() {
             padding = 5.0,
             leading = icon?.let { Icon(code = icon, size = 24.0, color = Theme.COLOR_PRIMARY) },
             caption = getText(caption),
-            trailing = if (showTrailingIcon)
+            trailing = if (showTrailingIcon) {
                 Icon(
                     code = Theme.ICON_CHEVRON_RIGHT,
-                    size = 24.0
+                    size = 24.0,
                 )
-            else
-                null,
-            action = action
+            } else {
+                null
+            },
+            action = action,
         )
 
     private fun listItemSwitch(
@@ -206,7 +208,7 @@ class SettingsV2Screen : AbstractSecuredEndpoint() {
         url: String,
         icon: String? = null,
         selected: Boolean = false,
-        subCaption: String? = null
+        subCaption: String? = null,
     ) = ListItemSwitch(
         name = "value",
         icon = icon,
@@ -215,7 +217,7 @@ class SettingsV2Screen : AbstractSecuredEndpoint() {
         selected = selected,
         action = Action(
             type = Command,
-            url = url
-        )
+            url = url,
+        ),
     )
 }

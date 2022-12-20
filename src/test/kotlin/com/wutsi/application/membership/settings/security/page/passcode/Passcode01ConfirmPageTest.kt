@@ -22,7 +22,7 @@ internal class Passcode01ConfirmPageTest : AbstractSecuredEndpointTest() {
     val port: Int = 0
 
     val request = SubmitPasscodeRequest(
-        pin = "123456"
+        pin = "123456",
     )
 
     private fun url(action: String = "") =
@@ -44,8 +44,8 @@ internal class Passcode01ConfirmPageTest : AbstractSecuredEndpointTest() {
 
         verify(securityManagerApi).updatePassword(
             UpdatePasswordRequest(
-                value = request.pin
-            )
+                value = request.pin,
+            ),
         )
 
         val action = response.body!!

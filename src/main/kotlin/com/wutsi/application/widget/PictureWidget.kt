@@ -12,7 +12,7 @@ class PictureWidget(
     private val height: Double = 150.0,
     private val padding: Double? = null,
     private val border: Double? = null,
-    private val action: Action? = null
+    private val action: Action? = null,
 ) : CompositeWidgetAware() {
     override fun toWidgetAware(): WidgetAware =
         Container(
@@ -23,6 +23,6 @@ class PictureWidget(
             borderColor = border?.let { Theme.COLOR_PRIMARY_LIGHT },
             border = border,
             backgroundImageUrl = url,
-            action = action
+            action = action,
         )
 }

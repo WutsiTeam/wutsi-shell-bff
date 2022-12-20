@@ -16,7 +16,7 @@ import java.util.Locale
 @Service
 class ProductEditorWidgetProvider(
     private val regulationEngine: RegulationEngine,
-    private val messages: MessageSource
+    private val messages: MessageSource,
 ) {
     fun get(name: String, product: Product): WidgetAware =
         when (name) {
@@ -40,7 +40,7 @@ class ProductEditorWidgetProvider(
                 maxlength = 30,
                 decimal = country?.let {
                     regulationEngine.country(country).monetaryFormat.indexOf(".") >= -1
-                } ?: true
+                } ?: true,
             )
             "type" -> DropdownButton(
                 name = "value",
@@ -49,17 +49,17 @@ class ProductEditorWidgetProvider(
                 children = listOf(
                     DropdownMenuItem(
                         caption = "",
-                        value = ""
+                        value = "",
                     ),
                     DropdownMenuItem(
                         caption = getText("product.type.PHYSICAL_PRODUCT"),
-                        value = ProductType.PHYSICAL_PRODUCT.name
+                        value = ProductType.PHYSICAL_PRODUCT.name,
                     ),
                     DropdownMenuItem(
                         caption = getText("product.type.EVENT"),
-                        value = ProductType.EVENT.name
-                    )
-                )
+                        value = ProductType.EVENT.name,
+                    ),
+                ),
             )
             else -> throw IllegalStateException("Not supported: $name")
         }
@@ -70,7 +70,7 @@ class ProductEditorWidgetProvider(
         type: InputType = InputType.Text,
         maxLines: Int? = null,
         required: Boolean = false,
-        decimal: Boolean? = null
+        decimal: Boolean? = null,
     ) =
         Input(
             name = "value",
@@ -79,7 +79,7 @@ class ProductEditorWidgetProvider(
             maxLength = maxlength,
             maxLines = maxLines,
             required = required,
-            inputFormatterRegex = if (decimal == false) "[0-9]" else null
+            inputFormatterRegex = if (decimal == false) "[0-9]" else null,
         )
 
     private fun getLocale(): Locale = LocaleContextHolder.getLocale()

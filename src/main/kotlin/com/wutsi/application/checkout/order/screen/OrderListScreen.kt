@@ -37,7 +37,7 @@ import org.springframework.web.bind.annotation.RestController
 class OrderListScreen(
     private val checkoutManagerApi: CheckoutManagerApi,
     private val regulationEngine: RegulationEngine,
-    private val imageService: ImageService
+    private val imageService: ImageService,
 ) : AbstractSecuredEndpoint() {
     companion object {
         const val MAX_ORDERS = 100
@@ -55,8 +55,8 @@ class OrderListScreen(
             tabs = listOfNotNull(
                 Text(getText("page.order.list.tab.new").uppercase()),
                 Text(getText("page.order.list.tab.in-progress").uppercase()),
-                Text(getText("page.order.list.tab.closed").uppercase())
-            )
+                Text(getText("page.order.list.tab.closed").uppercase()),
+            ),
         )
         return DefaultTabController(
             id = Page.PROFILE,
@@ -69,17 +69,17 @@ class OrderListScreen(
                     backgroundColor = Theme.COLOR_PRIMARY,
                     foregroundColor = Theme.COLOR_WHITE,
                     title = getText("page.order.list.app-bar.title"),
-                    bottom = tabs
+                    bottom = tabs,
                 ),
                 bottomNavigationBar = createBottomNavigationBarWidget(member),
                 child = TabBarView(
                     children = listOfNotNull(
                         toTabView(arrayOf(OrderStatus.OPENED), business, false),
                         toTabView(arrayOf(OrderStatus.IN_PROGRESS), business, true),
-                        toTabView(arrayOf(OrderStatus.COMPLETED, OrderStatus.CANCELLED), business, true)
-                    )
-                )
-            )
+                        toTabView(arrayOf(OrderStatus.COMPLETED, OrderStatus.CANCELLED), business, true),
+                    ),
+                ),
+            ),
         ).toWidget()
     }
 
@@ -99,7 +99,7 @@ class OrderListScreen(
             val url = "${Page.getOrderListUrl()}/fragment?" +
                 status.map { "status=$it" }.joinToString(separator = "&")
             return DynamicWidget(
-                url = urlBuilder.build(url)
+                url = urlBuilder.build(url),
             )
         } else {
             return toContentWidget(status, business)
@@ -111,8 +111,8 @@ class OrderListScreen(
             request = SearchOrderRequest(
                 limit = MAX_ORDERS,
                 businessId = business.id,
-                status = status.map { it.name }
-            )
+                status = status.map { it.name },
+            ),
         ).orders
         return Column(
             crossAxisAlignment = CrossAxisAlignment.center,
@@ -126,8 +126,8 @@ class OrderListScreen(
                             getText("page.order.list.count-1")
                         } else {
                             getText("page.order.list.count-n", arrayOf(orders.size))
-                        }
-                    )
+                        },
+                    ),
                 ),
                 Divider(height = 1.0, color = Theme.COLOR_DIVIDER),
                 Flexible(
@@ -136,10 +136,10 @@ class OrderListScreen(
                         separatorColor = Theme.COLOR_DIVIDER,
                         children = orders.map {
                             toOrderListItemWidget(it, business)
-                        }
-                    )
-                )
-            )
+                        },
+                    ),
+                ),
+            ),
         )
     }
 
@@ -151,8 +151,8 @@ class OrderListScreen(
             action = gotoUrl(
                 url = urlBuilder.build(Page.getOrderUrl()),
                 parameters = mapOf(
-                    "id" to order.id
-                )
-            )
+                    "id" to order.id,
+                ),
+            ),
         )
 }

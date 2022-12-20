@@ -39,9 +39,9 @@ class Onboard03PinPage : AbstractOnboardPage() {
                     IconButton(
                         icon = Theme.ICON_ARROW_BACK,
                         color = Theme.COLOR_BLACK,
-                        action = gotoPage(PAGE_INDEX - 1)
-                    )
-                )
+                        action = gotoPage(PAGE_INDEX - 1),
+                    ),
+                ),
             ),
             Container(
                 alignment = Center,
@@ -55,16 +55,16 @@ class Onboard03PinPage : AbstractOnboardPage() {
                                 alignment = TextAlignment.Center,
                                 size = Theme.TEXT_SIZE_LARGE,
                                 color = Theme.COLOR_PRIMARY,
-                                bold = true
-                            )
+                                bold = true,
+                            ),
                         ),
                         Container(
                             alignment = TopCenter,
                             padding = 10.0,
                             child = Text(
                                 caption = getText("page.onboard.pin.sub-title"),
-                                alignment = TextAlignment.Center
-                            )
+                                alignment = TextAlignment.Center,
+                            ),
                         ),
                         PinWithKeyboard(
                             id = "pin",
@@ -74,13 +74,13 @@ class Onboard03PinPage : AbstractOnboardPage() {
                             pinSize = 20.0,
                             action = Action(
                                 type = Command,
-                                url = urlBuilder.build("/onboard/pages/pin/submit")
-                            )
-                        )
-                    )
-                )
-            )
-        )
+                                url = urlBuilder.build("/onboard/pages/pin/submit"),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        ),
     ).toWidget()
 
     @PostMapping("/submit")

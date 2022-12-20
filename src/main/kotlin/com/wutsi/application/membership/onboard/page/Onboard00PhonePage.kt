@@ -37,7 +37,7 @@ class Onboard00PhonePage(
     private val env: EnvironmentDetector,
     private val countryDetector: CountryDetector,
     private val membershipManagerApi: MembershipManagerApi,
-    private val securityManagerApi: SecurityManagerApi
+    private val securityManagerApi: SecurityManagerApi,
 ) : AbstractOnboardPage() {
     companion object {
         const val PAGE_INDEX = 0
@@ -59,8 +59,8 @@ class Onboard00PhonePage(
                     child = Image(
                         url = getLogoUrl(),
                         width = 128.0,
-                        height = 128.0
-                    )
+                        height = 128.0,
+                    ),
                 ),
                 Container(
                     alignment = Center,
@@ -70,16 +70,16 @@ class Onboard00PhonePage(
                         alignment = TextAlignment.Center,
                         size = Theme.TEXT_SIZE_LARGE,
                         color = Theme.COLOR_PRIMARY,
-                        bold = true
-                    )
+                        bold = true,
+                    ),
                 ),
                 Container(
                     alignment = TopCenter,
                     padding = 10.0,
                     child = Text(
                         caption = getText("page.onboard.phone.sub-title"),
-                        alignment = TextAlignment.Center
-                    )
+                        alignment = TextAlignment.Center,
+                    ),
                 ),
                 Form(
                     children = listOf(
@@ -91,8 +91,8 @@ class Onboard00PhonePage(
                                 type = Phone,
                                 caption = getText("page.onboard.phone.field.phone.caption"),
                                 required = true,
-                                initialCountry = "CM"
-                            )
+                                initialCountry = "CM",
+                            ),
                         ),
                         Container(
                             padding = 10.0,
@@ -103,13 +103,13 @@ class Onboard00PhonePage(
                                 caption = getText("page.onboard.button.next"),
                                 action = Action(
                                     type = Command,
-                                    url = urlBuilder.build("/onboard/pages/phone/submit")
-                                )
-                            )
-                        )
-                    )
-                )
-            )
+                                    url = urlBuilder.build("/onboard/pages/phone/submit"),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
         ).toWidget()
     }
 
@@ -118,30 +118,30 @@ class Onboard00PhonePage(
         val members = membershipManagerApi.searchMember(
             request = SearchMemberRequest(
                 phoneNumber = request.phoneNumber,
-                limit = 1
-            )
+                limit = 1,
+            ),
         ).members
 
         return if (members.isEmpty()) {
             val token = securityManagerApi.createOtp(
                 request = CreateOTPRequest(
                     address = request.phoneNumber,
-                    type = MessagingType.SMS.name
-                )
+                    type = MessagingType.SMS.name,
+                ),
             ).token
             onboardDao.save(
                 OnboardEntity(
                     phoneNumber = request.phoneNumber,
                     otpToken = token,
                     country = countryDetector.detect(request.phoneNumber),
-                    language = LocaleContextHolder.getLocale().language
-                )
+                    language = LocaleContextHolder.getLocale().language,
+                ),
             )
             gotoPage(PAGE_INDEX + 1)
         } else {
             gotoLogin(
                 phoneNumber = request.phoneNumber,
-                title = getText("page.onboard.phone.login.title")
+                title = getText("page.onboard.phone.login.title"),
             )
         }
     }

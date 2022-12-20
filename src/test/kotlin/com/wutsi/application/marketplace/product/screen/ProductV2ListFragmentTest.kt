@@ -27,7 +27,7 @@ internal class ProductV2ListFragmentTest : AbstractSecuredEndpointTest() {
             Fixtures.createProductSummary(id = 1),
             Fixtures.createProductSummary(id = 2),
             Fixtures.createProductSummary(id = 3),
-            Fixtures.createProductSummary(id = 4)
+            Fixtures.createProductSummary(id = 4),
         )
         doReturn(SearchProductResponse(products)).whenever(marketplaceManagerApi).searchProduct(any())
     }

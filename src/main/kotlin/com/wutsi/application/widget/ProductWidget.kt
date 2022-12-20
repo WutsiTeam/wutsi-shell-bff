@@ -36,7 +36,7 @@ class ProductWidget(
     private val action: Action? = null,
     private val status: String? = null,
     private val type: ProductType = ProductType.UNKNOWN,
-    private val imageService: ImageService
+    private val imageService: ImageService,
 ) : CompositeWidgetAware() {
     companion object {
         private const val PICTURE_HEIGHT = 100.0
@@ -51,7 +51,7 @@ class ProductWidget(
             action = action,
             status = product.status,
             imageService = imageService,
-            type = ProductType.valueOf(product.type)
+            type = ProductType.valueOf(product.type),
         )
     }
 
@@ -72,11 +72,11 @@ class ProductWidget(
                                 url = resize(it),
                                 height = PICTURE_HEIGHT,
                                 width = PICTURE_WIDTH,
-                                fit = BoxFit.fill
+                                fit = BoxFit.fill,
                             ),
-                            borderRadius = 5.0
+                            borderRadius = 5.0,
                         )
-                    }
+                    },
                 ),
                 Flexible(
                     flex = 3,
@@ -85,13 +85,13 @@ class ProductWidget(
                         child = Stack(
                             children = listOfNotNull(
                                 toDescriptionSection(),
-                                toPriceSection()
-                            )
-                        )
-                    )
-                )
-            )
-        )
+                                toPriceSection(),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        ),
     )
 
     private fun toDescriptionSection(): WidgetAware =
@@ -107,16 +107,16 @@ class ProductWidget(
                         bold = true,
                         overflow = TextOverflow.Elipsis,
                         maxLines = 3,
-                        size = Theme.TEXT_SIZE_DEFAULT
+                        size = Theme.TEXT_SIZE_DEFAULT,
 
                     ),
                     Container(padding = 5.0),
                     Text(
                         caption = getText(
                             key = "widget.product-card.type",
-                            args = arrayOf(getText("product.type.$type"))
+                            args = arrayOf(getText("product.type.$type")),
                         ),
-                        size = Theme.TEXT_SIZE_SMALL
+                        size = Theme.TEXT_SIZE_SMALL,
 
                     ),
                     quantity?.let {
@@ -124,11 +124,11 @@ class ProductWidget(
                             caption = getText("widget.product-card.quantity", arrayOf(it)),
                             color = if (it == 0) Theme.COLOR_DANGER else null,
                             bold = it == 0,
-                            size = Theme.TEXT_SIZE_SMALL
+                            size = Theme.TEXT_SIZE_SMALL,
                         )
-                    }
-                )
-            )
+                    },
+                ),
+            ),
         )
 
     private fun toPriceSection(): WidgetAware? =
@@ -144,13 +144,13 @@ class ProductWidget(
                             Text(
                                 caption = getText("widget.product-card.draft"),
                                 size = Theme.TEXT_SIZE_SMALL,
-                                color = Theme.COLOR_GRAY
+                                color = Theme.COLOR_GRAY,
                             )
                         } else {
                             Text(
                                 caption = getText("widget.product-card.published"),
                                 size = Theme.TEXT_SIZE_SMALL,
-                                color = Theme.COLOR_SUCCESS
+                                color = Theme.COLOR_SUCCESS,
                             )
                         },
                         MoneyText(
@@ -160,10 +160,10 @@ class ProductWidget(
                             numberFormat = country.monetaryFormat,
                             valueFontSize = Theme.TEXT_SIZE_DEFAULT,
                             currencyFontSize = Theme.TEXT_SIZE_SMALL,
-                            bold = true
-                        )
-                    )
-                )
+                            bold = true,
+                        ),
+                    ),
+                ),
             )
         }
 
@@ -175,7 +175,7 @@ class ProductWidget(
             url,
             Transformation(
                 focus = Focus.AUTO,
-                dimension = Dimension(height = PICTURE_HEIGHT.toInt())
-            )
+                dimension = Dimension(height = PICTURE_HEIGHT.toInt()),
+            ),
         )
 }

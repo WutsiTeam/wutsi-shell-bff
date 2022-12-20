@@ -32,7 +32,7 @@ internal class Settings2AccountCashoutScreenTest : AbstractSecuredEndpointTest()
         // GIVEN
         val paymentMethods = listOf(
             Fixtures.createPaymentMethodSummary("11", number = "+237670000001"),
-            Fixtures.createPaymentMethodSummary("22", number = "+237690000001")
+            Fixtures.createPaymentMethodSummary("22", number = "+237690000001"),
         )
         doReturn(SearchPaymentMethodResponse(paymentMethods)).whenever(checkoutManagerApi).searchPaymentMethod(any())
 
@@ -51,7 +51,7 @@ internal class Settings2AccountCashoutScreenTest : AbstractSecuredEndpointTest()
         // WHEN
         val request = SubmitCashoutRequest(
             amount = 3000,
-            token = "111"
+            token = "111",
         )
         val response = rest.postForEntity(url("/submit"), request, Action::class.java)
 

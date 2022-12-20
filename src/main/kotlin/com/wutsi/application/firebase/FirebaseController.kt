@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest
 @RestController
 @RequestMapping("/firebase")
 class FirebaseController(
-    private val membershipManagerApi: MembershipManagerApi
+    private val membershipManagerApi: MembershipManagerApi,
 ) : AbstractEndpoint() {
     @PostMapping("/token")
     fun index(@RequestBody fcm: SubmitTokenRequest, request: HttpServletRequest) {
@@ -23,8 +23,8 @@ class FirebaseController(
                 token = fcm.token,
                 type = DeviceType.MOBILE.name,
                 osVersion = request.getHeader("X-OS-Version"),
-                osName = request.getHeader("X-OS")
-            )
+                osName = request.getHeader("X-OS"),
+            ),
         )
     }
 }

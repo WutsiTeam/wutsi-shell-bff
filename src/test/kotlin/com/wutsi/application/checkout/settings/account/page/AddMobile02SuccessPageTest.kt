@@ -19,7 +19,7 @@ internal class AddMobile02SuccessPageTest : AbstractSecuredEndpointTest() {
         type = PaymentMethodType.MOBILE_MONEY.name,
         ownerName = "Ray Sponsible",
         otpToken = "1111",
-        providerId = 1L
+        providerId = 1L,
     )
 
     private fun url() = "http://localhost:$port${Page.getSettingsAccountUrl()}/add/mobile/pages/success"

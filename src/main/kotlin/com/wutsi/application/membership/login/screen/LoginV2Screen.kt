@@ -50,7 +50,7 @@ class LoginV2Screen(
     private val membershipManagerApi: MembershipManagerApi,
     private val securityManagerApi: SecurityManagerApi,
     private val onboardScreen: OnboardV2Screen,
-    private val env: EnvironmentDetector
+    private val env: EnvironmentDetector,
 ) : AbstractEndpoint() {
     @PostMapping()
     fun index(
@@ -67,8 +67,8 @@ class LoginV2Screen(
         @RequestParam(
             name = "hide-change-account-button",
             required = false,
-            defaultValue = "false"
-        ) hideChangeAccountButton: Boolean = false
+            defaultValue = "false",
+        ) hideChangeAccountButton: Boolean = false,
     ): Widget {
         // Find member
         val member = findMember(phoneNumber)
@@ -91,12 +91,12 @@ class LoginV2Screen(
                         IconButton(
                             icon = Theme.ICON_CANCEL,
                             color = Theme.COLOR_BLACK,
-                            action = gotoPreviousScreen()
-                        )
+                            action = gotoPreviousScreen(),
+                        ),
                     )
                 } else {
                     null
-                }
+                },
             ),
             backgroundColor = backgroundColor,
             child = SingleChildScrollView(
@@ -118,14 +118,14 @@ class LoginV2Screen(
                                     child = if (member.pictureUrl.isNullOrEmpty()) {
                                         Text(
                                             caption = initials(member.displayName),
-                                            color = textColor
+                                            color = textColor,
                                         )
                                     } else {
                                         Image(
-                                            url = member.pictureUrl!!
+                                            url = member.pictureUrl!!,
                                         )
-                                    }
-                                )
+                                    },
+                                ),
                             ),
                             Container(
                                 padding = 10.0,
@@ -134,8 +134,8 @@ class LoginV2Screen(
                                     caption = subTitle ?: getText("page.login.sub-title"),
                                     color = textColor,
                                     alignment = TextAlignment.Center,
-                                    size = Theme.TEXT_SIZE_X_LARGE
-                                )
+                                    size = Theme.TEXT_SIZE_X_LARGE,
+                                ),
                             ),
                             Container(
                                 alignment = Center,
@@ -153,12 +153,12 @@ class LoginV2Screen(
                                                 phoneNumber,
                                                 auth,
                                                 returnUrl,
-                                                returnToRoute
-                                            )
-                                        )
+                                                returnToRoute,
+                                            ),
+                                        ),
                                     ),
-                                    color = textColor
-                                )
+                                    color = textColor,
+                                ),
                             ),
                             if (auth && !hideChangeAccountButton && member.superUser) {
                                 Container(
@@ -169,18 +169,18 @@ class LoginV2Screen(
                                         caption = getText("page.login.button.another-account"),
                                         action = gotoUrl(
                                             url = urlBuilder.build(Page.getOnboardUrl()),
-                                            type = ActionType.Route
-                                        )
-                                    )
+                                            type = ActionType.Route,
+                                        ),
+                                    ),
                                 )
                             } else {
                                 null
-                            }
+                            },
 
-                        )
-                    )
-                )
-            )
+                        ),
+                    ),
+                ),
+            ),
         ).toWidget()
     }
 
@@ -191,7 +191,7 @@ class LoginV2Screen(
         @RequestParam(name = "return-url", required = false) returnUrl: String? = null,
         @RequestParam(name = "return-to-route", required = false, defaultValue = "true") returnToRoute: Boolean = true,
         @Valid @RequestBody
-        request: SubmitPasscodeRequest
+        request: SubmitPasscodeRequest,
     ): ResponseEntity<Action> {
         try {
             val headers = HttpHeaders()
@@ -207,13 +207,13 @@ class LoginV2Screen(
                     gotoUrl(
                         url = URLDecoder.decode(it, "utf-8"),
                         type = actionType(returnToRoute),
-                        replacement = if (returnToRoute) true else null
+                        replacement = if (returnToRoute) true else null,
                     )
                 }
                 ?: gotoUrl(
                     url = urlBuilder.build(Page.getHomeUrl()),
                     type = ActionType.Route,
-                    replacement = true
+                    replacement = true,
                 )
 
             logger.add("action_url", action.url)
@@ -235,15 +235,15 @@ class LoginV2Screen(
             request = com.wutsi.security.manager.dto.LoginRequest(
                 type = LoginType.PASSWORD.name,
                 username = PhoneUtil.sanitize(phoneNumber),
-                password = request.pin
-            )
+                password = request.pin,
+            ),
         ).accessToken
 
     private fun validate(request: SubmitPasscodeRequest) =
         securityManagerApi.verifyPassword(
             request = VerifyPasswordRequest(
-                value = request.pin
-            )
+                value = request.pin,
+            ),
         )
 
     private fun actionType(returnToRoute: Boolean): ActionType =
@@ -253,8 +253,8 @@ class LoginV2Screen(
         val members = membershipManagerApi.searchMember(
             request = SearchMemberRequest(
                 phoneNumber = PhoneUtil.sanitize(phoneNumber),
-                limit = 1
-            )
+                limit = 1,
+            ),
         ).members
         return if (members.isEmpty()) {
             null
@@ -273,7 +273,7 @@ class LoginV2Screen(
         val url =
             Page.getLoginUrl() + "/submit?auth=$auth&return-to-route=$returnToRoute&phone=" + URLEncoder.encode(
                 phoneNumber,
-                "utf-8"
+                "utf-8",
             )
         return if (returnUrl == null) {
             url

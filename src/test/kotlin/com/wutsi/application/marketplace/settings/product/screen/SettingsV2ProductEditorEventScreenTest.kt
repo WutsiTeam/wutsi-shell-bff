@@ -31,12 +31,12 @@ internal class SettingsV2ProductEditorEventScreenTest : AbstractSecuredEndpointT
     private val productId = 111L
     private val meetingProviders = listOf(
         Fixtures.createMeetingProviderType(1000, MeetingProviderType.MEET, "Meet"),
-        Fixtures.createMeetingProviderType(1001, MeetingProviderType.ZOOM, "Zoom")
+        Fixtures.createMeetingProviderType(1001, MeetingProviderType.ZOOM, "Zoom"),
     )
     val product = Fixtures.createProduct(
         id = productId,
         pictures = Fixtures.createPictureSummaryList(2),
-        type = ProductType.EVENT
+        type = ProductType.EVENT,
     )
 
     private fun url(action: String = "") =
@@ -57,7 +57,7 @@ internal class SettingsV2ProductEditorEventScreenTest : AbstractSecuredEndpointT
             id = productId,
             pictures = Fixtures.createPictureSummaryList(2),
             type = ProductType.EVENT,
-            event = Event()
+            event = Event(),
         )
         doReturn(GetProductResponse(product)).whenever(marketplaceManagerApi).getProduct(any())
 
@@ -70,7 +70,7 @@ internal class SettingsV2ProductEditorEventScreenTest : AbstractSecuredEndpointT
             id = productId,
             pictures = Fixtures.createPictureSummaryList(2),
             type = ProductType.EVENT,
-            event = Fixtures.createEvent(meetingProvider = Fixtures.createMeetingProviderSummary())
+            event = Fixtures.createEvent(meetingProvider = Fixtures.createMeetingProviderSummary()),
         )
         doReturn(GetProductResponse(product)).whenever(marketplaceManagerApi).getProduct(any())
 
@@ -86,7 +86,7 @@ internal class SettingsV2ProductEditorEventScreenTest : AbstractSecuredEndpointT
             startDate = "2020-12-11",
             startTime = "12:30",
             endTime = "15:00",
-            meetingProviderId = 1000
+            meetingProviderId = 1000,
         )
         val response = rest.postForEntity(url("/submit"), request, Action::class.java)
 
@@ -105,8 +105,8 @@ internal class SettingsV2ProductEditorEventScreenTest : AbstractSecuredEndpointT
                 meetingPassword = request.meetingPassword,
                 meetingId = request.meetingId,
                 starts = OffsetDateTime.of(2020, 12, 11, 11, 30, 0, 0, ZoneOffset.UTC),
-                ends = OffsetDateTime.of(2020, 12, 11, 14, 0, 0, 0, ZoneOffset.UTC)
-            )
+                ends = OffsetDateTime.of(2020, 12, 11, 14, 0, 0, 0, ZoneOffset.UTC),
+            ),
         )
     }
 }

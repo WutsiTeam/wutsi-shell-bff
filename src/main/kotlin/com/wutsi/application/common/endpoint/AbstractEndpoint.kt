@@ -57,8 +57,8 @@ abstract class AbstractEndpoint {
             prompt = Dialog(
                 title = getText("prompt.error.title"),
                 type = Error,
-                message = getErrorMessage(ex)
-            ).toWidget()
+                message = getErrorMessage(ex),
+            ).toWidget(),
         )
         log(action, ex)
         return action
@@ -78,7 +78,7 @@ abstract class AbstractEndpoint {
 
     protected fun createBottomNavigationBarWidget(member: Member) = BottomNavigationBarWidget(
         profileUrl = urlBuilder.build(Page.getProfileUrl()),
-        ordersUrl = member.businessId?.let { urlBuilder.build(Page.getOrderListUrl()) }
+        ordersUrl = member.businessId?.let { urlBuilder.build(Page.getOrderListUrl()) },
     ).toBottomNavigationBar()
 
     protected fun log(action: Action, e: Throwable) {
@@ -110,9 +110,9 @@ abstract class AbstractEndpoint {
             prompt = confirm?.let {
                 Dialog(
                     type = DialogType.Confirm,
-                    message = confirm
+                    message = confirm,
                 ).toWidget()
-            }
+            },
         )
 
     protected fun gotoLogin(
@@ -121,14 +121,14 @@ abstract class AbstractEndpoint {
         subTitle: String? = null,
         hideBackButton: Boolean? = null,
         auth: Boolean? = null,
-        darkMode: String? = null
+        darkMode: String? = null,
     ): Action {
         val url = StringBuilder(
             Page.getLoginUrl() + "?title=" + encodeURLParam(title ?: "") +
                 "&sub-title=" + encodeURLParam(subTitle ?: getText("page.login.sub-title")) +
                 "&phone=" + encodeURLParam(phoneNumber) +
                 "&return-to-route=true" +
-                "&hide-change-account-button=true"
+                "&hide-change-account-button=true",
         )
         hideBackButton?.let { url.append("&hide-back-button=$it") }
         auth?.let { url.append("&auth=$it") }
@@ -137,13 +137,13 @@ abstract class AbstractEndpoint {
         return gotoUrl(
             url = urlBuilder.build(url.toString()),
             type = ActionType.Route,
-            replacement = true
+            replacement = true,
         )
     }
 
     protected fun gotoPage(page: Int) = Action(
         type = ActionType.Page,
-        url = "page:/$page"
+        url = "page:/$page",
     )
 
     protected fun gotoRoute(path: String, replacement: Boolean? = null, parameters: Map<String, String>? = null) =
@@ -151,19 +151,19 @@ abstract class AbstractEndpoint {
             type = Route,
             url = "route:$path",
             replacement = replacement,
-            parameters = parameters
+            parameters = parameters,
         )
 
     protected fun gotoUrl(
         url: String,
         type: ActionType = ActionType.Route,
         replacement: Boolean? = null,
-        parameters: Map<String, String>? = null
+        parameters: Map<String, String>? = null,
     ) = Action(
         type = type,
         url = url,
         replacement = replacement,
-        parameters = parameters
+        parameters = parameters,
     )
 
     protected fun promptError(errorKey: String) = Action(
@@ -171,8 +171,8 @@ abstract class AbstractEndpoint {
         prompt = Dialog(
             title = getText("prompt.error.title"),
             type = DialogType.Error,
-            message = getText(errorKey)
-        ).toWidget()
+            message = getText(errorKey),
+        ).toWidget(),
     )
 
     protected fun promptInfo(errorKey: String) = Action(
@@ -180,8 +180,8 @@ abstract class AbstractEndpoint {
         prompt = Dialog(
             title = getText("prompt.info.title"),
             type = DialogType.Information,
-            message = getText(errorKey)
-        ).toWidget()
+            message = getText(errorKey),
+        ).toWidget(),
     )
 
     protected fun getText(key: String, args: Array<Any?> = emptyArray()): String =

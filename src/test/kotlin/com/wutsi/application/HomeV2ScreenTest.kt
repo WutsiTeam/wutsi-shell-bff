@@ -28,7 +28,7 @@ internal class HomeV2ScreenTest : AbstractSecuredEndpointTest() {
 
         val orders = listOf(
             Fixtures.createOrderSummary(id = "11", totalPrice = 15000, status = OrderStatus.OPENED),
-            Fixtures.createOrderSummary(id = "22", totalPrice = 25000, status = OrderStatus.OPENED)
+            Fixtures.createOrderSummary(id = "22", totalPrice = 25000, status = OrderStatus.OPENED),
         )
         doReturn(SearchOrderResponse(orders)).whenever(checkoutManagerApi).searchOrder(any())
 

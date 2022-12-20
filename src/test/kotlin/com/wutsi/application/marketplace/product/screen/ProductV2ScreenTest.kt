@@ -34,7 +34,7 @@ internal class ProductV2ScreenTest : AbstractSecuredEndpointTest() {
 
         val account = Fixtures.createMember(
             id = accountId,
-            storeId = storeId
+            storeId = storeId,
         )
         doReturn(GetMemberResponse(account)).whenever(membershipManagerApi).getMember(anyOrNull())
     }
@@ -48,8 +48,8 @@ internal class ProductV2ScreenTest : AbstractSecuredEndpointTest() {
                 Fixtures.createPictureSummary(id = 1),
                 Fixtures.createPictureSummary(id = 2),
                 Fixtures.createPictureSummary(id = 3),
-                Fixtures.createPictureSummary(id = 4)
-            )
+                Fixtures.createPictureSummary(id = 4),
+            ),
         )
         doReturn(GetProductResponse(product)).whenever(marketplaceManagerApi).getProduct(any())
 
@@ -65,13 +65,13 @@ internal class ProductV2ScreenTest : AbstractSecuredEndpointTest() {
                 Fixtures.createPictureSummary(id = 1),
                 Fixtures.createPictureSummary(id = 2),
                 Fixtures.createPictureSummary(id = 3),
-                Fixtures.createPictureSummary(id = 4)
+                Fixtures.createPictureSummary(id = 4),
             ),
             type = ProductType.EVENT,
             event = Fixtures.createEvent(
-                meetingProvider = Fixtures.createMeetingProviderSummary()
+                meetingProvider = Fixtures.createMeetingProviderSummary(),
             ),
-            description = "Yo man"
+            description = "Yo man",
         )
         doReturn(GetProductResponse(product)).whenever(marketplaceManagerApi).getProduct(any())
 

@@ -25,7 +25,7 @@ class Business05BiographyPage : AbstractBusinessAttributePage() {
 
     override fun getBody() = Container(
         padding = 10.0,
-        child = widgetProvider.get(getAttribute(), dao.get().biography)
+        child = widgetProvider.get(getAttribute(), dao.get().biography),
     )
 
     override fun getButton() = Input(
@@ -33,8 +33,8 @@ class Business05BiographyPage : AbstractBusinessAttributePage() {
         type = InputType.Submit,
         caption = getText("page.settings.business.button.next"),
         action = executeCommand(
-            url = urlBuilder.build("${Page.getSettingsBusinessUrl()}/pages/biography/submit")
-        )
+            url = urlBuilder.build("${Page.getSettingsBusinessUrl()}/pages/biography/submit"),
+        ),
     )
 
     @PostMapping("/submit")

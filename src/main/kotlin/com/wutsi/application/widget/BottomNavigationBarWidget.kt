@@ -12,7 +12,7 @@ class BottomNavigationBarWidget(
     private val profileUrl: String? = null,
     private val chatUrl: String? = null,
     private val ordersUrl: String? = null,
-    private val transactionsUrl: String? = null
+    private val transactionsUrl: String? = null,
 ) : CompositeWidgetAware() {
     override fun toWidgetAware(): WidgetAware = toBottomNavigationBar()
 
@@ -26,8 +26,8 @@ class BottomNavigationBarWidget(
                 caption = getText("widget.bottom-nav-bar.home"),
                 action = Action(
                     type = ActionType.Route,
-                    url = "route:/~"
-                )
+                    url = "route:/~",
+                ),
             ),
             profileUrl?.let {
                 BottomNavigationBarItem(
@@ -35,8 +35,8 @@ class BottomNavigationBarWidget(
                     caption = getText("widget.bottom-nav-bar.me"),
                     action = Action(
                         type = ActionType.Route,
-                        url = it
-                    )
+                        url = it,
+                    ),
                 )
             },
             chatUrl?.let {
@@ -45,8 +45,8 @@ class BottomNavigationBarWidget(
                     caption = getText("widget.bottom-nav-bar.chat"),
                     action = Action(
                         type = ActionType.Route,
-                        url = it
-                    )
+                        url = it,
+                    ),
                 )
             },
             transactionsUrl?.let {
@@ -55,8 +55,8 @@ class BottomNavigationBarWidget(
                     caption = getText("widget.bottom-nav-bar.transactions"),
                     action = Action(
                         type = ActionType.Route,
-                        url = it
-                    )
+                        url = it,
+                    ),
                 )
             },
             ordersUrl?.let {
@@ -65,10 +65,10 @@ class BottomNavigationBarWidget(
                     caption = getText("widget.bottom-nav-bar.orders"),
                     action = Action(
                         type = ActionType.Route,
-                        url = it
-                    )
+                        url = it,
+                    ),
                 )
-            }
-        )
+            },
+        ),
     )
 }

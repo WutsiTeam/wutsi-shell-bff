@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class EnvironmentDetector(
-    private val env: Environment
+    private val env: Environment,
 ) {
     fun test(): Boolean =
         !prod()

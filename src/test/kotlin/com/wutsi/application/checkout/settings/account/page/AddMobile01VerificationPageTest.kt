@@ -27,7 +27,7 @@ internal class AddMobile01VerificationPageTest : AbstractSecuredEndpointTest() {
         type = PaymentMethodType.MOBILE_MONEY.name,
         ownerName = "Ray Sponsible",
         otpToken = "1111",
-        providerId = 1L
+        providerId = 1L,
     )
 
     private fun url(action: String = "") =
@@ -62,7 +62,7 @@ internal class AddMobile01VerificationPageTest : AbstractSecuredEndpointTest() {
 
         verify(securityManagerApi).verifyOtp(
             token = entity.otpToken,
-            request = VerifyOTPRequest(code = request.code)
+            request = VerifyOTPRequest(code = request.code),
         )
 
         verify(checkoutManagerApi).addPaymentMethod(
@@ -71,8 +71,8 @@ internal class AddMobile01VerificationPageTest : AbstractSecuredEndpointTest() {
                 type = PaymentMethodType.MOBILE_MONEY.name,
                 number = entity.number,
                 ownerName = entity.ownerName,
-                country = "CM"
-            )
+                country = "CM",
+            ),
         )
     }
 }

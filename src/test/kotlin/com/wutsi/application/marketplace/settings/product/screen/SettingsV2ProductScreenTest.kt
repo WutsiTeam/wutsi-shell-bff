@@ -13,7 +13,7 @@ import com.wutsi.application.Page
 import com.wutsi.enums.ProductType
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
-import com.wutsi.marketplace.manager.dto.AddPictureRequest
+import com.wutsi.marketplace.manager.dto.CreatePictureRequest
 import com.wutsi.marketplace.manager.dto.GetProductResponse
 import com.wutsi.platform.core.storage.StorageService
 import com.wutsi.regulation.RegulationEngine
@@ -45,7 +45,7 @@ internal class SettingsV2ProductScreenTest : AbstractSecuredEndpointTest() {
     fun draft() {
         val product = Fixtures.createProduct(
             pictures = Fixtures.createPictureSummaryList(2),
-            published = false
+            published = false,
         )
         doReturn(GetProductResponse(product)).whenever(marketplaceManagerApi).getProduct(any())
 
@@ -57,7 +57,7 @@ internal class SettingsV2ProductScreenTest : AbstractSecuredEndpointTest() {
         val product = Fixtures.createProduct(
             id = 111,
             pictures = Fixtures.createPictureSummaryList(2),
-            published = true
+            published = true,
         )
         doReturn(GetProductResponse(product)).whenever(marketplaceManagerApi).getProduct(any())
 
@@ -72,8 +72,8 @@ internal class SettingsV2ProductScreenTest : AbstractSecuredEndpointTest() {
             published = true,
             type = ProductType.EVENT,
             event = Fixtures.createEvent(
-                meetingProvider = Fixtures.createMeetingProviderSummary()
-            )
+                meetingProvider = Fixtures.createMeetingProviderSummary(),
+            ),
         )
         doReturn(GetProductResponse(product)).whenever(marketplaceManagerApi).getProduct(any())
 
@@ -84,7 +84,7 @@ internal class SettingsV2ProductScreenTest : AbstractSecuredEndpointTest() {
     fun indexPictureLimit() {
         val product = Fixtures.createProduct(
             id = 111,
-            pictures = Fixtures.createPictureSummaryList(regulationEngine.maxPictures())
+            pictures = Fixtures.createPictureSummaryList(regulationEngine.maxPictures()),
         )
         doReturn(GetProductResponse(product)).whenever(marketplaceManagerApi).getProduct(any())
 
@@ -107,11 +107,11 @@ internal class SettingsV2ProductScreenTest : AbstractSecuredEndpointTest() {
         assertTrue(path.firstValue.startsWith("products/$productId/pictures/"))
         assertTrue(path.firstValue.endsWith(filename))
 
-        verify(marketplaceManagerApi).addPicture(
-            request = AddPictureRequest(
+        verify(marketplaceManagerApi).createPicture(
+            request = CreatePictureRequest(
                 productId = productId,
-                url = fileUrl.toString()
-            )
+                url = fileUrl.toString(),
+            ),
         )
     }
 

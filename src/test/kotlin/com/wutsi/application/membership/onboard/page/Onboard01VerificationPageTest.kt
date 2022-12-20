@@ -32,7 +32,7 @@ internal class Onboard01VerificationPageTest : AbstractEndpointTest() {
         phoneNumber = PHONE_NUMBER,
         country = "CM",
         language = "fr",
-        otpToken = UUID.randomUUID().toString()
+        otpToken = UUID.randomUUID().toString(),
     )
 
     private fun url(action: String = "") = "http://localhost:$port/onboard/pages/verification$action"
@@ -56,7 +56,7 @@ internal class Onboard01VerificationPageTest : AbstractEndpointTest() {
 
         // GIVEN
         val request = SubmitPhoneRequest(
-            phoneNumber = PHONE_NUMBER
+            phoneNumber = PHONE_NUMBER,
         )
         val response = rest.postForEntity(url("/resend"), request, Action::class.java)
 
@@ -66,8 +66,8 @@ internal class Onboard01VerificationPageTest : AbstractEndpointTest() {
         verify(securityManagerApi).createOtp(
             request = CreateOTPRequest(
                 address = entity.phoneNumber,
-                type = MessagingType.SMS.name
-            )
+                type = MessagingType.SMS.name,
+            ),
         )
 
         val req = argumentCaptor<CreateOTPRequest>()
@@ -88,8 +88,8 @@ internal class Onboard01VerificationPageTest : AbstractEndpointTest() {
         verify(securityManagerApi).verifyOtp(
             token = entity.otpToken,
             request = VerifyOTPRequest(
-                code = request.code
-            )
+                code = request.code,
+            ),
         )
         val action = response.body!!
         kotlin.test.assertEquals(ActionType.Page, action.type)

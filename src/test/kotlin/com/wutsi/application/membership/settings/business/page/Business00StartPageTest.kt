@@ -41,8 +41,8 @@ internal class Business00StartPageTest : AbstractSecuredEndpointTest() {
                 categoryId = member.category?.id,
                 cityId = member.city?.id,
                 whatsapp = member.whatsapp,
-                biography = member.biography
-            )
+                biography = member.biography,
+            ),
         )
     }
 }

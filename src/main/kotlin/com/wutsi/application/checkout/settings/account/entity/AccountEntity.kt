@@ -7,5 +7,5 @@ data class AccountEntity(
     val providerId: Long = -1,
     val ownerName: String = "",
     val type: String = "",
-    var otpToken: String = ""
+    var otpToken: String = "",
 ) : Serializable

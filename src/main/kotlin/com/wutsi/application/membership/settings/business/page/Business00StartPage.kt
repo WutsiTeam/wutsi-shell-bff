@@ -44,9 +44,9 @@ class Business00StartPage : AbstractBusinessPage() {
                 toRowWidget(Theme.ICON_STORE, "page.settings.business.why.store"),
                 toRowWidget(Theme.ICON_CHAT, "page.settings.business.why.chat"),
                 toRowWidget(Theme.ICON_ORDER, "page.settings.business.why.order"),
-                toRowWidget(Theme.ICON_MONEY, "page.settings.business.why.payment")
-            )
-        )
+                toRowWidget(Theme.ICON_MONEY, "page.settings.business.why.payment"),
+            ),
+        ),
     )
 
     override fun getButton() = Input(
@@ -54,14 +54,14 @@ class Business00StartPage : AbstractBusinessPage() {
         type = InputType.Submit,
         caption = getText("page.settings.business.button.next"),
         action = executeCommand(
-            url = urlBuilder.build("${Page.getSettingsBusinessUrl()}/pages/start/submit")
-        )
+            url = urlBuilder.build("${Page.getSettingsBusinessUrl()}/pages/start/submit"),
+        ),
     )
 
     @PostMapping("/submit")
     fun submit(): Action {
         val member = membershipManagerApi.getMember(
-            SecurityUtil.getMemberId()
+            SecurityUtil.getMemberId(),
         ).member
         dao.save(
             BusinessEntity(
@@ -69,8 +69,8 @@ class Business00StartPage : AbstractBusinessPage() {
                 cityId = member.city?.id,
                 categoryId = member.category?.id,
                 whatsapp = member.whatsapp,
-                biography = member.biography
-            )
+                biography = member.biography,
+            ),
         )
         return gotoPage(PAGE_INDEX + 1)
     }
@@ -84,17 +84,17 @@ class Business00StartPage : AbstractBusinessPage() {
                         child = Icon(
                             code = icon,
                             color = Theme.COLOR_PRIMARY,
-                            size = 24.0
+                            size = 24.0,
                         ),
                         backgroundColor = Theme.COLOR_WHITE,
                         foregroundColor = Theme.COLOR_PRIMARY,
-                        radius = 16.0
-                    )
+                        radius = 16.0,
+                    ),
                 ),
                 Container(
                     padding = 5.0,
-                    child = Text(getText(text))
-                )
-            )
+                    child = Text(getText(text)),
+                ),
+            ),
         )
 }

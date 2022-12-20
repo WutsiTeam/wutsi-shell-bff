@@ -23,7 +23,7 @@ internal class Business05BiographyPageTest : AbstractSecuredEndpointTest() {
         categoryId = 22L,
         cityId = 100L,
         whatsapp = false,
-        biography = "Yo man"
+        biography = "Yo man",
     )
 
     private fun url(action: String = "") =
@@ -59,8 +59,8 @@ internal class Business05BiographyPageTest : AbstractSecuredEndpointTest() {
                 categoryId = entity.categoryId,
                 cityId = entity.cityId,
                 whatsapp = entity.whatsapp,
-                biography = request.value
-            )
+                biography = request.value,
+            ),
         )
     }
 }

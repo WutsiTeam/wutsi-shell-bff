@@ -15,7 +15,7 @@ class SettingsV2StoreEnableScreen : AbstractEndpoint() {
     companion object {
         private val PAGE_URLS = listOf(
             "${Page.getSettingsStoreActivateUrl()}/pages/start",
-            "${Page.getSettingsStoreActivateUrl()}/pages/success"
+            "${Page.getSettingsStoreActivateUrl()}/pages/success",
         )
     }
 
@@ -28,8 +28,8 @@ class SettingsV2StoreEnableScreen : AbstractEndpoint() {
             child = PageView(
                 children = PAGE_URLS.map {
                     com.wutsi.flutter.sdui.Page(url = urlBuilder.build(it))
-                }
-            )
+                },
+            ),
         ).toWidget()
     }
 }

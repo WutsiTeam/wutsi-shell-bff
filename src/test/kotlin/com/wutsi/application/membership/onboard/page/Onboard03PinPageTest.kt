@@ -23,11 +23,11 @@ internal class Onboard03PinPageTest : AbstractEndpointTest() {
         phoneNumber = PHONE_NUMBER,
         country = "CM",
         language = "fr",
-        displayName = "Ray Sponsible"
+        displayName = "Ray Sponsible",
     )
 
     private val request = SubmitPinRequest(
-        pin = "123456"
+        pin = "123456",
     )
 
     private fun url(action: String = "") = "http://localhost:$port/onboard/pages/pin$action"

@@ -11,7 +11,7 @@ import com.wutsi.flutter.sdui.enums.MainAxisSize
 
 class GridWidget(
     private val children: List<OfferWidget>,
-    private val columns: Int = 2
+    private val columns: Int = 2,
 ) : CompositeWidgetAware() {
     override fun toWidgetAware(): WidgetAware {
         val productRows = toProductRows()
@@ -20,7 +20,7 @@ class GridWidget(
             mainAxisAlignment = MainAxisAlignment.start,
             children = productRows.map {
                 toRowWidget(it)
-            }
+            },
         )
     }
 
@@ -36,9 +36,9 @@ class GridWidget(
             mainAxisSize = MainAxisSize.min,
             children = widgets.map {
                 Flexible(
-                    child = it
+                    child = it,
                 )
-            }
+            },
         )
     }
 
@@ -52,8 +52,9 @@ class GridWidget(
                 cur = mutableListOf()
             }
         }
-        if (cur.isNotEmpty())
+        if (cur.isNotEmpty()) {
             rows.add(cur)
+        }
         return rows
     }
 }

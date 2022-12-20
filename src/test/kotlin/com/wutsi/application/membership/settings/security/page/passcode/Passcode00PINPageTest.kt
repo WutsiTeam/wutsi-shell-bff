@@ -18,7 +18,7 @@ internal class Passcode00PINPageTest : AbstractSecuredEndpointTest() {
     val port: Int = 0
 
     val request = SubmitPasscodeRequest(
-        pin = "123456"
+        pin = "123456",
     )
 
     private fun url(action: String = "") = "http://localhost:$port/${Page.getSecurityUrl()}/passcode/pages/pin$action"

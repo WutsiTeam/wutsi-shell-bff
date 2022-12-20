@@ -34,7 +34,7 @@ import javax.servlet.http.HttpServletRequest
 class AboutScreen(
     private val tracingContext: TracingContext,
     private val request: HttpServletRequest,
-    private val environmentDetector: EnvironmentDetector
+    private val environmentDetector: EnvironmentDetector,
 ) : AbstractSecuredEndpoint() {
     @PostMapping
     fun index(): Widget {
@@ -51,7 +51,7 @@ class AboutScreen(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.settings.about.app-bar.title")
+                title = getText("page.settings.about.app-bar.title"),
             ),
             child = Container(
                 child = ListView(
@@ -64,8 +64,8 @@ class AboutScreen(
                             child = Image(
                                 url = getLogoUrl(),
                                 width = 128.0,
-                                height = 128.0
-                            )
+                                height = 128.0,
+                            ),
                         ),
                         listItem("page.settings.about.app-version", request.getHeader("X-Client-Version")),
                         listItem("page.settings.about.app-os", osInfo),
@@ -79,7 +79,7 @@ class AboutScreen(
                                 child = Button(
                                     caption = getText(
                                         "page.settings.about.button.switch-environment",
-                                        arrayOf(nextEnv.uppercase())
+                                        arrayOf(nextEnv.uppercase()),
                                     ),
                                     action = Action(
                                         type = ActionType.Command,
@@ -89,21 +89,21 @@ class AboutScreen(
                                             title = getText("prompt.confirm.title"),
                                             message = getText(
                                                 "page.settings.about.switch-environment-confirm",
-                                                arrayOf(nextEnv.uppercase())
-                                            )
+                                                arrayOf(nextEnv.uppercase()),
+                                            ),
                                         ).toWidget(),
                                         parameters = mapOf(
-                                            "env" to nextEnv
-                                        )
-                                    )
-                                )
+                                            "env" to nextEnv,
+                                        ),
+                                    ),
+                                ),
                             )
                         } else {
                             null
-                        }
-                    )
-                )
-            )
+                        },
+                    ),
+                ),
+            ),
         ).toWidget()
     }
 
@@ -120,7 +120,7 @@ class AboutScreen(
             .ok()
             .headers(headers)
             .body(
-                gotoLogin(member.phoneNumber)
+                gotoLogin(member.phoneNumber),
             )
     }
 
@@ -134,17 +134,17 @@ class AboutScreen(
                         getText(key),
                         bold = true,
                         alignment = TextAlignment.Right,
-                        size = Theme.TEXT_SIZE_SMALL
-                    )
-                )
+                        size = Theme.TEXT_SIZE_SMALL,
+                    ),
+                ),
             ),
             Flexible(
                 flex = 3,
                 child = Container(
                     padding = 10.0,
-                    child = Text(value ?: "", alignment = TextAlignment.Left, size = Theme.TEXT_SIZE_SMALL)
-                )
-            )
-        )
+                    child = Text(value ?: "", alignment = TextAlignment.Left, size = Theme.TEXT_SIZE_SMALL),
+                ),
+            ),
+        ),
     )
 }

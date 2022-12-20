@@ -25,7 +25,7 @@ class BusinessToolbarWidget(
     private val storeAction: Action? = null,
     private val whatsapp: Boolean = false,
     private val shareUrl: String? = null,
-    private val configAction: Action? = null
+    private val configAction: Action? = null,
 ) : CompositeWidgetAware() {
     companion object {
         fun of(member: Member, webappUrl: String, storeAction: Action?) = BusinessToolbarWidget(
@@ -33,7 +33,7 @@ class BusinessToolbarWidget(
             storeId = member.storeId,
             storeAction = storeAction,
             whatsapp = member.whatsapp,
-            shareUrl = "$webappUrl/u/${member.id}"
+            shareUrl = "$webappUrl/u/${member.id}",
         )
 
         fun of(product: Product, member: Member, webappUrl: String, urlBuilder: URLBuilder) = BusinessToolbarWidget(
@@ -43,11 +43,11 @@ class BusinessToolbarWidget(
             configAction = if (product.store.accountId == member.id) {
                 Action(
                     type = ActionType.Route,
-                    url = urlBuilder.build("${Page.getSettingsProductUrl()}?id=${product.id}")
+                    url = urlBuilder.build("${Page.getSettingsProductUrl()}?id=${product.id}"),
                 )
             } else {
                 null
-            }
+            },
         )
     }
 
@@ -60,7 +60,7 @@ class BusinessToolbarWidget(
                     toIconButton(
                         icon = Theme.ICON_STORE,
                         caption = getText("widget.business-toolbar.shop"),
-                        action = storeAction
+                        action = storeAction,
                     )
                 } else {
                     null
@@ -71,8 +71,8 @@ class BusinessToolbarWidget(
                         caption = getText("widget.business-toolbar.call"),
                         action = Action(
                             type = ActionType.Navigate,
-                            url = "tel:$phoneNumber"
-                        )
+                            url = "tel:$phoneNumber",
+                        ),
                     )
                 },
                 if (whatsapp && phoneNumber != null) {
@@ -81,8 +81,8 @@ class BusinessToolbarWidget(
                         caption = getText("widget.business-toolbar.chat"),
                         action = Action(
                             type = ActionType.Navigate,
-                            url = WhatsappUtil.url(phoneNumber)
-                        )
+                            url = WhatsappUtil.url(phoneNumber),
+                        ),
                     )
                 } else {
                     null
@@ -93,19 +93,19 @@ class BusinessToolbarWidget(
                         caption = getText("widget.business-toolbar.share"),
                         action = Action(
                             type = ActionType.Share,
-                            url = it
-                        )
+                            url = it,
+                        ),
                     )
                 },
                 configAction?.let {
                     toIconButton(
                         icon = Theme.ICON_SETTINGS,
                         caption = getText("widget.business-toolbar.edit"),
-                        action = it
+                        action = it,
                     )
-                }
-            )
-        )
+                },
+            ),
+        ),
     )
 
     private fun toIconButton(icon: String, caption: String, action: Action?): WidgetAware {
@@ -124,18 +124,18 @@ class BusinessToolbarWidget(
                             radius = radius - 1,
                             child = Icon(
                                 code = icon,
-                                size = radius - 4.0
+                                size = radius - 4.0,
                             ),
-                            action = action
-                        )
+                            action = action,
+                        ),
                     ),
                     Container(
                         padding = 5.0,
                         child = Text(caption.uppercase(), color = Theme.COLOR_PRIMARY, bold = true),
-                        action = action
-                    )
-                )
-            )
+                        action = action,
+                    ),
+                ),
+            ),
         )
     }
 

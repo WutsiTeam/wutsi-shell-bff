@@ -44,9 +44,9 @@ class Onboard02ProfilePage : AbstractOnboardPage() {
                         IconButton(
                             icon = Theme.ICON_ARROW_BACK,
                             color = Theme.COLOR_BLACK,
-                            action = gotoPage(PAGE_INDEX - 1)
-                        )
-                    )
+                            action = gotoPage(PAGE_INDEX - 1),
+                        ),
+                    ),
                 ),
                 Container(
                     alignment = TopCenter,
@@ -59,8 +59,8 @@ class Onboard02ProfilePage : AbstractOnboardPage() {
                                 child = Image(
                                     url = getLogoUrl(),
                                     width = 128.0,
-                                    height = 128.0
-                                )
+                                    height = 128.0,
+                                ),
                             ),
                             Container(
                                 alignment = Center,
@@ -70,8 +70,8 @@ class Onboard02ProfilePage : AbstractOnboardPage() {
                                     alignment = TextAlignment.Center,
                                     size = Theme.TEXT_SIZE_LARGE,
                                     color = Theme.COLOR_PRIMARY,
-                                    bold = true
-                                )
+                                    bold = true,
+                                ),
 
                             ),
                             Container(
@@ -79,8 +79,8 @@ class Onboard02ProfilePage : AbstractOnboardPage() {
                                 padding = 10.0,
                                 child = Text(
                                     caption = getText("page.onboard.profile.sub-title"),
-                                    alignment = TextAlignment.Center
-                                )
+                                    alignment = TextAlignment.Center,
+                                ),
                             ),
                             Form(
                                 children = listOf(
@@ -94,8 +94,8 @@ class Onboard02ProfilePage : AbstractOnboardPage() {
                                             minLength = 5,
                                             maxLength = 50,
                                             hint = getText("page.onboard.profile.field.display-name.hint"),
-                                            value = onboardDao.get().displayName
-                                        )
+                                            value = onboardDao.get().displayName,
+                                        ),
                                     ),
                                     Input(
                                         id = "submit",
@@ -104,15 +104,15 @@ class Onboard02ProfilePage : AbstractOnboardPage() {
                                         caption = getText("page.onboard.button.next"),
                                         action = Action(
                                             type = Command,
-                                            url = urlBuilder.build("/onboard/pages/profile/submit")
-                                        )
-                                    )
-                                )
-                            )
-                        )
-                    )
-                )
-            )
+                                            url = urlBuilder.build("/onboard/pages/profile/submit"),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
         ).toWidget()
     }
 

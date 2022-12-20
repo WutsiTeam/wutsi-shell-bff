@@ -24,7 +24,7 @@ internal class Business03CityPageTest : AbstractSecuredEndpointTest() {
     private val entity = BusinessEntity(
         displayName = "Maison H",
         categoryId = 22L,
-        cityId = 100L
+        cityId = 100L,
     )
 
     private fun url(action: String = "") =
@@ -38,7 +38,7 @@ internal class Business03CityPageTest : AbstractSecuredEndpointTest() {
 
         val cities = listOf(
             Fixtures.createPlaceSummary(100L, "Yaounde"),
-            Fixtures.createPlaceSummary(200L, "Douala")
+            Fixtures.createPlaceSummary(200L, "Douala"),
         )
         doReturn(SearchPlaceResponse(cities)).whenever(membershipManagerApi).searchPlace(any())
     }
@@ -64,8 +64,8 @@ internal class Business03CityPageTest : AbstractSecuredEndpointTest() {
             BusinessEntity(
                 displayName = entity.displayName,
                 categoryId = entity.categoryId,
-                cityId = request.value.toLong()
-            )
+                cityId = request.value.toLong(),
+            ),
         )
     }
 }

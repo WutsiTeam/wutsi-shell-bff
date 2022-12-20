@@ -31,7 +31,7 @@ class SettingsV2StoreScreen : AbstractEndpoint() {
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.settings.store.app-bar.title")
+                title = getText("page.settings.store.app-bar.title"),
             ),
             child = Column(
                 children = listOf(
@@ -40,8 +40,8 @@ class SettingsV2StoreScreen : AbstractEndpoint() {
                         alignment = Alignment.CenterLeft,
                         child = Text(
                             caption = getText("page.settings.store.message"),
-                            alignment = TextAlignment.Left
-                        )
+                            alignment = TextAlignment.Left,
+                        ),
                     ),
                     Divider(color = Theme.COLOR_DIVIDER, height = 2.0),
                     Flexible(
@@ -54,14 +54,14 @@ class SettingsV2StoreScreen : AbstractEndpoint() {
                                     leading = Icon(code = Theme.ICON_SHOPPING_BAG, color = Theme.COLOR_PRIMARY),
                                     trailing = Icon(code = Theme.ICON_CHEVRON_RIGHT),
                                     action = gotoUrl(
-                                        urlBuilder.build(Page.getSettingsProductListUrl())
-                                    )
-                                )
-                            )
-                        )
-                    )
-                )
-            )
+                                        urlBuilder.build(Page.getSettingsProductListUrl()),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
         ).toWidget()
     }
 }

@@ -29,7 +29,7 @@ internal class SettingsV2ProductListScreenTest : AbstractSecuredEndpointTest() {
 
         val products = listOf(
             Fixtures.createProductSummary(1, "Product1", "http://www.google.ca/1.png", published = true),
-            Fixtures.createProductSummary(2, "Product 2", published = false)
+            Fixtures.createProductSummary(2, "Product 2", published = false),
         )
         doReturn(SearchProductResponse(products)).whenever(marketplaceManagerApi).searchProduct(any())
     }

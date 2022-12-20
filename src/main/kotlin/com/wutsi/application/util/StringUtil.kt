@@ -7,14 +7,16 @@ object StringUtil {
 
     fun initials(fullName: String?): String {
         val xfullName = fullName?.trim() ?: ""
-        if (xfullName.isNullOrEmpty())
+        if (xfullName.isNullOrEmpty()) {
             return ""
+        }
 
         val index = xfullName.lastIndexOf(' ')
-        return if (index > 0)
+        return if (index > 0) {
             (xfullName.substring(0, 1) + xfullName.substring(index + 1, index + 2)).uppercase()
-        else
+        } else {
             xfullName.substring(0, 1).uppercase()
+        }
     }
 
     fun capitalize(str: String?): String {
@@ -32,30 +34,34 @@ object StringUtil {
     }
 
     fun capitalizeFirstLetter(str: String?): String =
-        if (str.isNullOrEmpty())
+        if (str.isNullOrEmpty()) {
             ""
-        else
+        } else {
             str.uppercase().substring(0, 1) + str.substring(1)
+        }
 
     fun firstName(displayName: String?): String {
-        if (displayName == null)
+        if (displayName == null) {
             return ""
+        }
 
         val i = displayName.indexOf(' ')
         return if (i > 0) displayName.substring(0, i).trim() else displayName
     }
 
     fun lastName(displayName: String?): String {
-        if (displayName == null)
+        if (displayName == null) {
             return ""
+        }
 
         val i = displayName.indexOf(' ')
         return if (i > 0) displayName.substring(i).trim() else ""
     }
 
     fun unaccent(str: String?): String {
-        if (str == null)
+        if (str == null) {
             return ""
+        }
 
         val temp = Normalizer.normalize(str, Normalizer.Form.NFD)
         return REGEX_UNACCENT.replace(temp, "")

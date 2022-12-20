@@ -31,13 +31,13 @@ import java.util.Locale
 @RestController
 @RequestMapping("/settings/2/profile")
 class SettingsV2ProfileScreen(
-    private val regulationEngine: RegulationEngine
+    private val regulationEngine: RegulationEngine,
 ) : AbstractSecuredEndpoint() {
     @PostMapping
     fun index(): Widget {
         val children = mutableListOf<WidgetAware>()
         children.add(
-            Container(padding = 10.0)
+            Container(padding = 10.0),
         )
 
         val member = getCurrentMember()
@@ -47,56 +47,56 @@ class SettingsV2ProfileScreen(
                 listItem(
                     "page.settings.profile.attribute.display-name",
                     member.displayName,
-                    "${Page.getSettingsProfileEditorUrl()}?name=display-name"
+                    "${Page.getSettingsProfileEditorUrl()}?name=display-name",
                 ),
                 listItem(
                     "page.settings.profile.attribute.email",
                     member.email,
-                    "${Page.getSettingsProfileEditorUrl()}?name=email"
-                )
-            )
+                    "${Page.getSettingsProfileEditorUrl()}?name=email",
+                ),
+            ),
         )
 
         if (member.business) {
             children.addAll(
                 listOf(
                     Container(
-                        padding = 20.0
+                        padding = 20.0,
                     ),
                     listItem(
                         "page.settings.profile.attribute.category-id",
                         member.category?.let { it.title },
-                        "${Page.getSettingsProfileEditorUrl()}?name=category"
+                        "${Page.getSettingsProfileEditorUrl()}?name=category",
                     ),
                     listItem(
                         "page.settings.profile.attribute.biography",
                         member.biography,
-                        "${Page.getSettingsProfileEditorUrl()}?name=biography"
+                        "${Page.getSettingsProfileEditorUrl()}?name=biography",
                     ),
                     listItem(
                         "page.settings.profile.attribute.website",
                         member.website,
-                        "${Page.getSettingsProfileEditorUrl()}?name=website"
+                        "${Page.getSettingsProfileEditorUrl()}?name=website",
                     ),
                     listItem(
                         "page.settings.profile.attribute.facebook-id",
                         member.facebookId?.let { "https://www.facebook.com/${member.facebookId}" },
-                        "${Page.getSettingsProfileEditorUrl()}?name=facebook-id"
+                        "${Page.getSettingsProfileEditorUrl()}?name=facebook-id",
                     ),
                     listItem(
                         "page.settings.profile.attribute.instagram-id",
                         member.instagramId?.let { "https://www.instagram.com/${member.instagramId}" },
-                        "${Page.getSettingsProfileEditorUrl()}?name=instagram-id"
+                        "${Page.getSettingsProfileEditorUrl()}?name=instagram-id",
                     ),
                     listItem(
                         "page.settings.profile.attribute.twitter-id",
                         member.twitterId?.let { "https://www.twitter.com/${member.twitterId}" },
-                        "${Page.getSettingsProfileEditorUrl()}?name=twitter-id"
+                        "${Page.getSettingsProfileEditorUrl()}?name=twitter-id",
                     ),
                     listItem(
                         "page.settings.profile.attribute.youtube-id",
                         member.twitterId?.let { "https://www.youtube.com/@${member.youtubeId}" },
-                        "${Page.getSettingsProfileEditorUrl()}?name=youtube-id"
+                        "${Page.getSettingsProfileEditorUrl()}?name=youtube-id",
                     ),
                     ListItemSwitch(
                         caption = getText("page.settings.profile.attribute.whatsapp"),
@@ -104,48 +104,48 @@ class SettingsV2ProfileScreen(
                         name = "value",
                         selected = member.whatsapp,
                         action = executeCommand(
-                            urlBuilder.build("${Page.getSettingsProfileUrl()}/submit?name=whatsapp")
-                        )
-                    )
-                )
+                            urlBuilder.build("${Page.getSettingsProfileUrl()}/submit?name=whatsapp"),
+                        ),
+                    ),
+                ),
             )
         }
 
         children.addAll(
             listOf(
                 Container(
-                    padding = 20.0
+                    padding = 20.0,
                 ),
                 listItem(
                     "page.settings.profile.attribute.language",
                     StringUtil.capitalizeFirstLetter(
-                        Locale(member.language).getDisplayLanguage(locale)
+                        Locale(member.language).getDisplayLanguage(locale),
                     ),
-                    "${Page.getSettingsProfileEditorUrl()}?name=language"
+                    "${Page.getSettingsProfileEditorUrl()}?name=language",
                 ),
                 listItem(
                     "page.settings.profile.attribute.timezone-id",
                     member.timezoneId,
-                    "${Page.getSettingsProfileEditorUrl()}?name=timezone-id"
+                    "${Page.getSettingsProfileEditorUrl()}?name=timezone-id",
                 ),
                 listItem(
                     "page.settings.profile.attribute.city-id",
                     member.city?.name,
-                    "${Page.getSettingsProfileEditorUrl()}?name=city-id"
+                    "${Page.getSettingsProfileEditorUrl()}?name=city-id",
                 ),
                 listItem(
                     "page.settings.profile.attribute.country",
                     Locale(member.language, member.country).getDisplayCountry(locale),
-                    null
-                )
-            )
+                    null,
+                ),
+            ),
         )
 
         if (canEnableBusiness(member)) {
             children.add(
                 Container(
-                    padding = 20.0
-                )
+                    padding = 20.0,
+                ),
             )
             children.add(
                 ListItemSwitch(
@@ -154,9 +154,9 @@ class SettingsV2ProfileScreen(
                     name = "value",
                     selected = member.business,
                     action = gotoUrl(
-                        urlBuilder.build(Page.getSettingsBusinessUrl())
-                    )
-                )
+                        urlBuilder.build(Page.getSettingsBusinessUrl()),
+                    ),
+                ),
             )
         }
 
@@ -167,32 +167,32 @@ class SettingsV2ProfileScreen(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.settings.profile.app-bar.title")
+                title = getText("page.settings.profile.app-bar.title"),
             ),
             child = Container(
                 child = ListView(
                     separator = true,
                     separatorColor = Theme.COLOR_DIVIDER,
-                    children = children
-                )
-            )
+                    children = children,
+                ),
+            ),
         ).toWidget()
     }
 
     @PostMapping("/submit")
     fun submit(
         @RequestParam name: String,
-        @RequestBody request: SubmitBusinessAttributeRequest
+        @RequestBody request: SubmitBusinessAttributeRequest,
     ): Action {
         membershipManagerApi.updateMemberAttribute(
             request = UpdateMemberAttributeRequest(
                 name = name,
-                value = request.value
-            )
+                value = request.value,
+            ),
         )
         return gotoUrl(
             url = urlBuilder.build(Page.getSettingsProfileUrl()),
-            replacement = true
+            replacement = true,
         )
     }
 
@@ -211,14 +211,14 @@ class SettingsV2ProfileScreen(
                 Icon(
                     code = Theme.ICON_EDIT,
                     size = 24.0,
-                    color = Theme.COLOR_BLACK
+                    color = Theme.COLOR_BLACK,
                 )
             },
             action = commandUrl?.let {
                 Action(
                     type = ActionType.Route,
-                    url = urlBuilder.build(commandUrl)
+                    url = urlBuilder.build(commandUrl),
                 )
-            }
+            },
         )
 }

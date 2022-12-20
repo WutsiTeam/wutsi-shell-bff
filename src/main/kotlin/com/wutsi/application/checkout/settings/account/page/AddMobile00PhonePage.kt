@@ -34,7 +34,7 @@ class AddMobile00PhonePage(
     private val dao: AccountRepository,
     private val checkoutManagerApi: CheckoutManagerApi,
     private val membershipManagerApi: MembershipManagerApi,
-    private val securityManager: SecurityManagerApi
+    private val securityManager: SecurityManagerApi,
 ) : AbstractPageEndpoint() {
     companion object {
         const val PAGE_INDEX = 0
@@ -51,8 +51,8 @@ class AddMobile00PhonePage(
         val providers = checkoutManagerApi.searchPaymentProvider(
             request = SearchPaymentProviderRequest(
                 type = PaymentMethodType.MOBILE_MONEY.name,
-                country = member.country
-            )
+                country = member.country,
+            ),
         ).paymentProviders
 
         return Column(
@@ -65,8 +65,8 @@ class AddMobile00PhonePage(
                         name = "phoneNumber",
                         type = InputType.Phone,
                         required = true,
-                        initialCountry = member.country
-                    )
+                        initialCountry = member.country,
+                    ),
                 ),
                 Container(
                     padding = 10.0,
@@ -75,12 +75,12 @@ class AddMobile00PhonePage(
                             Image(
                                 width = 32.0,
                                 height = 32.0,
-                                url = it.logoUrl
+                                url = it.logoUrl,
                             )
-                        }
-                    )
-                )
-            )
+                        },
+                    ),
+                ),
+            ),
         )
     }
 
@@ -89,8 +89,8 @@ class AddMobile00PhonePage(
         type = InputType.Submit,
         caption = getText("page.settings.account.add.mobile.button.next"),
         action = executeCommand(
-            url = urlBuilder.build("${Page.getSettingsAccountUrl()}/add/mobile/pages/phone/submit")
-        )
+            url = urlBuilder.build("${Page.getSettingsAccountUrl()}/add/mobile/pages/phone/submit"),
+        ),
     )
 
     @PostMapping("/submit")
@@ -99,8 +99,8 @@ class AddMobile00PhonePage(
         val providers = checkoutManagerApi.searchPaymentProvider(
             request = SearchPaymentProviderRequest(
                 number = request.phoneNumber,
-                type = PaymentMethodType.MOBILE_MONEY.name
-            )
+                type = PaymentMethodType.MOBILE_MONEY.name,
+            ),
         ).paymentProviders
         if (providers.isEmpty()) {
             return promptError("prompt.error.phone-not-valid-mobile-money")
@@ -110,8 +110,8 @@ class AddMobile00PhonePage(
         val response = securityManager.createOtp(
             request = CreateOTPRequest(
                 address = request.phoneNumber,
-                type = MessagingType.SMS.name
-            )
+                type = MessagingType.SMS.name,
+            ),
         )
 
         // Save
@@ -123,8 +123,8 @@ class AddMobile00PhonePage(
                 ownerName = member.displayName,
                 type = provider.type,
                 providerId = provider.id,
-                otpToken = response.token
-            )
+                otpToken = response.token,
+            ),
         )
 
         return gotoNextPage()

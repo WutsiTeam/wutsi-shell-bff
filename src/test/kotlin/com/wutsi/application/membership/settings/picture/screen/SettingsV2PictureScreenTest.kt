@@ -50,8 +50,8 @@ internal class SettingsV2PictureScreenTest : AbstractSecuredEndpointTest() {
         verify(membershipManagerApi).updateMemberAttribute(
             request = UpdateMemberAttributeRequest(
                 name = "picture-url",
-                value = fileUrl.toString()
-            )
+                value = fileUrl.toString(),
+            ),
         )
     }
 }

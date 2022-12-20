@@ -22,7 +22,7 @@ internal class Settings2AccountListScreenTest : AbstractSecuredEndpointTest() {
         // GIVEN
         val paymentMethods = listOf(
             Fixtures.createPaymentMethodSummary("1111", PaymentMethodType.MOBILE_MONEY, "+237670000010", "MTN"),
-            Fixtures.createPaymentMethodSummary("2222", PaymentMethodType.MOBILE_MONEY, "+237690000010", "Orange")
+            Fixtures.createPaymentMethodSummary("2222", PaymentMethodType.MOBILE_MONEY, "+237690000010", "Orange"),
         )
         doReturn(SearchPaymentMethodResponse(paymentMethods)).whenever(checkoutManagerApi).searchPaymentMethod(any())
 

@@ -32,7 +32,7 @@ internal class Onboard00PhonePageTest : AbstractEndpointTest() {
     private lateinit var environmentDetector: EnvironmentDetector
 
     private val request = SubmitPhoneRequest(
-        phoneNumber = PHONE_NUMBER
+        phoneNumber = PHONE_NUMBER,
     )
 
     @BeforeTest
@@ -94,7 +94,7 @@ internal class Onboard00PhonePageTest : AbstractEndpointTest() {
         assertEquals(ActionType.Route, action.type)
         assertEquals(
             "http://localhost:0/login/2?title=You+Have+a+wallet%21&sub-title=Enter+your+Passcode&phone=%2B237670000010&return-to-route=true&hide-change-account-button=true",
-            action.url
+            action.url,
         )
 
         verify(cache, never()).put(any(), any())

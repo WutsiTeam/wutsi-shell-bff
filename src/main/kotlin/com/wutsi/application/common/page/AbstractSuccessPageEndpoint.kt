@@ -12,6 +12,6 @@ abstract class AbstractSuccessPageEndpoint : AbstractPageEndpoint() {
     override fun getIcon() = Icon(
         code = Theme.ICON_CHECK,
         color = Theme.COLOR_SUCCESS,
-        size = 80.0
+        size = 80.0,
     )
 }

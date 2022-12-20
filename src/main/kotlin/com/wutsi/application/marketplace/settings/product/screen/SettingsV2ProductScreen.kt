@@ -30,7 +30,7 @@ import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.marketplace.manager.MarketplaceManagerApi
-import com.wutsi.marketplace.manager.dto.AddPictureRequest
+import com.wutsi.marketplace.manager.dto.CreatePictureRequest
 import com.wutsi.marketplace.manager.dto.PictureSummary
 import com.wutsi.marketplace.manager.dto.Product
 import com.wutsi.membership.manager.dto.Member
@@ -58,12 +58,12 @@ class SettingsV2ProductScreen(
 
     @Value("\${wutsi.store.pictures.max-width}") private val pictureMaxWidth: Int,
     @Value("\${wutsi.store.pictures.max-width}") private val pictureMaxHeight: Int,
-    @Value("\${wutsi.application.webapp-url}") private val webAppUrl: String
+    @Value("\${wutsi.application.webapp-url}") private val webAppUrl: String,
 ) : AbstractSecuredEndpoint() {
     @PostMapping
     fun index(
         @RequestParam id: Long,
-        @RequestParam(required = false) errors: Array<String>? = null
+        @RequestParam(required = false) errors: Array<String>? = null,
     ): Widget {
         val member = getCurrentMember()
         val product = marketplaceManagerApi.getProduct(id).product
@@ -75,9 +75,9 @@ class SettingsV2ProductScreen(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_PRIMARY,
                 foregroundColor = Theme.COLOR_WHITE,
-                title = getText("page.settings.catalog.product.app-bar.title")
+                title = getText("page.settings.catalog.product.app-bar.title"),
             ),
-            child = toProductListWidget(product, member)
+            child = toProductListWidget(product, member),
         ).toWidget()
     }
 
@@ -102,32 +102,32 @@ class SettingsV2ProductScreen(
                             toListItemWidget(
                                 "page.settings.catalog.product.attribute.type",
                                 getText("product.type.${product.type}"),
-                                urlBuilder.build("${Page.getSettingsProductEditorUrl()}?name=type&id=${product.id}")
+                                urlBuilder.build("${Page.getSettingsProductEditorUrl()}?name=type&id=${product.id}"),
                             ),
                             toListItemWidget(
                                 "page.settings.catalog.product.attribute.title",
                                 product.title,
-                                urlBuilder.build("${Page.getSettingsProductEditorUrl()}?name=title&id=${product.id}")
+                                urlBuilder.build("${Page.getSettingsProductEditorUrl()}?name=title&id=${product.id}"),
                             ),
                             toListItemWidget(
                                 "page.settings.catalog.product.attribute.price",
                                 price,
-                                urlBuilder.build("${Page.getSettingsProductEditorUrl()}?name=price&id=${product.id}")
+                                urlBuilder.build("${Page.getSettingsProductEditorUrl()}?name=price&id=${product.id}"),
                             ),
                             toListItemWidget(
                                 "page.settings.catalog.product.attribute.quantity",
                                 product.quantity?.toString(),
-                                urlBuilder.build("${Page.getSettingsProductEditorUrl()}?name=quantity&id=${product.id}")
+                                urlBuilder.build("${Page.getSettingsProductEditorUrl()}?name=quantity&id=${product.id}"),
                             ),
                             toListItemWidget(
                                 "page.settings.catalog.product.attribute.summary",
                                 product.summary,
-                                urlBuilder.build("${Page.getSettingsProductEditorUrl()}?name=summary&id=${product.id}")
+                                urlBuilder.build("${Page.getSettingsProductEditorUrl()}?name=summary&id=${product.id}"),
                             ),
                             toListItemWidget(
                                 "page.settings.catalog.product.attribute.description",
                                 description(product.description),
-                                urlBuilder.build("${Page.getSettingsProductEditorUrl()}?name=description&id=${product.id}")
+                                urlBuilder.build("${Page.getSettingsProductEditorUrl()}?name=description&id=${product.id}"),
                             ),
                             Container(padding = 10.0),
 
@@ -138,7 +138,7 @@ class SettingsV2ProductScreen(
                                             Image(
                                                 width = 32.0,
                                                 height = 32.0,
-                                                url = it
+                                                url = it,
                                             )
                                         }
                                     } else {
@@ -151,22 +151,22 @@ class SettingsV2ProductScreen(
                                     trailing = Icon(
                                         code = Theme.ICON_EDIT,
                                         size = 24.0,
-                                        color = Theme.COLOR_BLACK
+                                        color = Theme.COLOR_BLACK,
                                     ),
                                     action = Action(
                                         type = ActionType.Route,
-                                        url = urlBuilder.build("${Page.getSettingsProductEditorUrl()}/event?id=${product.id}")
-                                    )
+                                        url = urlBuilder.build("${Page.getSettingsProductEditorUrl()}/event?id=${product.id}"),
+                                    ),
                                 )
                             } else {
                                 null
                             },
 
-                            toDangerWidget(product)
-                        )
-                    )
-                )
-            )
+                            toDangerWidget(product),
+                        ),
+                    ),
+                ),
+            ),
         )
     }
 
@@ -177,9 +177,9 @@ class SettingsV2ProductScreen(
                 child = Button(
                     caption = getText("page.settings.catalog.product.button.publish"),
                     action = executeCommand(
-                        url = urlBuilder.build("${Page.getSettingsProductUrl()}/publish?id=${product.id}")
-                    )
-                )
+                        url = urlBuilder.build("${Page.getSettingsProductUrl()}/publish?id=${product.id}"),
+                    ),
+                ),
             )
         } else if (product.status == ProductStatus.PUBLISHED.name) {
             Container(
@@ -188,9 +188,9 @@ class SettingsV2ProductScreen(
                     caption = getText("page.settings.catalog.product.button.share"),
                     action = Action(
                         type = ActionType.Share,
-                        message = "$webAppUrl/p/${product.id}"
-                    )
-                )
+                        message = "$webAppUrl/p/${product.id}",
+                    ),
+                ),
             )
         } else {
             null
@@ -213,8 +213,8 @@ class SettingsV2ProductScreen(
                                     caption = getText("page.settings.catalog.product.button.unpublish"),
                                     action = executeCommand(
                                         url = urlBuilder.build("${Page.getSettingsProductUrl()}/unpublish?id=${product.id}"),
-                                        confirm = getText("page.settings.catalog.product.confirm-unpublish")
-                                    )
+                                        confirm = getText("page.settings.catalog.product.confirm-unpublish"),
+                                    ),
                                 )
                             } else {
                                 null
@@ -230,13 +230,13 @@ class SettingsV2ProductScreen(
                                 caption = getText("page.settings.catalog.product.button.delete"),
                                 action = executeCommand(
                                     url = urlBuilder.build("${Page.getSettingsProductUrl()}/delete?id=${product.id}"),
-                                    confirm = getText("page.settings.catalog.product.confirm-delete")
-                                )
-                            )
-                        )
-                    )
-                )
-            )
+                                    confirm = getText("page.settings.catalog.product.confirm-delete"),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
         )
 
     private fun toListItemWidget(caption: String, value: String?, url: String) = ListItem(
@@ -245,12 +245,12 @@ class SettingsV2ProductScreen(
         trailing = Icon(
             code = Theme.ICON_EDIT,
             size = 24.0,
-            color = Theme.COLOR_BLACK
+            color = Theme.COLOR_BLACK,
         ),
         action = Action(
             type = ActionType.Route,
-            url = url
-        )
+            url = url,
+        ),
     )
 
     private fun toPictureListViewWidget(product: Product): WidgetAware {
@@ -267,7 +267,7 @@ class SettingsV2ProductScreen(
                 .filter { it.id != product.thumbnail?.id }
                 .map {
                     toPictureWidget(it)
-                }
+                },
         )
 
         return Container(
@@ -278,12 +278,12 @@ class SettingsV2ProductScreen(
                 action = if (product.pictures.size < regulationEngine.maxPictures()) {
                     Action(
                         type = ActionType.Prompt,
-                        prompt = toUploadDialogWidget(product).toWidget()
+                        prompt = toUploadDialogWidget(product).toWidget(),
                     )
                 } else {
                     null
-                }
-            )
+                },
+            ),
         )
     }
 
@@ -296,10 +296,10 @@ class SettingsV2ProductScreen(
         action = gotoUrl(
             urlBuilder.build(
                 "${Page.getSettingsProductUrl()}/pictures?id=${picture.id}&url=" + encodeURLParam(
-                    picture.url
-                )
-            )
-        )
+                    picture.url,
+                ),
+            ),
+        ),
     )
 
     private fun toUploadDialogWidget(product: Product) = Dialog(
@@ -312,23 +312,24 @@ class SettingsV2ProductScreen(
                 imageMaxHeight = pictureMaxHeight,
                 action = gotoUrl(
                     url = urlBuilder.build("${Page.getSettingsProductUrl()}?id=${product.id}"),
-                    replacement = true
-                )
+                    replacement = true,
+                ),
             ),
             Button(
                 type = ButtonType.Text,
-                caption = getText("page.settings.catalog.product.button.cancel")
-            )
-        )
+                caption = getText("page.settings.catalog.product.button.cancel"),
+            ),
+        ),
     )
 
     private fun description(value: String?): String? =
-        if (value == null)
+        if (value == null) {
             null
-        else if (value.length < 160)
+        } else if (value.length < 160) {
             value
-        else
+        } else {
             value.substring(0, 160) + "..."
+        }
 
     @PostMapping("/upload")
     fun upload(@RequestParam id: Long, @RequestParam file: MultipartFile) {
@@ -336,11 +337,11 @@ class SettingsV2ProductScreen(
         val path = "products/$id/pictures/${UUID.randomUUID()}-${file.originalFilename}"
         val url = storageService.store(path, file.inputStream, contentType)
 
-        marketplaceManagerApi.addPicture(
-            request = AddPictureRequest(
+        marketplaceManagerApi.createPicture(
+            request = CreatePictureRequest(
                 productId = id,
-                url = url.toString()
-            )
+                url = url.toString(),
+            ),
         )
     }
 
@@ -349,7 +350,7 @@ class SettingsV2ProductScreen(
         marketplaceManagerApi.publishProduct(id)
         return gotoUrl(
             url = urlBuilder.build("${Page.getSettingsProductUrl()}?id=$id"),
-            replacement = true
+            replacement = true,
         )
     }
 
@@ -358,7 +359,7 @@ class SettingsV2ProductScreen(
         marketplaceManagerApi.unpublishProduct(id)
         return gotoUrl(
             url = urlBuilder.build("${Page.getSettingsProductUrl()}?id=$id"),
-            replacement = true
+            replacement = true,
         )
     }
 

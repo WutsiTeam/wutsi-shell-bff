@@ -37,7 +37,7 @@ class DeleteAccountScreen : AbstractSecuredEndpoint() {
                 elevation = 0.0,
                 title = getText("page.settings.delete-wallet.app-bar.title"),
                 foregroundColor = Theme.COLOR_BLACK,
-                backgroundColor = Theme.COLOR_WHITE
+                backgroundColor = Theme.COLOR_WHITE,
             ),
             child = SingleChildScrollView(
                 child = Column(
@@ -51,8 +51,8 @@ class DeleteAccountScreen : AbstractSecuredEndpoint() {
                                     child = Icon(
                                         code = Theme.ICON_CANCEL,
                                         color = Theme.COLOR_DANGER,
-                                        size = 32.0
-                                    )
+                                        size = 32.0,
+                                    ),
                                 ),
                                 Container(
                                     alignment = Alignment.CenterLeft,
@@ -60,18 +60,18 @@ class DeleteAccountScreen : AbstractSecuredEndpoint() {
                                         caption = getText("page.settings.delete-wallet.confirmation"),
                                         alignment = TextAlignment.Center,
                                         size = Theme.TEXT_SIZE_LARGE,
-                                        bold = true
-                                    )
-                                )
-                            )
+                                        bold = true,
+                                    ),
+                                ),
+                            ),
                         ),
                         Container(
                             padding = 10.0,
                             child = Container(
                                 alignment = Alignment.CenterLeft,
                                 padding = 10.0,
-                                child = Text(getText("page.settings.delete-wallet.sub-title"))
-                            )
+                                child = Text(getText("page.settings.delete-wallet.sub-title")),
+                            ),
                         ),
                         Container(
                             padding = 10.0,
@@ -82,13 +82,13 @@ class DeleteAccountScreen : AbstractSecuredEndpoint() {
                                     Container(
                                         alignment = Alignment.CenterLeft,
                                         padding = 10.0,
-                                        child = Text(getText("page.settings.delete-wallet.impact-$it"))
+                                        child = Text(getText("page.settings.delete-wallet.impact-$it")),
                                     )
-                                }
-                            )
+                                },
+                            ),
                         ),
                         Container(
-                            padding = 20.0
+                            padding = 20.0,
                         ),
                         Container(
                             padding = 10.0,
@@ -96,21 +96,21 @@ class DeleteAccountScreen : AbstractSecuredEndpoint() {
                                 caption = getText("page.settings.delete-wallet.button.delete"),
                                 action = Action(
                                     type = ActionType.Route,
-                                    url = urlBuilder.build(getConfirmationUrl(user))
-                                )
-                            )
+                                    url = urlBuilder.build(getConfirmationUrl(user)),
+                                ),
+                            ),
                         ),
                         Container(
                             padding = 10.0,
                             child = Button(
                                 type = ButtonType.Text,
                                 caption = getText("page.settings.delete-wallet.button.not-now"),
-                                action = gotoPreviousScreen()
-                            )
-                        )
-                    )
-                )
-            )
+                                action = gotoPreviousScreen(),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
         ).toWidget()
     }
 
@@ -123,7 +123,7 @@ class DeleteAccountScreen : AbstractSecuredEndpoint() {
                 title = getText("page.settings.delete-wallet.app-bar.title"),
                 foregroundColor = Theme.COLOR_BLACK,
                 backgroundColor = Theme.COLOR_WHITE,
-                automaticallyImplyLeading = false
+                automaticallyImplyLeading = false,
             ),
             child = SingleChildScrollView(
                 child = Column(
@@ -136,8 +136,8 @@ class DeleteAccountScreen : AbstractSecuredEndpoint() {
                             child = Icon(
                                 code = Theme.ICON_CHECK,
                                 color = Theme.COLOR_SUCCESS,
-                                size = 80.0
-                            )
+                                size = 80.0,
+                            ),
                         ),
                         Container(
                             alignment = Alignment.Center,
@@ -146,29 +146,29 @@ class DeleteAccountScreen : AbstractSecuredEndpoint() {
                                 alignment = TextAlignment.Center,
                                 size = Theme.TEXT_SIZE_LARGE,
                                 color = Theme.COLOR_PRIMARY,
-                                bold = true
-                            )
+                                bold = true,
+                            ),
                         ),
                         Container(
-                            padding = 20.0
+                            padding = 20.0,
                         ),
                         Container(
                             padding = 10.0,
                             child = Button(
                                 caption = getText("page.settings.delete-wallet.button.done"),
-                                action = gotoOnboard()
-                            )
-                        )
-                    )
-                )
-            )
+                                action = gotoOnboard(),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
         ).toWidget()
 
     @PostMapping("/submit")
     fun submit(): Action {
         membershipManagerApi.deactivateMember()
         return gotoUrl(
-            urlBuilder.build("${Page.getSecurityUrl()}/delete/done")
+            urlBuilder.build("${Page.getSecurityUrl()}/delete/done"),
         )
     }
 

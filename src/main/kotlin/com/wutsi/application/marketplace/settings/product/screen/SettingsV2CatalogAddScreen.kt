@@ -15,7 +15,7 @@ class SettingsV2CatalogAddScreen : AbstractEndpoint() {
         private val PAGE_URLS = listOf(
             "${com.wutsi.application.Page.getSettingsProductAddUrl()}/pages/picture",
             "${com.wutsi.application.Page.getSettingsProductAddUrl()}/pages/type",
-            "${com.wutsi.application.Page.getSettingsProductAddUrl()}/pages/editor"
+            "${com.wutsi.application.Page.getSettingsProductAddUrl()}/pages/editor",
         )
     }
 
@@ -27,7 +27,7 @@ class SettingsV2CatalogAddScreen : AbstractEndpoint() {
         child = PageView(
             children = PAGE_URLS.map {
                 Page(url = urlBuilder.build(it))
-            }
-        )
+            },
+        ),
     ).toWidget()
 }

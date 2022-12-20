@@ -36,7 +36,7 @@ class OrderWidget(
     private val productPictureUrls: List<String>,
     private val imageService: ImageService,
     private val country: Country,
-    private val action: Action? = null
+    private val action: Action? = null,
 ) : CompositeWidgetAware() {
     companion object {
         const val PRODUCT_PICTURE_SIZE = 48.0
@@ -51,7 +51,7 @@ class OrderWidget(
                 productPictureUrls = order.productPictureUrls,
                 country = country,
                 imageService = imageService,
-                action = action
+                action = action,
             )
 
         fun of(order: Order, country: Country, action: Action? = null, imageService: ImageService): OrderWidget =
@@ -64,7 +64,7 @@ class OrderWidget(
                 productPictureUrls = order.items.map { it.pictureUrl }.filterNotNull(),
                 country = country,
                 imageService = imageService,
-                action = action
+                action = action,
             )
     }
 
@@ -90,24 +90,24 @@ class OrderWidget(
                                     Text(
                                         getText("widget.order.order-id", arrayOf(orderId)),
                                         bold = true,
-                                        size = Theme.TEXT_SIZE_LARGE
+                                        size = Theme.TEXT_SIZE_LARGE,
                                     ),
                                     Container(padding = 5.0),
                                     Row(
                                         children = listOf(
                                             Icon(code = Theme.ICON_CALENDAR, size = 12.0),
                                             Container(padding = 5.0),
-                                            Text(dateFormat.format(created))
-                                        )
+                                            Text(dateFormat.format(created)),
+                                        ),
                                     ),
                                     Row(
                                         children = listOf(
                                             Icon(code = Theme.ICON_PERSON, size = 12.0),
                                             Container(padding = 5.0),
-                                            Text(StringUtil.capitalize(customerName))
-                                        )
-                                    )
-                                )
+                                            Text(StringUtil.capitalize(customerName)),
+                                        ),
+                                    ),
+                                ),
                             ),
                             Column(
                                 mainAxisAlignment = MainAxisAlignment.start,
@@ -116,7 +116,7 @@ class OrderWidget(
                                     Text(
                                         caption = moneyFormat.format(totalPrice),
                                         bold = true,
-                                        color = Theme.COLOR_PRIMARY
+                                        color = Theme.COLOR_PRIMARY,
                                     ),
                                     toStatusBadge(status),
                                     Container(padding = 5.0),
@@ -135,20 +135,20 @@ class OrderWidget(
                                                         Transformation(
                                                             dimension = Dimension(
                                                                 width = PRODUCT_PICTURE_SIZE.toInt(),
-                                                                height = PRODUCT_PICTURE_SIZE.toInt()
-                                                            )
-                                                        )
-                                                    )
-                                                )
+                                                                height = PRODUCT_PICTURE_SIZE.toInt(),
+                                                            ),
+                                                        ),
+                                                    ),
+                                                ),
                                             )
-                                        }
-                                    )
-                                )
-                            )
-                        )
-                    )
-                )
-            )
+                                        },
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
         )
     }
 
@@ -158,21 +158,21 @@ class OrderWidget(
                 color = Theme.COLOR_SUCCESS,
                 caption = getText("order.status.COMPLETED"),
                 size = Theme.TEXT_SIZE_SMALL,
-                bold = true
+                bold = true,
             )
         } else if (status == OrderStatus.CANCELLED) {
             Text(
                 color = Theme.COLOR_DANGER,
                 caption = getText("order.status.CANCELLED"),
                 size = Theme.TEXT_SIZE_SMALL,
-                bold = true
+                bold = true,
             )
         } else if (status == OrderStatus.IN_PROGRESS) {
             Text(
                 color = Theme.COLOR_WARNING,
                 caption = getText("order.status.IN_PROGRESS"),
                 size = Theme.TEXT_SIZE_SMALL,
-                bold = true
+                bold = true,
             )
         } else {
             null

@@ -22,7 +22,7 @@ internal class Business01DisplayNamePageTest : AbstractSecuredEndpointTest() {
     val port: Int = 0
 
     private val entity = BusinessEntity(
-        displayName = "Maison H"
+        displayName = "Maison H",
     )
 
     @BeforeEach
@@ -33,7 +33,7 @@ internal class Business01DisplayNamePageTest : AbstractSecuredEndpointTest() {
 
         val categories = listOf(
             Fixtures.createCategorySummary(1, "Art"),
-            Fixtures.createCategorySummary(2, "Bakery")
+            Fixtures.createCategorySummary(2, "Bakery"),
         )
         doReturn(SearchCategoryResponse(categories)).whenever(membershipManagerApi).searchCategory(any())
     }
@@ -60,8 +60,8 @@ internal class Business01DisplayNamePageTest : AbstractSecuredEndpointTest() {
         verify(cache).put(
             DEVICE_ID,
             BusinessEntity(
-                displayName = request.value
-            )
+                displayName = request.value,
+            ),
         )
     }
 }

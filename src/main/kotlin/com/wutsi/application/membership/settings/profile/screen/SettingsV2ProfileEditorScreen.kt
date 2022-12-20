@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/settings/2/profile/editor")
 class SettingsV2ProfileEditorScreen(
     private val editor: ProfileEditorWidgetProvider,
-    private val dao: EmailRepository
+    private val dao: EmailRepository,
 ) : AbstractSecuredEndpoint() {
     @PostMapping
     fun index(@RequestParam name: String): Widget {
@@ -42,7 +42,7 @@ class SettingsV2ProfileEditorScreen(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.settings.profile.attribute.$name")
+                title = getText("page.settings.profile.attribute.$name"),
             ),
             child = Form(
                 children = listOf(
@@ -50,15 +50,15 @@ class SettingsV2ProfileEditorScreen(
                         padding = 10.0,
                         alignment = Alignment.Center,
                         child = Text(
-                            getText("page.settings.profile.attribute.$name.description")
-                        )
+                            getText("page.settings.profile.attribute.$name.description"),
+                        ),
                     ),
                     Container(
-                        padding = 20.0
+                        padding = 20.0,
                     ),
                     Container(
                         padding = 10.0,
-                        child = editor.get(name, member)
+                        child = editor.get(name, member),
                     ),
                     Container(
                         padding = 10.0,
@@ -67,19 +67,19 @@ class SettingsV2ProfileEditorScreen(
                             type = InputType.Submit,
                             caption = getText("page.settings.profile.attribute.button.submit"),
                             action = executeCommand(
-                                urlBuilder.build("${Page.getSettingsUrl()}/profile/editor/submit?name=$name")
-                            )
-                        )
-                    )
-                )
-            )
+                                urlBuilder.build("${Page.getSettingsUrl()}/profile/editor/submit?name=$name"),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
         ).toWidget()
     }
 
     @PostMapping("/submit")
     fun submit(
         @RequestParam name: String,
-        @RequestBody request: SubmitProfileAttributeRequest
+        @RequestBody request: SubmitProfileAttributeRequest,
     ): Action {
         if (name == "email") {
             val member = getCurrentMember()
@@ -90,26 +90,26 @@ class SettingsV2ProfileEditorScreen(
             val token = securityManagerApi.createOtp(
                 request = CreateOTPRequest(
                     address = request.value,
-                    type = MessagingType.EMAIL.name
-                )
+                    type = MessagingType.EMAIL.name,
+                ),
             ).token
             dao.save(
                 EmailEntity(
                     value = request.value,
-                    token = token
-                )
+                    token = token,
+                ),
             )
 
             return gotoUrl(
                 url = urlBuilder.build("${Page.getSettingsUrl()}/profile/email/verification"),
-                replacement = true
+                replacement = true,
             )
         } else {
             membershipManagerApi.updateMemberAttribute(
                 request = UpdateMemberAttributeRequest(
                     name = name,
-                    value = request.value
-                )
+                    value = request.value,
+                ),
             )
 
             return gotoPreviousScreen()

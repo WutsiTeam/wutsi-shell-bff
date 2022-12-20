@@ -25,7 +25,7 @@ class Business02CategoryPage : AbstractBusinessAttributePage() {
 
     override fun getBody() = Container(
         padding = 10.0,
-        child = widgetProvider.get(getAttribute(), dao.get().categoryId)
+        child = widgetProvider.get(getAttribute(), dao.get().categoryId),
     )
 
     override fun getButton() = Input(
@@ -33,8 +33,8 @@ class Business02CategoryPage : AbstractBusinessAttributePage() {
         type = InputType.Submit,
         caption = getText("page.settings.business.button.next"),
         action = executeCommand(
-            url = urlBuilder.build("${Page.getSettingsBusinessUrl()}/pages/category/submit")
-        )
+            url = urlBuilder.build("${Page.getSettingsBusinessUrl()}/pages/category/submit"),
+        ),
     )
 
     @PostMapping("/submit")

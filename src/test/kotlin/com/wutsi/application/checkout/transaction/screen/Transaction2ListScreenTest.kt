@@ -23,19 +23,19 @@ internal class Transaction2ListScreenTest : AbstractSecuredEndpointTest() {
             "100",
             type = TransactionType.CHARGE,
             status = Status.SUCCESSFUL,
-            orderId = "1111"
+            orderId = "1111",
         ),
         Fixtures.createTransactionSummary(
             "200",
             type = TransactionType.CHARGE,
             status = Status.SUCCESSFUL,
-            orderId = "2222"
+            orderId = "2222",
         ),
         Fixtures.createTransactionSummary(
             "300",
             type = TransactionType.CASHOUT,
-            status = Status.FAILED
-        )
+            status = Status.FAILED,
+        ),
     )
 
     private fun url() = "http://localhost:$port${Page.getTransactionListUrl()}"

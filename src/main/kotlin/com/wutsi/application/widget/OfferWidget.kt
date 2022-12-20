@@ -40,7 +40,7 @@ class OfferWidget(
     private val imageService: ImageService,
     private val eventStartDate: String? = null,
     private val eventMeetingProviderLogoUrl: String? = null,
-    private val eventMeetingProviderName: String? = null
+    private val eventMeetingProviderName: String? = null,
 ) : CompositeWidgetAware() {
     companion object {
         private const val PICTURE_HEIGHT = 150.0
@@ -52,7 +52,7 @@ class OfferWidget(
             country: Country,
             action: Action,
             imageService: ImageService,
-            timezoneId: String?
+            timezoneId: String?,
         ) = OfferWidget(
             title = product.title,
             price = product.price,
@@ -76,7 +76,7 @@ class OfferWidget(
                 product.event?.meetingProvider?.name
             } else {
                 null
-            }
+            },
         )
 
         fun of(
@@ -84,7 +84,7 @@ class OfferWidget(
             country: Country,
             action: Action,
             imageService: ImageService,
-            timezoneId: String?
+            timezoneId: String?,
         ) = OfferWidget(
             title = product.title,
             price = product.price,
@@ -108,7 +108,7 @@ class OfferWidget(
                 product.event?.meetingProvider?.name
             } else {
                 null
-            }
+            },
         )
 
         private fun convert(date: OffsetDateTime, timezoneId: String?): OffsetDateTime =
@@ -128,9 +128,9 @@ class OfferWidget(
                 crossAxisAlignment = CrossAxisAlignment.start,
                 children = listOfNotNull(
                     toThumbnailWidget(),
-                    toInfoWidget()
-                )
-            )
+                    toInfoWidget(),
+                ),
+            ),
         )
 
     private fun toThumbnailWidget(): WidgetAware? =
@@ -143,10 +143,10 @@ class OfferWidget(
                         alignment = Alignment.Center,
                         child = Image(
                             url = resize(it),
-                            fit = BoxFit.fitHeight
-                        )
-                    )
-                )
+                            fit = BoxFit.fitHeight,
+                        ),
+                    ),
+                ),
             )
         }
 
@@ -159,7 +159,7 @@ class OfferWidget(
                 caption = StringUtil.capitalizeFirstLetter(title),
                 overflow = TextOverflow.Elipsis,
                 maxLines = 2,
-                bold = true
+                bold = true,
             ),
             eventStartDate?.let {
                 Container(padding = 5.0)
@@ -171,11 +171,11 @@ class OfferWidget(
                     children = listOf(
                         Icon(
                             size = 16.0,
-                            code = Theme.ICON_CALENDAR
+                            code = Theme.ICON_CALENDAR,
                         ),
                         Container(padding = 2.0),
-                        Text(it)
-                    )
+                        Text(it),
+                    ),
                 )
             },
 
@@ -191,7 +191,7 @@ class OfferWidget(
                             Image(
                                 width = 16.0,
                                 height = 16.0,
-                                url = eventMeetingProviderLogoUrl
+                                url = eventMeetingProviderLogoUrl,
                             )
                         } else {
                             null
@@ -201,15 +201,15 @@ class OfferWidget(
                         } else {
                             null
                         },
-                        Text(it)
-                    )
+                        Text(it),
+                    ),
                 )
             },
             Container(padding = 5.0),
             price?.let {
                 toPriceWidget(it)
-            }
-        )
+            },
+        ),
     )
 
     private fun toPriceWidget(price: Long): WidgetAware =
@@ -219,7 +219,7 @@ class OfferWidget(
             currency = country.currencySymbol,
             numberFormat = country.monetaryFormat,
             valueFontSize = Theme.TEXT_SIZE_DEFAULT,
-            currencyFontSize = Theme.TEXT_SIZE_SMALL
+            currencyFontSize = Theme.TEXT_SIZE_SMALL,
         )
 
     private fun resize(url: String): String =
@@ -230,8 +230,8 @@ class OfferWidget(
                 dimension = Dimension(height = PICTURE_HEIGHT.toInt()),
                 aspectRatio = com.wutsi.platform.core.image.AspectRatio(
                     width = PICTURE_ASPECT_RATIO_WIDTH.toInt(),
-                    height = PICTURE_ASPECT_RATIO_HEIGHT.toInt()
-                )
-            )
+                    height = PICTURE_ASPECT_RATIO_HEIGHT.toInt(),
+                ),
+            ),
         )
 }

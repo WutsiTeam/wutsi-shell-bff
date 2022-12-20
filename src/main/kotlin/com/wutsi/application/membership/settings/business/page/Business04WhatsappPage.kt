@@ -25,7 +25,7 @@ class Business04WhatsappPage : AbstractBusinessAttributePage() {
 
     override fun getBody() = Container(
         padding = 10.0,
-        child = widgetProvider.get(getAttribute(), dao.get().whatsapp)
+        child = widgetProvider.get(getAttribute(), dao.get().whatsapp),
     )
 
     override fun getButton() = Input(
@@ -33,8 +33,8 @@ class Business04WhatsappPage : AbstractBusinessAttributePage() {
         type = InputType.Submit,
         caption = getText("page.settings.business.button.next"),
         action = executeCommand(
-            url = urlBuilder.build("${Page.getSettingsBusinessUrl()}/pages/whatsapp/submit")
-        )
+            url = urlBuilder.build("${Page.getSettingsBusinessUrl()}/pages/whatsapp/submit"),
+        ),
     )
 
     @PostMapping("/submit")

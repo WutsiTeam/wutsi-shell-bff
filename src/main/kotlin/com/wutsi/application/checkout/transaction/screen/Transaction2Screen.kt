@@ -38,12 +38,12 @@ import java.time.format.DateTimeFormatter
 class Transaction2Screen(
     private val checkoutManagerApi: CheckoutManagerApi,
     private val regulationEngine: RegulationEngine,
-    private val imageService: ImageService
+    private val imageService: ImageService,
 ) : AbstractSecuredEndpoint() {
     @PostMapping
     fun index(
         @RequestParam id: String,
-        @RequestParam(name = "hide-order", required = false) hideOrder: Boolean? = null
+        @RequestParam(name = "hide-order", required = false) hideOrder: Boolean? = null,
     ): Widget {
         val member = membershipManagerApi.getMember(SecurityUtil.getMemberId()).member
         val country = regulationEngine.country(member.country)
@@ -62,7 +62,7 @@ class Transaction2Screen(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.transaction.app-bar.title", arrayOf(tx.id.uppercase().takeLast(4)))
+                title = getText("page.transaction.app-bar.title", arrayOf(tx.id.uppercase().takeLast(4))),
             ),
             bottomNavigationBar = createBottomNavigationBarWidget(member),
             child = SingleChildScrollView(
@@ -73,7 +73,7 @@ class Transaction2Screen(
 
                         toRowWidget(
                             "page.transaction.date",
-                            DateTimeUtil.convert(tx.created, member.timezoneId).format(dateFormat)
+                            DateTimeUtil.convert(tx.created, member.timezoneId).format(dateFormat),
                         ),
                         Divider(color = Theme.COLOR_DIVIDER),
 
@@ -92,9 +92,9 @@ class Transaction2Screen(
                                 leading = Image(
                                     width = 48.0,
                                     height = 48.0,
-                                    url = tx.paymentMethod.provider.logoUrl
-                                )
-                            )
+                                    url = tx.paymentMethod.provider.logoUrl,
+                                ),
+                            ),
                         ),
                         Divider(color = Theme.COLOR_DIVIDER),
 
@@ -107,7 +107,7 @@ class Transaction2Screen(
                                 Status.PENDING.name -> Theme.COLOR_WARNING
                                 Status.SUCCESSFUL.name -> Theme.COLOR_SUCCESS
                                 else -> null
-                            }
+                            },
                         ),
                         Divider(color = Theme.COLOR_DIVIDER),
 
@@ -119,11 +119,11 @@ class Transaction2Screen(
                                         Text(
                                             caption = tx.errorCode ?: "",
                                             size = Theme.TEXT_SIZE_SMALL,
-                                            maxLines = 5
-                                        )
+                                            maxLines = 5,
+                                        ),
                                     ),
-                                    Divider(color = Theme.COLOR_DIVIDER)
-                                )
+                                    Divider(color = Theme.COLOR_DIVIDER),
+                                ),
                             )
                         } else {
                             null
@@ -147,17 +147,17 @@ class Transaction2Screen(
                                     imageService = imageService,
                                     action = gotoUrl(
                                         url = urlBuilder.build(Page.getOrderUrl()),
-                                        parameters = mapOf("id" to it.id)
-                                    )
-                                )
+                                        parameters = mapOf("id" to it.id),
+                                    ),
+                                ),
                             )
                         },
                         order?.let {
                             Divider(color = Theme.COLOR_DIVIDER)
-                        }
-                    )
-                )
-            )
+                        },
+                    ),
+                ),
+            ),
         ).toWidget()
     }
 
@@ -170,9 +170,9 @@ class Transaction2Screen(
                     value ?: "",
                     alignment = TextAlignment.Left,
                     color = color,
-                    bold = bold
-                )
-            )
+                    bold = bold,
+                ),
+            ),
         )
 
     private fun toRowWidget(key: String, value: WidgetAware): WidgetAware =
@@ -185,14 +185,14 @@ class Transaction2Screen(
                         child = Text(
                             getText(key),
                             bold = true,
-                            alignment = TextAlignment.Right
-                        )
-                    )
+                            alignment = TextAlignment.Right,
+                        ),
+                    ),
                 ),
                 Flexible(
                     flex = 10,
-                    child = value
-                )
-            )
+                    child = value,
+                ),
+            ),
         )
 }

@@ -29,11 +29,11 @@ internal class Onboard05ReviewPageTest : AbstractEndpointTest() {
         country = "CM",
         language = "fr",
         displayName = "Ray Sponsible",
-        pin = "123456"
+        pin = "123456",
     )
 
     private val request = SubmitPinRequest(
-        pin = entity.pin
+        pin = entity.pin,
     )
 
     private fun url(action: String = "") = "http://localhost:$port/onboard/pages/review$action"
@@ -67,8 +67,8 @@ internal class Onboard05ReviewPageTest : AbstractEndpointTest() {
                 phoneNumber = entity.phoneNumber,
                 displayName = entity.displayName,
                 country = entity.country,
-                pin = entity.pin
-            )
+                pin = entity.pin,
+            ),
         )
 
         verify(cache, never()).put(any(), any())

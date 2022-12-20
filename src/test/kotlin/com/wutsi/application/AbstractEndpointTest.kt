@@ -96,7 +96,7 @@ abstract class AbstractEndpointTest {
     protected fun createConflictException(
         errorCode: String,
         downstreamError: ErrorCode? = null,
-        data: Map<String, Any> = emptyMap()
+        data: Map<String, Any> = emptyMap(),
     ) = FeignException.Conflict(
         "",
         Request.create(
@@ -105,7 +105,7 @@ abstract class AbstractEndpointTest {
             emptyMap(),
             "".toByteArray(),
             Charset.defaultCharset(),
-            RequestTemplate()
+            RequestTemplate(),
         ),
         """
             {
@@ -116,13 +116,13 @@ abstract class AbstractEndpointTest {
                 }
             }
         """.trimIndent().toByteArray(),
-        emptyMap()
+        emptyMap(),
     )
 
     protected fun createNotFoundException(
         errorCode: String,
         downstreamError: ErrorCode? = null,
-        data: Map<String, Any> = emptyMap()
+        data: Map<String, Any> = emptyMap(),
     ) = FeignException.NotFound(
         "",
         Request.create(
@@ -131,7 +131,7 @@ abstract class AbstractEndpointTest {
             emptyMap(),
             "".toByteArray(),
             Charset.defaultCharset(),
-            RequestTemplate()
+            RequestTemplate(),
         ),
         """
             {
@@ -142,7 +142,7 @@ abstract class AbstractEndpointTest {
                 }
             }
         """.trimIndent().toByteArray(),
-        emptyMap()
+        emptyMap(),
     )
 
     private fun toJsonString(data: Map<String, Any>): String =
@@ -171,7 +171,7 @@ abstract class AbstractEndpointTest {
             url,
             HttpMethod.POST,
             requestEntity,
-            Any::class.java
+            Any::class.java,
         )
     }
 }

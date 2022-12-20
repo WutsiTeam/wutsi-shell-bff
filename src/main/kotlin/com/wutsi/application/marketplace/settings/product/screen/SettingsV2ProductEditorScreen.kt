@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/settings/2/products/editor")
 class SettingsV2ProductEditorScreen(
     private val marketplaceManagerApi: MarketplaceManagerApi,
-    private val widgetProvider: ProductEditorWidgetProvider
+    private val widgetProvider: ProductEditorWidgetProvider,
 ) : AbstractEndpoint() {
     @PostMapping
     fun index(@RequestParam id: Long, @RequestParam name: String): Widget {
@@ -40,21 +40,21 @@ class SettingsV2ProductEditorScreen(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.settings.catalog.product.attribute.$name")
+                title = getText("page.settings.catalog.product.attribute.$name"),
             ),
             child = Form(
                 children = listOfNotNull(
                     Container(
                         alignment = Alignment.Center,
                         padding = 10.0,
-                        child = Text(getText("page.settings.catalog.product.attribute.$name.description"))
+                        child = Text(getText("page.settings.catalog.product.attribute.$name.description")),
                     ),
                     Container(
-                        padding = 20.0
+                        padding = 20.0,
                     ),
                     Container(
                         padding = 10.0,
-                        child = widgetProvider.get(name, product)
+                        child = widgetProvider.get(name, product),
                     ),
                     Container(
                         padding = 10.0,
@@ -66,13 +66,13 @@ class SettingsV2ProductEditorScreen(
                                 url = urlBuilder.build("${Page.getSettingsProductEditorUrl()}/submit"),
                                 parameters = mapOf(
                                     "id" to id.toString(),
-                                    "name" to name
-                                )
-                            )
-                        )
-                    )
-                )
-            )
+                                    "name" to name,
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
         ).toWidget()
     }
 
@@ -80,7 +80,7 @@ class SettingsV2ProductEditorScreen(
     fun submit(
         @RequestParam id: Long,
         @RequestParam name: String,
-        @RequestBody request: SubmitProductAttributeRequest
+        @RequestBody request: SubmitProductAttributeRequest,
     ): Action {
         marketplaceManagerApi.updateProductAttribute(
             request = UpdateProductAttributeListRequest(
@@ -88,10 +88,10 @@ class SettingsV2ProductEditorScreen(
                 attributes = listOf(
                     ProductAttribute(
                         name = name,
-                        value = request.value
-                    )
-                )
-            )
+                        value = request.value,
+                    ),
+                ),
+            ),
         )
 
         return gotoPreviousScreen()

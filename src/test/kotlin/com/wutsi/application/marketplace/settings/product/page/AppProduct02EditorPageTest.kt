@@ -23,7 +23,7 @@ internal class AppProduct02EditorPageTest : AbstractSecuredEndpointTest() {
 
     private val entity = PictureEntity(
         url = "http://www.google.ca/1.png",
-        type = ProductType.EVENT
+        type = ProductType.EVENT,
     )
 
     private fun url(action: String = "") =
@@ -46,7 +46,7 @@ internal class AppProduct02EditorPageTest : AbstractSecuredEndpointTest() {
             title = "Yo man",
             summary = "This looks awesome",
             price = 15000,
-            quantity = "10"
+            quantity = "10",
         )
         val response = rest.postForEntity(url("/submit"), request, Action::class.java)
 
@@ -58,8 +58,8 @@ internal class AppProduct02EditorPageTest : AbstractSecuredEndpointTest() {
                 price = request.price,
                 quantity = request.quantity.toInt(),
                 summary = request.summary,
-                type = entity.type.name
-            )
+                type = entity.type.name,
+            ),
         )
 
         val action = response.body!!

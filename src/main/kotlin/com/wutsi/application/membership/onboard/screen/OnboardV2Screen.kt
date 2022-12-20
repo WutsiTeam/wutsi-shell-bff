@@ -19,7 +19,7 @@ class OnboardV2Screen : AbstractEndpoint() {
             "onboard/pages/pin",
             "onboard/pages/confirm-pin",
             "onboard/pages/review",
-            "onboard/pages/success"
+            "onboard/pages/success",
         )
     }
 
@@ -31,7 +31,7 @@ class OnboardV2Screen : AbstractEndpoint() {
         child = PageView(
             children = PAGE_URLS.map {
                 Page(url = urlBuilder.build(it))
-            }
-        )
+            },
+        ),
     ).toWidget()
 }

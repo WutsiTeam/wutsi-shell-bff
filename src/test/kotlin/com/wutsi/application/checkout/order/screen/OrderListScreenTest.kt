@@ -35,7 +35,7 @@ internal class OrderListScreenTest : AbstractSecuredEndpointTest() {
             Fixtures.createOrderSummary("111", 1000, OrderStatus.OPENED),
             Fixtures.createOrderSummary("200", 0, OrderStatus.OPENED),
             Fixtures.createOrderSummary("300", 1000, OrderStatus.CANCELLED),
-            Fixtures.createOrderSummary("400", 1500, OrderStatus.COMPLETED)
+            Fixtures.createOrderSummary("400", 1500, OrderStatus.COMPLETED),
         )
         doReturn(SearchOrderResponse(orders)).whenever(checkoutManagerApi).searchOrder(any())
     }

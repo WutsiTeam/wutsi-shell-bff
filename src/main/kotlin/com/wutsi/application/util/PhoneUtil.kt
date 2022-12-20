@@ -5,18 +5,21 @@ import java.net.URLEncoder
 
 object PhoneUtil {
     fun toWhatsAppUrl(phoneNumber: String?, text: String? = null, url: String? = null): String? {
-        if (phoneNumber.isNullOrEmpty())
+        if (phoneNumber.isNullOrEmpty()) {
             return null
+        }
 
-        val normalized = if (phoneNumber.startsWith("+"))
+        val normalized = if (phoneNumber.startsWith("+")) {
             phoneNumber.substring(1)
-        else
+        } else {
             phoneNumber
+        }
 
-        val query = if (text.isNullOrEmpty())
+        val query = if (text.isNullOrEmpty()) {
             ""
-        else
+        } else {
             "?text=" + URLEncoder.encode(toWhatsAppText(text, url), Charsets.UTF_8)
+        }
         return "https://wa.me/$normalized$query"
     }
 
@@ -34,15 +37,17 @@ object PhoneUtil {
 
     fun sanitize(phoneNumber: String): String {
         val tmp = phoneNumber.trim()
-        return if (tmp.startsWith("+"))
+        return if (tmp.startsWith("+")) {
             tmp
-        else
+        } else {
             "+$tmp"
+        }
     }
 
     fun format(phoneNumber: String?, country: String? = null): String? {
-        if (phoneNumber == null)
+        if (phoneNumber == null) {
             return null
+        }
 
         val phoneNumberUtil = PhoneNumberUtil.getInstance()
         val number = phoneNumberUtil.parse(phoneNumber, country ?: "")

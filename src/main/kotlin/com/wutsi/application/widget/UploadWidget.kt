@@ -14,7 +14,7 @@ class UploadWidget(
     private val uploadUrl: String,
     private val action: Action? = null,
     private val imageMaxWidth: Int? = null,
-    private val imageMaxHeight: Int? = null
+    private val imageMaxHeight: Int? = null,
 ) : CompositeWidgetAware() {
     override fun toWidgetAware(): WidgetAware =
         Column(
@@ -30,8 +30,8 @@ class UploadWidget(
                         caption = getText("widget.upload.camera"),
                         imageMaxWidth = imageMaxWidth,
                         imageMaxHeight = imageMaxHeight,
-                        action = action
-                    )
+                        action = action,
+                    ),
                 ),
                 Container(padding = 10.0),
                 Container(
@@ -45,10 +45,10 @@ class UploadWidget(
                         caption = getText("widget.upload.gallery"),
                         imageMaxWidth = imageMaxWidth,
                         imageMaxHeight = imageMaxHeight,
-                        action = action
-                    )
-                )
-            )
+                        action = action,
+                    ),
+                ),
+            ),
         )
 
     private fun getText(key: String, args: Array<Any> = emptyArray()): String =

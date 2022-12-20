@@ -40,7 +40,7 @@ abstract class AbstractPageEndpoint : AbstractEndpoint() {
                                 IconButton(
                                     icon = Theme.ICON_ARROW_BACK,
                                     color = Theme.COLOR_BLACK,
-                                    action = gotoPreviousPage()
+                                    action = gotoPreviousPage(),
                                 )
                             } else {
                                 null
@@ -48,9 +48,9 @@ abstract class AbstractPageEndpoint : AbstractEndpoint() {
                             IconButton(
                                 icon = Theme.ICON_CANCEL,
                                 color = Theme.COLOR_BLACK,
-                                action = gotoPreviousScreen()
-                            )
-                        )
+                                action = gotoPreviousScreen(),
+                            ),
+                        ),
                     )
                 } else {
                     Container(padding = 20.0)
@@ -59,7 +59,7 @@ abstract class AbstractPageEndpoint : AbstractEndpoint() {
                     Container(
                         alignment = Alignment.Center,
                         padding = 20.0,
-                        child = it
+                        child = it,
                     )
                 },
                 getTitle()?.let {
@@ -71,8 +71,8 @@ abstract class AbstractPageEndpoint : AbstractEndpoint() {
                             alignment = TextAlignment.Center,
                             size = Theme.TEXT_SIZE_LARGE,
                             color = Theme.COLOR_PRIMARY,
-                            bold = true
-                        )
+                            bold = true,
+                        ),
                     )
                 },
                 getSubTitle()?.let {
@@ -81,8 +81,8 @@ abstract class AbstractPageEndpoint : AbstractEndpoint() {
                         padding = 10.0,
                         child = Text(
                             caption = it,
-                            alignment = TextAlignment.Center
-                        )
+                            alignment = TextAlignment.Center,
+                        ),
                     )
                 },
 
@@ -93,10 +93,10 @@ abstract class AbstractPageEndpoint : AbstractEndpoint() {
                 button?.let {
                     Container(
                         padding = 10.0,
-                        child = it
+                        child = it,
                     )
-                }
-            )
+                },
+            ),
         ).toWidget()
     }
 

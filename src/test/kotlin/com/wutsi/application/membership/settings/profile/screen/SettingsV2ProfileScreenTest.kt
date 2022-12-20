@@ -48,8 +48,8 @@ internal class SettingsV2ProfileScreenTest : AbstractSecuredEndpointTest() {
         verify(membershipManagerApi).updateMemberAttribute(
             request = UpdateMemberAttributeRequest(
                 name = "whatsapp",
-                value = request.value
-            )
+                value = request.value,
+            ),
         )
     }
 }

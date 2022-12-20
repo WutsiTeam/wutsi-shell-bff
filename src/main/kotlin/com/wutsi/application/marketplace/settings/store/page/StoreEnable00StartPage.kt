@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/settings/2/store/activate/pages/start")
 class StoreEnable00StartPage(
-    private val marketplaceManagerApi: MarketplaceManagerApi
+    private val marketplaceManagerApi: MarketplaceManagerApi,
 ) : AbstractPageEndpoint() {
     companion object {
         const val PAGE_INDEX = 0
@@ -38,19 +38,19 @@ class StoreEnable00StartPage(
                         caption = getText("page.settings.store.activate.button.yes"),
                         action = Action(
                             type = ActionType.Command,
-                            url = urlBuilder.build("${Page.getSettingsStoreActivateUrl()}/pages/start/submit")
-                        )
-                    )
+                            url = urlBuilder.build("${Page.getSettingsStoreActivateUrl()}/pages/start/submit"),
+                        ),
+                    ),
                 ),
                 Container(
                     padding = 10.0,
                     child = Button(
                         type = ButtonType.Text,
                         caption = getText("page.settings.store.activate.button.no"),
-                        action = gotoPreviousScreen()
-                    )
-                )
-            )
+                        action = gotoPreviousScreen(),
+                    ),
+                ),
+            ),
         )
 
     override fun getButton(): WidgetAware? = null

@@ -27,7 +27,7 @@ internal class ProfileV2ScreenTest : AbstractSecuredEndpointTest() {
 
         val products = listOf(
             Fixtures.createProductSummary(1L, title = "Product1", price = 10000),
-            Fixtures.createProductSummary(2L, title = "Product2", price = 11000)
+            Fixtures.createProductSummary(2L, title = "Product2", price = 11000),
         )
         doReturn(SearchProductResponse(products)).whenever(marketplaceManagerApi).searchProduct(any())
 

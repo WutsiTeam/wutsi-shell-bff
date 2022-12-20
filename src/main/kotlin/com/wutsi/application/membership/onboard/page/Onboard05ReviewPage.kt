@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/onboard/pages/review")
 class Onboard05ReviewPage(
-    private val membershipManagerApi: MembershipManagerApi
+    private val membershipManagerApi: MembershipManagerApi,
 ) : AbstractOnboardPage() {
     companion object {
         const val PAGE_INDEX = 5
@@ -46,9 +46,9 @@ class Onboard05ReviewPage(
                         IconButton(
                             icon = Theme.ICON_ARROW_BACK,
                             color = Theme.COLOR_BLACK,
-                            action = gotoPage(PAGE_INDEX - 1)
-                        )
-                    )
+                            action = gotoPage(PAGE_INDEX - 1),
+                        ),
+                    ),
                 ),
                 Container(
                     alignment = Center,
@@ -61,8 +61,8 @@ class Onboard05ReviewPage(
                                 child = Image(
                                     url = getLogoUrl(),
                                     width = 128.0,
-                                    height = 128.0
-                                )
+                                    height = 128.0,
+                                ),
                             ),
                             Container(
                                 alignment = TopCenter,
@@ -71,32 +71,32 @@ class Onboard05ReviewPage(
                                     alignment = TextAlignment.Center,
                                     size = Theme.TEXT_SIZE_LARGE,
                                     color = Theme.COLOR_PRIMARY,
-                                    bold = true
-                                )
+                                    bold = true,
+                                ),
                             ),
                             Container(
                                 alignment = TopCenter,
                                 child = Text(
                                     caption = formattedPhoneNumber(data.phoneNumber, data.country) ?: "",
                                     alignment = TextAlignment.Center,
-                                    size = Theme.TEXT_SIZE_LARGE
-                                )
+                                    size = Theme.TEXT_SIZE_LARGE,
+                                ),
                             ),
                             Container(
-                                padding = 20.0
+                                padding = 20.0,
                             ),
                             Button(
                                 id = "create-wallet",
                                 caption = getText("page.final.field.submit.caption"),
                                 action = Action(
                                     type = Command,
-                                    url = urlBuilder.build("/onboard/pages/review/submit")
-                                )
-                            )
-                        )
-                    )
-                )
-            )
+                                    url = urlBuilder.build("/onboard/pages/review/submit"),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
         ).toWidget()
     }
 
@@ -109,8 +109,8 @@ class Onboard05ReviewPage(
                     phoneNumber = data.phoneNumber,
                     displayName = data.displayName,
                     country = data.country,
-                    pin = data.pin
-                )
+                    pin = data.pin,
+                ),
             )
         } catch (ex: FeignException) {
             val response = objectMapper.readValue(ex.contentUTF8(), ErrorResponse::class.java)

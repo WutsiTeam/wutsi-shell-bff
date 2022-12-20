@@ -28,7 +28,7 @@ class AddMobile01VerificationPage(
     private val dao: AccountRepository,
     private val countryDetector: CountryDetector,
     private val checkoutManagerApi: CheckoutManagerApi,
-    private val securityManager: SecurityManagerApi
+    private val securityManager: SecurityManagerApi,
 ) : AbstractPageEndpoint() {
     companion object {
         const val PAGE_INDEX = 1
@@ -40,7 +40,7 @@ class AddMobile01VerificationPage(
 
     override fun getSubTitle(): String? = getText(
         "page.settings.account.add.mobile.verification.sub-title",
-        arrayOf(PhoneUtil.format(dao.get().number))
+        arrayOf(PhoneUtil.format(dao.get().number)),
     )
 
     override fun getBody() = Container(
@@ -51,17 +51,17 @@ class AddMobile01VerificationPage(
             pinSize = 20.0,
             keyboardButtonSize = 70.0,
             action = executeCommand(
-                url = urlBuilder.build("${Page.getSettingsAccountUrl()}/add/mobile/pages/verification/submit")
-            )
-        )
+                url = urlBuilder.build("${Page.getSettingsAccountUrl()}/add/mobile/pages/verification/submit"),
+            ),
+        ),
     )
 
     override fun getButton() = Button(
         caption = getText("page.settings.account.add.mobile.button.resend"),
         type = ButtonType.Text,
         action = executeCommand(
-            url = urlBuilder.build("${Page.getSettingsAccountUrl()}/add/mobile/pages/verification/resend")
-        )
+            url = urlBuilder.build("${Page.getSettingsAccountUrl()}/add/mobile/pages/verification/resend"),
+        ),
     )
 
     @PostMapping("/submit")
@@ -71,8 +71,8 @@ class AddMobile01VerificationPage(
         securityManager.verifyOtp(
             token = account.otpToken,
             request = VerifyOTPRequest(
-                code = request.code
-            )
+                code = request.code,
+            ),
         )
 
         // Save
@@ -82,8 +82,8 @@ class AddMobile01VerificationPage(
                 type = account.type,
                 ownerName = account.ownerName,
                 number = account.number,
-                country = countryDetector.detect(account.number)
-            )
+                country = countryDetector.detect(account.number),
+            ),
         )
         return gotoNextPage()
     }
@@ -94,16 +94,16 @@ class AddMobile01VerificationPage(
         account.otpToken = securityManager.createOtp(
             request = CreateOTPRequest(
                 address = account.number,
-                type = PaymentMethodType.MOBILE_MONEY.name
-            )
+                type = PaymentMethodType.MOBILE_MONEY.name,
+            ),
         ).token
         dao.save(account)
 
         return promptInfo(
             getText(
                 key = "page.settings.account.add.mobile.verification.resent",
-                args = arrayOf(PhoneUtil.format(account.number))
-            )
+                args = arrayOf(PhoneUtil.format(account.number)),
+            ),
         )
     }
 }

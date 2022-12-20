@@ -8,5 +8,5 @@ data class SubmitPinRequest(
     @NotEmpty
     @Min(6)
     @Max(6)
-    val pin: String = ""
+    val pin: String = "",
 )

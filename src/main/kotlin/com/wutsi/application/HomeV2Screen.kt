@@ -36,7 +36,7 @@ class HomeV2Screen(
     private val onboard: OnboardV2Screen,
     private val checkoutManagerApi: CheckoutManagerApi,
     private val regulationEngine: RegulationEngine,
-    private val imageService: ImageService
+    private val imageService: ImageService,
 ) : AbstractSecuredEndpoint() {
     companion object {
         private val LOGGER = LoggerFactory.getLogger(HomeV2Screen::class.java)
@@ -57,12 +57,12 @@ class HomeV2Screen(
                             icon = Theme.ICON_SETTINGS,
                             action = Action(
                                 type = ActionType.Route,
-                                url = urlBuilder.build(Page.getSettingsUrl())
-                            )
-                        )
+                                url = urlBuilder.build(Page.getSettingsUrl()),
+                            ),
+                        ),
                     ),
                     automaticallyImplyLeading = false,
-                    title = member.displayName
+                    title = member.displayName,
                 ),
                 bottomNavigationBar = createBottomNavigationBarWidget(member),
                 backgroundColor = Theme.COLOR_GRAY_LIGHT,
@@ -71,10 +71,10 @@ class HomeV2Screen(
                         mainAxisAlignment = MainAxisAlignment.start,
                         crossAxisAlignment = CrossAxisAlignment.start,
                         children = listOfNotNull(
-                            getRecentOrdersWidget(member)
-                        )
-                    )
-                )
+                            getRecentOrdersWidget(member),
+                        ),
+                    ),
+                ),
             ).toWidget()
         } catch (ex: FeignException.NotFound) {
             LOGGER.warn("Unable to resolve current member", ex)
@@ -94,10 +94,10 @@ class HomeV2Screen(
                 request = SearchOrderRequest(
                     businessId = member.businessId,
                     status = listOf(
-                        OrderStatus.OPENED.name
+                        OrderStatus.OPENED.name,
                     ),
-                    limit = 3
-                )
+                    limit = 3,
+                ),
             ).orders
             if (orders.isEmpty()) {
                 return null
@@ -110,9 +110,9 @@ class HomeV2Screen(
                     child = Text(
                         caption = getText("page.home.recent-orders"),
                         size = Theme.TEXT_SIZE_LARGE,
-                        bold = true
-                    )
-                )
+                        bold = true,
+                    ),
+                ),
             )
             children.add(Divider(height = 1.0, color = Theme.COLOR_DIVIDER))
 
@@ -126,13 +126,13 @@ class HomeV2Screen(
                             action = gotoUrl(
                                 url = urlBuilder.build(Page.getOrderUrl()),
                                 parameters = mapOf(
-                                    "id" to it.id
-                                )
-                            )
+                                    "id" to it.id,
+                                ),
+                            ),
                         ),
-                        Divider(height = 1.0, color = Theme.COLOR_DIVIDER)
+                        Divider(height = 1.0, color = Theme.COLOR_DIVIDER),
                     )
-                }
+                },
             )
             children.add(
                 Container(
@@ -140,10 +140,10 @@ class HomeV2Screen(
                     child = Text(
                         caption = getText("page.home.recent-orders.more"),
                         color = Theme.COLOR_PRIMARY,
-                        decoration = TextDecoration.Underline
+                        decoration = TextDecoration.Underline,
                     ),
-                    action = gotoUrl(urlBuilder.build(Page.getOrderListUrl()))
-                )
+                    action = gotoUrl(urlBuilder.build(Page.getOrderListUrl())),
+                ),
             )
 
             return Container(
@@ -155,8 +155,8 @@ class HomeV2Screen(
                 child = Column(
                     mainAxisAlignment = MainAxisAlignment.start,
                     crossAxisAlignment = CrossAxisAlignment.start,
-                    children = children
-                )
+                    children = children,
+                ),
             )
         } catch (ex: Exception) {
             LOGGER.warn("Error while building the recent orders", ex)

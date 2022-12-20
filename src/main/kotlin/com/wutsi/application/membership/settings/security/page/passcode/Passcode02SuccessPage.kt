@@ -21,6 +21,6 @@ class Passcode02SuccessPage : AbstractSuccessPageEndpoint() {
     override fun getButton() = Button(
         id = "ok",
         caption = getText("page.settings.passcode.button.done"),
-        action = gotoPreviousScreen()
+        action = gotoPreviousScreen(),
     )
 }

@@ -27,7 +27,7 @@ class AppProduct02EditorPage(
     private val dao: PictureRepository,
     private val membershipManagerApi: MembershipManagerApi,
     private val marketplaceManagerApi: MarketplaceManagerApi,
-    private val regulationEngine: RegulationEngine
+    private val regulationEngine: RegulationEngine,
 ) : AbstractPageEndpoint() {
     companion object {
         const val PAGE_INDEX = 1
@@ -54,8 +54,8 @@ class AppProduct02EditorPage(
                         name = "title",
                         maxLength = 100,
                         caption = getText("page.settings.catalog.add.product.attribute.title"),
-                        required = true
-                    )
+                        required = true,
+                    ),
                 ),
                 Container(
                     padding = 10.0,
@@ -66,11 +66,12 @@ class AppProduct02EditorPage(
                         type = InputType.Number,
                         suffix = country.currencySymbol,
                         required = true,
-                        inputFormatterRegex = if (hasNoDecimal)
+                        inputFormatterRegex = if (hasNoDecimal) {
                             "[0-9]"
-                        else
+                        } else {
                             null
-                    )
+                        },
+                    ),
                 ),
                 Container(
                     padding = 10.0,
@@ -78,10 +79,10 @@ class AppProduct02EditorPage(
                         name = "quantity",
                         caption = getText("page.settings.catalog.add.product.attribute.quantity"),
                         type = InputType.Number,
-                        inputFormatterRegex = "[0-9]"
-                    )
-                )
-            )
+                        inputFormatterRegex = "[0-9]",
+                    ),
+                ),
+            ),
         )
     }
 
@@ -90,8 +91,8 @@ class AppProduct02EditorPage(
         type = InputType.Submit,
         caption = getText("page.settings.catalog.add.button.save"),
         action = executeCommand(
-            url = urlBuilder.build("${Page.getSettingsProductAddUrl()}/pages/editor/submit")
-        )
+            url = urlBuilder.build("${Page.getSettingsProductAddUrl()}/pages/editor/submit"),
+        ),
     )
 
     @PostMapping("/submit")
@@ -104,8 +105,8 @@ class AppProduct02EditorPage(
                 summary = request.summary,
                 quantity = if (request.quantity.isNullOrEmpty()) null else request.quantity.toInt(),
                 price = request.price,
-                type = picture.type.name
-            )
+                type = picture.type.name,
+            ),
         )
 
         return gotoPreviousScreen()

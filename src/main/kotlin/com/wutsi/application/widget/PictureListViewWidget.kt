@@ -12,7 +12,7 @@ import com.wutsi.flutter.sdui.enums.ButtonType
 
 class PictureListViewWidget(
     private val children: List<PictureWidget>,
-    private val action: Action? = null
+    private val action: Action? = null,
 ) : CompositeWidgetAware() {
     companion object {
         const val IMAGE_WIDTH = 150.0
@@ -37,14 +37,14 @@ class PictureListViewWidget(
                         icon = Theme.ICON_ADD,
                         iconColor = Theme.COLOR_PRIMARY,
                         iconSize = 32.0,
-                        action = action
-                    )
-                )
+                        action = action,
+                    ),
+                ),
             )
         }
         return ListView(
             direction = Axis.Horizontal,
-            children = images
+            children = images,
         )
     }
 }

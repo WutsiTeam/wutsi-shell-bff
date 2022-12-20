@@ -8,5 +8,5 @@ data class OnboardEntity(
     var displayName: String = "",
     var pin: String = "",
     var language: String = "",
-    var country: String = ""
+    var country: String = "",
 ) : Serializable

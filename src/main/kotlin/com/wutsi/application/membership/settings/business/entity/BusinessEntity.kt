@@ -5,5 +5,5 @@ data class BusinessEntity(
     var biography: String? = null,
     var categoryId: Long? = null,
     var cityId: Long? = null,
-    var whatsapp: Boolean = false
+    var whatsapp: Boolean = false,
 ) : java.io.Serializable

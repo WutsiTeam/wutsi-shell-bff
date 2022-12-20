@@ -15,7 +15,7 @@ class PasscodeScreen : AbstractEndpoint() {
         private val PAGE_URLS = listOf(
             "security/passcode/pages/pin",
             "security/passcode/pages/confirm",
-            "security/passcode/pages/success"
+            "security/passcode/pages/success",
         )
     }
 
@@ -27,7 +27,7 @@ class PasscodeScreen : AbstractEndpoint() {
         child = PageView(
             children = PAGE_URLS.map {
                 Page(url = urlBuilder.build(it))
-            }
-        )
+            },
+        ),
     ).toWidget()
 }

@@ -10,7 +10,7 @@ import com.wutsi.flutter.sdui.enums.TextAlignment
 
 class EnvironmentBannerWidget(
     private val environment: String = "TEST",
-    private val version: String? = null
+    private val version: String? = null,
 ) : WidgetAware {
     override fun toWidget(): Widget =
         Container(
@@ -22,7 +22,7 @@ class EnvironmentBannerWidget(
             child = Text(
                 caption = "Environment: $environment" + (version?.let { " - v$it" } ?: ""),
                 alignment = TextAlignment.Center,
-                size = Theme.TEXT_SIZE_SMALL
-            )
+                size = Theme.TEXT_SIZE_SMALL,
+            ),
         ).toWidget()
 }

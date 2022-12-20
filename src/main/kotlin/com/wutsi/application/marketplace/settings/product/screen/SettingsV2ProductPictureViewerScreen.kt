@@ -20,12 +20,12 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/settings/2/products/pictures")
 class SettingsV2ProductPictureViewerScreen(
-    private val marketplaceManagerApi: MarketplaceManagerApi
+    private val marketplaceManagerApi: MarketplaceManagerApi,
 ) : AbstractEndpoint() {
     @PostMapping
     fun index(
         @RequestParam id: Long,
-        @RequestParam url: String
+        @RequestParam url: String,
     ): Widget {
         return Screen(
             id = Page.SETTINGS_CATALOG_PICTURE,
@@ -39,9 +39,9 @@ class SettingsV2ProductPictureViewerScreen(
                     IconButton(
                         icon = Theme.ICON_CANCEL,
                         color = Theme.COLOR_BLACK,
-                        action = gotoPreviousScreen()
-                    )
-                )
+                        action = gotoPreviousScreen(),
+                    ),
+                ),
             ),
             child = PhotoView(url = url),
             floatingActionButton = Button(
@@ -51,9 +51,9 @@ class SettingsV2ProductPictureViewerScreen(
                 color = Theme.COLOR_WHITE,
                 action = executeCommand(
                     url = urlBuilder.build("${Page.getSettingsProductPictureUrl()}/delete?id=$id"),
-                    confirm = getText("page.settings.catalog.picture.confirm-delete")
-                )
-            )
+                    confirm = getText("page.settings.catalog.picture.confirm-delete"),
+                ),
+            ),
         ).toWidget()
     }
 

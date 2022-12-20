@@ -22,7 +22,7 @@ internal class Business04WhatsappPageTest : AbstractSecuredEndpointTest() {
         displayName = "Maison H",
         categoryId = 22L,
         cityId = 100L,
-        whatsapp = false
+        whatsapp = false,
     )
 
     private fun url(action: String = "") =
@@ -57,8 +57,8 @@ internal class Business04WhatsappPageTest : AbstractSecuredEndpointTest() {
                 displayName = entity.displayName,
                 categoryId = entity.categoryId,
                 cityId = entity.cityId,
-                whatsapp = request.value.toBoolean()
-            )
+                whatsapp = request.value.toBoolean(),
+            ),
         )
     }
 }

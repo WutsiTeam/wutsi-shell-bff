@@ -33,7 +33,7 @@ import java.util.Locale
 @RestController
 @RequestMapping("/settings/2/accounts")
 class Settings2AccountScreen(
-    private val checkoutManagerApi: CheckoutManagerApi
+    private val checkoutManagerApi: CheckoutManagerApi,
 ) : AbstractSecuredEndpoint() {
     @PostMapping
     fun index(@RequestParam token: String): Widget {
@@ -44,7 +44,7 @@ class Settings2AccountScreen(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.settings.account.app-bar.title")
+                title = getText("page.settings.account.app-bar.title"),
             ),
             child = SingleChildScrollView(
                 child = Column(
@@ -59,12 +59,12 @@ class Settings2AccountScreen(
                                     Image(
                                         width = 32.0,
                                         height = 32.0,
-                                        url = paymentMethod.provider.logoUrl
+                                        url = paymentMethod.provider.logoUrl,
                                     ),
                                     Container(padding = 5.0),
-                                    Text(paymentMethod.provider.name)
-                                )
-                            )
+                                    Text(paymentMethod.provider.name),
+                                ),
+                            ),
                         ),
                         Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
                         if (paymentMethod.country.isNullOrEmpty()) {
@@ -74,8 +74,8 @@ class Settings2AccountScreen(
                                 key = "page.settings.account.country",
                                 value = Locale(
                                     LocaleContextHolder.getLocale().language,
-                                    paymentMethod.country ?: ""
-                                ).displayCountry
+                                    paymentMethod.country,
+                                ).displayCountry,
                             )
                         },
                         Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
@@ -85,12 +85,12 @@ class Settings2AccountScreen(
                                 PhoneUtil.format(paymentMethod.number)
                             } else {
                                 paymentMethod.number
-                            }
+                            },
                         ),
                         Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
                         toRowWidget(
                             key = "page.settings.account.owner",
-                            value = paymentMethod.ownerName.uppercase()
+                            value = paymentMethod.ownerName.uppercase(),
                         ),
                         Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
                         Container(
@@ -100,15 +100,15 @@ class Settings2AccountScreen(
                                 action = executeCommand(
                                     url = urlBuilder.build("${Page.getSettingsAccountUrl()}/delete"),
                                     parameters = mapOf(
-                                        "token" to token
+                                        "token" to token,
                                     ),
-                                    confirm = getText("page.settings.account.confirm.delete")
-                                )
-                            )
-                        )
-                    )
-                )
-            )
+                                    confirm = getText("page.settings.account.confirm.delete"),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
         ).toWidget()
     }
 
@@ -131,14 +131,14 @@ class Settings2AccountScreen(
                         child = Text(
                             getText(key),
                             bold = true,
-                            alignment = TextAlignment.Right
-                        )
-                    )
+                            alignment = TextAlignment.Right,
+                        ),
+                    ),
                 ),
                 Flexible(
                     flex = 3,
-                    child = value
-                )
-            )
+                    child = value,
+                ),
+            ),
         )
 }

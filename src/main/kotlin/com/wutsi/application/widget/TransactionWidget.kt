@@ -31,7 +31,7 @@ class TransactionWidget(
     private val amount: Long,
     private val country: Country,
     private val merchant: Boolean,
-    private val action: Action?
+    private val action: Action?,
 ) : CompositeWidgetAware() {
     companion object {
         fun of(tx: TransactionSummary, country: Country, action: Action?, merchant: Boolean, timezoneId: String?) =
@@ -44,7 +44,7 @@ class TransactionWidget(
                 amount = tx.amount,
                 country = country,
                 merchant = merchant,
-                action = action
+                action = action,
             )
     }
 
@@ -64,22 +64,22 @@ class TransactionWidget(
                             caption = toAmountSign() + moneyFormat.format(amount),
                             bold = true,
                             alignment = TextAlignment.Right,
-                            color = getColor()
-                        )
+                            color = getColor(),
+                        ),
                     ),
                     Container(
                         padding = 1.0,
                         child = Image(
                             width = 24.0,
                             height = 24.0,
-                            url = paymentProviderLogoUrl
-                        )
-                    )
-                )
+                            url = paymentProviderLogoUrl,
+                        ),
+                    ),
+                ),
             ),
             caption = getCaption(),
             subCaption = getText("transaction.status.$status"),
-            action = action
+            action = action,
         )
     }
 
@@ -92,10 +92,11 @@ class TransactionWidget(
 
     private fun toAmountSign(): String =
         if (merchant) {
-            if (type == TransactionType.CASHOUT)
+            if (type == TransactionType.CASHOUT) {
                 "-"
-            else
+            } else {
                 "+"
+            }
         } else {
             ""
         }

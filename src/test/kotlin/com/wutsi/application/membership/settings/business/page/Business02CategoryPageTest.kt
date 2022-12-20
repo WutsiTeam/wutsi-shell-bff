@@ -23,7 +23,7 @@ internal class Business02CategoryPageTest : AbstractSecuredEndpointTest() {
 
     private val entity = BusinessEntity(
         displayName = "Maison H",
-        categoryId = 22L
+        categoryId = 22L,
     )
 
     private fun url(action: String = "") =
@@ -37,7 +37,7 @@ internal class Business02CategoryPageTest : AbstractSecuredEndpointTest() {
 
         val categories = listOf(
             Fixtures.createCategorySummary(11L, "Art"),
-            Fixtures.createCategorySummary(22L, "Bakery")
+            Fixtures.createCategorySummary(22L, "Bakery"),
         )
         doReturn(SearchCategoryResponse(categories)).whenever(membershipManagerApi).searchCategory(any())
     }
@@ -62,8 +62,8 @@ internal class Business02CategoryPageTest : AbstractSecuredEndpointTest() {
             DEVICE_ID,
             BusinessEntity(
                 displayName = entity.displayName,
-                categoryId = request.value.toLong()
-            )
+                categoryId = request.value.toLong(),
+            ),
         )
     }
 }

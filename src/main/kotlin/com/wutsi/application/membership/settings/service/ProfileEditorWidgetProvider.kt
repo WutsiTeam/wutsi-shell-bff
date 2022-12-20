@@ -22,7 +22,7 @@ import java.util.TimeZone
 class ProfileEditorWidgetProvider(
     private val regulationEngine: RegulationEngine,
     private val membershipManagerApi: MembershipManagerApi,
-    private val messages: MessageSource
+    private val messages: MessageSource,
 ) {
     fun get(name: String, member: Member): WidgetAware =
         when (name) {
@@ -67,9 +67,9 @@ class ProfileEditorWidgetProvider(
         children = regulationEngine.supportedLanguages().map {
             DropdownMenuItem(
                 caption = StringUtil.capitalizeFirstLetter(Locale(it).getDisplayLanguage(getLocale())),
-                value = it
+                value = it,
             )
-        }
+        },
     )
 
     private fun getWhatsappWidget(value: Boolean?) = DropdownButton(
@@ -78,13 +78,13 @@ class ProfileEditorWidgetProvider(
         children = listOf(
             DropdownMenuItem(
                 caption = getText("button.yes"),
-                value = "true"
+                value = "true",
             ),
             DropdownMenuItem(
                 caption = getText("button.no"),
-                value = "false"
-            )
-        )
+                value = "false",
+            ),
+        ),
     )
 
     private fun getTimezoneWidget(timezoneId: String?) = SearchableDropdown(
@@ -94,7 +94,7 @@ class ProfileEditorWidgetProvider(
             .filter { it.contains("/") }
             .map {
                 DropdownMenuItem(it, it)
-            }.sortedBy { it.caption }
+            }.sortedBy { it.caption },
     )
 
     private fun getCityWidget(cityId: Long?, country: String?) = SearchableDropdown(
@@ -105,16 +105,16 @@ class ProfileEditorWidgetProvider(
             request = SearchPlaceRequest(
                 country = country,
                 type = "CITY",
-                limit = 200
-            )
+                limit = 200,
+            ),
         ).places
             .sortedBy { it.name }
             .map {
                 DropdownMenuItem(
                     caption = it.name,
-                    value = it.id.toString()
+                    value = it.id.toString(),
                 )
-            }
+            },
     )
 
     private fun getCategoryWidget(categoryId: Long?) = SearchableDropdown(
@@ -122,17 +122,17 @@ class ProfileEditorWidgetProvider(
         value = categoryId?.toString(),
         children = membershipManagerApi.searchCategory(
             request = SearchCategoryRequest(
-                limit = 2000
-            )
+                limit = 2000,
+            ),
         ).categories
             .sortedBy { StringUtil.unaccent(it.title.uppercase()) }
             .map {
                 DropdownMenuItem(
                     caption = it.title,
-                    value = it.id.toString()
+                    value = it.id.toString(),
                 )
             },
-        required = true
+        required = true,
     )
 
     private fun getInputWidget(
@@ -140,7 +140,7 @@ class ProfileEditorWidgetProvider(
         maxlength: Int,
         type: InputType = InputType.Text,
         maxLines: Int? = null,
-        required: Boolean = false
+        required: Boolean = false,
     ) =
         Input(
             name = "value",
@@ -148,7 +148,7 @@ class ProfileEditorWidgetProvider(
             type = type,
             maxLength = maxlength,
             maxLines = maxLines,
-            required = required
+            required = required,
         )
 
     private fun getLocale(): Locale = LocaleContextHolder.getLocale()

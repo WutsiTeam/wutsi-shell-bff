@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/security/passcode/pages/confirm")
 class Passcode01ConfirmPage(
     private val dao: PasscodeRepository,
-    private val securityManagerApi: SecurityManagerApi
+    private val securityManagerApi: SecurityManagerApi,
 ) : AbstractPageEndpoint() {
     companion object {
         const val PAGE_INDEX = 1
@@ -39,8 +39,8 @@ class Passcode01ConfirmPage(
             maxLength = 6,
             action = Action(
                 type = Command,
-                url = urlBuilder.build("/security/passcode/pages/confirm/submit")
-            )
+                url = urlBuilder.build("/security/passcode/pages/confirm/submit"),
+            ),
         )
 
     override fun getButton(): Button? = null

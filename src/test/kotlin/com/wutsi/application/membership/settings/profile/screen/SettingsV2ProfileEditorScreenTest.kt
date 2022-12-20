@@ -45,7 +45,7 @@ internal class SettingsV2ProfileEditorScreenTest : AbstractSecuredEndpointTest()
         val places = listOf(
             Fixtures.createPlaceSummary(1, "Yaounde"),
             Fixtures.createPlaceSummary(2, "Douala"),
-            Fixtures.createPlaceSummary(3, "Bafoussam")
+            Fixtures.createPlaceSummary(3, "Bafoussam"),
         )
         doReturn(SearchPlaceResponse(places)).whenever(membershipManagerApi).searchPlace(any())
 
@@ -56,7 +56,7 @@ internal class SettingsV2ProfileEditorScreenTest : AbstractSecuredEndpointTest()
     fun submit() {
         // WHEN
         val request = SubmitProfileAttributeRequest(
-            value = "Foo"
+            value = "Foo",
         )
         val response = rest.postForEntity(url("display-name", "/submit"), request, Action::class.java)
 
@@ -70,8 +70,8 @@ internal class SettingsV2ProfileEditorScreenTest : AbstractSecuredEndpointTest()
         verify(membershipManagerApi).updateMemberAttribute(
             request = UpdateMemberAttributeRequest(
                 name = "display-name",
-                value = request.value
-            )
+                value = request.value,
+            ),
         )
     }
 
@@ -83,7 +83,7 @@ internal class SettingsV2ProfileEditorScreenTest : AbstractSecuredEndpointTest()
 
         // WHEN
         val request = SubmitProfileAttributeRequest(
-            value = "yo@gmail.com"
+            value = "yo@gmail.com",
         )
         val response = rest.postForEntity(url("email", "/submit"), request, Action::class.java)
 
@@ -101,8 +101,8 @@ internal class SettingsV2ProfileEditorScreenTest : AbstractSecuredEndpointTest()
             DEVICE_ID,
             EmailEntity(
                 value = request.value,
-                token = token
-            )
+                token = token,
+            ),
         )
     }
 
@@ -114,7 +114,7 @@ internal class SettingsV2ProfileEditorScreenTest : AbstractSecuredEndpointTest()
 
         // WHEN
         val request = SubmitProfileAttributeRequest(
-            value = member.email ?: ""
+            value = member.email ?: "",
         )
         val response = rest.postForEntity(url("email", "/submit"), request, Action::class.java)
 

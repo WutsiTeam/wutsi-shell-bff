@@ -15,7 +15,7 @@ class Settings2AccountAddMobileScreen : AbstractEndpoint() {
         private val PAGE_URLS = listOf(
             "settings/2/accounts/add/mobile/pages/phone",
             "settings/2/accounts/add/mobile/pages/verification",
-            "settings/2/accounts/add/mobile/pages/success"
+            "settings/2/accounts/add/mobile/pages/success",
         )
     }
 
@@ -27,7 +27,7 @@ class Settings2AccountAddMobileScreen : AbstractEndpoint() {
         child = PageView(
             children = PAGE_URLS.map {
                 Page(url = urlBuilder.build(it))
-            }
-        )
+            },
+        ),
     ).toWidget()
 }

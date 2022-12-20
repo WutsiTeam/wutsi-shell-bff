@@ -24,7 +24,7 @@ internal class Onboard06SuccessPageTest : AbstractEndpointTest() {
         country = "CM",
         language = "fr",
         displayName = "Ray Sponsible",
-        pin = "123456"
+        pin = "123456",
     )
 
     private fun url(action: String = "") = "http://localhost:$port/onboard/pages/success$action"

@@ -21,11 +21,11 @@ internal class Onboard02ProfilePageTest : AbstractEndpointTest() {
     private val entity = OnboardEntity(
         phoneNumber = PHONE_NUMBER,
         country = "CM",
-        language = "fr"
+        language = "fr",
     )
 
     private val request = SubmitProfileRequest(
-        displayName = "Ray Sponsible"
+        displayName = "Ray Sponsible",
     )
 
     private fun url(action: String = "") = "http://localhost:$port/onboard/pages/profile$action"

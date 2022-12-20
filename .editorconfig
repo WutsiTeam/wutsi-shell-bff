@@ -22,5 +22,5 @@ spaces_around_operators=false
 wildcard_import_limit=99
 max_line_length=off
 
-[*.{kt,kts}]
-ktlint_disabled_rules=multiline-if-else
+# [*.{kt,kts}]
+# ktlint_disabled_rules=multiline-if-else

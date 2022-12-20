@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/settings/2/products/add/pages/type")
 class AppProduct01TypePage(
     private val dao: PictureRepository,
-    private val editor: ProductEditorWidgetProvider
+    private val editor: ProductEditorWidgetProvider,
 ) : AbstractPageEndpoint() {
     companion object {
         const val PAGE_INDEX = 1
@@ -42,9 +42,9 @@ class AppProduct01TypePage(
                 },
                 Container(
                     padding = 10.0,
-                    child = editor.get("type", null)
-                )
-            )
+                    child = editor.get("type", null),
+                ),
+            ),
         )
     }
 
@@ -53,8 +53,8 @@ class AppProduct01TypePage(
         type = InputType.Submit,
         caption = getText("page.settings.catalog.add.button.save"),
         action = executeCommand(
-            url = urlBuilder.build("${Page.getSettingsProductAddUrl()}/pages/type/submit")
-        )
+            url = urlBuilder.build("${Page.getSettingsProductAddUrl()}/pages/type/submit"),
+        ),
     )
 
     @PostMapping("/submit")

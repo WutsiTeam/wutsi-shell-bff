@@ -27,11 +27,11 @@ internal class PhoneUtilTest {
         assertEquals("https://wa.me/15147580000", PhoneUtil.toWhatsAppUrl("15147580000"))
         assertEquals(
             "https://wa.me/15147580000?text=hello+world",
-            PhoneUtil.toWhatsAppUrl("15147580000", "hello world")
+            PhoneUtil.toWhatsAppUrl("15147580000", "hello world"),
         )
         assertEquals(
             "https://wa.me/15147580000?text=hello+worldhttp%3A%2F%2Fbit.ly.com%2F1203920",
-            PhoneUtil.toWhatsAppUrl("15147580000", "hello world", "http://bit.ly.com/1203920")
+            PhoneUtil.toWhatsAppUrl("15147580000", "hello world", "http://bit.ly.com/1203920"),
         )
     }
 }

@@ -30,10 +30,10 @@ abstract class AbstractSecuredEndpointTest : AbstractEndpointTest() {
                         name = "Ray Sponsible",
                         subjectType = SubjectType.USER,
                         keyProvider = TestRSAKeyProvider(),
-                        admin = false
-                    ).build()
-                )
-            )
+                        admin = false,
+                    ).build(),
+                ),
+            ),
         )
 
         doReturn(GetMemberResponse(member)).whenever(membershipManagerApi).getMember(anyOrNull())

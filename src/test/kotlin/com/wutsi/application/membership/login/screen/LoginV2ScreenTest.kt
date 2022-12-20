@@ -64,7 +64,7 @@ internal class LoginV2ScreenTest : AbstractEndpointTest() {
     fun customLoginScreen() {
         assertEndpointEquals(
             "/membership/login/screens/login-custom.json",
-            url() + "&title=Foo&sub-title=Yo+Man&icon=i_c_o_n&return-to-route=false&return-url=https://www.google.ca&dark-mode=true"
+            url() + "&title=Foo&sub-title=Yo+Man&icon=i_c_o_n&return-to-route=false&return-url=https://www.google.ca&dark-mode=true",
         )
     }
 
@@ -90,8 +90,8 @@ internal class LoginV2ScreenTest : AbstractEndpointTest() {
             LoginRequest(
                 type = LoginType.PASSWORD.name,
                 username = phoneNumber,
-                password = request.pin
-            )
+                password = request.pin,
+            ),
         )
     }
 
@@ -119,8 +119,8 @@ internal class LoginV2ScreenTest : AbstractEndpointTest() {
             LoginRequest(
                 type = LoginType.PASSWORD.name,
                 username = phoneNumber,
-                password = request.pin
-            )
+                password = request.pin,
+            ),
         )
     }
 
@@ -164,8 +164,8 @@ internal class LoginV2ScreenTest : AbstractEndpointTest() {
 
         com.nhaarman.mockitokotlin2.verify(securityManagerApi).verifyPassword(
             VerifyPasswordRequest(
-                value = request.pin
-            )
+                value = request.pin,
+            ),
         )
     }
 
@@ -191,8 +191,8 @@ internal class LoginV2ScreenTest : AbstractEndpointTest() {
 
         com.nhaarman.mockitokotlin2.verify(securityManagerApi).verifyPassword(
             VerifyPasswordRequest(
-                value = request.pin
-            )
+                value = request.pin,
+            ),
         )
     }
 

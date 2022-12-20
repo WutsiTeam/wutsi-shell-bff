@@ -28,12 +28,12 @@ import org.springframework.web.bind.annotation.RestController
 class ProductV2ListFragment(
     private val marketplaceManagerApi: MarketplaceManagerApi,
     private val regulationEngine: RegulationEngine,
-    private val imageService: ImageService
+    private val imageService: ImageService,
 ) : AbstractSecuredEndpoint() {
     @PostMapping
     fun widget(@RequestParam(required = false) id: Long? = null): Widget {
         val member = membershipManagerApi.getMember(
-            id ?: SecurityUtil.getMemberId()
+            id ?: SecurityUtil.getMemberId(),
         ).member
         val country = regulationEngine.country(member.country)
         if (!member.business || member.storeId == null || !country.supportsStore) {
@@ -44,8 +44,8 @@ class ProductV2ListFragment(
             request = SearchProductRequest(
                 storeId = member.storeId,
                 status = "PUBLISHED",
-                limit = regulationEngine.maxProducts()
-            )
+                limit = regulationEngine.maxProducts(),
+            ),
         ).products
 
         return SingleChildScrollView(
@@ -62,8 +62,8 @@ class ProductV2ListFragment(
                                 getText("page.product.list.1_product")
                             } else {
                                 getText("page.product.list.n_products", arrayOf(products.size))
-                            }
-                        )
+                            },
+                        ),
                     ),
                     Divider(color = Theme.COLOR_DIVIDER),
                     GridWidget(
@@ -74,12 +74,12 @@ class ProductV2ListFragment(
                                 country = country,
                                 action = gotoUrl(urlBuilder.build("${Page.getProductUrl()}?id=${it.id}")),
                                 imageService = imageService,
-                                timezoneId = member.timezoneId
+                                timezoneId = member.timezoneId,
                             )
-                        }
-                    )
-                )
-            )
+                        },
+                    ),
+                ),
+            ),
         ).toWidget()
     }
 }

@@ -12,10 +12,11 @@ object WidgetL10n {
     fun getText(key: String, args: Array<Any> = emptyArray()): String =
         try {
             val locale = LocaleContextHolder.getLocale()
-            val bundle = if (locale.language == "fr")
+            val bundle = if (locale.language == "fr") {
                 frBundle
-            else
+            } else {
                 defaultBundle
+            }
 
             MessageFormat.format(bundle.getString(key), *args)
         } catch (ex: Exception) {

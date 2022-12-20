@@ -28,7 +28,7 @@ internal class Transaction2ScreenTest : AbstractSecuredEndpointTest() {
             id = "111",
             type = TransactionType.CHARGE,
             status = Status.SUCCESSFUL,
-            orderId = "2222"
+            orderId = "2222",
         )
         doReturn(GetTransactionResponse(tx)).whenever(checkoutManagerApi).getTransaction(any(), anyOrNull())
 
@@ -47,7 +47,7 @@ internal class Transaction2ScreenTest : AbstractSecuredEndpointTest() {
             type = TransactionType.CASHOUT,
             status = Status.FAILED,
             orderId = null,
-            error = ErrorCode.UNEXPECTED_ERROR
+            error = ErrorCode.UNEXPECTED_ERROR,
         )
         doReturn(GetTransactionResponse(tx)).whenever(checkoutManagerApi).getTransaction(any(), anyOrNull())
 

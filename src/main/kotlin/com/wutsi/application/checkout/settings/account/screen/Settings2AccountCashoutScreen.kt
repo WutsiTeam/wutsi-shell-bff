@@ -34,7 +34,7 @@ import java.util.UUID
 @RequestMapping("/settings/2/accounts/cashout")
 class Settings2AccountCashoutScreen(
     private val checkoutManagerApi: CheckoutManagerApi,
-    private val regulationEngine: RegulationEngine
+    private val regulationEngine: RegulationEngine,
 ) : AbstractSecuredEndpoint() {
     @PostMapping
     fun index(): Widget {
@@ -47,8 +47,8 @@ class Settings2AccountCashoutScreen(
         val paymentMethods = checkoutManagerApi.searchPaymentMethod(
             request = SearchPaymentMethodRequest(
                 status = PaymentMethodStatus.ACTIVE.name,
-                limit = 30
-            )
+                limit = 30,
+            ),
         ).paymentMethods
         val country = regulationEngine.country(business.country)
 
@@ -58,7 +58,7 @@ class Settings2AccountCashoutScreen(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.settings.account.cashout.app-bar.title")
+                title = getText("page.settings.account.cashout.app-bar.title"),
             ),
             child = SingleChildScrollView(
                 child = Column(
@@ -70,8 +70,8 @@ class Settings2AccountCashoutScreen(
                                 value = business.balance.toDouble(),
                                 currency = country.currencySymbol,
                                 color = Theme.COLOR_PRIMARY,
-                                numberFormat = country.numberFormat
-                            )
+                                numberFormat = country.numberFormat,
+                            ),
                         ),
                         Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
                         Form(
@@ -86,10 +86,10 @@ class Settings2AccountCashoutScreen(
                                             DropdownMenuItem(
                                                 caption = it.number,
                                                 icon = it.provider.logoUrl,
-                                                value = it.token
+                                                value = it.token,
                                             )
-                                        }
-                                    )
+                                        },
+                                    ),
                                 ),
                                 Container(
                                     padding = 10.0,
@@ -100,9 +100,9 @@ class Settings2AccountCashoutScreen(
                                         caption = getText("page.settings.account.cashout.field.amount"),
                                         inputFormatterRegex = "[0-9]",
                                         action = executeCommand(
-                                            url = urlBuilder.build("${Page.getSettingsAccountCashoutUrl()}/submit")
-                                        )
-                                    )
+                                            url = urlBuilder.build("${Page.getSettingsAccountCashoutUrl()}/submit"),
+                                        ),
+                                    ),
                                 ),
                                 Container(padding = 20.0),
                                 Container(
@@ -112,15 +112,15 @@ class Settings2AccountCashoutScreen(
                                         type = InputType.Submit,
                                         caption = getText("page.settings.account.cashout.button.submit"),
                                         action = executeCommand(
-                                            url = urlBuilder.build("${Page.getSettingsAccountCashoutUrl()}/submit")
-                                        )
-                                    )
-                                )
-                            )
-                        )
-                    )
-                )
-            )
+                                            url = urlBuilder.build("${Page.getSettingsAccountCashoutUrl()}/submit"),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
         ).toWidget()
     }
 
@@ -130,8 +130,8 @@ class Settings2AccountCashoutScreen(
             request = CreateCashoutRequest(
                 paymentMethodToken = request.token,
                 amount = request.amount,
-                idempotencyKey = UUID.randomUUID().toString()
-            )
+                idempotencyKey = UUID.randomUUID().toString(),
+            ),
         )
         return gotoPreviousScreen()
     }

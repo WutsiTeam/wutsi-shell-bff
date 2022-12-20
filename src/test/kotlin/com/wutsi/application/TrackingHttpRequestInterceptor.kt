@@ -8,12 +8,12 @@ import org.springframework.http.client.ClientHttpResponse
 class TrackingHttpRequestInterceptor(
     private val userAgent: String,
     private val referer: String,
-    private val ip: String
+    private val ip: String,
 ) : ClientHttpRequestInterceptor {
     override fun intercept(
         request: HttpRequest,
         body: ByteArray,
-        execution: ClientHttpRequestExecution
+        execution: ClientHttpRequestExecution,
     ): ClientHttpResponse {
         request.headers["User-Agent"] = userAgent
         request.headers["Referer"] = referer

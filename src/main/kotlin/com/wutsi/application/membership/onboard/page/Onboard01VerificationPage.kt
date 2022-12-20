@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/onboard/pages/verification")
 class Onboard01VerificationPage(
-    private val securityManagerApi: SecurityManagerApi
+    private val securityManagerApi: SecurityManagerApi,
 ) : AbstractOnboardPage() {
     companion object {
         const val PAGE_INDEX = 1
@@ -52,9 +52,9 @@ class Onboard01VerificationPage(
                         IconButton(
                             icon = Theme.ICON_ARROW_BACK,
                             color = Theme.COLOR_BLACK,
-                            action = gotoPage(PAGE_INDEX - 1)
-                        )
-                    )
+                            action = gotoPage(PAGE_INDEX - 1),
+                        ),
+                    ),
                 ),
                 Column(
                     children = listOf(
@@ -64,8 +64,8 @@ class Onboard01VerificationPage(
                             child = Image(
                                 url = getLogoUrl(),
                                 width = 128.0,
-                                height = 128.0
-                            )
+                                height = 128.0,
+                            ),
                         ),
                         Container(
                             alignment = Center,
@@ -75,8 +75,8 @@ class Onboard01VerificationPage(
                                 alignment = TextAlignment.Center,
                                 size = Theme.TEXT_SIZE_LARGE,
                                 color = Theme.COLOR_PRIMARY,
-                                bold = true
-                            )
+                                bold = true,
+                            ),
                         ),
                         Container(
                             alignment = Center,
@@ -84,18 +84,18 @@ class Onboard01VerificationPage(
                             child = Text(
                                 caption = getText(
                                     "page.onboard.verification.sub-title",
-                                    arrayOf(formattedPhoneNumber(onboardDao.get().phoneNumber))
+                                    arrayOf(formattedPhoneNumber(onboardDao.get().phoneNumber)),
                                 ),
-                                alignment = TextAlignment.Center
-                            )
+                                alignment = TextAlignment.Center,
+                            ),
                         ),
                         Container(
                             alignment = Center,
                             child = Button(
                                 caption = getText("page.onboard.verification.change-number"),
                                 type = ButtonType.Text,
-                                action = gotoPage(PAGE_INDEX - 1)
-                            )
+                                action = gotoPage(PAGE_INDEX - 1),
+                            ),
                         ),
                         Form(
                             children = listOf(
@@ -109,8 +109,8 @@ class Onboard01VerificationPage(
                                         required = true,
                                         hint = getText("page.onboard.verification.field.code.hint"),
                                         minLength = 6,
-                                        maxLength = 6
-                                    )
+                                        maxLength = 6,
+                                    ),
                                 ),
                                 Container(
                                     padding = 10.0,
@@ -121,9 +121,9 @@ class Onboard01VerificationPage(
                                         caption = getText("page.onboard.button.next"),
                                         action = Action(
                                             type = Command,
-                                            url = urlBuilder.build("/onboard/pages/verification/submit")
-                                        )
-                                    )
+                                            url = urlBuilder.build("/onboard/pages/verification/submit"),
+                                        ),
+                                    ),
                                 ),
                                 Button(
                                     id = "resend-code",
@@ -131,14 +131,14 @@ class Onboard01VerificationPage(
                                     type = ButtonType.Text,
                                     action = Action(
                                         type = Command,
-                                        url = urlBuilder.build("/onboard/pages/verification/resend")
-                                    )
-                                )
-                            )
-                        )
-                    )
-                )
-            )
+                                        url = urlBuilder.build("/onboard/pages/verification/resend"),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
         ).toWidget()
     }
 
@@ -148,8 +148,8 @@ class Onboard01VerificationPage(
         val response = securityManagerApi.createOtp(
             request = CreateOTPRequest(
                 address = data.phoneNumber,
-                type = MessagingType.SMS.name
-            )
+                type = MessagingType.SMS.name,
+            ),
         )
         data.otpToken = response.token
         onboardDao.save(data)
@@ -162,8 +162,8 @@ class Onboard01VerificationPage(
             securityManagerApi.verifyOtp(
                 token = account.otpToken,
                 request = VerifyOTPRequest(
-                    code = request.code
-                )
+                    code = request.code,
+                ),
             )
             gotoPage(PAGE_INDEX + 1)
         } catch (ex: Exception) {

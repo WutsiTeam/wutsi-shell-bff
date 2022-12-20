@@ -35,19 +35,19 @@ class Business06ConfirmPage : AbstractBusinessPage() {
                         caption = getText("page.settings.business.button.yes"),
                         action = Action(
                             type = ActionType.Command,
-                            url = urlBuilder.build("${Page.getSettingsBusinessUrl()}/pages/confirm/submit")
-                        )
-                    )
+                            url = urlBuilder.build("${Page.getSettingsBusinessUrl()}/pages/confirm/submit"),
+                        ),
+                    ),
                 ),
                 Container(
                     padding = 10.0,
                     child = Button(
                         type = ButtonType.Text,
                         caption = getText("page.settings.business.button.no"),
-                        action = gotoPreviousScreen()
-                    )
-                )
-            )
+                        action = gotoPreviousScreen(),
+                    ),
+                ),
+            ),
         )
 
     override fun getButton(): WidgetAware? = null
@@ -61,8 +61,8 @@ class Business06ConfirmPage : AbstractBusinessPage() {
                 cityId = entity.cityId ?: -1,
                 categoryId = entity.categoryId ?: -1,
                 whatsapp = entity.whatsapp,
-                biography = entity.biography
-            )
+                biography = entity.biography,
+            ),
         )
         return gotoNextPage()
     }

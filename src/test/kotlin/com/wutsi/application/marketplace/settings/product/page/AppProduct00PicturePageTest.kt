@@ -48,7 +48,7 @@ internal class AppProduct00PicturePageTest : AbstractSecuredEndpointTest() {
 
         verify(cache).put(
             DEVICE_ID,
-            PictureEntity(fileUrl.toString())
+            PictureEntity(fileUrl.toString()),
         )
     }
 }

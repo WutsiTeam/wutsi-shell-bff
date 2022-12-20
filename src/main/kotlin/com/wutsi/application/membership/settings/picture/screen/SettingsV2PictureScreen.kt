@@ -29,7 +29,7 @@ import java.util.UUID
 @RestController
 @RequestMapping("/settings/2/picture")
 class SettingsV2PictureScreen(
-    private val storageService: StorageService
+    private val storageService: StorageService,
 ) : AbstractSecuredEndpoint() {
     @PostMapping
     fun index(): Widget {
@@ -46,9 +46,9 @@ class SettingsV2PictureScreen(
                     IconButton(
                         icon = Theme.ICON_CANCEL,
                         color = Theme.COLOR_BLACK,
-                        action = gotoPreviousScreen()
-                    )
-                )
+                        action = gotoPreviousScreen(),
+                    ),
+                ),
             ),
             child = Column(
                 crossAxisAlignment = CrossAxisAlignment.center,
@@ -59,8 +59,8 @@ class SettingsV2PictureScreen(
                         child = Image(
                             url = me.pictureUrl ?: "",
                             width = 256.0,
-                            height = 256.0
-                        )
+                            height = 256.0,
+                        ),
                     ),
                     Divider(color = Theme.COLOR_DIVIDER),
                     Container(
@@ -70,11 +70,11 @@ class SettingsV2PictureScreen(
                             uploadUrl = urlBuilder.build("${Page.getSettingsUrl()}/picture/upload"),
                             imageMaxWidth = 512,
                             imageMaxHeight = 512,
-                            action = gotoPreviousScreen()
-                        )
-                    )
-                )
-            )
+                            action = gotoPreviousScreen(),
+                        ),
+                    ),
+                ),
+            ),
         ).toWidget()
     }
 
@@ -94,8 +94,8 @@ class SettingsV2PictureScreen(
         membershipManagerApi.updateMemberAttribute(
             request = UpdateMemberAttributeRequest(
                 name = "picture-url",
-                value = url.toString()
-            )
+                value = url.toString(),
+            ),
         )
     }
 }

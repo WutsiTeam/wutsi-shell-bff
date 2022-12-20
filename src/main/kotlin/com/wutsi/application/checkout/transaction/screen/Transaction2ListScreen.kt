@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/transactions/2/list")
 class Transaction2ListScreen(
     private val checkoutManagerApi: CheckoutManagerApi,
-    private val regulationEngine: RegulationEngine
+    private val regulationEngine: RegulationEngine,
 ) : AbstractSecuredEndpoint() {
     @PostMapping
     fun index(): Widget {
@@ -36,8 +36,8 @@ class Transaction2ListScreen(
             request = SearchTransactionRequest(
                 customerId = member.businessId?.let { null },
                 businessId = member.businessId,
-                limit = 100
-            )
+                limit = 100,
+            ),
         ).transactions
 
         return Screen(
@@ -46,7 +46,7 @@ class Transaction2ListScreen(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.transaction.list.app-bar.title")
+                title = getText("page.transaction.list.app-bar.title"),
             ),
             bottomNavigationBar = createBottomNavigationBarWidget(member),
             child = Column(
@@ -61,8 +61,8 @@ class Transaction2ListScreen(
                                 getText("page.transaction.list.count-1")
                             } else {
                                 getText("page.transaction.list.count-n", arrayOf(txs.size))
-                            }
-                        )
+                            },
+                        ),
                     ),
                     Divider(height = 1.0, color = Theme.COLOR_DIVIDER),
                     Flexible(
@@ -76,17 +76,17 @@ class Transaction2ListScreen(
                                     action = gotoUrl(
                                         url = urlBuilder.build(Page.getTransactionUrl()),
                                         parameters = mapOf(
-                                            "id" to it.id
-                                        )
+                                            "id" to it.id,
+                                        ),
                                     ),
                                     merchant = member.business,
-                                    timezoneId = member.timezoneId
+                                    timezoneId = member.timezoneId,
                                 )
-                            }
-                        )
-                    )
-                )
-            )
+                            },
+                        ),
+                    ),
+                ),
+            ),
         ).toWidget()
     }
 }

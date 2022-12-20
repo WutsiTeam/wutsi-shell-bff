@@ -28,11 +28,11 @@ internal class Onboard04ConfirmPinPageTest : AbstractEndpointTest() {
         country = "CM",
         language = "fr",
         displayName = "Ray Sponsible",
-        pin = "123456"
+        pin = "123456",
     )
 
     private val request = SubmitPinRequest(
-        pin = entity.pin
+        pin = entity.pin,
     )
 
     private fun url(action: String = "") = "http://localhost:$port/onboard/pages/confirm-pin$action"
@@ -68,7 +68,7 @@ internal class Onboard04ConfirmPinPageTest : AbstractEndpointTest() {
     fun invalidPin() {
         // GIVEN
         var request = SubmitPinRequest(
-            pin = "xxxx"
+            pin = "xxxx",
         )
         val response = rest.postForEntity(url("/submit"), request, Action::class.java)
 

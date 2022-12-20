@@ -35,7 +35,7 @@ import java.util.TimeZone
 @RequestMapping("/settings/2/products/editor/event")
 class SettingsV2ProductEditorEventScreen(
     private val marketplaceManagerApi: MarketplaceManagerApi,
-    private val membershipManagerApi: MembershipManagerApi
+    private val membershipManagerApi: MembershipManagerApi,
 ) : AbstractEndpoint() {
     @PostMapping
     fun index(@RequestParam id: Long): Widget {
@@ -46,7 +46,7 @@ class SettingsV2ProductEditorEventScreen(
                 DropdownMenuItem(
                     value = it.id.toString(),
                     caption = it.name,
-                    icon = it.logoUrl
+                    icon = it.logoUrl,
                 )
             }.toMutableList()
         providers.add(0, DropdownMenuItem(caption = "", value = ""))
@@ -68,7 +68,7 @@ class SettingsV2ProductEditorEventScreen(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.settings.catalog.event.app-bar.title")
+                title = getText("page.settings.catalog.event.app-bar.title"),
             ),
             child = SingleChildScrollView(
                 child = Form(
@@ -81,8 +81,8 @@ class SettingsV2ProductEditorEventScreen(
                                 caption = getText("page.settings.catalog.event.start-date"),
                                 required = true,
                                 type = InputType.Date,
-                                value = starts?.format(dateFormat)
-                            )
+                                value = starts?.format(dateFormat),
+                            ),
                         ),
                         Container(
                             padding = 10.0,
@@ -92,8 +92,8 @@ class SettingsV2ProductEditorEventScreen(
                                 caption = getText("page.settings.catalog.event.start-time"),
                                 required = true,
                                 type = InputType.Time,
-                                value = starts?.format(timeFormat)
-                            )
+                                value = starts?.format(timeFormat),
+                            ),
                         ),
                         Container(
                             padding = 10.0,
@@ -103,8 +103,8 @@ class SettingsV2ProductEditorEventScreen(
                                 caption = getText("page.settings.catalog.event.end-time"),
                                 required = true,
                                 type = InputType.Time,
-                                value = ends?.format(timeFormat)
-                            )
+                                value = ends?.format(timeFormat),
+                            ),
                         ),
                         Container(
                             padding = 10.0,
@@ -115,14 +115,14 @@ class SettingsV2ProductEditorEventScreen(
                                 children = listOf(
                                     DropdownMenuItem(
                                         caption = getText("page.settings.catalog.event.online"),
-                                        value = "true"
+                                        value = "true",
                                     ),
                                     DropdownMenuItem(
                                         caption = getText("page.settings.catalog.event.offline"),
-                                        value = "false"
-                                    )
-                                )
-                            )
+                                        value = "false",
+                                    ),
+                                ),
+                            ),
                         ),
                         Container(
                             padding = 10.0,
@@ -131,8 +131,8 @@ class SettingsV2ProductEditorEventScreen(
                                 hint = getText("page.settings.catalog.event.provider"),
                                 value = product.event?.meetingProvider?.let { it.id.toString() },
                                 required = true,
-                                children = providers
-                            )
+                                children = providers,
+                            ),
                         ),
                         Container(
                             padding = 10.0,
@@ -141,8 +141,8 @@ class SettingsV2ProductEditorEventScreen(
                                 maxLength = 30,
                                 caption = getText("page.settings.catalog.event.meeting-id"),
                                 value = product.event?.meetingId,
-                                required = true
-                            )
+                                required = true,
+                            ),
                         ),
                         Container(
                             padding = 10.0,
@@ -150,8 +150,8 @@ class SettingsV2ProductEditorEventScreen(
                                 name = "meetingPassword",
                                 maxLength = 100,
                                 caption = getText("page.settings.catalog.event.meeting-password"),
-                                value = product.event?.meetingPassword
-                            )
+                                value = product.event?.meetingPassword,
+                            ),
                         ),
                         Container(padding = 20.0),
                         Container(
@@ -163,21 +163,21 @@ class SettingsV2ProductEditorEventScreen(
                                 action = executeCommand(
                                     url = urlBuilder.build("${Page.getSettingsProductEditorUrl()}/event/submit"),
                                     parameters = mapOf(
-                                        "id" to id.toString()
-                                    )
-                                )
-                            )
-                        )
-                    )
-                )
-            )
+                                        "id" to id.toString(),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
         ).toWidget()
     }
 
     @PostMapping("/submit")
     fun submit(
         @RequestParam id: Long,
-        @RequestBody request: SubmitProductEventRequest
+        @RequestBody request: SubmitProductEventRequest,
     ): Action {
         val member = membershipManagerApi.getMember(SecurityUtil.getMemberId()).member
         val fmt = SimpleDateFormat("yyyy-MM-dd HH:mm", LocaleContextHolder.getLocale())
@@ -196,8 +196,8 @@ class SettingsV2ProductEditorEventScreen(
                 meetingPassword = request.meetingPassword,
                 meetingProviderId = request.meetingProviderId,
                 starts = starts.toInstant().atOffset(ZoneOffset.UTC),
-                ends = ends.toInstant().atOffset(ZoneOffset.UTC)
-            )
+                ends = ends.toInstant().atOffset(ZoneOffset.UTC),
+            ),
         )
 
         return gotoPreviousScreen()

@@ -32,8 +32,8 @@ class Onboard06SuccessPage : AbstractOnboardPage() {
                         child = Icon(
                             code = Theme.ICON_CHECK,
                             size = 80.0,
-                            color = Theme.COLOR_SUCCESS
-                        )
+                            color = Theme.COLOR_SUCCESS,
+                        ),
                     ),
                     Container(
                         alignment = TopCenter,
@@ -43,30 +43,30 @@ class Onboard06SuccessPage : AbstractOnboardPage() {
                             alignment = TextAlignment.Center,
                             size = Theme.TEXT_SIZE_LARGE,
                             color = Theme.COLOR_PRIMARY,
-                            bold = true
-                        )
+                            bold = true,
+                        ),
                     ),
                     Container(
                         alignment = Center,
                         padding = 10.0,
                         child = Text(
                             caption = getText("page.onboard.success.sub-title"),
-                            alignment = TextAlignment.Center
-                        )
+                            alignment = TextAlignment.Center,
+                        ),
                     ),
                     Container(
-                        padding = 20.0
+                        padding = 20.0,
                     ),
                     Button(
                         id = "ok",
                         caption = getText("page.onboard.button.start"),
                         action = Action(
                             type = Command,
-                            url = urlBuilder.build("/onboard/pages/success/start")
-                        )
-                    )
-                )
-            )
+                            url = urlBuilder.build("/onboard/pages/success/start"),
+                        ),
+                    ),
+                ),
+            ),
         ).toWidget()
     }
 
@@ -75,6 +75,6 @@ class Onboard06SuccessPage : AbstractOnboardPage() {
         gotoLogin(
             phoneNumber = onboardDao.get().phoneNumber,
             auth = true,
-            hideBackButton = true
+            hideBackButton = true,
         )
 }

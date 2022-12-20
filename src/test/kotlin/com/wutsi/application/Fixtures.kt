@@ -50,7 +50,7 @@ object Fixtures {
         storeId: Long? = null,
         businessId: Long? = null,
         country: String = "CM",
-        superUser: Boolean = false
+        superUser: Boolean = false,
     ) = Member(
         id = id,
         active = true,
@@ -69,22 +69,22 @@ object Fixtures {
         city = Place(
             id = 111,
             name = "Yaounde",
-            longName = "Yaounde, Cameroun"
+            longName = "Yaounde, Cameroun",
         ),
         category = Category(
             id = 555,
-            title = "Ads"
-        )
+            title = "Ads",
+        ),
     )
 
     fun createPlaceSummary(id: Long = -1, name: String = "Yaounde") = PlaceSummary(
         id = id,
-        name = name
+        name = name,
     )
 
     fun createCategorySummary(id: Long = -1, title: String = "Art") = CategorySummary(
         id = id,
-        title = title
+        title = title,
     )
 
     fun createProductSummary(
@@ -93,7 +93,7 @@ object Fixtures {
         thumbnailUrl: String? = null,
         published: Boolean = true,
         price: Long = 15000,
-        type: ProductType = ProductType.PHYSICAL_PRODUCT
+        type: ProductType = ProductType.PHYSICAL_PRODUCT,
     ) = ProductSummary(
         id = id,
         title = title,
@@ -101,7 +101,7 @@ object Fixtures {
         status = if (published) "PUBLISHED" else "DRAFT",
         price = price,
         type = type.name,
-        event = if (type == ProductType.EVENT) createEvent() else null
+        event = if (type == ProductType.EVENT) createEvent() else null,
     )
 
     fun createProduct(
@@ -115,7 +115,7 @@ object Fixtures {
         pictures: List<PictureSummary> = emptyList(),
         published: Boolean = true,
         type: ProductType = ProductType.PHYSICAL_PRODUCT,
-        event: Event? = null
+        event: Event? = null,
     ) = Product(
         id = id,
         store = createStoreSummary(storeId),
@@ -128,11 +128,11 @@ object Fixtures {
         pictures = pictures,
         status = if (published) "PUBLISHED" else "DRAFT",
         type = type.name,
-        event = event
+        event = event,
     )
 
     fun createEvent(
-        meetingProvider: MeetingProviderSummary? = null
+        meetingProvider: MeetingProviderSummary? = null,
     ) = Event(
         online = true,
         meetingPassword = "123456",
@@ -140,33 +140,33 @@ object Fixtures {
         meetingJoinUrl = "https://us04.zoom.us/j/12345678",
         starts = OffsetDateTime.of(2020, 1, 1, 10, 30, 0, 0, ZoneOffset.UTC),
         ends = OffsetDateTime.of(2020, 1, 1, 15, 30, 0, 0, ZoneOffset.UTC),
-        meetingProvider = meetingProvider
+        meetingProvider = meetingProvider,
     )
 
     fun createMeetingProviderSummary() = MeetingProviderSummary(
         id = 1000,
         type = MeetingProviderType.ZOOM.name,
         name = "Zoom",
-        logoUrl = "https://prod-wutsi.s3.amazonaws.com/static/marketplace-access-server/meeting-providers/zoom.png"
+        logoUrl = "https://prod-wutsi.s3.amazonaws.com/static/marketplace-access-server/meeting-providers/zoom.png",
     )
 
     fun createMeetingProviderType(
         id: Long,
         type: MeetingProviderType,
-        name: String
+        name: String,
     ) = MeetingProviderSummary(
         id = id,
         type = type.name,
         name = name,
-        logoUrl = "https://prod-wutsi.s3.amazonaws.com/static/marketplace-access-server/meeting-providers/$id.png"
+        logoUrl = "https://prod-wutsi.s3.amazonaws.com/static/marketplace-access-server/meeting-providers/$id.png",
     )
 
     fun createPictureSummary(
         id: Long = -1,
-        url: String = "http://www.google.com/1.png"
+        url: String = "http://www.google.com/1.png",
     ) = PictureSummary(
         id = id,
-        url = url
+        url = url,
     )
 
     fun createPictureSummaryList(size: Int): List<PictureSummary> {
@@ -175,8 +175,8 @@ object Fixtures {
             pictures.add(
                 PictureSummary(
                     id = i.toLong(),
-                    url = "https://img.com/$i.png"
-                )
+                    url = "https://img.com/$i.png",
+                ),
             )
         }
         return pictures
@@ -184,24 +184,24 @@ object Fixtures {
 
     fun createStore(id: Long, accountId: Long) = Store(
         id = id,
-        accountId = accountId
+        accountId = accountId,
     )
 
     fun createStoreSummary(id: Long, accountId: Long = -1) = StoreSummary(
         id = id,
-        accountId = accountId
+        accountId = accountId,
     )
 
     fun createPaymentMethodSummary(
         token: String = "111",
         type: PaymentMethodType = PaymentMethodType.MOBILE_MONEY,
         number: String = "+23767000001",
-        provider: String = "MTN"
+        provider: String = "MTN",
     ) = PaymentMethodSummary(
         token = token,
         type = type.name,
         number = number,
-        provider = createPaymentProviderSummary(provider, type)
+        provider = createPaymentProviderSummary(provider, type),
     )
 
     fun createPaymentMethod(
@@ -209,13 +209,13 @@ object Fixtures {
         type: PaymentMethodType = PaymentMethodType.MOBILE_MONEY,
         number: String = "+23767000001",
         provider: String = "MTN",
-        country: String = "CM"
+        country: String = "CM",
     ) = PaymentMethod(
         token = token,
         type = type.name,
         number = number,
         provider = createPaymentProviderSummary(provider, type),
-        country = country
+        country = country,
     )
 
     fun createPaymentProviderSummary(name: String = "MTN", type: PaymentMethodType = PaymentMethodType.MOBILE_MONEY) =
@@ -223,7 +223,7 @@ object Fixtures {
             name = name,
             code = name,
             type = type.name,
-            logoUrl = "https://img.com/$name.png"
+            logoUrl = "https://img.com/$name.png",
         )
 
     fun createOrderSummary(id: String, totalPrice: Long = 15000, status: OrderStatus = OrderStatus.OPENED) =
@@ -231,14 +231,14 @@ object Fixtures {
             id = id,
             totalPrice = totalPrice,
             status = status.name,
-            created = OffsetDateTime.of(2020, 1, 1, 10, 30, 0, 0, ZoneOffset.UTC)
+            created = OffsetDateTime.of(2020, 1, 1, 10, 30, 0, 0, ZoneOffset.UTC),
         )
 
     fun createBusiness(id: Long, accountId: Long) = Business(
         id = id,
         accountId = accountId,
         country = "CM",
-        balance = 30000
+        balance = 30000,
     )
 
     fun createOrder(
@@ -246,7 +246,7 @@ object Fixtures {
         businessId: Long = -1,
         merchantId: Long = -1,
         totalPrice: Long = 100000L,
-        status: OrderStatus = OrderStatus.OPENED
+        status: OrderStatus = OrderStatus.OPENED,
     ) = Order(
         id = id,
         business = createBusinessSummary(businessId, merchantId),
@@ -268,8 +268,8 @@ object Fixtures {
                 code = "111",
                 amount = 1000,
                 rate = 0,
-                type = DiscountType.DYNAMIC.name
-            )
+                type = DiscountType.DYNAMIC.name,
+            ),
         ),
         items = listOf(
             OrderItem(
@@ -286,10 +286,10 @@ object Fixtures {
                         code = "111",
                         amount = 100,
                         rate = 0,
-                        type = DiscountType.DYNAMIC.name
-                    )
-                )
-            )
+                        type = DiscountType.DYNAMIC.name,
+                    ),
+                ),
+            ),
         ),
         created = OffsetDateTime.of(2020, 1, 1, 10, 30, 0, 0, ZoneOffset.UTC),
         updated = OffsetDateTime.of(2020, 1, 1, 10, 30, 0, 0, ZoneOffset.UTC),
@@ -297,8 +297,8 @@ object Fixtures {
         transactions = listOf(
             createTransactionSummary("11", TransactionType.CHARGE, Status.SUCCESSFUL, id),
             createTransactionSummary("11", TransactionType.CHARGE, Status.FAILED, id),
-            createTransactionSummary("11", TransactionType.CHARGE, Status.PENDING, id)
-        )
+            createTransactionSummary("11", TransactionType.CHARGE, Status.PENDING, id),
+        ),
     )
 
     fun createBusinessSummary(
@@ -307,27 +307,27 @@ object Fixtures {
         balance: Long = 100000,
         currency: String = "XAF",
         country: String = "CM",
-        status: BusinessStatus = BusinessStatus.ACTIVE
+        status: BusinessStatus = BusinessStatus.ACTIVE,
     ) = BusinessSummary(
         id = id,
         balance = balance,
         currency = currency,
         country = country,
         status = status.name,
-        accountId = accountId
+        accountId = accountId,
     )
 
     fun createTransactionSummary(
         id: String,
         type: TransactionType,
         status: Status = Status.SUCCESSFUL,
-        orderId: String? = null
+        orderId: String? = null,
     ) = TransactionSummary(
         id = id,
         type = type.name,
         orderId = orderId,
         status = status.name,
-        created = OffsetDateTime.of(2020, 1, 1, 10, 30, 0, 0, ZoneOffset.UTC)
+        created = OffsetDateTime.of(2020, 1, 1, 10, 30, 0, 0, ZoneOffset.UTC),
     )
 
     fun createTransaction(
@@ -337,7 +337,7 @@ object Fixtures {
         orderId: String? = null,
         businessId: Long = -1,
         accountId: Long = -1,
-        error: ErrorCode? = null
+        error: ErrorCode? = null,
     ) = Transaction(
         id = id,
         type = type.name,
@@ -359,6 +359,6 @@ object Fixtures {
         fees = 500,
         net = 10000,
         gatewayFees = 250,
-        gatewayType = GatewayType.FLUTTERWAVE.name
+        gatewayType = GatewayType.FLUTTERWAVE.name,
     )
 }

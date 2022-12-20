@@ -39,7 +39,7 @@ class SettingsV2ProfileEmailVerificationScreen(
     private val mapper: ObjectMapper,
     private val dao: EmailRepository,
     private val securityManagerApi: SecurityManagerApi,
-    private val membershipManagerApi: MembershipManagerApi
+    private val membershipManagerApi: MembershipManagerApi,
 ) : AbstractEndpoint() {
     @PostMapping
     fun index(): Widget {
@@ -50,7 +50,7 @@ class SettingsV2ProfileEmailVerificationScreen(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.settings.profile.email.verification.app-bar.title")
+                title = getText("page.settings.profile.email.verification.app-bar.title"),
             ),
             child = Form(
                 children = listOf(
@@ -61,12 +61,12 @@ class SettingsV2ProfileEmailVerificationScreen(
                             alignment = TextAlignment.Center,
                             caption = getText(
                                 "page.settings.profile.email.verification.title",
-                                arrayOf(email.value)
+                                arrayOf(email.value),
                             ),
                             bold = true,
                             size = Theme.TEXT_SIZE_LARGE,
-                            color = Theme.COLOR_PRIMARY
-                        )
+                            color = Theme.COLOR_PRIMARY,
+                        ),
                     ),
                     Container(
                         padding = 10.0,
@@ -75,9 +75,9 @@ class SettingsV2ProfileEmailVerificationScreen(
                             alignment = TextAlignment.Center,
                             caption = getText(
                                 "page.settings.profile.email.verification.sub-title",
-                                arrayOf(email)
-                            )
-                        )
+                                arrayOf(email),
+                            ),
+                        ),
                     ),
                     PinWithKeyboard(
                         id = "pin",
@@ -86,8 +86,8 @@ class SettingsV2ProfileEmailVerificationScreen(
                         pinSize = 40.0,
                         action = Action(
                             type = ActionType.Command,
-                            url = urlBuilder.build("/settings/2/profile/email/verification/submit")
-                        )
+                            url = urlBuilder.build("/settings/2/profile/email/verification/submit"),
+                        ),
                     ),
                     Container(
                         padding = 10.0,
@@ -96,32 +96,32 @@ class SettingsV2ProfileEmailVerificationScreen(
                             type = ButtonType.Text,
                             caption = getText("page.settings.profile.email.verification.resend"),
                             action = executeCommand(
-                                url = urlBuilder.build("/settings/2/profile/email/verification/resend")
-                            )
-                        )
-                    )
-                )
-            )
+                                url = urlBuilder.build("/settings/2/profile/email/verification/resend"),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
         ).toWidget()
     }
 
     @PostMapping("/submit")
     fun submit(
-        @RequestBody request: SubmitOTPRequest
+        @RequestBody request: SubmitOTPRequest,
     ): Action {
         val email = dao.get()
         try {
             securityManagerApi.verifyOtp(
                 token = email.token,
                 request = VerifyOTPRequest(
-                    code = request.code
-                )
+                    code = request.code,
+                ),
             )
             membershipManagerApi.updateMemberAttribute(
                 request = UpdateMemberAttributeRequest(
                     name = "email",
-                    value = email.value
-                )
+                    value = email.value,
+                ),
             )
             return gotoPreviousScreen()
         } catch (ex: FeignException) {
@@ -140,14 +140,14 @@ class SettingsV2ProfileEmailVerificationScreen(
         email.token = securityManagerApi.createOtp(
             request = CreateOTPRequest(
                 address = email.value,
-                type = MessagingType.EMAIL.name
-            )
+                type = MessagingType.EMAIL.name,
+            ),
         ).token
         dao.save(email)
 
         return gotoUrl(
             url = urlBuilder.build("${Page.getSettingsUrl()}/profile/email/verification"),
-            replacement = true
+            replacement = true,
         )
     }
 }

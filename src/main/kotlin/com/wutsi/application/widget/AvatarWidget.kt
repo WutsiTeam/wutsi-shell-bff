@@ -12,19 +12,20 @@ class AvatarWidget(
     private val displayName: String,
     private val pictureUrl: String? = null,
     private val radius: Double,
-    private val action: Action? = null
+    private val action: Action? = null,
 ) : CompositeWidgetAware() {
     override fun toWidgetAware(): WidgetAware =
         CircleAvatar(
             action = action,
             radius = radius,
-            child = if (pictureUrl.isNullOrEmpty())
+            child = if (pictureUrl.isNullOrEmpty()) {
                 Text(
                     StringUtil.initials(displayName),
                     bold = true,
-                    size = max(14.0, radius - 8.0)
+                    size = max(14.0, radius - 8.0),
                 )
-            else
+            } else {
                 Image(pictureUrl)
+            },
         )
 }

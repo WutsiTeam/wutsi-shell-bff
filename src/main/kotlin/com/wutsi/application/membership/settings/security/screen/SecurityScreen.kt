@@ -28,7 +28,7 @@ class SecurityScreen : AbstractSecuredEndpoint() {
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.settings.security.app-bar.title")
+                title = getText("page.settings.security.app-bar.title"),
             ),
             child = ListView(
                 separatorColor = Theme.COLOR_DIVIDER,
@@ -38,36 +38,36 @@ class SecurityScreen : AbstractSecuredEndpoint() {
                         caption = getText("page.settings.security.list-item.change-pin.caption"),
                         action = Action(
                             type = Route,
-                            url = urlBuilder.build(getConfirmationUrl(me))
+                            url = urlBuilder.build(getConfirmationUrl(me)),
                         ),
                         trailing = Icon(
                             code = Theme.ICON_CHEVRON_RIGHT,
-                            size = 24.0
+                            size = 24.0,
                         ),
                         leading = Icon(
                             code = Theme.ICON_PIN,
                             size = 24.0,
-                            color = Theme.COLOR_PRIMARY
-                        )
+                            color = Theme.COLOR_PRIMARY,
+                        ),
                     ),
                     ListItem(
                         caption = getText("page.settings.security.list-item.delete-account.caption"),
                         action = Action(
                             type = Route,
-                            url = urlBuilder.build("${Page.getSecurityUrl()}/delete")
+                            url = urlBuilder.build("${Page.getSecurityUrl()}/delete"),
                         ),
                         trailing = Icon(
                             code = Theme.ICON_CHEVRON_RIGHT,
-                            size = 24.0
+                            size = 24.0,
                         ),
                         leading = Icon(
                             code = Theme.ICON_CANCEL,
                             size = 24.0,
-                            color = Theme.COLOR_DANGER
-                        )
-                    )
-                )
-            )
+                            color = Theme.COLOR_DANGER,
+                        ),
+                    ),
+                ),
+            ),
         ).toWidget()
     }
 

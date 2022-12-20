@@ -28,7 +28,7 @@ internal class SettingsV2ProductPictureViewerScreenTest : AbstractSecuredEndpoin
 
         // THEN
         verify(marketplaceManagerApi).deletePicture(
-            pictureId
+            pictureId,
         )
 
         val action = response.body!!

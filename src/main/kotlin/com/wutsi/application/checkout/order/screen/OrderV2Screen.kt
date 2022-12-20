@@ -51,7 +51,7 @@ import java.time.format.DateTimeFormatter
 class OrderV2Screen(
     private val checkoutManagerApi: CheckoutManagerApi,
     private val regulationEngine: RegulationEngine,
-    private val imageService: ImageService
+    private val imageService: ImageService,
 ) : AbstractSecuredEndpoint() {
     companion object {
         const val PRODUCT_PICTURE_SIZE = 64.0
@@ -73,7 +73,7 @@ class OrderV2Screen(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.order.app-bar.title", arrayOf(order.shortId))
+                title = getText("page.order.app-bar.title", arrayOf(order.shortId)),
             ),
             bottomNavigationBar = createBottomNavigationBarWidget(member),
             child = SingleChildScrollView(
@@ -87,10 +87,10 @@ class OrderV2Screen(
                         toItemListWidget(order, moneyFormat),
                         Divider(height = 1.0, color = Theme.COLOR_DIVIDER),
                         toPriceWidget(order, moneyFormat, dateFormat),
-                        Divider(height = 1.0, color = Theme.COLOR_DIVIDER)
-                    )
-                )
-            )
+                        Divider(height = 1.0, color = Theme.COLOR_DIVIDER),
+                    ),
+                ),
+            ),
         ).toWidget()
     }
 
@@ -108,8 +108,8 @@ class OrderV2Screen(
                         stretched = false,
                         action = executeCommand(
                             urlBuilder.build("${Page.getOrderUrl()}/accept"),
-                            parameters = mapOf("id" to order.id)
-                        )
+                            parameters = mapOf("id" to order.id),
+                        ),
                     ),
                     Button(
                         padding = 5.0,
@@ -118,10 +118,10 @@ class OrderV2Screen(
                         stretched = false,
                         action = executeCommand(
                             urlBuilder.build("${Page.getOrderUrl()}/cancel"),
-                            parameters = mapOf("id" to order.id)
-                        )
-                    )
-                )
+                            parameters = mapOf("id" to order.id),
+                        ),
+                    ),
+                ),
             )
         }
 
@@ -136,8 +136,8 @@ class OrderV2Screen(
                         stretched = false,
                         action = executeCommand(
                             urlBuilder.build("${Page.getOrderUrl()}/complete"),
-                            parameters = mapOf("id" to order.id)
-                        )
+                            parameters = mapOf("id" to order.id),
+                        ),
                     ),
                     Button(
                         padding = 5.0,
@@ -146,10 +146,10 @@ class OrderV2Screen(
                         stretched = false,
                         action = executeCommand(
                             urlBuilder.build("${Page.getOrderUrl()}/cancel"),
-                            parameters = mapOf("id" to order.id)
-                        )
-                    )
-                )
+                            parameters = mapOf("id" to order.id),
+                        ),
+                    ),
+                ),
             )
         }
 
@@ -161,8 +161,8 @@ class OrderV2Screen(
                 child = Row(
                     mainAxisAlignment = MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment = CrossAxisAlignment.center,
-                    children = buttons
-                )
+                    children = buttons,
+                ),
             )
         }
     }
@@ -183,13 +183,13 @@ class OrderV2Screen(
         checkoutManagerApi.updateOrderStatus(
             request = UpdateOrderStatusRequest(
                 orderId = id,
-                status = status.name
-            )
+                status = status.name,
+            ),
         )
         return gotoUrl(
             url = urlBuilder.build(Page.getOrderUrl()),
             parameters = mapOf("id" to id),
-            replacement = true
+            replacement = true,
         )
     }
 
@@ -205,14 +205,14 @@ class OrderV2Screen(
                     child = Text(
                         caption = StringUtil.capitalize(order.customerName),
                         bold = true,
-                        size = Theme.TEXT_SIZE_X_LARGE
-                    )
+                        size = Theme.TEXT_SIZE_X_LARGE,
+                    ),
                 ),
                 Container(
                     padding = 5.0,
                     child = Text(
-                        caption = getText("page.order.ordered-on", arrayOf(dateFormat.format(order.created)))
-                    )
+                        caption = getText("page.order.ordered-on", arrayOf(dateFormat.format(order.created))),
+                    ),
                 ),
                 Container(
                     padding = 5.0,
@@ -224,11 +224,11 @@ class OrderV2Screen(
                             OrderStatus.CANCELLED.name, OrderStatus.EXPIRED.name -> Theme.COLOR_DANGER
                             OrderStatus.CANCELLED.name -> Theme.COLOR_SUCCESS
                             else -> null
-                        }
-                    )
-                )
-            )
-        )
+                        },
+                    ),
+                ),
+            ),
+        ),
     )
 
     private fun toItemListWidget(order: Order, moneyFormat: DecimalFormat) = Container(
@@ -236,8 +236,8 @@ class OrderV2Screen(
         child = Column(
             mainAxisAlignment = MainAxisAlignment.start,
             crossAxisAlignment = CrossAxisAlignment.start,
-            children = order.items.map { toItemWidget(it, moneyFormat) }
-        )
+            children = order.items.map { toItemWidget(it, moneyFormat) },
+        ),
     )
 
     private fun toItemWidget(item: OrderItem, monetaryFormat: DecimalFormat) = Row(
@@ -253,9 +253,9 @@ class OrderV2Screen(
                     borderRadius = 5.0,
                     child = Text(
                         caption = item.quantity.toString(),
-                        color = Theme.COLOR_BLACK
-                    )
-                )
+                        color = Theme.COLOR_BLACK,
+                    ),
+                ),
             ),
             item.pictureUrl?.let {
                 Flexible(
@@ -271,12 +271,12 @@ class OrderV2Screen(
                                 Transformation(
                                     dimension = Dimension(
                                         width = PRODUCT_PICTURE_SIZE.toInt(),
-                                        height = PRODUCT_PICTURE_SIZE.toInt()
-                                    )
-                                )
-                            )
-                        )
-                    )
+                                        height = PRODUCT_PICTURE_SIZE.toInt(),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
                 )
             },
             Flexible(
@@ -287,20 +287,20 @@ class OrderV2Screen(
                     children = listOf(
                         Container(
                             padding = 5.0,
-                            child = Text(caption = item.title)
+                            child = Text(caption = item.title),
                         ),
                         Container(
                             padding = 5.0,
                             child = Text(
                                 caption = getText("page.order.unit-price") +
                                     ": " +
-                                    monetaryFormat.format(item.unitPrice)
-                            )
-                        )
-                    )
-                )
-            )
-        )
+                                    monetaryFormat.format(item.unitPrice),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        ),
     )
 
     private fun toPriceWidget(order: Order, moneyFormat: DecimalFormat, dateFormat: DateTimeFormatter): WidgetAware {
@@ -322,7 +322,7 @@ class OrderV2Screen(
                     tableRow(
                         getText("page.order.discount"),
                         "-" + moneyFormat.format(order.totalDiscount),
-                        color = Theme.COLOR_SUCCESS
+                        color = Theme.COLOR_SUCCESS,
                     )
                 } else {
                     null
@@ -333,7 +333,7 @@ class OrderV2Screen(
                     moneyFormat.format(order.totalPrice),
                     bold = true,
                     size = Theme.TEXT_SIZE_LARGE,
-                    color = Theme.COLOR_PRIMARY
+                    color = Theme.COLOR_PRIMARY,
                 ),
                 tx?.let {
                     Divider(height = 1.0, color = Theme.COLOR_DIVIDER)
@@ -349,7 +349,7 @@ class OrderV2Screen(
                                     url = tx.paymentMethod.provider.logoUrl,
                                     fit = BoxFit.fill,
                                     width = PROVIDER_PICTURE_SIZE,
-                                    height = PROVIDER_PICTURE_SIZE
+                                    height = PROVIDER_PICTURE_SIZE,
                                 ),
                                 Container(padding = 5.0),
                                 Column(
@@ -360,15 +360,15 @@ class OrderV2Screen(
                                         Text(
                                             caption = getText(
                                                 "page.order.paid-on",
-                                                arrayOf(dateFormat.format(tx.created))
+                                                arrayOf(dateFormat.format(tx.created)),
                                             ),
-                                            size = Theme.TEXT_SIZE_SMALL
-                                        )
-                                    )
-                                )
-                            )
+                                            size = Theme.TEXT_SIZE_SMALL,
+                                        ),
+                                    ),
+                                ),
+                            ),
                         ),
-                        moneyFormat.format(tx.amount)
+                        moneyFormat.format(tx.amount),
                     )
                 },
 
@@ -380,17 +380,17 @@ class OrderV2Screen(
                             url = urlBuilder.build(Page.getTransactionUrl()),
                             parameters = mapOf(
                                 "id" to it.id,
-                                "hide-order" to "true"
-                            )
+                                "hide-order" to "true",
+                            ),
                         ),
                         child = Text(
                             caption = getText("page.order.payment-details"),
                             decoration = TextDecoration.Underline,
-                            color = Theme.COLOR_PRIMARY
-                        )
+                            color = Theme.COLOR_PRIMARY,
+                        ),
                     )
-                }
-            )
+                },
+            ),
         )
     }
 
@@ -399,13 +399,13 @@ class OrderV2Screen(
         value: String,
         bold: Boolean? = null,
         color: String? = null,
-        size: Double? = null
+        size: Double? = null,
     ) = tableRow(
         name = Text(name, size = size),
         value = value,
         bold = bold,
         color = color,
-        size = size
+        size = size,
     )
 
     private fun tableRow(
@@ -413,7 +413,7 @@ class OrderV2Screen(
         value: String,
         bold: Boolean? = null,
         color: String? = null,
-        size: Double? = null
+        size: Double? = null,
     ) = Row(
         mainAxisAlignment = MainAxisAlignment.start,
         crossAxisAlignment = CrossAxisAlignment.center,
@@ -422,16 +422,16 @@ class OrderV2Screen(
                 flex = 1,
                 child = Container(
                     padding = 10.0,
-                    child = name
-                )
+                    child = name,
+                ),
             ),
             Flexible(
                 flex = 1,
                 child = Container(
                     padding = 10.0,
-                    child = Text(value, alignment = TextAlignment.Right, bold = bold, color = color, size = size)
-                )
-            )
-        )
+                    child = Text(value, alignment = TextAlignment.Right, bold = bold, color = color, size = size),
+                ),
+            ),
+        ),
     )
 }

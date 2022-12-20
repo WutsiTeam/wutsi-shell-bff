@@ -21,7 +21,7 @@ class SettingsV2BusinessScreen : AbstractEndpoint() {
             "${Page.getSettingsBusinessUrl()}/pages/whatsapp",
             "${Page.getSettingsBusinessUrl()}/pages/biography",
             "${Page.getSettingsBusinessUrl()}/pages/confirm",
-            "${Page.getSettingsBusinessUrl()}/pages/success"
+            "${Page.getSettingsBusinessUrl()}/pages/success",
         )
     }
 
@@ -34,8 +34,8 @@ class SettingsV2BusinessScreen : AbstractEndpoint() {
             child = PageView(
                 children = PAGE_URLS.map {
                     com.wutsi.flutter.sdui.Page(url = urlBuilder.build(it))
-                }
-            )
+                },
+            ),
         ).toWidget()
     }
 }

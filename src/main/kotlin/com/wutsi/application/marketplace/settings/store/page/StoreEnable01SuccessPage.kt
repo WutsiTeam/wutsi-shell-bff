@@ -23,7 +23,7 @@ class StoreEnable01SuccessPage : AbstractSuccessPageEndpoint() {
         caption = getText("page.settings.store.activate.button.done"),
         action = gotoUrl(
             url = urlBuilder.build(Page.getSettingsStoreUrl()),
-            replacement = true
-        )
+            replacement = true,
+        ),
     )
 }

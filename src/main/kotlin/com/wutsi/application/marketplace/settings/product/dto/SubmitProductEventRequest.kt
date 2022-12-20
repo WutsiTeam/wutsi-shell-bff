@@ -7,5 +7,5 @@ public data class SubmitProductEventRequest(
     public val meetingProviderId: Long? = null,
     public val startDate: String = "",
     public val startTime: String = "",
-    public val endTime: String = ""
+    public val endTime: String = "",
 )

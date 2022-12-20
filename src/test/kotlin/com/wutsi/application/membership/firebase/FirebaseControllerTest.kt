@@ -45,15 +45,15 @@ internal class FirebaseControllerTest : ClientHttpRequestInterceptor, AbstractSe
                 token = request.token,
                 osName = OS,
                 osVersion = VERSION,
-                type = DeviceType.MOBILE.name
-            )
+                type = DeviceType.MOBILE.name,
+            ),
         )
     }
 
     override fun intercept(
         request: HttpRequest,
         body: ByteArray,
-        execution: ClientHttpRequestExecution
+        execution: ClientHttpRequestExecution,
     ): ClientHttpResponse {
         request.headers["X-OS"] = OS
         request.headers["X-OS-Version"] = VERSION

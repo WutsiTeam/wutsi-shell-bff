@@ -27,12 +27,12 @@ class Business03CityPage : AbstractBusinessAttributePage() {
 
     override fun getBody(): WidgetAware? {
         val member = membershipManagerApi.getMember(
-            SecurityUtil.getMemberId()
+            SecurityUtil.getMemberId(),
         ).member
         val entity = dao.get()
         return Container(
             padding = 10.0,
-            child = widgetProvider.get(getAttribute(), entity.cityId, member.country)
+            child = widgetProvider.get(getAttribute(), entity.cityId, member.country),
         )
     }
 
@@ -41,8 +41,8 @@ class Business03CityPage : AbstractBusinessAttributePage() {
         type = InputType.Submit,
         caption = getText("page.settings.business.button.next"),
         action = executeCommand(
-            url = urlBuilder.build("${Page.getSettingsBusinessUrl()}/pages/city/submit")
-        )
+            url = urlBuilder.build("${Page.getSettingsBusinessUrl()}/pages/city/submit"),
+        ),
     )
 
     @PostMapping("/submit")

@@ -36,7 +36,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/settings/2/accounts/list")
 class Settings2AccountListScreen(
     private val checkoutManagerApi: CheckoutManagerApi,
-    private val regulationEngine: RegulationEngine
+    private val regulationEngine: RegulationEngine,
 ) : AbstractSecuredEndpoint() {
     @PostMapping
     fun index(): Widget {
@@ -49,7 +49,7 @@ class Settings2AccountListScreen(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.settings.account.list.app-bar.title")
+                title = getText("page.settings.account.list.app-bar.title"),
             ),
             child = Column(
                 crossAxisAlignment = CrossAxisAlignment.center,
@@ -59,11 +59,11 @@ class Settings2AccountListScreen(
                     Flexible(
                         child = Container(
                             alignment = Alignment.TopCenter,
-                            child = toAccountListWidget()
-                        )
-                    )
-                )
-            )
+                            child = toAccountListWidget(),
+                        ),
+                    ),
+                ),
+            ),
         ).toWidget()
     }
 
@@ -81,8 +81,8 @@ class Settings2AccountListScreen(
                         value = business.balance.toDouble(),
                         currency = country.currencySymbol,
                         color = Theme.COLOR_PRIMARY,
-                        numberFormat = country.numberFormat
-                    )
+                        numberFormat = country.numberFormat,
+                    ),
                 ),
                 Container(
                     alignment = Center,
@@ -96,24 +96,24 @@ class Settings2AccountListScreen(
                                 caption = getText("page.settings.account.list.button.transaction"),
                                 stretched = false,
                                 action = gotoUrl(
-                                    url = urlBuilder.build(Page.getTransactionListUrl())
-                                )
+                                    url = urlBuilder.build(Page.getTransactionListUrl()),
+                                ),
                             ),
                             Button(
                                 type = ButtonType.Outlined,
                                 caption = getText("page.settings.account.list.button.cashout"),
                                 stretched = false,
                                 action = gotoUrl(
-                                    url = urlBuilder.build(Page.getSettingsAccountCashoutUrl())
-                                )
-                            )
-                        )
-                    )
-                )
+                                    url = urlBuilder.build(Page.getSettingsAccountCashoutUrl()),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
             ),
             mainAxisAlignment = MainAxisAlignment.center,
             crossAxisAlignment = CrossAxisAlignment.center,
-            mainAxisSize = MainAxisSize.min
+            mainAxisSize = MainAxisSize.min,
         )
     }
 
@@ -121,8 +121,8 @@ class Settings2AccountListScreen(
         val paymentMethods = checkoutManagerApi.searchPaymentMethod(
             request = SearchPaymentMethodRequest(
                 status = PaymentMethodStatus.ACTIVE.name,
-                limit = 100
-            )
+                limit = 100,
+            ),
         ).paymentMethods
 
         val children = mutableListOf<WidgetAware>()
@@ -137,11 +137,11 @@ class Settings2AccountListScreen(
                         action = gotoUrl(
                             url = urlBuilder.build("${Page.getSettingsAccountUrl()}"),
                             parameters = mapOf(
-                                "token" to it.token
-                            )
-                        )
+                                "token" to it.token,
+                            ),
+                        ),
                     )
-                }
+                },
         )
         children.add(
             Container(
@@ -150,15 +150,15 @@ class Settings2AccountListScreen(
                 child = Button(
                     caption = getText("page.settings.account.list.button.add-account"),
                     action = gotoUrl(
-                        url = urlBuilder.build("${Page.getSettingsAccountUrl()}/add/mobile")
-                    )
-                )
-            )
+                        url = urlBuilder.build("${Page.getSettingsAccountUrl()}/add/mobile"),
+                    ),
+                ),
+            ),
         )
         return ListView(
             children = children,
             separatorColor = Theme.COLOR_DIVIDER,
-            separator = true
+            separator = true,
         )
     }
 }
