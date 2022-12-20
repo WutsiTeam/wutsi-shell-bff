@@ -19,7 +19,6 @@ import com.wutsi.flutter.sdui.Divider
 import com.wutsi.flutter.sdui.ExpandablePanel
 import com.wutsi.flutter.sdui.Flexible
 import com.wutsi.flutter.sdui.Icon
-import com.wutsi.flutter.sdui.Image
 import com.wutsi.flutter.sdui.ListItem
 import com.wutsi.flutter.sdui.ListView
 import com.wutsi.flutter.sdui.Screen
@@ -133,17 +132,11 @@ class SettingsV2ProductScreen(
 
                             if (product.type == ProductType.EVENT.name) {
                                 ListItem(
-                                    leading = if (product.event?.online == true) {
-                                        product.event?.meetingProvider?.logoUrl?.let {
-                                            Image(
-                                                width = 32.0,
-                                                height = 32.0,
-                                                url = it,
-                                            )
-                                        }
-                                    } else {
-                                        null
-                                    },
+                                    leading = Icon(
+                                        code = Theme.ICON_EVENT,
+                                        size = 32.0,
+                                        color = Theme.COLOR_PRIMARY,
+                                    ),
                                     caption = getText("page.settings.catalog.product.attribute.event"),
                                     subCaption = product.event?.starts?.let {
                                         DateTimeUtil.convert(it, member.timezoneId).format(dateFormat)
@@ -156,6 +149,32 @@ class SettingsV2ProductScreen(
                                     action = Action(
                                         type = ActionType.Route,
                                         url = urlBuilder.build("${Page.getSettingsProductEditorUrl()}/event?id=${product.id}"),
+                                    ),
+                                )
+                            } else {
+                                null
+                            },
+
+                            if (product.type == ProductType.DIGITAL_DOWNLOAD.name) {
+                                ListItem(
+                                    caption = getText("page.settings.catalog.product.attribute.file"),
+                                    subCaption = getText(
+                                        "page.settings.catalog.product.n_files",
+                                        arrayOf(product.files.size),
+                                    ),
+                                    leading = Icon(
+                                        code = Theme.ICON_FILES,
+                                        size = 32.0,
+                                        color = Theme.COLOR_PRIMARY,
+                                    ),
+                                    trailing = Icon(
+                                        code = Theme.ICON_EDIT,
+                                        size = 24.0,
+                                        color = Theme.COLOR_BLACK,
+                                    ),
+                                    action = Action(
+                                        type = ActionType.Route,
+                                        url = urlBuilder.build("${Page.getSettingsProductEditorUrl()}/files?id=${product.id}"),
                                     ),
                                 )
                             } else {

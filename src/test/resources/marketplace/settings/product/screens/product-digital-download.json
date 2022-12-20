@@ -254,7 +254,7 @@
                   "type": "ListItem",
                   "attributes": {
                     "caption": "Type",
-                    "subCaption": "Event",
+                    "subCaption": "Digital Download",
                     "trailing": {
                       "type": "Icon",
                       "attributes": {
@@ -386,8 +386,8 @@
                 {
                   "type": "ListItem",
                   "attributes": {
-                    "caption": "Event",
-                    "subCaption": "01 Jan 2020, 11:30",
+                    "caption": "Digital Download",
+                    "subCaption": "3 file(s)",
                     "trailing": {
                       "type": "Icon",
                       "attributes": {
@@ -400,7 +400,7 @@
                     "leading": {
                       "type": "Icon",
                       "attributes": {
-                        "code": "f02f",
+                        "code": "f058",
                         "size": 32.0,
                         "color": "#1D7EDF"
                       },
@@ -410,7 +410,7 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "http://localhost:0/settings/2/products/editor/event?id=111"
+                    "url": "http://localhost:0/settings/2/products/editor/files?id=111"
                   }
                 },
                 {

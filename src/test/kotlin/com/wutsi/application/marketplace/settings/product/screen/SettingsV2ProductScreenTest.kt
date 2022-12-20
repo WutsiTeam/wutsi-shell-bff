@@ -81,6 +81,24 @@ internal class SettingsV2ProductScreenTest : AbstractSecuredEndpointTest() {
     }
 
     @Test
+    fun digitalDownload() {
+        val product = Fixtures.createProduct(
+            id = 111,
+            pictures = Fixtures.createPictureSummaryList(2),
+            published = true,
+            type = ProductType.DIGITAL_DOWNLOAD,
+            files = listOf(
+                Fixtures.createFileSummary(1L, name = "1.png"),
+                Fixtures.createFileSummary(2L, name = "1.xls"),
+                Fixtures.createFileSummary(3L, name = "1.pdf"),
+            ),
+        )
+        doReturn(GetProductResponse(product)).whenever(marketplaceManagerApi).getProduct(any())
+
+        assertEndpointEquals("/marketplace/settings/product/screens/product-digital-download.json", url())
+    }
+
+    @Test
     fun indexPictureLimit() {
         val product = Fixtures.createProduct(
             id = 111,

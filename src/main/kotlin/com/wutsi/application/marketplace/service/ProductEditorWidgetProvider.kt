@@ -59,6 +59,10 @@ class ProductEditorWidgetProvider(
                         caption = getText("product.type.EVENT"),
                         value = ProductType.EVENT.name,
                     ),
+                    DropdownMenuItem(
+                        caption = getText("product.type.DIGITAL_DOWNLOAD"),
+                        value = ProductType.DIGITAL_DOWNLOAD.name,
+                    ),
                 ),
             )
             else -> throw IllegalStateException("Not supported: $name")

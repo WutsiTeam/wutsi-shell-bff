@@ -21,6 +21,7 @@ import com.wutsi.enums.PaymentMethodType
 import com.wutsi.enums.ProductType
 import com.wutsi.enums.TransactionType
 import com.wutsi.marketplace.manager.dto.Event
+import com.wutsi.marketplace.manager.dto.FileSummary
 import com.wutsi.marketplace.manager.dto.MeetingProviderSummary
 import com.wutsi.marketplace.manager.dto.PictureSummary
 import com.wutsi.marketplace.manager.dto.Product
@@ -116,6 +117,7 @@ object Fixtures {
         published: Boolean = true,
         type: ProductType = ProductType.PHYSICAL_PRODUCT,
         event: Event? = null,
+        files: List<FileSummary> = emptyList(),
     ) = Product(
         id = id,
         store = createStoreSummary(storeId),
@@ -129,6 +131,20 @@ object Fixtures {
         status = if (published) "PUBLISHED" else "DRAFT",
         type = type.name,
         event = event,
+        files = files,
+    )
+
+    fun createFileSummary(
+        id: Long,
+        name: String = "$id.png",
+        url: String = "https://www.img.com/$id.png",
+    ) = FileSummary(
+        id = id,
+        url = url,
+        name = name,
+        contentType = "image/png",
+        contentSize = 12000,
+        created = OffsetDateTime.of(2020, 1, 1, 10, 30, 0, 0, ZoneOffset.UTC),
     )
 
     fun createEvent(

@@ -62,7 +62,7 @@ class SettingsV2ProductEditorEventScreen(
         }
 
         return Screen(
-            id = Page.SETTINGS_CATALOG_EVENT,
+            id = Page.SETTINGS_CATALOG_EDITOR_EVENT,
             backgroundColor = Theme.COLOR_WHITE,
             appBar = AppBar(
                 elevation = 0.0,

@@ -1,7 +1,7 @@
 {
   "type": "Screen",
   "attributes": {
-    "id": "page.settings.catalog.event",
+    "id": "page.settings.catalog.editor.event",
     "safe": false,
     "backgroundColor": "#FFFFFF"
   },
