@@ -6,8 +6,10 @@ import com.wutsi.application.marketplace.settings.product.dao.PictureRepository
 import com.wutsi.application.marketplace.settings.product.entity.PictureEntity
 import com.wutsi.application.widget.UploadWidget
 import com.wutsi.flutter.sdui.Button
+import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.WidgetAware
+import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.platform.core.storage.StorageService
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.PostMapping
@@ -36,14 +38,23 @@ class AppProduct00PicturePage(
     override fun getTitle() = getText("page.settings.catalog.add.picture.title")
 
     override fun getBody(): WidgetAware =
-        Container(
-            padding = 20.0,
-            child = UploadWidget(
-                name = "file",
-                uploadUrl = urlBuilder.build("${Page.getSettingsProductAddUrl()}/pages/picture/upload"),
-                imageMaxWidth = pictureMaxWidth,
-                imageMaxHeight = pictureMaxHeight,
-                action = gotoNextPage(),
+        Column(
+            children = listOf(
+                Container(
+                    padding = 20.0,
+                    child = UploadWidget(
+                        name = "file",
+                        uploadUrl = urlBuilder.build("${Page.getSettingsProductAddUrl()}/pages/picture/upload"),
+                        imageMaxWidth = pictureMaxWidth,
+                        imageMaxHeight = pictureMaxHeight,
+                        action = gotoNextPage(),
+                    ),
+                ),
+                Button(
+                    type = ButtonType.Text,
+                    caption = getText("page.settings.catalog.add.button.skip"),
+                    action = gotoNextPage(),
+                ),
             ),
         )
 
