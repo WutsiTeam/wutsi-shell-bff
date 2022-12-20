@@ -231,7 +231,7 @@
                                 {
                                   "type": "Image",
                                   "attributes": {
-                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/images/nopicture.png",
+                                    "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-assets/images/nopicture.png",
                                     "width": 100.0,
                                     "height": 100.0,
                                     "fit": "fill"

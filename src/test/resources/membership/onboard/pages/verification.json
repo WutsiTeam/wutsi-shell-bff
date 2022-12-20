@@ -40,7 +40,7 @@
             {
               "type": "Image",
               "attributes": {
-                "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff/logo/wutsi.png",
+                "url": "https://int-wutsi.s3.amazonaws.com/static/wutsi-assets/logo/wutsi.png",
                 "width": 128.0,
                 "height": 128.0
               },

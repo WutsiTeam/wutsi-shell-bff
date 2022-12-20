@@ -44,7 +44,7 @@ wutsi:
   application:
     env: test
     name: wutsi-shell-bff
-    asset-url: https://int-wutsi.s3.amazonaws.com/static/wutsi-shell-bff
+    asset-url: https://int-wutsi.s3.amazonaws.com/static/wutsi-assets
     server-url: http://localhost:${server.port}
     store-url: ${wutsi.application.server-url}
     shell-url: ${wutsi.application.server-url}
