@@ -43,7 +43,7 @@ internal class AppProduct00PicturePageTest : AbstractSecuredEndpointTest() {
         // THEN
         val path = argumentCaptor<String>()
         verify(storageService).store(path.capture(), any(), eq("image/png"), anyOrNull(), anyOrNull())
-        assertTrue(path.firstValue.startsWith("product/pictures/"))
+        assertTrue(path.firstValue.startsWith("product/picture/"))
         assertTrue(path.firstValue.endsWith(filename))
 
         verify(cache).put(

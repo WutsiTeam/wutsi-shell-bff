@@ -122,7 +122,7 @@ internal class SettingsV2ProductScreenTest : AbstractSecuredEndpointTest() {
         // THEN
         val path = argumentCaptor<String>()
         verify(storageService).store(path.capture(), any(), eq("image/png"), anyOrNull(), anyOrNull())
-        assertTrue(path.firstValue.startsWith("products/$productId/pictures/"))
+        assertTrue(path.firstValue.startsWith("product/$productId/picture/"))
         assertTrue(path.firstValue.endsWith(filename))
 
         verify(marketplaceManagerApi).createPicture(

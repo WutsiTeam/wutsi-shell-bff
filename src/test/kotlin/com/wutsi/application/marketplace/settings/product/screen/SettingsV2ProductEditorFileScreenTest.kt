@@ -102,7 +102,7 @@ internal class SettingsV2ProductEditorFileScreenTest : AbstractSecuredEndpointTe
         // THEN
         val path = argumentCaptor<String>()
         verify(storageService).store(path.capture(), any(), eq("image/png"), anyOrNull(), anyOrNull())
-        assertTrue(path.firstValue.startsWith("products/$productId/files/"))
+        assertTrue(path.firstValue.startsWith("product/$productId/file/"))
         assertTrue(path.firstValue.endsWith(filename))
 
         verify(marketplaceManagerApi).createFile(

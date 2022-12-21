@@ -63,7 +63,7 @@ class AppProduct00PicturePage(
     @PostMapping("/upload")
     fun upload(@RequestParam file: MultipartFile) {
         val contentType = Files.probeContentType(Path.of(file.originalFilename))
-        val path = "product/pictures/${UUID.randomUUID()}-${file.originalFilename}"
+        val path = "product/picture/${UUID.randomUUID()}/${file.originalFilename}"
         val url = storageService.store(path, file.inputStream, contentType)
 
         dao.save(PictureEntity(url.toString()))

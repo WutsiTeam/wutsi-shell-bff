@@ -353,7 +353,7 @@ class SettingsV2ProductScreen(
     @PostMapping("/upload")
     fun upload(@RequestParam id: Long, @RequestParam file: MultipartFile) {
         val contentType = Files.probeContentType(Path.of(file.originalFilename))
-        val path = "products/$id/pictures/${UUID.randomUUID()}-${file.originalFilename}"
+        val path = "product/$id/picture/${UUID.randomUUID()}/${file.originalFilename}"
         val url = storageService.store(path, file.inputStream, contentType)
 
         marketplaceManagerApi.createPicture(
