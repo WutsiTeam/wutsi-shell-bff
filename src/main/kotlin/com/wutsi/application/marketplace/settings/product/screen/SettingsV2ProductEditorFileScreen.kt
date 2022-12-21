@@ -125,7 +125,7 @@ class SettingsV2ProductEditorFileScreen(
     private fun toExtension(filename: String): String? {
         val i = filename.lastIndexOf(".")
         return if (i > 0) {
-            filename.substring(i + 1).uppercase()
+            filename.substring(i + 1).lowercase()
         } else {
             null
         }
