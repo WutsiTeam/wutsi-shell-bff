@@ -215,7 +215,15 @@
                         "minLength": 0,
                         "uploadUrl": "http://localhost:0/settings/2/products/editor/files/upload?id=123"
                       },
-                      "children": []
+                      "children": [],
+                      "action": {
+                        "type": "Route",
+                        "url": "http://localhost:0/settings/2/products/editor/files",
+                        "replacement": true,
+                        "parameters": {
+                          "id": "123"
+                        }
+                      }
                     }
                   ]
                 }

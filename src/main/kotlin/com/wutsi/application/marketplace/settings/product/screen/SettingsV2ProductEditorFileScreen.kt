@@ -87,6 +87,13 @@ class SettingsV2ProductEditorFileScreen(
                         caption = getText("page.settings.catalog.file.button.add"),
                         type = InputType.File,
                         uploadUrl = urlBuilder.build("${Page.getSettingsProductEditorUrl()}/files/upload?id=$id"),
+                        action = gotoUrl(
+                            url = urlBuilder.build("${Page.getSettingsProductEditorUrl()}/files"),
+                            parameters = mapOf(
+                                "id" to id.toString(),
+                            ),
+                            replacement = true,
+                        ),
                     ),
                 ),
             )
@@ -144,7 +151,7 @@ class SettingsV2ProductEditorFileScreen(
     }
 
     @PostMapping("/upload")
-    fun upload(@RequestParam id: Long, @RequestParam file: MultipartFile): Action {
+    fun upload(@RequestParam id: Long, @RequestParam file: MultipartFile) {
         val contentType = Files.probeContentType(Path.of(file.originalFilename))
         val path = "product/$id/file/${UUID.randomUUID()}/${file.originalFilename}"
         val url = storageService.store(path, file.inputStream, contentType)
@@ -155,15 +162,8 @@ class SettingsV2ProductEditorFileScreen(
                 url = url.toString(),
                 contentType = contentType,
                 contentSize = file.size.toInt(),
+                name = file.originalFilename,
             ),
-        )
-
-        return gotoUrl(
-            url = urlBuilder.build("${Page.getSettingsProductEditorUrl()}/files"),
-            parameters = mapOf(
-                "id" to id.toString(),
-            ),
-            replacement = true,
         )
     }
 }

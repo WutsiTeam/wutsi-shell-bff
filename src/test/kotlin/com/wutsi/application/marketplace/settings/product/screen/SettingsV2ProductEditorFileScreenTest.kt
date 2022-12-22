@@ -97,7 +97,7 @@ internal class SettingsV2ProductEditorFileScreenTest : AbstractSecuredEndpointTe
         doReturn(fileUrl).whenever(storageService).store(any(), any(), anyOrNull(), anyOrNull(), anyOrNull())
 
         // WHEN
-        uploadFile(url("/upload"), "toto.png")
+        uploadFile(url("/upload"), filename)
 
         // THEN
         val path = argumentCaptor<String>()
@@ -111,6 +111,7 @@ internal class SettingsV2ProductEditorFileScreenTest : AbstractSecuredEndpointTe
                 url = fileUrl.toString(),
                 contentSize = 4,
                 contentType = "image/png",
+                name = filename,
             ),
         )
     }
