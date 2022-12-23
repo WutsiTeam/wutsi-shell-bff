@@ -3,6 +3,7 @@ package com.wutsi.application.widget
 import com.wutsi.application.Page
 import com.wutsi.application.Theme
 import com.wutsi.application.service.URLBuilder
+import com.wutsi.application.util.HandleGenerator
 import com.wutsi.application.util.WhatsappUtil
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.CircleAvatar
@@ -39,7 +40,7 @@ class BusinessToolbarWidget(
         fun of(product: Product, member: Member, webappUrl: String, urlBuilder: URLBuilder) = BusinessToolbarWidget(
             phoneNumber = member.phoneNumber,
             whatsapp = member.whatsapp,
-            shareUrl = "$webappUrl/p/${product.id}",
+            shareUrl = "$webappUrl/p/${product.id}/" + HandleGenerator.generate(product.title),
             configAction = if (product.store.accountId == member.id) {
                 Action(
                     type = ActionType.Route,

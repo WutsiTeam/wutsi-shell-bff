@@ -4,6 +4,7 @@ import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
 import com.wutsi.application.membership.onboard.screen.OnboardV2Screen
 import com.wutsi.application.widget.OrderWidget
 import com.wutsi.checkout.manager.CheckoutManagerApi
+import com.wutsi.checkout.manager.dto.Business
 import com.wutsi.checkout.manager.dto.SearchOrderRequest
 import com.wutsi.enums.OrderStatus
 import com.wutsi.flutter.sdui.Action
@@ -11,7 +12,10 @@ import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Divider
+import com.wutsi.flutter.sdui.Flexible
 import com.wutsi.flutter.sdui.IconButton
+import com.wutsi.flutter.sdui.MoneyText
+import com.wutsi.flutter.sdui.Row
 import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.SingleChildScrollView
 import com.wutsi.flutter.sdui.Text
@@ -23,12 +27,14 @@ import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.TextDecoration
 import com.wutsi.membership.manager.dto.Member
 import com.wutsi.platform.core.image.ImageService
+import com.wutsi.regulation.Country
 import com.wutsi.regulation.RegulationEngine
 import feign.FeignException
 import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import java.text.DecimalFormat
 
 @RestController
 @RequestMapping("/2")
@@ -46,6 +52,8 @@ class HomeV2Screen(
     fun index(): Widget {
         try {
             val member = getCurrentMember()
+            val business = member.businessId?.let { checkoutManagerApi.getBusiness(it).business }
+
             return Screen(
                 id = Page.HOME,
                 appBar = AppBar(
@@ -71,7 +79,8 @@ class HomeV2Screen(
                         mainAxisAlignment = MainAxisAlignment.start,
                         crossAxisAlignment = CrossAxisAlignment.start,
                         children = listOfNotNull(
-                            getRecentOrdersWidget(member),
+                            business?.let { getKpiWidget(it) },
+                            business?.let { getRecentOrdersWidget(member) },
                         ),
                     ),
                 ),
@@ -84,11 +93,68 @@ class HomeV2Screen(
         }
     }
 
-    private fun getRecentOrdersWidget(member: Member): WidgetAware? {
-        if (!member.business || member.businessId == null) {
-            return null
-        }
+    private fun getKpiWidget(business: Business): WidgetAware {
+        val country: Country = regulationEngine.country(business.country)
+        val fmt = DecimalFormat(country.numberFormat)
+        return Row(
+            mainAxisAlignment = MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment = CrossAxisAlignment.start,
+            children = listOf(
+                Flexible(
+                    child = Container(
+                        background = Theme.COLOR_WHITE,
+                        borderColor = Theme.COLOR_DIVIDER,
+                        borderRadius = 10.0,
+                        padding = 10.0,
+                        margin = 10.0,
+                        border = 1.0,
+                        child = Column(
+                            children = listOf(
+                                Text(
+                                    caption = fmt.format(business.totalOrders),
+                                    size = Theme.TEXT_SIZE_X_LARGE,
+                                    color = Theme.COLOR_PRIMARY,
+                                    bold = true,
+                                ),
+                                Container(padding = 10.0),
+                                Text(
+                                    caption = getText("page.home.kpi.orders"),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+                Flexible(
+                    child = Container(
+                        background = Theme.COLOR_WHITE,
+                        borderColor = Theme.COLOR_DIVIDER,
+                        borderRadius = 10.0,
+                        padding = 10.0,
+                        margin = 10.0,
+                        border = 1.0,
+                        child = Column(
+                            children = listOf(
+                                MoneyText(
+                                    numberFormat = country.numberFormat,
+                                    currency = country.currencySymbol,
+                                    color = Theme.COLOR_PRIMARY,
+                                    valueFontSize = Theme.TEXT_SIZE_X_LARGE,
+                                    bold = true,
+                                    value = business.totalSales.toDouble(),
+                                ),
+                                Container(padding = 10.0),
+                                Text(
+                                    caption = getText("page.home.kpi.sales"),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        )
+    }
 
+    private fun getRecentOrdersWidget(member: Member): WidgetAware? {
         try {
             val orders = checkoutManagerApi.searchOrder(
                 request = SearchOrderRequest(

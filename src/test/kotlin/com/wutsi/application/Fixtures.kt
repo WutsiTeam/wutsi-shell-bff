@@ -255,6 +255,8 @@ object Fixtures {
         accountId = accountId,
         country = "CM",
         balance = 30000,
+        totalOrders = 100,
+        totalSales = 150000,
     )
 
     fun createOrder(
@@ -366,7 +368,7 @@ object Fixtures {
         created = OffsetDateTime.of(2020, 1, 1, 10, 30, 0, 0, ZoneOffset.UTC),
         updated = OffsetDateTime.of(2020, 1, 1, 10, 30, 0, 0, ZoneOffset.UTC),
         errorCode = error?.name,
-        customerId = 1111L,
+        customerAccountId = 1111L,
         paymentMethod = createPaymentMethodSummary(""),
         financialTransactionId = "1111-111",
         gatewayTransactionId = "2222-222",

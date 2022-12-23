@@ -4,6 +4,7 @@ import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.doThrow
 import com.nhaarman.mockitokotlin2.whenever
+import com.wutsi.checkout.manager.dto.GetBusinessResponse
 import com.wutsi.checkout.manager.dto.SearchOrderResponse
 import com.wutsi.enums.OrderStatus
 import com.wutsi.error.ErrorURN
@@ -23,8 +24,12 @@ internal class HomeV2ScreenTest : AbstractSecuredEndpointTest() {
     @Test
     fun business() {
         // GIVEN
-        member = Fixtures.createMember(MEMBER_ID, businessId = 3333, business = true)
+        val businessId = 5555L
+        member = Fixtures.createMember(MEMBER_ID, businessId = businessId, business = true)
         doReturn(GetMemberResponse(member)).whenever(membershipManagerApi).getMember(MEMBER_ID)
+
+        val business = Fixtures.createBusiness(businessId, MEMBER_ID)
+        doReturn(GetBusinessResponse(business)).whenever(checkoutManagerApi).getBusiness(any())
 
         val orders = listOf(
             Fixtures.createOrderSummary(id = "11", totalPrice = 15000, status = OrderStatus.OPENED),

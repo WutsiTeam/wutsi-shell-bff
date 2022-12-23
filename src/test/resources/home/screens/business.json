@@ -18,6 +18,121 @@
           },
           "children": [
             {
+              "type": "Row",
+              "attributes": {
+                "mainAxisAlignment": "spaceEvenly",
+                "crossAxisAlignment": "start"
+              },
+              "children": [
+                {
+                  "type": "Flexible",
+                  "attributes": {
+                    "flex": 1,
+                    "fit": "Tight"
+                  },
+                  "children": [
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "padding": 10.0,
+                        "margin": 10.0,
+                        "background": "#FFFFFF",
+                        "border": 1.0,
+                        "borderRadius": 10.0,
+                        "borderColor": "#8c8c8c"
+                      },
+                      "children": [
+                        {
+                          "type": "Column",
+                          "attributes": {},
+                          "children": [
+                            {
+                              "type": "Text",
+                              "attributes": {
+                                "caption": "100",
+                                "color": "#1D7EDF",
+                                "bold": true,
+                                "size": 18.0
+                              },
+                              "children": []
+                            },
+                            {
+                              "type": "Container",
+                              "attributes": {
+                                "padding": 10.0
+                              },
+                              "children": []
+                            },
+                            {
+                              "type": "Text",
+                              "attributes": {
+                                "caption": "Orders"
+                              },
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "Flexible",
+                  "attributes": {
+                    "flex": 1,
+                    "fit": "Tight"
+                  },
+                  "children": [
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "padding": 10.0,
+                        "margin": 10.0,
+                        "background": "#FFFFFF",
+                        "border": 1.0,
+                        "borderRadius": 10.0,
+                        "borderColor": "#8c8c8c"
+                      },
+                      "children": [
+                        {
+                          "type": "Column",
+                          "attributes": {},
+                          "children": [
+                            {
+                              "type": "MoneyText",
+                              "attributes": {
+                                "value": 150000.0,
+                                "color": "#1D7EDF",
+                                "currency": "FCFA",
+                                "numberFormat": "#,###,##0",
+                                "bold": true,
+                                "valueFontSize": 18.0
+                              },
+                              "children": []
+                            },
+                            {
+                              "type": "Container",
+                              "attributes": {
+                                "padding": 10.0
+                              },
+                              "children": []
+                            },
+                            {
+                              "type": "Text",
+                              "attributes": {
+                                "caption": "Sales"
+                              },
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
               "type": "Container",
               "attributes": {
                 "margin": 10.0,

@@ -34,7 +34,6 @@ class Transaction2ListScreen(
         val country = regulationEngine.country(member.country)
         val txs = checkoutManagerApi.searchTransaction(
             request = SearchTransactionRequest(
-                customerId = member.businessId?.let { null },
                 businessId = member.businessId,
                 limit = 100,
             ),
