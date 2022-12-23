@@ -10,7 +10,6 @@ import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.ClipRRect
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
-import com.wutsi.flutter.sdui.Icon
 import com.wutsi.flutter.sdui.Image
 import com.wutsi.flutter.sdui.Row
 import com.wutsi.flutter.sdui.Text
@@ -37,11 +36,18 @@ class OrderWidget(
     private val imageService: ImageService,
     private val country: Country,
     private val action: Action? = null,
+    private val showProductImage: Boolean = true,
 ) : CompositeWidgetAware() {
     companion object {
-        const val PRODUCT_PICTURE_SIZE = 48.0
+        const val PRODUCT_PICTURE_SIZE = 32.0
 
-        fun of(order: OrderSummary, country: Country, action: Action? = null, imageService: ImageService): OrderWidget =
+        fun of(
+            order: OrderSummary,
+            country: Country,
+            action: Action? = null,
+            imageService: ImageService,
+            showProductImage: Boolean = true
+        ): OrderWidget =
             OrderWidget(
                 orderId = order.shortId,
                 created = order.created,
@@ -52,9 +58,16 @@ class OrderWidget(
                 country = country,
                 imageService = imageService,
                 action = action,
+                showProductImage = showProductImage,
             )
 
-        fun of(order: Order, country: Country, action: Action? = null, imageService: ImageService): OrderWidget =
+        fun of(
+            order: Order,
+            country: Country,
+            action: Action? = null,
+            imageService: ImageService,
+            showProductImage: Boolean = true
+        ): OrderWidget =
             OrderWidget(
                 orderId = order.shortId,
                 created = order.created,
@@ -65,12 +78,13 @@ class OrderWidget(
                 country = country,
                 imageService = imageService,
                 action = action,
+                showProductImage = showProductImage,
             )
     }
 
     override fun toWidgetAware(): WidgetAware {
         val moneyFormat = DecimalFormat(country.monetaryFormat)
-        val dateFormat = DateTimeFormatter.ofPattern(country.dateFormat, LocaleContextHolder.getLocale())
+        val dateFormat = DateTimeFormatter.ofPattern(country.dateFormatShort, LocaleContextHolder.getLocale())
 
         return Container(
             padding = 10.0,
@@ -83,31 +97,30 @@ class OrderWidget(
                         mainAxisAlignment = MainAxisAlignment.spaceBetween,
                         crossAxisAlignment = CrossAxisAlignment.start,
                         children = listOf(
-                            Column(
+                            Row(
                                 mainAxisAlignment = MainAxisAlignment.start,
                                 crossAxisAlignment = CrossAxisAlignment.start,
                                 children = listOf(
                                     Text(
-                                        getText("widget.order.order-id", arrayOf(orderId)),
+                                        caption = dateFormat.format(created),
                                         bold = true,
-                                        size = Theme.TEXT_SIZE_LARGE,
+                                        color = Theme.COLOR_GRAY
                                     ),
                                     Container(padding = 5.0),
-                                    Row(
+                                    Column(
+                                        mainAxisAlignment = MainAxisAlignment.start,
+                                        crossAxisAlignment = CrossAxisAlignment.start,
                                         children = listOf(
-                                            Icon(code = Theme.ICON_CALENDAR, size = 12.0),
+                                            Text(
+                                                getText("widget.order.order-id", arrayOf(orderId)),
+                                                bold = true,
+                                                size = Theme.TEXT_SIZE_LARGE,
+                                            ),
                                             Container(padding = 5.0),
-                                            Text(dateFormat.format(created)),
+                                            Text(StringUtil.capitalize(customerName))
                                         ),
-                                    ),
-                                    Row(
-                                        children = listOf(
-                                            Icon(code = Theme.ICON_PERSON, size = 12.0),
-                                            Container(padding = 5.0),
-                                            Text(StringUtil.capitalize(customerName)),
-                                        ),
-                                    ),
-                                ),
+                                    )
+                                )
                             ),
                             Column(
                                 mainAxisAlignment = MainAxisAlignment.start,
@@ -120,29 +133,33 @@ class OrderWidget(
                                     ),
                                     toStatusBadge(status),
                                     Container(padding = 5.0),
-                                    Row(
-                                        mainAxisAlignment = MainAxisAlignment.end,
-                                        crossAxisAlignment = CrossAxisAlignment.center,
-                                        children = productPictureUrls.take(2).map {
-                                            ClipRRect(
-                                                borderRadius = 5.0,
-                                                child = Image(
-                                                    width = PRODUCT_PICTURE_SIZE,
-                                                    height = PRODUCT_PICTURE_SIZE,
-                                                    fit = BoxFit.fill,
-                                                    url = imageService.transform(
-                                                        url = it,
-                                                        Transformation(
-                                                            dimension = Dimension(
-                                                                width = PRODUCT_PICTURE_SIZE.toInt(),
-                                                                height = PRODUCT_PICTURE_SIZE.toInt(),
+                                    if (showProductImage) {
+                                        Row(
+                                            mainAxisAlignment = MainAxisAlignment.end,
+                                            crossAxisAlignment = CrossAxisAlignment.center,
+                                            children = productPictureUrls.take(2).map {
+                                                ClipRRect(
+                                                    borderRadius = 5.0,
+                                                    child = Image(
+                                                        width = PRODUCT_PICTURE_SIZE,
+                                                        height = PRODUCT_PICTURE_SIZE,
+                                                        fit = BoxFit.fill,
+                                                        url = imageService.transform(
+                                                            url = it,
+                                                            Transformation(
+                                                                dimension = Dimension(
+                                                                    width = PRODUCT_PICTURE_SIZE.toInt(),
+                                                                    height = PRODUCT_PICTURE_SIZE.toInt(),
+                                                                ),
                                                             ),
                                                         ),
                                                     ),
-                                                ),
-                                            )
-                                        },
-                                    ),
+                                                )
+                                            },
+                                        )
+                                    } else {
+                                        null
+                                    },
                                 ),
                             ),
                         ),

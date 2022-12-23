@@ -578,7 +578,7 @@
                               },
                               "children": [
                                 {
-                                  "type": "Column",
+                                  "type": "Row",
                                   "attributes": {
                                     "mainAxisAlignment": "start",
                                     "crossAxisAlignment": "start"
@@ -587,9 +587,9 @@
                                     {
                                       "type": "Text",
                                       "attributes": {
-                                        "caption": "Order #",
-                                        "bold": true,
-                                        "size": 16.0
+                                        "caption": "01 Jan",
+                                        "color": "#95A5A6",
+                                        "bold": true
                                       },
                                       "children": []
                                     },
@@ -601,42 +601,18 @@
                                       "children": []
                                     },
                                     {
-                                      "type": "Row",
-                                      "attributes": {},
+                                      "type": "Column",
+                                      "attributes": {
+                                        "mainAxisAlignment": "start",
+                                        "crossAxisAlignment": "start"
+                                      },
                                       "children": [
-                                        {
-                                          "type": "Icon",
-                                          "attributes": {
-                                            "code": "ef11",
-                                            "size": 12.0
-                                          },
-                                          "children": []
-                                        },
-                                        {
-                                          "type": "Container",
-                                          "attributes": {
-                                            "padding": 5.0
-                                          },
-                                          "children": []
-                                        },
                                         {
                                           "type": "Text",
                                           "attributes": {
-                                            "caption": "01 Jan 2020"
-                                          },
-                                          "children": []
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "type": "Row",
-                                      "attributes": {},
-                                      "children": [
-                                        {
-                                          "type": "Icon",
-                                          "attributes": {
-                                            "code": "f27b",
-                                            "size": 12.0
+                                            "caption": "Order #",
+                                            "bold": true,
+                                            "size": 16.0
                                           },
                                           "children": []
                                         },
@@ -698,8 +674,8 @@
                                               "type": "Image",
                                               "attributes": {
                                                 "url": "https://img.com/1.png",
-                                                "width": 48.0,
-                                                "height": 48.0,
+                                                "width": 32.0,
+                                                "height": 32.0,
                                                 "fit": "fill"
                                               },
                                               "children": []
