@@ -57,6 +57,14 @@ class SettingsV2StoreScreen : AbstractEndpoint() {
                                         urlBuilder.build(Page.getSettingsProductListUrl()),
                                     ),
                                 ),
+                                ListItem(
+                                    caption = getText("page.settings.store.stats"),
+                                    leading = Icon(code = Theme.ICON_BAR_CHART, color = Theme.COLOR_PRIMARY),
+                                    trailing = Icon(code = Theme.ICON_CHEVRON_RIGHT),
+                                    action = gotoUrl(
+                                        urlBuilder.build(Page.getSettingsStoreStats()),
+                                    ),
+                                ),
                             ),
                         ),
                     ),

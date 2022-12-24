@@ -9,6 +9,7 @@ import com.wutsi.checkout.manager.dto.OrderSummary
 import com.wutsi.checkout.manager.dto.PaymentMethod
 import com.wutsi.checkout.manager.dto.PaymentMethodSummary
 import com.wutsi.checkout.manager.dto.PaymentProviderSummary
+import com.wutsi.checkout.manager.dto.SalesKpiSummary
 import com.wutsi.checkout.manager.dto.Transaction
 import com.wutsi.checkout.manager.dto.TransactionSummary
 import com.wutsi.enums.BusinessStatus
@@ -37,6 +38,7 @@ import com.wutsi.membership.manager.dto.PlaceSummary
 import com.wutsi.platform.payment.GatewayType
 import com.wutsi.platform.payment.core.ErrorCode
 import com.wutsi.platform.payment.core.Status
+import java.time.LocalDate
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 
@@ -378,5 +380,12 @@ object Fixtures {
         net = 10000,
         gatewayFees = 250,
         gatewayType = GatewayType.FLUTTERWAVE.name,
+    )
+
+    fun createSalesKpiSummary(date: LocalDate = LocalDate.now()) = SalesKpiSummary(
+        date = date,
+        totalOrders = 100,
+        totalValue = 250000,
+        totalUnits = 5000,
     )
 }

@@ -2,6 +2,7 @@ package com.wutsi.application
 
 import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
 import com.wutsi.application.membership.onboard.screen.OnboardV2Screen
+import com.wutsi.application.widget.KpiWidget
 import com.wutsi.application.widget.OrderWidget
 import com.wutsi.checkout.manager.CheckoutManagerApi
 import com.wutsi.checkout.manager.dto.Business
@@ -14,7 +15,6 @@ import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Divider
 import com.wutsi.flutter.sdui.Flexible
 import com.wutsi.flutter.sdui.IconButton
-import com.wutsi.flutter.sdui.MoneyText
 import com.wutsi.flutter.sdui.Row
 import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.SingleChildScrollView
@@ -34,7 +34,6 @@ import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import java.text.DecimalFormat
 
 @RestController
 @RequestMapping("/2")
@@ -95,59 +94,24 @@ class HomeV2Screen(
 
     private fun getKpiWidget(business: Business): WidgetAware {
         val country: Country = regulationEngine.country(business.country)
-        val fmt = DecimalFormat(country.numberFormat)
         return Row(
             mainAxisAlignment = MainAxisAlignment.spaceEvenly,
             crossAxisAlignment = CrossAxisAlignment.start,
             children = listOf(
                 Flexible(
-                    child = Container(
-                        background = Theme.COLOR_WHITE,
-                        borderColor = Theme.COLOR_DIVIDER,
-                        borderRadius = 10.0,
-                        padding = 10.0,
-                        margin = 10.0,
-                        border = 1.0,
-                        child = Column(
-                            children = listOf(
-                                Text(
-                                    caption = fmt.format(business.totalOrders),
-                                    size = Theme.TEXT_SIZE_X_LARGE,
-                                    color = Theme.COLOR_PRIMARY,
-                                    bold = true,
-                                ),
-                                Container(padding = 10.0),
-                                Text(
-                                    caption = getText("page.home.kpi.orders"),
-                                ),
-                            ),
-                        ),
+                    child = KpiWidget(
+                        name = getText("page.home.kpi.orders"),
+                        value = business.totalOrders,
+                        country = country,
+                        money = false,
                     ),
                 ),
                 Flexible(
-                    child = Container(
-                        background = Theme.COLOR_WHITE,
-                        borderColor = Theme.COLOR_DIVIDER,
-                        borderRadius = 10.0,
-                        padding = 10.0,
-                        margin = 10.0,
-                        border = 1.0,
-                        child = Column(
-                            children = listOf(
-                                MoneyText(
-                                    numberFormat = country.numberFormat,
-                                    currency = country.currencySymbol,
-                                    color = Theme.COLOR_PRIMARY,
-                                    valueFontSize = Theme.TEXT_SIZE_X_LARGE,
-                                    bold = true,
-                                    value = business.totalSales.toDouble(),
-                                ),
-                                Container(padding = 10.0),
-                                Text(
-                                    caption = getText("page.home.kpi.sales"),
-                                ),
-                            ),
-                        ),
+                    child = KpiWidget(
+                        name = getText("page.home.kpi.sales"),
+                        value = business.totalSales,
+                        country = country,
+                        money = true,
                     ),
                 ),
             ),
