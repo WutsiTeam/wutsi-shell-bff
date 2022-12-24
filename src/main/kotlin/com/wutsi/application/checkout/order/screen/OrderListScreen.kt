@@ -10,6 +10,7 @@ import com.wutsi.checkout.manager.dto.Business
 import com.wutsi.checkout.manager.dto.OrderSummary
 import com.wutsi.checkout.manager.dto.SearchOrderRequest
 import com.wutsi.enums.OrderStatus
+import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
@@ -17,6 +18,7 @@ import com.wutsi.flutter.sdui.DefaultTabController
 import com.wutsi.flutter.sdui.Divider
 import com.wutsi.flutter.sdui.DynamicWidget
 import com.wutsi.flutter.sdui.Flexible
+import com.wutsi.flutter.sdui.IconButton
 import com.wutsi.flutter.sdui.ListView
 import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.TabBar
@@ -24,6 +26,7 @@ import com.wutsi.flutter.sdui.TabBarView
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
+import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.membership.manager.dto.Member
 import com.wutsi.platform.core.image.ImageService
@@ -54,7 +57,6 @@ class OrderListScreen(
         val business = checkoutManagerApi.getBusiness(member.businessId!!).business
         val tabs = TabBar(
             tabs = listOfNotNull(
-                Text(getText("page.order.list.tab.new").uppercase()),
                 Text(getText("page.order.list.tab.in-progress").uppercase()),
                 Text(getText("page.order.list.tab.closed").uppercase()),
             ),
@@ -71,12 +73,20 @@ class OrderListScreen(
                     foregroundColor = Theme.COLOR_WHITE,
                     title = getText("page.order.list.app-bar.title"),
                     bottom = tabs,
+                    actions = listOf(
+                        IconButton(
+                            icon = Theme.ICON_SETTINGS,
+                            action = Action(
+                                type = ActionType.Route,
+                                url = urlBuilder.build(Page.getSettingsUrl()),
+                            ),
+                        ),
+                    ),
                 ),
                 bottomNavigationBar = createBottomNavigationBarWidget(member),
                 child = TabBarView(
                     children = listOfNotNull(
-                        toTabView(arrayOf(OrderStatus.OPENED), business, member, false),
-                        toTabView(arrayOf(OrderStatus.IN_PROGRESS), business, member, true),
+                        toTabView(arrayOf(OrderStatus.OPENED, OrderStatus.IN_PROGRESS), business, member, true),
                         toTabView(arrayOf(OrderStatus.COMPLETED, OrderStatus.CANCELLED), business, member, true),
                     ),
                 ),
