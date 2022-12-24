@@ -1,461 +1,475 @@
 {
-  "type": "Screen",
+  "type": "DefaultTabController",
   "attributes": {
-    "id": "page.settings.catalog.product",
-    "safe": false,
-    "backgroundColor": "#FFFFFF"
+    "length": 2,
+    "id": "page.settings.catalog.product"
   },
   "children": [
     {
-      "type": "Column",
+      "type": "Screen",
       "attributes": {
-        "mainAxisAlignment": "start",
-        "crossAxisAlignment": "start"
+        "safe": false,
+        "backgroundColor": "#FFFFFF"
       },
       "children": [
         {
-          "type": "Container",
-          "attributes": {
-            "padding": 10.0,
-            "height": 174.0
-          },
+          "type": "TabBarView",
+          "attributes": {},
           "children": [
             {
-              "type": "ListView",
+              "type": "Column",
               "attributes": {
-                "direction": "Horizontal"
+                "mainAxisAlignment": "start",
+                "crossAxisAlignment": "start"
               },
               "children": [
                 {
                   "type": "Container",
                   "attributes": {
-                    "alignment": "Center",
-                    "padding": 2.0,
-                    "border": 1.0,
-                    "borderColor": "#e4edf7",
-                    "height": 150.0,
-                    "width": 150.0,
-                    "backgroundImageUrl": "https://img.com/0.png"
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "http://localhost:0/settings/2/products/pictures?id=0&url=https%3A%2F%2Fimg.com%2F0.png"
-                  }
-                },
-                {
-                  "type": "Container",
-                  "attributes": {
-                    "alignment": "Center",
-                    "padding": 2.0,
-                    "border": 1.0,
-                    "borderColor": "#e4edf7",
-                    "height": 150.0,
-                    "width": 150.0,
-                    "backgroundImageUrl": "https://img.com/1.png"
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "http://localhost:0/settings/2/products/pictures?id=1&url=https%3A%2F%2Fimg.com%2F1.png"
-                  }
-                },
-                {
-                  "type": "Container",
-                  "attributes": {
-                    "alignment": "Center",
-                    "padding": 2.0,
-                    "border": 1.0,
-                    "borderColor": "#e4edf7",
-                    "height": 150.0,
-                    "width": 150.0,
-                    "backgroundImageUrl": "https://img.com/2.png"
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "http://localhost:0/settings/2/products/pictures?id=2&url=https%3A%2F%2Fimg.com%2F2.png"
-                  }
-                },
-                {
-                  "type": "Container",
-                  "attributes": {
-                    "alignment": "Center",
-                    "padding": 2.0,
-                    "background": "#e4edf7",
-                    "borderColor": "#95A5A6",
-                    "height": 150.0,
-                    "width": 150.0
+                    "padding": 10.0,
+                    "height": 174.0
                   },
                   "children": [
                     {
-                      "type": "Button",
+                      "type": "ListView",
                       "attributes": {
-                        "caption": "",
-                        "padding": 15.0,
-                        "type": "Text",
-                        "icon": "e758",
-                        "iconSize": 32.0,
-                        "iconColor": "#1D7EDF"
-                      },
-                      "children": [],
-                      "action": {
-                        "type": "Prompt",
-                        "url": "",
-                        "prompt": {
-                          "type": "Dialog",
-                          "attributes": {
-                            "type": "Alert",
-                            "title": "Add picture",
-                            "actions": [
-                              {
-                                "type": "Column",
-                                "attributes": {},
-                                "children": [
-                                  {
-                                    "type": "Container",
-                                    "attributes": {
-                                      "border": 1.0,
-                                      "borderColor": "#1D7EDF"
-                                    },
-                                    "children": [
-                                      {
-                                        "type": "Input",
-                                        "attributes": {
-                                          "name": "file",
-                                          "hideText": false,
-                                          "required": false,
-                                          "caption": "Take a picture",
-                                          "enabled": true,
-                                          "readOnly": false,
-                                          "type": "Image",
-                                          "minLength": 0,
-                                          "uploadUrl": "http://localhost:0/settings/2/products/upload?id=111",
-                                          "imageSource": "Camera",
-                                          "imageMaxHeight": 512,
-                                          "imageMaxWidth": 512
-                                        },
-                                        "children": [],
-                                        "action": {
-                                          "type": "Route",
-                                          "url": "http://localhost:0/settings/2/products?id=111",
-                                          "replacement": true
-                                        }
-                                      }
-                                    ]
-                                  },
-                                  {
-                                    "type": "Container",
-                                    "attributes": {
-                                      "padding": 10.0
-                                    },
-                                    "children": []
-                                  },
-                                  {
-                                    "type": "Container",
-                                    "attributes": {
-                                      "border": 1.0,
-                                      "borderColor": "#1D7EDF"
-                                    },
-                                    "children": [
-                                      {
-                                        "type": "Input",
-                                        "attributes": {
-                                          "name": "file",
-                                          "hideText": false,
-                                          "required": false,
-                                          "caption": "Select a picture",
-                                          "enabled": true,
-                                          "readOnly": false,
-                                          "type": "Image",
-                                          "minLength": 0,
-                                          "uploadUrl": "http://localhost:0/settings/2/products/upload?id=111",
-                                          "imageSource": "Gallery",
-                                          "imageMaxHeight": 512,
-                                          "imageMaxWidth": 512
-                                        },
-                                        "children": [],
-                                        "action": {
-                                          "type": "Route",
-                                          "url": "http://localhost:0/settings/2/products?id=111",
-                                          "replacement": true
-                                        }
-                                      }
-                                    ]
-                                  }
-                                ]
-                              },
-                              {
-                                "type": "Button",
-                                "attributes": {
-                                  "caption": "Cancel",
-                                  "padding": 15.0,
-                                  "type": "Text"
-                                },
-                                "children": []
-                              }
-                            ]
-                          },
-                          "children": []
-                        }
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "Container",
-          "attributes": {
-            "padding": 10.0
-          },
-          "children": [
-            {
-              "type": "Button",
-              "attributes": {
-                "caption": "Share",
-                "padding": 15.0,
-                "type": "Elevated"
-              },
-              "children": [],
-              "action": {
-                "type": "Share",
-                "url": "",
-                "message": "https://wutsi-web-test.herokuapp.com/p/111"
-              }
-            }
-          ]
-        },
-        {
-          "type": "Divider",
-          "attributes": {
-            "height": 1.0,
-            "color": "#8c8c8c"
-          },
-          "children": []
-        },
-        {
-          "type": "Flexible",
-          "attributes": {
-            "flex": 10,
-            "fit": "Tight"
-          },
-          "children": [
-            {
-              "type": "ListView",
-              "attributes": {
-                "separator": true,
-                "separatorColor": "#8c8c8c"
-              },
-              "children": [
-                {
-                  "type": "ListItem",
-                  "attributes": {
-                    "caption": "Type",
-                    "subCaption": "Physical Product",
-                    "trailing": {
-                      "type": "Icon",
-                      "attributes": {
-                        "code": "e21a",
-                        "size": 24.0,
-                        "color": "#000000"
-                      },
-                      "children": []
-                    }
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "http://localhost:0/settings/2/products/editor?name=type&id=111"
-                  }
-                },
-                {
-                  "type": "ListItem",
-                  "attributes": {
-                    "caption": "Name",
-                    "subCaption": "Product A",
-                    "trailing": {
-                      "type": "Icon",
-                      "attributes": {
-                        "code": "e21a",
-                        "size": 24.0,
-                        "color": "#000000"
-                      },
-                      "children": []
-                    }
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "http://localhost:0/settings/2/products/editor?name=title&id=111"
-                  }
-                },
-                {
-                  "type": "ListItem",
-                  "attributes": {
-                    "caption": "Price",
-                    "subCaption": "20,000 FCFA",
-                    "trailing": {
-                      "type": "Icon",
-                      "attributes": {
-                        "code": "e21a",
-                        "size": 24.0,
-                        "color": "#000000"
-                      },
-                      "children": []
-                    }
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "http://localhost:0/settings/2/products/editor?name=price&id=111"
-                  }
-                },
-                {
-                  "type": "ListItem",
-                  "attributes": {
-                    "caption": "Quantity in Stock",
-                    "subCaption": "10",
-                    "trailing": {
-                      "type": "Icon",
-                      "attributes": {
-                        "code": "e21a",
-                        "size": 24.0,
-                        "color": "#000000"
-                      },
-                      "children": []
-                    }
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "http://localhost:0/settings/2/products/editor?name=quantity&id=111"
-                  }
-                },
-                {
-                  "type": "ListItem",
-                  "attributes": {
-                    "caption": "Summary",
-                    "subCaption": "This is a summary",
-                    "trailing": {
-                      "type": "Icon",
-                      "attributes": {
-                        "code": "e21a",
-                        "size": 24.0,
-                        "color": "#000000"
-                      },
-                      "children": []
-                    }
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "http://localhost:0/settings/2/products/editor?name=summary&id=111"
-                  }
-                },
-                {
-                  "type": "ListItem",
-                  "attributes": {
-                    "caption": "Description",
-                    "subCaption": "This is a long description",
-                    "trailing": {
-                      "type": "Icon",
-                      "attributes": {
-                        "code": "e21a",
-                        "size": 24.0,
-                        "color": "#000000"
-                      },
-                      "children": []
-                    }
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "http://localhost:0/settings/2/products/editor?name=description&id=111"
-                  }
-                },
-                {
-                  "type": "Container",
-                  "attributes": {
-                    "padding": 10.0
-                  },
-                  "children": []
-                },
-                {
-                  "type": "Container",
-                  "attributes": {
-                    "padding": 10.0
-                  },
-                  "children": [
-                    {
-                      "type": "ExpandablePanel",
-                      "attributes": {
-                        "header": "More Actions..."
+                        "direction": "Horizontal"
                       },
                       "children": [
                         {
                           "type": "Container",
                           "attributes": {
-                            "padding": 20.0,
-                            "background": "#f8d7da",
+                            "alignment": "Center",
+                            "padding": 2.0,
                             "border": 1.0,
-                            "borderColor": "#8B0000"
+                            "borderColor": "#e4edf7",
+                            "height": 150.0,
+                            "width": 150.0,
+                            "backgroundImageUrl": "https://img.com/0.png"
+                          },
+                          "children": [],
+                          "action": {
+                            "type": "Route",
+                            "url": "http://localhost:0/settings/2/products/pictures?id=0&url=https%3A%2F%2Fimg.com%2F0.png"
+                          }
+                        },
+                        {
+                          "type": "Container",
+                          "attributes": {
+                            "alignment": "Center",
+                            "padding": 2.0,
+                            "border": 1.0,
+                            "borderColor": "#e4edf7",
+                            "height": 150.0,
+                            "width": 150.0,
+                            "backgroundImageUrl": "https://img.com/1.png"
+                          },
+                          "children": [],
+                          "action": {
+                            "type": "Route",
+                            "url": "http://localhost:0/settings/2/products/pictures?id=1&url=https%3A%2F%2Fimg.com%2F1.png"
+                          }
+                        },
+                        {
+                          "type": "Container",
+                          "attributes": {
+                            "alignment": "Center",
+                            "padding": 2.0,
+                            "border": 1.0,
+                            "borderColor": "#e4edf7",
+                            "height": 150.0,
+                            "width": 150.0,
+                            "backgroundImageUrl": "https://img.com/2.png"
+                          },
+                          "children": [],
+                          "action": {
+                            "type": "Route",
+                            "url": "http://localhost:0/settings/2/products/pictures?id=2&url=https%3A%2F%2Fimg.com%2F2.png"
+                          }
+                        },
+                        {
+                          "type": "Container",
+                          "attributes": {
+                            "alignment": "Center",
+                            "padding": 2.0,
+                            "background": "#e4edf7",
+                            "borderColor": "#95A5A6",
+                            "height": 150.0,
+                            "width": 150.0
                           },
                           "children": [
                             {
-                              "type": "Column",
-                              "attributes": {},
-                              "children": [
-                                {
-                                  "type": "Button",
+                              "type": "Button",
+                              "attributes": {
+                                "caption": "",
+                                "padding": 15.0,
+                                "type": "Text",
+                                "icon": "e758",
+                                "iconSize": 32.0,
+                                "iconColor": "#1D7EDF"
+                              },
+                              "children": [],
+                              "action": {
+                                "type": "Prompt",
+                                "url": "",
+                                "prompt": {
+                                  "type": "Dialog",
                                   "attributes": {
-                                    "caption": "Unpublish",
-                                    "padding": 15.0,
-                                    "type": "Elevated"
-                                  },
-                                  "children": [],
-                                  "action": {
-                                    "type": "Command",
-                                    "url": "http://localhost:0/settings/2/products/unpublish?id=111",
-                                    "prompt": {
-                                      "type": "Dialog",
-                                      "attributes": {
-                                        "type": "Confirm",
-                                        "message": "Are you sure you want to unpublish the product?"
+                                    "type": "Alert",
+                                    "title": "Add picture",
+                                    "actions": [
+                                      {
+                                        "type": "Column",
+                                        "attributes": {},
+                                        "children": [
+                                          {
+                                            "type": "Container",
+                                            "attributes": {
+                                              "border": 1.0,
+                                              "borderColor": "#1D7EDF"
+                                            },
+                                            "children": [
+                                              {
+                                                "type": "Input",
+                                                "attributes": {
+                                                  "name": "file",
+                                                  "hideText": false,
+                                                  "required": false,
+                                                  "caption": "Take a picture",
+                                                  "enabled": true,
+                                                  "readOnly": false,
+                                                  "type": "Image",
+                                                  "minLength": 0,
+                                                  "uploadUrl": "http://localhost:0/settings/2/products/upload?id=111",
+                                                  "imageSource": "Camera",
+                                                  "imageMaxHeight": 512,
+                                                  "imageMaxWidth": 512
+                                                },
+                                                "children": [],
+                                                "action": {
+                                                  "type": "Route",
+                                                  "url": "http://localhost:0/settings/2/products?id=111",
+                                                  "replacement": true
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "Container",
+                                            "attributes": {
+                                              "padding": 10.0
+                                            },
+                                            "children": []
+                                          },
+                                          {
+                                            "type": "Container",
+                                            "attributes": {
+                                              "border": 1.0,
+                                              "borderColor": "#1D7EDF"
+                                            },
+                                            "children": [
+                                              {
+                                                "type": "Input",
+                                                "attributes": {
+                                                  "name": "file",
+                                                  "hideText": false,
+                                                  "required": false,
+                                                  "caption": "Select a picture",
+                                                  "enabled": true,
+                                                  "readOnly": false,
+                                                  "type": "Image",
+                                                  "minLength": 0,
+                                                  "uploadUrl": "http://localhost:0/settings/2/products/upload?id=111",
+                                                  "imageSource": "Gallery",
+                                                  "imageMaxHeight": 512,
+                                                  "imageMaxWidth": 512
+                                                },
+                                                "children": [],
+                                                "action": {
+                                                  "type": "Route",
+                                                  "url": "http://localhost:0/settings/2/products?id=111",
+                                                  "replacement": true
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        ]
                                       },
-                                      "children": []
-                                    }
-                                  }
-                                },
+                                      {
+                                        "type": "Button",
+                                        "attributes": {
+                                          "caption": "Cancel",
+                                          "padding": 15.0,
+                                          "type": "Text"
+                                        },
+                                        "children": []
+                                      }
+                                    ]
+                                  },
+                                  "children": []
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "Container",
+                  "attributes": {
+                    "padding": 10.0
+                  },
+                  "children": [
+                    {
+                      "type": "Button",
+                      "attributes": {
+                        "caption": "Share",
+                        "padding": 15.0,
+                        "type": "Elevated"
+                      },
+                      "children": [],
+                      "action": {
+                        "type": "Share",
+                        "url": "",
+                        "message": "https://wutsi-web-test.herokuapp.com/p/111"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "Divider",
+                  "attributes": {
+                    "height": 1.0,
+                    "color": "#8c8c8c"
+                  },
+                  "children": []
+                },
+                {
+                  "type": "Flexible",
+                  "attributes": {
+                    "flex": 10,
+                    "fit": "Tight"
+                  },
+                  "children": [
+                    {
+                      "type": "ListView",
+                      "attributes": {
+                        "separator": true,
+                        "separatorColor": "#8c8c8c"
+                      },
+                      "children": [
+                        {
+                          "type": "ListItem",
+                          "attributes": {
+                            "caption": "Type",
+                            "subCaption": "Physical Product",
+                            "trailing": {
+                              "type": "Icon",
+                              "attributes": {
+                                "code": "e21a",
+                                "size": 24.0,
+                                "color": "#000000"
+                              },
+                              "children": []
+                            }
+                          },
+                          "children": [],
+                          "action": {
+                            "type": "Route",
+                            "url": "http://localhost:0/settings/2/products/editor?name=type&id=111"
+                          }
+                        },
+                        {
+                          "type": "ListItem",
+                          "attributes": {
+                            "caption": "Name",
+                            "subCaption": "Product A",
+                            "trailing": {
+                              "type": "Icon",
+                              "attributes": {
+                                "code": "e21a",
+                                "size": 24.0,
+                                "color": "#000000"
+                              },
+                              "children": []
+                            }
+                          },
+                          "children": [],
+                          "action": {
+                            "type": "Route",
+                            "url": "http://localhost:0/settings/2/products/editor?name=title&id=111"
+                          }
+                        },
+                        {
+                          "type": "ListItem",
+                          "attributes": {
+                            "caption": "Price",
+                            "subCaption": "20,000 FCFA",
+                            "trailing": {
+                              "type": "Icon",
+                              "attributes": {
+                                "code": "e21a",
+                                "size": 24.0,
+                                "color": "#000000"
+                              },
+                              "children": []
+                            }
+                          },
+                          "children": [],
+                          "action": {
+                            "type": "Route",
+                            "url": "http://localhost:0/settings/2/products/editor?name=price&id=111"
+                          }
+                        },
+                        {
+                          "type": "ListItem",
+                          "attributes": {
+                            "caption": "Quantity in Stock",
+                            "subCaption": "10",
+                            "trailing": {
+                              "type": "Icon",
+                              "attributes": {
+                                "code": "e21a",
+                                "size": 24.0,
+                                "color": "#000000"
+                              },
+                              "children": []
+                            }
+                          },
+                          "children": [],
+                          "action": {
+                            "type": "Route",
+                            "url": "http://localhost:0/settings/2/products/editor?name=quantity&id=111"
+                          }
+                        },
+                        {
+                          "type": "ListItem",
+                          "attributes": {
+                            "caption": "Summary",
+                            "subCaption": "This is a summary",
+                            "trailing": {
+                              "type": "Icon",
+                              "attributes": {
+                                "code": "e21a",
+                                "size": 24.0,
+                                "color": "#000000"
+                              },
+                              "children": []
+                            }
+                          },
+                          "children": [],
+                          "action": {
+                            "type": "Route",
+                            "url": "http://localhost:0/settings/2/products/editor?name=summary&id=111"
+                          }
+                        },
+                        {
+                          "type": "ListItem",
+                          "attributes": {
+                            "caption": "Description",
+                            "subCaption": "This is a long description",
+                            "trailing": {
+                              "type": "Icon",
+                              "attributes": {
+                                "code": "e21a",
+                                "size": 24.0,
+                                "color": "#000000"
+                              },
+                              "children": []
+                            }
+                          },
+                          "children": [],
+                          "action": {
+                            "type": "Route",
+                            "url": "http://localhost:0/settings/2/products/editor?name=description&id=111"
+                          }
+                        },
+                        {
+                          "type": "Container",
+                          "attributes": {
+                            "padding": 10.0
+                          },
+                          "children": []
+                        },
+                        {
+                          "type": "Container",
+                          "attributes": {
+                            "padding": 10.0
+                          },
+                          "children": [
+                            {
+                              "type": "ExpandablePanel",
+                              "attributes": {
+                                "header": "More Actions..."
+                              },
+                              "children": [
                                 {
                                   "type": "Container",
                                   "attributes": {
-                                    "padding": 10.0
+                                    "padding": 20.0,
+                                    "background": "#f8d7da",
+                                    "border": 1.0,
+                                    "borderColor": "#8B0000"
                                   },
-                                  "children": []
-                                },
-                                {
-                                  "type": "Button",
-                                  "attributes": {
-                                    "caption": "Delete",
-                                    "padding": 15.0,
-                                    "type": "Elevated"
-                                  },
-                                  "children": [],
-                                  "action": {
-                                    "type": "Command",
-                                    "url": "http://localhost:0/settings/2/products/delete?id=111",
-                                    "prompt": {
-                                      "type": "Dialog",
-                                      "attributes": {
-                                        "type": "Confirm",
-                                        "message": "Are you sure you want to delete the product? This operation cannot be un-done!"
-                                      },
-                                      "children": []
+                                  "children": [
+                                    {
+                                      "type": "Column",
+                                      "attributes": {},
+                                      "children": [
+                                        {
+                                          "type": "Button",
+                                          "attributes": {
+                                            "caption": "Unpublish",
+                                            "padding": 15.0,
+                                            "type": "Elevated"
+                                          },
+                                          "children": [],
+                                          "action": {
+                                            "type": "Command",
+                                            "url": "http://localhost:0/settings/2/products/unpublish?id=111",
+                                            "prompt": {
+                                              "type": "Dialog",
+                                              "attributes": {
+                                                "type": "Confirm",
+                                                "message": "Are you sure you want to unpublish the product?"
+                                              },
+                                              "children": []
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "type": "Container",
+                                          "attributes": {
+                                            "padding": 10.0
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Button",
+                                          "attributes": {
+                                            "caption": "Delete",
+                                            "padding": 15.0,
+                                            "type": "Elevated"
+                                          },
+                                          "children": [],
+                                          "action": {
+                                            "type": "Command",
+                                            "url": "http://localhost:0/settings/2/products/delete?id=111",
+                                            "prompt": {
+                                              "type": "Dialog",
+                                              "attributes": {
+                                                "type": "Confirm",
+                                                "message": "Are you sure you want to delete the product? This operation cannot be un-done!"
+                                              },
+                                              "children": []
+                                            }
+                                          }
+                                        }
+                                      ]
                                     }
-                                  }
+                                  ]
                                 }
                               ]
                             }
@@ -466,20 +480,434 @@
                   ]
                 }
               ]
+            },
+            {
+              "type": "Column",
+              "attributes": {},
+              "children": [
+                {
+                  "type": "Container",
+                  "attributes": {
+                    "padding": 10.0
+                  },
+                  "children": [
+                    {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "3 order(s) in the past 30 days"
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "type": "Divider",
+                  "attributes": {
+                    "height": 1.0,
+                    "color": "#8c8c8c"
+                  },
+                  "children": []
+                },
+                {
+                  "type": "Flexible",
+                  "attributes": {
+                    "flex": 1,
+                    "fit": "Tight"
+                  },
+                  "children": [
+                    {
+                      "type": "ListView",
+                      "attributes": {
+                        "separator": true,
+                        "separatorColor": "#8c8c8c"
+                      },
+                      "children": [
+                        {
+                          "type": "Container",
+                          "attributes": {
+                            "padding": 10.0
+                          },
+                          "children": [
+                            {
+                              "type": "Column",
+                              "attributes": {
+                                "mainAxisAlignment": "start",
+                                "crossAxisAlignment": "start"
+                              },
+                              "children": [
+                                {
+                                  "type": "Row",
+                                  "attributes": {
+                                    "mainAxisAlignment": "spaceBetween",
+                                    "crossAxisAlignment": "start"
+                                  },
+                                  "children": [
+                                    {
+                                      "type": "Row",
+                                      "attributes": {
+                                        "mainAxisAlignment": "start",
+                                        "crossAxisAlignment": "start"
+                                      },
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "attributes": {
+                                            "caption": "01 Jan",
+                                            "color": "#95A5A6",
+                                            "bold": true
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Container",
+                                          "attributes": {
+                                            "padding": 5.0
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Column",
+                                          "attributes": {
+                                            "mainAxisAlignment": "start",
+                                            "crossAxisAlignment": "start"
+                                          },
+                                          "children": [
+                                            {
+                                              "type": "Text",
+                                              "attributes": {
+                                                "caption": "Order #",
+                                                "bold": true,
+                                                "size": 16.0
+                                              },
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "Container",
+                                              "attributes": {
+                                                "padding": 5.0
+                                              },
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "Text",
+                                              "attributes": {
+                                                "caption": ""
+                                              },
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "Column",
+                                      "attributes": {
+                                        "mainAxisAlignment": "start",
+                                        "crossAxisAlignment": "end"
+                                      },
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "attributes": {
+                                            "caption": "15,000 FCFA",
+                                            "color": "#1D7EDF",
+                                            "bold": true
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Container",
+                                          "attributes": {
+                                            "padding": 5.0
+                                          },
+                                          "children": []
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ],
+                          "action": {
+                            "type": "Route",
+                            "url": "http://localhost:0/orders/2",
+                            "parameters": {
+                              "id": "1"
+                            }
+                          }
+                        },
+                        {
+                          "type": "Container",
+                          "attributes": {
+                            "padding": 10.0
+                          },
+                          "children": [
+                            {
+                              "type": "Column",
+                              "attributes": {
+                                "mainAxisAlignment": "start",
+                                "crossAxisAlignment": "start"
+                              },
+                              "children": [
+                                {
+                                  "type": "Row",
+                                  "attributes": {
+                                    "mainAxisAlignment": "spaceBetween",
+                                    "crossAxisAlignment": "start"
+                                  },
+                                  "children": [
+                                    {
+                                      "type": "Row",
+                                      "attributes": {
+                                        "mainAxisAlignment": "start",
+                                        "crossAxisAlignment": "start"
+                                      },
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "attributes": {
+                                            "caption": "01 Jan",
+                                            "color": "#95A5A6",
+                                            "bold": true
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Container",
+                                          "attributes": {
+                                            "padding": 5.0
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Column",
+                                          "attributes": {
+                                            "mainAxisAlignment": "start",
+                                            "crossAxisAlignment": "start"
+                                          },
+                                          "children": [
+                                            {
+                                              "type": "Text",
+                                              "attributes": {
+                                                "caption": "Order #",
+                                                "bold": true,
+                                                "size": 16.0
+                                              },
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "Container",
+                                              "attributes": {
+                                                "padding": 5.0
+                                              },
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "Text",
+                                              "attributes": {
+                                                "caption": ""
+                                              },
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "Column",
+                                      "attributes": {
+                                        "mainAxisAlignment": "start",
+                                        "crossAxisAlignment": "end"
+                                      },
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "attributes": {
+                                            "caption": "15,000 FCFA",
+                                            "color": "#1D7EDF",
+                                            "bold": true
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Container",
+                                          "attributes": {
+                                            "padding": 5.0
+                                          },
+                                          "children": []
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ],
+                          "action": {
+                            "type": "Route",
+                            "url": "http://localhost:0/orders/2",
+                            "parameters": {
+                              "id": "2"
+                            }
+                          }
+                        },
+                        {
+                          "type": "Container",
+                          "attributes": {
+                            "padding": 10.0
+                          },
+                          "children": [
+                            {
+                              "type": "Column",
+                              "attributes": {
+                                "mainAxisAlignment": "start",
+                                "crossAxisAlignment": "start"
+                              },
+                              "children": [
+                                {
+                                  "type": "Row",
+                                  "attributes": {
+                                    "mainAxisAlignment": "spaceBetween",
+                                    "crossAxisAlignment": "start"
+                                  },
+                                  "children": [
+                                    {
+                                      "type": "Row",
+                                      "attributes": {
+                                        "mainAxisAlignment": "start",
+                                        "crossAxisAlignment": "start"
+                                      },
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "attributes": {
+                                            "caption": "01 Jan",
+                                            "color": "#95A5A6",
+                                            "bold": true
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Container",
+                                          "attributes": {
+                                            "padding": 5.0
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Column",
+                                          "attributes": {
+                                            "mainAxisAlignment": "start",
+                                            "crossAxisAlignment": "start"
+                                          },
+                                          "children": [
+                                            {
+                                              "type": "Text",
+                                              "attributes": {
+                                                "caption": "Order #",
+                                                "bold": true,
+                                                "size": 16.0
+                                              },
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "Container",
+                                              "attributes": {
+                                                "padding": 5.0
+                                              },
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "Text",
+                                              "attributes": {
+                                                "caption": ""
+                                              },
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "Column",
+                                      "attributes": {
+                                        "mainAxisAlignment": "start",
+                                        "crossAxisAlignment": "end"
+                                      },
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "attributes": {
+                                            "caption": "15,000 FCFA",
+                                            "color": "#1D7EDF",
+                                            "bold": true
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Container",
+                                          "attributes": {
+                                            "padding": 5.0
+                                          },
+                                          "children": []
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ],
+                          "action": {
+                            "type": "Route",
+                            "url": "http://localhost:0/orders/2",
+                            "parameters": {
+                              "id": "3"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
-      ]
+      ],
+      "appBar": {
+        "type": "AppBar",
+        "attributes": {
+          "title": "Product",
+          "elevation": 0.0,
+          "backgroundColor": "#1D7EDF",
+          "foregroundColor": "#FFFFFF",
+          "bottom": {
+            "type": "TabBar",
+            "attributes": {},
+            "children": [
+              {
+                "type": "Text",
+                "attributes": {
+                  "caption": "INFORMATION",
+                  "bold": true
+                },
+                "children": []
+              },
+              {
+                "type": "Text",
+                "attributes": {
+                  "caption": "ORDERS",
+                  "bold": true
+                },
+                "children": []
+              }
+            ]
+          }
+        },
+        "children": []
+      }
     }
-  ],
-  "appBar": {
-    "type": "AppBar",
-    "attributes": {
-      "title": "Product",
-      "elevation": 0.0,
-      "backgroundColor": "#1D7EDF",
-      "foregroundColor": "#FFFFFF"
-    },
-    "children": []
-  }
+  ]
 }

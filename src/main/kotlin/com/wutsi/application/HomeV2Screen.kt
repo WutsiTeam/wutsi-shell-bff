@@ -195,6 +195,7 @@ class HomeV2Screen(
                                     "id" to it.id,
                                 ),
                             ),
+                            timezoneId = member.timezoneId,
                         ),
                         Divider(height = 1.0, color = Theme.COLOR_DIVIDER),
                     )

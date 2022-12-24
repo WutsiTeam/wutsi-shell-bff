@@ -25,6 +25,7 @@ import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
+import com.wutsi.membership.manager.dto.Member
 import com.wutsi.platform.core.image.ImageService
 import com.wutsi.regulation.RegulationEngine
 import org.springframework.web.bind.annotation.PostMapping
@@ -74,9 +75,9 @@ class OrderListScreen(
                 bottomNavigationBar = createBottomNavigationBarWidget(member),
                 child = TabBarView(
                     children = listOfNotNull(
-                        toTabView(arrayOf(OrderStatus.OPENED), business, false),
-                        toTabView(arrayOf(OrderStatus.IN_PROGRESS), business, true),
-                        toTabView(arrayOf(OrderStatus.COMPLETED, OrderStatus.CANCELLED), business, true),
+                        toTabView(arrayOf(OrderStatus.OPENED), business, member, false),
+                        toTabView(arrayOf(OrderStatus.IN_PROGRESS), business, member, true),
+                        toTabView(arrayOf(OrderStatus.COMPLETED, OrderStatus.CANCELLED), business, member, true),
                     ),
                 ),
             ),
@@ -91,10 +92,10 @@ class OrderListScreen(
         }
 
         val business = checkoutManagerApi.getBusiness(member.businessId!!).business
-        return toContentWidget(status, business).toWidget()
+        return toContentWidget(status, business, member).toWidget()
     }
 
-    private fun toTabView(status: Array<OrderStatus>, business: Business, async: Boolean): WidgetAware {
+    private fun toTabView(status: Array<OrderStatus>, business: Business, member: Member, async: Boolean): WidgetAware {
         if (async) {
             val url = "${Page.getOrderListUrl()}/fragment?" +
                 status.map { "status=$it" }.joinToString(separator = "&")
@@ -102,11 +103,11 @@ class OrderListScreen(
                 url = urlBuilder.build(url),
             )
         } else {
-            return toContentWidget(status, business)
+            return toContentWidget(status, business, member)
         }
     }
 
-    private fun toContentWidget(status: Array<OrderStatus>, business: Business): WidgetAware {
+    private fun toContentWidget(status: Array<OrderStatus>, business: Business, member: Member): WidgetAware {
         val orders = checkoutManagerApi.searchOrder(
             request = SearchOrderRequest(
                 limit = MAX_ORDERS,
@@ -135,7 +136,7 @@ class OrderListScreen(
                         separator = true,
                         separatorColor = Theme.COLOR_DIVIDER,
                         children = orders.map {
-                            toOrderListItemWidget(it, business)
+                            toOrderListItemWidget(it, business, member)
                         },
                     ),
                 ),
@@ -143,7 +144,7 @@ class OrderListScreen(
         )
     }
 
-    private fun toOrderListItemWidget(order: OrderSummary, business: Business): WidgetAware =
+    private fun toOrderListItemWidget(order: OrderSummary, business: Business, member: Member): WidgetAware =
         OrderWidget.of(
             order = order,
             country = regulationEngine.country(business.country),
@@ -154,5 +155,6 @@ class OrderListScreen(
                     "id" to order.id,
                 ),
             ),
+            timezoneId = member.timezoneId,
         )
 }

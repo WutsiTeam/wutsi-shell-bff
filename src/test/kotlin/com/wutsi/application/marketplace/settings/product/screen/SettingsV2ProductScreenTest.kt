@@ -10,6 +10,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.AbstractSecuredEndpointTest
 import com.wutsi.application.Fixtures
 import com.wutsi.application.Page
+import com.wutsi.checkout.manager.dto.SearchOrderResponse
 import com.wutsi.enums.ProductType
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
@@ -17,6 +18,7 @@ import com.wutsi.marketplace.manager.dto.CreatePictureRequest
 import com.wutsi.marketplace.manager.dto.GetProductResponse
 import com.wutsi.platform.core.storage.StorageService
 import com.wutsi.regulation.RegulationEngine
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.mock.mockito.MockBean
@@ -40,6 +42,18 @@ internal class SettingsV2ProductScreenTest : AbstractSecuredEndpointTest() {
 
     private fun url(action: String = "") =
         "http://localhost:$port${Page.getSettingsProductUrl()}$action?id=$productId"
+
+    @BeforeEach
+    override fun setUp() {
+        super.setUp()
+
+        val orders = listOf(
+            Fixtures.createOrderSummary("1"),
+            Fixtures.createOrderSummary("2"),
+            Fixtures.createOrderSummary("3"),
+        )
+        doReturn(SearchOrderResponse(orders)).whenever(checkoutManagerApi).searchOrder(any())
+    }
 
     @Test
     fun draft() {

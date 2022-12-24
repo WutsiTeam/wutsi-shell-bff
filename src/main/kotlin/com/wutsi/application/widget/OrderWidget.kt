@@ -1,6 +1,7 @@
 package com.wutsi.application.widget
 
 import com.wutsi.application.Theme
+import com.wutsi.application.util.DateTimeUtil
 import com.wutsi.application.util.StringUtil
 import com.wutsi.application.widget.WidgetL10n.getText
 import com.wutsi.checkout.manager.dto.Order
@@ -36,7 +37,7 @@ class OrderWidget(
     private val imageService: ImageService,
     private val country: Country,
     private val action: Action? = null,
-    private val showProductImage: Boolean = true,
+    private val showProductImage: Boolean,
 ) : CompositeWidgetAware() {
     companion object {
         const val PRODUCT_PICTURE_SIZE = 32.0
@@ -46,11 +47,12 @@ class OrderWidget(
             country: Country,
             action: Action? = null,
             imageService: ImageService,
-            showProductImage: Boolean = true
+            showProductImage: Boolean = true,
+            timezoneId: String?,
         ): OrderWidget =
             OrderWidget(
                 orderId = order.shortId,
-                created = order.created,
+                created = timezoneId?.let { DateTimeUtil.convert(order.created, it) } ?: order.created,
                 status = OrderStatus.valueOf(order.status),
                 customerName = order.customerName,
                 totalPrice = order.totalPrice,
@@ -66,11 +68,12 @@ class OrderWidget(
             country: Country,
             action: Action? = null,
             imageService: ImageService,
-            showProductImage: Boolean = true
+            showProductImage: Boolean = true,
+            timezoneId: String?,
         ): OrderWidget =
             OrderWidget(
                 orderId = order.shortId,
-                created = order.created,
+                created = timezoneId?.let { DateTimeUtil.convert(order.created, it) } ?: order.created,
                 status = OrderStatus.valueOf(order.status),
                 customerName = order.customerName,
                 totalPrice = order.totalPrice,
@@ -104,7 +107,7 @@ class OrderWidget(
                                     Text(
                                         caption = dateFormat.format(created),
                                         bold = true,
-                                        color = Theme.COLOR_GRAY
+                                        color = Theme.COLOR_GRAY,
                                     ),
                                     Container(padding = 5.0),
                                     Column(
@@ -117,10 +120,10 @@ class OrderWidget(
                                                 size = Theme.TEXT_SIZE_LARGE,
                                             ),
                                             Container(padding = 5.0),
-                                            Text(StringUtil.capitalize(customerName))
+                                            Text(StringUtil.capitalize(customerName)),
                                         ),
-                                    )
-                                )
+                                    ),
+                                ),
                             ),
                             Column(
                                 mainAxisAlignment = MainAxisAlignment.start,

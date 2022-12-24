@@ -4,9 +4,13 @@ import com.wutsi.application.Page
 import com.wutsi.application.Theme
 import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
 import com.wutsi.application.util.DateTimeUtil
+import com.wutsi.application.widget.OrderWidget
 import com.wutsi.application.widget.PictureListViewWidget
 import com.wutsi.application.widget.PictureWidget
 import com.wutsi.application.widget.UploadWidget
+import com.wutsi.checkout.manager.CheckoutManagerApi
+import com.wutsi.checkout.manager.dto.SearchOrderRequest
+import com.wutsi.enums.OrderStatus
 import com.wutsi.enums.ProductStatus
 import com.wutsi.enums.ProductType
 import com.wutsi.flutter.sdui.Action
@@ -14,6 +18,7 @@ import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
+import com.wutsi.flutter.sdui.DefaultTabController
 import com.wutsi.flutter.sdui.Dialog
 import com.wutsi.flutter.sdui.Divider
 import com.wutsi.flutter.sdui.ExpandablePanel
@@ -22,6 +27,9 @@ import com.wutsi.flutter.sdui.Icon
 import com.wutsi.flutter.sdui.ListItem
 import com.wutsi.flutter.sdui.ListView
 import com.wutsi.flutter.sdui.Screen
+import com.wutsi.flutter.sdui.TabBar
+import com.wutsi.flutter.sdui.TabBarView
+import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.ActionType
@@ -33,6 +41,7 @@ import com.wutsi.marketplace.manager.dto.CreatePictureRequest
 import com.wutsi.marketplace.manager.dto.PictureSummary
 import com.wutsi.marketplace.manager.dto.Product
 import com.wutsi.membership.manager.dto.Member
+import com.wutsi.platform.core.image.ImageService
 import com.wutsi.platform.core.storage.StorageService
 import com.wutsi.regulation.RegulationEngine
 import org.springframework.beans.factory.annotation.Value
@@ -45,6 +54,7 @@ import org.springframework.web.multipart.MultipartFile
 import java.nio.file.Files
 import java.nio.file.Path
 import java.text.DecimalFormat
+import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 import java.util.UUID
 
@@ -52,8 +62,10 @@ import java.util.UUID
 @RequestMapping("/settings/2/products")
 class SettingsV2ProductScreen(
     private val marketplaceManagerApi: MarketplaceManagerApi,
+    private val checkoutManagerApi: CheckoutManagerApi,
     private val regulationEngine: RegulationEngine,
     private val storageService: StorageService,
+    private val imageService: ImageService,
 
     @Value("\${wutsi.store.pictures.max-width}") private val pictureMaxWidth: Int,
     @Value("\${wutsi.store.pictures.max-width}") private val pictureMaxHeight: Int,
@@ -67,20 +79,37 @@ class SettingsV2ProductScreen(
         val member = getCurrentMember()
         val product = marketplaceManagerApi.getProduct(id).product
 
-        return Screen(
-            id = Page.SETTINGS_CATALOG_PRODUCT,
-            backgroundColor = Theme.COLOR_WHITE,
-            appBar = AppBar(
-                elevation = 0.0,
-                backgroundColor = Theme.COLOR_PRIMARY,
-                foregroundColor = Theme.COLOR_WHITE,
-                title = getText("page.settings.catalog.product.app-bar.title"),
+        val tabs = TabBar(
+            tabs = listOfNotNull(
+                Text(getText("page.settings.store.product.tab.information").uppercase(), bold = true),
+                Text(getText("page.settings.store.product.tab.orders").uppercase(), bold = true),
             ),
-            child = toProductListWidget(product, member),
+        )
+        val tabViews = TabBarView(
+            children = listOfNotNull(
+                toInfoTab(product, member),
+                toOrdersTab(product, member),
+            ),
+        )
+
+        return DefaultTabController(
+            id = Page.SETTINGS_CATALOG_PRODUCT,
+            length = tabs.tabs.size,
+            child = Screen(
+                backgroundColor = Theme.COLOR_WHITE,
+                appBar = AppBar(
+                    elevation = 0.0,
+                    backgroundColor = Theme.COLOR_PRIMARY,
+                    foregroundColor = Theme.COLOR_WHITE,
+                    title = getText("page.settings.store.product.app-bar.title"),
+                    bottom = tabs,
+                ),
+                child = tabViews,
+            ),
         ).toWidget()
     }
 
-    private fun toProductListWidget(product: Product, member: Member): WidgetAware {
+    private fun toInfoTab(product: Product, member: Member): WidgetAware {
         val country = regulationEngine.country(member.country)
         val price = product.price?.let { DecimalFormat(country.monetaryFormat).format(it) }
         val dateFormat = DateTimeFormatter.ofPattern(country.dateTimeFormat, LocaleContextHolder.getLocale())
@@ -183,6 +212,57 @@ class SettingsV2ProductScreen(
 
                             toDangerWidget(product),
                         ),
+                    ),
+                ),
+            ),
+        )
+    }
+
+    private fun toOrdersTab(product: Product, member: Member): WidgetAware {
+        val today = OffsetDateTime.now()
+        val orders = checkoutManagerApi.searchOrder(
+            request = SearchOrderRequest(
+                productId = product.id,
+                createdFrom = today.minusMonths(1),
+                createdTo = today,
+                status = listOf(
+                    OrderStatus.OPENED.name,
+                    OrderStatus.IN_PROGRESS.name,
+                    OrderStatus.COMPLETED.name,
+                    OrderStatus.CANCELLED.name,
+                ),
+            ),
+        ).orders
+
+        return Column(
+            children = listOf(
+                Container(
+                    padding = 10.0,
+                    child = Text(
+                        caption = getText(
+                            "page.settings.store.product.n_orders-in-past-month",
+                            arrayOf(orders.size),
+                        ),
+                    ),
+                ),
+                Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
+                Flexible(
+                    child = ListView(
+                        separatorColor = Theme.COLOR_DIVIDER,
+                        separator = true,
+                        children = orders.map {
+                            OrderWidget.of(
+                                order = it,
+                                country = regulationEngine.country(member.country),
+                                action = gotoUrl(
+                                    url = urlBuilder.build(Page.getOrderUrl()),
+                                    parameters = mapOf("id" to it.id),
+                                ),
+                                imageService = imageService,
+                                showProductImage = false,
+                                timezoneId = member.timezoneId,
+                            )
+                        },
                     ),
                 ),
             ),

@@ -149,6 +149,7 @@ class Transaction2Screen(
                                         url = urlBuilder.build(Page.getOrderUrl()),
                                         parameters = mapOf("id" to it.id),
                                     ),
+                                    timezoneId = member.timezoneId,
                                 ),
                             )
                         },
