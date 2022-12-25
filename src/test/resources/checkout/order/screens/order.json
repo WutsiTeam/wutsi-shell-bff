@@ -57,9 +57,7 @@
                         {
                           "type": "Text",
                           "attributes": {
-                            "caption": "Ray.sponsible@gmail.com",
-                            "bold": true,
-                            "size": 18.0
+                            "caption": "Ray.sponsible@gmail.com"
                           },
                           "children": []
                         }
@@ -183,7 +181,6 @@
                           "type": "Container",
                           "attributes": {
                             "padding": 5.0,
-                            "margin": 5.0,
                             "background": "#e8e8e8",
                             "borderRadius": 5.0
                           },
@@ -199,20 +196,28 @@
                           ]
                         },
                         {
-                          "type": "ClipRRect",
+                          "type": "Container",
                           "attributes": {
-                            "borderRadius": 5.0
+                            "padding": 5.0
                           },
                           "children": [
                             {
-                              "type": "Image",
+                              "type": "ClipRRect",
                               "attributes": {
-                                "url": "https://img.com/1.png",
-                                "width": 64.0,
-                                "height": 64.0,
-                                "fit": "fill"
+                                "borderRadius": 5.0
                               },
-                              "children": []
+                              "children": [
+                                {
+                                  "type": "Image",
+                                  "attributes": {
+                                    "url": "https://img.com/1.png",
+                                    "width": 64.0,
+                                    "height": 64.0,
+                                    "fit": "fill"
+                                  },
+                                  "children": []
+                                }
+                              ]
                             }
                           ]
                         },

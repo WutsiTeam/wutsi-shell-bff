@@ -617,13 +617,6 @@
                                           "children": []
                                         },
                                         {
-                                          "type": "Container",
-                                          "attributes": {
-                                            "padding": 5.0
-                                          },
-                                          "children": []
-                                        },
-                                        {
                                           "type": "Text",
                                           "attributes": {
                                             "caption": "Ray Sponsible"
@@ -646,14 +639,8 @@
                                       "attributes": {
                                         "caption": "100,000 FCFA",
                                         "color": "#1D7EDF",
-                                        "bold": true
-                                      },
-                                      "children": []
-                                    },
-                                    {
-                                      "type": "Container",
-                                      "attributes": {
-                                        "padding": 5.0
+                                        "bold": true,
+                                        "size": 16.0
                                       },
                                       "children": []
                                     },

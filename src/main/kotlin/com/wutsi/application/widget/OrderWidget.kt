@@ -113,14 +113,14 @@ class OrderWidget(
                                     Column(
                                         mainAxisAlignment = MainAxisAlignment.start,
                                         crossAxisAlignment = CrossAxisAlignment.start,
-                                        children = listOf(
+                                        children = listOfNotNull(
                                             Text(
                                                 getText("widget.order.order-id", arrayOf(orderId)),
                                                 bold = true,
                                                 size = Theme.TEXT_SIZE_LARGE,
                                             ),
-                                            Container(padding = 5.0),
                                             Text(StringUtil.capitalize(customerName)),
+                                            toStatusBadge(status),
                                         ),
                                     ),
                                 ),
@@ -133,9 +133,8 @@ class OrderWidget(
                                         caption = moneyFormat.format(totalPrice),
                                         bold = true,
                                         color = Theme.COLOR_PRIMARY,
+                                        size = Theme.TEXT_SIZE_LARGE,
                                     ),
-                                    toStatusBadge(status),
-                                    Container(padding = 5.0),
                                     if (showProductImage) {
                                         Row(
                                             mainAxisAlignment = MainAxisAlignment.end,

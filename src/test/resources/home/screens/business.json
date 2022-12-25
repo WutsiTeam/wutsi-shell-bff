@@ -234,13 +234,6 @@
                                           "children": []
                                         },
                                         {
-                                          "type": "Container",
-                                          "attributes": {
-                                            "padding": 5.0
-                                          },
-                                          "children": []
-                                        },
-                                        {
                                           "type": "Text",
                                           "attributes": {
                                             "caption": ""
@@ -263,14 +256,8 @@
                                       "attributes": {
                                         "caption": "15,000 FCFA",
                                         "color": "#1D7EDF",
-                                        "bold": true
-                                      },
-                                      "children": []
-                                    },
-                                    {
-                                      "type": "Container",
-                                      "attributes": {
-                                        "padding": 5.0
+                                        "bold": true,
+                                        "size": 16.0
                                       },
                                       "children": []
                                     },
@@ -365,13 +352,6 @@
                                           "children": []
                                         },
                                         {
-                                          "type": "Container",
-                                          "attributes": {
-                                            "padding": 5.0
-                                          },
-                                          "children": []
-                                        },
-                                        {
                                           "type": "Text",
                                           "attributes": {
                                             "caption": ""
@@ -394,14 +374,8 @@
                                       "attributes": {
                                         "caption": "25,000 FCFA",
                                         "color": "#1D7EDF",
-                                        "bold": true
-                                      },
-                                      "children": []
-                                    },
-                                    {
-                                      "type": "Container",
-                                      "attributes": {
-                                        "padding": 5.0
+                                        "bold": true,
+                                        "size": 16.0
                                       },
                                       "children": []
                                     },

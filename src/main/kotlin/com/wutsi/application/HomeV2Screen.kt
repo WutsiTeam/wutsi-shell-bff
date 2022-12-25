@@ -125,7 +125,7 @@ class HomeV2Screen(
                     businessId = member.businessId,
                     status = listOf(
                         OrderStatus.OPENED.name,
-                        OrderStatus.IN_PROGRESS.name
+                        OrderStatus.IN_PROGRESS.name,
                     ),
                     limit = 3,
                 ),

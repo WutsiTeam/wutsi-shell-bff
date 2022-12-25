@@ -213,9 +213,7 @@ class OrderV2Screen(
                 Container(
                     padding = 5.0,
                     child = Text(
-                        caption = StringUtil.capitalize(order.customerEmail),
-                        bold = true,
-                        size = Theme.TEXT_SIZE_X_LARGE,
+                        caption = StringUtil.capitalize(order.customerEmail.lowercase()),
                     ),
                 ),
                 Container(
@@ -225,9 +223,9 @@ class OrderV2Screen(
                             key = "page.order.ordered-on",
                             args = arrayOf(
                                 dateFormat.format(
-                                    DateTimeUtil.convert(order.created, member.timezoneId)
-                                )
-                            )
+                                    DateTimeUtil.convert(order.created, member.timezoneId),
+                                ),
+                            ),
                         ),
                     ),
                 ),
@@ -263,7 +261,6 @@ class OrderV2Screen(
         children = listOfNotNull(
             Container(
                 padding = 5.0,
-                margin = 5.0,
                 background = Theme.COLOR_GRAY_LIGHT,
                 borderRadius = 5.0,
                 child = Text(
@@ -272,18 +269,21 @@ class OrderV2Screen(
                 ),
             ),
             item.pictureUrl?.let {
-                ClipRRect(
-                    borderRadius = 5.0,
-                    child = Image(
-                        width = PRODUCT_PICTURE_SIZE,
-                        height = PRODUCT_PICTURE_SIZE,
-                        fit = BoxFit.fill,
-                        url = imageService.transform(
-                            url = it,
-                            Transformation(
-                                dimension = Dimension(
-                                    width = PRODUCT_PICTURE_SIZE.toInt(),
-                                    height = PRODUCT_PICTURE_SIZE.toInt(),
+                Container(
+                    padding = 5.0,
+                    child = ClipRRect(
+                        borderRadius = 5.0,
+                        child = Image(
+                            width = PRODUCT_PICTURE_SIZE,
+                            height = PRODUCT_PICTURE_SIZE,
+                            fit = BoxFit.fill,
+                            url = imageService.transform(
+                                url = it,
+                                Transformation(
+                                    dimension = Dimension(
+                                        width = PRODUCT_PICTURE_SIZE.toInt(),
+                                        height = PRODUCT_PICTURE_SIZE.toInt(),
+                                    ),
                                 ),
                             ),
                         ),
