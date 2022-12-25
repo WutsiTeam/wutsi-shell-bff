@@ -33,3 +33,5 @@ wutsi:
       type: aws
       aws:
         bucket: int-wutsi
+  toggles:
+    chart: false

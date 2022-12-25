@@ -21,6 +21,7 @@ import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.membership.manager.dto.Member
 import com.wutsi.regulation.RegulationEngine
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -31,6 +32,8 @@ import java.time.LocalDate
 class SettingsV2StoreStatsScreen(
     private val checkoutManagerApi: CheckoutManagerApi,
     private val regulationEngine: RegulationEngine,
+
+    @Value("\${wutsi.toggles.chart}") private val toggleChart: Boolean,
 ) : AbstractSecuredEndpoint() {
     @PostMapping
     fun index(): Widget {
@@ -128,6 +131,10 @@ class SettingsV2StoreStatsScreen(
         from: LocalDate,
         to: LocalDate,
     ): WidgetAware {
+        if (!toggleChart) {
+            return Container()
+        }
+
         val request = SearchSalesKpiRequest(
             businessId = member.businessId,
             fromDate = from,
