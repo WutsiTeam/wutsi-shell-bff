@@ -3,6 +3,7 @@ package com.wutsi.application.checkout.order.screen
 import com.wutsi.application.Page
 import com.wutsi.application.Theme
 import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
+import com.wutsi.application.util.DateTimeUtil
 import com.wutsi.application.util.SecurityUtil
 import com.wutsi.application.util.StringUtil
 import com.wutsi.checkout.manager.CheckoutManagerApi
@@ -33,6 +34,7 @@ import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.TextAlignment
 import com.wutsi.flutter.sdui.enums.TextDecoration
+import com.wutsi.membership.manager.dto.Member
 import com.wutsi.platform.core.image.Dimension
 import com.wutsi.platform.core.image.ImageService
 import com.wutsi.platform.core.image.Transformation
@@ -81,7 +83,7 @@ class OrderV2Screen(
                     mainAxisAlignment = MainAxisAlignment.start,
                     crossAxisAlignment = CrossAxisAlignment.center,
                     children = listOfNotNull(
-                        toCustomerWidget(order, dateFormat),
+                        toCustomerWidget(order, member, dateFormat),
                         toToolbarWidget(order),
                         Divider(height = 1.0, color = Theme.COLOR_DIVIDER),
                         toItemListWidget(order, moneyFormat),
@@ -193,7 +195,7 @@ class OrderV2Screen(
         )
     }
 
-    fun toCustomerWidget(order: Order, dateFormat: DateTimeFormatter) = Container(
+    fun toCustomerWidget(order: Order, member: Member, dateFormat: DateTimeFormatter) = Container(
         padding = 10.0,
         alignment = Alignment.Center,
         child = Column(
@@ -211,7 +213,22 @@ class OrderV2Screen(
                 Container(
                     padding = 5.0,
                     child = Text(
-                        caption = getText("page.order.ordered-on", arrayOf(dateFormat.format(order.created))),
+                        caption = StringUtil.capitalize(order.customerEmail),
+                        bold = true,
+                        size = Theme.TEXT_SIZE_X_LARGE,
+                    ),
+                ),
+                Container(
+                    padding = 5.0,
+                    child = Text(
+                        caption = getText(
+                            key = "page.order.ordered-on",
+                            args = arrayOf(
+                                dateFormat.format(
+                                    DateTimeUtil.convert(order.created, member.timezoneId)
+                                )
+                            )
+                        ),
                     ),
                 ),
                 Container(
@@ -244,35 +261,29 @@ class OrderV2Screen(
         mainAxisAlignment = MainAxisAlignment.start,
         crossAxisAlignment = CrossAxisAlignment.center,
         children = listOfNotNull(
-            Flexible(
-                flex = 1,
-                child = Container(
-                    padding = 5.0,
-                    margin = 5.0,
-                    background = Theme.COLOR_GRAY_LIGHT,
-                    borderRadius = 5.0,
-                    child = Text(
-                        caption = item.quantity.toString(),
-                        color = Theme.COLOR_BLACK,
-                    ),
+            Container(
+                padding = 5.0,
+                margin = 5.0,
+                background = Theme.COLOR_GRAY_LIGHT,
+                borderRadius = 5.0,
+                child = Text(
+                    caption = item.quantity.toString(),
+                    color = Theme.COLOR_BLACK,
                 ),
             ),
             item.pictureUrl?.let {
-                Flexible(
-                    flex = 3,
-                    child = ClipRRect(
-                        borderRadius = 5.0,
-                        child = Image(
-                            width = PRODUCT_PICTURE_SIZE,
-                            height = PRODUCT_PICTURE_SIZE,
-                            fit = BoxFit.fill,
-                            url = imageService.transform(
-                                url = it,
-                                Transformation(
-                                    dimension = Dimension(
-                                        width = PRODUCT_PICTURE_SIZE.toInt(),
-                                        height = PRODUCT_PICTURE_SIZE.toInt(),
-                                    ),
+                ClipRRect(
+                    borderRadius = 5.0,
+                    child = Image(
+                        width = PRODUCT_PICTURE_SIZE,
+                        height = PRODUCT_PICTURE_SIZE,
+                        fit = BoxFit.fill,
+                        url = imageService.transform(
+                            url = it,
+                            Transformation(
+                                dimension = Dimension(
+                                    width = PRODUCT_PICTURE_SIZE.toInt(),
+                                    height = PRODUCT_PICTURE_SIZE.toInt(),
                                 ),
                             ),
                         ),
@@ -280,7 +291,6 @@ class OrderV2Screen(
                 )
             },
             Flexible(
-                flex = 8,
                 child = Column(
                     mainAxisAlignment = MainAxisAlignment.start,
                     crossAxisAlignment = CrossAxisAlignment.start,
