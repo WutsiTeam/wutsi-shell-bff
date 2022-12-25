@@ -3,26 +3,29 @@ package com.wutsi.application.marketplace.settings.store.screen
 import com.wutsi.application.Page
 import com.wutsi.application.Theme
 import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
-import com.wutsi.application.widget.KpiWidget
+import com.wutsi.application.widget.KpiListWidget
 import com.wutsi.checkout.manager.CheckoutManagerApi
 import com.wutsi.checkout.manager.dto.Business
+import com.wutsi.checkout.manager.dto.SalesKpiSummary
 import com.wutsi.checkout.manager.dto.SearchSalesKpiRequest
 import com.wutsi.flutter.sdui.AppBar
+import com.wutsi.flutter.sdui.Chart
+import com.wutsi.flutter.sdui.ChartData
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
-import com.wutsi.flutter.sdui.Flexible
-import com.wutsi.flutter.sdui.Row
+import com.wutsi.flutter.sdui.DefaultTabController
 import com.wutsi.flutter.sdui.Screen
-import com.wutsi.flutter.sdui.SingleChildScrollView
+import com.wutsi.flutter.sdui.TabBar
+import com.wutsi.flutter.sdui.TabBarView
+import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
-import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
-import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.membership.manager.dto.Member
 import com.wutsi.regulation.RegulationEngine
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import java.time.LocalDate
 
 @RestController
 @RequestMapping("/settings/2/store/stats")
@@ -33,64 +36,131 @@ class SettingsV2StoreStatsScreen(
     @PostMapping
     fun index(): Widget {
         val member = getCurrentMember()
-        val business = member.businessId?.let { checkoutManagerApi.getBusiness(it).business }
-
-        return Screen(
-            id = Page.SETTINGS_STORE_STATS,
-            appBar = AppBar(
-                elevation = 0.0,
-                backgroundColor = Theme.COLOR_WHITE,
-                foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.settings.store.stats.app-bar.title"),
-            ),
-            child = SingleChildScrollView(
-                child = Column(
-                    children = listOfNotNull(
-                        toOverallKpiWidget(member, business),
-                    ),
+        if (member.businessId == null) {
+            return Screen(
+                id = Page.SETTINGS_STORE_STATS,
+                appBar = AppBar(
+                    elevation = 0.0,
+                    backgroundColor = Theme.COLOR_WHITE,
+                    foregroundColor = Theme.COLOR_BLACK,
+                    title = getText("page.settings.store.stats.app-bar.title"),
                 ),
+            ).toWidget()
+        }
+
+        val today = LocalDate.now()
+        val business = checkoutManagerApi.getBusiness(member.businessId!!).business
+        val tabs = TabBar(
+            tabs = listOfNotNull(
+                Text(getText("page.settings.store.stats.tab.28d").uppercase(), bold = true),
+                Text(getText("page.settings.store.stats.tab.overall").uppercase(), bold = true),
+            ),
+        )
+        val tabViews = TabBarView(
+            children = listOfNotNull(
+                toKpiTab(member, business, today.minusDays(28), today),
+                toKpiTab(member, business, business.created.toLocalDate(), today),
+            ),
+        )
+
+        return DefaultTabController(
+            id = Page.SETTINGS_STORE_STATS,
+            length = tabs.tabs.size,
+            child = Screen(
+                backgroundColor = Theme.COLOR_WHITE,
+                appBar = AppBar(
+                    elevation = 0.0,
+                    backgroundColor = Theme.COLOR_PRIMARY,
+                    foregroundColor = Theme.COLOR_WHITE,
+                    title = getText("page.settings.store.stats.app-bar.title"),
+                    bottom = tabs,
+                ),
+                child = tabViews,
             ),
         ).toWidget()
     }
 
-    private fun toOverallKpiWidget(member: Member, business: Business?): WidgetAware? {
-        val salesKpis = business?.let {
-            checkoutManagerApi.searchSalesKpi(
-                request = SearchSalesKpiRequest(
-                    aggregate = true,
-                    businessId = member.businessId,
-                ),
-            ).kpis
-        }
-        if (salesKpis == null || salesKpis.isEmpty()) {
-            return null
-        }
-
-        val country = regulationEngine.country(member.country)
-        val kpi = salesKpis[0]
-        return Container(
+    private fun toKpiTab(
+        member: Member,
+        business: Business,
+        from: LocalDate,
+        to: LocalDate,
+    ): WidgetAware =
+        Container(
             padding = 10.0,
-            child = Row(
-                mainAxisAlignment = MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment = CrossAxisAlignment.start,
-                children = listOf(
-                    Flexible(
-                        child = KpiWidget(
-                            name = getText("page.settings.store.stats.orders"),
-                            value = kpi.totalOrders,
-                            country = country,
-                        ),
-                    ),
-                    Flexible(
-                        child = KpiWidget(
-                            name = getText("page.settings.store.stats.sales"),
-                            value = kpi.totalValue,
-                            country = country,
-                            money = true,
-                        ),
-                    ),
+            child = Column(
+                children = listOfNotNull(
+                    toKpiWidget(member, business, from, to),
+                    Container(padding = 10.0),
+                    toChartWidget(member, from, to),
                 ),
             ),
         )
+
+    private fun toKpiWidget(
+        member: Member,
+        business: Business,
+        from: LocalDate,
+        to: LocalDate,
+    ): WidgetAware {
+        val salesKpis = checkoutManagerApi.searchSalesKpi(
+            request = SearchSalesKpiRequest(
+                aggregate = true,
+                businessId = member.businessId,
+                fromDate = from,
+                toDate = to,
+            ),
+        ).kpis
+        if (salesKpis.isEmpty()) {
+            return Container()
+        }
+
+        val country = regulationEngine.country(business.country)
+        return Container(
+            margin = 10.0,
+            border = 1.0,
+            borderColor = Theme.COLOR_DIVIDER,
+            child = KpiListWidget.of(business, salesKpis[0], country),
+        )
+    }
+
+    private fun toChartWidget(
+        member: Member,
+        from: LocalDate,
+        to: LocalDate,
+    ): WidgetAware {
+        val request = SearchSalesKpiRequest(
+            businessId = member.businessId,
+            fromDate = from,
+            toDate = to,
+        )
+        val kpis = checkoutManagerApi.searchSalesKpi(request = request).kpis
+
+        return Container(
+            border = 1.0,
+            borderColor = Theme.COLOR_DIVIDER,
+            child = Chart(
+                title = getText("page.settings.store.stats.orders"),
+                series = listOf(toKpiChartData(kpis)),
+            ),
+        )
+    }
+
+    private fun toKpiChartData(
+        kpis: List<SalesKpiSummary>,
+    ): List<ChartData> {
+        val kpiMap = kpis.associateBy { it.date }
+        val data = mutableListOf<ChartData>()
+        val from = kpis[0].date
+        val to = kpis[kpis.size - 1].date
+
+        var cur = from
+        while (!cur.isAfter(to)) {
+            data.add(
+                ChartData(cur.toString(), kpiMap[cur]?.totalOrders?.toDouble() ?: 0.0),
+            )
+            cur = cur.plusDays(1)
+        }
+        return data
     }
 }

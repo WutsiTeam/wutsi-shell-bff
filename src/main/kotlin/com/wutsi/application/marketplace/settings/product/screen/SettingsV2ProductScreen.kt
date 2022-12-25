@@ -4,18 +4,23 @@ import com.wutsi.application.Page
 import com.wutsi.application.Theme
 import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
 import com.wutsi.application.util.DateTimeUtil
+import com.wutsi.application.widget.KpiListWidget
 import com.wutsi.application.widget.OrderWidget
 import com.wutsi.application.widget.PictureListViewWidget
 import com.wutsi.application.widget.PictureWidget
 import com.wutsi.application.widget.UploadWidget
 import com.wutsi.checkout.manager.CheckoutManagerApi
+import com.wutsi.checkout.manager.dto.SalesKpiSummary
 import com.wutsi.checkout.manager.dto.SearchOrderRequest
+import com.wutsi.checkout.manager.dto.SearchSalesKpiRequest
 import com.wutsi.enums.OrderStatus
 import com.wutsi.enums.ProductStatus
 import com.wutsi.enums.ProductType
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
+import com.wutsi.flutter.sdui.Chart
+import com.wutsi.flutter.sdui.ChartData
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.DefaultTabController
@@ -83,12 +88,14 @@ class SettingsV2ProductScreen(
             tabs = listOfNotNull(
                 Text(getText("page.settings.store.product.tab.information").uppercase(), bold = true),
                 Text(getText("page.settings.store.product.tab.orders").uppercase(), bold = true),
+                Text(getText("page.settings.store.product.tab.stats").uppercase(), bold = true),
             ),
         )
         val tabViews = TabBarView(
             children = listOfNotNull(
                 toInfoTab(product, member),
                 toOrdersTab(product, member),
+                toStatsTab(product, member),
             ),
         )
 
@@ -223,7 +230,7 @@ class SettingsV2ProductScreen(
         val orders = checkoutManagerApi.searchOrder(
             request = SearchOrderRequest(
                 productId = product.id,
-                createdFrom = today.minusMonths(1),
+                createdFrom = today.minusDays(28),
                 createdTo = today,
                 status = listOf(
                     OrderStatus.OPENED.name,
@@ -240,7 +247,7 @@ class SettingsV2ProductScreen(
                     padding = 10.0,
                     child = Text(
                         caption = getText(
-                            "page.settings.store.product.n_orders-in-past-month",
+                            "page.settings.store.product.n_orders-in-past-28d",
                             arrayOf(orders.size),
                         ),
                     ),
@@ -267,6 +274,78 @@ class SettingsV2ProductScreen(
                 ),
             ),
         )
+    }
+
+    private fun toStatsTab(product: Product, member: Member): WidgetAware =
+        Container(
+            padding = 10.0,
+            child = Column(
+                children = listOfNotNull(
+                    toKpiWidget(member, product),
+                    Container(padding = 10.0),
+                    toChartWidget(product),
+                ),
+            ),
+        )
+
+    private fun toKpiWidget(
+        member: Member,
+        product: Product,
+    ): WidgetAware {
+        val kpis = checkoutManagerApi.searchSalesKpi(
+            request = SearchSalesKpiRequest(
+                aggregate = true,
+                productId = product.id,
+            ),
+        ).kpis
+        if (kpis.isEmpty()) {
+            return Container()
+        }
+
+        val country = regulationEngine.country(member.country)
+        val kpi = kpis[0]
+        return Container(
+            padding = 10.0,
+            border = 1.0,
+            borderColor = Theme.COLOR_DIVIDER,
+            child = KpiListWidget.of(product, kpi, country),
+        )
+    }
+
+    private fun toChartWidget(
+        product: Product,
+    ): WidgetAware {
+        val request = SearchSalesKpiRequest(
+            productId = product.id,
+        )
+        val kpis = checkoutManagerApi.searchSalesKpi(request = request).kpis
+
+        return Container(
+            border = 1.0,
+            borderColor = Theme.COLOR_DIVIDER,
+            child = Chart(
+                title = getText("page.settings.store.product.stats-orders"),
+                series = listOf(toKpiChartData(kpis)),
+            ),
+        )
+    }
+
+    private fun toKpiChartData(
+        kpis: List<SalesKpiSummary>,
+    ): List<ChartData> {
+        val kpiMap = kpis.associateBy { it.date }
+        val data = mutableListOf<ChartData>()
+        val from = kpis[0].date
+        val to = kpis[kpis.size - 1].date
+
+        var cur = from
+        while (!cur.isAfter(to)) {
+            data.add(
+                ChartData(cur.toString(), kpiMap[cur]?.totalOrders?.toDouble() ?: 0.0),
+            )
+            cur = cur.plusDays(1)
+        }
+        return data
     }
 
     private fun toCTAWidget(product: Product): WidgetAware? =

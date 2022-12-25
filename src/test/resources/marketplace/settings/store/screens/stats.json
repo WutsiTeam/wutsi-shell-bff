@@ -1,16 +1,19 @@
 {
-  "type": "Screen",
+  "type": "DefaultTabController",
   "attributes": {
-    "id": "page.settings.store.stats",
-    "safe": false
+    "length": 2,
+    "id": "page.settings.store.stats"
   },
   "children": [
     {
-      "type": "SingleChildScrollView",
-      "attributes": {},
+      "type": "Screen",
+      "attributes": {
+        "safe": false,
+        "backgroundColor": "#FFFFFF"
+      },
       "children": [
         {
-          "type": "Column",
+          "type": "TabBarView",
           "attributes": {},
           "children": [
             {
@@ -20,28 +23,21 @@
               },
               "children": [
                 {
-                  "type": "Row",
-                  "attributes": {
-                    "mainAxisAlignment": "spaceEvenly",
-                    "crossAxisAlignment": "start"
-                  },
+                  "type": "Column",
+                  "attributes": {},
                   "children": [
                     {
-                      "type": "Flexible",
+                      "type": "Container",
                       "attributes": {
-                        "flex": 1,
-                        "fit": "Tight"
+                        "margin": 10.0,
+                        "border": 1.0,
+                        "borderColor": "#8c8c8c"
                       },
                       "children": [
                         {
                           "type": "Container",
                           "attributes": {
-                            "padding": 10.0,
-                            "margin": 10.0,
-                            "background": "#FFFFFF",
-                            "border": 1.0,
-                            "borderRadius": 10.0,
-                            "borderColor": "#8c8c8c"
+                            "background": "#FFFFFF"
                           },
                           "children": [
                             {
@@ -49,26 +45,148 @@
                               "attributes": {},
                               "children": [
                                 {
-                                  "type": "Text",
+                                  "type": "Container",
+                                  "attributes": {},
+                                  "children": [
+                                    {
+                                      "type": "Row",
+                                      "attributes": {},
+                                      "children": [
+                                        {
+                                          "type": "Flexible",
+                                          "attributes": {
+                                            "flex": 1,
+                                            "fit": "Tight"
+                                          },
+                                          "children": [
+                                            {
+                                              "type": "Container",
+                                              "attributes": {
+                                                "padding": 10.0
+                                              },
+                                              "children": [
+                                                {
+                                                  "type": "Text",
+                                                  "attributes": {
+                                                    "caption": "100",
+                                                    "color": "#1D7EDF",
+                                                    "bold": true,
+                                                    "size": 18.0,
+                                                    "alignment": "Right"
+                                                  },
+                                                  "children": []
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "Flexible",
+                                          "attributes": {
+                                            "flex": 1,
+                                            "fit": "Tight"
+                                          },
+                                          "children": [
+                                            {
+                                              "type": "Container",
+                                              "attributes": {
+                                                "padding": 10.0
+                                              },
+                                              "children": [
+                                                {
+                                                  "type": "Text",
+                                                  "attributes": {
+                                                    "caption": "Orders"
+                                                  },
+                                                  "children": []
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "Divider",
                                   "attributes": {
-                                    "caption": "100",
-                                    "color": "#1D7EDF",
-                                    "bold": true,
-                                    "size": 18.0
+                                    "height": 1.0,
+                                    "color": "#8c8c8c"
                                   },
                                   "children": []
                                 },
                                 {
                                   "type": "Container",
-                                  "attributes": {
-                                    "padding": 10.0
-                                  },
-                                  "children": []
+                                  "attributes": {},
+                                  "children": [
+                                    {
+                                      "type": "Row",
+                                      "attributes": {},
+                                      "children": [
+                                        {
+                                          "type": "Flexible",
+                                          "attributes": {
+                                            "flex": 1,
+                                            "fit": "Tight"
+                                          },
+                                          "children": [
+                                            {
+                                              "type": "Container",
+                                              "attributes": {
+                                                "padding": 10.0
+                                              },
+                                              "children": [
+                                                {
+                                                  "type": "MoneyText",
+                                                  "attributes": {
+                                                    "value": 250000.0,
+                                                    "color": "#1D7EDF",
+                                                    "currency": "FCFA",
+                                                    "numberFormat": "#,###,##0",
+                                                    "bold": true,
+                                                    "valueFontSize": 18.0,
+                                                    "alignment": "Right"
+                                                  },
+                                                  "children": []
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "Flexible",
+                                          "attributes": {
+                                            "flex": 1,
+                                            "fit": "Tight"
+                                          },
+                                          "children": [
+                                            {
+                                              "type": "Container",
+                                              "attributes": {
+                                                "padding": 10.0
+                                              },
+                                              "children": [
+                                                {
+                                                  "type": "Text",
+                                                  "attributes": {
+                                                    "caption": "Sales"
+                                                  },
+                                                  "children": []
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
                                 },
                                 {
-                                  "type": "Text",
+                                  "type": "Divider",
                                   "attributes": {
-                                    "caption": "Orders"
+                                    "height": 1.0,
+                                    "color": "#8c8c8c"
                                   },
                                   "children": []
                                 }
@@ -79,21 +197,62 @@
                       ]
                     },
                     {
-                      "type": "Flexible",
+                      "type": "Container",
                       "attributes": {
-                        "flex": 1,
-                        "fit": "Tight"
+                        "padding": 10.0
+                      },
+                      "children": []
+                    },
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "border": 1.0,
+                        "borderColor": "#8c8c8c"
+                      },
+                      "children": [
+                        {
+                          "type": "Chart",
+                          "attributes": {
+                            "title": "Orders",
+                            "series": [
+                              [
+                                {
+                                  "x": "2022-12-25",
+                                  "y": 100.0
+                                }
+                              ]
+                            ]
+                          },
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Container",
+              "attributes": {
+                "padding": 10.0
+              },
+              "children": [
+                {
+                  "type": "Column",
+                  "attributes": {},
+                  "children": [
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "margin": 10.0,
+                        "border": 1.0,
+                        "borderColor": "#8c8c8c"
                       },
                       "children": [
                         {
                           "type": "Container",
                           "attributes": {
-                            "padding": 10.0,
-                            "margin": 10.0,
-                            "background": "#FFFFFF",
-                            "border": 1.0,
-                            "borderRadius": 10.0,
-                            "borderColor": "#8c8c8c"
+                            "background": "#FFFFFF"
                           },
                           "children": [
                             {
@@ -101,34 +260,185 @@
                               "attributes": {},
                               "children": [
                                 {
-                                  "type": "MoneyText",
+                                  "type": "Container",
+                                  "attributes": {},
+                                  "children": [
+                                    {
+                                      "type": "Row",
+                                      "attributes": {},
+                                      "children": [
+                                        {
+                                          "type": "Flexible",
+                                          "attributes": {
+                                            "flex": 1,
+                                            "fit": "Tight"
+                                          },
+                                          "children": [
+                                            {
+                                              "type": "Container",
+                                              "attributes": {
+                                                "padding": 10.0
+                                              },
+                                              "children": [
+                                                {
+                                                  "type": "Text",
+                                                  "attributes": {
+                                                    "caption": "100",
+                                                    "color": "#1D7EDF",
+                                                    "bold": true,
+                                                    "size": 18.0,
+                                                    "alignment": "Right"
+                                                  },
+                                                  "children": []
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "Flexible",
+                                          "attributes": {
+                                            "flex": 1,
+                                            "fit": "Tight"
+                                          },
+                                          "children": [
+                                            {
+                                              "type": "Container",
+                                              "attributes": {
+                                                "padding": 10.0
+                                              },
+                                              "children": [
+                                                {
+                                                  "type": "Text",
+                                                  "attributes": {
+                                                    "caption": "Orders"
+                                                  },
+                                                  "children": []
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "Divider",
                                   "attributes": {
-                                    "value": 250000.0,
-                                    "color": "#1D7EDF",
-                                    "currency": "FCFA",
-                                    "numberFormat": "#,###,##0",
-                                    "bold": true,
-                                    "valueFontSize": 18.0
+                                    "height": 1.0,
+                                    "color": "#8c8c8c"
                                   },
                                   "children": []
                                 },
                                 {
                                   "type": "Container",
-                                  "attributes": {
-                                    "padding": 10.0
-                                  },
-                                  "children": []
+                                  "attributes": {},
+                                  "children": [
+                                    {
+                                      "type": "Row",
+                                      "attributes": {},
+                                      "children": [
+                                        {
+                                          "type": "Flexible",
+                                          "attributes": {
+                                            "flex": 1,
+                                            "fit": "Tight"
+                                          },
+                                          "children": [
+                                            {
+                                              "type": "Container",
+                                              "attributes": {
+                                                "padding": 10.0
+                                              },
+                                              "children": [
+                                                {
+                                                  "type": "MoneyText",
+                                                  "attributes": {
+                                                    "value": 250000.0,
+                                                    "color": "#1D7EDF",
+                                                    "currency": "FCFA",
+                                                    "numberFormat": "#,###,##0",
+                                                    "bold": true,
+                                                    "valueFontSize": 18.0,
+                                                    "alignment": "Right"
+                                                  },
+                                                  "children": []
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "Flexible",
+                                          "attributes": {
+                                            "flex": 1,
+                                            "fit": "Tight"
+                                          },
+                                          "children": [
+                                            {
+                                              "type": "Container",
+                                              "attributes": {
+                                                "padding": 10.0
+                                              },
+                                              "children": [
+                                                {
+                                                  "type": "Text",
+                                                  "attributes": {
+                                                    "caption": "Sales"
+                                                  },
+                                                  "children": []
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
                                 },
                                 {
-                                  "type": "Text",
+                                  "type": "Divider",
                                   "attributes": {
-                                    "caption": "Sales"
+                                    "height": 1.0,
+                                    "color": "#8c8c8c"
                                   },
                                   "children": []
                                 }
                               ]
                             }
                           ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "padding": 10.0
+                      },
+                      "children": []
+                    },
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "border": 1.0,
+                        "borderColor": "#8c8c8c"
+                      },
+                      "children": [
+                        {
+                          "type": "Chart",
+                          "attributes": {
+                            "title": "Orders",
+                            "series": [
+                              [
+                                {
+                                  "x": "2022-12-25",
+                                  "y": 100.0
+                                }
+                              ]
+                            ]
+                          },
+                          "children": []
                         }
                       ]
                     }
@@ -138,17 +448,39 @@
             }
           ]
         }
-      ]
+      ],
+      "appBar": {
+        "type": "AppBar",
+        "attributes": {
+          "title": "Store Statistics",
+          "elevation": 0.0,
+          "backgroundColor": "#1D7EDF",
+          "foregroundColor": "#FFFFFF",
+          "bottom": {
+            "type": "TabBar",
+            "attributes": {},
+            "children": [
+              {
+                "type": "Text",
+                "attributes": {
+                  "caption": "28 DAYS",
+                  "bold": true
+                },
+                "children": []
+              },
+              {
+                "type": "Text",
+                "attributes": {
+                  "caption": "OVERALL",
+                  "bold": true
+                },
+                "children": []
+              }
+            ]
+          }
+        },
+        "children": []
+      }
     }
-  ],
-  "appBar": {
-    "type": "AppBar",
-    "attributes": {
-      "title": "Store Statistics",
-      "elevation": 0.0,
-      "backgroundColor": "#FFFFFF",
-      "foregroundColor": "#000000"
-    },
-    "children": []
-  }
+  ]
 }

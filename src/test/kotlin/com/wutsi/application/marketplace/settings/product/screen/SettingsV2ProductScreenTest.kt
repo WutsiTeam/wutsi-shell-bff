@@ -11,6 +11,7 @@ import com.wutsi.application.AbstractSecuredEndpointTest
 import com.wutsi.application.Fixtures
 import com.wutsi.application.Page
 import com.wutsi.checkout.manager.dto.SearchOrderResponse
+import com.wutsi.checkout.manager.dto.SearchSalesKpiResponse
 import com.wutsi.enums.ProductType
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
@@ -53,6 +54,11 @@ internal class SettingsV2ProductScreenTest : AbstractSecuredEndpointTest() {
             Fixtures.createOrderSummary("3"),
         )
         doReturn(SearchOrderResponse(orders)).whenever(checkoutManagerApi).searchOrder(any())
+
+        val kpis = listOf(
+            Fixtures.createSalesKpiSummary(),
+        )
+        doReturn(SearchSalesKpiResponse(kpis)).whenever(checkoutManagerApi).searchSalesKpi(any())
     }
 
     @Test

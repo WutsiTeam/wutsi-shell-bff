@@ -2,7 +2,7 @@ package com.wutsi.application
 
 import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
 import com.wutsi.application.membership.onboard.screen.OnboardV2Screen
-import com.wutsi.application.widget.KpiWidget
+import com.wutsi.application.widget.KpiListWidget
 import com.wutsi.application.widget.OrderWidget
 import com.wutsi.checkout.manager.CheckoutManagerApi
 import com.wutsi.checkout.manager.dto.Business
@@ -13,9 +13,7 @@ import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Divider
-import com.wutsi.flutter.sdui.Flexible
 import com.wutsi.flutter.sdui.IconButton
-import com.wutsi.flutter.sdui.Row
 import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.SingleChildScrollView
 import com.wutsi.flutter.sdui.Text
@@ -27,7 +25,6 @@ import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.TextDecoration
 import com.wutsi.membership.manager.dto.Member
 import com.wutsi.platform.core.image.ImageService
-import com.wutsi.regulation.Country
 import com.wutsi.regulation.RegulationEngine
 import feign.FeignException
 import org.slf4j.LoggerFactory
@@ -78,7 +75,7 @@ class HomeV2Screen(
                         mainAxisAlignment = MainAxisAlignment.start,
                         crossAxisAlignment = CrossAxisAlignment.start,
                         children = listOfNotNull(
-                            business?.let { getKpiWidget(it) },
+                            business?.let { getKpiWidget(business) },
                             business?.let { getRecentOrdersWidget(member) },
                         ),
                     ),
@@ -92,31 +89,13 @@ class HomeV2Screen(
         }
     }
 
-    private fun getKpiWidget(business: Business): WidgetAware {
-        val country: Country = regulationEngine.country(business.country)
-        return Row(
-            mainAxisAlignment = MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment = CrossAxisAlignment.start,
-            children = listOf(
-                Flexible(
-                    child = KpiWidget(
-                        name = getText("page.home.kpi.orders"),
-                        value = business.totalOrders,
-                        country = country,
-                        money = false,
-                    ),
-                ),
-                Flexible(
-                    child = KpiWidget(
-                        name = getText("page.home.kpi.sales"),
-                        value = business.totalSales,
-                        country = country,
-                        money = true,
-                    ),
-                ),
-            ),
+    private fun getKpiWidget(business: Business): WidgetAware =
+        Container(
+            margin = 10.0,
+            border = 1.0,
+            borderColor = Theme.COLOR_DIVIDER,
+            child = KpiListWidget.of(business, regulationEngine.country(business.country)),
         )
-    }
 
     private fun getRecentOrdersWidget(member: Member): WidgetAware? {
         try {
