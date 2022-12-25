@@ -7,7 +7,6 @@ import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Divider
 import com.wutsi.flutter.sdui.WidgetAware
-import com.wutsi.marketplace.manager.dto.Product
 import com.wutsi.regulation.Country
 
 class KpiListWidget(
@@ -32,7 +31,7 @@ class KpiListWidget(
                 ),
             )
 
-        fun of(business: Business, kpi: SalesKpiSummary, country: Country): KpiListWidget =
+        fun of(kpi: SalesKpiSummary, country: Country): KpiListWidget =
             KpiListWidget(
                 kpis = listOf(
                     KpiWidget(
@@ -40,29 +39,6 @@ class KpiListWidget(
                         value = kpi.totalOrders,
                         country = country,
                         money = false,
-                    ),
-                    KpiWidget(
-                        name = WidgetL10n.getText("widget.kpi.sales"),
-                        value = kpi.totalValue,
-                        country = country,
-                        money = true,
-                    ),
-                ),
-            )
-
-        fun of(product: Product, kpi: SalesKpiSummary, country: Country): KpiListWidget =
-            KpiListWidget(
-                kpis = listOf(
-                    KpiWidget(
-                        name = WidgetL10n.getText("widget.kpi.orders"),
-                        value = kpi.totalOrders,
-                        country = country,
-                        money = false,
-                    ),
-                    KpiWidget(
-                        name = WidgetL10n.getText("widget.kpi.units"),
-                        value = kpi.totalUnits,
-                        country = country,
                     ),
                     KpiWidget(
                         name = WidgetL10n.getText("widget.kpi.sales"),

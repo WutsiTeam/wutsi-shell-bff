@@ -3,14 +3,13 @@ package com.wutsi.application.marketplace.settings.store.screen
 import com.wutsi.application.Page
 import com.wutsi.application.Theme
 import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
+import com.wutsi.application.util.KpiUtil
 import com.wutsi.application.widget.KpiListWidget
 import com.wutsi.checkout.manager.CheckoutManagerApi
 import com.wutsi.checkout.manager.dto.Business
-import com.wutsi.checkout.manager.dto.SalesKpiSummary
 import com.wutsi.checkout.manager.dto.SearchSalesKpiRequest
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Chart
-import com.wutsi.flutter.sdui.ChartData
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.DefaultTabController
@@ -120,7 +119,7 @@ class SettingsV2StoreStatsScreen(
             margin = 10.0,
             border = 1.0,
             borderColor = Theme.COLOR_DIVIDER,
-            child = KpiListWidget.of(business, salesKpis[0], country),
+            child = KpiListWidget.of(salesKpis[0], country),
         )
     }
 
@@ -141,26 +140,10 @@ class SettingsV2StoreStatsScreen(
             borderColor = Theme.COLOR_DIVIDER,
             child = Chart(
                 title = getText("page.settings.store.stats.orders"),
-                series = listOf(toKpiChartData(kpis)),
+                series = listOf(
+                    KpiUtil.toChartDataList(kpis, from, to),
+                ),
             ),
         )
-    }
-
-    private fun toKpiChartData(
-        kpis: List<SalesKpiSummary>,
-    ): List<ChartData> {
-        val kpiMap = kpis.associateBy { it.date }
-        val data = mutableListOf<ChartData>()
-        val from = kpis[0].date
-        val to = kpis[kpis.size - 1].date
-
-        var cur = from
-        while (!cur.isAfter(to)) {
-            data.add(
-                ChartData(cur.toString(), kpiMap[cur]?.totalOrders?.toDouble() ?: 0.0),
-            )
-            cur = cur.plusDays(1)
-        }
-        return data
     }
 }

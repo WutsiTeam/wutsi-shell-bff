@@ -4,13 +4,13 @@ import com.wutsi.application.Page
 import com.wutsi.application.Theme
 import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
 import com.wutsi.application.util.DateTimeUtil
+import com.wutsi.application.util.KpiUtil
 import com.wutsi.application.widget.KpiListWidget
 import com.wutsi.application.widget.OrderWidget
 import com.wutsi.application.widget.PictureListViewWidget
 import com.wutsi.application.widget.PictureWidget
 import com.wutsi.application.widget.UploadWidget
 import com.wutsi.checkout.manager.CheckoutManagerApi
-import com.wutsi.checkout.manager.dto.SalesKpiSummary
 import com.wutsi.checkout.manager.dto.SearchOrderRequest
 import com.wutsi.checkout.manager.dto.SearchSalesKpiRequest
 import com.wutsi.enums.OrderStatus
@@ -20,7 +20,6 @@ import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.Chart
-import com.wutsi.flutter.sdui.ChartData
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.DefaultTabController
@@ -59,6 +58,7 @@ import org.springframework.web.multipart.MultipartFile
 import java.nio.file.Files
 import java.nio.file.Path
 import java.text.DecimalFormat
+import java.time.LocalDate
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 import java.util.UUID
@@ -281,9 +281,9 @@ class SettingsV2ProductScreen(
             padding = 10.0,
             child = Column(
                 children = listOfNotNull(
-                    toKpiWidget(member, product),
+                    toKpiWidget(member, product, product.created.toLocalDate().minusDays(1), LocalDate.now()),
                     Container(padding = 10.0),
-                    toChartWidget(product),
+                    toChartWidget(product, product.created.toLocalDate(), LocalDate.now()),
                 ),
             ),
         )
@@ -291,11 +291,15 @@ class SettingsV2ProductScreen(
     private fun toKpiWidget(
         member: Member,
         product: Product,
+        from: LocalDate,
+        to: LocalDate,
     ): WidgetAware {
         val kpis = checkoutManagerApi.searchSalesKpi(
             request = SearchSalesKpiRequest(
                 aggregate = true,
                 productId = product.id,
+                fromDate = from,
+                toDate = to,
             ),
         ).kpis
         if (kpis.isEmpty()) {
@@ -308,15 +312,19 @@ class SettingsV2ProductScreen(
             padding = 10.0,
             border = 1.0,
             borderColor = Theme.COLOR_DIVIDER,
-            child = KpiListWidget.of(product, kpi, country),
+            child = KpiListWidget.of(kpi, country),
         )
     }
 
     private fun toChartWidget(
         product: Product,
+        from: LocalDate,
+        to: LocalDate,
     ): WidgetAware {
         val request = SearchSalesKpiRequest(
             productId = product.id,
+            fromDate = from,
+            toDate = to,
         )
         val kpis = checkoutManagerApi.searchSalesKpi(request = request).kpis
 
@@ -325,27 +333,9 @@ class SettingsV2ProductScreen(
             borderColor = Theme.COLOR_DIVIDER,
             child = Chart(
                 title = getText("page.settings.store.product.stats-orders"),
-                series = listOf(toKpiChartData(kpis)),
+                series = listOf(KpiUtil.toChartDataList(kpis, from, to)),
             ),
         )
-    }
-
-    private fun toKpiChartData(
-        kpis: List<SalesKpiSummary>,
-    ): List<ChartData> {
-        val kpiMap = kpis.associateBy { it.date }
-        val data = mutableListOf<ChartData>()
-        val from = kpis[0].date
-        val to = kpis[kpis.size - 1].date
-
-        var cur = from
-        while (!cur.isAfter(to)) {
-            data.add(
-                ChartData(cur.toString(), kpiMap[cur]?.totalOrders?.toDouble() ?: 0.0),
-            )
-            cur = cur.plusDays(1)
-        }
-        return data
     }
 
     private fun toCTAWidget(product: Product): WidgetAware? =
