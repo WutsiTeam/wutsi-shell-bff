@@ -69,7 +69,7 @@
                               "type": "Text",
                               "attributes": {
                                 "caption": "0 FCFA",
-                                "bold": true,
+                                "bold": false,
                                 "alignment": "Right"
                               },
                               "children": []
@@ -134,7 +134,7 @@
                               "type": "Text",
                               "attributes": {
                                 "caption": "0 FCFA",
-                                "bold": true,
+                                "bold": false,
                                 "alignment": "Right"
                               },
                               "children": []

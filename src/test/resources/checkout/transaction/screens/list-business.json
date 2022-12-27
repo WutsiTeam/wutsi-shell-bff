@@ -69,8 +69,8 @@
                               "type": "Text",
                               "attributes": {
                                 "caption": "+0 FCFA",
-                                "color": "#4CAF50",
-                                "bold": true,
+                                "color": "#000000",
+                                "bold": false,
                                 "alignment": "Right"
                               },
                               "children": []
@@ -135,8 +135,8 @@
                               "type": "Text",
                               "attributes": {
                                 "caption": "+0 FCFA",
-                                "color": "#4CAF50",
-                                "bold": true,
+                                "color": "#000000",
+                                "bold": false,
                                 "alignment": "Right"
                               },
                               "children": []

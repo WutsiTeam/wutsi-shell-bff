@@ -38,6 +38,7 @@ class OrderWidget(
     private val country: Country,
     private val action: Action? = null,
     private val showProductImage: Boolean,
+    private val showDate: Boolean,
 ) : CompositeWidgetAware() {
     companion object {
         const val PRODUCT_PICTURE_SIZE = 32.0
@@ -48,6 +49,7 @@ class OrderWidget(
             action: Action? = null,
             imageService: ImageService,
             showProductImage: Boolean = true,
+            showDate: Boolean = true,
             timezoneId: String?,
         ): OrderWidget =
             OrderWidget(
@@ -61,6 +63,7 @@ class OrderWidget(
                 imageService = imageService,
                 action = action,
                 showProductImage = showProductImage,
+                showDate = showDate,
             )
 
         fun of(
@@ -70,6 +73,7 @@ class OrderWidget(
             imageService: ImageService,
             showProductImage: Boolean = true,
             timezoneId: String?,
+            showDate: Boolean = true,
         ): OrderWidget =
             OrderWidget(
                 orderId = order.shortId,
@@ -82,6 +86,7 @@ class OrderWidget(
                 imageService = imageService,
                 action = action,
                 showProductImage = showProductImage,
+                showDate = showDate,
             )
     }
 
@@ -103,13 +108,21 @@ class OrderWidget(
                             Row(
                                 mainAxisAlignment = MainAxisAlignment.start,
                                 crossAxisAlignment = CrossAxisAlignment.start,
-                                children = listOf(
-                                    Text(
-                                        caption = dateFormat.format(created),
-                                        bold = true,
-                                        color = Theme.COLOR_GRAY,
-                                    ),
-                                    Container(padding = 5.0),
+                                children = listOfNotNull(
+                                    if (showDate) {
+                                        Text(
+                                            caption = dateFormat.format(created),
+                                            bold = true,
+                                            color = Theme.COLOR_GRAY,
+                                        )
+                                    } else {
+                                        null
+                                    },
+                                    if (showDate) {
+                                        Container(padding = 5.0)
+                                    } else {
+                                        null
+                                    },
                                     Column(
                                         mainAxisAlignment = MainAxisAlignment.start,
                                         crossAxisAlignment = CrossAxisAlignment.start,

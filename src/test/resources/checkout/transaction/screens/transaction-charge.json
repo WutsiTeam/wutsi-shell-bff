@@ -585,22 +585,6 @@
                                   },
                                   "children": [
                                     {
-                                      "type": "Text",
-                                      "attributes": {
-                                        "caption": "01 Jan",
-                                        "color": "#95A5A6",
-                                        "bold": true
-                                      },
-                                      "children": []
-                                    },
-                                    {
-                                      "type": "Container",
-                                      "attributes": {
-                                        "padding": 5.0
-                                      },
-                                      "children": []
-                                    },
-                                    {
                                       "type": "Column",
                                       "attributes": {
                                         "mainAxisAlignment": "start",

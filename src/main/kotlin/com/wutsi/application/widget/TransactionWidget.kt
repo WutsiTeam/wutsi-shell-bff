@@ -62,9 +62,9 @@ class TransactionWidget(
                         padding = 1.0,
                         child = Text(
                             caption = toAmountSign() + moneyFormat.format(amount),
-                            bold = true,
+                            bold = type == TransactionType.CASHOUT,
                             alignment = TextAlignment.Right,
-                            color = getColor(),
+                            color = getAmountColor(),
                         ),
                     ),
                     Container(
@@ -101,11 +101,11 @@ class TransactionWidget(
             ""
         }
 
-    private fun getColor() = if (merchant) {
+    private fun getAmountColor() = if (merchant) {
         when (status) {
             Status.FAILED -> Theme.COLOR_DANGER
             Status.PENDING -> Theme.COLOR_WARNING
-            Status.SUCCESSFUL -> Theme.COLOR_SUCCESS
+            Status.SUCCESSFUL -> Theme.COLOR_BLACK
             else -> null
         }
     } else {

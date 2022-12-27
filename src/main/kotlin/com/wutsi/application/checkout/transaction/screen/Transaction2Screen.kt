@@ -150,6 +150,7 @@ class Transaction2Screen(
                                         parameters = mapOf("id" to it.id),
                                     ),
                                     timezoneId = member.timezoneId,
+                                    showDate = false,
                                 ),
                             )
                         },
