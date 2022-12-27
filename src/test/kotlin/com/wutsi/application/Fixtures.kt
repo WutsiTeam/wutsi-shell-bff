@@ -137,6 +137,7 @@ object Fixtures {
         totalSales = 150000,
         totalUnits = 150,
         totalOrders = 100,
+        created = OffsetDateTime.of(2020, 1, 1, 10, 30, 0, 0, ZoneOffset.UTC),
     )
 
     fun createFileSummary(
@@ -262,6 +263,7 @@ object Fixtures {
         balance = 30000,
         totalOrders = 100,
         totalSales = 150000,
+        created = OffsetDateTime.of(2020, 1, 1, 10, 30, 0, 0, ZoneOffset.UTC),
     )
 
     fun createOrder(

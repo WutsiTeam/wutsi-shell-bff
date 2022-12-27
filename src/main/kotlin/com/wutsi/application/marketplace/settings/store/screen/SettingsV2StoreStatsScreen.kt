@@ -25,13 +25,16 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import java.time.Clock
 import java.time.LocalDate
+import java.time.ZoneOffset
 
 @RestController
 @RequestMapping("/settings/2/store/stats")
 class SettingsV2StoreStatsScreen(
     private val checkoutManagerApi: CheckoutManagerApi,
     private val regulationEngine: RegulationEngine,
+    private val clock: Clock,
 
     @Value("\${wutsi.toggles.chart}") private val toggleChart: Boolean,
 ) : AbstractSecuredEndpoint() {
@@ -50,7 +53,7 @@ class SettingsV2StoreStatsScreen(
             ).toWidget()
         }
 
-        val today = LocalDate.now()
+        val today = LocalDate.ofInstant(clock.instant(), ZoneOffset.UTC)
         val business = checkoutManagerApi.getBusiness(member.businessId!!).business
         val tabs = TabBar(
             tabs = listOfNotNull(

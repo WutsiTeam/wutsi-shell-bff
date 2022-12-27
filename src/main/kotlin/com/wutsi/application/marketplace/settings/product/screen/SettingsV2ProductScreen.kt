@@ -58,8 +58,10 @@ import org.springframework.web.multipart.MultipartFile
 import java.nio.file.Files
 import java.nio.file.Path
 import java.text.DecimalFormat
+import java.time.Clock
 import java.time.LocalDate
 import java.time.OffsetDateTime
+import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 import java.util.UUID
 
@@ -71,6 +73,7 @@ class SettingsV2ProductScreen(
     private val regulationEngine: RegulationEngine,
     private val storageService: StorageService,
     private val imageService: ImageService,
+    private val clock: Clock,
 
     @Value("\${wutsi.store.pictures.max-width}") private val pictureMaxWidth: Int,
     @Value("\${wutsi.store.pictures.max-width}") private val pictureMaxHeight: Int,
@@ -277,17 +280,19 @@ class SettingsV2ProductScreen(
         )
     }
 
-    private fun toStatsTab(product: Product, member: Member): WidgetAware =
-        Container(
+    private fun toStatsTab(product: Product, member: Member): WidgetAware {
+        val today = LocalDate.ofInstant(clock.instant(), ZoneOffset.UTC)
+        return Container(
             padding = 10.0,
             child = Column(
                 children = listOfNotNull(
                     toKpiWidget(member, product),
                     Container(padding = 10.0),
-                    toChartWidget(product, product.created.toLocalDate(), LocalDate.now()),
+                    toChartWidget(product, product.created.toLocalDate(), today),
                 ),
             ),
         )
+    }
 
     private fun toKpiWidget(
         member: Member,

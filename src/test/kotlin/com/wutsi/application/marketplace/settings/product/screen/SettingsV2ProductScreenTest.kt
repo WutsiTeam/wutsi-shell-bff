@@ -26,6 +26,9 @@ import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.test.web.server.LocalServerPort
 import org.springframework.http.HttpStatus
 import java.net.URL
+import java.time.Clock
+import java.time.LocalDate
+import java.time.ZoneOffset
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
@@ -38,6 +41,9 @@ internal class SettingsV2ProductScreenTest : AbstractSecuredEndpointTest() {
 
     @MockBean
     private lateinit var storageService: StorageService
+
+    @MockBean
+    private lateinit var clock: Clock
 
     private val productId = 123L
 
@@ -59,6 +65,9 @@ internal class SettingsV2ProductScreenTest : AbstractSecuredEndpointTest() {
             Fixtures.createSalesKpiSummary(),
         )
         doReturn(SearchSalesKpiResponse(kpis)).whenever(checkoutManagerApi).searchSalesKpi(any())
+
+        val today = LocalDate.of(2020, 2, 1)
+        doReturn(today.atStartOfDay().toInstant(ZoneOffset.UTC)).whenever(clock).instant()
     }
 
     @Test
