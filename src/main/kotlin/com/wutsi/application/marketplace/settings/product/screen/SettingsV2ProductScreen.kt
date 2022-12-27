@@ -298,12 +298,23 @@ class SettingsV2ProductScreen(
         member: Member,
         product: Product,
     ): WidgetAware {
+        val kpis = checkoutManagerApi.searchSalesKpi(
+            request = SearchSalesKpiRequest(
+                aggregate = true,
+                productId = product.id,
+            ),
+        ).kpis
+        if (kpis.isEmpty()) {
+            return Container()
+        }
+
         val country = regulationEngine.country(member.country)
+        val kpi = kpis[0]
         return Container(
             padding = 10.0,
             border = 1.0,
             borderColor = Theme.COLOR_DIVIDER,
-            child = KpiListWidget.of(product, country),
+            child = KpiListWidget.of(kpi, country),
         )
     }
 

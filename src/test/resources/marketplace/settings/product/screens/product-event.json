@@ -988,7 +988,7 @@
                                                 {
                                                   "type": "MoneyText",
                                                   "attributes": {
-                                                    "value": 150000.0,
+                                                    "value": 250000.0,
                                                     "color": "#1D7EDF",
                                                     "currency": "FCFA",
                                                     "numberFormat": "#,###,##0",
