@@ -988,7 +988,7 @@
                                                 {
                                                   "type": "MoneyText",
                                                   "attributes": {
-                                                    "value": 250000.0,
+                                                    "value": 150000.0,
                                                     "color": "#1D7EDF",
                                                     "currency": "FCFA",
                                                     "numberFormat": "#,###,##0",
@@ -1065,7 +1065,7 @@
                             "series": [
                               [
                                 {
-                                  "x": "2022-12-25",
+                                  "x": "2022-12-26",
                                   "y": 100.0
                                 }
                               ]

@@ -32,6 +32,6 @@ wutsi:
     storage:
       type: aws
       aws:
-        bucket: int-wutsi
+        bucket: prod-wutsi
   toggles:
     chart: false

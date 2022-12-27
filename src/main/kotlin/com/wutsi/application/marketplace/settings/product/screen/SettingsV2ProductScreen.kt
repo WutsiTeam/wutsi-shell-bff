@@ -282,7 +282,7 @@ class SettingsV2ProductScreen(
             padding = 10.0,
             child = Column(
                 children = listOfNotNull(
-                    toKpiWidget(member, product, product.created.toLocalDate().minusDays(1), LocalDate.now()),
+                    toKpiWidget(member, product),
                     Container(padding = 10.0),
                     toChartWidget(product, product.created.toLocalDate(), LocalDate.now()),
                 ),
@@ -292,28 +292,13 @@ class SettingsV2ProductScreen(
     private fun toKpiWidget(
         member: Member,
         product: Product,
-        from: LocalDate,
-        to: LocalDate,
     ): WidgetAware {
-        val kpis = checkoutManagerApi.searchSalesKpi(
-            request = SearchSalesKpiRequest(
-                aggregate = true,
-                productId = product.id,
-                fromDate = from,
-                toDate = to,
-            ),
-        ).kpis
-        if (kpis.isEmpty()) {
-            return Container()
-        }
-
         val country = regulationEngine.country(member.country)
-        val kpi = kpis[0]
         return Container(
             padding = 10.0,
             border = 1.0,
             borderColor = Theme.COLOR_DIVIDER,
-            child = KpiListWidget.of(kpi, country),
+            child = KpiListWidget.of(product, country),
         )
     }
 

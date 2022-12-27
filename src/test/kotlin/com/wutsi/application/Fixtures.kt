@@ -134,6 +134,9 @@ object Fixtures {
         type = type.name,
         event = event,
         files = files,
+        totalSales = 150000,
+        totalUnits = 150,
+        totalOrders = 100,
     )
 
     fun createFileSummary(
