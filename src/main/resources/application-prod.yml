@@ -33,5 +33,3 @@ wutsi:
       type: aws
       aws:
         bucket: prod-wutsi
-  toggles:
-    chart: false

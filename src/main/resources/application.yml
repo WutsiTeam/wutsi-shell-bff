@@ -86,9 +86,6 @@ wutsi:
       max-width: 512
       max-height: 512
 
-  toggles:
-    chart: true
-
 logging:
   level:
     root: INFO

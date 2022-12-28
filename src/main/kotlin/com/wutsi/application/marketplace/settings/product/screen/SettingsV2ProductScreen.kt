@@ -77,7 +77,6 @@ class SettingsV2ProductScreen(
 
     @Value("\${wutsi.store.pictures.max-width}") private val pictureMaxWidth: Int,
     @Value("\${wutsi.store.pictures.max-width}") private val pictureMaxHeight: Int,
-    @Value("\${wutsi.toggles.chart}") private val toggleChart: Boolean,
     @Value("\${wutsi.application.webapp-url}") private val webAppUrl: String,
 ) : AbstractSecuredEndpoint() {
     @PostMapping
@@ -323,10 +322,6 @@ class SettingsV2ProductScreen(
         from: LocalDate,
         to: LocalDate,
     ): WidgetAware {
-        if (!toggleChart) {
-            return Container()
-        }
-
         val request = SearchSalesKpiRequest(
             productId = product.id,
             fromDate = from,
