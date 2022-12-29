@@ -3,6 +3,7 @@ package com.wutsi.application.marketplace.settings.product.screen
 import com.wutsi.application.Page
 import com.wutsi.application.Theme
 import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
+import com.wutsi.application.util.ChartDataType
 import com.wutsi.application.util.DateTimeUtil
 import com.wutsi.application.util.KpiUtil
 import com.wutsi.application.widget.KpiListWidget
@@ -31,6 +32,7 @@ import com.wutsi.flutter.sdui.Icon
 import com.wutsi.flutter.sdui.ListItem
 import com.wutsi.flutter.sdui.ListView
 import com.wutsi.flutter.sdui.Screen
+import com.wutsi.flutter.sdui.SingleChildScrollView
 import com.wutsi.flutter.sdui.TabBar
 import com.wutsi.flutter.sdui.TabBarView
 import com.wutsi.flutter.sdui.Text
@@ -281,12 +283,10 @@ class SettingsV2ProductScreen(
 
     private fun toStatsTab(product: Product, member: Member): WidgetAware {
         val today = LocalDate.ofInstant(clock.instant(), ZoneOffset.UTC)
-        return Container(
-            padding = 10.0,
+        return SingleChildScrollView(
             child = Column(
                 children = listOfNotNull(
                     toKpiWidget(member, product),
-                    Container(padding = 10.0),
                     toChartWidget(product, product.created.toLocalDate(), today),
                 ),
             ),
@@ -310,7 +310,7 @@ class SettingsV2ProductScreen(
         val country = regulationEngine.country(member.country)
         val kpi = kpis[0]
         return Container(
-            padding = 10.0,
+            margin = 10.0,
             border = 1.0,
             borderColor = Theme.COLOR_DIVIDER,
             child = KpiListWidget.of(kpi, country),
@@ -329,12 +329,30 @@ class SettingsV2ProductScreen(
         )
         val kpis = checkoutManagerApi.searchSalesKpi(request = request).kpis
 
-        return Container(
-            border = 1.0,
-            borderColor = Theme.COLOR_DIVIDER,
-            child = Chart(
-                title = getText("page.settings.store.product.stats-orders"),
-                series = listOf(KpiUtil.toChartDataList(kpis, from, to)),
+        return Column(
+            children = listOf(
+                Container(
+                    border = 1.0,
+                    margin = 10.0,
+                    borderColor = Theme.COLOR_DIVIDER,
+                    child = Chart(
+                        title = getText("page.settings.store.product.stats-orders"),
+                        series = listOf(
+                            KpiUtil.toChartDataList(kpis, from, to, ChartDataType.ORDERS),
+                        ),
+                    ),
+                ),
+                Container(
+                    border = 1.0,
+                    margin = 10.0,
+                    borderColor = Theme.COLOR_DIVIDER,
+                    child = Chart(
+                        title = getText("page.settings.store.product.stats-views"),
+                        series = listOf(
+                            KpiUtil.toChartDataList(kpis, from, to, ChartDataType.VIEWS),
+                        ),
+                    ),
+                ),
             ),
         )
     }

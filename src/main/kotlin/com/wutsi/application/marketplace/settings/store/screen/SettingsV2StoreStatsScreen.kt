@@ -3,6 +3,7 @@ package com.wutsi.application.marketplace.settings.store.screen
 import com.wutsi.application.Page
 import com.wutsi.application.Theme
 import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
+import com.wutsi.application.util.ChartDataType
 import com.wutsi.application.util.KpiUtil
 import com.wutsi.application.widget.KpiListWidget
 import com.wutsi.checkout.manager.CheckoutManagerApi
@@ -14,6 +15,7 @@ import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.DefaultTabController
 import com.wutsi.flutter.sdui.Screen
+import com.wutsi.flutter.sdui.SingleChildScrollView
 import com.wutsi.flutter.sdui.TabBar
 import com.wutsi.flutter.sdui.TabBarView
 import com.wutsi.flutter.sdui.Text
@@ -88,12 +90,10 @@ class SettingsV2StoreStatsScreen(
         from: LocalDate,
         to: LocalDate,
     ): WidgetAware =
-        Container(
-            padding = 10.0,
+        SingleChildScrollView(
             child = Column(
                 children = listOfNotNull(
                     toKpiWidget(member, business, from, to),
-                    Container(padding = 10.0),
                     toChartWidget(member, from, to),
                 ),
             ),
@@ -138,13 +138,30 @@ class SettingsV2StoreStatsScreen(
         )
         val kpis = checkoutManagerApi.searchSalesKpi(request = request).kpis
 
-        return Container(
-            border = 1.0,
-            borderColor = Theme.COLOR_DIVIDER,
-            child = Chart(
-                title = getText("page.settings.store.stats.orders"),
-                series = listOf(
-                    KpiUtil.toChartDataList(kpis, from, to),
+        return Column(
+            children = listOf(
+                Container(
+                    border = 1.0,
+                    margin = 10.0,
+                    borderColor = Theme.COLOR_DIVIDER,
+                    child = Chart(
+                        title = getText("page.settings.store.stats.orders"),
+                        series = listOf(
+                            KpiUtil.toChartDataList(kpis, from, to, ChartDataType.ORDERS),
+                        ),
+                    ),
+                ),
+                Container(padding = 10.0),
+                Container(
+                    border = 1.0,
+                    margin = 10.0,
+                    borderColor = Theme.COLOR_DIVIDER,
+                    child = Chart(
+                        title = getText("page.settings.store.stats.views"),
+                        series = listOf(
+                            KpiUtil.toChartDataList(kpis, from, to, ChartDataType.VIEWS),
+                        ),
+                    ),
                 ),
             ),
         )
