@@ -25,7 +25,7 @@ internal class SettingsV2DiscounProductScreenTest : AbstractSecuredEndpointTest(
         val discount = Fixtures.createDiscount(
             id = 111L,
             allProduct = false,
-            productIds = listOf(100, 200, 300)
+            productIds = listOf(100, 200, 300),
         )
         doReturn(GetDiscountResponse(discount)).whenever(marketplaceManagerApi).getDiscount(any())
 
@@ -34,7 +34,7 @@ internal class SettingsV2DiscounProductScreenTest : AbstractSecuredEndpointTest(
             Fixtures.createProductSummary(101),
             Fixtures.createProductSummary(200),
             Fixtures.createProductSummary(201),
-            Fixtures.createProductSummary(300)
+            Fixtures.createProductSummary(300),
         )
         doReturn(SearchProductResponse(products)).whenever(marketplaceManagerApi).searchProduct(any())
 

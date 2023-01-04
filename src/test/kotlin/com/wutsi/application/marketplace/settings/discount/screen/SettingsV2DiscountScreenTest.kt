@@ -52,7 +52,7 @@ internal class SettingsV2DiscountScreenTest : AbstractSecuredEndpointTest() {
         assertEquals(HttpStatus.OK, response.statusCode)
 
         val action = response.body!!
-        assertEquals("http://localhost:0/${Page.getSettingsDiscountUrl()}", action.url)
+        assertEquals("http://localhost:0${Page.getSettingsDiscountUrl()}", action.url)
         assertEquals(mapOf("id" to "100"), action.parameters)
 
         verify(marketplaceManagerApi).updateDiscountAttribute(
@@ -68,7 +68,7 @@ internal class SettingsV2DiscountScreenTest : AbstractSecuredEndpointTest() {
         assertEquals(HttpStatus.OK, response.statusCode)
 
         val action = response.body!!
-        assertEquals("http://localhost:0/${Page.getSettingsDiscountUrl()}", action.url)
+        assertEquals("http://localhost:0${Page.getSettingsDiscountUrl()}", action.url)
         assertEquals(mapOf("id" to "100"), action.parameters)
 
         verify(marketplaceManagerApi).updateDiscountAttribute(
