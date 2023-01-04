@@ -4,7 +4,7 @@ import com.wutsi.application.Page
 import com.wutsi.application.common.page.AbstractPageEndpoint
 import com.wutsi.application.marketplace.service.ProductEditorWidgetProvider
 import com.wutsi.application.marketplace.settings.product.dao.PictureRepository
-import com.wutsi.application.marketplace.settings.product.dto.SubmitProductAttributeRequest
+import com.wutsi.application.marketplace.settings.product.dto.SubmitAttributeRequest
 import com.wutsi.application.widget.PictureWidget
 import com.wutsi.enums.ProductType
 import com.wutsi.flutter.sdui.Action
@@ -58,7 +58,7 @@ class AppProduct01TypePage(
     )
 
     @PostMapping("/submit")
-    fun submit(@RequestBody request: SubmitProductAttributeRequest): Action {
+    fun submit(@RequestBody request: SubmitAttributeRequest): Action {
         val picture = dao.get()
         picture.type = ProductType.valueOf(request.value)
         dao.save(picture)

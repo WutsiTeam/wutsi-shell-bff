@@ -1,7 +1,7 @@
 {
   "type": "Screen",
   "attributes": {
-    "id": "page.settings.store",
+    "id": "page.settings.discount.list",
     "safe": false
   },
   "children": [
@@ -12,15 +12,14 @@
         {
           "type": "Container",
           "attributes": {
-            "alignment": "CenterLeft",
             "padding": 10.0
           },
           "children": [
             {
               "type": "Text",
               "attributes": {
-                "caption": "Configure your Store",
-                "alignment": "Left"
+                "caption": "3 discount(s)",
+                "alignment": "Center"
               },
               "children": []
             }
@@ -29,7 +28,7 @@
         {
           "type": "Divider",
           "attributes": {
-            "height": 2.0,
+            "height": 1.0,
             "color": "#8c8c8c"
           },
           "children": []
@@ -51,19 +50,12 @@
                 {
                   "type": "ListItem",
                   "attributes": {
-                    "caption": "Products",
+                    "caption": "FIX1",
+                    "subCaption": "02 Jan. - 13 Jan. 2023",
                     "trailing": {
                       "type": "Icon",
                       "attributes": {
                         "code": "e15f"
-                      },
-                      "children": []
-                    },
-                    "leading": {
-                      "type": "Icon",
-                      "attributes": {
-                        "code": "f37d",
-                        "color": "#1D7EDF"
                       },
                       "children": []
                     }
@@ -71,25 +63,21 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "http://localhost:0/settings/2/products/list"
+                    "url": "http://localhost:0/settings/2/discounts",
+                    "parameters": {
+                      "id": "1"
+                    }
                   }
                 },
                 {
                   "type": "ListItem",
                   "attributes": {
-                    "caption": "Discounts",
+                    "caption": "FIX2",
+                    "subCaption": "03 Dec. - 08 Dec. 2022",
                     "trailing": {
                       "type": "Icon",
                       "attributes": {
                         "code": "e15f"
-                      },
-                      "children": []
-                    },
-                    "leading": {
-                      "type": "Icon",
-                      "attributes": {
-                        "code": "f06a3",
-                        "color": "#1D7EDF"
                       },
                       "children": []
                     }
@@ -97,25 +85,21 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "http://localhost:0/settings/2/discounts/list"
+                    "url": "http://localhost:0/settings/2/discounts",
+                    "parameters": {
+                      "id": "2"
+                    }
                   }
                 },
                 {
                   "type": "ListItem",
                   "attributes": {
-                    "caption": "Statistics",
+                    "caption": "FIX2",
+                    "subCaption": "13 Jan. - 23 Jan. 2023",
                     "trailing": {
                       "type": "Icon",
                       "attributes": {
                         "code": "e15f"
-                      },
-                      "children": []
-                    },
-                    "leading": {
-                      "type": "Icon",
-                      "attributes": {
-                        "code": "f3d9",
-                        "color": "#1D7EDF"
                       },
                       "children": []
                     }
@@ -123,7 +107,10 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "http://localhost:0/settings/2/store/stats"
+                    "url": "http://localhost:0/settings/2/discounts",
+                    "parameters": {
+                      "id": "2"
+                    }
                   }
                 }
               ]
@@ -136,11 +123,27 @@
   "appBar": {
     "type": "AppBar",
     "attributes": {
-      "title": "Store",
+      "title": "Discounts",
       "elevation": 0.0,
       "backgroundColor": "#FFFFFF",
       "foregroundColor": "#000000"
     },
     "children": []
+  },
+  "floatingActionButton": {
+    "type": "Button",
+    "attributes": {
+      "caption": "",
+      "padding": 15.0,
+      "type": "Floatable",
+      "stretched": false,
+      "icon": "e758",
+      "iconColor": "#FFFFFF"
+    },
+    "children": [],
+    "action": {
+      "type": "Route",
+      "url": "http://localhost:0/settings/2/discounts/add"
+    }
   }
 }

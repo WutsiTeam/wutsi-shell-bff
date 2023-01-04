@@ -21,6 +21,7 @@ import com.wutsi.enums.OrderStatus
 import com.wutsi.enums.PaymentMethodType
 import com.wutsi.enums.ProductType
 import com.wutsi.enums.TransactionType
+import com.wutsi.marketplace.manager.dto.DiscountSummary
 import com.wutsi.marketplace.manager.dto.Event
 import com.wutsi.marketplace.manager.dto.FileSummary
 import com.wutsi.marketplace.manager.dto.MeetingProviderSummary
@@ -293,7 +294,7 @@ object Fixtures {
                 code = "111",
                 amount = 1000,
                 rate = 0,
-                type = DiscountType.DYNAMIC.name,
+                type = DiscountType.SALES.name,
             ),
         ),
         items = listOf(
@@ -311,7 +312,7 @@ object Fixtures {
                         code = "111",
                         amount = 100,
                         rate = 0,
-                        type = DiscountType.DYNAMIC.name,
+                        type = DiscountType.SALES.name,
                     ),
                 ),
             ),
@@ -392,5 +393,33 @@ object Fixtures {
         totalOrders = 100,
         totalValue = 250000,
         totalUnits = 5000,
+    )
+
+    fun createDiscountSummary(
+        id: Long,
+        starts: OffsetDateTime = OffsetDateTime.of(2023, 1, 3, 0, 0, 0, 0, ZoneOffset.UTC),
+        ends: OffsetDateTime = OffsetDateTime.of(2023, 1, 14, 0, 0, 0, 0, ZoneOffset.UTC),
+    ) = DiscountSummary(
+        id = id,
+        starts = starts,
+        ends = ends,
+        name = "FIX$id",
+        rate = 25,
+    )
+
+    fun createDiscount(
+        id: Long,
+        starts: OffsetDateTime = OffsetDateTime.of(2023, 1, 3, 0, 0, 0, 0, ZoneOffset.UTC),
+        ends: OffsetDateTime = OffsetDateTime.of(2023, 1, 14, 0, 0, 0, 0, ZoneOffset.UTC),
+        allProduct: Boolean = true,
+        productIds: List<Long> = emptyList(),
+    ) = com.wutsi.marketplace.manager.dto.Discount(
+        id = id,
+        starts = starts,
+        ends = ends,
+        name = "FIX$id",
+        rate = 25,
+        allProducts = allProduct,
+        productIds = productIds,
     )
 }

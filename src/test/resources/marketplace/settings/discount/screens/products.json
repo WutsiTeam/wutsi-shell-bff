@@ -1,0 +1,138 @@
+{
+  "type": "Screen",
+  "attributes": {
+    "id": "page.settings.discount.products",
+    "safe": false
+  },
+  "children": [
+    {
+      "type": "Container",
+      "attributes": {},
+      "children": [
+        {
+          "type": "Flexible",
+          "attributes": {
+            "flex": 1,
+            "fit": "Tight"
+          },
+          "children": [
+            {
+              "type": "ListView",
+              "attributes": {
+                "separator": true,
+                "separatorColor": "#8c8c8c"
+              },
+              "children": [
+                {
+                  "type": "ListItemSwitch",
+                  "attributes": {
+                    "caption": "Product",
+                    "subCaption": "15,000 FCFA",
+                    "name": "value",
+                    "selected": true
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Command",
+                    "url": "http://localhost:0/settings/2/discounts/products/toggle",
+                    "parameters": {
+                      "discount-id": "100",
+                      "product-id": "100",
+                      "value": "true"
+                    }
+                  }
+                },
+                {
+                  "type": "ListItemSwitch",
+                  "attributes": {
+                    "caption": "Product",
+                    "subCaption": "15,000 FCFA",
+                    "name": "value",
+                    "selected": false
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Command",
+                    "url": "http://localhost:0/settings/2/discounts/products/toggle",
+                    "parameters": {
+                      "discount-id": "100",
+                      "product-id": "101",
+                      "value": "false"
+                    }
+                  }
+                },
+                {
+                  "type": "ListItemSwitch",
+                  "attributes": {
+                    "caption": "Product",
+                    "subCaption": "15,000 FCFA",
+                    "name": "value",
+                    "selected": true
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Command",
+                    "url": "http://localhost:0/settings/2/discounts/products/toggle",
+                    "parameters": {
+                      "discount-id": "100",
+                      "product-id": "200",
+                      "value": "true"
+                    }
+                  }
+                },
+                {
+                  "type": "ListItemSwitch",
+                  "attributes": {
+                    "caption": "Product",
+                    "subCaption": "15,000 FCFA",
+                    "name": "value",
+                    "selected": false
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Command",
+                    "url": "http://localhost:0/settings/2/discounts/products/toggle",
+                    "parameters": {
+                      "discount-id": "100",
+                      "product-id": "201",
+                      "value": "false"
+                    }
+                  }
+                },
+                {
+                  "type": "ListItemSwitch",
+                  "attributes": {
+                    "caption": "Product",
+                    "subCaption": "15,000 FCFA",
+                    "name": "value",
+                    "selected": true
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Command",
+                    "url": "http://localhost:0/settings/2/discounts/products/toggle",
+                    "parameters": {
+                      "discount-id": "100",
+                      "product-id": "300",
+                      "value": "true"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "appBar": {
+    "type": "AppBar",
+    "attributes": {
+      "title": "Select Products",
+      "elevation": 0.0,
+      "backgroundColor": "#FFFFFF",
+      "foregroundColor": "#000000"
+    },
+    "children": []
+  }
+}

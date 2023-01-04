@@ -58,6 +58,14 @@ class SettingsV2StoreScreen : AbstractEndpoint() {
                                     ),
                                 ),
                                 ListItem(
+                                    caption = getText("page.settings.store.discounts"),
+                                    leading = Icon(code = Theme.ICON_DISCOUNT, color = Theme.COLOR_PRIMARY),
+                                    trailing = Icon(code = Theme.ICON_CHEVRON_RIGHT),
+                                    action = gotoUrl(
+                                        urlBuilder.build(Page.getSettingsDiscountListUrl()),
+                                    ),
+                                ),
+                                ListItem(
                                     caption = getText("page.settings.store.stats"),
                                     leading = Icon(code = Theme.ICON_BAR_CHART, color = Theme.COLOR_PRIMARY),
                                     trailing = Icon(code = Theme.ICON_CHEVRON_RIGHT),

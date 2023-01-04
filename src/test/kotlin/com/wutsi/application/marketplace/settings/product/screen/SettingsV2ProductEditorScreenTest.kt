@@ -7,7 +7,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.AbstractSecuredEndpointTest
 import com.wutsi.application.Fixtures
 import com.wutsi.application.Page
-import com.wutsi.application.marketplace.settings.product.dto.SubmitProductAttributeRequest
+import com.wutsi.application.marketplace.settings.product.dto.SubmitAttributeRequest
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.marketplace.manager.dto.GetProductResponse
@@ -63,7 +63,7 @@ internal class SettingsV2ProductEditorScreenTest : AbstractSecuredEndpointTest()
     @Test
     fun submit() {
         // WHEN
-        val request = SubmitProductAttributeRequest(value = "Hello")
+        val request = SubmitAttributeRequest(value = "Hello")
         val response = rest.postForEntity(url("title", "/submit"), request, Action::class.java)
 
         // THEN
