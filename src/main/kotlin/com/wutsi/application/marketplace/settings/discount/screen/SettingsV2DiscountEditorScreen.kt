@@ -43,7 +43,7 @@ class SettingsV2DiscountEditorScreen(
         val member = membershipManagerApi.getMember(SecurityUtil.getMemberId()).member
 
         return Screen(
-            id = Page.SETTINGS_DISCOUNT_PRODUCTS,
+            id = Page.SETTINGS_DISCOUNT_EDITOR,
             backgroundColor = Theme.COLOR_WHITE,
             appBar = AppBar(
                 elevation = 0.0,

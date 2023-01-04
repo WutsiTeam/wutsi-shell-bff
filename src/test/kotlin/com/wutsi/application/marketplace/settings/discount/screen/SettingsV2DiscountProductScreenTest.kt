@@ -12,7 +12,7 @@ import com.wutsi.marketplace.manager.dto.SearchProductResponse
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.web.server.LocalServerPort
 
-internal class SettingsV2DiscounProductScreenTest : AbstractSecuredEndpointTest() {
+internal class SettingsV2DiscountProductScreenTest : AbstractSecuredEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 

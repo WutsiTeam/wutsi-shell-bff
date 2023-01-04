@@ -25,7 +25,7 @@ import java.text.DecimalFormat
 
 @RestController
 @RequestMapping("/settings/2/discounts/products")
-class SettingsV2DiscounProductScreen(
+class SettingsV2DiscountProductScreen(
     private val marketplaceManagerApi: MarketplaceManagerApi,
     private val regulationEngine: RegulationEngine,
     private val imageService: ImageService,

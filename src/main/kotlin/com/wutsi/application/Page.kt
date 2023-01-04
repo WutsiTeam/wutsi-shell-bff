@@ -22,6 +22,7 @@ object Page {
     const val SETTINGS_DISCOUNT_ADD = "page.settings.discount.add"
     const val SETTINGS_DISCOUNT_LIST = "page.settings.discount.list"
     const val SETTINGS_DISCOUNT_PRODUCTS = "page.settings.discount.products"
+    const val SETTINGS_DISCOUNT_EDITOR = "page.settings.discount.editor"
     const val SETTINGS_PICTURE = "page.settings.picture"
     const val SETTINGS_PROFILE = "page.settings.profile"
     const val SETTINGS_PROFILE_EDITOR = "page.settings.profile.editor"
