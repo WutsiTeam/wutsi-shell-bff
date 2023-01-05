@@ -5,7 +5,7 @@ import com.wutsi.application.Theme
 import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
-import com.wutsi.flutter.sdui.Container
+import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Flexible
 import com.wutsi.flutter.sdui.ListItemSwitch
 import com.wutsi.flutter.sdui.ListView
@@ -51,35 +51,37 @@ class SettingsV2DiscountProductScreen(
                 foregroundColor = Theme.COLOR_BLACK,
                 title = getText("page.settings.discounts.products.app-bar.title"),
             ),
-            child = Container(
-                child = Flexible(
-                    child = ListView(
-                        separator = true,
-                        separatorColor = Theme.COLOR_DIVIDER,
-                        children = products.map {
-                            ListItemSwitch(
-                                name = "value",
-                                caption = it.title,
-                                subCaption = it.price?.let { fmt.format(it) },
-                                selected = discount.productIds.contains(it.id),
-                                icon = it.thumbnailUrl?.let {
-                                    imageService.transform(
-                                        it,
-                                        Transformation(
-                                            dimension = Dimension(width = 48, height = 48),
+            child = Column(
+                children = listOf(
+                    Flexible(
+                        child = ListView(
+                            separator = true,
+                            separatorColor = Theme.COLOR_DIVIDER,
+                            children = products.map {
+                                ListItemSwitch(
+                                    name = "value",
+                                    caption = it.title,
+                                    subCaption = it.price?.let { fmt.format(it) },
+                                    selected = discount.productIds.contains(it.id),
+                                    icon = it.thumbnailUrl?.let {
+                                        imageService.transform(
+                                            it,
+                                            Transformation(
+                                                dimension = Dimension(width = 48, height = 48),
+                                            ),
+                                        )
+                                    },
+                                    action = executeCommand(
+                                        urlBuilder.build("${Page.getSettingsDiscountProductUrl()}/toggle"),
+                                        parameters = mapOf(
+                                            "discount-id" to id.toString(),
+                                            "product-id" to it.id.toString(),
+                                            "value" to discount.productIds.contains(it.id).toString(),
                                         ),
-                                    )
-                                },
-                                action = executeCommand(
-                                    urlBuilder.build("${Page.getSettingsDiscountProductUrl()}/toggle"),
-                                    parameters = mapOf(
-                                        "discount-id" to id.toString(),
-                                        "product-id" to it.id.toString(),
-                                        "value" to discount.productIds.contains(it.id).toString(),
                                     ),
-                                ),
-                            )
-                        },
+                                )
+                            },
+                        ),
                     ),
                 ),
             ),
