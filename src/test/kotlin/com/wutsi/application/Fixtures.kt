@@ -291,9 +291,8 @@ object Fixtures {
         deviceId = "4309403-43094039-43094309",
         discounts = listOf(
             Discount(
-                code = "111",
+                name = "111",
                 amount = 1000,
-                rate = 0,
                 type = DiscountType.SALES.name,
             ),
         ),
@@ -309,9 +308,8 @@ object Fixtures {
                 totalDiscount = 100,
                 discounts = listOf(
                     Discount(
-                        code = "111",
+                        name = "111",
                         amount = 100,
-                        rate = 0,
                         type = DiscountType.SALES.name,
                     ),
                 ),
