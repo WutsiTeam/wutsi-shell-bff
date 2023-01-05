@@ -51,7 +51,7 @@
                   "type": "ListItem",
                   "attributes": {
                     "caption": "FIX1",
-                    "subCaption": "02 Jan. - 13 Jan. 2023",
+                    "subCaption": "02 Jan - 13 Jan 2023",
                     "trailing": {
                       "type": "Icon",
                       "attributes": {
@@ -73,7 +73,7 @@
                   "type": "ListItem",
                   "attributes": {
                     "caption": "FIX2",
-                    "subCaption": "03 Dec. - 08 Dec. 2022",
+                    "subCaption": "03 Dec - 08 Dec 2022",
                     "trailing": {
                       "type": "Icon",
                       "attributes": {
@@ -95,7 +95,7 @@
                   "type": "ListItem",
                   "attributes": {
                     "caption": "FIX2",
-                    "subCaption": "13 Jan. - 23 Jan. 2023",
+                    "subCaption": "13 Jan - 23 Jan 2023",
                     "trailing": {
                       "type": "Icon",
                       "attributes": {

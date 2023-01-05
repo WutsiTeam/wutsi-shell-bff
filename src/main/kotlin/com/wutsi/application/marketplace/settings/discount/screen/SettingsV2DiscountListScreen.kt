@@ -24,6 +24,7 @@ import com.wutsi.marketplace.manager.dto.SearchDiscountRequest
 import com.wutsi.membership.manager.dto.Member
 import com.wutsi.regulation.Country
 import com.wutsi.regulation.RegulationEngine
+import org.springframework.context.i18n.LocaleContextHolder
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -96,15 +97,16 @@ class SettingsV2DiscountListScreen(
     )
 
     private fun toDuration(discount: DiscountSummary, country: Country, member: Member): String? {
+        val locale = LocaleContextHolder.getLocale()
         return if (discount.starts != null && discount.ends != null) {
             DateTimeUtil.convert(discount.starts!!, member.timezoneId)
-                .format(DateTimeFormatter.ofPattern(country.dateFormatShort)) +
+                .format(DateTimeFormatter.ofPattern(country.dateFormatShort, locale)) +
                 " - " +
                 DateTimeUtil.convert(discount.ends!!, member.timezoneId)
-                    .format(DateTimeFormatter.ofPattern(country.dateFormat))
+                    .format(DateTimeFormatter.ofPattern(country.dateFormat, locale))
         } else if (discount.starts != null) {
             DateTimeUtil.convert(discount.starts!!, member.timezoneId)
-                .format(DateTimeFormatter.ofPattern(country.dateFormat))
+                .format(DateTimeFormatter.ofPattern(country.dateFormat, locale))
         } else {
             null
         }
