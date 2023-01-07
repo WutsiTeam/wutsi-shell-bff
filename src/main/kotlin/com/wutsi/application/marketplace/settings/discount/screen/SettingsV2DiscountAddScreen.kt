@@ -121,7 +121,7 @@ class SettingsV2DiscountAddScreen(
                 rate = request.rate,
                 starts = starts.atStartOfDay(ZoneOffset.UTC).toOffsetDateTime(),
                 ends = ends.atStartOfDay(ZoneOffset.UTC).toOffsetDateTime(),
-                allProducts = true,
+                allProducts = false,
                 type = ChartDataType.SALES.name,
             ),
         )

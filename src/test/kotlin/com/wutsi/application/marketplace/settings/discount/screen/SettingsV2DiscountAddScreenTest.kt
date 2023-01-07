@@ -48,7 +48,7 @@ internal class SettingsV2DiscountAddScreenTest : AbstractSecuredEndpointTest() {
                 starts = OffsetDateTime.of(2020, 12, 22, 0, 0, 0, 0, ZoneOffset.UTC),
                 ends = OffsetDateTime.of(2020, 12, 31, 0, 0, 0, 0, ZoneOffset.UTC),
                 rate = request.rate,
-                allProducts = true,
+                allProducts = false,
                 type = DiscountType.SALES.name,
             ),
         )

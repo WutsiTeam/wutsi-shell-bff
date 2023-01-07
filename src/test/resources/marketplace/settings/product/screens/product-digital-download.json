@@ -1439,7 +1439,7 @@
               {
                 "type": "Text",
                 "attributes": {
-                  "caption": "INFORMATION",
+                  "caption": "INFOS",
                   "bold": true
                 },
                 "children": []
