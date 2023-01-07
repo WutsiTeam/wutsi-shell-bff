@@ -17,6 +17,13 @@
           "attributes": {},
           "children": [
             {
+              "type": "DynamicWidget",
+              "attributes": {
+                "url": "http://localhost:0/products/2/list/fragment?id=-1"
+              },
+              "children": []
+            },
+            {
               "type": "SingleChildScrollView",
               "attributes": {},
               "children": [
@@ -600,13 +607,6 @@
                   ]
                 }
               ]
-            },
-            {
-              "type": "DynamicWidget",
-              "attributes": {
-                "url": "http://localhost:0/products/2/list/fragment?id=-1"
-              },
-              "children": []
             }
           ]
         }
@@ -638,7 +638,7 @@
               {
                 "type": "Text",
                 "attributes": {
-                  "caption": "ABOUT",
+                  "caption": "STORE",
                   "bold": true
                 },
                 "children": []
@@ -646,7 +646,7 @@
               {
                 "type": "Text",
                 "attributes": {
-                  "caption": "STORE",
+                  "caption": "ABOUT",
                   "bold": true
                 },
                 "children": []

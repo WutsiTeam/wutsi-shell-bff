@@ -58,23 +58,22 @@ class ProfileV2Screen(
         val store = hasStore(member)
         val tabs = TabBar(
             tabs = listOfNotNull(
-                Text(getText("page.profile.tab.about").uppercase(), bold = true),
-
                 if (store) {
                     Text(getText("page.profile.tab.store").uppercase(), bold = true)
                 } else {
                     null
                 },
+                Text(getText("page.profile.tab.about").uppercase(), bold = true),
             ),
         )
         val tabViews = TabBarView(
             children = listOfNotNull(
-                toAboutTab(member),
                 if (store) {
                     toStoreTab(member)
                 } else {
                     null
                 },
+                toAboutTab(member),
             ),
         )
 
