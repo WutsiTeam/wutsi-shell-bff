@@ -115,7 +115,7 @@ class SettingsV2DiscountAddScreen(
         val starts = LocalDate.parse(request.starts, fmt)
         val ends = LocalDate.parse(request.ends, fmt)
 
-        marketplaceManagerApi.createDiscount(
+        val discountId = marketplaceManagerApi.createDiscount(
             request = CreateDiscountRequest(
                 name = request.name,
                 rate = request.rate,
@@ -124,8 +124,12 @@ class SettingsV2DiscountAddScreen(
                 allProducts = false,
                 type = ChartDataType.SALES.name,
             ),
-        )
+        ).discountId
 
-        return gotoPreviousScreen()
+        return gotoUrl(
+            url = urlBuilder.build(Page.getSettingsDiscountUrl()),
+            parameters = mapOf("id" to discountId.toString()),
+            replacement = true,
+        )
     }
 }
