@@ -112,7 +112,7 @@ class SettingsV2ProfileScreen(
         }
 
         children.addAll(
-            listOf(
+            listOfNotNull(
                 Container(
                     padding = 20.0,
                 ),
@@ -128,11 +128,17 @@ class SettingsV2ProfileScreen(
                     member.timezoneId,
                     "${Page.getSettingsProfileEditorUrl()}?name=timezone-id",
                 ),
-                listItem(
-                    "page.settings.profile.attribute.city-id",
-                    member.city?.name,
-                    "${Page.getSettingsProfileEditorUrl()}?name=city-id",
-                ),
+
+                if (regulationEngine.supportedCountries().contains(member.country)) {
+                    listItem(
+                        "page.settings.profile.attribute.city-id",
+                        member.city?.name,
+                        "${Page.getSettingsProfileEditorUrl()}?name=city-id",
+                    )
+                } else {
+                    null
+                },
+
                 listItem(
                     "page.settings.profile.attribute.country",
                     Locale(member.language, member.country).getDisplayCountry(locale),

@@ -118,27 +118,6 @@
             {
               "type": "ListItem",
               "attributes": {
-                "caption": "Location",
-                "subCaption": "Yaounde",
-                "trailing": {
-                  "type": "Icon",
-                  "attributes": {
-                    "code": "e21a",
-                    "size": 24.0,
-                    "color": "#000000"
-                  },
-                  "children": []
-                }
-              },
-              "children": [],
-              "action": {
-                "type": "Route",
-                "url": "http://localhost:0/settings/2/profile/editor?name=city-id"
-              }
-            },
-            {
-              "type": "ListItem",
-              "attributes": {
                 "caption": "Country",
                 "subCaption": "New Zealand"
               },
