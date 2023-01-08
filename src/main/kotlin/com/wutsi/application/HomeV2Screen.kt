@@ -105,6 +105,7 @@ class HomeV2Screen(
                     status = listOf(
                         OrderStatus.OPENED.name,
                         OrderStatus.IN_PROGRESS.name,
+                        OrderStatus.COMPLETED.name,
                     ),
                     limit = 3,
                 ),
