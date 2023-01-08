@@ -5,6 +5,7 @@ import com.wutsi.application.Theme
 import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
 import com.wutsi.application.util.ChartDataType
 import com.wutsi.application.util.DateTimeUtil
+import com.wutsi.application.util.HandleGenerator
 import com.wutsi.application.util.KpiUtil
 import com.wutsi.application.widget.KpiListWidget
 import com.wutsi.application.widget.OrderWidget
@@ -375,7 +376,7 @@ class SettingsV2ProductScreen(
                     caption = getText("page.settings.catalog.product.button.share"),
                     action = Action(
                         type = ActionType.Share,
-                        message = "$webAppUrl/p/${product.id}",
+                        message = "$webAppUrl/p/${product.id}/" + HandleGenerator.generate(product.title),
                     ),
                 ),
             )

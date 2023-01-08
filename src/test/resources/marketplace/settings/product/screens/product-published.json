@@ -233,7 +233,7 @@
                       "action": {
                         "type": "Share",
                         "url": "",
-                        "message": "https://wutsi-web-test.herokuapp.com/p/111"
+                        "message": "https://wutsi-web-test.herokuapp.com/p/111/product-a"
                       }
                     }
                   ]
@@ -1409,7 +1409,7 @@
               {
                 "type": "Text",
                 "attributes": {
-                  "caption": "INFOS",
+                  "caption": "INFORMATION",
                   "bold": true
                 },
                 "children": []
@@ -1425,7 +1425,7 @@
               {
                 "type": "Text",
                 "attributes": {
-                  "caption": "STATISTICS",
+                  "caption": "STATS",
                   "bold": true
                 },
                 "children": []
