@@ -24,7 +24,7 @@ wutsi:
           access-token: ${BITLY_ACCESS_TOKEN}
     security:
       api-key: ${API_KEY}
-      verify-token: false
+      verify-token: true
       token-blacklist:
         type: none
         redis:
