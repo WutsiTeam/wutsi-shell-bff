@@ -12,8 +12,6 @@ import com.wutsi.flutter.sdui.Divider
 import com.wutsi.flutter.sdui.SingleChildScrollView
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
-import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
-import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.marketplace.manager.MarketplaceManagerApi
 import com.wutsi.marketplace.manager.dto.SearchProductRequest
 import com.wutsi.platform.core.image.ImageService
@@ -50,8 +48,6 @@ class ProductV2ListFragment(
 
         return SingleChildScrollView(
             child = Column(
-                mainAxisAlignment = MainAxisAlignment.start,
-                crossAxisAlignment = CrossAxisAlignment.start,
                 children = listOf(
                     Container(
                         padding = 10.0,

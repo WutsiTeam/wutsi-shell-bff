@@ -4,10 +4,7 @@
   "children": [
     {
       "type": "Column",
-      "attributes": {
-        "mainAxisAlignment": "start",
-        "crossAxisAlignment": "start"
-      },
+      "attributes": {},
       "children": [
         {
           "type": "Container",
