@@ -262,6 +262,7 @@ object Fixtures {
         accountId = accountId,
         country = "CM",
         balance = 30000,
+        cashoutBalance = 250000,
         totalOrders = 100,
         totalSales = 150000,
         created = OffsetDateTime.of(2020, 1, 1, 10, 30, 0, 0, ZoneOffset.UTC),

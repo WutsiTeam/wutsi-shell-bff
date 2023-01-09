@@ -16,9 +16,17 @@
             {
               "type": "Container",
               "attributes": {
-                "padding": 20.0
+                "padding": 10.0
               },
-              "children": []
+              "children": [
+                {
+                  "type": "Text",
+                  "attributes": {
+                    "caption": "Available for cashout:"
+                  },
+                  "children": []
+                }
+              ]
             },
             {
               "type": "Container",
@@ -29,7 +37,7 @@
                 {
                   "type": "MoneyText",
                   "attributes": {
-                    "value": 30000.0,
+                    "value": 250000.0,
                     "color": "#1D7EDF",
                     "currency": "FCFA",
                     "numberFormat": "#,###,##0"
@@ -157,7 +165,7 @@
   "appBar": {
     "type": "AppBar",
     "attributes": {
-      "title": "Cashout",
+      "title": "Balance: 30,000 FCFA",
       "elevation": 0.0,
       "backgroundColor": "#FFFFFF",
       "foregroundColor": "#000000"

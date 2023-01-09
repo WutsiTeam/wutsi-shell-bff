@@ -21,13 +21,17 @@ import com.wutsi.flutter.sdui.Input
 import com.wutsi.flutter.sdui.MoneyText
 import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.SingleChildScrollView
+import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.enums.InputType
+import com.wutsi.platform.core.error.ErrorResponse
 import com.wutsi.regulation.RegulationEngine
+import feign.FeignException
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import java.text.DecimalFormat
 import java.util.UUID
 
 @RestController
@@ -51,6 +55,7 @@ class Settings2AccountCashoutScreen(
             ),
         ).paymentMethods
         val country = regulationEngine.country(business.country)
+        val fmt = DecimalFormat(country.monetaryFormat)
 
         return Screen(
             id = Page.SETTINGS_ACCOUNT_CASHOUT,
@@ -58,16 +63,19 @@ class Settings2AccountCashoutScreen(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.settings.account.cashout.app-bar.title"),
+                title = getText("page.settings.account.cashout.app-bar.title", arrayOf(fmt.format(business.balance))),
             ),
             child = SingleChildScrollView(
                 child = Column(
                     children = listOfNotNull(
-                        Container(padding = 20.0),
+                        Container(
+                            padding = 10.0,
+                            child = Text(getText("page.settings.account.cashout.balance")),
+                        ),
                         Container(
                             padding = 10.0,
                             child = MoneyText(
-                                value = business.balance.toDouble(),
+                                value = business.cashoutBalance.toDouble(),
                                 currency = country.currencySymbol,
                                 color = Theme.COLOR_PRIMARY,
                                 numberFormat = country.numberFormat,
@@ -126,13 +134,22 @@ class Settings2AccountCashoutScreen(
 
     @PostMapping("/submit")
     fun delete(@RequestBody request: SubmitCashoutRequest): Action {
-        checkoutManagerApi.createCashout(
-            request = CreateCashoutRequest(
-                paymentMethodToken = request.token,
-                amount = request.amount,
-                idempotencyKey = UUID.randomUUID().toString(),
-            ),
-        )
-        return gotoPreviousScreen()
+        try {
+            checkoutManagerApi.createCashout(
+                request = CreateCashoutRequest(
+                    paymentMethodToken = request.token,
+                    amount = request.amount,
+                    idempotencyKey = UUID.randomUUID().toString(),
+                ),
+            )
+            return gotoPreviousScreen()
+        } catch (ex: FeignException) {
+            try {
+                val response = objectMapper.readValue(ex.contentUTF8(), ErrorResponse::class.java)
+                return promptError("error-message.${response.error.downstreamCode}")
+            } catch (ex2: Exception) {
+                throw ex
+            }
+        }
     }
 }
