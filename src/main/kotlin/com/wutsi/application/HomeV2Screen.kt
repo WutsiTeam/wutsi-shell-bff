@@ -94,6 +94,7 @@ class HomeV2Screen(
             margin = 10.0,
             border = 1.0,
             borderColor = Theme.COLOR_DIVIDER,
+            borderRadius = 5.0,
             child = KpiListWidget.of(business, regulationEngine.country(business.country)),
         )
 

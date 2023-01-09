@@ -84,15 +84,19 @@ class KpiListWidget(
     }
 
     override fun toWidgetAware(): WidgetAware {
+        val children = kpis.flatMap {
+            listOf(
+                it,
+                Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
+            )
+        }.toMutableList()
+        children.removeLast()
+
         return Container(
             background = Theme.COLOR_WHITE,
+            borderRadius = 5.0,
             child = Column(
-                children = kpis.flatMap {
-                    listOf(
-                        it,
-                        Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
-                    )
-                },
+                children = children,
             ),
         )
     }

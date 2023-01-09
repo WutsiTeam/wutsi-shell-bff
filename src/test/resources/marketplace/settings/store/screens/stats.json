@@ -35,7 +35,8 @@
                         {
                           "type": "Container",
                           "attributes": {
-                            "background": "#FFFFFF"
+                            "background": "#FFFFFF",
+                            "borderRadius": 5.0
                           },
                           "children": [
                             {
@@ -251,14 +252,6 @@
                                       ]
                                     }
                                   ]
-                                },
-                                {
-                                  "type": "Divider",
-                                  "attributes": {
-                                    "height": 1.0,
-                                    "color": "#8c8c8c"
-                                  },
-                                  "children": []
                                 }
                               ]
                             }
@@ -576,7 +569,8 @@
                         {
                           "type": "Container",
                           "attributes": {
-                            "background": "#FFFFFF"
+                            "background": "#FFFFFF",
+                            "borderRadius": 5.0
                           },
                           "children": [
                             {
@@ -792,14 +786,6 @@
                                       ]
                                     }
                                   ]
-                                },
-                                {
-                                  "type": "Divider",
-                                  "attributes": {
-                                    "height": 1.0,
-                                    "color": "#8c8c8c"
-                                  },
-                                  "children": []
                                 }
                               ]
                             }
