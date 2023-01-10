@@ -24,9 +24,8 @@ wutsi:
           access-token: ${BITLY_ACCESS_TOKEN}
     security:
       api-key: ${API_KEY}
-      verify-token: true
       token-blacklist:
-        type: none
+        type: redis
         redis:
           url: ${REDISCLOUD_URL}
     storage:

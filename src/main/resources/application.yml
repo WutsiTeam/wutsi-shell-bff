@@ -65,7 +65,6 @@ wutsi:
     security:
       type: jwt
       api-key: "d779ed54-dadf-11ec-94e8-127037cd15a7"
-      verify-token: false
       token-blacklist:
         type: none
       public-endpoints:
