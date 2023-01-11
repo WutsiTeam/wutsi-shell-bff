@@ -429,7 +429,7 @@ class OrderV2Screen(
         crossAxisAlignment = CrossAxisAlignment.center,
         children = listOf(
             Flexible(
-                flex = 1,
+                flex = 2,
                 child = Container(
                     padding = 10.0,
                     child = name,
