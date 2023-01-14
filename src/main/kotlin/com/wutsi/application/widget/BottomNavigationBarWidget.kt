@@ -41,7 +41,7 @@ class BottomNavigationBarWidget(
             },
             chatUrl?.let {
                 BottomNavigationBarItem(
-                    icon = Theme.ICON_CHAT,
+                    icon = Theme.ICON_WHATSAPP,
                     caption = getText("widget.bottom-nav-bar.chat"),
                     action = Action(
                         type = ActionType.Route,

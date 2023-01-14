@@ -42,7 +42,7 @@ class Business00StartPage : AbstractBusinessPage() {
             crossAxisAlignment = CrossAxisAlignment.start,
             children = listOf(
                 toRowWidget(Theme.ICON_STORE, "page.settings.business.why.store"),
-                toRowWidget(Theme.ICON_CHAT, "page.settings.business.why.chat"),
+                toRowWidget(Theme.ICON_WHATSAPP, "page.settings.business.why.chat"),
                 toRowWidget(Theme.ICON_ORDER, "page.settings.business.why.order"),
                 toRowWidget(Theme.ICON_MONEY, "page.settings.business.why.payment"),
             ),

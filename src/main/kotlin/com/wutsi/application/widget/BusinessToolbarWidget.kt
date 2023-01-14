@@ -78,7 +78,7 @@ class BusinessToolbarWidget(
                 },
                 if (whatsapp && phoneNumber != null) {
                     toIconButton(
-                        icon = Theme.ICON_CHAT,
+                        icon = Theme.ICON_WHATSAPP,
                         caption = getText("widget.business-toolbar.chat"),
                         action = Action(
                             type = ActionType.Navigate,
