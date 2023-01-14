@@ -75,7 +75,7 @@ class SettingsV2ProfileEmailVerificationScreen(
                             alignment = TextAlignment.Center,
                             caption = getText(
                                 "page.settings.profile.email.verification.sub-title",
-                                arrayOf(email),
+                                arrayOf(email.value),
                             ),
                         ),
                     ),

@@ -39,7 +39,7 @@
             {
               "type": "Text",
               "attributes": {
-                "caption": "Enter the code sent to EmailEntity(value=yo@man.com, token=043049309).",
+                "caption": "Enter the code sent to yo@man.com.",
                 "alignment": "Center"
               },
               "children": []
