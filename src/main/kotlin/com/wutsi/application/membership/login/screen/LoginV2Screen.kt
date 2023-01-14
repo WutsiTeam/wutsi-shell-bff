@@ -179,8 +179,7 @@ class LoginV2Screen(
                             } else {
                                 null
                             },
-
-                            ),
+                        ),
                     ),
                 ),
             ),
