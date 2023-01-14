@@ -31,10 +31,6 @@ class TokenVerifierFilter(
         chain.doFilter(request, response)
     }
 
-    private fun expired(token: String) {
-        Security
-    }
-
     private fun shouldVerifyToken(request: HttpServletRequest): Boolean =
         requestMatcher.matches(request)
 }
