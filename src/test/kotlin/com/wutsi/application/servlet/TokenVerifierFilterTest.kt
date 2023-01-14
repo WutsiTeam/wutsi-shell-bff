@@ -6,12 +6,10 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.never
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
-import com.wutsi.platform.core.error.exception.UnauthorizedException
 import com.wutsi.platform.core.security.TokenBlacklistService
 import com.wutsi.platform.core.security.TokenProvider
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 import org.springframework.security.web.util.matcher.RequestMatcher
 import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
@@ -75,10 +73,9 @@ internal class TokenVerifierFilterTest {
     fun `return 401 when token blacklisted`() {
         doReturn(true).whenever(blacklist).contains(any())
 
-        assertThrows<UnauthorizedException> {
-            filter.doFilter(request, response, chain)
-        }
+        filter.doFilter(request, response, chain)
 
+        verify(response).sendError(401, "Logged out")
         verify(chain, never()).doFilter(any(), any())
     }
 }
