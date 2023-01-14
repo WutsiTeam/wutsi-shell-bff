@@ -27,7 +27,7 @@ class ProfileEditorWidgetProvider(
     fun get(name: String, member: Member): WidgetAware =
         when (name) {
             "biography" -> get(name, member.biography)
-            "category-id" -> get(name, member.id)
+            "category-id" -> get(name, member.category?.id)
             "city-id" -> get(name, member.city?.id, member.country)
             "display-name" -> get(name, member.displayName)
             "email" -> get(name, member.email)

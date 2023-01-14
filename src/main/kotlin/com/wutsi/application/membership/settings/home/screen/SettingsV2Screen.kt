@@ -9,6 +9,7 @@ import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
+import com.wutsi.flutter.sdui.Dialog
 import com.wutsi.flutter.sdui.Icon
 import com.wutsi.flutter.sdui.ListItem
 import com.wutsi.flutter.sdui.ListItemSwitch
@@ -20,6 +21,7 @@ import com.wutsi.flutter.sdui.enums.ActionType.Command
 import com.wutsi.flutter.sdui.enums.ActionType.Route
 import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
+import com.wutsi.flutter.sdui.enums.DialogType
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisSize
 import com.wutsi.flutter.sdui.enums.TextAlignment
@@ -156,6 +158,11 @@ class SettingsV2Screen : AbstractSecuredEndpoint() {
                                 type = Command,
                                 url = urlBuilder.build("${Page.getSettingsUrl()}/logout"),
                                 replacement = true,
+                                prompt = Dialog(
+                                    type = DialogType.Confirm,
+                                    title = getText("prompt.confirm.title"),
+                                    message = getText("page.settings.confirm.logout"),
+                                ).toWidget(),
                             ),
                         ),
                     ),
@@ -169,7 +176,7 @@ class SettingsV2Screen : AbstractSecuredEndpoint() {
         val member = getCurrentMember()
 
         securityManagerApi.logout()
-        return gotoLogin(phoneNumber = member.phoneNumber)
+        return gotoLogin(phoneNumber = member.phoneNumber, hideChangeAccount = false)
     }
 
     @PostMapping("/enable-store")

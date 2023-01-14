@@ -122,13 +122,14 @@ abstract class AbstractEndpoint {
         hideBackButton: Boolean? = null,
         auth: Boolean? = null,
         darkMode: String? = null,
+        hideChangeAccount: Boolean = true,
     ): Action {
         val url = StringBuilder(
             Page.getLoginUrl() + "?title=" + encodeURLParam(title ?: "") +
                 "&sub-title=" + encodeURLParam(subTitle ?: getText("page.login.sub-title")) +
                 "&phone=" + encodeURLParam(phoneNumber) +
                 "&return-to-route=true" +
-                "&hide-change-account-button=true",
+                "&hide-change-account-button=$hideChangeAccount",
         )
         hideBackButton?.let { url.append("&hide-back-button=$it") }
         auth?.let { url.append("&auth=$it") }

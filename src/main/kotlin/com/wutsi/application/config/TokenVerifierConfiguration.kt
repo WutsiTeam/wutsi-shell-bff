@@ -12,12 +12,14 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher
 import org.springframework.security.web.util.matcher.NegatedRequestMatcher
 import org.springframework.security.web.util.matcher.OrRequestMatcher
 import org.springframework.security.web.util.matcher.RequestMatcher
+import java.time.Clock
 
 @Configuration
 @ConfigurationProperties(prefix = "wutsi.platform.security")
 class TokenVerifierConfiguration(
     private val blacklistService: TokenBlacklistService,
     private val tokenProvider: TokenProvider,
+    private val clock: Clock,
     private val logger: KVLogger,
 ) {
     var publicEndpoints: List<String> = emptyList()
@@ -27,6 +29,7 @@ class TokenVerifierConfiguration(
         blacklistService,
         tokenProvider,
         securedEndpoints(),
+        clock,
         logger,
     )
 

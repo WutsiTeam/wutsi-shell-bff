@@ -66,7 +66,7 @@ class SettingsV2ProfileScreen(
                     listItem(
                         "page.settings.profile.attribute.category-id",
                         member.category?.let { it.title },
-                        "${Page.getSettingsProfileEditorUrl()}?name=category",
+                        "${Page.getSettingsProfileEditorUrl()}?name=category-id",
                     ),
                     listItem(
                         "page.settings.profile.attribute.biography",

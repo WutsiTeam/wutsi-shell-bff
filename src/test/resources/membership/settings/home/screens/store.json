@@ -275,6 +275,15 @@
               "action": {
                 "type": "Command",
                 "url": "http://localhost:0/settings/2/logout",
+                "prompt": {
+                  "type": "Dialog",
+                  "attributes": {
+                    "type": "Confirm",
+                    "title": "Confirm",
+                    "message": "Are you sure you want to logout?"
+                  },
+                  "children": []
+                },
                 "replacement": true
               }
             }

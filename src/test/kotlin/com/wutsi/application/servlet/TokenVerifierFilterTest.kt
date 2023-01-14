@@ -6,11 +6,15 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.never
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
+import com.wutsi.platform.core.security.SubjectType
 import com.wutsi.platform.core.security.TokenBlacklistService
 import com.wutsi.platform.core.security.TokenProvider
+import com.wutsi.platform.core.security.spring.jwt.JWTBuilder
+import com.wutsi.platform.core.test.TestRSAKeyProvider
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.security.web.util.matcher.RequestMatcher
+import java.time.Clock
 import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
@@ -23,8 +27,16 @@ internal class TokenVerifierFilterTest {
     private lateinit var request: HttpServletRequest
     private lateinit var response: HttpServletResponse
     private lateinit var chain: FilterChain
+    private lateinit var clock: Clock
 
-    private val token: String = "430430940394"
+    private val ttl = 86400L
+    private val token: String = JWTBuilder(
+        subject = "111",
+        name = "Ray Sponsible",
+        subjectType = SubjectType.USER,
+        keyProvider = TestRSAKeyProvider(),
+        ttl = ttl,
+    ).build()
 
     @BeforeEach
     fun setUp() {
@@ -34,8 +46,10 @@ internal class TokenVerifierFilterTest {
         request = mock()
         response = mock()
         chain = mock()
-        filter = TokenVerifierFilter(blacklist, tokenProvider, requestMatcher, mock())
+        clock = mock()
+        filter = TokenVerifierFilter(blacklist, tokenProvider, requestMatcher, clock, mock())
 
+        doReturn(System.currentTimeMillis()).whenever(clock).millis()
         doReturn(token).whenever(tokenProvider).getToken()
         doReturn(true).whenever(requestMatcher).matches(any())
     }
@@ -76,6 +90,16 @@ internal class TokenVerifierFilterTest {
         filter.doFilter(request, response, chain)
 
         verify(response).sendError(401, "Logged out")
+        verify(chain, never()).doFilter(any(), any())
+    }
+
+    @Test
+    fun `return 401 when token expired`() {
+        doReturn(System.currentTimeMillis() + 10 * ttl).whenever(clock).millis()
+
+        filter.doFilter(request, response, chain)
+
+        verify(response).sendError(401, "Expired")
         verify(chain, never()).doFilter(any(), any())
     }
 }
