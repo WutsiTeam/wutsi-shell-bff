@@ -32,3 +32,5 @@ wutsi:
       type: aws
       aws:
         bucket: prod-wutsi
+  toggles:
+    switch-account: false # NEVER ENABLED IN PROD

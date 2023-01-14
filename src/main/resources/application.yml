@@ -85,6 +85,9 @@ wutsi:
       max-width: 512
       max-height: 512
 
+  toggles:
+    switch-account: true
+
 logging:
   level:
     root: INFO

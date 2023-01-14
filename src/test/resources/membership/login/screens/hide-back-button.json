@@ -88,6 +88,28 @@
                       }
                     }
                   ]
+                },
+                {
+                  "type": "Container",
+                  "attributes": {
+                    "padding": 10.0
+                  },
+                  "children": [
+                    {
+                      "type": "Button",
+                      "attributes": {
+                        "id": "other-account",
+                        "caption": "Use another account",
+                        "padding": 15.0,
+                        "type": "Text"
+                      },
+                      "children": [],
+                      "action": {
+                        "type": "Route",
+                        "url": "http://localhost:0/onboard/2"
+                      }
+                    }
+                  ]
                 }
               ]
             }

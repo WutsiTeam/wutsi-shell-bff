@@ -33,6 +33,7 @@ import com.wutsi.membership.manager.dto.SearchMemberRequest
 import com.wutsi.security.manager.SecurityManagerApi
 import com.wutsi.security.manager.dto.VerifyPasswordRequest
 import com.wutsi.security.manager.enums.LoginType
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpHeaders
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
@@ -51,6 +52,8 @@ class LoginV2Screen(
     private val securityManagerApi: SecurityManagerApi,
     private val onboardScreen: OnboardV2Screen,
     private val env: EnvironmentDetector,
+
+    @Value("\${wutsi.toggles.switch-account}") private val switchAccountEnabled: Boolean,
 ) : AbstractEndpoint() {
     @PostMapping()
     fun index(
@@ -160,7 +163,7 @@ class LoginV2Screen(
                                     color = textColor,
                                 ),
                             ),
-                            if (auth && !hideChangeAccountButton && member.superUser) {
+                            if (auth && !hideChangeAccountButton && switchAccountEnabled) {
                                 Container(
                                     padding = 10.0,
                                     child = Button(
@@ -177,7 +180,7 @@ class LoginV2Screen(
                                 null
                             },
 
-                        ),
+                            ),
                     ),
                 ),
             ),
