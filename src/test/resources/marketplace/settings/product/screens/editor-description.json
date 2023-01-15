@@ -20,7 +20,7 @@
             {
               "type": "Text",
               "attributes": {
-                "caption": "Product description"
+                "caption": "Detailed description of the product"
               },
               "children": []
             }
@@ -40,21 +40,50 @@
           },
           "children": [
             {
-              "type": "Input",
+              "type": "Column",
               "attributes": {
-                "name": "value",
-                "value": "This is a long description",
-                "hideText": false,
-                "required": false,
-                "caption": "",
-                "enabled": true,
-                "readOnly": false,
-                "type": "Text",
-                "maxLines": 5,
-                "maxLength": 1000,
-                "minLength": 0
+                "mainAxisAlignment": "start",
+                "crossAxisAlignment": "start"
               },
-              "children": []
+              "children": [
+                {
+                  "type": "Input",
+                  "attributes": {
+                    "name": "value",
+                    "value": "This is a long description",
+                    "hideText": false,
+                    "required": false,
+                    "caption": "",
+                    "enabled": true,
+                    "readOnly": false,
+                    "type": "Text",
+                    "maxLines": 5,
+                    "maxLength": 1000,
+                    "minLength": 0
+                  },
+                  "children": []
+                },
+                {
+                  "type": "Container",
+                  "attributes": {
+                    "padding": 5.0
+                  },
+                  "children": []
+                },
+                {
+                  "type": "Container",
+                  "attributes": {},
+                  "children": [
+                    {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "Use this description to give customers important information about the features and benefits of the product so that they're enticed to buy."
+                      },
+                      "children": []
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },

@@ -20,7 +20,7 @@
             {
               "type": "Text",
               "attributes": {
-                "caption": "Short product description"
+                "caption": "Short description of the product"
               },
               "children": []
             }
@@ -40,21 +40,50 @@
           },
           "children": [
             {
-              "type": "Input",
+              "type": "Column",
               "attributes": {
-                "name": "value",
-                "value": "This is a summary",
-                "hideText": false,
-                "required": false,
-                "caption": "",
-                "enabled": true,
-                "readOnly": false,
-                "type": "Text",
-                "maxLines": 2,
-                "maxLength": 160,
-                "minLength": 0
+                "mainAxisAlignment": "start",
+                "crossAxisAlignment": "start"
               },
-              "children": []
+              "children": [
+                {
+                  "type": "Input",
+                  "attributes": {
+                    "name": "value",
+                    "value": "This is a summary",
+                    "hideText": false,
+                    "required": false,
+                    "caption": "",
+                    "enabled": true,
+                    "readOnly": false,
+                    "type": "Text",
+                    "maxLines": 2,
+                    "maxLength": 160,
+                    "minLength": 0
+                  },
+                  "children": []
+                },
+                {
+                  "type": "Container",
+                  "attributes": {
+                    "padding": 5.0
+                  },
+                  "children": []
+                },
+                {
+                  "type": "Container",
+                  "attributes": {},
+                  "children": [
+                    {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "This is the description of the product that will show up on social media, Whatsapp and Google search listing."
+                      },
+                      "children": []
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },

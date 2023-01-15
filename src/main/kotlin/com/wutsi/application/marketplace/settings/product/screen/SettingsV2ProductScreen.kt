@@ -162,7 +162,7 @@ class SettingsV2ProductScreen(
                             ),
                             toListItemWidget(
                                 "page.settings.catalog.product.attribute.summary",
-                                product.summary,
+                                description(product.summary),
                                 urlBuilder.build("${Page.getSettingsProductEditorUrl()}?name=summary&id=${product.id}"),
                             ),
                             toListItemWidget(
@@ -170,7 +170,6 @@ class SettingsV2ProductScreen(
                                 description(product.description),
                                 urlBuilder.build("${Page.getSettingsProductEditorUrl()}?name=description&id=${product.id}"),
                             ),
-                            Container(padding = 10.0),
 
                             if (product.type == ProductType.EVENT.name) {
                                 ListItem(
@@ -514,9 +513,9 @@ class SettingsV2ProductScreen(
         if (value == null) {
             null
         } else if (value.length < 160) {
-            value
+            value.replace('\n', ' ')
         } else {
-            value.substring(0, 160) + "..."
+            value.substring(0, 160).replace('\n', ' ') + "..."
         }
 
     @PostMapping("/upload")

@@ -20,7 +20,7 @@
             {
               "type": "Text",
               "attributes": {
-                "caption": "Number of items available"
+                "caption": "Number of products to sell online."
               },
               "children": []
             }
@@ -40,20 +40,49 @@
           },
           "children": [
             {
-              "type": "Input",
+              "type": "Column",
               "attributes": {
-                "name": "value",
-                "value": "10",
-                "hideText": false,
-                "required": false,
-                "caption": "",
-                "enabled": true,
-                "readOnly": false,
-                "type": "Number",
-                "minLength": 0,
-                "inputFormatterRegex": "[0-9]"
+                "mainAxisAlignment": "start",
+                "crossAxisAlignment": "start"
               },
-              "children": []
+              "children": [
+                {
+                  "type": "Input",
+                  "attributes": {
+                    "name": "value",
+                    "value": "10",
+                    "hideText": false,
+                    "required": false,
+                    "caption": "",
+                    "enabled": true,
+                    "readOnly": false,
+                    "type": "Number",
+                    "minLength": 0,
+                    "inputFormatterRegex": "[0-9]"
+                  },
+                  "children": []
+                },
+                {
+                  "type": "Container",
+                  "attributes": {
+                    "padding": 5.0
+                  },
+                  "children": []
+                },
+                {
+                  "type": "Container",
+                  "attributes": {},
+                  "children": [
+                    {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "Leave this field empty if you don't want to limit the number of products to sell online."
+                      },
+                      "children": []
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },

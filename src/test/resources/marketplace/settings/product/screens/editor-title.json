@@ -40,20 +40,36 @@
           },
           "children": [
             {
-              "type": "Input",
+              "type": "Column",
               "attributes": {
-                "name": "value",
-                "value": "Product A",
-                "hideText": false,
-                "required": true,
-                "caption": "",
-                "enabled": true,
-                "readOnly": false,
-                "type": "Text",
-                "maxLength": 100,
-                "minLength": 0
+                "mainAxisAlignment": "start",
+                "crossAxisAlignment": "start"
               },
-              "children": []
+              "children": [
+                {
+                  "type": "Input",
+                  "attributes": {
+                    "name": "value",
+                    "value": "Product A",
+                    "hideText": false,
+                    "required": true,
+                    "caption": "",
+                    "enabled": true,
+                    "readOnly": false,
+                    "type": "Text",
+                    "maxLength": 100,
+                    "minLength": 0
+                  },
+                  "children": []
+                },
+                {
+                  "type": "Container",
+                  "attributes": {
+                    "padding": 5.0
+                  },
+                  "children": []
+                }
+              ]
             }
           ]
         },

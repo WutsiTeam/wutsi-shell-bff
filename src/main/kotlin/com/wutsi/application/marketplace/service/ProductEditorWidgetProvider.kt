@@ -18,29 +18,32 @@ class ProductEditorWidgetProvider(
     private val regulationEngine: RegulationEngine,
     private val messages: MessageSource,
 ) {
-    fun get(name: String, product: Product): WidgetAware =
+    fun get(name: String, product: Product, countryCode: String): WidgetAware =
         when (name) {
             "title" -> get(name, product.title)
             "summary" -> get(name, product.summary)
             "description" -> get(name, product.description)
             "quantity" -> get(name, product.quantity)
-            "price" -> get(name, product.price)
+            "price" -> get(name, product.price, countryCode)
             "type" -> get(name, product.type)
             else -> throw IllegalStateException("Not supported: $name")
         }
 
-    fun get(name: String, value: Any?, country: String? = null): WidgetAware =
-        when (name) {
+    fun get(name: String, value: Any?, countryCode: String? = null): WidgetAware {
+        val country = countryCode?.let { regulationEngine.country(countryCode) }
+
+        return when (name) {
             "title" -> getInputWidget(value, 100, required = true)
             "summary" -> getInputWidget(value?.toString(), 160, maxLines = 2)
             "description" -> getInputWidget(value, 1000, maxLines = 5)
             "quantity" -> getInputWidget(value, type = InputType.Number, decimal = false)
             "price" -> getInputWidget(
                 value,
-                maxlength = 30,
+                maxlength = 10,
                 decimal = country?.let {
-                    regulationEngine.country(country).monetaryFormat.indexOf(".") >= -1
+                    country.monetaryFormat.indexOf(".") >= -1
                 } ?: true,
+                suffix = country?.currencySymbol,
             )
             "type" -> DropdownButton(
                 name = "value",
@@ -67,6 +70,7 @@ class ProductEditorWidgetProvider(
             )
             else -> throw IllegalStateException("Not supported: $name")
         }
+    }
 
     private fun getInputWidget(
         value: Any?,
@@ -75,6 +79,7 @@ class ProductEditorWidgetProvider(
         maxLines: Int? = null,
         required: Boolean = false,
         decimal: Boolean? = null,
+        suffix: String? = null,
     ) =
         Input(
             name = "value",
@@ -84,6 +89,7 @@ class ProductEditorWidgetProvider(
             maxLines = maxLines,
             required = required,
             inputFormatterRegex = if (decimal == false) "[0-9]" else null,
+            suffix = suffix,
         )
 
     private fun getLocale(): Locale = LocaleContextHolder.getLocale()

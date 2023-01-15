@@ -40,20 +40,37 @@
           },
           "children": [
             {
-              "type": "Input",
+              "type": "Column",
               "attributes": {
-                "name": "value",
-                "value": "20000",
-                "hideText": false,
-                "required": false,
-                "caption": "",
-                "enabled": true,
-                "readOnly": false,
-                "type": "Text",
-                "maxLength": 30,
-                "minLength": 0
+                "mainAxisAlignment": "start",
+                "crossAxisAlignment": "start"
               },
-              "children": []
+              "children": [
+                {
+                  "type": "Input",
+                  "attributes": {
+                    "name": "value",
+                    "value": "20000",
+                    "hideText": false,
+                    "required": false,
+                    "caption": "",
+                    "enabled": true,
+                    "readOnly": false,
+                    "type": "Text",
+                    "maxLength": 10,
+                    "minLength": 0,
+                    "suffix": "FCFA"
+                  },
+                  "children": []
+                },
+                {
+                  "type": "Container",
+                  "attributes": {
+                    "padding": 5.0
+                  },
+                  "children": []
+                }
+              ]
             }
           ]
         },
