@@ -23,79 +23,83 @@ abstract class AbstractPageEndpoint : AbstractEndpoint() {
     protected abstract fun getBody(): WidgetAware?
     protected abstract fun getButton(): WidgetAware?
     protected open fun getIcon(): Icon? = null
+    protected open fun getBaseId(): String? = null
 
     @PostMapping
     fun index(): Widget {
         val body = getBody()
         val button = getButton()
 
-        return Form(
-            children = listOfNotNull(
-                if (showHeader()) {
-                    Row(
-                        mainAxisAlignment = if (getPageIndex() > 0) MainAxisAlignment.spaceBetween else MainAxisAlignment.end,
-                        crossAxisAlignment = CrossAxisAlignment.start,
-                        children = listOfNotNull(
-                            if (getPageIndex() > 0) {
+        return Container(
+            id = getBaseId()?.let { "$it-${getPageIndex()}" },
+            child = Form(
+                children = listOfNotNull(
+                    if (showHeader()) {
+                        Row(
+                            mainAxisAlignment = if (getPageIndex() > 0) MainAxisAlignment.spaceBetween else MainAxisAlignment.end,
+                            crossAxisAlignment = CrossAxisAlignment.start,
+                            children = listOfNotNull(
+                                if (getPageIndex() > 0) {
+                                    IconButton(
+                                        icon = Theme.ICON_ARROW_BACK,
+                                        color = Theme.COLOR_BLACK,
+                                        action = gotoPreviousPage(),
+                                    )
+                                } else {
+                                    null
+                                },
                                 IconButton(
-                                    icon = Theme.ICON_ARROW_BACK,
+                                    icon = Theme.ICON_CANCEL,
                                     color = Theme.COLOR_BLACK,
-                                    action = gotoPreviousPage(),
-                                )
-                            } else {
-                                null
-                            },
-                            IconButton(
-                                icon = Theme.ICON_CANCEL,
-                                color = Theme.COLOR_BLACK,
-                                action = gotoPreviousScreen(),
+                                    action = gotoPreviousScreen(),
+                                ),
                             ),
-                        ),
-                    )
-                } else {
-                    Container(padding = 20.0)
-                },
-                getIcon()?.let {
-                    Container(
-                        alignment = Alignment.Center,
-                        padding = 20.0,
-                        child = it,
-                    )
-                },
-                getTitle()?.let {
-                    Container(
-                        alignment = Alignment.Center,
-                        padding = 10.0,
-                        child = Text(
-                            caption = it,
-                            alignment = TextAlignment.Center,
-                            size = Theme.TEXT_SIZE_LARGE,
-                            color = Theme.COLOR_PRIMARY,
-                            bold = true,
-                        ),
-                    )
-                },
-                getSubTitle()?.let {
-                    Container(
-                        alignment = Alignment.Center,
-                        padding = 10.0,
-                        child = Text(
-                            caption = it,
-                            alignment = TextAlignment.Center,
-                        ),
-                    )
-                },
+                        )
+                    } else {
+                        Container(padding = 20.0)
+                    },
+                    getIcon()?.let {
+                        Container(
+                            alignment = Alignment.Center,
+                            padding = 20.0,
+                            child = it,
+                        )
+                    },
+                    getTitle()?.let {
+                        Container(
+                            alignment = Alignment.Center,
+                            padding = 10.0,
+                            child = Text(
+                                caption = it,
+                                alignment = TextAlignment.Center,
+                                size = Theme.TEXT_SIZE_LARGE,
+                                color = Theme.COLOR_PRIMARY,
+                                bold = true,
+                            ),
+                        )
+                    },
+                    getSubTitle()?.let {
+                        Container(
+                            alignment = Alignment.Center,
+                            padding = 10.0,
+                            child = Text(
+                                caption = it,
+                                alignment = TextAlignment.Center,
+                            ),
+                        )
+                    },
 
-                body?.let { Container(padding = 20.0) },
-                body?.let { it },
+                    body?.let { Container(padding = 20.0) },
+                    body?.let { it },
 
-                button?.let { Container(padding = 20.0) },
-                button?.let {
-                    Container(
-                        padding = 10.0,
-                        child = it,
-                    )
-                },
+                    button?.let { Container(padding = 20.0) },
+                    button?.let {
+                        Container(
+                            padding = 10.0,
+                            child = it,
+                        )
+                    },
+                ),
             ),
         ).toWidget()
     }

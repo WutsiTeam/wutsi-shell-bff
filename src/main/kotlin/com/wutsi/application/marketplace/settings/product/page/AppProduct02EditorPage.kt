@@ -33,8 +33,8 @@ class AppProduct02EditorPage(
         const val PAGE_INDEX = 1
     }
 
+    override fun getBaseId() = com.wutsi.application.Page.SETTINGS_CATALOG_ADD
     override fun getPageIndex() = PAGE_INDEX
-
     override fun getTitle() = getText("page.settings.catalog.add.product.title")
 
     override fun getBody(): WidgetAware {

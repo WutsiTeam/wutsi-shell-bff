@@ -58,7 +58,7 @@ class SettingsV2DiscountProductScreen(
                 children = listOf(
                     Container(
                         padding = 10.0,
-                        child = Text(getText("page.settings.discounts.products.title"))
+                        child = Text(getText("page.settings.discounts.products.title")),
                     ),
                     Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
                     Flexible(

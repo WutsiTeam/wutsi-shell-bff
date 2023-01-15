@@ -33,6 +33,7 @@ class AppProduct00PicturePage(
         const val PAGE_INDEX = 0
     }
 
+    override fun getBaseId() = com.wutsi.application.Page.SETTINGS_CATALOG_ADD
     override fun getPageIndex() = PAGE_INDEX
 
     override fun getTitle() = getText("page.settings.catalog.add.picture.title")
