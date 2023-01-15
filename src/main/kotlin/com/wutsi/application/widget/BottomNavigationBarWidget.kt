@@ -13,6 +13,7 @@ class BottomNavigationBarWidget(
     private val chatUrl: String? = null,
     private val ordersUrl: String? = null,
     private val transactionsUrl: String? = null,
+    private val storeId: Long? = null,
 ) : CompositeWidgetAware() {
     override fun toWidgetAware(): WidgetAware = toBottomNavigationBar()
 
@@ -31,8 +32,9 @@ class BottomNavigationBarWidget(
             ),
             profileUrl?.let {
                 BottomNavigationBarItem(
-                    icon = Theme.ICON_PERSON,
-                    caption = getText("widget.bottom-nav-bar.me"),
+                    icon = storeId?.let { Theme.ICON_STORE } ?: Theme.ICON_PERSON,
+                    caption = storeId?.let { getText("widget.bottom-nav-bar.store") }
+                        ?: getText("widget.bottom-nav-bar.me"),
                     action = Action(
                         type = ActionType.Route,
                         url = it,

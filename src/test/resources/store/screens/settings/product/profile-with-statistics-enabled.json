@@ -509,7 +509,7 @@
                                 {
                                   "type": "Text",
                                   "attributes": {
-                                    "caption": "VIEWS",
+                                    "caption": "VISITS",
                                     "size": 10.0,
                                     "alignment": "Center"
                                   },

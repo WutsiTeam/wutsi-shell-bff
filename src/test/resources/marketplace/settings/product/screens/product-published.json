@@ -1059,7 +1059,7 @@
                                                 {
                                                   "type": "Text",
                                                   "attributes": {
-                                                    "caption": "Views"
+                                                    "caption": "Visits"
                                                   },
                                                   "children": []
                                                 }
@@ -1241,7 +1241,7 @@
                             {
                               "type": "Chart",
                               "attributes": {
-                                "title": "Views",
+                                "title": "Visits",
                                 "series": [
                                   [
                                     {
@@ -1402,7 +1402,7 @@
               {
                 "type": "Text",
                 "attributes": {
-                  "caption": "INFORMATION",
+                  "caption": "DETAILS",
                   "bold": true
                 },
                 "children": []

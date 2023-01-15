@@ -12,11 +12,32 @@
       "children": [
         {
           "type": "Column",
-          "attributes": {
-            "mainAxisAlignment": "start",
-            "crossAxisAlignment": "start"
-          },
-          "children": []
+          "attributes": {},
+          "children": [
+            {
+              "type": "Container",
+              "attributes": {
+                "padding": 10.0
+              },
+              "children": []
+            },
+            {
+              "type": "Container",
+              "attributes": {
+                "padding": 20.0
+              },
+              "children": [
+                {
+                  "type": "Text",
+                  "attributes": {
+                    "caption": "Welcome to Wutsi",
+                    "bold": true
+                  },
+                  "children": []
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -24,7 +45,7 @@
   "appBar": {
     "type": "AppBar",
     "attributes": {
-      "title": "Ray Sponsible",
+      "title": "RAY SPONSIBLE",
       "elevation": 0.0,
       "backgroundColor": "#FFFFFF",
       "foregroundColor": "#000000",

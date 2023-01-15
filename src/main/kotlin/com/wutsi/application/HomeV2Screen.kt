@@ -66,15 +66,15 @@ class HomeV2Screen(
                         ),
                     ),
                     automaticallyImplyLeading = false,
-                    title = member.displayName,
+                    title = member.displayName.uppercase(),
                 ),
                 bottomNavigationBar = createBottomNavigationBarWidget(member),
                 backgroundColor = Theme.COLOR_GRAY_LIGHT,
                 child = SingleChildScrollView(
                     child = Column(
-                        mainAxisAlignment = MainAxisAlignment.start,
-                        crossAxisAlignment = CrossAxisAlignment.start,
                         children = listOfNotNull(
+                            Container(padding = 10.0),
+                            toWelcomeWidget(member),
                             business?.let { getKpiWidget(business) },
                             business?.let { getRecentOrdersWidget(member) },
                         ),
@@ -88,6 +88,19 @@ class HomeV2Screen(
             return onboard.index()
         }
     }
+
+    private fun toWelcomeWidget(member: Member): WidgetAware =
+        Container(
+            padding = 20.0,
+            child = Text(
+                caption = if (member.business && member.storeId != null) {
+                    getText("page.home.welcome-store")
+                } else {
+                    getText("page.home.welcome")
+                },
+                bold = true,
+            ),
+        )
 
     private fun getKpiWidget(business: Business): WidgetAware =
         Container(
