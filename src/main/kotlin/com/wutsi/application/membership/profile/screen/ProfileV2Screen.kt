@@ -5,12 +5,9 @@ import com.wutsi.application.Theme
 import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
 import com.wutsi.application.util.SecurityUtil
 import com.wutsi.application.widget.BusinessToolbarWidget
-import com.wutsi.application.widget.GridWidget
-import com.wutsi.application.widget.OfferWidget
 import com.wutsi.application.widget.ProfileWidget
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
-import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.DefaultTabController
@@ -31,7 +28,6 @@ import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.marketplace.manager.MarketplaceManagerApi
 import com.wutsi.marketplace.manager.dto.ProductSummary
-import com.wutsi.marketplace.manager.dto.SearchProductRequest
 import com.wutsi.membership.manager.dto.Member
 import com.wutsi.platform.core.image.ImageService
 import com.wutsi.regulation.RegulationEngine
@@ -133,7 +129,6 @@ class ProfileV2Screen(
                         storeAction = gotoStore(member),
                         webappUrl = webappUrl,
                     ),
-                    toOffersWidget(member),
                     toSocialWidget(member),
                 ),
             )
@@ -150,44 +145,6 @@ class ProfileV2Screen(
     private fun toStoreTab(member: Member) = DynamicWidget(
         url = urlBuilder.build("${Page.getProductListUrl()}/fragment?id=${member.id}"),
     )
-
-    private fun toOffersWidget(member: Member): WidgetAware? {
-        if (member.storeId == null) {
-            return null
-        }
-
-        val offers = marketplaceManagerApi.searchProduct(
-            request = SearchProductRequest(
-                storeId = member.storeId,
-                limit = 2,
-                status = "PUBLISHED",
-            ),
-        ).products
-        if (offers.isEmpty()) {
-            return null
-        }
-
-        val country = regulationEngine.country(member.country)
-        return Column(
-            children = listOf(
-                Divider(color = Theme.COLOR_DIVIDER),
-                GridWidget(
-                    children = offers
-                        .map {
-                            OfferWidget.of(it, country, gotoOffer(it), imageService, member.timezoneId)
-                        },
-                    columns = 2,
-                ),
-                Container(
-                    padding = 10.0,
-                    child = Button(
-                        caption = getText("page.profile.button.more-product"),
-                        action = gotoStore(member),
-                    ),
-                ),
-            ),
-        )
-    }
 
     private fun toSocialWidget(member: Member): WidgetAware? {
         if (!member.business) {
