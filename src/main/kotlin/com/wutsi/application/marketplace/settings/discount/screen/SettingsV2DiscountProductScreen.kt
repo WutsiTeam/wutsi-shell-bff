@@ -6,10 +6,13 @@ import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Column
+import com.wutsi.flutter.sdui.Container
+import com.wutsi.flutter.sdui.Divider
 import com.wutsi.flutter.sdui.Flexible
 import com.wutsi.flutter.sdui.ListItemSwitch
 import com.wutsi.flutter.sdui.ListView
 import com.wutsi.flutter.sdui.Screen
+import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.marketplace.manager.MarketplaceManagerApi
 import com.wutsi.marketplace.manager.dto.SearchProductRequest
@@ -49,38 +52,45 @@ class SettingsV2DiscountProductScreen(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.settings.discounts.products.app-bar.title"),
+                title = discount.name,
             ),
             child = Column(
                 children = listOf(
+                    Container(
+                        padding = 10.0,
+                        child = Text(getText("page.settings.discounts.products.title"))
+                    ),
+                    Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
                     Flexible(
                         child = ListView(
                             separator = true,
                             separatorColor = Theme.COLOR_DIVIDER,
-                            children = products.map {
-                                ListItemSwitch(
-                                    name = "value",
-                                    caption = it.title,
-                                    subCaption = it.price?.let { fmt.format(it) },
-                                    selected = discount.productIds.contains(it.id),
-                                    icon = it.thumbnailUrl?.let {
-                                        imageService.transform(
-                                            it,
-                                            Transformation(
-                                                dimension = Dimension(width = 48, height = 48),
+                            children = products
+                                .filter { it.thumbnailUrl != null }
+                                .map {
+                                    ListItemSwitch(
+                                        name = "value",
+                                        caption = it.title,
+                                        subCaption = it.price?.let { fmt.format(it) },
+                                        selected = discount.productIds.contains(it.id),
+                                        icon = it.thumbnailUrl?.let {
+                                            imageService.transform(
+                                                it,
+                                                Transformation(
+                                                    dimension = Dimension(width = 48, height = 48),
+                                                ),
+                                            )
+                                        },
+                                        action = executeCommand(
+                                            urlBuilder.build("${Page.getSettingsDiscountProductUrl()}/toggle"),
+                                            parameters = mapOf(
+                                                "discount-id" to id.toString(),
+                                                "product-id" to it.id.toString(),
+                                                "value" to discount.productIds.contains(it.id).toString(),
                                             ),
-                                        )
-                                    },
-                                    action = executeCommand(
-                                        urlBuilder.build("${Page.getSettingsDiscountProductUrl()}/toggle"),
-                                        parameters = mapOf(
-                                            "discount-id" to id.toString(),
-                                            "product-id" to it.id.toString(),
-                                            "value" to discount.productIds.contains(it.id).toString(),
                                         ),
-                                    ),
-                                )
-                            },
+                                    )
+                                },
                         ),
                     ),
                 ),
