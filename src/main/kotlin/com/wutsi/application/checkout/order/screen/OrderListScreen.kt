@@ -15,7 +15,6 @@ import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Divider
-import com.wutsi.flutter.sdui.DynamicWidget
 import com.wutsi.flutter.sdui.Flexible
 import com.wutsi.flutter.sdui.IconButton
 import com.wutsi.flutter.sdui.ListView
@@ -101,8 +100,8 @@ class OrderListScreen(
                     Flexible(
                         child = toOrderListViewWidget(orders, business, member),
                     ),
-                )
-            )
+                ),
+            ),
         ).toWidget()
     }
 
@@ -115,18 +114,6 @@ class OrderListScreen(
 
         val business = checkoutManagerApi.getBusiness(member.businessId!!).business
         return toContentWidget(status, business, member).toWidget()
-    }
-
-    private fun toTabView(status: Array<OrderStatus>, business: Business, member: Member, async: Boolean): WidgetAware {
-        if (async) {
-            val url = "${Page.getOrderListUrl()}/fragment?" +
-                status.map { "status=$it" }.joinToString(separator = "&")
-            return DynamicWidget(
-                url = urlBuilder.build(url),
-            )
-        } else {
-            return toContentWidget(status, business, member)
-        }
     }
 
     private fun toContentWidget(status: Array<OrderStatus>, business: Business, member: Member): WidgetAware {
@@ -169,8 +156,35 @@ class OrderListScreen(
     private fun toOrderListViewWidget(orders: List<OrderSummary>, business: Business, member: Member): WidgetAware {
         val children = mutableListOf<WidgetAware>()
 
-        val opened = orders.filter { it.status == OrderStatus.OPENED.name || it.status == OrderStatus.IN_PROGRESS.name }
-        if (opened.isNotEmpty()) {
+        addListItems(
+            caption = getText("page.order.list.in-progress"),
+            orders = orders.filter { it.status == OrderStatus.OPENED.name || it.status == OrderStatus.IN_PROGRESS.name },
+            business = business,
+            member = member,
+            children = children,
+        )
+        addListItems(
+            caption = getText("page.order.list.closed"),
+            orders = orders.filter { it.status != OrderStatus.OPENED.name && it.status != OrderStatus.IN_PROGRESS.name },
+            business = business,
+            member = member,
+            children = children,
+        )
+        return ListView(
+            separator = true,
+            separatorColor = Theme.COLOR_DIVIDER,
+            children = children,
+        )
+    }
+
+    private fun addListItems(
+        caption: String,
+        orders: List<OrderSummary>,
+        business: Business,
+        member: Member,
+        children: MutableList<WidgetAware>,
+    ) {
+        if (orders.isNotEmpty()) {
             children.add(
                 Container(
                     alignment = Alignment.CenterLeft,
@@ -178,42 +192,16 @@ class OrderListScreen(
                     padding = 10.0,
                     width = Double.MAX_VALUE,
                     child = Text(
-                        caption = getText("page.order.list.in-progress"),
+                        caption = caption,
                         bold = true,
                         size = Theme.TEXT_SIZE_LARGE,
                     ),
                 ),
             )
             children.addAll(
-                opened.map { toOrderListItemWidget(it, business, member) }
+                orders.map { toOrderListItemWidget(it, business, member) },
             )
         }
-
-        val closed = orders.filter { it.status != OrderStatus.OPENED.name && it.status != OrderStatus.IN_PROGRESS.name }
-        if (closed.isNotEmpty()) {
-            children.add(
-                Container(
-                    alignment = Alignment.CenterLeft,
-                    background = Theme.COLOR_GRAY_LIGHT,
-                    padding = 10.0,
-                    width = Double.MAX_VALUE,
-                    child = Text(
-                        caption = getText("page.order.list.closed"),
-                        bold = true,
-                        size = Theme.TEXT_SIZE_LARGE,
-                    ),
-                )
-            )
-            children.addAll(
-                closed.map { toOrderListItemWidget(it, business, member) }
-            )
-        }
-
-        return ListView(
-            separator = true,
-            separatorColor = Theme.COLOR_DIVIDER,
-            children = children,
-        )
     }
 
     private fun toOrderListItemWidget(order: OrderSummary, business: Business, member: Member): WidgetAware =

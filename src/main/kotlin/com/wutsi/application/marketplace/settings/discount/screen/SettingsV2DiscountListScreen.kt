@@ -16,6 +16,8 @@ import com.wutsi.flutter.sdui.ListView
 import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
+import com.wutsi.flutter.sdui.WidgetAware
+import com.wutsi.flutter.sdui.enums.Alignment
 import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.flutter.sdui.enums.TextAlignment
 import com.wutsi.marketplace.manager.MarketplaceManagerApi
@@ -28,6 +30,8 @@ import org.springframework.context.i18n.LocaleContextHolder
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import java.time.OffsetDateTime
+import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
 @RestController
@@ -69,24 +73,96 @@ class SettingsV2DiscountListScreen(
                     Container(
                         padding = 10.0,
                         child = Text(
-                            caption = getText("page.settings.discounts.count", arrayOf(discounts.size)),
+                            caption = if (discounts.isEmpty()) {
+                                getText("page.settings.discounts.0_count")
+                            } else if (discounts.size == 1) {
+                                getText("page.settings.discounts.1_count")
+                            } else {
+                                getText("page.settings.discounts.n_count", arrayOf(discounts.size))
+                            },
                             alignment = TextAlignment.Center,
                         ),
                     ),
                     Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
                     Flexible(
-                        child = ListView(
-                            separator = true,
-                            separatorColor = Theme.COLOR_DIVIDER,
-                            children = discounts.map { toListItem(it, country, member) },
-                        ),
+                        child = toListViewWidget(discounts, country, member),
                     ),
                 ),
             ),
         ).toWidget()
     }
 
-    private fun toListItem(discount: DiscountSummary, country: Country, member: Member) = ListItem(
+    private fun toListViewWidget(discounts: List<DiscountSummary>, country: Country, member: Member): ListView {
+        val children = mutableListOf<WidgetAware>()
+        val now = OffsetDateTime.now(ZoneId.of("UTC"))
+
+        addListItems(
+            caption = getText("page.settings.discounts.current"),
+            discounts = discounts.filter { isCurrent(it, now) },
+            country = country,
+            member = member,
+            children = children,
+        )
+        addListItems(
+            caption = getText("page.settings.discounts.upcoming"),
+            discounts = discounts.filter { isUpcoming(it, now) },
+            country = country,
+            member = member,
+            children = children,
+        )
+        addListItems(
+            caption = getText("page.settings.discounts.past"),
+            discounts = discounts.filter { isPast(it, now) },
+            country = country,
+            member = member,
+            children = children,
+        )
+
+        return ListView(
+            separator = true,
+            separatorColor = Theme.COLOR_DIVIDER,
+            children = children,
+        )
+    }
+
+    private fun isCurrent(discount: DiscountSummary, now: OffsetDateTime): Boolean =
+        (discount.starts != null && discount.starts!!.isBefore(now)) &&
+            (discount.ends == null || discount.ends!!.isAfter(now))
+
+    private fun isUpcoming(discount: DiscountSummary, now: OffsetDateTime): Boolean =
+        (discount.starts != null && discount.starts!!.isAfter(now))
+
+    private fun isPast(discount: DiscountSummary, now: OffsetDateTime): Boolean =
+        (discount.ends != null && discount.ends!!.isBefore(now))
+
+    private fun addListItems(
+        caption: String,
+        discounts: List<DiscountSummary>,
+        country: Country,
+        member: Member,
+        children: MutableList<WidgetAware>,
+    ) {
+        if (discounts.isNotEmpty()) {
+            children.add(
+                Container(
+                    alignment = Alignment.CenterLeft,
+                    background = Theme.COLOR_GRAY_LIGHT,
+                    padding = 10.0,
+                    width = Double.MAX_VALUE,
+                    child = Text(
+                        caption = caption,
+                        bold = true,
+                        size = Theme.TEXT_SIZE_LARGE,
+                    ),
+                ),
+            )
+            children.addAll(
+                discounts.map { toListItemWidget(it, country, member) },
+            )
+        }
+    }
+
+    private fun toListItemWidget(discount: DiscountSummary, country: Country, member: Member) = ListItem(
         caption = discount.name,
         trailing = Icon(code = Theme.ICON_CHEVRON_RIGHT),
         subCaption = toDuration(discount, country, member),

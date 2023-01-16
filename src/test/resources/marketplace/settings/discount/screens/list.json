@@ -18,7 +18,7 @@
             {
               "type": "Text",
               "attributes": {
-                "caption": "3 discount(s)",
+                "caption": "3 discounts",
                 "alignment": "Center"
               },
               "children": []
@@ -48,6 +48,68 @@
               },
               "children": [
                 {
+                  "type": "Container",
+                  "attributes": {
+                    "alignment": "CenterLeft",
+                    "padding": 10.0,
+                    "background": "#e8e8e8",
+                    "width": 1.7976931348623157E308
+                  },
+                  "children": [
+                    {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "Current Discounts",
+                        "bold": true,
+                        "size": 16.0
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "type": "ListItem",
+                  "attributes": {
+                    "caption": "FIX2",
+                    "subCaption": "13 Jan - 23 Jan 2023",
+                    "trailing": {
+                      "type": "Icon",
+                      "attributes": {
+                        "code": "e15f"
+                      },
+                      "children": []
+                    }
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "http://localhost:0/settings/2/discounts",
+                    "parameters": {
+                      "id": "2"
+                    }
+                  }
+                },
+                {
+                  "type": "Container",
+                  "attributes": {
+                    "alignment": "CenterLeft",
+                    "padding": 10.0,
+                    "background": "#e8e8e8",
+                    "width": 1.7976931348623157E308
+                  },
+                  "children": [
+                    {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "Past Discounts",
+                        "bold": true,
+                        "size": 16.0
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
                   "type": "ListItem",
                   "attributes": {
                     "caption": "FIX1",
@@ -74,28 +136,6 @@
                   "attributes": {
                     "caption": "FIX2",
                     "subCaption": "03 Dec - 08 Dec 2022",
-                    "trailing": {
-                      "type": "Icon",
-                      "attributes": {
-                        "code": "e15f"
-                      },
-                      "children": []
-                    }
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "http://localhost:0/settings/2/discounts",
-                    "parameters": {
-                      "id": "2"
-                    }
-                  }
-                },
-                {
-                  "type": "ListItem",
-                  "attributes": {
-                    "caption": "FIX2",
-                    "subCaption": "13 Jan - 23 Jan 2023",
                     "trailing": {
                       "type": "Icon",
                       "attributes": {
