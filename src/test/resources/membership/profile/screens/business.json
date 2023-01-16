@@ -476,7 +476,7 @@
             "type": "BottomNavigationBarItem",
             "attributes": {
               "icon": "f27b",
-              "caption": "Me"
+              "caption": "Profile"
             },
             "children": [],
             "action": {

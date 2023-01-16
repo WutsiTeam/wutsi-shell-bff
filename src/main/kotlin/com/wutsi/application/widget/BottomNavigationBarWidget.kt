@@ -34,7 +34,7 @@ class BottomNavigationBarWidget(
                 BottomNavigationBarItem(
                     icon = storeId?.let { Theme.ICON_STORE } ?: Theme.ICON_PERSON,
                     caption = storeId?.let { getText("widget.bottom-nav-bar.store") }
-                        ?: getText("widget.bottom-nav-bar.me"),
+                        ?: getText("widget.bottom-nav-bar.profile"),
                     action = Action(
                         type = ActionType.Route,
                         url = it,
