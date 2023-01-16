@@ -99,7 +99,6 @@ class ProductV2Screen(
                         deliveryWidget?.let { Divider(color = Theme.COLOR_DIVIDER) },
                         deliveryWidget,
 
-                        descriptionWidget?.let { Divider(color = Theme.COLOR_DIVIDER) },
                         descriptionWidget,
                     ),
                 ),

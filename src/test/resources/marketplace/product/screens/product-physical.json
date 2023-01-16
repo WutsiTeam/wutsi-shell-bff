@@ -355,13 +355,6 @@
               ]
             },
             {
-              "type": "Divider",
-              "attributes": {
-                "color": "#8c8c8c"
-              },
-              "children": []
-            },
-            {
               "type": "Container",
               "attributes": {
                 "padding": 10.0,

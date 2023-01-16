@@ -14,19 +14,17 @@ import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
-import com.wutsi.flutter.sdui.DefaultTabController
 import com.wutsi.flutter.sdui.Divider
 import com.wutsi.flutter.sdui.DynamicWidget
 import com.wutsi.flutter.sdui.Flexible
 import com.wutsi.flutter.sdui.IconButton
 import com.wutsi.flutter.sdui.ListView
 import com.wutsi.flutter.sdui.Screen
-import com.wutsi.flutter.sdui.TabBar
-import com.wutsi.flutter.sdui.TabBarView
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.ActionType
+import com.wutsi.flutter.sdui.enums.Alignment
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.membership.manager.dto.Member
 import com.wutsi.platform.core.image.ImageService
@@ -55,42 +53,56 @@ class OrderListScreen(
         }
 
         val business = checkoutManagerApi.getBusiness(member.businessId!!).business
-        val tabs = TabBar(
-            tabs = listOfNotNull(
-                Text(getText("page.order.list.tab.in-progress").uppercase()),
-                Text(getText("page.order.list.tab.closed").uppercase()),
+        val orders = checkoutManagerApi.searchOrder(
+            request = SearchOrderRequest(
+                limit = MAX_ORDERS,
+                businessId = business.id,
+                status = listOf(
+                    OrderStatus.OPENED,
+                    OrderStatus.IN_PROGRESS,
+                    OrderStatus.COMPLETED,
+                    OrderStatus.CANCELLED,
+                ).map { it.name },
             ),
-        )
-        return DefaultTabController(
+        ).orders
+
+        return Screen(
             id = Page.PROFILE,
-            length = tabs.tabs.size,
-            child = Screen(
-                id = Page.ORDER_LIST,
+            appBar = AppBar(
+                elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
-                appBar = AppBar(
-                    elevation = 0.0,
-                    backgroundColor = Theme.COLOR_PRIMARY,
-                    foregroundColor = Theme.COLOR_WHITE,
-                    title = getText("page.order.list.app-bar.title"),
-                    bottom = tabs,
-                    actions = listOf(
-                        IconButton(
-                            icon = Theme.ICON_SETTINGS,
-                            action = Action(
-                                type = ActionType.Route,
-                                url = urlBuilder.build(Page.getSettingsUrl()),
-                            ),
+                foregroundColor = Theme.COLOR_BLACK,
+                title = getText("page.order.list.app-bar.title"),
+                actions = listOf(
+                    IconButton(
+                        icon = Theme.ICON_SETTINGS,
+                        action = Action(
+                            type = ActionType.Route,
+                            url = urlBuilder.build(Page.getSettingsUrl()),
                         ),
                     ),
                 ),
-                bottomNavigationBar = createBottomNavigationBarWidget(member),
-                child = TabBarView(
-                    children = listOfNotNull(
-                        toTabView(arrayOf(OrderStatus.OPENED, OrderStatus.IN_PROGRESS), business, member, true),
-                        toTabView(arrayOf(OrderStatus.COMPLETED, OrderStatus.CANCELLED), business, member, true),
-                    ),
-                ),
             ),
+            child = Column(
+                children = listOf(
+                    Container(
+                        padding = 10.0,
+                        child = Text(
+                            caption = if (orders.isEmpty()) {
+                                getText("page.order.list.count-0")
+                            } else if (orders.size == 1) {
+                                getText("page.order.list.count-1")
+                            } else {
+                                getText("page.order.list.count-n", arrayOf(orders.size))
+                            },
+                        ),
+                    ),
+                    Divider(height = 1.0, color = Theme.COLOR_DIVIDER),
+                    Flexible(
+                        child = toOrderListViewWidget(orders, business, member),
+                    ),
+                )
+            )
         ).toWidget()
     }
 
@@ -151,6 +163,56 @@ class OrderListScreen(
                     ),
                 ),
             ),
+        )
+    }
+
+    private fun toOrderListViewWidget(orders: List<OrderSummary>, business: Business, member: Member): WidgetAware {
+        val children = mutableListOf<WidgetAware>()
+
+        val opened = orders.filter { it.status == OrderStatus.OPENED.name || it.status == OrderStatus.IN_PROGRESS.name }
+        if (opened.isNotEmpty()) {
+            children.add(
+                Container(
+                    alignment = Alignment.CenterLeft,
+                    background = Theme.COLOR_GRAY_LIGHT,
+                    padding = 10.0,
+                    width = Double.MAX_VALUE,
+                    child = Text(
+                        caption = getText("page.order.list.in-progress"),
+                        bold = true,
+                        size = Theme.TEXT_SIZE_LARGE,
+                    ),
+                ),
+            )
+            children.addAll(
+                opened.map { toOrderListItemWidget(it, business, member) }
+            )
+        }
+
+        val closed = orders.filter { it.status != OrderStatus.OPENED.name && it.status != OrderStatus.IN_PROGRESS.name }
+        if (closed.isNotEmpty()) {
+            children.add(
+                Container(
+                    alignment = Alignment.CenterLeft,
+                    background = Theme.COLOR_GRAY_LIGHT,
+                    padding = 10.0,
+                    width = Double.MAX_VALUE,
+                    child = Text(
+                        caption = getText("page.order.list.closed"),
+                        bold = true,
+                        size = Theme.TEXT_SIZE_LARGE,
+                    ),
+                )
+            )
+            children.addAll(
+                closed.map { toOrderListItemWidget(it, business, member) }
+            )
+        }
+
+        return ListView(
+            separator = true,
+            separatorColor = Theme.COLOR_DIVIDER,
+            children = children,
         )
     }
 
