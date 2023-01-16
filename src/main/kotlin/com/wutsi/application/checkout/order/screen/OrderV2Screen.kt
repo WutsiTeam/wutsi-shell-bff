@@ -254,10 +254,10 @@ class OrderV2Screen(
             children = listOf(
                 Text(
                     caption = getText("page.order.order-id"),
-                    bold = true
+                    bold = true,
                 ),
                 Text(order.id),
-            )
+            ),
         ),
     )
 
