@@ -86,6 +86,8 @@ class OrderV2Screen(
                         toCustomerWidget(order, member, dateFormat),
                         toToolbarWidget(order),
                         Divider(height = 1.0, color = Theme.COLOR_DIVIDER),
+                        toOrderIdWidget(order),
+                        Divider(height = 1.0, color = Theme.COLOR_DIVIDER),
                         toItemListWidget(order, moneyFormat),
                         Divider(height = 1.0, color = Theme.COLOR_DIVIDER),
                         toPriceWidget(order, moneyFormat, dateFormat),
@@ -243,6 +245,19 @@ class OrderV2Screen(
                     ),
                 ),
             ),
+        ),
+    )
+
+    private fun toOrderIdWidget(order: Order) = Container(
+        padding = 10.0,
+        child = Row(
+            children = listOf(
+                Text(
+                    caption = getText("page.order.order-id"),
+                    bold = true
+                ),
+                Text(order.id),
+            )
         ),
     )
 
