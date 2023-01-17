@@ -33,7 +33,7 @@
 
     <sdui-kotlin.version>0.0.128</sdui-kotlin.version>
 
-    <wutsi-platform-core.version>0.0.196</wutsi-platform-core.version>
+    <wutsi-platform-core.version>0.0.202</wutsi-platform-core.version>
     <wutsi-platform-payment.version>0.0.108</wutsi-platform-payment.version>
     <wutsi-enums.version>1.0.24</wutsi-enums.version>
     <wutsi-errors.version>1.0.17</wutsi-errors.version>
