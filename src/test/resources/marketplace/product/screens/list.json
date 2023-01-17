@@ -173,7 +173,7 @@
                                 {
                                   "type": "Text",
                                   "attributes": {
-                                    "caption": "widget.product-card.low-of-stock",
+                                    "caption": "Only 4 left",
                                     "color": "#856404",
                                     "size": 10.0
                                   },
@@ -267,7 +267,7 @@
                                 {
                                   "type": "Text",
                                   "attributes": {
-                                    "caption": "widget.product-card.low-of-stock",
+                                    "caption": "Only 0 left",
                                     "color": "#856404",
                                     "size": 10.0
                                   },

@@ -244,7 +244,7 @@ class OfferWidget(
                 )
             } else if (quantity != null && quantity < lowStockThreshold) {
                 Text(
-                    caption = getText("widget.product-card.low-of-stock", arrayOf(quantity)),
+                    caption = getText("widget.product-card.low-stock", arrayOf(quantity)),
                     color = Theme.COLOR_WARNING,
                     size = Theme.TEXT_SIZE_SMALL,
                 )

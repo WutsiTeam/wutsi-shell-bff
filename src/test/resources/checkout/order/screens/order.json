@@ -650,6 +650,51 @@
                 "color": "#8c8c8c"
               },
               "children": []
+            },
+            {
+              "type": "Container",
+              "attributes": {
+                "padding": 10.0,
+                "width": 1.7976931348623157E308
+              },
+              "children": [
+                {
+                  "type": "Column",
+                  "attributes": {
+                    "mainAxisAlignment": "start",
+                    "crossAxisAlignment": "start"
+                  },
+                  "children": [
+                    {
+                      "type": "Container",
+                      "attributes": {},
+                      "children": [
+                        {
+                          "type": "Text",
+                          "attributes": {
+                            "caption": "Instructions",
+                            "bold": true
+                          },
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Container",
+                      "attributes": {},
+                      "children": [
+                        {
+                          "type": "Text",
+                          "attributes": {
+                            "caption": "Yo man"
+                          },
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }

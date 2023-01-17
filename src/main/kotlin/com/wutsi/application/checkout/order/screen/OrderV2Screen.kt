@@ -92,6 +92,7 @@ class OrderV2Screen(
                         Divider(height = 1.0, color = Theme.COLOR_DIVIDER),
                         toPriceWidget(order, moneyFormat, dateFormat),
                         Divider(height = 1.0, color = Theme.COLOR_DIVIDER),
+                        toNotesWidget(order),
                     ),
                 ),
             ),
@@ -415,6 +416,32 @@ class OrderV2Screen(
                         ),
                     )
                 },
+            ),
+        )
+    }
+
+    private fun toNotesWidget(order: Order): WidgetAware? {
+        if (order.notes.isNullOrEmpty()) {
+            return null
+        }
+
+        return Container(
+            padding = 10.0,
+            width = Double.MAX_VALUE,
+            child = Column(
+                mainAxisAlignment = MainAxisAlignment.start,
+                crossAxisAlignment = CrossAxisAlignment.start,
+                children = listOf(
+                    Container(
+                        child = Text(
+                            caption = getText("page.order.instructions"),
+                            bold = true,
+                        ),
+                    ),
+                    Container(
+                        child = Text(order.notes!!),
+                    ),
+                ),
             ),
         )
     }
