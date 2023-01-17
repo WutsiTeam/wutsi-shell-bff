@@ -7,15 +7,20 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.AbstractSecuredEndpointTest
 import com.wutsi.application.Fixtures
 import com.wutsi.application.Page
-import com.wutsi.marketplace.manager.dto.SearchProductResponse
+import com.wutsi.marketplace.manager.dto.SearchOfferResponse
 import com.wutsi.membership.manager.dto.GetMemberResponse
+import com.wutsi.regulation.RegulationEngine
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.web.server.LocalServerPort
 
 internal class ProductV2ListFragmentTest : AbstractSecuredEndpointTest() {
     @LocalServerPort
     val port: Int = 0
+
+    @Autowired
+    private lateinit var regulationEngine: RegulationEngine
 
     private fun url() = "http://localhost:$port${Page.getProductListUrl()}/fragment?id=111"
 
@@ -24,12 +29,21 @@ internal class ProductV2ListFragmentTest : AbstractSecuredEndpointTest() {
         super.setUp()
 
         val products = listOf(
-            Fixtures.createProductSummary(id = 1),
-            Fixtures.createProductSummary(id = 2),
-            Fixtures.createProductSummary(id = 3),
-            Fixtures.createProductSummary(id = 4),
+            Fixtures.createOfferSummary(Fixtures.createProductSummary(id = 1)),
+            Fixtures.createOfferSummary(
+                Fixtures.createProductSummary(
+                    id = 2,
+                    quantity = regulationEngine.lowStockThreshold() - 1,
+                ),
+            ),
+            Fixtures.createOfferSummary(Fixtures.createProductSummary(id = 3, quantity = 0)),
+            Fixtures.createOfferSummary(
+                product = Fixtures.createProductSummary(id = 4),
+                price = Fixtures.createOfferPrice(4, price = 2000, referencePrice = 2500),
+            ),
+            Fixtures.createOfferSummary(Fixtures.createProductSummary(id = 5)),
         )
-        doReturn(SearchProductResponse(products)).whenever(marketplaceManagerApi).searchProduct(any())
+        doReturn(SearchOfferResponse(products)).whenever(marketplaceManagerApi).searchOffer(any())
     }
 
     @Test

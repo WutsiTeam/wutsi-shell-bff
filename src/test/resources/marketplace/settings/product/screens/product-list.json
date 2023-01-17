@@ -141,6 +141,15 @@
                                                 "size": 10.0
                                               },
                                               "children": []
+                                            },
+                                            {
+                                              "type": "Text",
+                                              "attributes": {
+                                                "caption": "10 in stock",
+                                                "bold": false,
+                                                "size": 10.0
+                                              },
+                                              "children": []
                                             }
                                           ]
                                         }
@@ -295,6 +304,15 @@
                                               "type": "Text",
                                               "attributes": {
                                                 "caption": "Type: Physical Product",
+                                                "size": 10.0
+                                              },
+                                              "children": []
+                                            },
+                                            {
+                                              "type": "Text",
+                                              "attributes": {
+                                                "caption": "10 in stock",
+                                                "bold": false,
                                                 "size": 10.0
                                               },
                                               "children": []

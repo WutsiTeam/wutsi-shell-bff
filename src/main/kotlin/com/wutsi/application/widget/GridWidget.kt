@@ -35,9 +35,7 @@ class GridWidget(
             crossAxisAlignment = CrossAxisAlignment.start,
             mainAxisSize = MainAxisSize.min,
             children = widgets.map {
-                Flexible(
-                    child = it,
-                )
+                Flexible(child = it)
             },
         )
     }

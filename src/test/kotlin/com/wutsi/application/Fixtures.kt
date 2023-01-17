@@ -25,6 +25,9 @@ import com.wutsi.marketplace.manager.dto.DiscountSummary
 import com.wutsi.marketplace.manager.dto.Event
 import com.wutsi.marketplace.manager.dto.FileSummary
 import com.wutsi.marketplace.manager.dto.MeetingProviderSummary
+import com.wutsi.marketplace.manager.dto.Offer
+import com.wutsi.marketplace.manager.dto.OfferPrice
+import com.wutsi.marketplace.manager.dto.OfferSummary
 import com.wutsi.marketplace.manager.dto.PictureSummary
 import com.wutsi.marketplace.manager.dto.Product
 import com.wutsi.marketplace.manager.dto.ProductSummary
@@ -98,6 +101,7 @@ object Fixtures {
         published: Boolean = true,
         price: Long = 15000,
         type: ProductType = ProductType.PHYSICAL_PRODUCT,
+        quantity: Int = 10,
     ) = ProductSummary(
         id = id,
         title = title,
@@ -106,6 +110,7 @@ object Fixtures {
         price = price,
         type = type.name,
         event = if (type == ProductType.EVENT) createEvent() else null,
+        quantity = quantity,
     )
 
     fun createProduct(
@@ -420,5 +425,38 @@ object Fixtures {
         rate = 25,
         allProducts = allProduct,
         productIds = productIds,
+    )
+
+    fun createOfferSummary(
+        product: ProductSummary,
+        price: OfferPrice = createOfferPrice(productId = -1, price = 2000),
+    ) = OfferSummary(
+        product = product,
+        price = price,
+    )
+
+    fun createOffer(
+        product: Product,
+        price: OfferPrice = createOfferPrice(),
+    ) = Offer(
+        product = product,
+        price = price,
+    )
+
+    fun createOfferPrice(
+        productId: Long = -1,
+        discountId: Long? = null,
+        savings: Long = 0,
+        price: Long = 1500,
+        referencePrice: Long? = null,
+        expires: OffsetDateTime? = null,
+    ) = OfferPrice(
+        productId = productId,
+        discountId = discountId,
+        savings = savings,
+        price = price,
+        referencePrice = referencePrice,
+        expires = expires,
+        savingsPercentage = if (referencePrice != null && referencePrice > 0) (100 * savings / referencePrice).toInt() else 0,
     )
 }

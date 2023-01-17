@@ -6,6 +6,7 @@ import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
 import com.wutsi.application.util.SecurityUtil
 import com.wutsi.application.widget.GridWidget
 import com.wutsi.application.widget.OfferWidget
+import com.wutsi.enums.ProductSort
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Divider
@@ -13,7 +14,7 @@ import com.wutsi.flutter.sdui.SingleChildScrollView
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.marketplace.manager.MarketplaceManagerApi
-import com.wutsi.marketplace.manager.dto.SearchProductRequest
+import com.wutsi.marketplace.manager.dto.SearchOfferRequest
 import com.wutsi.platform.core.image.ImageService
 import com.wutsi.regulation.RegulationEngine
 import org.springframework.web.bind.annotation.PostMapping
@@ -38,13 +39,13 @@ class ProductV2ListFragment(
             return Container().toWidget()
         }
 
-        val products = marketplaceManagerApi.searchProduct(
-            request = SearchProductRequest(
+        val offers = marketplaceManagerApi.searchOffer(
+            request = SearchOfferRequest(
                 storeId = member.storeId,
-                status = "PUBLISHED",
                 limit = regulationEngine.maxProducts(),
+                sortBy = ProductSort.RECOMMENDED.name,
             ),
-        ).products
+        ).offers
 
         return SingleChildScrollView(
             child = Column(
@@ -52,25 +53,26 @@ class ProductV2ListFragment(
                     Container(
                         padding = 10.0,
                         child = Text(
-                            caption = if (products.isEmpty()) {
+                            caption = if (offers.isEmpty()) {
                                 getText("page.product.list.0_product")
-                            } else if (products.size == 1) {
+                            } else if (offers.size == 1) {
                                 getText("page.product.list.1_product")
                             } else {
-                                getText("page.product.list.n_products", arrayOf(products.size))
+                                getText("page.product.list.n_products", arrayOf(offers.size))
                             },
                         ),
                     ),
                     Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
                     GridWidget(
                         columns = 2,
-                        children = products.map {
+                        children = offers.map {
                             OfferWidget.of(
-                                product = it,
+                                offer = it,
                                 country = country,
-                                action = gotoUrl(urlBuilder.build("${Page.getProductUrl()}?id=${it.id}")),
+                                action = gotoUrl(urlBuilder.build("${Page.getProductUrl()}?id=${it.product.id}")),
                                 imageService = imageService,
                                 timezoneId = member.timezoneId,
+                                regulationEngine = regulationEngine,
                             )
                         },
                     ),

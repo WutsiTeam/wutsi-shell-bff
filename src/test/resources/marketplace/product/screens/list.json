@@ -15,7 +15,7 @@
             {
               "type": "Text",
               "attributes": {
-                "caption": "4 product(s)"
+                "caption": "5 product(s)"
               },
               "children": []
             }
@@ -171,6 +171,15 @@
                                   "children": []
                                 },
                                 {
+                                  "type": "Text",
+                                  "attributes": {
+                                    "caption": "widget.product-card.low-of-stock",
+                                    "color": "#856404",
+                                    "size": 10.0
+                                  },
+                                  "children": []
+                                },
+                                {
                                   "type": "MoneyText",
                                   "attributes": {
                                     "value": 15000.0,
@@ -256,6 +265,15 @@
                                   "children": []
                                 },
                                 {
+                                  "type": "Text",
+                                  "attributes": {
+                                    "caption": "widget.product-card.low-of-stock",
+                                    "color": "#856404",
+                                    "size": 10.0
+                                  },
+                                  "children": []
+                                },
+                                {
                                   "type": "MoneyText",
                                   "attributes": {
                                     "value": 15000.0,
@@ -331,6 +349,110 @@
                                   "children": []
                                 },
                                 {
+                                  "type": "Wrap",
+                                  "attributes": {
+                                    "spacing": 10.0,
+                                    "runSpacing": 10.0,
+                                    "direction": "Horizontal"
+                                  },
+                                  "children": [
+                                    {
+                                      "type": "MoneyText",
+                                      "attributes": {
+                                        "value": 15000.0,
+                                        "color": "#1D7EDF",
+                                        "currency": "FCFA",
+                                        "numberFormat": "#,###,##0 FCFA",
+                                        "valueFontSize": 14.0,
+                                        "currencyFontSize": 10.0
+                                      },
+                                      "children": []
+                                    },
+                                    {
+                                      "type": "Text",
+                                      "attributes": {
+                                        "caption": "2,500 FCFA",
+                                        "size": 10.0,
+                                        "decoration": "Strikethrough"
+                                      },
+                                      "children": []
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ],
+                      "action": {
+                        "type": "Route",
+                        "url": "http://localhost:0/products/2?id=4"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Row",
+              "attributes": {
+                "mainAxisAlignment": "start",
+                "mainAxisSize": "min",
+                "crossAxisAlignment": "start"
+              },
+              "children": [
+                {
+                  "type": "Flexible",
+                  "attributes": {
+                    "flex": 1,
+                    "fit": "Tight"
+                  },
+                  "children": [
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "margin": 10.0
+                      },
+                      "children": [
+                        {
+                          "type": "Column",
+                          "attributes": {
+                            "mainAxisAlignment": "start",
+                            "crossAxisAlignment": "start"
+                          },
+                          "children": [
+                            {
+                              "type": "Column",
+                              "attributes": {
+                                "mainAxisAlignment": "start",
+                                "crossAxisAlignment": "start"
+                              },
+                              "children": [
+                                {
+                                  "type": "Container",
+                                  "attributes": {
+                                    "padding": 5.0
+                                  },
+                                  "children": []
+                                },
+                                {
+                                  "type": "Text",
+                                  "attributes": {
+                                    "caption": "Product",
+                                    "bold": true,
+                                    "overflow": "Elipsis",
+                                    "maxLines": 2
+                                  },
+                                  "children": []
+                                },
+                                {
+                                  "type": "Container",
+                                  "attributes": {
+                                    "padding": 5.0
+                                  },
+                                  "children": []
+                                },
+                                {
                                   "type": "MoneyText",
                                   "attributes": {
                                     "value": 15000.0,
@@ -349,8 +471,22 @@
                       ],
                       "action": {
                         "type": "Route",
-                        "url": "http://localhost:0/products/2?id=4"
+                        "url": "http://localhost:0/products/2?id=5"
                       }
+                    }
+                  ]
+                },
+                {
+                  "type": "Flexible",
+                  "attributes": {
+                    "flex": 1,
+                    "fit": "Tight"
+                  },
+                  "children": [
+                    {
+                      "type": "Container",
+                      "attributes": {},
+                      "children": []
                     }
                   ]
                 }

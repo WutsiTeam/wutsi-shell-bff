@@ -42,6 +42,7 @@ object Theme {
     const val ICON_CLOCK = "f44a"
     const val ICON_DELETE = "e8b8"
     const val ICON_DISCOUNT = "f06a3"
+    const val ICON_DOWNLOAD = "ef60"
     const val ICON_EDIT = "e21a"
     const val ICON_EMAIL = "f018"
     const val ICON_ERROR = "e238"

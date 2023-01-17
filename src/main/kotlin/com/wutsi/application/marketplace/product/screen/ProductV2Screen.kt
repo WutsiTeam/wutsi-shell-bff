@@ -11,6 +11,7 @@ import com.wutsi.enums.ProductType
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.AspectRatio
 import com.wutsi.flutter.sdui.CarouselSlider
+import com.wutsi.flutter.sdui.Chip
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Divider
@@ -24,9 +25,13 @@ import com.wutsi.flutter.sdui.SingleChildScrollView
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
+import com.wutsi.flutter.sdui.Wrap
+import com.wutsi.flutter.sdui.enums.Axis
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
+import com.wutsi.flutter.sdui.enums.TextDecoration
 import com.wutsi.marketplace.manager.MarketplaceManagerApi
+import com.wutsi.marketplace.manager.dto.Offer
 import com.wutsi.marketplace.manager.dto.Product
 import com.wutsi.membership.manager.MembershipManagerApi
 import com.wutsi.membership.manager.dto.Member
@@ -40,6 +45,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import java.text.DecimalFormat
 import java.time.format.DateTimeFormatter
 
 @RestController
@@ -58,7 +64,8 @@ class ProductV2Screen(
 
     @PostMapping
     fun index(@RequestParam id: Long): Widget {
-        val product = marketplaceManagerApi.getProduct(id).product
+        val offer = marketplaceManagerApi.getOffer(id).offer
+        val product = offer.product
         val merchant = membershipManagerApi.getMember(product.store.accountId).member
         val country = regulationEngine.country(merchant.country)
         val member = membershipManagerApi.getMember(SecurityUtil.getMemberId()).member
@@ -86,14 +93,13 @@ class ProductV2Screen(
                         toPictureCarouselWidget(product),
 
                         Divider(color = Theme.COLOR_DIVIDER),
-                        toPriceWidget(product, country),
+                        toPriceWidget(offer, country),
 
                         Divider(color = Theme.COLOR_DIVIDER),
                         BusinessToolbarWidget.of(product, merchant, webappUrl, urlBuilder),
 
                         Divider(color = Theme.COLOR_DIVIDER),
                         toSummaryWidget(product),
-                        toAvailabilityWidget(product),
                         toEventWidget(product, country, merchant),
 
                         deliveryWidget?.let { Divider(color = Theme.COLOR_DIVIDER) },
@@ -143,44 +149,91 @@ class ProductV2Screen(
             },
         )
 
-    private fun toAvailabilityWidget(product: Product): WidgetAware? =
-        product.quantity?.let {
-            Container(
-                padding = 10.0,
-                child = Row(
-                    children = listOf(
-                        Icon(
-                            code = if (it > 0) Theme.ICON_CHECK else Theme.ICON_CANCEL,
-                            color = if (it > 0) Theme.COLOR_SUCCESS else Theme.COLOR_DANGER,
-                            size = 16.0,
-                        ),
-                        Container(padding = 5.0),
-                        Text(
-                            caption = if (it > 0) {
-                                getText("page.product.in-stock")
-                            } else {
-                                getText("page.product.out-of-stock")
-                            },
-                        ),
-                    ),
-                ),
-            )
+    private fun toAvailabilityWidget(product: Product): WidgetAware? {
+        if (product.quantity == null || product.quantity!! > regulationEngine.lowStockThreshold()) {
+            return null
         }
 
-    private fun toPriceWidget(product: Product, country: Country): WidgetAware? =
-        product.price?.let {
-            Container(
-                padding = 10.0,
-                child = MoneyText(
-                    currency = country.currencySymbol,
-                    color = Theme.COLOR_PRIMARY,
-                    valueFontSize = Theme.TEXT_SIZE_X_LARGE,
-                    value = it.toDouble(),
-                    numberFormat = country.monetaryFormat,
-                    bold = true,
+        val color = getAvailabilityColor(product.quantity)
+        return Row(
+            children = listOf(
+                Icon(
+                    code = if (product.quantity == 0) {
+                        Theme.ICON_CANCEL
+                    } else {
+                        Theme.ICON_WARNING
+                    },
+                    color = color,
+                    size = 16.0,
                 ),
-            )
+                Container(padding = 5.0),
+                Text(
+                    caption = if (product.quantity == 0) {
+                        getText("page.product.out-of-stock")
+                    } else {
+                        getText("page.product.low-stock", arrayOf(product.quantity))
+                    },
+                    color = color,
+                ),
+            ),
+        )
+    }
+
+    private fun getAvailabilityColor(quantity: Int?) =
+        if (quantity == 0) {
+            Theme.COLOR_DANGER
+        } else if (quantity != null && quantity <= regulationEngine.lowStockThreshold()) {
+            Theme.ICON_WARNING
+        } else {
+            Theme.COLOR_SUCCESS
         }
+
+    private fun toPriceWidget(offer: Offer, country: Country): WidgetAware {
+        val price = offer.price
+        val widget = MoneyText(
+            currency = country.currencySymbol,
+            color = Theme.COLOR_PRIMARY,
+            valueFontSize = Theme.TEXT_SIZE_X_LARGE,
+            value = price.price.toDouble(),
+            numberFormat = country.monetaryFormat,
+            bold = true,
+        )
+        return Container(
+            padding = 10.0,
+            child = Column(
+                mainAxisAlignment = MainAxisAlignment.start,
+                crossAxisAlignment = CrossAxisAlignment.start,
+                children = listOfNotNull(
+                    if (price.referencePrice == null) {
+                        widget
+                    } else {
+                        Wrap(
+                            direction = Axis.Horizontal,
+                            spacing = 10.0,
+                            runSpacing = 10.0,
+                            children = listOf(
+                                widget,
+                                Text(
+                                    caption = DecimalFormat(country.monetaryFormat).format(price.referencePrice),
+                                    decoration = TextDecoration.Strikethrough,
+                                ),
+                            ),
+                        )
+                    },
+                    if (price.savingsPercentage > 0) {
+                        Chip(
+                            backgroundColor = Theme.COLOR_SUCCESS,
+                            color = Theme.COLOR_WHITE,
+                            caption = "${price.savingsPercentage}%",
+                        )
+                    } else {
+                        null
+                    },
+                    toAvailabilityWidget(offer.product),
+                ),
+            ),
+        )
+    }
 
     private fun toSummaryWidget(product: Product): WidgetAware? =
         if (!product.summary.isNullOrEmpty()) {

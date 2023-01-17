@@ -124,16 +124,25 @@
               },
               "children": [
                 {
-                  "type": "MoneyText",
+                  "type": "Column",
                   "attributes": {
-                    "value": 20000.0,
-                    "color": "#1D7EDF",
-                    "currency": "FCFA",
-                    "numberFormat": "#,###,##0 FCFA",
-                    "bold": true,
-                    "valueFontSize": 18.0
+                    "mainAxisAlignment": "start",
+                    "crossAxisAlignment": "start"
                   },
-                  "children": []
+                  "children": [
+                    {
+                      "type": "MoneyText",
+                      "attributes": {
+                        "value": 1500.0,
+                        "color": "#1D7EDF",
+                        "currency": "FCFA",
+                        "numberFormat": "#,###,##0 FCFA",
+                        "bold": true,
+                        "valueFontSize": 18.0
+                      },
+                      "children": []
+                    }
+                  ]
                 }
               ]
             },
@@ -314,43 +323,6 @@
                     "caption": "This is a summary"
                   },
                   "children": []
-                }
-              ]
-            },
-            {
-              "type": "Container",
-              "attributes": {
-                "padding": 10.0
-              },
-              "children": [
-                {
-                  "type": "Row",
-                  "attributes": {},
-                  "children": [
-                    {
-                      "type": "Icon",
-                      "attributes": {
-                        "code": "e156",
-                        "size": 16.0,
-                        "color": "#4CAF50"
-                      },
-                      "children": []
-                    },
-                    {
-                      "type": "Container",
-                      "attributes": {
-                        "padding": 5.0
-                      },
-                      "children": []
-                    },
-                    {
-                      "type": "Text",
-                      "attributes": {
-                        "caption": "Available"
-                      },
-                      "children": []
-                    }
-                  ]
                 }
               ]
             },

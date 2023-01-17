@@ -59,54 +59,6 @@
                       "children": []
                     }
                   ]
-                },
-                {
-                  "type": "AspectRatio",
-                  "attributes": {
-                    "aspectRatio": 0.8
-                  },
-                  "children": [
-                    {
-                      "type": "Image",
-                      "attributes": {
-                        "url": "http://www.google.com/1.png",
-                        "height": 250.0
-                      },
-                      "children": []
-                    }
-                  ]
-                },
-                {
-                  "type": "AspectRatio",
-                  "attributes": {
-                    "aspectRatio": 0.8
-                  },
-                  "children": [
-                    {
-                      "type": "Image",
-                      "attributes": {
-                        "url": "http://www.google.com/1.png",
-                        "height": 250.0
-                      },
-                      "children": []
-                    }
-                  ]
-                },
-                {
-                  "type": "AspectRatio",
-                  "attributes": {
-                    "aspectRatio": 0.8
-                  },
-                  "children": [
-                    {
-                      "type": "Image",
-                      "attributes": {
-                        "url": "http://www.google.com/1.png",
-                        "height": 250.0
-                      },
-                      "children": []
-                    }
-                  ]
                 }
               ]
             },
@@ -131,43 +83,46 @@
                   },
                   "children": [
                     {
-                      "type": "Wrap",
+                      "type": "MoneyText",
                       "attributes": {
-                        "spacing": 10.0,
-                        "runSpacing": 10.0,
-                        "direction": "Horizontal"
+                        "value": 1500.0,
+                        "color": "#1D7EDF",
+                        "currency": "FCFA",
+                        "numberFormat": "#,###,##0 FCFA",
+                        "bold": true,
+                        "valueFontSize": 18.0
                       },
+                      "children": []
+                    },
+                    {
+                      "type": "Row",
+                      "attributes": {},
                       "children": [
                         {
-                          "type": "MoneyText",
+                          "type": "Icon",
                           "attributes": {
-                            "value": 3000.0,
-                            "color": "#1D7EDF",
-                            "currency": "FCFA",
-                            "numberFormat": "#,###,##0 FCFA",
-                            "bold": true,
-                            "valueFontSize": 18.0
+                            "code": "e6cb",
+                            "size": 16.0,
+                            "color": "e6cb"
+                          },
+                          "children": []
+                        },
+                        {
+                          "type": "Container",
+                          "attributes": {
+                            "padding": 5.0
                           },
                           "children": []
                         },
                         {
                           "type": "Text",
                           "attributes": {
-                            "caption": "5,000 FCFA",
-                            "decoration": "Strikethrough"
+                            "caption": "Only 4 left",
+                            "color": "e6cb"
                           },
                           "children": []
                         }
                       ]
-                    },
-                    {
-                      "type": "Chip",
-                      "attributes": {
-                        "color": "#FFFFFF",
-                        "backgroundColor": "#4CAF50",
-                        "caption": "70%"
-                      },
-                      "children": []
                     }
                   ]
                 }
@@ -377,7 +332,7 @@
                         {
                           "type": "Text",
                           "attributes": {
-                            "caption": "This is a long description"
+                            "caption": "Yo man"
                           },
                           "children": []
                         }
