@@ -2,10 +2,8 @@ package com.wutsi.application
 
 import com.wutsi.application.common.endpoint.AbstractSecuredEndpoint
 import com.wutsi.application.membership.onboard.screen.OnboardV2Screen
-import com.wutsi.application.widget.KpiListWidget
 import com.wutsi.application.widget.OrderWidget
 import com.wutsi.checkout.manager.CheckoutManagerApi
-import com.wutsi.checkout.manager.dto.Business
 import com.wutsi.checkout.manager.dto.SearchOrderRequest
 import com.wutsi.enums.OrderStatus
 import com.wutsi.flutter.sdui.Action
@@ -75,7 +73,6 @@ class HomeV2Screen(
                         children = listOfNotNull(
                             Container(padding = 10.0),
                             toWelcomeWidget(member),
-                            business?.let { getKpiWidget(business) },
                             business?.let { getRecentOrdersWidget(member) },
                         ),
                     ),
@@ -100,15 +97,6 @@ class HomeV2Screen(
                 },
                 bold = true,
             ),
-        )
-
-    private fun getKpiWidget(business: Business): WidgetAware =
-        Container(
-            margin = 10.0,
-            border = 1.0,
-            borderColor = Theme.COLOR_DIVIDER,
-            borderRadius = 5.0,
-            child = KpiListWidget.of(business, regulationEngine.country(business.country)),
         )
 
     private fun getRecentOrdersWidget(member: Member): WidgetAware? {
