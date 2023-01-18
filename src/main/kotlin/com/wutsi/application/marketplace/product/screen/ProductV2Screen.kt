@@ -98,8 +98,7 @@ class ProductV2Screen(
                         Divider(color = Theme.COLOR_DIVIDER),
                         BusinessToolbarWidget.of(product, merchant, webappUrl, urlBuilder),
 
-                        Divider(color = Theme.COLOR_DIVIDER),
-                        toSummaryWidget(product),
+                        if (product.type == ProductType.EVENT.name) Divider(color = Theme.COLOR_DIVIDER) else null,
                         toEventWidget(product, country, merchant),
 
                         deliveryWidget?.let { Divider(color = Theme.COLOR_DIVIDER) },
@@ -153,40 +152,19 @@ class ProductV2Screen(
         if (product.quantity == null || product.quantity!! > regulationEngine.lowStockThreshold()) {
             return null
         }
-
-        val color = getAvailabilityColor(product.quantity)
-        return Row(
-            children = listOf(
-                Icon(
-                    code = if (product.quantity == 0) {
-                        Theme.ICON_CANCEL
-                    } else {
-                        Theme.ICON_WARNING
-                    },
-                    color = color,
-                    size = 16.0,
-                ),
-                Container(padding = 5.0),
-                Text(
-                    caption = if (product.quantity == 0) {
-                        getText("page.product.out-of-stock")
-                    } else {
-                        getText("page.product.low-stock", arrayOf(product.quantity))
-                    },
-                    color = color,
-                ),
-            ),
+        return Text(
+            caption = if (product.quantity == 0) {
+                getText("page.product.out-of-stock")
+            } else {
+                getText("page.product.low-stock", arrayOf(product.quantity))
+            },
+            color = if (product.quantity == 0) {
+                Theme.COLOR_DANGER
+            } else {
+                Theme.COLOR_WARNING
+            },
         )
     }
-
-    private fun getAvailabilityColor(quantity: Int?) =
-        if (quantity == 0) {
-            Theme.COLOR_DANGER
-        } else if (quantity != null && quantity <= regulationEngine.lowStockThreshold()) {
-            Theme.ICON_WARNING
-        } else {
-            Theme.COLOR_SUCCESS
-        }
 
     private fun toPriceWidget(offer: Offer, country: Country): WidgetAware {
         val price = offer.price
@@ -234,16 +212,6 @@ class ProductV2Screen(
             ),
         )
     }
-
-    private fun toSummaryWidget(product: Product): WidgetAware? =
-        if (!product.summary.isNullOrEmpty()) {
-            Container(
-                padding = 10.0,
-                child = Text(product.summary!!),
-            )
-        } else {
-            null
-        }
 
     private fun toEventWidget(product: Product, country: Country, merchant: Member): WidgetAware? {
         if (product.type != ProductType.EVENT.name) {

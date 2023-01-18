@@ -318,21 +318,6 @@
               },
               "children": [
                 {
-                  "type": "Text",
-                  "attributes": {
-                    "caption": "This is a summary"
-                  },
-                  "children": []
-                }
-              ]
-            },
-            {
-              "type": "Container",
-              "attributes": {
-                "padding": 10.0
-              },
-              "children": [
-                {
                   "type": "Column",
                   "attributes": {
                     "mainAxisAlignment": "start",

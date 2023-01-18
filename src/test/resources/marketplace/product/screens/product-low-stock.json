@@ -95,34 +95,12 @@
                       "children": []
                     },
                     {
-                      "type": "Row",
-                      "attributes": {},
-                      "children": [
-                        {
-                          "type": "Icon",
-                          "attributes": {
-                            "code": "e6cb",
-                            "size": 16.0,
-                            "color": "e6cb"
-                          },
-                          "children": []
-                        },
-                        {
-                          "type": "Container",
-                          "attributes": {
-                            "padding": 5.0
-                          },
-                          "children": []
-                        },
-                        {
-                          "type": "Text",
-                          "attributes": {
-                            "caption": "Only 4 left",
-                            "color": "e6cb"
-                          },
-                          "children": []
-                        }
-                      ]
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "Only 4 left",
+                        "color": "#856404"
+                      },
+                      "children": []
                     }
                   ]
                 }
@@ -283,28 +261,6 @@
                       ]
                     }
                   ]
-                }
-              ]
-            },
-            {
-              "type": "Divider",
-              "attributes": {
-                "color": "#8c8c8c"
-              },
-              "children": []
-            },
-            {
-              "type": "Container",
-              "attributes": {
-                "padding": 10.0
-              },
-              "children": [
-                {
-                  "type": "Text",
-                  "attributes": {
-                    "caption": "This is a summary"
-                  },
-                  "children": []
                 }
               ]
             },

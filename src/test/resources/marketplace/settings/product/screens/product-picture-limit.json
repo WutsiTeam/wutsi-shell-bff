@@ -273,7 +273,7 @@
                         {
                           "type": "ListItem",
                           "attributes": {
-                            "caption": "Summary",
+                            "caption": "Short description",
                             "subCaption": "This is a summary",
                             "trailing": {
                               "type": "Icon",
