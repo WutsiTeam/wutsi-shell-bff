@@ -152,7 +152,7 @@ class OfferWidget(
                         child = Chip(
                             backgroundColor = Theme.COLOR_SUCCESS,
                             color = Theme.COLOR_WHITE,
-                            caption = "$savingsPercentage%",
+                            caption = "-$savingsPercentage%",
                         ),
                     ),
                 ),
