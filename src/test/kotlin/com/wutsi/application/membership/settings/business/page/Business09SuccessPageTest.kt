@@ -5,7 +5,7 @@ import com.wutsi.application.Page
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.web.server.LocalServerPort
 
-internal class Business07SuccessPageTest : AbstractSecuredEndpointTest() {
+internal class Business09SuccessPageTest : AbstractSecuredEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 

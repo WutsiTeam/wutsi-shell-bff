@@ -70,6 +70,7 @@ class Business00StartPage : AbstractBusinessPage() {
                 categoryId = member.category?.id,
                 whatsapp = member.whatsapp,
                 biography = member.biography,
+                email = member.email ?: "",
             ),
         )
         return gotoPage(PAGE_INDEX + 1)

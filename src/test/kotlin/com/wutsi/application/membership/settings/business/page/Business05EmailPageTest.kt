@@ -1,5 +1,6 @@
 package com.wutsi.application.membership.settings.business.page
 
+import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
@@ -9,12 +10,15 @@ import com.wutsi.application.membership.settings.business.dto.SubmitBusinessAttr
 import com.wutsi.application.membership.settings.business.entity.BusinessEntity
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
+import com.wutsi.platform.core.messaging.MessagingType
+import com.wutsi.security.manager.dto.CreateOTPRequest
+import com.wutsi.security.manager.dto.CreateOTPResponse
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.web.server.LocalServerPort
 
-internal class Business05BiographyPageTest : AbstractSecuredEndpointTest() {
+internal class Business05EmailPageTest : AbstractSecuredEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 
@@ -22,12 +26,11 @@ internal class Business05BiographyPageTest : AbstractSecuredEndpointTest() {
         displayName = "Maison H",
         categoryId = 22L,
         cityId = 100L,
-        whatsapp = false,
-        biography = "Yo man",
+        whatsapp = true,
     )
 
     private fun url(action: String = "") =
-        "http://localhost:$port${Page.getSettingsBusinessUrl()}/pages/biography$action"
+        "http://localhost:$port${Page.getSettingsBusinessUrl()}/pages/email$action"
 
     @BeforeEach
     override fun setUp() {
@@ -37,12 +40,16 @@ internal class Business05BiographyPageTest : AbstractSecuredEndpointTest() {
     }
 
     @Test
-    fun index() = assertEndpointEquals("/membership/settings/business/pages/biography.json", url())
+    fun index() = assertEndpointEquals("/membership/settings/business/pages/email.json", url())
 
     @Test
     fun submit() {
+        // GIVEN
+        val otpToken = "xxx"
+        doReturn(CreateOTPResponse(otpToken)).whenever(securityManagerApi).createOtp(any())
+
         // WHEN
-        val request = SubmitBusinessAttributeRequest("This is a new biography!")
+        val request = SubmitBusinessAttributeRequest("ray.sponsible@gmail.com")
         val response = rest.postForEntity(url("/submit"), request, Action::class.java)
 
         // THEN
@@ -50,7 +57,14 @@ internal class Business05BiographyPageTest : AbstractSecuredEndpointTest() {
 
         val action = response.body!!
         assertEquals(ActionType.Page, action.type)
-        assertEquals("page:/6", action.url)
+        assertEquals("page:/${Business05EmailPage.PAGE_INDEX + 1}", action.url)
+
+        verify(securityManagerApi).createOtp(
+            request = CreateOTPRequest(
+                address = request.value,
+                type = MessagingType.EMAIL.name,
+            ),
+        )
 
         verify(cache).put(
             DEVICE_ID,
@@ -59,7 +73,8 @@ internal class Business05BiographyPageTest : AbstractSecuredEndpointTest() {
                 categoryId = entity.categoryId,
                 cityId = entity.cityId,
                 whatsapp = entity.whatsapp,
-                biography = request.value,
+                email = request.value,
+                otpToken = otpToken,
             ),
         )
     }

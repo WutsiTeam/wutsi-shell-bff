@@ -22,7 +22,7 @@
               "children": [],
               "action": {
                 "type": "Page",
-                "url": "page:/4"
+                "url": "page:/6"
               }
             },
             {
@@ -100,7 +100,7 @@
                 "enabled": true,
                 "readOnly": false,
                 "type": "Text",
-                "maxLines": 2,
+                "maxLines": 1,
                 "maxLength": 160,
                 "minLength": 0
               },

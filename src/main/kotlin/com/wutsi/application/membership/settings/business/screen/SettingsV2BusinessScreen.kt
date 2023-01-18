@@ -19,6 +19,8 @@ class SettingsV2BusinessScreen : AbstractEndpoint() {
             "${Page.getSettingsBusinessUrl()}/pages/category",
             "${Page.getSettingsBusinessUrl()}/pages/city",
             "${Page.getSettingsBusinessUrl()}/pages/whatsapp",
+            "${Page.getSettingsBusinessUrl()}/pages/email",
+            "${Page.getSettingsBusinessUrl()}/pages/email/verification",
             "${Page.getSettingsBusinessUrl()}/pages/biography",
             "${Page.getSettingsBusinessUrl()}/pages/confirm",
             "${Page.getSettingsBusinessUrl()}/pages/success",

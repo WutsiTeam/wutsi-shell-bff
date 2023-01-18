@@ -22,7 +22,7 @@
               "children": [],
               "action": {
                 "type": "Page",
-                "url": "page:/7"
+                "url": "page:/5"
               }
             },
             {
@@ -49,7 +49,7 @@
             {
               "type": "Text",
               "attributes": {
-                "caption": "Switch to Business Account",
+                "caption": "Verify your Email",
                 "color": "#1D7EDF",
                 "bold": true,
                 "size": 16.0,
@@ -69,7 +69,7 @@
             {
               "type": "Text",
               "attributes": {
-                "caption": "Are you sure you want to switch to a Business Account?",
+                "caption": "Enter the code sent to {0}",
                 "alignment": "Center"
               },
               "children": []
@@ -94,16 +94,17 @@
               },
               "children": [
                 {
-                  "type": "Button",
+                  "type": "PinWithKeyboard",
                   "attributes": {
-                    "caption": "Yes",
-                    "padding": 15.0,
-                    "type": "Elevated"
+                    "id": "pin",
+                    "name": "code",
+                    "hideText": false,
+                    "pinSize": 40.0
                   },
                   "children": [],
                   "action": {
                     "type": "Command",
-                    "url": "http://localhost:0/settings/2/business/pages/confirm/submit"
+                    "url": "http://localhost:0/settings/2/business/pages/email/verification/submit"
                   }
                 }
               ]
@@ -111,20 +112,21 @@
             {
               "type": "Container",
               "attributes": {
+                "alignment": "Center",
                 "padding": 10.0
               },
               "children": [
                 {
                   "type": "Button",
                   "attributes": {
-                    "caption": "No",
+                    "caption": "Resend a new code",
                     "padding": 15.0,
                     "type": "Text"
                   },
                   "children": [],
                   "action": {
-                    "type": "Route",
-                    "url": "route:/.."
+                    "type": "Command",
+                    "url": "http://localhost:0/settings/2/business/email/verification/resend"
                   }
                 }
               ]

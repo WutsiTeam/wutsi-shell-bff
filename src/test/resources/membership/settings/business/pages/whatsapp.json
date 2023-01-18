@@ -99,18 +99,18 @@
                 {
                   "type": "DropdownMenuItem",
                   "attributes": {
-                    "caption": "Yes",
+                    "caption": "No",
                     "enabled": true,
-                    "value": "true"
+                    "value": "false"
                   },
                   "children": []
                 },
                 {
                   "type": "DropdownMenuItem",
                   "attributes": {
-                    "caption": "No",
+                    "caption": "Yes",
                     "enabled": true,
-                    "value": "false"
+                    "value": "true"
                   },
                   "children": []
                 }

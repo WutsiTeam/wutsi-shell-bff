@@ -135,7 +135,7 @@ class SettingsV2ProfileEmailVerificationScreen(
     }
 
     @PostMapping("/resend")
-    fun resend(): Action {
+    fun resend() {
         val email = dao.get()
         email.token = securityManagerApi.createOtp(
             request = CreateOTPRequest(
@@ -144,10 +144,5 @@ class SettingsV2ProfileEmailVerificationScreen(
             ),
         ).token
         dao.save(email)
-
-        return gotoUrl(
-            url = urlBuilder.build("${Page.getSettingsUrl()}/profile/email/verification"),
-            replacement = true,
-        )
     }
 }

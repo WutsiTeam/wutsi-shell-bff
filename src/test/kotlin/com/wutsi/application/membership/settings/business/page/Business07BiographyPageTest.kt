@@ -5,16 +5,16 @@ import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.AbstractSecuredEndpointTest
 import com.wutsi.application.Page
+import com.wutsi.application.membership.settings.business.dto.SubmitBusinessAttributeRequest
 import com.wutsi.application.membership.settings.business.entity.BusinessEntity
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
-import com.wutsi.membership.manager.dto.ActivateBusinessRequest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.web.server.LocalServerPort
 
-internal class Business06ConfirmPageTest : AbstractSecuredEndpointTest() {
+internal class Business07BiographyPageTest : AbstractSecuredEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 
@@ -27,7 +27,7 @@ internal class Business06ConfirmPageTest : AbstractSecuredEndpointTest() {
     )
 
     private fun url(action: String = "") =
-        "http://localhost:$port${Page.getSettingsBusinessUrl()}/pages/confirm$action"
+        "http://localhost:$port${Page.getSettingsBusinessUrl()}/pages/biography$action"
 
     @BeforeEach
     override fun setUp() {
@@ -37,27 +37,29 @@ internal class Business06ConfirmPageTest : AbstractSecuredEndpointTest() {
     }
 
     @Test
-    fun index() = assertEndpointEquals("/membership/settings/business/pages/confirm.json", url())
+    fun index() = assertEndpointEquals("/membership/settings/business/pages/biography.json", url())
 
     @Test
     fun submit() {
         // WHEN
-        val response = rest.postForEntity(url("/submit"), null, Action::class.java)
+        val request = SubmitBusinessAttributeRequest("This is a new biography!")
+        val response = rest.postForEntity(url("/submit"), request, Action::class.java)
 
         // THEN
         assertEquals(200, response.statusCodeValue)
 
         val action = response.body!!
         assertEquals(ActionType.Page, action.type)
-        assertEquals("page:/7", action.url)
+        assertEquals("page:/${Business07BiographyPage.PAGE_INDEX + 1}", action.url)
 
-        verify(membershipManagerApi).activateBusiness(
-            request = ActivateBusinessRequest(
+        verify(cache).put(
+            DEVICE_ID,
+            BusinessEntity(
                 displayName = entity.displayName,
-                biography = entity.biography,
+                categoryId = entity.categoryId,
+                cityId = entity.cityId,
                 whatsapp = entity.whatsapp,
-                cityId = entity.cityId!!,
-                categoryId = entity.categoryId!!,
+                biography = request.value,
             ),
         )
     }

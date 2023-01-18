@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/settings/2/business/pages/confirm")
-class Business06ConfirmPage : AbstractBusinessPage() {
+class Business08ConfirmPage : AbstractBusinessPage() {
     companion object {
-        const val PAGE_INDEX = 6
+        const val PAGE_INDEX = 8
     }
 
     override fun getPageIndex(): Int = PAGE_INDEX
@@ -62,6 +62,7 @@ class Business06ConfirmPage : AbstractBusinessPage() {
                 categoryId = entity.categoryId ?: -1,
                 whatsapp = entity.whatsapp,
                 biography = entity.biography,
+                email = entity.email,
             ),
         )
         return gotoNextPage()

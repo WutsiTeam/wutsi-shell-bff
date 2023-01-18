@@ -6,4 +6,6 @@ data class BusinessEntity(
     var categoryId: Long? = null,
     var cityId: Long? = null,
     var whatsapp: Boolean = false,
+    var email: String = "",
+    var otpToken: String = "",
 ) : java.io.Serializable

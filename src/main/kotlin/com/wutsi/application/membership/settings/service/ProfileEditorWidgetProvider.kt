@@ -42,13 +42,13 @@ class ProfileEditorWidgetProvider(
             else -> throw IllegalStateException("Not supported: $name")
         }
 
-    fun get(name: String, defaultValue: Any?, country: String? = null): WidgetAware =
+    fun get(name: String, defaultValue: Any?, country: String? = null, required: Boolean = false): WidgetAware =
         when (name) {
-            "biography" -> getInputWidget(defaultValue, 160, maxLines = 2)
+            "biography" -> getInputWidget(defaultValue, 160, maxLines = 1)
             "category-id" -> getCategoryWidget(defaultValue?.toString()?.toLong())
             "city-id" -> getCityWidget(defaultValue?.toString()?.toLong(), country)
             "display-name" -> getInputWidget(defaultValue, 50, required = true)
-            "email" -> getInputWidget(defaultValue, 160, InputType.Email)
+            "email" -> getInputWidget(defaultValue, 160, InputType.Email, required = required)
             "facebook-id" -> getInputWidget(defaultValue, 30)
             "instagram-id" -> getInputWidget(defaultValue, 30)
             "language" -> getLanguageWidget(defaultValue?.toString())
@@ -77,12 +77,12 @@ class ProfileEditorWidgetProvider(
         value = value?.toString(),
         children = listOf(
             DropdownMenuItem(
-                caption = getText("button.yes"),
-                value = "true",
-            ),
-            DropdownMenuItem(
                 caption = getText("button.no"),
                 value = "false",
+            ),
+            DropdownMenuItem(
+                caption = getText("button.yes"),
+                value = "true",
             ),
         ),
     )

@@ -49,6 +49,20 @@
         {
           "type": "Page",
           "attributes": {
+            "url": "http://localhost:0/settings/2/business/pages/email"
+          },
+          "children": []
+        },
+        {
+          "type": "Page",
+          "attributes": {
+            "url": "http://localhost:0/settings/2/business/pages/email/verification"
+          },
+          "children": []
+        },
+        {
+          "type": "Page",
+          "attributes": {
             "url": "http://localhost:0/settings/2/business/pages/biography"
           },
           "children": []

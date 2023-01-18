@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/settings/2/business/pages/success")
-class Business07SuccessPage : AbstractSuccessPageEndpoint() {
+class Business09SuccessPage : AbstractSuccessPageEndpoint() {
     companion object {
-        const val PAGE_INDEX = 6
+        const val PAGE_INDEX = 9
     }
 
     override fun getPageIndex(): Int = PAGE_INDEX
