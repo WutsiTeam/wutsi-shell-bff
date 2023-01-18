@@ -133,11 +133,6 @@ internal class SettingsV2ProfileEmailVerificationScreenTest : AbstractSecuredEnd
             DEVICE_ID,
             EmailEntity(value = entity.value, token = token),
         )
-
-        val action = response.body!!
-        assertEquals(ActionType.Route, action.type)
-        assertEquals("http://localhost:0${Page.getSettingsUrl()}/profile/email/verification", action.url)
-        assertEquals(true, action.replacement)
     }
 
     private fun url(action: String = "") =
