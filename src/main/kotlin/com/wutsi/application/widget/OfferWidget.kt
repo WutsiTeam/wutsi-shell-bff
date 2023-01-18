@@ -71,7 +71,7 @@ class OfferWidget(
         ): OfferWidget {
             return OfferWidget(
                 title = offer.product.title,
-                price = offer.product.price,
+                price = offer.price.price,
                 country = country,
                 thumbnailUrl = offer.product.thumbnailUrl,
                 action = action,

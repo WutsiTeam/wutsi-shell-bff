@@ -38,7 +38,7 @@ internal class ProductV2ListFragmentTest : AbstractSecuredEndpointTest() {
             ),
             Fixtures.createOfferSummary(Fixtures.createProductSummary(id = 3, quantity = 0)),
             Fixtures.createOfferSummary(
-                product = Fixtures.createProductSummary(id = 4),
+                product = Fixtures.createProductSummary(id = 4, price = 2500),
                 price = Fixtures.createOfferPrice(4, price = 2000, referencePrice = 2500),
             ),
             Fixtures.createOfferSummary(Fixtures.createProductSummary(id = 5)),

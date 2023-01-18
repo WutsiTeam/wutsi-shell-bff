@@ -98,7 +98,7 @@
                                 {
                                   "type": "MoneyText",
                                   "attributes": {
-                                    "value": 15000.0,
+                                    "value": 2000.0,
                                     "color": "#1D7EDF",
                                     "currency": "FCFA",
                                     "numberFormat": "#,###,##0 FCFA",
@@ -182,7 +182,7 @@
                                 {
                                   "type": "MoneyText",
                                   "attributes": {
-                                    "value": 15000.0,
+                                    "value": 2000.0,
                                     "color": "#1D7EDF",
                                     "currency": "FCFA",
                                     "numberFormat": "#,###,##0 FCFA",
@@ -276,7 +276,7 @@
                                 {
                                   "type": "MoneyText",
                                   "attributes": {
-                                    "value": 15000.0,
+                                    "value": 2000.0,
                                     "color": "#1D7EDF",
                                     "currency": "FCFA",
                                     "numberFormat": "#,###,##0 FCFA",
@@ -359,7 +359,7 @@
                                     {
                                       "type": "MoneyText",
                                       "attributes": {
-                                        "value": 15000.0,
+                                        "value": 2000.0,
                                         "color": "#1D7EDF",
                                         "currency": "FCFA",
                                         "numberFormat": "#,###,##0 FCFA",
@@ -455,7 +455,7 @@
                                 {
                                   "type": "MoneyText",
                                   "attributes": {
-                                    "value": 15000.0,
+                                    "value": 2000.0,
                                     "color": "#1D7EDF",
                                     "currency": "FCFA",
                                     "numberFormat": "#,###,##0 FCFA",
