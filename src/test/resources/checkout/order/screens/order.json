@@ -350,7 +350,7 @@
                             {
                               "type": "Text",
                               "attributes": {
-                                "caption": "Sub total:"
+                                "caption": "Sub-total:"
                               },
                               "children": []
                             }

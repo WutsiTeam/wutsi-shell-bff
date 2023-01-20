@@ -37,7 +37,7 @@
             {
               "type": "Text",
               "attributes": {
-                "caption": "Switch to Business Account",
+                "caption": "Switch to a Business Account",
                 "color": "#1D7EDF",
                 "bold": true,
                 "size": 16.0,

@@ -50,7 +50,7 @@
         {
           "type": "Text",
           "attributes": {
-            "caption": "You will receive an SMS to verify your phone number.",
+            "caption": "You will receive a SMS to verify your phone number.",
             "alignment": "Center"
           },
           "children": []

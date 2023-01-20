@@ -523,7 +523,7 @@
                     {
                       "type": "Text",
                       "attributes": {
-                        "caption": "Your will receive the meeting link via email once payment is confirmed."
+                        "caption": "Your will receive the meeting link via email once the payment is confirmed."
                       },
                       "children": []
                     }

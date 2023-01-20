@@ -93,7 +93,7 @@ internal class Onboard00PhonePageTest : AbstractEndpointTest() {
         val action = response.body!!
         assertEquals(ActionType.Route, action.type)
         assertEquals(
-            "http://localhost:0/login/2?title=You+Have+a+wallet%21&sub-title=Enter+your+Passcode&phone=%2B237670000010&return-to-route=true&hide-change-account-button=true",
+            "http://localhost:0/login/2?title=You+have+a+wallet%21&sub-title=Enter+your+Passcode&phone=%2B237670000010&return-to-route=true&hide-change-account-button=true",
             action.url,
         )
 

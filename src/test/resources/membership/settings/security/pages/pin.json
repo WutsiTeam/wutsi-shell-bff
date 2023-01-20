@@ -57,7 +57,7 @@
             {
               "type": "Text",
               "attributes": {
-                "caption": "Enter your new 6-digits Passcode",
+                "caption": "Enter your new 6-digit Passcode",
                 "alignment": "Center"
               },
               "children": []

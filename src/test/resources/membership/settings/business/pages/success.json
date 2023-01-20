@@ -41,7 +41,7 @@
             {
               "type": "Text",
               "attributes": {
-                "caption": "Switch to Business Account",
+                "caption": "Switch to a Business Account",
                 "color": "#1D7EDF",
                 "bold": true,
                 "size": 16.0,
@@ -61,7 +61,7 @@
             {
               "type": "Text",
               "attributes": {
-                "caption": "Your account has been successfully switched to Business Account!",
+                "caption": "You have successfully switched to Business Account!",
                 "alignment": "Center"
               },
               "children": []

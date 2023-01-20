@@ -454,7 +454,7 @@
                                               "type": "Dialog",
                                               "attributes": {
                                                 "type": "Confirm",
-                                                "message": "Are you sure you want to delete the product? This operation cannot be un-done!"
+                                                "message": "Are you sure you want to delete the product? This operation cannot be undone!"
                                               },
                                               "children": []
                                             }

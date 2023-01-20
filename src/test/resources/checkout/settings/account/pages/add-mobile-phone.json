@@ -37,7 +37,7 @@
             {
               "type": "Text",
               "attributes": {
-                "caption": "Add mobile account",
+                "caption": "Add a mobile account",
                 "color": "#1D7EDF",
                 "bold": true,
                 "size": 16.0,
@@ -57,7 +57,7 @@
             {
               "type": "Text",
               "attributes": {
-                "caption": "Enter the phone number you want to add to your Wallet",
+                "caption": "Enter the phone number you want to add to your wallet",
                 "alignment": "Center"
               },
               "children": []

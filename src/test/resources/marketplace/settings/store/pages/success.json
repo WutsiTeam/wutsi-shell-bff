@@ -61,7 +61,7 @@
             {
               "type": "Text",
               "attributes": {
-                "caption": "Congratulation! Your store is now active",
+                "caption": "Congratulation! Your Store is now active",
                 "alignment": "Center"
               },
               "children": []

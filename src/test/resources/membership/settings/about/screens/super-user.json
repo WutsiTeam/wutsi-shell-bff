@@ -352,7 +352,7 @@
                       "attributes": {
                         "type": "Confirm",
                         "title": "Confirm",
-                        "message": "Are you sure you want to switch to PROD environment?"
+                        "message": "Are you sure you want to switch to the PROD environment?"
                       },
                       "children": []
                     },
