@@ -9,13 +9,18 @@ import com.wutsi.application.Page
 import com.wutsi.marketplace.manager.dto.SearchDiscountResponse
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.test.web.server.LocalServerPort
+import java.time.Clock
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 
 internal class SettingsV2DiscountListScreenTest : AbstractSecuredEndpointTest() {
     @LocalServerPort
     val port: Int = 0
+
+    @MockBean
+    private lateinit var clock: Clock
 
     private fun url() = "http://localhost:$port${Page.getSettingsDiscountListUrl()}"
 
@@ -27,7 +32,7 @@ internal class SettingsV2DiscountListScreenTest : AbstractSecuredEndpointTest() 
         val discounts = listOf(
             Fixtures.createDiscountSummary(
                 id = 1,
-                starts = now.minusDays(1),
+                starts = now.minusDays(2),
                 ends = now.plusDays(10),
             ),
             Fixtures.createDiscountSummary(
