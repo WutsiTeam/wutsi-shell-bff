@@ -174,7 +174,7 @@
                 "name": "submit",
                 "hideText": false,
                 "required": false,
-                "caption": "Enregistrer",
+                "caption": "Save",
                 "enabled": true,
                 "readOnly": false,
                 "type": "Submit",
