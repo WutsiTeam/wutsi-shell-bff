@@ -40,7 +40,7 @@ internal class Business00StartPageTest : AbstractSecuredEndpointTest() {
                 displayName = member.displayName,
                 categoryId = member.category?.id,
                 cityId = member.city?.id,
-                whatsapp = member.whatsapp,
+                whatsapp = true,
                 biography = member.biography,
                 email = member.email!!,
             ),

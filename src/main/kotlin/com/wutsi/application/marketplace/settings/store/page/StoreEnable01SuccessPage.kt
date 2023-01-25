@@ -13,6 +13,8 @@ class StoreEnable01SuccessPage : AbstractSuccessPageEndpoint() {
         const val PAGE_INDEX = 1
     }
 
+    override fun getBaseId() = Page.SETTINGS_STORE_ENABLE
+
     override fun getPageIndex(): Int = PAGE_INDEX
 
     override fun getTitle() = getText("page.settings.store.activate.success.title")

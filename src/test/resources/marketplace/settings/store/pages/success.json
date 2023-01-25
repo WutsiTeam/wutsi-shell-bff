@@ -1,6 +1,8 @@
 {
   "type": "Container",
-  "attributes": {},
+  "attributes": {
+    "id": "page.settings.store.enable-1"
+  },
   "children": [
     {
       "type": "Form",

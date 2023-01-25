@@ -68,7 +68,7 @@ class Business00StartPage : AbstractBusinessPage() {
                 displayName = member.displayName,
                 cityId = member.city?.id,
                 categoryId = member.category?.id,
-                whatsapp = member.whatsapp,
+                whatsapp = true,
                 biography = member.biography,
                 email = member.email ?: "",
             ),
