@@ -64,6 +64,23 @@
         {
           "type": "Container",
           "attributes": {
+            "alignment": "Center",
+            "padding": 10.0
+          },
+          "children": [
+            {
+              "type": "Text",
+              "attributes": {
+                "caption": "Home > Foo 1",
+                "alignment": "Center"
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "type": "Container",
+          "attributes": {
             "padding": 20.0
           },
           "children": []
@@ -94,7 +111,6 @@
                   "type": "ListItem",
                   "attributes": {
                     "caption": "Foo 1",
-                    "subCaption": "Home > Foo 1",
                     "iconRight": "e15f"
                   },
                   "children": [],
@@ -111,7 +127,6 @@
                   "type": "ListItem",
                   "attributes": {
                     "caption": "Foo 2",
-                    "subCaption": "Home > Foo 2",
                     "iconRight": "e15f"
                   },
                   "children": [],
@@ -128,7 +143,6 @@
                   "type": "ListItem",
                   "attributes": {
                     "caption": "Foo 3",
-                    "subCaption": "Home > Foo 3",
                     "iconRight": "e15f"
                   },
                   "children": [],

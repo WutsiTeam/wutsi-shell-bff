@@ -10,6 +10,7 @@ import com.wutsi.application.Page
 import com.wutsi.application.marketplace.settings.product.entity.CategoryEntity
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
+import com.wutsi.marketplace.manager.dto.GetCategoryResponse
 import com.wutsi.marketplace.manager.dto.ProductAttribute
 import com.wutsi.marketplace.manager.dto.SearchCategoryRequest
 import com.wutsi.marketplace.manager.dto.SearchCategoryResponse
@@ -53,6 +54,9 @@ internal class ProductCategory02Level2PageTest : AbstractSecuredEndpointTest() {
             Fixtures.createProductCategorySummary(3L),
         )
         doReturn(SearchCategoryResponse(categories)).whenever(marketplaceManagerApi).searchCategory(any())
+
+        val category = Fixtures.createProductCategory(1L)
+        doReturn(GetCategoryResponse(category)).whenever(marketplaceManagerApi).getCategory(any())
 
         // WHEN/THEN
         assertEndpointEquals("/marketplace/settings/product/pages/category-02.json", url())

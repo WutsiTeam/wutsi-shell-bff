@@ -82,7 +82,6 @@
                   "type": "ListItem",
                   "attributes": {
                     "caption": "Foo 1",
-                    "subCaption": "Home > Foo 1",
                     "iconRight": "e15f"
                   },
                   "children": [],
@@ -99,7 +98,6 @@
                   "type": "ListItem",
                   "attributes": {
                     "caption": "Foo 2",
-                    "subCaption": "Home > Foo 2",
                     "iconRight": "e15f"
                   },
                   "children": [],
@@ -116,7 +114,6 @@
                   "type": "ListItem",
                   "attributes": {
                     "caption": "Foo 3",
-                    "subCaption": "Home > Foo 3",
                     "iconRight": "e15f"
                   },
                   "children": [],

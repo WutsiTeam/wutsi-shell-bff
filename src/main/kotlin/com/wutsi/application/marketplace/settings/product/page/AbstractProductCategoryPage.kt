@@ -30,6 +30,13 @@ abstract class AbstractProductCategoryPage : AbstractPageEndpoint() {
     override fun getTitle() = getText("page.settings.store.category.title")
     override fun showDividerBeforeBody() = true
 
+    override fun getSubTitle(): String? {
+        val parentId = getParentCategoryId()
+        return parentId?.let {
+            marketplaceManagerApi.getCategory(it).category
+        }?.longTitle
+    }
+
     override fun getBody(): WidgetAware {
         val parentId = getParentCategoryId()
         val categories = marketplaceManagerApi.searchCategory(
@@ -47,7 +54,6 @@ abstract class AbstractProductCategoryPage : AbstractPageEndpoint() {
                 children = categories.map {
                     ListItem(
                         caption = it.title,
-                        subCaption = it.longTitle,
                         iconRight = Theme.ICON_CHEVRON_RIGHT,
                         action = executeCommand(
                             url = urlBuilder.build(getSubmitUrl()),
@@ -64,6 +70,6 @@ abstract class AbstractProductCategoryPage : AbstractPageEndpoint() {
 
     override fun getButton(): WidgetAware? = null
 
-    protected fun getProductId(): Long =
+    private fun getProductId(): Long =
         httpRequest.getParameter("id").toLong()
 }

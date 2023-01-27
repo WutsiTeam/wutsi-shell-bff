@@ -465,4 +465,10 @@ object Fixtures {
         title = "Foo $id",
         longTitle = "Home > Foo $id",
     )
+
+    fun createProductCategory(id: Long) = com.wutsi.marketplace.manager.dto.Category(
+        id = id,
+        title = "Foo $id",
+        longTitle = "Home > Foo $id",
+    )
 }

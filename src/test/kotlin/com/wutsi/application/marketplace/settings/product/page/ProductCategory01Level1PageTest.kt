@@ -10,6 +10,7 @@ import com.wutsi.application.Page
 import com.wutsi.application.marketplace.settings.product.entity.CategoryEntity
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
+import com.wutsi.marketplace.manager.dto.GetCategoryResponse
 import com.wutsi.marketplace.manager.dto.SearchCategoryRequest
 import com.wutsi.marketplace.manager.dto.SearchCategoryResponse
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -39,17 +40,20 @@ internal class ProductCategory01Level1PageTest : AbstractSecuredEndpointTest() {
         super.setUp()
 
         doReturn(entity).whenever(cache).get(DEVICE_ID, CategoryEntity::class.java)
-    }
 
-    @Test
-    fun index() {
-        // GIVEN
         val categories = listOf(
             Fixtures.createProductCategorySummary(1L),
             Fixtures.createProductCategorySummary(2L),
             Fixtures.createProductCategorySummary(3L),
         )
         doReturn(SearchCategoryResponse(categories)).whenever(marketplaceManagerApi).searchCategory(any())
+    }
+
+    @Test
+    fun index() {
+        // GIVEN
+        val category = Fixtures.createProductCategory(1L)
+        doReturn(GetCategoryResponse(category)).whenever(marketplaceManagerApi).getCategory(any())
 
         // WHEN/THEN
         assertEndpointEquals("/marketplace/settings/product/pages/category-01.json", url())
