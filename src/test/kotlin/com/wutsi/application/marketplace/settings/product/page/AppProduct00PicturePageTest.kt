@@ -28,7 +28,7 @@ internal class AppProduct00PicturePageTest : AbstractSecuredEndpointTest() {
         "http://localhost:$port${Page.getSettingsProductAddUrl()}/pages/picture$action"
 
     @Test
-    fun index() = assertEndpointEquals("/marketplace/settings/product/pages/picture.json", url())
+    fun index() = assertEndpointEquals("/marketplace/settings/product/pages/picture-00.json", url())
 
     @Test
     fun upload() {

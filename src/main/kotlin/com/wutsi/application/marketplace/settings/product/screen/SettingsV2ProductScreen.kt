@@ -161,6 +161,11 @@ class SettingsV2ProductScreen(
                                 urlBuilder.build("${Page.getSettingsProductEditorUrl()}?name=quantity&id=${product.id}"),
                             ),
                             toListItemWidget(
+                                "page.settings.catalog.product.attribute.category",
+                                product.category?.longTitle,
+                                urlBuilder.build("${Page.getSettingsProductCategoryUrl()}?id=${product.id}"),
+                            ),
+                            toListItemWidget(
                                 "page.settings.catalog.product.attribute.summary",
                                 description(product.summary),
                                 urlBuilder.build("${Page.getSettingsProductEditorUrl()}?name=summary&id=${product.id}"),

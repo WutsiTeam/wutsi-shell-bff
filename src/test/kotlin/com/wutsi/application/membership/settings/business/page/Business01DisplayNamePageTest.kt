@@ -32,8 +32,8 @@ internal class Business01DisplayNamePageTest : AbstractSecuredEndpointTest() {
         doReturn(entity).whenever(cache).get(DEVICE_ID, BusinessEntity::class.java)
 
         val categories = listOf(
-            Fixtures.createCategorySummary(1, "Art"),
-            Fixtures.createCategorySummary(2, "Bakery"),
+            Fixtures.createProductCategorySummary(1, "Art"),
+            Fixtures.createProductCategorySummary(2, "Bakery"),
         )
         doReturn(SearchCategoryResponse(categories)).whenever(membershipManagerApi).searchCategory(any())
     }

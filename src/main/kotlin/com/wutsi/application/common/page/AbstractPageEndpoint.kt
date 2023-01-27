@@ -3,6 +3,7 @@ package com.wutsi.application.common.page
 import com.wutsi.application.Theme
 import com.wutsi.application.common.endpoint.AbstractEndpoint
 import com.wutsi.flutter.sdui.Container
+import com.wutsi.flutter.sdui.Divider
 import com.wutsi.flutter.sdui.Form
 import com.wutsi.flutter.sdui.Icon
 import com.wutsi.flutter.sdui.IconButton
@@ -90,6 +91,11 @@ abstract class AbstractPageEndpoint : AbstractEndpoint() {
                     },
 
                     body?.let { Container(padding = 20.0) },
+                    if (body != null && showDividerBeforeBody()) {
+                        Divider(height = 1.0, color = Theme.COLOR_DIVIDER)
+                    } else {
+                        null
+                    },
                     body?.let { it },
 
                     button?.let { Container(padding = 20.0) },
@@ -103,6 +109,8 @@ abstract class AbstractPageEndpoint : AbstractEndpoint() {
             ),
         ).toWidget()
     }
+
+    protected open fun showDividerBeforeBody(): Boolean = false
 
     protected open fun showHeader(): Boolean = true
 

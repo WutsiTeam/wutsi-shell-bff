@@ -37,7 +37,7 @@ internal class AppProduct02EditorPageTest : AbstractSecuredEndpointTest() {
     }
 
     @Test
-    fun index() = assertEndpointEquals("/marketplace/settings/product/pages/editor.json", url())
+    fun index() = assertEndpointEquals("/marketplace/settings/product/pages/picture-01.json", url())
 
     @Test
     fun submit() {

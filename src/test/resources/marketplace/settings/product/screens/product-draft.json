@@ -346,6 +346,26 @@
                         {
                           "type": "ListItem",
                           "attributes": {
+                            "caption": "Category",
+                            "trailing": {
+                              "type": "Icon",
+                              "attributes": {
+                                "code": "e21a",
+                                "size": 24.0,
+                                "color": "#000000"
+                              },
+                              "children": []
+                            }
+                          },
+                          "children": [],
+                          "action": {
+                            "type": "Route",
+                            "url": "http://localhost:0/settings/2/products/category?id=-1"
+                          }
+                        },
+                        {
+                          "type": "ListItem",
+                          "attributes": {
                             "caption": "Short description",
                             "subCaption": "This is a summary",
                             "trailing": {

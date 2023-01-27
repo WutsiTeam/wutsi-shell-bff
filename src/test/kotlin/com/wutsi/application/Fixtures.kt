@@ -89,7 +89,7 @@ object Fixtures {
         name = name,
     )
 
-    fun createCategorySummary(id: Long = -1, title: String = "Art") = CategorySummary(
+    fun createProductCategorySummary(id: Long = -1, title: String = "Art") = CategorySummary(
         id = id,
         title = title,
     )
@@ -458,5 +458,11 @@ object Fixtures {
         referencePrice = referencePrice,
         expires = expires,
         savingsPercentage = if (referencePrice != null && referencePrice > 0) (100 * savings / referencePrice).toInt() else 0,
+    )
+
+    fun createProductCategorySummary(id: Long) = com.wutsi.marketplace.manager.dto.CategorySummary(
+        id = id,
+        title = "Foo $id",
+        longTitle = "Home > Foo $id",
     )
 }
