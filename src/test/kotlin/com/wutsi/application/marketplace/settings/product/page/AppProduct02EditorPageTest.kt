@@ -12,6 +12,7 @@ import com.wutsi.enums.ProductType
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.marketplace.manager.dto.CreateProductRequest
+import com.wutsi.marketplace.manager.dto.CreateProductResponse
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -41,6 +42,9 @@ internal class AppProduct02EditorPageTest : AbstractSecuredEndpointTest() {
 
     @Test
     fun submit() {
+        // GIVEN
+        doReturn(CreateProductResponse(123)).whenever(marketplaceManagerApi).createProduct(any())
+
         // WHEN
         val request = SubmitProductRequest(
             title = "Yo man",
@@ -64,6 +68,8 @@ internal class AppProduct02EditorPageTest : AbstractSecuredEndpointTest() {
 
         val action = response.body!!
         assertEquals(ActionType.Route, action.type)
-        assertEquals("route:/..", action.url)
+        assertEquals("http://localhost:0${Page.getSettingsProductUrl()}", action.url)
+        assertEquals(mapOf("id" to "123"), action.parameters)
+        assertEquals(true, action.replacement)
     }
 }

@@ -98,7 +98,7 @@ class AppProduct02EditorPage(
     @PostMapping("/submit")
     fun submit(@RequestBody request: SubmitProductRequest): Action {
         val picture = dao.get()
-        marketplaceManagerApi.createProduct(
+        val response = marketplaceManagerApi.createProduct(
             request = CreateProductRequest(
                 pictureUrl = picture.url,
                 title = request.title,
@@ -109,6 +109,12 @@ class AppProduct02EditorPage(
             ),
         )
 
-        return gotoPreviousScreen()
+        return gotoUrl(
+            url = urlBuilder.build(Page.getSettingsProductUrl()),
+            parameters = mapOf(
+                "id" to response.productId.toString()
+            ),
+            replacement = true
+        )
     }
 }
