@@ -21,6 +21,7 @@ import com.wutsi.enums.OrderStatus
 import com.wutsi.enums.PaymentMethodType
 import com.wutsi.enums.ProductType
 import com.wutsi.enums.TransactionType
+import com.wutsi.marketplace.manager.dto.CancellationPolicy
 import com.wutsi.marketplace.manager.dto.DiscountSummary
 import com.wutsi.marketplace.manager.dto.Event
 import com.wutsi.marketplace.manager.dto.FileSummary
@@ -31,6 +32,7 @@ import com.wutsi.marketplace.manager.dto.OfferSummary
 import com.wutsi.marketplace.manager.dto.PictureSummary
 import com.wutsi.marketplace.manager.dto.Product
 import com.wutsi.marketplace.manager.dto.ProductSummary
+import com.wutsi.marketplace.manager.dto.ReturnPolicy
 import com.wutsi.marketplace.manager.dto.Store
 import com.wutsi.marketplace.manager.dto.StoreSummary
 import com.wutsi.membership.manager.dto.Category
@@ -213,6 +215,17 @@ object Fixtures {
     fun createStore(id: Long, accountId: Long) = Store(
         id = id,
         accountId = accountId,
+        cancellationPolicy = CancellationPolicy(
+            accepted = true,
+            message = "This is the message",
+            window = 12,
+        ),
+        returnPolicy = ReturnPolicy(
+            accepted = true,
+            message = "This is the return policy message",
+            contactWindow = 24 * 5,
+            shipBackWindow = 24 * 10,
+        ),
     )
 
     fun createStoreSummary(id: Long, accountId: Long = -1) = StoreSummary(

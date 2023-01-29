@@ -103,6 +103,32 @@
                 {
                   "type": "ListItem",
                   "attributes": {
+                    "caption": "Cancellation and Return Policies",
+                    "trailing": {
+                      "type": "Icon",
+                      "attributes": {
+                        "code": "e15f"
+                      },
+                      "children": []
+                    },
+                    "leading": {
+                      "type": "Icon",
+                      "attributes": {
+                        "code": "f2bc",
+                        "color": "#1D7EDF"
+                      },
+                      "children": []
+                    }
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "http://localhost:0/settings/2/policies"
+                  }
+                },
+                {
+                  "type": "ListItem",
+                  "attributes": {
                     "caption": "Statistics",
                     "trailing": {
                       "type": "Icon",

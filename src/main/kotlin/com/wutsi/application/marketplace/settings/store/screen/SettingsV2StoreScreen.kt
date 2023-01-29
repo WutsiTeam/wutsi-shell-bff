@@ -66,6 +66,14 @@ class SettingsV2StoreScreen : AbstractEndpoint() {
                                     ),
                                 ),
                                 ListItem(
+                                    caption = getText("page.settings.store.policies"),
+                                    leading = Icon(code = Theme.ICON_POLICY, color = Theme.COLOR_PRIMARY),
+                                    trailing = Icon(code = Theme.ICON_CHEVRON_RIGHT),
+                                    action = gotoUrl(
+                                        urlBuilder.build(Page.getSettingsPoliciesUrl()),
+                                    ),
+                                ),
+                                ListItem(
                                     caption = getText("page.settings.store.stats"),
                                     leading = Icon(code = Theme.ICON_BAR_CHART, color = Theme.COLOR_PRIMARY),
                                     trailing = Icon(code = Theme.ICON_CHEVRON_RIGHT),

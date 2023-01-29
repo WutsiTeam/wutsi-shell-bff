@@ -112,9 +112,9 @@ class AppProduct02EditorPage(
         return gotoUrl(
             url = urlBuilder.build(Page.getSettingsProductUrl()),
             parameters = mapOf(
-                "id" to response.productId.toString()
+                "id" to response.productId.toString(),
             ),
-            replacement = true
+            replacement = true,
         )
     }
 }
