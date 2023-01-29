@@ -72,15 +72,11 @@ class SettingsV2PolicyScreen(
                                     null
                                 },
 
-                                if (store.cancellationPolicy.accepted) {
-                                    toListItemWidget(
-                                        "page.settings.policy.attribute.cancellation-message",
-                                        shortText(store.cancellationPolicy.message),
-                                        urlBuilder.build("${Page.getSettingsPoliciesEditorUrl()}?name=cancellation-message"),
-                                    )
-                                } else {
-                                    null
-                                },
+                                toListItemWidget(
+                                    "page.settings.policy.attribute.cancellation-message",
+                                    shortText(store.cancellationPolicy.message),
+                                    urlBuilder.build("${Page.getSettingsPoliciesEditorUrl()}?name=cancellation-message"),
+                                ),
 
                                 ListItemSwitch(
                                     name = "value",
@@ -121,16 +117,11 @@ class SettingsV2PolicyScreen(
                                     null
                                 },
 
-                                if (store.returnPolicy.accepted) {
-                                    toListItemWidget(
-                                        "page.settings.policy.attribute.return-message",
-                                        shortText(store.returnPolicy.message),
-                                        urlBuilder.build("${Page.getSettingsPoliciesEditorUrl()}?name=return-message"),
-                                    )
-                                } else {
-                                    null
-                                },
-
+                                toListItemWidget(
+                                    "page.settings.policy.attribute.return-message",
+                                    shortText(store.returnPolicy.message),
+                                    urlBuilder.build("${Page.getSettingsPoliciesEditorUrl()}?name=return-message"),
+                                ),
                             ),
                         ),
                     ),
