@@ -36,6 +36,69 @@
                   "children": []
                 }
               ]
+            },
+            {
+              "type": "Container",
+              "attributes": {
+                "padding": 10.0,
+                "margin": 10.0,
+                "background": "#e4edf7",
+                "border": 1.0,
+                "borderRadius": 10.0,
+                "borderColor": "#1D7EDF"
+              },
+              "children": [
+                {
+                  "type": "Column",
+                  "attributes": {},
+                  "children": [
+                    {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "Convert to Business Account",
+                        "bold": true,
+                        "size": 16.0
+                      },
+                      "children": []
+                    },
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "padding": 10.0
+                      },
+                      "children": []
+                    },
+                    {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "Switch to Business Account for free to have access to a variety of tools for helping merchant to sell online and grow their business.",
+                        "size": 16.0
+                      },
+                      "children": []
+                    },
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "padding": 10.0
+                      },
+                      "children": []
+                    },
+                    {
+                      "type": "Button",
+                      "attributes": {
+                        "caption": "Convert to Business Account",
+                        "padding": 15.0,
+                        "type": "Elevated"
+                      },
+                      "children": [],
+                      "action": {
+                        "type": "Route",
+                        "url": "http://localhost:0/settings/2/business"
+                      }
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }

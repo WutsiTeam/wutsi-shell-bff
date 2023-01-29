@@ -22,10 +22,10 @@ internal class HomeV2ScreenTest : AbstractSecuredEndpointTest() {
     fun index() = assertEndpointEquals("/home/screens/index.json", url())
 
     @Test
-    fun business() {
+    fun businessNoStore() {
         // GIVEN
         val businessId = 5555L
-        member = Fixtures.createMember(MEMBER_ID, businessId = businessId, business = true)
+        member = Fixtures.createMember(MEMBER_ID, businessId = businessId, business = true, storeId = null)
         doReturn(GetMemberResponse(member)).whenever(membershipManagerApi).getMember(MEMBER_ID)
 
         val business = Fixtures.createBusiness(businessId, MEMBER_ID)
@@ -38,7 +38,27 @@ internal class HomeV2ScreenTest : AbstractSecuredEndpointTest() {
         doReturn(SearchOrderResponse(orders)).whenever(checkoutManagerApi).searchOrder(any())
 
         // THEN
-        assertEndpointEquals("/home/screens/business.json", url())
+        assertEndpointEquals("/home/screens/business-no-store.json", url())
+    }
+
+    @Test
+    fun businessWithStore() {
+        // GIVEN
+        val businessId = 5555L
+        member = Fixtures.createMember(MEMBER_ID, businessId = businessId, business = true, storeId = 3333)
+        doReturn(GetMemberResponse(member)).whenever(membershipManagerApi).getMember(MEMBER_ID)
+
+        val business = Fixtures.createBusiness(businessId, MEMBER_ID)
+        doReturn(GetBusinessResponse(business)).whenever(checkoutManagerApi).getBusiness(any())
+
+        val orders = listOf(
+            Fixtures.createOrderSummary(id = "11", totalPrice = 15000, status = OrderStatus.OPENED),
+            Fixtures.createOrderSummary(id = "22", totalPrice = 25000, status = OrderStatus.OPENED),
+        )
+        doReturn(SearchOrderResponse(orders)).whenever(checkoutManagerApi).searchOrder(any())
+
+        // THEN
+        assertEndpointEquals("/home/screens/business-store.json", url())
     }
 
     @Test

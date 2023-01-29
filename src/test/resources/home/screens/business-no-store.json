@@ -40,6 +40,69 @@
             {
               "type": "Container",
               "attributes": {
+                "padding": 10.0,
+                "margin": 10.0,
+                "background": "#e4edf7",
+                "border": 1.0,
+                "borderRadius": 10.0,
+                "borderColor": "#1D7EDF"
+              },
+              "children": [
+                {
+                  "type": "Column",
+                  "attributes": {},
+                  "children": [
+                    {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "Enable your Store",
+                        "bold": true,
+                        "size": 16.0
+                      },
+                      "children": []
+                    },
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "padding": 10.0
+                      },
+                      "children": []
+                    },
+                    {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "Enable your Store for free and start selling your products online, Facebook and WhatsApp",
+                        "size": 16.0
+                      },
+                      "children": []
+                    },
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "padding": 10.0
+                      },
+                      "children": []
+                    },
+                    {
+                      "type": "Button",
+                      "attributes": {
+                        "caption": "Enable your Store",
+                        "padding": 15.0,
+                        "type": "Elevated"
+                      },
+                      "children": [],
+                      "action": {
+                        "type": "Route",
+                        "url": "http://localhost:0/settings/2/store/activate"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Container",
+              "attributes": {
                 "margin": 10.0,
                 "background": "#FFFFFF",
                 "border": 1.0,

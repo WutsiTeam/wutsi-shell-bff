@@ -7,6 +7,7 @@ import com.wutsi.application.util.SecurityUtil
 import com.wutsi.application.widget.GridWidget
 import com.wutsi.application.widget.OfferWidget
 import com.wutsi.enums.ProductSort
+import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Divider
@@ -49,7 +50,7 @@ class ProductV2ListFragment(
 
         return SingleChildScrollView(
             child = Column(
-                children = listOf(
+                children = listOfNotNull(
                     Container(
                         padding = 10.0,
                         child = Text(
@@ -63,6 +64,21 @@ class ProductV2ListFragment(
                         ),
                     ),
                     Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
+
+                    if (id == SecurityUtil.getMemberId()) {
+                        Container(
+                            padding = 10.0,
+                            child = Button(
+                                caption = getText("page.product.button.configure"),
+                                action = gotoUrl(
+                                    url = urlBuilder.build(Page.getSettingsStoreUrl()),
+                                ),
+                            ),
+                        )
+                    } else {
+                        null
+                    },
+
                     GridWidget(
                         columns = 2,
                         children = offers.map {
