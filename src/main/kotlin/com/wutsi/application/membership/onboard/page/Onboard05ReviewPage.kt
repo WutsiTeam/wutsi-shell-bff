@@ -93,7 +93,7 @@ class Onboard05ReviewPage(
                                 child = Text(
                                     caption = getText("page.final.terms-condition-message"),
                                     alignment = TextAlignment.Center,
-                                )
+                                ),
                             ),
                             Button(
                                 id = "create-wallet",
@@ -107,7 +107,7 @@ class Onboard05ReviewPage(
                                 caption = getText("page.final.button.view-terms"),
                                 action = Action(
                                     type = ActionType.Navigate,
-                                    url = "$websiteUrl/terms-and-conditions/"
+                                    url = "$websiteUrl/terms-and-conditions/",
                                 ),
                                 type = ButtonType.Text,
                             ),
