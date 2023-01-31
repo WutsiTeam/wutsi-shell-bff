@@ -46,13 +46,14 @@ wutsi:
     name: wutsi-shell-bff
     asset-url: https://int-wutsi.s3.amazonaws.com/static/wutsi-assets
     server-url: http://localhost:${server.port}
-    store-url: ${wutsi.application.server-url}
+    #    store-url: ${wutsi.application.server-url}
     shell-url: ${wutsi.application.server-url}
-    cash-url: ${wutsi.application.server-url}
-    login-url: ${wutsi.application.server-url}
-    chat-url: https://wutsi-chat-bff-${wutsi.application.env}.herokuapp.com
-    news-url: https://wutsi-news-bff-${wutsi.application.env}.herokuapp.com
+    #    cash-url: ${wutsi.application.server-url}
+    #    login-url: ${wutsi.application.server-url}
+    #    chat-url: https://wutsi-chat-bff-${wutsi.application.env}.herokuapp.com
+    #    news-url: https://wutsi-news-bff-${wutsi.application.env}.herokuapp.com
     webapp-url: https://wutsi-web-test.herokuapp.com
+    website-url: https://www.wutsi.app
   platform:
     cache:
       name: ${wutsi.application.name}

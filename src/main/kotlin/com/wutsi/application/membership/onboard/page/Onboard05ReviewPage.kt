@@ -11,9 +11,10 @@ import com.wutsi.flutter.sdui.Image
 import com.wutsi.flutter.sdui.Row
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
-import com.wutsi.flutter.sdui.enums.ActionType.Command
+import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.Alignment.Center
 import com.wutsi.flutter.sdui.enums.Alignment.TopCenter
+import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.TextAlignment
@@ -21,6 +22,7 @@ import com.wutsi.membership.manager.MembershipManagerApi
 import com.wutsi.membership.manager.dto.RegisterMemberRequest
 import com.wutsi.platform.core.error.ErrorResponse
 import feign.FeignException
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -29,6 +31,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/onboard/pages/review")
 class Onboard05ReviewPage(
     private val membershipManagerApi: MembershipManagerApi,
+    @Value("\${wutsi.application.website-url}") private val websiteUrl: String,
 ) : AbstractOnboardPage() {
     companion object {
         const val PAGE_INDEX = 5
@@ -85,13 +88,33 @@ class Onboard05ReviewPage(
                             Container(
                                 padding = 20.0,
                             ),
+                            Container(
+                                padding = 10.0,
+                                child = Text(
+                                    caption = getText("page.final.terms-condition-message"),
+                                    alignment = TextAlignment.Center,
+                                )
+                            ),
                             Button(
                                 id = "create-wallet",
-                                caption = getText("page.final.field.submit.caption"),
+                                caption = getText("page.final.button.submit"),
                                 action = Action(
-                                    type = Command,
+                                    type = ActionType.Command,
                                     url = urlBuilder.build("/onboard/pages/review/submit"),
                                 ),
+                            ),
+                            Button(
+                                caption = getText("page.final.button.view-terms"),
+                                action = Action(
+                                    type = ActionType.Navigate,
+                                    url = "$websiteUrl/terms-and-conditions/"
+                                ),
+                                type = ButtonType.Text,
+                            ),
+                            Button(
+                                caption = getText("page.final.button.cancel"),
+                                action = gotoPreviousScreen(),
+                                type = ButtonType.Outlined,
                             ),
                         ),
                     ),
