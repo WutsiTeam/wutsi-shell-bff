@@ -95,6 +95,9 @@ class Onboard05ReviewPage(
                                     alignment = TextAlignment.Center,
                                 ),
                             ),
+                            Container(
+                                padding = 10.0,
+                            ),
                             Button(
                                 id = "create-wallet",
                                 caption = getText("page.final.button.submit"),
