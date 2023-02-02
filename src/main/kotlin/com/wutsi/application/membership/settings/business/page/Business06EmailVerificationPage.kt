@@ -34,6 +34,9 @@ class Business06EmailVerificationPage(
 
     override fun getAttribute(): String = ATTRIBUTE
 
+    override fun getSubTitle() =
+        getText("page.settings.profile.attribute.$ATTRIBUTE.description", arrayOf(dao.get().email))
+
     override fun getBody() = Column(
         children = listOf(
             Container(
