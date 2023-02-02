@@ -102,7 +102,7 @@ class HomeV2Screen(
         )
 
     private fun toBusinessAccountWidget(member: Member): WidgetAware? {
-        if (!member.business) {
+        if (!member.business && regulationEngine.country(member.country).supportsBusinessAccount) {
             return Container(
                 padding = 10.0,
                 margin = 10.0,
@@ -132,7 +132,7 @@ class HomeV2Screen(
                     ),
                 ),
             )
-        } else if (member.storeId == null) {
+        } else if (member.storeId == null && regulationEngine.country(member.country).supportsStore) {
             return Container(
                 padding = 10.0,
                 margin = 10.0,
@@ -156,7 +156,7 @@ class HomeV2Screen(
                         Button(
                             caption = getText("page.home.button.enable-store"),
                             action = gotoUrl(
-                                url = urlBuilder.build(Page.getSettingsStoreActivateUrl()),
+                                url = urlBuilder.build(Page.getSettingsUrl()),
                             ),
                         ),
                     ),
