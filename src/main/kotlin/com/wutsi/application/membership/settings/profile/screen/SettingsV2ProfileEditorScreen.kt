@@ -20,6 +20,8 @@ import com.wutsi.flutter.sdui.enums.InputType
 import com.wutsi.membership.manager.dto.UpdateMemberAttributeRequest
 import com.wutsi.platform.core.messaging.MessagingType
 import com.wutsi.security.manager.dto.CreateOTPRequest
+import org.springframework.http.HttpHeaders
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -80,11 +82,15 @@ class SettingsV2ProfileEditorScreen(
     fun submit(
         @RequestParam name: String,
         @RequestBody request: SubmitProfileAttributeRequest,
-    ): Action {
+    ): ResponseEntity<Action> {
         if (name == "email") {
             val member = getCurrentMember()
             if (member.email.equals(request.value, true)) {
-                return gotoPreviousScreen()
+                return ResponseEntity
+                    .ok()
+                    .body(
+                        gotoPreviousScreen()
+                    )
             }
 
             val token = securityManagerApi.createOtp(
@@ -100,11 +106,20 @@ class SettingsV2ProfileEditorScreen(
                 ),
             )
 
-            return gotoUrl(
-                url = urlBuilder.build("${Page.getSettingsUrl()}/profile/email/verification"),
-                replacement = true,
-            )
+            return ResponseEntity
+                .ok()
+                .body(
+                    gotoUrl(
+                        url = urlBuilder.build("${Page.getSettingsUrl()}/profile/email/verification"),
+                        replacement = true,
+                    )
+                )
         } else {
+            val headers = HttpHeaders()
+            if (name == "language") {
+                headers["x-language"] = request.value
+            }
+
             membershipManagerApi.updateMemberAttribute(
                 request = UpdateMemberAttributeRequest(
                     name = name,
@@ -112,7 +127,12 @@ class SettingsV2ProfileEditorScreen(
                 ),
             )
 
-            return gotoPreviousScreen()
+            return ResponseEntity
+                .ok()
+                .headers(headers)
+                .body(
+                    gotoPreviousScreen()
+                )
         }
     }
 }

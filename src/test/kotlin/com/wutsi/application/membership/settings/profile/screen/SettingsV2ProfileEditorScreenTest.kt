@@ -16,6 +16,7 @@ import com.wutsi.membership.manager.dto.SearchPlaceResponse
 import com.wutsi.membership.manager.dto.UpdateMemberAttributeRequest
 import com.wutsi.security.manager.dto.CreateOTPResponse
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.web.server.LocalServerPort
 import org.springframework.http.HttpStatus
@@ -73,6 +74,33 @@ internal class SettingsV2ProfileEditorScreenTest : AbstractSecuredEndpointTest()
                 value = request.value,
             ),
         )
+
+        assertNull(response.headers["x-language"])
+    }
+
+    @Test
+    fun submitLanguage() {
+        // WHEN
+        val request = SubmitProfileAttributeRequest(
+            value = "fr",
+        )
+        val response = rest.postForEntity(url("language", "/submit"), request, Action::class.java)
+
+        // THEN
+        assertEquals(HttpStatus.OK, response.statusCode)
+
+        val action = response.body!!
+        assertEquals(ActionType.Route, action.type)
+        assertEquals("route:/..", action.url)
+
+        verify(membershipManagerApi).updateMemberAttribute(
+            request = UpdateMemberAttributeRequest(
+                name = "language",
+                value = request.value,
+            ),
+        )
+
+        assertEquals(listOf(request.value), response.headers["x-language"])
     }
 
     @Test
@@ -104,6 +132,8 @@ internal class SettingsV2ProfileEditorScreenTest : AbstractSecuredEndpointTest()
                 token = token,
             ),
         )
+
+        assertNull(response.headers["x-language"])
     }
 
     @Test
@@ -127,5 +157,7 @@ internal class SettingsV2ProfileEditorScreenTest : AbstractSecuredEndpointTest()
 
         verify(membershipManagerApi, never()).updateMemberAttribute(any())
         verify(cache, never()).put(any(), any())
+
+        assertNull(response.headers["x-language"])
     }
 }
