@@ -37,7 +37,7 @@
             {
               "type": "Text",
               "attributes": {
-                "caption": "Add a mobile account",
+                "caption": "Add Mobile Money account",
                 "color": "#1D7EDF",
                 "bold": true,
                 "size": 16.0,

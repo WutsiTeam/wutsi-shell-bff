@@ -155,8 +155,10 @@ class ProductV2Screen(
         return Text(
             caption = if (product.quantity == 0) {
                 getText("page.product.out-of-stock")
+            } else if (product.quantity == 1) {
+                getText("page.product.low-stock-1")
             } else {
-                getText("page.product.low-stock", arrayOf(product.quantity))
+                getText("page.product.low-stock-n", arrayOf(product.quantity))
             },
             color = if (product.quantity == 0) {
                 Theme.COLOR_DANGER
