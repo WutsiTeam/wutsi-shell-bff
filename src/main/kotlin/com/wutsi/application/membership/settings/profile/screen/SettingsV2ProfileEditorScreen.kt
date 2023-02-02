@@ -88,9 +88,7 @@ class SettingsV2ProfileEditorScreen(
             if (member.email.equals(request.value, true)) {
                 return ResponseEntity
                     .ok()
-                    .body(
-                        gotoPreviousScreen()
-                    )
+                    .body(gotoPreviousScreen())
             }
 
             val token = securityManagerApi.createOtp(
@@ -112,7 +110,7 @@ class SettingsV2ProfileEditorScreen(
                     gotoUrl(
                         url = urlBuilder.build("${Page.getSettingsUrl()}/profile/email/verification"),
                         replacement = true,
-                    )
+                    ),
                 )
         } else {
             val headers = HttpHeaders()
@@ -130,9 +128,7 @@ class SettingsV2ProfileEditorScreen(
             return ResponseEntity
                 .ok()
                 .headers(headers)
-                .body(
-                    gotoPreviousScreen()
-                )
+                .body(gotoPreviousScreen())
         }
     }
 }
