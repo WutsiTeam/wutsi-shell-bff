@@ -69,7 +69,7 @@
             {
               "type": "Text",
               "attributes": {
-                "caption": "Enter the code sent to {0}",
+                "caption": "Enter the code sent to info@maison-h.com",
                 "alignment": "Center"
               },
               "children": []
