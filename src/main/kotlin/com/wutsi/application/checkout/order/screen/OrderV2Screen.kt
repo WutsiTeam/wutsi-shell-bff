@@ -65,7 +65,7 @@ class OrderV2Screen(
         val order = checkoutManagerApi.getOrder(id).order
         val country = regulationEngine.country(order.business.country)
         val dateFormat = DateTimeFormatter.ofPattern(country.dateTimeFormat, LocaleContextHolder.getLocale())
-        val moneyFormat = DecimalFormat(country.monetaryFormat)
+        val moneyFormat = country.createMoneyFormat()
         val member = membershipManagerApi.getMember(SecurityUtil.getMemberId()).member
 
         return Screen(

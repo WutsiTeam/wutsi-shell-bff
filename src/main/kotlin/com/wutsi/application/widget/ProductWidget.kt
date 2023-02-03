@@ -161,6 +161,7 @@ class ProductWidget(
                             valueFontSize = Theme.TEXT_SIZE_DEFAULT,
                             currencyFontSize = Theme.TEXT_SIZE_SMALL,
                             bold = true,
+                            locale = country.locale,
                         ),
                     ),
                 ),

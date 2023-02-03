@@ -296,7 +296,7 @@
                                     {
                                       "type": "Text",
                                       "attributes": {
-                                        "caption": "Unit Price: 33,333 FCFA"
+                                        "caption": "Unit Price: 33 333 FCFA"
                                       },
                                       "children": []
                                     }
@@ -374,7 +374,7 @@
                             {
                               "type": "Text",
                               "attributes": {
-                                "caption": "120,000 FCFA",
+                                "caption": "120 000 FCFA",
                                 "alignment": "Right"
                               },
                               "children": []
@@ -432,7 +432,7 @@
                             {
                               "type": "Text",
                               "attributes": {
-                                "caption": "-20,000 FCFA",
+                                "caption": "-20 000 FCFA",
                                 "color": "#4CAF50",
                                 "alignment": "Right"
                               },
@@ -492,7 +492,7 @@
                             {
                               "type": "Text",
                               "attributes": {
-                                "caption": "100,000 FCFA",
+                                "caption": "100 000 FCFA",
                                 "color": "#1D7EDF",
                                 "bold": true,
                                 "size": 16.0,

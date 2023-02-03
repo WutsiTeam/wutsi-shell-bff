@@ -103,7 +103,8 @@
                                     "currency": "FCFA",
                                     "numberFormat": "#,###,##0 FCFA",
                                     "valueFontSize": 14.0,
-                                    "currencyFontSize": 10.0
+                                    "currencyFontSize": 10.0,
+                                    "locale": "fr_CM"
                                   },
                                   "children": []
                                 }
@@ -187,7 +188,8 @@
                                     "currency": "FCFA",
                                     "numberFormat": "#,###,##0 FCFA",
                                     "valueFontSize": 14.0,
-                                    "currencyFontSize": 10.0
+                                    "currencyFontSize": 10.0,
+                                    "locale": "fr_CM"
                                   },
                                   "children": []
                                 }
@@ -281,7 +283,8 @@
                                     "currency": "FCFA",
                                     "numberFormat": "#,###,##0 FCFA",
                                     "valueFontSize": 14.0,
-                                    "currencyFontSize": 10.0
+                                    "currencyFontSize": 10.0,
+                                    "locale": "fr_CM"
                                   },
                                   "children": []
                                 }
@@ -364,14 +367,15 @@
                                         "currency": "FCFA",
                                         "numberFormat": "#,###,##0 FCFA",
                                         "valueFontSize": 14.0,
-                                        "currencyFontSize": 10.0
+                                        "currencyFontSize": 10.0,
+                                        "locale": "fr_CM"
                                       },
                                       "children": []
                                     },
                                     {
                                       "type": "Text",
                                       "attributes": {
-                                        "caption": "2,500 FCFA",
+                                        "caption": "2 500 FCFA",
                                         "size": 10.0,
                                         "decoration": "Strikethrough"
                                       },
@@ -460,7 +464,8 @@
                                     "currency": "FCFA",
                                     "numberFormat": "#,###,##0 FCFA",
                                     "valueFontSize": 14.0,
-                                    "currencyFontSize": 10.0
+                                    "currencyFontSize": 10.0,
+                                    "locale": "fr_CM"
                                   },
                                   "children": []
                                 }

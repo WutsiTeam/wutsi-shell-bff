@@ -67,7 +67,7 @@
                                                 {
                                                   "type": "Text",
                                                   "attributes": {
-                                                    "caption": "100",
+                                                    "caption": "100 FCFA",
                                                     "color": "#1D7EDF",
                                                     "bold": true,
                                                     "size": 18.0,
@@ -145,7 +145,8 @@
                                                     "numberFormat": "#,###,##0",
                                                     "bold": true,
                                                     "valueFontSize": 18.0,
-                                                    "alignment": "Right"
+                                                    "alignment": "Right",
+                                                    "locale": "fr_CM"
                                                   },
                                                   "children": []
                                                 }
@@ -213,7 +214,7 @@
                                                 {
                                                   "type": "Text",
                                                   "attributes": {
-                                                    "caption": "0",
+                                                    "caption": "0 FCFA",
                                                     "color": "#1D7EDF",
                                                     "bold": true,
                                                     "size": 18.0,
@@ -601,7 +602,7 @@
                                                 {
                                                   "type": "Text",
                                                   "attributes": {
-                                                    "caption": "100",
+                                                    "caption": "100 FCFA",
                                                     "color": "#1D7EDF",
                                                     "bold": true,
                                                     "size": 18.0,
@@ -679,7 +680,8 @@
                                                     "numberFormat": "#,###,##0",
                                                     "bold": true,
                                                     "valueFontSize": 18.0,
-                                                    "alignment": "Right"
+                                                    "alignment": "Right",
+                                                    "locale": "fr_CM"
                                                   },
                                                   "children": []
                                                 }
@@ -747,7 +749,7 @@
                                                 {
                                                   "type": "Text",
                                                   "attributes": {
-                                                    "caption": "0",
+                                                    "caption": "0 FCFA",
                                                     "color": "#1D7EDF",
                                                     "bold": true,
                                                     "size": 18.0,

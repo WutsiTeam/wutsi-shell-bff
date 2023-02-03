@@ -437,7 +437,7 @@
                         {
                           "type": "Text",
                           "attributes": {
-                            "caption": "10,500 FCFA",
+                            "caption": "10 500 FCFA",
                             "alignment": "Left"
                           },
                           "children": []
@@ -565,7 +565,7 @@
                         {
                           "type": "Text",
                           "attributes": {
-                            "caption": "10,000 FCFA",
+                            "caption": "10 000 FCFA",
                             "alignment": "Left"
                           },
                           "children": []

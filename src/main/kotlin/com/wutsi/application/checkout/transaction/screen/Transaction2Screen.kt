@@ -30,7 +30,6 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
-import java.text.DecimalFormat
 import java.time.format.DateTimeFormatter
 
 @RestController
@@ -47,7 +46,7 @@ class Transaction2Screen(
     ): Widget {
         val member = membershipManagerApi.getMember(SecurityUtil.getMemberId()).member
         val country = regulationEngine.country(member.country)
-        val moneyFormat = DecimalFormat(country.monetaryFormat)
+        val moneyFormat = country.createMoneyFormat()
         val dateFormat = DateTimeFormatter.ofPattern(country.dateTimeFormat, LocaleContextHolder.getLocale())
         val tx = checkoutManagerApi.getTransaction(id, false).transaction
         val order = if (tx.orderId != null && hideOrder != true) {

@@ -146,14 +146,15 @@
                             "currency": "FCFA",
                             "numberFormat": "#,###,##0 FCFA",
                             "bold": true,
-                            "valueFontSize": 18.0
+                            "valueFontSize": 18.0,
+                            "locale": "fr_CM"
                           },
                           "children": []
                         },
                         {
                           "type": "Text",
                           "attributes": {
-                            "caption": "5,000 FCFA",
+                            "caption": "5 000 FCFA",
                             "decoration": "Strikethrough"
                           },
                           "children": []

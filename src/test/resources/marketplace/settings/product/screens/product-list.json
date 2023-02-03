@@ -187,7 +187,8 @@
                                                 "numberFormat": "#,###,##0 FCFA",
                                                 "bold": true,
                                                 "valueFontSize": 14.0,
-                                                "currencyFontSize": 10.0
+                                                "currencyFontSize": 10.0,
+                                                "locale": "fr_CM"
                                               },
                                               "children": []
                                             }
@@ -353,7 +354,8 @@
                                                 "numberFormat": "#,###,##0 FCFA",
                                                 "bold": true,
                                                 "valueFontSize": 14.0,
-                                                "currencyFontSize": 10.0
+                                                "currencyFontSize": 10.0,
+                                                "locale": "fr_CM"
                                               },
                                               "children": []
                                             }

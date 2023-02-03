@@ -9,7 +9,6 @@ import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.TextAlignment
 import com.wutsi.regulation.Country
-import java.text.DecimalFormat
 
 class KpiWidget(
     private val name: String,
@@ -33,10 +32,11 @@ class KpiWidget(
                                     bold = true,
                                     value = value.toDouble(),
                                     alignment = TextAlignment.Right,
+                                    locale = country.locale,
                                 )
                             } else {
                                 Text(
-                                    caption = DecimalFormat(country.numberFormat).format(value),
+                                    caption = country.createMoneyFormat().format(value),
                                     size = Theme.TEXT_SIZE_X_LARGE,
                                     color = Theme.COLOR_PRIMARY,
                                     bold = true,

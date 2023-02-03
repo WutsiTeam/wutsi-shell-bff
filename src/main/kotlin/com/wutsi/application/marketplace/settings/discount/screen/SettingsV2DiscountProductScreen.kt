@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
-import java.text.DecimalFormat
 
 @RestController
 @RequestMapping("/settings/2/discounts/products")
@@ -37,7 +36,7 @@ class SettingsV2DiscountProductScreen(
     fun index(@RequestParam id: Long): Widget {
         val member = getCurrentMember()
         val country = regulationEngine.country(member.country)
-        val fmt = DecimalFormat(country.monetaryFormat)
+        val fmt = country.createMoneyFormat()
         val discount = marketplaceManagerApi.getDiscount(id).discount
         val products = marketplaceManagerApi.searchProduct(
             request = SearchProductRequest(

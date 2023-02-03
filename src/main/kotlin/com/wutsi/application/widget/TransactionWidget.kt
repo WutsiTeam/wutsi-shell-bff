@@ -18,7 +18,6 @@ import com.wutsi.flutter.sdui.enums.TextAlignment
 import com.wutsi.platform.payment.core.Status
 import com.wutsi.regulation.Country
 import org.springframework.context.i18n.LocaleContextHolder
-import java.text.DecimalFormat
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 
@@ -49,7 +48,7 @@ class TransactionWidget(
     }
 
     override fun toWidgetAware(): WidgetAware {
-        val moneyFormat = DecimalFormat(country.monetaryFormat)
+        val moneyFormat = country.createMoneyFormat()
         val dateFormat = DateTimeFormatter.ofPattern(country.dateFormatShort, LocaleContextHolder.getLocale())
 
         return ListItem(

@@ -146,7 +146,7 @@
                                 {
                                   "type": "Text",
                                   "attributes": {
-                                    "caption": "1,000 FCFA",
+                                    "caption": "1 000 FCFA",
                                     "color": "#1D7EDF",
                                     "bold": true,
                                     "size": 16.0
@@ -396,7 +396,7 @@
                                 {
                                   "type": "Text",
                                   "attributes": {
-                                    "caption": "1,000 FCFA",
+                                    "caption": "1 000 FCFA",
                                     "color": "#1D7EDF",
                                     "bold": true,
                                     "size": 16.0
@@ -516,7 +516,7 @@
                                 {
                                   "type": "Text",
                                   "attributes": {
-                                    "caption": "1,500 FCFA",
+                                    "caption": "1 500 FCFA",
                                     "color": "#1D7EDF",
                                     "bold": true,
                                     "size": 16.0

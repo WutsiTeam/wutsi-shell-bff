@@ -23,7 +23,6 @@ import com.wutsi.regulation.RegulationEngine
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import java.text.DecimalFormat
 
 @RestController
 @RequestMapping("/settings/2/store/activate/pages/start")
@@ -47,7 +46,7 @@ class StoreEnable00StartPage(
     override fun getBody(): WidgetAware {
         val member = membershipManagerApi.getMember(SecurityUtil.getMemberId()).member
         val country = regulationEngine.country(member.country)
-        val fmt = DecimalFormat(country.monetaryFormat)
+        val fmt = country.createMoneyFormat()
         return Column(
             children = listOf(
                 toRowWidget(getText("page.settings.store.activate.start.setup-fees"), fmt.format(0.0)),

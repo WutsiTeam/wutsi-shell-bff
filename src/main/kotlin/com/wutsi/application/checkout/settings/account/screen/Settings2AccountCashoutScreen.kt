@@ -31,7 +31,6 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import java.text.DecimalFormat
 import java.util.UUID
 
 @RestController
@@ -55,7 +54,7 @@ class Settings2AccountCashoutScreen(
             ),
         ).paymentMethods
         val country = regulationEngine.country(business.country)
-        val fmt = DecimalFormat(country.monetaryFormat)
+        val fmt = country.createMoneyFormat()
 
         return Screen(
             id = Page.SETTINGS_ACCOUNT_CASHOUT,
@@ -79,6 +78,7 @@ class Settings2AccountCashoutScreen(
                                 currency = country.currencySymbol,
                                 color = Theme.COLOR_PRIMARY,
                                 numberFormat = country.numberFormat,
+                                locale = country.locale,
                             ),
                         ),
                         Divider(color = Theme.COLOR_DIVIDER, height = 1.0),

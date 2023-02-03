@@ -40,7 +40,8 @@
                     "value": 250000.0,
                     "color": "#1D7EDF",
                     "currency": "FCFA",
-                    "numberFormat": "#,###,##0"
+                    "numberFormat": "#,###,##0",
+                    "locale": "fr_CM"
                   },
                   "children": []
                 }
@@ -165,7 +166,7 @@
   "appBar": {
     "type": "AppBar",
     "attributes": {
-      "title": "Balance: 30,000 FCFA",
+      "title": "Balance: 30 000 FCFA",
       "elevation": 0.0,
       "backgroundColor": "#FFFFFF",
       "foregroundColor": "#000000"

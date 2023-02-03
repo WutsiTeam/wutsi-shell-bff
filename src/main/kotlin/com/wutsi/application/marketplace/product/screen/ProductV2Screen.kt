@@ -45,7 +45,6 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
-import java.text.DecimalFormat
 import java.time.format.DateTimeFormatter
 
 @RestController
@@ -177,6 +176,7 @@ class ProductV2Screen(
             value = price.price.toDouble(),
             numberFormat = country.monetaryFormat,
             bold = true,
+            locale = country.locale,
         )
         return Container(
             padding = 10.0,
@@ -194,7 +194,7 @@ class ProductV2Screen(
                             children = listOf(
                                 widget,
                                 Text(
-                                    caption = DecimalFormat(country.monetaryFormat).format(price.referencePrice),
+                                    caption = country.createMoneyFormat().format(price.referencePrice),
                                     decoration = TextDecoration.Strikethrough,
                                 ),
                             ),

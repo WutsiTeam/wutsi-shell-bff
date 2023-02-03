@@ -34,7 +34,6 @@ import com.wutsi.platform.core.image.ImageService
 import com.wutsi.platform.core.image.Transformation
 import com.wutsi.regulation.Country
 import com.wutsi.regulation.RegulationEngine
-import java.text.DecimalFormat
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 
@@ -264,6 +263,7 @@ class OfferWidget(
             numberFormat = country.monetaryFormat,
             valueFontSize = Theme.TEXT_SIZE_DEFAULT,
             currencyFontSize = Theme.TEXT_SIZE_SMALL,
+            locale = country.locale,
         )
 
         return if (referencePrice == null) {
@@ -276,7 +276,7 @@ class OfferWidget(
                 children = listOf(
                     widget,
                     Text(
-                        caption = DecimalFormat(country.monetaryFormat).format(referencePrice),
+                        caption = country.createMoneyFormat().format(referencePrice),
                         decoration = TextDecoration.Strikethrough,
                         size = Theme.TEXT_SIZE_SMALL,
                     ),

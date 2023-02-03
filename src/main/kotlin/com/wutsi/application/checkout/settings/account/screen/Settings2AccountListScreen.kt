@@ -82,6 +82,7 @@ class Settings2AccountListScreen(
                         currency = country.currencySymbol,
                         color = Theme.COLOR_PRIMARY,
                         numberFormat = country.numberFormat,
+                        locale = country.locale,
                     ),
                 ),
                 Container(
