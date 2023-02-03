@@ -126,37 +126,7 @@ class HomeV2Screen(
                         Button(
                             caption = getText("page.home.button.business-account"),
                             action = gotoUrl(
-                                url = urlBuilder.build(Page.getSettingsBusinessUrl()),
-                            ),
-                        ),
-                    ),
-                ),
-            )
-        } else if (member.storeId == null && regulationEngine.country(member.country).supportsStore) {
-            return Container(
-                padding = 10.0,
-                margin = 10.0,
-                borderRadius = 10.0,
-                border = 1.0,
-                borderColor = Theme.COLOR_PRIMARY,
-                background = Theme.COLOR_PRIMARY_LIGHT,
-                child = Column(
-                    children = listOf(
-                        Text(
-                            caption = getText("page.home.enable-store-1"),
-                            size = Theme.TEXT_SIZE_LARGE,
-                            bold = true,
-                        ),
-                        Container(padding = 10.0),
-                        Text(
-                            caption = getText("page.home.enable-store-2"),
-                            size = Theme.TEXT_SIZE_LARGE,
-                        ),
-                        Container(padding = 10.0),
-                        Button(
-                            caption = getText("page.home.button.enable-store"),
-                            action = gotoUrl(
-                                url = urlBuilder.build(Page.getSettingsUrl()),
+                                url = urlBuilder.build("${Page.getSettingsBusinessUrl()}?from-home=1"),
                             ),
                         ),
                     ),

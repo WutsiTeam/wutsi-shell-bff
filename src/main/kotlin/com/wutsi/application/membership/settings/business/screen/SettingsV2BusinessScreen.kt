@@ -7,6 +7,7 @@ import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Widget
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
@@ -28,14 +29,22 @@ class SettingsV2BusinessScreen : AbstractEndpoint() {
     }
 
     @PostMapping
-    fun index(): Widget {
+    fun index(@RequestParam(name = "from-home", required = false) fromHome: String? = null): Widget {
         return Screen(
             id = Page.SETTINGS_BUSINESS,
             safe = true,
             appBar = null,
             child = PageView(
                 children = PAGE_URLS.map {
-                    com.wutsi.flutter.sdui.Page(url = urlBuilder.build(it))
+                    com.wutsi.flutter.sdui.Page(
+                        url = urlBuilder.build(
+                            path = if (fromHome != null) {
+                                "$it?from-home=$fromHome"
+                            } else {
+                                it
+                            },
+                        ),
+                    )
                 },
             ),
         ).toWidget()

@@ -13,4 +13,8 @@ internal class SettingsV2BusinessScreenTest : AbstractSecuredEndpointTest() {
 
     @Test
     fun index() = assertEndpointEquals("/membership/settings/business/screens/index.json", url())
+
+    @Test
+    fun fromHome() =
+        assertEndpointEquals("/membership/settings/business/screens/from-home.json", "${url()}?from-home=1")
 }
