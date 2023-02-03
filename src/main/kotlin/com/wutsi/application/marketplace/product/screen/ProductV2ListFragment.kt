@@ -65,7 +65,7 @@ class ProductV2ListFragment(
                     ),
                     Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
 
-                    if (id == SecurityUtil.getMemberId()) {
+                    if (id == SecurityUtil.getMemberId() && offers.isEmpty()) {
                         Container(
                             padding = 10.0,
                             child = Button(
