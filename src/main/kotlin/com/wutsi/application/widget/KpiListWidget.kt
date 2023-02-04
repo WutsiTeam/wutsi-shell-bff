@@ -33,7 +33,7 @@ class KpiListWidget(
                         name = WidgetL10n.getText("widget.kpi.views"),
                         value = business.totalViews,
                         country = country,
-                        money = false
+                        money = false,
                     ),
                 ),
             )
