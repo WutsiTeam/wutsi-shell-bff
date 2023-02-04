@@ -24,6 +24,7 @@ import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.TextDecoration
 import com.wutsi.membership.manager.dto.Member
 import com.wutsi.platform.core.image.ImageService
+import com.wutsi.regulation.CountryNotSupportedException
 import com.wutsi.regulation.RegulationEngine
 import feign.FeignException
 import org.slf4j.LoggerFactory
@@ -102,37 +103,41 @@ class HomeV2Screen(
         )
 
     private fun toBusinessAccountWidget(member: Member): WidgetAware? {
-        if (!member.business && regulationEngine.country(member.country).supportsBusinessAccount) {
-            return Container(
-                padding = 10.0,
-                margin = 10.0,
-                borderRadius = 10.0,
-                border = 1.0,
-                borderColor = Theme.COLOR_PRIMARY,
-                background = Theme.COLOR_PRIMARY_LIGHT,
-                child = Column(
-                    children = listOf(
-                        Text(
-                            caption = getText("page.home.create-business-account-1"),
-                            size = Theme.TEXT_SIZE_LARGE,
-                            bold = true,
-                        ),
-                        Container(padding = 10.0),
-                        Text(
-                            caption = getText("page.home.create-business-account-2"),
-                            size = Theme.TEXT_SIZE_LARGE,
-                        ),
-                        Container(padding = 10.0),
-                        Button(
-                            caption = getText("page.home.button.business-account"),
-                            action = gotoUrl(
-                                url = urlBuilder.build("${Page.getSettingsBusinessUrl()}?from-home=1"),
+        try {
+            if (!member.business && regulationEngine.country(member.country).supportsBusinessAccount) {
+                return Container(
+                    padding = 10.0,
+                    margin = 10.0,
+                    borderRadius = 10.0,
+                    border = 1.0,
+                    borderColor = Theme.COLOR_PRIMARY,
+                    background = Theme.COLOR_PRIMARY_LIGHT,
+                    child = Column(
+                        children = listOf(
+                            Text(
+                                caption = getText("page.home.create-business-account-1"),
+                                size = Theme.TEXT_SIZE_LARGE,
+                                bold = true,
+                            ),
+                            Container(padding = 10.0),
+                            Text(
+                                caption = getText("page.home.create-business-account-2"),
+                                size = Theme.TEXT_SIZE_LARGE,
+                            ),
+                            Container(padding = 10.0),
+                            Button(
+                                caption = getText("page.home.button.business-account"),
+                                action = gotoUrl(
+                                    url = urlBuilder.build("${Page.getSettingsBusinessUrl()}?from-home=1"),
+                                ),
                             ),
                         ),
                     ),
-                ),
-            )
-        } else {
+                )
+            } else {
+                return null
+            }
+        } catch (ex: CountryNotSupportedException) {
             return null
         }
     }

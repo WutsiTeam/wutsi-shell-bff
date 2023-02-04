@@ -62,6 +62,26 @@ internal class HomeV2ScreenTest : AbstractSecuredEndpointTest() {
     }
 
     @Test
+    fun unsupportedCountry() {
+        // GIVEN
+        val businessId = 5555L
+        member = Fixtures.createMember(MEMBER_ID, business = false, country = "CA")
+        doReturn(GetMemberResponse(member)).whenever(membershipManagerApi).getMember(MEMBER_ID)
+
+        val business = Fixtures.createBusiness(businessId, MEMBER_ID)
+        doReturn(GetBusinessResponse(business)).whenever(checkoutManagerApi).getBusiness(any())
+
+        val orders = listOf(
+            Fixtures.createOrderSummary(id = "11", totalPrice = 15000, status = OrderStatus.OPENED),
+            Fixtures.createOrderSummary(id = "22", totalPrice = 25000, status = OrderStatus.OPENED),
+        )
+        doReturn(SearchOrderResponse(orders)).whenever(checkoutManagerApi).searchOrder(any())
+
+        // THEN
+        assertEndpointEquals("/home/screens/country-not-supported.json", url())
+    }
+
+    @Test
     fun `redirect on onboard page if member not found`() {
         val ex = createNotFoundException(errorCode = ErrorURN.MEMBER_NOT_FOUND.urn)
         doThrow(ex).whenever(membershipManagerApi).getMember(any())
