@@ -21,6 +21,7 @@ class KpiListWidget(
                         name = WidgetL10n.getText("widget.kpi.orders"),
                         value = business.totalOrders,
                         country = country,
+                        money = false,
                     ),
                     KpiWidget(
                         name = WidgetL10n.getText("widget.kpi.sales"),
@@ -32,6 +33,7 @@ class KpiListWidget(
                         name = WidgetL10n.getText("widget.kpi.views"),
                         value = business.totalViews,
                         country = country,
+                        money = false
                     ),
                 ),
             )
@@ -55,6 +57,7 @@ class KpiListWidget(
                         name = WidgetL10n.getText("widget.kpi.views"),
                         value = product.totalViews,
                         country = country,
+                        money = false,
                     ),
                 ),
             )
@@ -78,6 +81,7 @@ class KpiListWidget(
                         name = WidgetL10n.getText("widget.kpi.views"),
                         value = kpi.totalViews,
                         country = country,
+                        money = false,
                     ),
                 ),
             )

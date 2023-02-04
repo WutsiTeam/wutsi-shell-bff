@@ -109,7 +109,7 @@ class ProductWidget(
                         maxLines = 3,
                         size = Theme.TEXT_SIZE_DEFAULT,
 
-                    ),
+                        ),
                     Container(padding = 5.0),
                     Text(
                         caption = getText(
@@ -118,7 +118,7 @@ class ProductWidget(
                         ),
                         size = Theme.TEXT_SIZE_SMALL,
 
-                    ),
+                        ),
                     quantity?.let {
                         Text(
                             caption = getText("widget.product-card.quantity", arrayOf(it)),
@@ -157,7 +157,7 @@ class ProductWidget(
                             color = Theme.COLOR_PRIMARY,
                             value = it.toDouble(),
                             currency = country.currencySymbol,
-                            numberFormat = country.monetaryFormat,
+                            numberFormat = country.numberFormat,
                             valueFontSize = Theme.TEXT_SIZE_DEFAULT,
                             currencyFontSize = Theme.TEXT_SIZE_SMALL,
                             bold = true,

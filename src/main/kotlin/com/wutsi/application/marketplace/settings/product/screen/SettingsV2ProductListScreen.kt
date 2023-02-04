@@ -71,7 +71,7 @@ class SettingsV2ProductListScreen(
                             alignment = TextAlignment.Center,
                         ),
                     ),
-                    Divider(color = Theme.COLOR_DIVIDER),
+                    Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
                     Flexible(
                         child = ListView(
                             children = products.map {

@@ -36,7 +36,7 @@ class KpiWidget(
                                 )
                             } else {
                                 Text(
-                                    caption = country.createMoneyFormat().format(value),
+                                    caption = country.createNumberFormat().format(value),
                                     size = Theme.TEXT_SIZE_X_LARGE,
                                     color = Theme.COLOR_PRIMARY,
                                     bold = true,

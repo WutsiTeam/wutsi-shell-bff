@@ -28,6 +28,7 @@
         {
           "type": "Divider",
           "attributes": {
+            "height": 1.0,
             "color": "#8c8c8c"
           },
           "children": []
@@ -184,7 +185,7 @@
                                                 "value": 15000.0,
                                                 "color": "#1D7EDF",
                                                 "currency": "FCFA",
-                                                "numberFormat": "#,###,##0 FCFA",
+                                                "numberFormat": "#,###,##0",
                                                 "bold": true,
                                                 "valueFontSize": 14.0,
                                                 "currencyFontSize": 10.0,
@@ -351,7 +352,7 @@
                                                 "value": 15000.0,
                                                 "color": "#1D7EDF",
                                                 "currency": "FCFA",
-                                                "numberFormat": "#,###,##0 FCFA",
+                                                "numberFormat": "#,###,##0",
                                                 "bold": true,
                                                 "valueFontSize": 14.0,
                                                 "currencyFontSize": 10.0,

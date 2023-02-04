@@ -60,7 +60,6 @@ import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.multipart.MultipartFile
 import java.nio.file.Files
 import java.nio.file.Path
-import java.text.DecimalFormat
 import java.time.Clock
 import java.time.LocalDate
 import java.time.OffsetDateTime
@@ -124,7 +123,7 @@ class SettingsV2ProductScreen(
 
     private fun toInfoTab(product: Product, member: Member): WidgetAware {
         val country = regulationEngine.country(member.country)
-        val price = product.price?.let { DecimalFormat(country.monetaryFormat).format(it) }
+        val price = product.price?.let { country.createMoneyFormat().format(it) }
         val dateFormat = DateTimeFormatter.ofPattern(country.dateTimeFormat, LocaleContextHolder.getLocale())
 
         return Column(

@@ -305,7 +305,7 @@
                           "type": "ListItem",
                           "attributes": {
                             "caption": "Price",
-                            "subCaption": "20,000 FCFA",
+                            "subCaption": "20 000 FCFA",
                             "trailing": {
                               "type": "Icon",
                               "attributes": {
@@ -869,7 +869,7 @@
                                                 {
                                                   "type": "Text",
                                                   "attributes": {
-                                                    "caption": "100 FCFA",
+                                                    "caption": "100",
                                                     "color": "#1D7EDF",
                                                     "bold": true,
                                                     "size": 18.0,
@@ -1016,7 +1016,7 @@
                                                 {
                                                   "type": "Text",
                                                   "attributes": {
-                                                    "caption": "0 FCFA",
+                                                    "caption": "0",
                                                     "color": "#1D7EDF",
                                                     "bold": true,
                                                     "size": 18.0,
