@@ -75,6 +75,7 @@ class SettingsV2ProductEditorFileScreen(
                             url = "$assetUrl/images/file-types/$it.png",
                         )
                     },
+                    action = navigateTo(it.url),
                 )
             },
         )

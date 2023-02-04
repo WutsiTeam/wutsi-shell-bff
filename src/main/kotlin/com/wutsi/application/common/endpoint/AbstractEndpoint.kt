@@ -8,6 +8,7 @@ import com.wutsi.application.widget.BottomNavigationBarWidget
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.Dialog
 import com.wutsi.flutter.sdui.enums.ActionType
+import com.wutsi.flutter.sdui.enums.ActionType.Navigate
 import com.wutsi.flutter.sdui.enums.ActionType.Prompt
 import com.wutsi.flutter.sdui.enums.ActionType.Route
 import com.wutsi.flutter.sdui.enums.DialogType
@@ -115,6 +116,11 @@ abstract class AbstractEndpoint {
                 ).toWidget()
             },
         )
+
+    protected fun navigateTo(url: String) = Action(
+        type = Navigate,
+        url = url,
+    )
 
     protected fun gotoLogin(
         phoneNumber: String,

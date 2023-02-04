@@ -94,7 +94,11 @@
                       "children": []
                     }
                   },
-                  "children": []
+                  "children": [],
+                  "action": {
+                    "type": "Navigate",
+                    "url": "https://www.img.com/1.png"
+                  }
                 },
                 {
                   "type": "ListItem",
@@ -144,7 +148,11 @@
                       "children": []
                     }
                   },
-                  "children": []
+                  "children": [],
+                  "action": {
+                    "type": "Navigate",
+                    "url": "https://www.img.com/2.png"
+                  }
                 },
                 {
                   "type": "ListItem",
@@ -194,7 +202,11 @@
                       "children": []
                     }
                   },
-                  "children": []
+                  "children": [],
+                  "action": {
+                    "type": "Navigate",
+                    "url": "https://www.img.com/3.png"
+                  }
                 },
                 {
                   "type": "ListItem",
@@ -244,7 +256,11 @@
                       "children": []
                     }
                   },
-                  "children": []
+                  "children": [],
+                  "action": {
+                    "type": "Navigate",
+                    "url": "https://www.img.com/4.png"
+                  }
                 },
                 {
                   "type": "ListItem",
@@ -294,7 +310,11 @@
                       "children": []
                     }
                   },
-                  "children": []
+                  "children": [],
+                  "action": {
+                    "type": "Navigate",
+                    "url": "https://www.img.com/5.png"
+                  }
                 }
               ]
             }
