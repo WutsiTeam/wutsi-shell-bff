@@ -110,7 +110,7 @@ class Onboard05ReviewPage(
                                 caption = getText("page.final.button.view-terms"),
                                 action = Action(
                                     type = ActionType.Navigate,
-                                    url = "$websiteUrl/terms-and-conditions/",
+                                    url = getTermOfServiceUrl(data.language),
                                 ),
                                 type = ButtonType.Text,
                             ),
@@ -146,4 +146,11 @@ class Onboard05ReviewPage(
         }
         return gotoPage(PAGE_INDEX + 1)
     }
+
+    private fun getTermOfServiceUrl(language: String): String =
+        if (language == "fr") {
+            "$websiteUrl/confidentialite/"
+        } else {
+            "$websiteUrl/terms-and-conditions/"
+        }
 }
