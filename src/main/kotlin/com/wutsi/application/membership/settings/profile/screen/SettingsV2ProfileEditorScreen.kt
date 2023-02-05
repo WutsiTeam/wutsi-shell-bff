@@ -37,6 +37,7 @@ class SettingsV2ProfileEditorScreen(
     @PostMapping
     fun index(@RequestParam name: String): Widget {
         val member = getCurrentMember()
+        val attribute = if (name == "display-name" && member.business) "business-name" else name
         return Screen(
             id = Page.SETTINGS_PROFILE_EDITOR,
             backgroundColor = Theme.COLOR_WHITE,
@@ -44,7 +45,7 @@ class SettingsV2ProfileEditorScreen(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.settings.profile.attribute.$name"),
+                title = getText("page.settings.profile.attribute.$attribute"),
             ),
             child = Form(
                 children = listOf(
@@ -52,7 +53,7 @@ class SettingsV2ProfileEditorScreen(
                         padding = 10.0,
                         alignment = Alignment.Center,
                         child = Text(
-                            getText("page.settings.profile.attribute.$name.description"),
+                            getText("page.settings.profile.attribute.$attribute.description"),
                         ),
                     ),
                     Container(

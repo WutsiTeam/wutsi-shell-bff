@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController
 class Business01DisplayNamePage : AbstractBusinessAttributePage() {
     companion object {
         const val PAGE_INDEX = 1
-        const val ATTRIBUTE = "display-name"
+        const val ATTRIBUTE = "business-name"
     }
 
     override fun getPageIndex(): Int = PAGE_INDEX
@@ -25,7 +25,7 @@ class Business01DisplayNamePage : AbstractBusinessAttributePage() {
 
     override fun getBody() = Container(
         padding = 10.0,
-        child = widgetProvider.get(getAttribute(), dao.get().displayName),
+        child = widgetProvider.get("display-name", dao.get().displayName),
     )
 
     override fun getButton() = Input(

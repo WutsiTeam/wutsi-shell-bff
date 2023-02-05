@@ -27,6 +27,14 @@ internal class SettingsV2ProfileScreenTest : AbstractSecuredEndpointTest() {
     fun personal() = assertEndpointEquals("/membership/settings/profile/screens/personal.json", url())
 
     @Test
+    fun business() {
+        val member = Fixtures.createMember(business = true)
+        doReturn(GetMemberResponse(member)).whenever(membershipManagerApi).getMember(any())
+
+        assertEndpointEquals("/membership/settings/profile/screens/business.json", url())
+    }
+
+    @Test
     fun businessNotSupported() {
         val member = Fixtures.createMember(country = "NZ")
         doReturn(GetMemberResponse(member)).whenever(membershipManagerApi).getMember(any())

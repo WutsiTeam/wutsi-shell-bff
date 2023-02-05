@@ -44,11 +44,19 @@ class SettingsV2ProfileScreen(
         val locale = LocaleContextHolder.getLocale()
         children.addAll(
             listOf(
-                listItem(
-                    "page.settings.profile.attribute.display-name",
-                    member.displayName,
-                    "${Page.getSettingsProfileEditorUrl()}?name=display-name",
-                ),
+                if (member.business) {
+                    listItem(
+                        "page.settings.profile.attribute.business-name",
+                        member.displayName,
+                        "${Page.getSettingsProfileEditorUrl()}?name=display-name",
+                    )
+                } else {
+                    listItem(
+                        "page.settings.profile.attribute.display-name",
+                        member.displayName,
+                        "${Page.getSettingsProfileEditorUrl()}?name=display-name",
+                    )
+                },
                 listItem(
                     "page.settings.profile.attribute.email",
                     member.email,

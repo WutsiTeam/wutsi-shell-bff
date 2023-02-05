@@ -12,6 +12,7 @@ import com.wutsi.application.membership.settings.profile.dto.SubmitProfileAttrib
 import com.wutsi.application.membership.settings.profile.entity.EmailEntity
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
+import com.wutsi.membership.manager.dto.GetMemberResponse
 import com.wutsi.membership.manager.dto.SearchPlaceResponse
 import com.wutsi.membership.manager.dto.UpdateMemberAttributeRequest
 import com.wutsi.security.manager.dto.CreateOTPResponse
@@ -32,6 +33,14 @@ internal class SettingsV2ProfileEditorScreenTest : AbstractSecuredEndpointTest()
     @Test
     fun `display-name`() =
         assertEndpointEquals("/membership/settings/profile/screens/editor-display-name.json", url("display-name"))
+
+    @Test
+    fun `business-name`() {
+        val member = Fixtures.createMember(business = true)
+        doReturn(GetMemberResponse(member)).whenever(membershipManagerApi).getMember(any())
+
+        assertEndpointEquals("/membership/settings/profile/screens/editor-business-name.json", url("display-name"))
+    }
 
     @Test
     fun `email`() =
