@@ -35,7 +35,7 @@ class Business09SuccessPage : AbstractSuccessPageEndpoint() {
                 caption = getText("page.settings.business.button.not-now"),
                 action = gotoPreviousScreen(),
                 type = ButtonType.Outlined,
-            )
-        )
+            ),
+        ),
     )
 }
