@@ -69,7 +69,7 @@
             {
               "type": "Text",
               "attributes": {
-                "caption": "Enter your business neme",
+                "caption": "Enter your business name",
                 "alignment": "Center"
               },
               "children": []

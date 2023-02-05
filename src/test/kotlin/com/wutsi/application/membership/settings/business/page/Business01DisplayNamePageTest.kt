@@ -42,7 +42,9 @@ internal class Business01DisplayNamePageTest : AbstractSecuredEndpointTest() {
         "http://localhost:$port${Page.getSettingsBusinessUrl()}/pages/display-name$action"
 
     @Test
-    fun index() = assertEndpointEquals("/membership/settings/business/pages/display-name.json", url())
+    fun index() {
+        assertEndpointEquals("/membership/settings/business/pages/display-name.json", url())
+    }
 
     @Test
     fun submit() {
