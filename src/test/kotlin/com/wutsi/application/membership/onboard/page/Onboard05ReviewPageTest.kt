@@ -27,7 +27,7 @@ internal class Onboard05ReviewPageTest : AbstractEndpointTest() {
     private val entity = OnboardEntity(
         phoneNumber = PHONE_NUMBER,
         country = "CM",
-        language = "fr",
+        language = "en",
         displayName = "Ray Sponsible",
         pin = "123456",
     )
