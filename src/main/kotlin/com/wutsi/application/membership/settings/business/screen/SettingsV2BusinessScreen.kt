@@ -37,13 +37,7 @@ class SettingsV2BusinessScreen : AbstractEndpoint() {
             child = PageView(
                 children = PAGE_URLS.map {
                     com.wutsi.flutter.sdui.Page(
-                        url = urlBuilder.build(
-                            path = if (fromHome != null) {
-                                "$it?from-home=$fromHome"
-                            } else {
-                                it
-                            },
-                        ),
+                        url = urlBuilder.build(it),
                     )
                 },
             ),

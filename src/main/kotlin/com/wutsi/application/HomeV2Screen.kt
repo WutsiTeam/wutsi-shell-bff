@@ -128,7 +128,7 @@ class HomeV2Screen(
                             Button(
                                 caption = getText("page.home.button.business-account"),
                                 action = gotoUrl(
-                                    url = urlBuilder.build("${Page.getSettingsBusinessUrl()}?from-home=1"),
+                                    url = urlBuilder.build(Page.getSettingsBusinessUrl()),
                                 ),
                             ),
                         ),

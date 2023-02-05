@@ -14,8 +14,4 @@ internal class Business09SuccessPageTest : AbstractSecuredEndpointTest() {
 
     @Test
     fun index() = assertEndpointEquals("/membership/settings/business/pages/success.json", url())
-
-    @Test
-    fun indexFromHome() =
-        assertEndpointEquals("/membership/settings/business/pages/success-from-home.json", "${url()}?from-home=1")
 }
