@@ -28,13 +28,13 @@ class Business09SuccessPage : AbstractSuccessPageEndpoint() {
                 caption = getText("page.settings.business.button.done"),
                 action = gotoUrl(
                     replacement = true,
-                    url = urlBuilder.build(Page.getSettingsStoreUrl()),
+                    url = urlBuilder.build(Page.getSettingsStoreActivateUrl()),
                 ),
             ),
             Button(
                 caption = getText("page.settings.business.button.not-now"),
                 action = gotoPreviousScreen(),
-                type = ButtonType.Outlined,
+                type = ButtonType.Text,
             ),
         ),
     )
