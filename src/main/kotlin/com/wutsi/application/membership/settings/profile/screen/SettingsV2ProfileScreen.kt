@@ -88,22 +88,22 @@ class SettingsV2ProfileScreen(
                     ),
                     listItem(
                         "page.settings.profile.attribute.facebook-id",
-                        member.facebookId?.let { "https://www.facebook.com/${member.facebookId}" },
+                        member.facebookId?.let { "https://www.facebook.com/${it.lowercase()}" },
                         "${Page.getSettingsProfileEditorUrl()}?name=facebook-id",
                     ),
                     listItem(
                         "page.settings.profile.attribute.instagram-id",
-                        member.instagramId?.let { "https://www.instagram.com/${member.instagramId}" },
+                        member.instagramId?.let { "https://www.instagram.com/${it.lowercase()}" },
                         "${Page.getSettingsProfileEditorUrl()}?name=instagram-id",
                     ),
                     listItem(
                         "page.settings.profile.attribute.twitter-id",
-                        member.twitterId?.let { "https://www.twitter.com/${member.twitterId}" },
+                        member.twitterId?.let { "https://www.twitter.com/${it.lowercase()}" },
                         "${Page.getSettingsProfileEditorUrl()}?name=twitter-id",
                     ),
                     listItem(
                         "page.settings.profile.attribute.youtube-id",
-                        member.twitterId?.let { "https://www.youtube.com/@${member.youtubeId}" },
+                        member.twitterId?.let { "https://www.youtube.com/@${it.lowercase()}" },
                         "${Page.getSettingsProfileEditorUrl()}?name=youtube-id",
                     ),
                     ListItemSwitch(
