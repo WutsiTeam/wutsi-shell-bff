@@ -106,31 +106,30 @@ class SettingsV2ProductEditorEventScreen(
                                 value = ends?.format(timeFormat),
                             ),
                         ),
-//                        Container(
-//                            padding = 10.0,
-//                            child = DropdownButton(
-//                                name = "online",
-//                                hint = getText("page.settings.catalog.event.type"),
-//                                value = product.event?.online?.let { it.toString() } ?: "true",
-//                                children = listOf(
-//                                    DropdownMenuItem(
-//                                        caption = getText("page.settings.catalog.event.online"),
-//                                        value = "true",
-//                                    ),
-//                                    DropdownMenuItem(
-//                                        caption = getText("page.settings.catalog.event.offline"),
-//                                        value = "false",
-//                                    ),
-//                                ),
-//                            ),
-//                        ),
+                        Container(
+                            padding = 10.0,
+                            child = DropdownButton(
+                                name = "online",
+                                hint = getText("page.settings.catalog.event.type"),
+                                value = product.event?.online?.let { it.toString() } ?: "true",
+                                children = listOf(
+                                    DropdownMenuItem(
+                                        caption = getText("page.settings.catalog.event.online"),
+                                        value = "true",
+                                    ),
+                                    DropdownMenuItem(
+                                        caption = getText("page.settings.catalog.event.offline"),
+                                        value = "false",
+                                    ),
+                                ),
+                            ),
+                        ),
                         Container(
                             padding = 10.0,
                             child = DropdownButton(
                                 name = "meetingProviderId",
                                 hint = getText("page.settings.catalog.event.provider"),
                                 value = product.event?.meetingProvider?.let { it.id.toString() },
-                                required = true,
                                 children = providers,
                             ),
                         ),
@@ -141,7 +140,6 @@ class SettingsV2ProductEditorEventScreen(
                                 maxLength = 30,
                                 caption = getText("page.settings.catalog.event.meeting-id"),
                                 value = product.event?.meetingId,
-                                required = true,
                             ),
                         ),
                         Container(
