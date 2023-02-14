@@ -95,42 +95,6 @@
                 {
                   "type": "DropdownButton",
                   "attributes": {
-                    "name": "online",
-                    "value": "true",
-                    "hint": "Online or Offline"
-                  },
-                  "children": [
-                    {
-                      "type": "DropdownMenuItem",
-                      "attributes": {
-                        "caption": "Online Event",
-                        "enabled": true,
-                        "value": "true"
-                      },
-                      "children": []
-                    },
-                    {
-                      "type": "DropdownMenuItem",
-                      "attributes": {
-                        "caption": "Offline Event",
-                        "enabled": true,
-                        "value": "false"
-                      },
-                      "children": []
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "Container",
-              "attributes": {
-                "padding": 10.0
-              },
-              "children": [
-                {
-                  "type": "DropdownButton",
-                  "attributes": {
                     "name": "meetingProviderId",
                     "value": "1000",
                     "hint": "Select the meeting provider (Required)",

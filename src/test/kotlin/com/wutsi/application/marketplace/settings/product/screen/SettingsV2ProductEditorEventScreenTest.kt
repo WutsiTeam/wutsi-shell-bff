@@ -80,7 +80,6 @@ internal class SettingsV2ProductEditorEventScreenTest : AbstractSecuredEndpointT
     @Test
     fun submit() {
         val request = SubmitProductEventRequest(
-            online = true,
             meetingId = "1234567890",
             meetingPassword = "123456",
             startDate = "2020-12-11",
@@ -100,7 +99,7 @@ internal class SettingsV2ProductEditorEventScreenTest : AbstractSecuredEndpointT
         verify(marketplaceManagerApi).updateProductEvent(
             request = UpdateProductEventRequest(
                 productId = productId,
-                online = request.online,
+                online = true,
                 meetingProviderId = request.meetingProviderId,
                 meetingPassword = request.meetingPassword,
                 meetingId = request.meetingId,
