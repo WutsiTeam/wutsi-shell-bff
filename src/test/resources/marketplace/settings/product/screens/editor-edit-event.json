@@ -133,7 +133,7 @@
                   "attributes": {
                     "name": "meetingProviderId",
                     "value": "1000",
-                    "hint": "Select the meeting provider (Required)"
+                    "hint": "Meeting provider"
                   },
                   "children": [
                     {
@@ -182,7 +182,7 @@
                     "value": "1234567890",
                     "hideText": false,
                     "required": false,
-                    "caption": "Meeting ID (Required)",
+                    "caption": "Meeting ID",
                     "enabled": true,
                     "readOnly": false,
                     "type": "Text",

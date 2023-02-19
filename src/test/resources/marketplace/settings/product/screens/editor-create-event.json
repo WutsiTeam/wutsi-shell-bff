@@ -129,7 +129,7 @@
                   "type": "DropdownButton",
                   "attributes": {
                     "name": "meetingProviderId",
-                    "hint": "Select the meeting provider (Required)"
+                    "hint": "Meeting provider"
                   },
                   "children": [
                     {
@@ -178,7 +178,7 @@
                     "value": "",
                     "hideText": false,
                     "required": false,
-                    "caption": "Meeting ID (Required)",
+                    "caption": "Meeting ID",
                     "enabled": true,
                     "readOnly": false,
                     "type": "Text",
