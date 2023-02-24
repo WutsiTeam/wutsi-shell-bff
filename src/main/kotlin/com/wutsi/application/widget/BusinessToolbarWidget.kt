@@ -34,7 +34,7 @@ class BusinessToolbarWidget(
             storeId = member.storeId,
             storeAction = storeAction,
             whatsapp = member.whatsapp,
-            shareUrl = "$webappUrl/u/${member.id}",
+            shareUrl = if (member.name == null) "$webappUrl/u/${member.id}" else "$webappUrl/@${member.name}",
         )
 
         fun of(product: Product, member: Member, webappUrl: String, urlBuilder: URLBuilder) = BusinessToolbarWidget(
