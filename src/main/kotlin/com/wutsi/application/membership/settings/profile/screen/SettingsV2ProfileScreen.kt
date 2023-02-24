@@ -43,7 +43,16 @@ class SettingsV2ProfileScreen(
         val member = getCurrentMember()
         val locale = LocaleContextHolder.getLocale()
         children.addAll(
-            listOf(
+            listOfNotNull(
+                if (member.business) {
+                    listItem(
+                        "page.settings.profile.attribute.name",
+                        if (member.name != null) "@${member.name}" else null,
+                        "${Page.getSettingsProfileEditorUrl()}?name=name",
+                    )
+                } else {
+                    null
+                },
                 if (member.business) {
                     listItem(
                         "page.settings.profile.attribute.business-name",

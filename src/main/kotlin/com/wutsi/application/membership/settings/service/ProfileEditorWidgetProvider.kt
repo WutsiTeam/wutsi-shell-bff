@@ -34,10 +34,11 @@ class ProfileEditorWidgetProvider(
             "facebook-id" -> get(name, member.facebookId)
             "instagram-id" -> get(name, member.instagramId)
             "language" -> get(name, member.language)
+            "name" -> get(name, member.name)
             "timezone-id" -> get(name, member.timezoneId)
             "twitter-id" -> get(name, member.twitterId)
-            "whatsapp" -> get(name, member.whatsapp)
             "website" -> get(name, member.website)
+            "whatsapp" -> get(name, member.whatsapp)
             "youtube-id" -> get(name, member.youtubeId)
             else -> throw IllegalStateException("Not supported: $name")
         }
@@ -52,10 +53,11 @@ class ProfileEditorWidgetProvider(
             "facebook-id" -> getInputWidget(defaultValue, 30)
             "instagram-id" -> getInputWidget(defaultValue, 30)
             "language" -> getLanguageWidget(defaultValue?.toString())
+            "name" -> getInputWidget(defaultValue, 30, prefix = "@")
             "timezone-id" -> getTimezoneWidget(defaultValue?.toString())
             "twitter-id" -> getInputWidget(defaultValue, 30)
-            "whatsapp" -> getWhatsappWidget(defaultValue?.toString()?.toBoolean())
             "website" -> getInputWidget(defaultValue, 160, InputType.Url)
+            "whatsapp" -> getWhatsappWidget(defaultValue?.toString()?.toBoolean())
             "youtube-id" -> getInputWidget(defaultValue, 30)
             else -> throw IllegalStateException("Not supported: $name")
         }
@@ -141,6 +143,7 @@ class ProfileEditorWidgetProvider(
         type: InputType = InputType.Text,
         maxLines: Int? = null,
         required: Boolean = false,
+        prefix: String? = null,
     ) =
         Input(
             name = "value",
@@ -149,6 +152,7 @@ class ProfileEditorWidgetProvider(
             maxLength = maxlength,
             maxLines = maxLines,
             required = required,
+            prefix = prefix,
         )
 
     private fun getLocale(): Locale = LocaleContextHolder.getLocale()

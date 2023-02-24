@@ -84,6 +84,7 @@ object Fixtures {
             id = 555,
             title = "Ads",
         ),
+        name = "ray.sponsible",
     )
 
     fun createPlaceSummary(id: Long = -1, name: String = "Yaounde") = PlaceSummary(

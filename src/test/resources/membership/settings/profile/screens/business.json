@@ -27,6 +27,27 @@
             {
               "type": "ListItem",
               "attributes": {
+                "caption": "Account Handle",
+                "subCaption": "@ray.sponsible",
+                "trailing": {
+                  "type": "Icon",
+                  "attributes": {
+                    "code": "e21a",
+                    "size": 24.0,
+                    "color": "#000000"
+                  },
+                  "children": []
+                }
+              },
+              "children": [],
+              "action": {
+                "type": "Route",
+                "url": "http://localhost:0/settings/2/profile/editor?name=name"
+              }
+            },
+            {
+              "type": "ListItem",
+              "attributes": {
                 "caption": "Business Name",
                 "subCaption": "Ray Sponsible",
                 "trailing": {
