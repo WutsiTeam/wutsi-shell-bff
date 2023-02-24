@@ -27,7 +27,7 @@
             {
               "type": "ListItem",
               "attributes": {
-                "caption": "Account Handle",
+                "caption": "Username",
                 "subCaption": "@ray.sponsible",
                 "trailing": {
                   "type": "Icon",
