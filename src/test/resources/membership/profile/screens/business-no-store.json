@@ -279,7 +279,7 @@
                                   ],
                                   "action": {
                                     "type": "Share",
-                                    "url": "https://wutsi-web-test.herokuapp.com/u/1000"
+                                    "url": "https://wutsi-web-test.herokuapp.com/@ray.sponsible"
                                   }
                                 }
                               ]
@@ -302,7 +302,7 @@
                               ],
                               "action": {
                                 "type": "Share",
-                                "url": "https://wutsi-web-test.herokuapp.com/u/1000"
+                                "url": "https://wutsi-web-test.herokuapp.com/@ray.sponsible"
                               }
                             }
                           ]
