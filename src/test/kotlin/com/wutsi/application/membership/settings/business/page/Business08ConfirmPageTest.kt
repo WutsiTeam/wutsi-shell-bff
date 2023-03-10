@@ -6,9 +6,9 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.AbstractSecuredEndpointTest
 import com.wutsi.application.Page
 import com.wutsi.application.membership.settings.business.entity.BusinessEntity
+import com.wutsi.checkout.manager.dto.CreateBusinessRequest
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
-import com.wutsi.membership.manager.dto.ActivateBusinessRequest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -52,8 +52,8 @@ internal class Business08ConfirmPageTest : AbstractSecuredEndpointTest() {
         assertEquals(ActionType.Page, action.type)
         assertEquals("page:/${Business08ConfirmPage.PAGE_INDEX + 1}", action.url)
 
-        verify(membershipManagerApi).activateBusiness(
-            request = ActivateBusinessRequest(
+        verify(checkoutManagerApi).createBusiness(
+            request = CreateBusinessRequest(
                 displayName = entity.displayName,
                 biography = entity.biography,
                 whatsapp = entity.whatsapp,

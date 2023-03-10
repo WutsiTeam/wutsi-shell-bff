@@ -32,6 +32,6 @@ internal class StoreEnable00StartPageTest : AbstractSecuredEndpointTest() {
         assertEquals(ActionType.Page, action.type)
         assertEquals("page:/1", action.url)
 
-        verify(marketplaceManagerApi).activateStore()
+        verify(marketplaceManagerApi).createStore()
     }
 }

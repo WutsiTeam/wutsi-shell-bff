@@ -89,7 +89,7 @@ class StoreEnable00StartPage(
 
     @PostMapping("/submit")
     fun submit(): Action {
-        marketplaceManagerApi.activateStore()
+        marketplaceManagerApi.createStore()
         return gotoPage(PAGE_INDEX + 1)
     }
 

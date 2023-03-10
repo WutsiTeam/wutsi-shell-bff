@@ -1,6 +1,7 @@
 package com.wutsi.application.membership.settings.business.page
 
 import com.wutsi.application.Page
+import com.wutsi.checkout.manager.dto.CreateBusinessRequest
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.Column
@@ -8,7 +9,6 @@ import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.ButtonType
-import com.wutsi.membership.manager.dto.ActivateBusinessRequest
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -55,8 +55,9 @@ class Business08ConfirmPage : AbstractBusinessPage() {
     @PostMapping("/submit")
     fun submit(): Action {
         val entity = dao.get()
-        membershipManagerApi.activateBusiness(
-            request = ActivateBusinessRequest(
+
+        checkoutManagerApi.createBusiness(
+            request = CreateBusinessRequest(
                 displayName = entity.displayName,
                 cityId = entity.cityId ?: -1,
                 categoryId = entity.categoryId ?: -1,
